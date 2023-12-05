@@ -89,19 +89,20 @@ function scanTextNodes(element, blockedKeywords) {
   }
 }
 
-chrome.storage.sync.get(["blockedKeywords", "whitelistedSites"], ({ blockedKeywords, whitelistedSites }) => {
-  const currentSite = window.location.hostname.toLowerCase();
-  console.log("Current site:", currentSite); // Log the current site
-  console.log("Whitelisted sites:", whitelistedSites); // Log the whitelisted sites
+chrome.storage.sync.get(["blockedKeywords", "whitelistedSites", "websiteGroups"], ({ blockedKeywords, whitelistedSites, websiteGroups }) => {
+  const currentSite = window.location.hostname;
 
-  if (whitelistedSites && whitelistedSites.includes(currentSite)) {
+  if (isSiteWhitelisted(whitelistedSites, currentSite)) {
     console.log("This site is whitelisted. Skipping keyword scan.");
-  } else {
-    console.log("Keywords to check:", blockedKeywords); // Log the keywords
-    scanForKeywords(blockedKeywords);
-    observeMutations(blockedKeywords);
+    return;
   }
+
+  const groupKeywords = getGroupKeywords(websiteGroups, currentSite);
+  const combinedKeywords = [...new Set([...blockedKeywords, ...groupKeywords])];
+  scanForKeywords(combinedKeywords);
+  observeMutations(combinedKeywords);
 });
+
 
 function scanForKeywords(blockedKeywords) {
   const rootElement = document.querySelector('body'); // Starting from the body element
