@@ -10,30 +10,28 @@
             color: #333;
         }
 
-        h1, h2 {
+        h1 {
             color: #5D5C61;
-            margin-bottom: 10px;
         }
 
-        input, button {
+        #keywordInput {
             padding: 10px;
-            margin: 5px 0;
+            width: 300px;
+            margin-right: 10px;
             border: 1px solid #ddd;
             border-radius: 4px;
         }
 
-        input {
-            width: calc(100% - 22px); /* Adjust width to account for padding and border */
-        }
-
-        button {
+        #addButton {
+            padding: 10px 20px;
             background-color: #4CAF50;
             color: white;
+            border: none;
+            border-radius: 4px;
             cursor: pointer;
-            width: 100%;
         }
 
-        button:hover {
+        #addButton:hover {
             background-color: #45a049;
         }
 
@@ -49,24 +47,46 @@
             border: 1px solid #ddd;
             border-radius: 4px;
             display: flex;
-            flex-direction: column;
-            gap: 5px;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .group-inputs {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-
-        .group-controls {
-            display: flex;
-            justify-content: flex-end;
-            gap: 10px;
-        }
-
-        .group-controls button {
+        button {
             padding: 5px 10px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #d32f2f;
+        }
+        #whitelistInput {
+            padding: 10px;
+            width: 300px;
+            margin-right: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        #addWhitelistButton {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #addWhitelistButton:hover {
+            background-color: #45a049;
+        }
+
+        h2 {
+            color: #5D5C61;
+            margin-top: 20px; /* Spacing above the h2 element */
         }
     </style>
 </head>
@@ -81,13 +101,19 @@
     <button id="addWhitelistButton">Add to Whitelist</button>
     <ul id="whitelist"></ul>
 
+    <script src="options.js"></script>
+
+
+
+
     <h2>Manage Website Groups</h2>
-    <div class="group-inputs">
-        <input type="text" id="groupNameInput" placeholder="Group Name">
-        <button id="addGroupButton">Add Group</button>
+    <div>
+      <input type="text" id="groupNameInput" placeholder="Group Name">
+      <input type="text" id="groupWebsitesInput" placeholder="Websites (comma-separated)">
+      <input type="text" id="groupKeywordsInput" placeholder="Keywords (comma-separated)">
+      <button id="addGroupButton">Add Group</button>
     </div>
-    <ul id="groupList"></ul> <!-- Container for displaying groups -->
+    <ul id="groupList"></ul> <!-- This is the missing element -->
 
     <script src="options.js"></script>
 </body>
-</html>
