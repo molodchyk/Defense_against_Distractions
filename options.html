@@ -1,119 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Keyword Blocker Options</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            padding: 20px;
-            color: #333;
-        }
-
-        h1 {
-            color: #5D5C61;
-        }
-
-        #keywordInput {
-            padding: 10px;
-            width: 300px;
-            margin-right: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-
-        #addButton {
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        #addButton:hover {
-            background-color: #45a049;
-        }
-
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        li {
-            background-color: #fff;
-            margin-top: 10px;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        button {
-            padding: 5px 10px;
-            background-color: #f44336;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #d32f2f;
-        }
-        #whitelistInput {
-            padding: 10px;
-            width: 300px;
-            margin-right: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-
-        #addWhitelistButton {
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        #addWhitelistButton:hover {
-            background-color: #45a049;
-        }
-
-        h2 {
-            color: #5D5C61;
-            margin-top: 20px; /* Spacing above the h2 element */
-        }
-    </style>
+    <title>Defense Panel</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Keyword Blocker</h1>
+
+
+
+
+
+    <h2>Groups</h2>
+    <!-- <div> -->
+      <input type="text" id="groupNameInput" placeholder="Group Name">
+      <input type="text" id="groupWebsitesInput" placeholder="Websites">
+      <input type="text" id="groupKeywordsInput" placeholder="Keywords">
+      <button id="addGroupButton">Add Group</button>
+    <!-- </div> -->
+    <ul id="groupList"></ul> <!-- This is the missing element -->
+
+    <script src="groupManagement.js"></script>
+
+    <!-- <h1></h1>
     <input type="text" id="keywordInput" placeholder="Enter keyword">
     <button id="addButton">Add</button>
     <ul id="keywordList"></ul>
+    <script src="keywordManagement.js"></script> -->
 
     <h2>Whitelist Websites</h2>
     <input type="text" id="whitelistInput" placeholder="Enter website URL">
     <button id="addWhitelistButton">Add to Whitelist</button>
     <ul id="whitelist"></ul>
 
-    <script src="options.js"></script>
-
-
-
-
-    <h2>Manage Website Groups</h2>
-    <div>
-      <input type="text" id="groupNameInput" placeholder="Group Name">
-      <input type="text" id="groupWebsitesInput" placeholder="Websites (comma-separated)">
-      <input type="text" id="groupKeywordsInput" placeholder="Keywords (comma-separated)">
-      <button id="addGroupButton">Add Group</button>
-    </div>
-    <ul id="groupList"></ul> <!-- This is the missing element -->
-
-    <script src="options.js"></script>
+    <script src="whitelistManagement.js"></script>
 </body>
