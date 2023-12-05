@@ -1,9 +1,3 @@
-/**
- * contentBlocker.js
- * This module is responsible for scanning web page content and blocking it if certain keywords are detected.
- * It works in conjunction with keywordManager.js to manage the list of blocked keywords.
- */
-
 let isPageBlocked = false; // Flag to indicate if the page has been blocked
 
 function blockPage(keyword, contextText) {
@@ -60,6 +54,8 @@ function blockPage(keyword, contextText) {
   }
 }
 
+
+
 function extractContext(text, keyword, maxWords = 15) {
   const words = text.split(/\s+/);
   const keywordIndex = words.findIndex(w => w.toLowerCase().includes(keyword.toLowerCase()));
@@ -72,56 +68,60 @@ function extractContext(text, keyword, maxWords = 15) {
   return text; // Fallback if keyword is not found
 }
 
-
-// Function to scan text nodes for blocked keywords
 function scanTextNodes(element, blockedKeywords) {
-  if (isPageBlocked) return;
+  if (isPageBlocked) return; // Stop scanning if the page is already blocked
 
   if (element.nodeType === Node.TEXT_NODE) {
-      const text = element.textContent.trim();
-      if (text) {
-          blockedKeywords.forEach(keyword => {
-              if (text.toLowerCase().includes(keyword.toLowerCase())) {
-                  const contextText = extractContext(text, keyword);
-                  blockPage(keyword, contextText);
-              }
-          });
-      }
+    const text = element.textContent.trim();
+    if (text) {
+      console.log("Scanning text:", text); // Log the text being scanned
+      blockedKeywords.forEach(keyword => {
+        if (text.toLowerCase().includes(keyword.toLowerCase())) {
+          const contextText = extractContext(text, keyword);
+          blockPage(keyword, contextText);
+        }
+      });
+    }
   } else if (element.nodeType === Node.ELEMENT_NODE) {
-      Array.from(element.childNodes).forEach(child => scanTextNodes(child, blockedKeywords));
+    Array.from(element.childNodes).forEach(child => {
+      scanTextNodes(child, blockedKeywords);
+    });
   }
 }
 
-// Function to start scanning the body of the page for blocked keywords
+chrome.storage.sync.get(["blockedKeywords", "whitelistedSites"], ({ blockedKeywords, whitelistedSites }) => {
+  const currentSite = window.location.hostname.toLowerCase();
+  console.log("Current site:", currentSite); // Log the current site
+  console.log("Whitelisted sites:", whitelistedSites); // Log the whitelisted sites
+
+  if (whitelistedSites && whitelistedSites.includes(currentSite)) {
+    console.log("This site is whitelisted. Skipping keyword scan.");
+  } else {
+    console.log("Keywords to check:", blockedKeywords); // Log the keywords
+    scanForKeywords(blockedKeywords);
+    observeMutations(blockedKeywords);
+  }
+});
+
 function scanForKeywords(blockedKeywords) {
-  const rootElement = document.querySelector('body');
+  const rootElement = document.querySelector('body'); // Starting from the body element
   scanTextNodes(rootElement, blockedKeywords);
 }
 
-// Function to observe mutations (changes) in the DOM and scan new nodes
 function observeMutations(blockedKeywords) {
   const observer = new MutationObserver(mutations => {
-      if (isPageBlocked) {
-          observer.disconnect();
-          return;
-      }
+    if (isPageBlocked) {
+      observer.disconnect(); // Stop observing if the page is already blocked
+      return;
+    }
 
-      mutations.forEach(mutation => {
-          mutation.addedNodes.forEach(node => scanTextNodes(node, blockedKeywords));
+    mutations.forEach(mutation => {
+      mutation.addedNodes.forEach(node => {
+        scanTextNodes(node, blockedKeywords);
       });
+    });
   });
 
-  observer.observe(document.body, { childList: true, subtree: true });
+  const config = { childList: true, subtree: true };
+  observer.observe(document.body, config);
 }
-
-// Check storage for blocked keywords and whitelisted sites, and initiate scanning
-chrome.storage.sync.get(["blockedKeywords", "whitelistedSites"], ({ blockedKeywords, whitelistedSites }) => {
-  const currentSite = window.location.hostname.toLowerCase();
-
-  if (whitelistedSites && whitelistedSites.includes(currentSite)) {
-      console.log("This site is whitelisted. Skipping keyword scan.");
-  } else {
-      scanForKeywords(blockedKeywords);
-      observeMutations(blockedKeywords);
-  }
-});
