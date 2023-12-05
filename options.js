@@ -150,6 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+
 function updateGroupsUI(websiteGroups) {
   // Function to update the UI with existing groups
   // Assuming you have a container in your HTML for displaying groups
