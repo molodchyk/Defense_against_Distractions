@@ -18,17 +18,16 @@ function addKeyword() {
   if (!keyword) return; // Don't add if the input is empty
 
   chrome.storage.sync.get('blockedKeywords', ({ blockedKeywords }) => {
-    if (blockedKeywords.map(k => k.toLowerCase()).includes(keyword)) {
+    const updatedKeywords = KeywordManager.addKeyword(blockedKeywords, keyword);
+    if (updatedKeywords.length > blockedKeywords.length) {
+      chrome.storage.sync.set({ blockedKeywords: updatedKeywords }, () => {
+        updateUI(updatedKeywords);
+        input.value = ''; // Clear the input field after adding
+      });
+    } else {
       alert("This keyword already exists.");
       input.value = ''; // Clear the input field
-      return;
     }
-
-    const updatedKeywords = [...blockedKeywords, keyword];
-    chrome.storage.sync.set({ blockedKeywords: updatedKeywords }, () => {
-      updateUI(updatedKeywords);
-      input.value = ''; // Clear the input field after adding
-    });
   });
 }
 

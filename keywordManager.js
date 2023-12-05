@@ -19,7 +19,3 @@ const KeywordManager = {
 
     // Additional utility functions can be added here as needed
 };
-
-// Assuming ES6 modules are supported, otherwise use a different pattern
-// export default KeywordManager;
-
