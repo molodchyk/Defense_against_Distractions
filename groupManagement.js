@@ -19,9 +19,17 @@ function updateGroupsUI(websiteGroups) {
 function addGroup() {
   const groupName = document.getElementById('groupNameInput').value.trim();
 
-  if (!groupName) return; // Don't add if the group name is empty
+  if (!groupName) {
+    alert("Group name cannot be empty.");
+    return;
+  }
 
   chrome.storage.sync.get('websiteGroups', ({ websiteGroups = [] }) => {
+    if (websiteGroups.some(group => group.groupName.toLowerCase() === groupName.toLowerCase())) {
+      alert("A group with this name already exists.");
+      return;
+    }
+
     websiteGroups.push({ groupName, websites: [], keywords: [] });
     chrome.storage.sync.set({ websiteGroups }, () => {
       updateGroupsUI(websiteGroups);

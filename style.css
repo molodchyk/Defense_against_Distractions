@@ -1,87 +1,146 @@
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            padding: 20px;
-            color: #333;
-        }
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        padding: 20px;
+        color: #333;
+    }
 
-        h1 {
-            color: #5D5C61;
-        }
+    h1 {
+        color: #5D5C61;
+    }
 
-        #keywordInput {
-            padding: 10px;
-            width: 300px;
-            margin-right: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
+    #keywordInput {
+        padding: 10px;
+        width: 300px;
+        margin-right: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
 
-        #addButton {
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
+    #addButton {
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
 
-        #addButton:hover {
-            background-color: #45a049;
-        }
+    #addButton:hover {
+        background-color: #45a049;
+    }
 
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
 
-        li {
-            background-color: #fff;
-            margin-top: 10px;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    li {
+        background-color: #fff;
+        margin-top: 10px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 
-        button {
-            padding: 5px 10px;
-            background-color: #f44336;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
+    button {
+        padding: 5px 10px;
+        background-color: #f44336;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
 
-        button:hover {
-            background-color: #d32f2f;
-        }
-        #whitelistInput {
-            padding: 10px;
-            width: 300px;
-            margin-right: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
+    button:hover {
+        background-color: #d32f2f;
+    }
+    #whitelistInput {
+        padding: 10px;
+        width: 300px;
+        margin-right: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
 
-        #addWhitelistButton {
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
+    #addWhitelistButton {
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
 
-        #addWhitelistButton:hover {
-            background-color: #45a049;
-        }
+    #addWhitelistButton:hover {
+        background-color: #45a049;
+    }
 
-        h2 {
-            color: #5D5C61;
-            margin-top: 20px; /* Spacing above the h2 element */
-        }
-    </style>
+    h2 {
+        color: #5D5C61;
+        margin-top: 20px; /* Spacing above the h2 element */
+    }
+
+    /* Groups panel styling */
+    #groupNameInput, #groupWebsitesInput, #groupKeywordsInput {
+        padding: 10px;
+        margin: 5px 0;
+        width: calc(100% - 22px); /* Adjust width considering padding and border */
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+
+    #addGroupButton {
+        padding: 10px 20px;
+        background-color: #007bff; /* Different color for the Add Group button */
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin: 10px 0;
+    }
+
+    #addGroupButton:hover {
+        background-color: #0056b3;
+    }
+
+    #groupList li {
+        background-color: #fff;
+        margin-top: 10px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        display: flex;
+        flex-direction: column; /* Display elements in a column */
+        align-items: flex-start; /* Align items to the start */
+    }
+
+    #groupList li div {
+        margin: 5px 0; /* Margin for each div */
+    }
+
+    #groupList button {
+        padding: 5px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+    #groupList button:nth-child(1) {
+        background-color: #28a745; /* Green color for update button */
+        color: white;
+    }
+
+    #groupList button:nth-child(2) {
+        background-color: #dc3545; /* Red color for delete button */
+        color: white;
+    }
+
+    #groupList button:hover {
+        opacity: 0.8;
+    }
+</style>
