@@ -4,16 +4,49 @@ function updateGroupsUI(websiteGroups) {
   list.innerHTML = '';
   websiteGroups.forEach((group, index) => {
     const li = document.createElement('li');
-    li.innerHTML = `
-      <div>Group Name: <input type="text" value="${group.groupName}" id="name-${index}"></div>
-      <div>Websites: <input type="text" value="${group.websites.join(', ')}" id="websites-${index}"></div>
-      <div>Keywords: <input type="text" value="${group.keywords.join(', ')}" id="keywords-${index}"></div>
-      <button onclick="updateGroup(${index})">Update</button>
-      <button onclick="removeGroup(${index})">Delete</button>
-    `;
+
+    // Create elements for group details
+    const groupNameDiv = document.createElement('div');
+    const groupNameInput = document.createElement('input');
+    groupNameInput.type = 'text';
+    groupNameInput.value = group.groupName;
+    groupNameInput.id = `name-${index}`;
+    groupNameDiv.appendChild(groupNameInput);
+
+    const websitesDiv = document.createElement('div');
+    const websitesInput = document.createElement('input');
+    websitesInput.type = 'text';
+    websitesInput.value = group.websites.join(', ');
+    websitesInput.id = `websites-${index}`;
+    websitesDiv.appendChild(websitesInput);
+
+    const keywordsDiv = document.createElement('div');
+    const keywordsInput = document.createElement('input');
+    keywordsInput.type = 'text';
+    keywordsInput.value = group.keywords.join(', ');
+    keywordsInput.id = `keywords-${index}`;
+    keywordsDiv.appendChild(keywordsInput);
+
+    // Create Update and Delete buttons
+    const updateButton = document.createElement('button');
+    updateButton.textContent = 'Update';
+    updateButton.addEventListener('click', () => updateGroup(index));
+
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Delete';
+    deleteButton.addEventListener('click', () => removeGroup(index));
+
+    // Append elements to the list item
+    li.appendChild(groupNameDiv);
+    li.appendChild(websitesDiv);
+    li.appendChild(keywordsDiv);
+    li.appendChild(updateButton);
+    li.appendChild(deleteButton);
+
     list.appendChild(li);
   });
 }
+
 
 // Function to add a new group
 function addGroup() {
