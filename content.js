@@ -114,43 +114,52 @@ function normalizeURL(site) {
   return site.replace(/^(?:https?:\/\/)?(?:www\.)?/, '').toLowerCase();
 }
 
-chrome.storage.sync.get(["whitelistedSites", "websiteGroups"], ({ whitelistedSites, websiteGroups }) => {
-  const fullUrl = window.location.href;
-  const normalizedUrl = normalizeURL(fullUrl);
+function performSiteCheck(){
+  chrome.storage.sync.get(["whitelistedSites", "websiteGroups"], ({ whitelistedSites, websiteGroups }) => {
+    const fullUrl = window.location.href;
+    const normalizedUrl = normalizeURL(fullUrl);
 
-  // Log the whitelisted sites more cleanly
-  console.log("Whitelisted Sites Array:", whitelistedSites.join(', '));
-  console.log("Current URL:", normalizedUrl);
+    // Log the whitelisted sites more cleanly
+    console.log("Whitelisted Sites Array:", whitelistedSites.join(', '));
+    console.log("Current URL:", normalizedUrl);
 
-  // Check if the current normalized URL contains any of the whitelisted URLs
-  const isWhitelisted = whitelistedSites.some(whitelistedUrl => normalizedUrl.includes(whitelistedUrl));
+    // Check if the current normalized URL contains any of the whitelisted URLs
+    const isWhitelisted = whitelistedSites.some(whitelistedUrl => normalizedUrl.includes(whitelistedUrl));
 
-  if (isWhitelisted) {
-    console.log("This site or part of it is whitelisted. Skipping keyword scan.");
-    return;
-  }
-
-  // Log the entire websiteGroups array for debugging
-  console.log("Website Groups:", JSON.stringify(websiteGroups, null, 2));
-
-  let matchingGroup = null;
-  const keywords = getGroupKeywords(websiteGroups, normalizedUrl, (group) => { matchingGroup = group; });
-
-  // Log the keywords that were found for the current site
-  console.log("Keywords for current site:", keywords.join(', '));
-
-  if (keywords.length > 0) {
-    scanForKeywords(keywords);
-    observeMutations(keywords);
-  } else {
-    if (matchingGroup) {
-      console.log(`A matching group was found for this site: "${matchingGroup.groupName}" with sites: ${matchingGroup.websites.join(', ')}, but no keywords were found.`);
-    } else {
-      console.log("No matching group found for this site, or the group has no keywords.");
+    if (isWhitelisted) {
+      console.log("This site or part of it is whitelisted. Skipping keyword scan.");
+      return;
     }
-  }
-});
 
+    // Log the entire websiteGroups array for debugging
+    console.log("Website Groups:", JSON.stringify(websiteGroups, null, 2));
+
+    let matchingGroup = null;
+    const keywords = getGroupKeywords(websiteGroups, normalizedUrl, (group) => { matchingGroup = group; });
+
+    // Log the keywords that were found for the current site
+    console.log("Keywords for current site:", keywords.join(', '));
+
+    if (keywords.length > 0) {
+      scanForKeywords(keywords);
+      observeMutations(keywords);
+    } else {
+      if (matchingGroup) {
+        console.log(`A matching group was found for this site: "${matchingGroup.groupName}" with sites: ${matchingGroup.websites.join(', ')}, but no keywords were found.`);
+      } else {
+        console.log("No matching group found for this site, or the group has no keywords.");
+      }
+    }
+  });
+}
+
+// Call performSiteCheck when the script is first loaded
+performSiteCheck();
+
+// Export performSiteCheck if needed to be called from outside (e.g., background script)
+if (typeof module !== 'undefined') {
+  module.exports = performSiteCheck;
+}
 
 function scanForKeywords(keywords) {
   // Same as before, but now it uses the keywords from the matching group
