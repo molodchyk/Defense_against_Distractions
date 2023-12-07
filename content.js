@@ -70,6 +70,7 @@ function extractContext(text, keyword, maxWords = 15) {
 
 function scanTextNodes(element, blockedKeywords) {
   if (isPageBlocked) return; // Stop scanning if the page is already blocked
+  else console.log("Page is blocked");
 
   if (element.nodeType === Node.TEXT_NODE) {
     const text = element.textContent.trim();
@@ -90,19 +91,25 @@ function scanTextNodes(element, blockedKeywords) {
 }
 
 chrome.storage.sync.get(["blockedKeywords", "whitelistedSites", "websiteGroups"], ({ blockedKeywords, whitelistedSites, websiteGroups }) => {
+  console.log("HI MORON");
   const currentSite = window.location.hostname;
 
-  if (isSiteWhitelisted(whitelistedSites, currentSite)) {
+  console.log("Whitelisted Sites:", whitelistedSites, "Current Site:", currentSite);
+  console.log("Blocked Keywords:", blockedKeywords);
+
+  // Directly checking if the current site is in the whitelistedSites array
+  if (whitelistedSites.includes(currentSite.toLowerCase())) {
     console.log("This site is whitelisted. Skipping keyword scan.");
     return;
   }
 
-  const groupKeywords = getGroupKeywords(websiteGroups, currentSite);
-  const combinedKeywords = [...new Set([...blockedKeywords, ...groupKeywords])];
+  console.log("HI MORON3");
+
+  const groupKeywords = getGroupKeywords(websiteGroups, currentSite);                      // this has to be changed?
+  const combinedKeywords = [...new Set([...blockedKeywords, ...groupKeywords])];           // this has to be changed?
   scanForKeywords(combinedKeywords);
   observeMutations(combinedKeywords);
 });
-
 
 function scanForKeywords(blockedKeywords) {
   const rootElement = document.querySelector('body'); // Starting from the body element

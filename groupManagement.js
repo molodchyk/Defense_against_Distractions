@@ -7,13 +7,13 @@ function updateGroupsUI(websiteGroups) {
     li.className = 'group-item';
 
     // Group Name
-    createGroupField(li, 'Group Name:', group.groupName, `name-${index}`, true);
+    createGroupField(li, 'Group Name:', group.groupName, `name-${index}`, true, index);
 
     // Websites
-    createGroupField(li, 'Websites:', group.websites.join('\n'), `websites-${index}`, false);
+    createGroupField(li, 'Websites:', group.websites.join('\n'), `websites-${index}`, true, index);
 
     // Keywords
-    createGroupField(li, 'Keywords:', group.keywords.join('\n'), `keywords-${index}`, false);
+    createGroupField(li, 'Keywords:', group.keywords.join('\n'), `keywords-${index}`, true, index);
 
     // Delete button
     const deleteButton = createButton('Delete', () => removeGroup(index), 'delete-button');
@@ -23,38 +23,71 @@ function updateGroupsUI(websiteGroups) {
   });
 }
 
-function createGroupField(container, label, value, id, isReadOnly) {
+function createGroupField(container, label, value, id, isReadOnly, index) {
   const fieldDiv = document.createElement('div');
   const labelElement = document.createElement('label');
   labelElement.textContent = label;
+  
+  // Create input or textarea based on isReadOnly flag
   const inputElement = isReadOnly ? document.createElement('input') : document.createElement('textarea');
   inputElement.value = value;
   inputElement.id = id;
   inputElement.readOnly = isReadOnly;
+  
   fieldDiv.appendChild(labelElement);
   fieldDiv.appendChild(inputElement);
 
-  if (!isReadOnly) {
-    const updateButton = createButton('Edit', () => toggleFieldEdit(id), 'update-button');
-    fieldDiv.appendChild(updateButton);
-  }
+  // Add Edit and Save buttons with appropriate functionality
+  const editButton = createButton('Edit', () => toggleFieldEdit(id, index), 'edit-button');
+  const saveButton = createButton('Save', () => updateGroupField(index), 'save-button');
+  saveButton.disabled = true; // Initially disable the Save button
+
+  // Append buttons to the fieldDiv
+  fieldDiv.appendChild(editButton);
+  fieldDiv.appendChild(saveButton);
 
   container.appendChild(fieldDiv);
 }
 
-function toggleFieldEdit(fieldId) {
+function toggleFieldEdit(fieldId, index) {
   const field = document.getElementById(fieldId);
-  const button = field.nextElementSibling;
+  const editButton = field.nextElementSibling;
+  const saveButton = editButton.nextElementSibling;
   const isReadOnly = field.readOnly;
 
-  field.readOnly = !isReadOnly;
-  field.style.height = isReadOnly ? 'auto' : '1em'; // Expand the textarea
-  button.textContent = isReadOnly ? 'Save' : 'Edit';
-  button.classList.toggle('save-button', isReadOnly);
+  // Extract field name from the id for logging purposes
+  const fieldName = fieldId.replace(/[0-9]/g, '').replace('-', ''); 
 
-  if (!isReadOnly) {
-    updateGroupField(fieldId.split('-')[1]); // Save the updated field
+  if (isReadOnly) {
+    // Enable edit mode
+    console.log(`Clicked button Edit, editing field: ${fieldName}, Current Text: '${field.value}'`);   //line 63
+    field.readOnly = false;
+    field.style.height = 'auto'; // Expand the textarea if applicable
+    editButton.textContent = 'Cancel';
+    saveButton.disabled = false;
+    field.setAttribute('data-initial-value', field.value);
+  } else {
+    // Cancel edit mode
+    console.log(`Edit canceled for field: ${fieldName}, Original Text: '${field.getAttribute('data-initial-value')}'`);
+    field.readOnly = true;
+    field.value = field.getAttribute('data-initial-value'); // Restore original value
+    editButton.textContent = 'Edit';
+    saveButton.disabled = true;
   }
+}
+
+
+
+// Function to update an existing group
+function updateGroup(index) {
+  chrome.storage.sync.get('websiteGroups', ({ websiteGroups }) => {
+    const groupName = document.getElementById(`name-${index}`).value.trim();
+    const websites = document.getElementById(`websites-${index}`).value.split('\n').map(site => site.trim()).filter(site => site !== '');
+    const keywords = document.getElementById(`keywords-${index}`).value.split('\n').map(keyword => keyword.trim()).filter(keyword => keyword !== '');
+
+    websiteGroups[index] = { groupName, websites, keywords };
+    chrome.storage.sync.set({ websiteGroups }, () => updateGroupsUI(websiteGroups));
+  });
 }
 
 function updateGroupField(index) {
@@ -62,15 +95,25 @@ function updateGroupField(index) {
   chrome.storage.sync.get('websiteGroups', ({ websiteGroups }) => {
     const group = websiteGroups[index];
 
-    // Update websites and keywords from the textarea fields
+    // Update group name, websites, and keywords from the fields
+    const groupNameField = document.getElementById(`name-${index}`);
     const websitesField = document.getElementById(`websites-${index}`);
     const keywordsField = document.getElementById(`keywords-${index}`);
 
-    // Splitting by newline and trimming each line to get individual entries
+    const initialGroupName = group.groupName;
+    const initialWebsites = group.websites.join('\n');
+    const initialKeywords = group.keywords.join('\n');
+
+    group.groupName = groupNameField.value.trim(); // Update group name
     group.websites = websitesField.value.split('\n').map(site => site.trim()).filter(site => site !== '');
     group.keywords = keywordsField.value.split('\n').map(keyword => keyword.trim()).filter(keyword => keyword !== '');
 
-    // Save the updated group data
+    // Logging changes
+    console.log(`Group updated: [${index}]`);
+    console.log(`Group Name: ${initialGroupName} -> ${group.groupName}`);
+    console.log(`Websites: ${initialWebsites} -> ${group.websites.join('\n')}`);
+    console.log(`Keywords: ${initialKeywords} -> ${group.keywords.join('\n')}`);
+
     chrome.storage.sync.set({ websiteGroups }, () => {
       updateGroupsUI(websiteGroups); // Refresh the UI with updated data
     });
@@ -107,35 +150,24 @@ function toggleUpdateGroup(index) {
 // Function to add a new group
 function addGroup() {
   const groupName = document.getElementById('groupNameInput').value.trim();
-
   if (!groupName) {
     alert("Group name cannot be empty.");
     return;
   }
 
+  // Check if group already exists
   chrome.storage.sync.get('websiteGroups', ({ websiteGroups = [] }) => {
     if (websiteGroups.some(group => group.groupName.toLowerCase() === groupName.toLowerCase())) {
       alert("A group with this name already exists.");
       return;
     }
 
+    // Add new group
     websiteGroups.push({ groupName, websites: [], keywords: [] });
     chrome.storage.sync.set({ websiteGroups }, () => {
       updateGroupsUI(websiteGroups);
       document.getElementById('groupNameInput').value = ''; // Clear input field
     });
-  });
-}
-
-// Function to update an existing group
-function updateGroup(index) {
-  chrome.storage.sync.get('websiteGroups', ({ websiteGroups }) => {
-    const groupName = document.getElementById(`name-${index}`).value.trim();
-    const websites = document.getElementById(`websites-${index}`).value.split(',').map(site => site.trim());
-    const keywords = document.getElementById(`keywords-${index}`).value.split(',').map(keyword => keyword.trim());
-
-    websiteGroups[index] = { groupName, websites, keywords };
-    chrome.storage.sync.set({ websiteGroups }, () => updateGroupsUI(websiteGroups));
   });
 }
 
@@ -147,6 +179,13 @@ function removeGroup(index) {
   });
 }
 
+// Event listener for adding group on Enter key press
+document.getElementById('groupNameInput').addEventListener('keypress', (event) => {
+  if (event.key === 'Enter') {
+    addGroup();
+    event.preventDefault();
+  }
+});
 
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize groups UI

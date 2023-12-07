@@ -27,7 +27,7 @@ function addKeyword() {
 
     const updatedKeywords = [...blockedKeywords, keyword];
     chrome.storage.sync.set({ blockedKeywords: updatedKeywords }, () => {
-      updateUI(updatedKeywords);
+      updateKeywordUI(updatedKeywords);
       input.value = ''; // Clear the input field after adding
     });
   });
@@ -36,7 +36,7 @@ function addKeyword() {
 function removeKeyword(index) {
   chrome.storage.sync.get('blockedKeywords', ({ blockedKeywords }) => {
     blockedKeywords.splice(index, 1);
-    chrome.storage.sync.set({ blockedKeywords }, () => updateUI(blockedKeywords));
+    chrome.storage.sync.set({ blockedKeywords }, () => updateKeywordUI(blockedKeywords));
   });
 }
 
