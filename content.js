@@ -1,61 +1,61 @@
-let isPageBlocked = false;
+if (typeof window.pageBlocked === 'undefined') {
+  window.pageBlocked = false;
+}
 
 function blockPage(keyword, contextText) {
-  if (!isPageBlocked) {
-    document.documentElement.style.overflow = 'hidden';  // Hide scrollbars
-    Array.from(document.body.children).forEach(child => child.style.display = 'none'); // Hide all other elements
+  if (window.pageBlocked) return; // Return if page is already blocked
+  document.documentElement.style.overflow = 'hidden';  // Hide scrollbars
+  Array.from(document.body.children).forEach(child => child.style.display = 'none'); // Hide all other elements
 
-    var blockDiv = document.createElement("div");
-    blockDiv.style.position = 'fixed';
-    blockDiv.style.top = '0';
-    blockDiv.style.left = '0';
-    blockDiv.style.width = '100vw';
-    blockDiv.style.height = '100vh';
-    blockDiv.style.backgroundColor = '#ffffff'; // Soft white background
-    blockDiv.style.color = '#333333'; // Dark grey text for readability
-    blockDiv.style.zIndex = '1000';
-    blockDiv.style.display = 'flex';
-    blockDiv.style.flexDirection = 'column';
-    blockDiv.style.justifyContent = 'center';
-    blockDiv.style.alignItems = 'center';
-    blockDiv.style.textAlign = 'center';
-    blockDiv.style.padding = '20px';
-    blockDiv.style.boxSizing = 'border-box';
-    blockDiv.style.fontSize = '20px';
-    blockDiv.style.fontFamily = 'Arial, sans-serif';
-    blockDiv.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.1)'; // Subtle box shadow for depth
-    blockDiv.style.zIndex = '2147483647'; // Use the maximum possible value
+  var blockDiv = document.createElement("div");
+  blockDiv.style.position = 'fixed';
+  blockDiv.style.top = '0';
+  blockDiv.style.left = '0';
+  blockDiv.style.width = '100vw';
+  blockDiv.style.height = '100vh';
+  blockDiv.style.backgroundColor = '#ffffff'; // Soft white background
+  blockDiv.style.color = '#333333'; // Dark grey text for readability
+  blockDiv.style.zIndex = '1000';
+  blockDiv.style.display = 'flex';
+  blockDiv.style.flexDirection = 'column';
+  blockDiv.style.justifyContent = 'center';
+  blockDiv.style.alignItems = 'center';
+  blockDiv.style.textAlign = 'center';
+  blockDiv.style.padding = '20px';
+  blockDiv.style.boxSizing = 'border-box';
+  blockDiv.style.fontSize = '20px';
+  blockDiv.style.fontFamily = 'Arial, sans-serif';
+  blockDiv.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.1)'; // Subtle box shadow for depth
+  blockDiv.style.zIndex = '2147483647'; // Use the maximum possible value
 
-    var contentDiv = document.createElement("div");
-    contentDiv.style.maxWidth = '600px'; // Max width for content area
-    contentDiv.style.margin = '0 auto';
-    contentDiv.style.padding = '30px';
-    contentDiv.style.backgroundColor = '#f8f8f8'; // Light grey background for content area
-    contentDiv.style.borderRadius = '8px'; // Rounded corners
+  var contentDiv = document.createElement("div");
+  contentDiv.style.maxWidth = '600px'; // Max width for content area
+  contentDiv.style.margin = '0 auto';
+  contentDiv.style.padding = '30px';
+  contentDiv.style.backgroundColor = '#f8f8f8'; // Light grey background for content area
+  contentDiv.style.borderRadius = '8px'; // Rounded corners
 
-    contentDiv.innerHTML = `
-      <h2 style="color: #d32f2f;">Content Blocked</h2>
-      <p>This page contains restricted content and has been blocked for your protection.</p>
-      <p><strong>Keyword Detected:</strong> ${keyword}</p>
-      <p><strong>Context:</strong> "${contextText}"</p>
-      <button id="goBackButton" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px;">Go Back</button>
-    `;
+  contentDiv.innerHTML = `
+    <h2 style="color: #d32f2f;">Content Blocked</h2>
+    <p>This page contains restricted content and has been blocked for your protection.</p>
+    <p><strong>Keyword Detected:</strong> ${keyword}</p>
+    <p><strong>Context:</strong> "${contextText}"</p>
+    <button id="goBackButton" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px;">Go Back</button>
+  `;
 
-    blockDiv.appendChild(contentDiv);
-    document.body.appendChild(blockDiv);
+  blockDiv.appendChild(contentDiv);
+  document.body.appendChild(blockDiv);
 
-    document.getElementById('goBackButton').addEventListener('click', function(event) {
-      event.stopPropagation();
-      window.history.back();
-    });
+  document.getElementById('goBackButton').addEventListener('click', function(event) {
+    event.stopPropagation();
+    window.history.back();
+  });
 
-    // Listen to the popstate event to refresh the page
-    window.addEventListener('popstate', function() {
-      window.location.reload();
-    });
-
-    isPageBlocked = true;
-  }
+  // Listen to the popstate event to refresh the page
+  window.addEventListener('popstate', function() {
+    window.location.reload();
+  });
+  window.pageBlocked = true; // Set the flag to indicate the page is blocked
 }
 
 
@@ -73,8 +73,7 @@ function extractContext(text, keyword, maxWords = 15) {
 }
 
 function scanTextNodes(element, keywords) {
-  if (isPageBlocked) return; // Stop scanning if the page is already blocked
-
+  if (window.pageBlocked) return; // Stop scanning if the page is already blocked
   if (element.nodeType === Node.TEXT_NODE) {
     const text = element.textContent.trim();
     if (text) {
@@ -177,11 +176,6 @@ function scanForKeywords(keywords) {
 
 function observeMutations(keywords) {
   const observer = new MutationObserver(mutations => {
-    if (isPageBlocked) {
-      observer.disconnect(); // Stop observing if the page is already blocked
-      return;
-    }
-
     mutations.forEach(mutation => {
       mutation.addedNodes.forEach(node => {
         scanTextNodes(node, keywords);
