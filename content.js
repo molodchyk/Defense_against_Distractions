@@ -68,15 +68,14 @@ function extractContext(text, keyword, maxWords = 15) {
   return text; // Fallback if keyword is not found
 }
 
-function scanTextNodes(element, blockedKeywords) {
+function scanTextNodes(element, keywords) {
   if (isPageBlocked) return; // Stop scanning if the page is already blocked
-  else console.log("Page is blocked");
 
   if (element.nodeType === Node.TEXT_NODE) {
     const text = element.textContent.trim();
     if (text) {
-      console.log("Scanning text:", text); // Log the text being scanned
-      blockedKeywords.forEach(keyword => {
+      console.log("Scanning text:", text);
+      keywords.forEach(keyword => {
         if (text.toLowerCase().includes(keyword.toLowerCase())) {
           const contextText = extractContext(text, keyword);
           blockPage(keyword, contextText);
@@ -85,38 +84,43 @@ function scanTextNodes(element, blockedKeywords) {
     }
   } else if (element.nodeType === Node.ELEMENT_NODE) {
     Array.from(element.childNodes).forEach(child => {
-      scanTextNodes(child, blockedKeywords);
+      scanTextNodes(child, keywords);
     });
   }
 }
 
-chrome.storage.sync.get(["blockedKeywords", "whitelistedSites", "websiteGroups"], ({ blockedKeywords, whitelistedSites, websiteGroups }) => {
-  console.log("HI MORON");
-  const currentSite = window.location.hostname;
+function getGroupKeywords(websiteGroups, currentSite) {
+  for (let group of websiteGroups) {
+    if (group.websites.includes(currentSite.toLowerCase())) {
+      return group.keywords;
+    }
+  }
+  return []; // Return an empty array if no matching group is found
+}
 
-  console.log("Whitelisted Sites:", whitelistedSites, "Current Site:", currentSite);
-  console.log("Blocked Keywords:", blockedKeywords);
-
-  // Directly checking if the current site is in the whitelistedSites array
-  if (whitelistedSites.includes(currentSite.toLowerCase())) {
+chrome.storage.sync.get(["whitelistedSites", "websiteGroups"], ({ whitelistedSites, websiteGroups }) => {
+  console.log("Current Site:", window.location.hostname);
+  if (whitelistedSites.includes(window.location.hostname.toLowerCase())) {
     console.log("This site is whitelisted. Skipping keyword scan.");
     return;
   }
 
-  console.log("HI MORON3");
-
-  const groupKeywords = getGroupKeywords(websiteGroups, currentSite);                      // this has to be changed?
-  const combinedKeywords = [...new Set([...blockedKeywords, ...groupKeywords])];           // this has to be changed?
-  scanForKeywords(combinedKeywords);
-  observeMutations(combinedKeywords);
+  const keywords = getGroupKeywords(websiteGroups, window.location.hostname);
+  if (keywords.length > 0) {
+    scanForKeywords(keywords);
+    observeMutations(keywords);
+  } else {
+    console.log("No matching group found or no keywords for this site.");  // content.js:113
+  }
 });
 
-function scanForKeywords(blockedKeywords) {
-  const rootElement = document.querySelector('body'); // Starting from the body element
-  scanTextNodes(rootElement, blockedKeywords);
+function scanForKeywords(keywords) {
+  // Same as before, but now it uses the keywords from the matching group
+  const rootElement = document.querySelector('body');
+  scanTextNodes(rootElement, keywords);
 }
 
-function observeMutations(blockedKeywords) {
+function observeMutations(keywords) {
   const observer = new MutationObserver(mutations => {
     if (isPageBlocked) {
       observer.disconnect(); // Stop observing if the page is already blocked
@@ -125,7 +129,7 @@ function observeMutations(blockedKeywords) {
 
     mutations.forEach(mutation => {
       mutation.addedNodes.forEach(node => {
-        scanTextNodes(node, blockedKeywords);
+        scanTextNodes(node, keywords);
       });
     });
   });
