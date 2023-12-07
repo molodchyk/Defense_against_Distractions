@@ -2,6 +2,9 @@ let isPageBlocked = false; // Flag to indicate if the page has been blocked
 
 function blockPage(keyword, contextText) {
   if (!isPageBlocked) {
+    document.documentElement.style.overflow = 'hidden';  // Hide scrollbars
+    Array.from(document.body.children).forEach(child => child.style.display = 'none'); // Hide all other elements
+
     var blockDiv = document.createElement("div");
     blockDiv.style.position = 'fixed';
     blockDiv.style.top = '0';
@@ -21,6 +24,7 @@ function blockPage(keyword, contextText) {
     blockDiv.style.fontSize = '20px';
     blockDiv.style.fontFamily = 'Arial, sans-serif';
     blockDiv.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.1)'; // Subtle box shadow for depth
+    blockDiv.style.zIndex = '2147483647'; // Use the maximum possible value
 
     var contentDiv = document.createElement("div");
     contentDiv.style.maxWidth = '600px'; // Max width for content area
@@ -40,8 +44,8 @@ function blockPage(keyword, contextText) {
     blockDiv.appendChild(contentDiv);
     document.body.appendChild(blockDiv);
 
-    // Add functionality to go back and refresh
-    document.getElementById('goBackButton').addEventListener('click', function() {
+    document.getElementById('goBackButton').addEventListener('click', function(event) {
+      event.stopPropagation();
       window.history.back();
     });
 
@@ -74,9 +78,10 @@ function scanTextNodes(element, keywords) {
   if (element.nodeType === Node.TEXT_NODE) {
     const text = element.textContent.trim();
     if (text) {
-      console.log("Scanning text:", text);
       keywords.forEach(keyword => {
+        // Convert both text and keyword to lower case to ensure case insensitivity
         if (text.toLowerCase().includes(keyword.toLowerCase())) {
+          console.log(`Keyword "${keyword}" detected in text.`);
           const contextText = extractContext(text, keyword);
           blockPage(keyword, contextText);
         }
@@ -90,8 +95,13 @@ function scanTextNodes(element, keywords) {
 }
 
 function getGroupKeywords(websiteGroups, currentSite) {
+  // Normalize currentSite by removing 'www.'
+  const normalizedCurrentSite = currentSite.replace(/^www\./, '').toLowerCase();
+
   for (let group of websiteGroups) {
-    if (group.websites.includes(currentSite.toLowerCase())) {
+    // Normalize each website in the group for comparison
+    const normalizedGroupWebsites = group.websites.map(site => site.replace(/^www\./, '').toLowerCase());
+    if (normalizedGroupWebsites.includes(normalizedCurrentSite)) {
       return group.keywords;
     }
   }
@@ -99,20 +109,33 @@ function getGroupKeywords(websiteGroups, currentSite) {
 }
 
 chrome.storage.sync.get(["whitelistedSites", "websiteGroups"], ({ whitelistedSites, websiteGroups }) => {
-  console.log("Current Site:", window.location.hostname);
-  if (whitelistedSites.includes(window.location.hostname.toLowerCase())) {
+  const currentSite = window.location.hostname;
+  console.log("Current Site:", currentSite);
+
+  console.log("Whitelisted Sites Array:", whitelistedSites);
+  const normalizedSite = currentSite.replace(/^www\./, '').toLowerCase();
+  if (whitelistedSites.includes(normalizedSite) || whitelistedSites.includes(currentSite.toLowerCase())) {
     console.log("This site is whitelisted. Skipping keyword scan.");
     return;
   }
 
-  const keywords = getGroupKeywords(websiteGroups, window.location.hostname);
+
+  // Log the entire websiteGroups array for debugging
+  console.log("Website Groups:", websiteGroups);
+
+  const keywords = getGroupKeywords(websiteGroups, currentSite);
+
+  // Log the keywords that were found for the current site
+  console.log("Keywords for current site:", keywords);
+
   if (keywords.length > 0) {
     scanForKeywords(keywords);
     observeMutations(keywords);
   } else {
-    console.log("No matching group found or no keywords for this site.");  // content.js:113
+    console.log("No matching group found or no keywords for this site.");
   }
 });
+
 
 function scanForKeywords(keywords) {
   // Same as before, but now it uses the keywords from the matching group
