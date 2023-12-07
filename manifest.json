@@ -2,7 +2,13 @@
   "manifest_version": 3,
   "name": "Defense against Distractions ",
   "version": "1.0",
-  "permissions": ["storage", "activeTab", "scripting", "webNavigation"],
+  "permissions": [
+    "storage", 
+    "activeTab", 
+    "scripting", 
+    "webNavigation"
+  ],
+"host_permissions": ["<all_urls>"],
   "action": {
     "default_icon": {
       "16": "icon-16.png",

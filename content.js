@@ -1,4 +1,4 @@
-let isPageBlocked = false; // Flag to indicate if the page has been blocked
+let isPageBlocked = false;
 
 function blockPage(keyword, contextText) {
   if (!isPageBlocked) {
@@ -115,7 +115,7 @@ function normalizeURL(site) {
 }
 
 function performSiteCheck(){
-  chrome.storage.sync.get(["whitelistedSites", "websiteGroups"], ({ whitelistedSites, websiteGroups }) => {
+  chrome.storage.sync.get(["whitelistedSites", "websiteGroups"], ({ whitelistedSites, websiteGroups }) => {  //line 118
     const fullUrl = window.location.href;
     const normalizedUrl = normalizeURL(fullUrl);
 
@@ -152,14 +152,22 @@ function performSiteCheck(){
     }
   });
 }
-
-// Call performSiteCheck when the script is first loaded
 performSiteCheck();
 
-// Export performSiteCheck if needed to be called from outside (e.g., background script)
-if (typeof module !== 'undefined') {
-  module.exports = performSiteCheck;
-}
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.action === "performSiteCheck") {
+    performSiteCheck();
+    sendResponse({status: "Site check performed"});
+  }
+});
+
+// Listen for a message from the background script to perform the site check
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.action === "performSiteCheck") {
+    performSiteCheck();
+    sendResponse({status: "Site check performed"});
+  }
+});
 
 function scanForKeywords(keywords) {
   // Same as before, but now it uses the keywords from the matching group
