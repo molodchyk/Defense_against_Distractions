@@ -13,19 +13,29 @@ function updateWhitelistUI(whitelistedSites) {
   });
 }
 
+function normalizeURL(site) {
+  // Remove 'http://', 'https://', and 'www.' from the URL for normalization
+  return site.replace(/^(?:https?:\/\/)?(?:www\.)?/, '').toLowerCase();
+}
+
 function addWhitelistSite() {
   const input = document.getElementById('whitelistInput');
-  const site = input.value.trim().toLowerCase();
+  let site = input.value.trim();
   if (!site) return;
 
+  // Normalize the site URL before adding it to the list
+  site = normalizeURL(site);
+
   chrome.storage.sync.get('whitelistedSites', (result) => {
-    let whitelistedSites = result.whitelistedSites || []; // Ensure whitelistedSites is an array
+    let whitelistedSites = result.whitelistedSites || [];
     if (!whitelistedSites.includes(site)) {
       const updatedSites = [...whitelistedSites, site];
       chrome.storage.sync.set({ whitelistedSites: updatedSites }, () => {
         updateWhitelistUI(updatedSites);
         input.value = '';
       });
+    } else {
+      alert("This site is already in the whitelist.");
     }
   });
 }

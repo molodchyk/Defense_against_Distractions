@@ -110,10 +110,10 @@ function getGroupKeywords(websiteGroups, currentSite) {
 
 chrome.storage.sync.get(["whitelistedSites", "websiteGroups"], ({ whitelistedSites, websiteGroups }) => {
   const currentSite = window.location.hostname;
-  console.log("Current Site:", currentSite);
 
   console.log("Whitelisted Sites Array:", whitelistedSites);
   const normalizedSite = currentSite.replace(/^www\./, '').toLowerCase();
+  console.log("Current Site:", normalizedSite);
   if (whitelistedSites.includes(normalizedSite) || whitelistedSites.includes(currentSite.toLowerCase())) {
     console.log("This site is whitelisted. Skipping keyword scan.");
     return;
