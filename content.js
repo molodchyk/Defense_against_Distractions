@@ -94,14 +94,15 @@ function scanTextNodes(element, keywords) {
   }
 }
 
-function getGroupKeywords(websiteGroups, currentSite) {
+function getGroupKeywords(websiteGroups, currentSite, callback) {
   // Normalize currentSite by removing 'www.'
   const normalizedCurrentSite = currentSite.replace(/^www\./, '').toLowerCase();
 
   for (let group of websiteGroups) {
     // Normalize each website in the group for comparison
     const normalizedGroupWebsites = group.websites.map(site => site.replace(/^www\./, '').toLowerCase());
-    if (normalizedGroupWebsites.includes(normalizedCurrentSite)) {
+    if (normalizedGroupWebsites.some(site => normalizedCurrentSite.includes(site))) {
+      if (callback) callback(group);  // Pass the matching group to the callback
       return group.keywords;
     }
   }
@@ -117,8 +118,9 @@ chrome.storage.sync.get(["whitelistedSites", "websiteGroups"], ({ whitelistedSit
   const fullUrl = window.location.href;
   const normalizedUrl = normalizeURL(fullUrl);
 
-  console.log("Whitelisted Sites Array:", whitelistedSites);
-  console.log("Current URL", normalizedUrl);
+  // Log the whitelisted sites more cleanly
+  console.log("Whitelisted Sites Array:", whitelistedSites.join(', '));
+  console.log("Current URL:", normalizedUrl);
 
   // Check if the current normalized URL contains any of the whitelisted URLs
   const isWhitelisted = whitelistedSites.some(whitelistedUrl => normalizedUrl.includes(whitelistedUrl));
@@ -128,20 +130,24 @@ chrome.storage.sync.get(["whitelistedSites", "websiteGroups"], ({ whitelistedSit
     return;
   }
 
-
   // Log the entire websiteGroups array for debugging
-  console.log("Website Groups:", websiteGroups);
+  console.log("Website Groups:", JSON.stringify(websiteGroups, null, 2));
 
-  const keywords = getGroupKeywords(websiteGroups, normalizedUrl);
+  let matchingGroup = null;
+  const keywords = getGroupKeywords(websiteGroups, normalizedUrl, (group) => { matchingGroup = group; });
 
   // Log the keywords that were found for the current site
-  console.log("Keywords for current site:", keywords);
+  console.log("Keywords for current site:", keywords.join(', '));
 
   if (keywords.length > 0) {
     scanForKeywords(keywords);
     observeMutations(keywords);
   } else {
-    console.log("No matching group found or no keywords for this site.");
+    if (matchingGroup) {
+      console.log(`A matching group was found for this site: "${matchingGroup.groupName}" with sites: ${matchingGroup.websites.join(', ')}, but no keywords were found.`);
+    } else {
+      console.log("No matching group found for this site, or the group has no keywords.");
+    }
   }
 });
 
