@@ -9,10 +9,19 @@ chrome.webNavigation.onHistoryStateUpdated.addListener(function(details) {
       files: ['content.js']
     }, () => {
       if (chrome.runtime.lastError) {
-        console.error(chrome.runtime.lastError.message);
+        console.error("Error injecting script: ", chrome.runtime.lastError.message);
         return;
       }
-      chrome.tabs.sendMessage(details.tabId, {action: "performSiteCheck"});
+      // Wait a bit before sending the message
+      setTimeout(() => {
+        chrome.tabs.sendMessage(details.tabId, {action: "performSiteCheck"}, function(response) {
+          if (chrome.runtime.lastError) {
+            console.error("Error sending message: ", chrome.runtime.lastError.message);
+          } else {
+            console.log(response ? response.status : "No response from content script");
+          }
+        });
+      }, 500); // Adjust this timeout as needed
     });
   }
 });

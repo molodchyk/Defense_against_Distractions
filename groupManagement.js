@@ -23,19 +23,54 @@ function updateGroupsUI(websiteGroups) {
   });
 }
 
-function createGroupField(container, label, value, id, isReadOnly, index) {
-  const fieldDiv = document.createElement('div');
-  const labelElement = document.createElement('label');
-  labelElement.textContent = label;
+function addEnterFunctionalityToField(field) {
+  field.addEventListener('keypress', function(event) {
+    if (event.key === 'Enter' && !field.readOnly) {
+      event.preventDefault();
+      const cursorPosition = field.selectionStart;
+      field.setRangeText('\n', cursorPosition, cursorPosition, 'end');
+
+      console.log('Enter pressed in websites field'); // Log when Enter is pressed
+    }
+  });
+}
+
+
+  function createGroupField(container, label, value, id, isReadOnly, index) {
+    const fieldDiv = document.createElement('div');
+    const labelElement = document.createElement('label');
+    labelElement.textContent = label;
   
-  // Create input or textarea based on isReadOnly flag
-  const inputElement = isReadOnly ? document.createElement('input') : document.createElement('textarea');
-  inputElement.value = value;
-  inputElement.id = id;
-  inputElement.readOnly = isReadOnly;
+    let inputElement;
+    if (isReadOnly) {
+      inputElement = document.createElement('input');
+    } else {
+      inputElement = document.createElement('textarea');
+      // If the field is for websites, add an event listener
+      if (id.startsWith('websites-')) {
+        addEnterFunctionalityToField(inputElement);
+        inputElement.addEventListener('keypress', function(event) {
+          if (event.key === 'Enter') {
+            // Prevent default Enter key behavior (submitting form)
+            event.preventDefault();
+            // Insert a new line for another website entry
+            const cursorPosition = inputElement.selectionStart;
+            const textBeforeCursor = inputElement.value.substring(0, cursorPosition);
+            const textAfterCursor = inputElement.value.substring(cursorPosition);
+            inputElement.value = textBeforeCursor + '\n' + textAfterCursor;
+            // Move the cursor to the start of the new line
+            inputElement.selectionStart = cursorPosition + 1;
+            inputElement.selectionEnd = cursorPosition + 1;
+          }
+        });
+      }
+    }
+    inputElement.value = value;
+    inputElement.id = id;
+    inputElement.readOnly = isReadOnly;
   
-  fieldDiv.appendChild(labelElement);
-  fieldDiv.appendChild(inputElement);
+    fieldDiv.appendChild(labelElement);
+    fieldDiv.appendChild(inputElement);
 
   // Add Edit and Save buttons with appropriate functionality
   const editButton = createButton('Edit', () => toggleFieldEdit(id, index), 'edit-button');
@@ -59,15 +94,18 @@ function toggleFieldEdit(fieldId, index) {
   const fieldName = fieldId.replace(/[0-9]/g, '').replace('-', ''); 
 
   if (isReadOnly) {
-    // Enable edit mode
-    console.log(`Clicked button Edit, editing field: ${fieldName}, Current Text: '${field.value}'`);   //line 63
+    console.log(`Clicked button Edit, editing field: ${fieldName}, Current Text: '${field.value}'`);
     field.readOnly = false;
     field.style.height = 'auto'; // Expand the textarea if applicable
     editButton.textContent = 'Cancel';
     saveButton.disabled = false;
     field.setAttribute('data-initial-value', field.value);
+
+    // Add Enter key functionality for websites field
+    if (fieldId.startsWith('websites-')) {
+      addEnterFunctionalityToField(field);
+    }
   } else {
-    // Cancel edit mode
     console.log(`Edit canceled for field: ${fieldName}, Original Text: '${field.getAttribute('data-initial-value')}'`);
     field.readOnly = true;
     field.value = field.getAttribute('data-initial-value'); // Restore original value
@@ -75,7 +113,6 @@ function toggleFieldEdit(fieldId, index) {
     saveButton.disabled = true;
   }
 }
-
 
 
 // Function to update an existing group
