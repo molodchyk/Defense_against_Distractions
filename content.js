@@ -108,14 +108,23 @@ function getGroupKeywords(websiteGroups, currentSite) {
   return []; // Return an empty array if no matching group is found
 }
 
+// Add the normalizeURL function here because functions are not shared across files
+function normalizeURL(site) {
+  return site.replace(/^(?:https?:\/\/)?(?:www\.)?/, '').toLowerCase();
+}
+
 chrome.storage.sync.get(["whitelistedSites", "websiteGroups"], ({ whitelistedSites, websiteGroups }) => {
-  const currentSite = window.location.hostname;
+  const fullUrl = window.location.href;
+  const normalizedUrl = normalizeURL(fullUrl);
 
   console.log("Whitelisted Sites Array:", whitelistedSites);
-  const normalizedSite = currentSite.replace(/^www\./, '').toLowerCase();
-  console.log("Current Site:", normalizedSite);
-  if (whitelistedSites.includes(normalizedSite) || whitelistedSites.includes(currentSite.toLowerCase())) {
-    console.log("This site is whitelisted. Skipping keyword scan.");
+  console.log("Current URL", normalizedUrl);
+
+  // Check if the current normalized URL contains any of the whitelisted URLs
+  const isWhitelisted = whitelistedSites.some(whitelistedUrl => normalizedUrl.includes(whitelistedUrl));
+
+  if (isWhitelisted) {
+    console.log("This site or part of it is whitelisted. Skipping keyword scan.");
     return;
   }
 
@@ -123,7 +132,7 @@ chrome.storage.sync.get(["whitelistedSites", "websiteGroups"], ({ whitelistedSit
   // Log the entire websiteGroups array for debugging
   console.log("Website Groups:", websiteGroups);
 
-  const keywords = getGroupKeywords(websiteGroups, currentSite);
+  const keywords = getGroupKeywords(websiteGroups, normalizedUrl);
 
   // Log the keywords that were found for the current site
   console.log("Keywords for current site:", keywords);
