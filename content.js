@@ -1,9 +1,5 @@
-if (typeof window.pageBlocked === 'undefined') {
-  window.pageBlocked = false;
-}
-
 function blockPage(keyword, contextText) {
-  if (window.pageBlocked) return; // Return if page is already blocked
+if (window.pageBlocked) return; // Return if page is already blocked
   document.documentElement.style.overflow = 'hidden';  // Hide scrollbars
   Array.from(document.body.children).forEach(child => child.style.display = 'none'); // Hide all other elements
 
@@ -36,29 +32,31 @@ function blockPage(keyword, contextText) {
   contentDiv.style.borderRadius = '8px'; // Rounded corners
 
   contentDiv.innerHTML = `
-    <h2 style="color: #d32f2f;">Content Blocked</h2>
-    <p>This page contains restricted content and has been blocked for your protection.</p>
-    <p><strong>Keyword Detected:</strong> ${keyword}</p>
-    <p><strong>Context:</strong> "${contextText}"</p>
-    <button id="goBackButton" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px;">Go Back</button>
+      <h2 style="color: #d32f2f;">Content Blocked</h2>
+      <p>This page contains restricted content and has been blocked for your protection.</p>
+      <p><strong>Keyword Detected:</strong> ${keyword}</p>
+      <p><strong>Context:</strong> "${contextText}"</p>
+      <button id="goBackButton" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px;">Go Back</button>
   `;
 
   blockDiv.appendChild(contentDiv);
   document.body.appendChild(blockDiv);
 
   document.getElementById('goBackButton').addEventListener('click', function(event) {
-    event.stopPropagation();
-    window.history.back();
+      event.stopPropagation();
+      window.history.back();
   });
 
   // Listen to the popstate event to refresh the page
   window.addEventListener('popstate', function() {
-    window.location.reload();
+      window.location.reload();
   });
   window.pageBlocked = true; // Set the flag to indicate the page is blocked
 }
 
-
+if (typeof window.pageBlocked === 'undefined') {
+  window.pageBlocked = false;
+}
 
 function extractContext(text, keyword, maxWords = 15) {
   const words = text.split(/\s+/);

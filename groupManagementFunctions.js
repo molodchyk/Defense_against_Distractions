@@ -1,3 +1,4 @@
+import { adjustTextareaHeight,  adjustTextareaWidth, addEnterFunctionalityToField} from './utilityFunctions.js';
 import { updateGroupsUI } from './uiFunctions.js';
 
 export function addGroup() {
@@ -8,8 +9,6 @@ export function addGroup() {
   }
 }
 
-
-// Function to remove a group
 export function removeGroup(index) {
   chrome.storage.sync.get('websiteGroups', ({ websiteGroups }) => {
     websiteGroups.splice(index, 1);
@@ -17,7 +16,6 @@ export function removeGroup(index) {
   });
 }
 
-// Function to update an existing group
 export function updateGroup(index) {
   chrome.storage.sync.get('websiteGroups', ({ websiteGroups }) => {
     const groupName = document.getElementById(`name-${index}`).value.trim();
@@ -35,24 +33,21 @@ export function toggleFieldEdit(fieldId, index) {
   const saveButton = editButton.nextElementSibling;
   const isReadOnly = field.readOnly;
 
-  // Extract field name from the id for logging purposes
-  const fieldName = fieldId.split('-')[0]; // Adjusted to extract field name correctly
+  const fieldName = fieldId.split('-')[0];
 
   if (isReadOnly) {
     console.log(`Clicked button Edit, editing field: ${fieldName}, Current Text: '${field.value}'`);
     field.readOnly = false;
-    field.style.height = 'auto'; // Reset height to auto
+    field.style.height = 'auto';
     editButton.textContent = 'Cancel';
     saveButton.disabled = false;
     field.setAttribute('data-initial-value', field.value);
 
-    // Adjust height for textarea fields
     if (field.tagName.toLowerCase() === 'textarea') {
       adjustTextareaHeight(field);
       adjustTextareaWidth(field);
     }
 
-    // Add Enter key functionality for websites field
     if (fieldId.startsWith('websites-')) {
       addEnterFunctionalityToField(field);
     }
@@ -63,7 +58,6 @@ export function toggleFieldEdit(fieldId, index) {
     editButton.textContent = 'Edit';
     saveButton.disabled = true;
 
-    // Adjust height for textarea fields
     if (field.tagName.toLowerCase() === 'textarea') {
       adjustTextareaHeight(field);
       adjustTextareaWidth(field);
@@ -71,14 +65,10 @@ export function toggleFieldEdit(fieldId, index) {
   }
 }
 
-
-
 export function updateGroupField(index) {
-  // Retrieve the current group's data
   chrome.storage.sync.get('websiteGroups', ({ websiteGroups }) => {
     const group = websiteGroups[index];
 
-    // Update group name, websites, and keywords from the fields
     const groupNameField = document.getElementById(`name-${index}`);
     const websitesField = document.getElementById(`websites-${index}`);
     const keywordsField = document.getElementById(`keywords-${index}`);
@@ -91,33 +81,13 @@ export function updateGroupField(index) {
     group.websites = websitesField.value.split('\n').map(site => site.trim()).filter(site => site !== '');
     group.keywords = keywordsField.value.split('\n').map(keyword => keyword.trim()).filter(keyword => keyword !== '');
 
-    // Logging changes
     console.log(`Group updated: [${index}]`);
     console.log(`Group Name: ${initialGroupName} -> ${group.groupName}`);
     console.log(`Websites: ${initialWebsites} -> ${group.websites.join('\n')}`);
     console.log(`Keywords: ${initialKeywords} -> ${group.keywords.join('\n')}`);
 
     chrome.storage.sync.set({ websiteGroups }, () => {
-      updateGroupsUI(websiteGroups); // Refresh the UI with updated data
+      updateGroupsUI(websiteGroups);
     });
   });
-}
-
-// Toggle update mode for a group
-function toggleUpdateGroup(index) {
-  const groupNameInput = document.getElementById(`name-${index}`);
-  const websitesTextarea = document.getElementById(`websites-${index}`);
-  const keywordsTextarea = document.getElementById(`keywords-${index}`);
-  const isReadOnly = groupNameInput.readOnly;
-
-  groupNameInput.readOnly = !isReadOnly;
-  websitesTextarea.readOnly = !isReadOnly;
-  keywordsTextarea.readOnly = !isReadOnly;
-
-  const updateButton = groupNameInput.nextElementSibling.nextElementSibling.nextElementSibling;
-  updateButton.textContent = isReadOnly ? 'Save' : 'Edit';
-
-  if (!isReadOnly) {
-    updateGroup(index); // Save the updated group
-  }
 }

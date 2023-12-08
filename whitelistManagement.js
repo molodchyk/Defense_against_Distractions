@@ -19,22 +19,29 @@ function normalizeURL(site) {
 }
 
 function addWhitelistSite() {
+  console.log("Attempting to add site to whitelist"); // Log when function is called
   const input = document.getElementById('whitelistInput');
   let site = input.value.trim();
-  if (!site) return;
+  if (!site) {
+    console.log("No site entered"); // Log if input is empty
+    return;
+  }
 
   // Normalize the site URL before adding it to the list
   site = normalizeURL(site);
+  console.log(`Normalized site: ${site}`); // Log normalized site
 
   chrome.storage.sync.get('whitelistedSites', (result) => {
     let whitelistedSites = result.whitelistedSites || [];
     if (!whitelistedSites.includes(site)) {
       const updatedSites = [...whitelistedSites, site];
       chrome.storage.sync.set({ whitelistedSites: updatedSites }, () => {
+        console.log(`Added site: ${site}`); // Log site addition
         updateWhitelistUI(updatedSites);
         input.value = '';
       });
     } else {
+      console.log("Site already in whitelist"); // Log if site is already in list
       alert("This site is already in the whitelist.");
     }
   });
@@ -58,6 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('whitelistInput').addEventListener('keypress', (event) => {
       if (event.key === 'Enter') {
         addWhitelistSite();
+        event.preventDefault(); // Prevent default to stop form submission if applicable
       }
     });
 });

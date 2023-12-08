@@ -181,7 +181,7 @@
     min-width: 300px;
     max-width: 80%;
     word-break:break-all;
-    overflow-x: auto; /* Allows horizontal scrolling */
+    overflow-x: auto;
 }
 
 
