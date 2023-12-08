@@ -86,50 +86,67 @@ function adjustTextareaHeight(textarea) {
   textarea.style.height = textarea.scrollHeight + 'px'; // Set height to scroll height
 }
 
-function createGroupField(container, label, value, id, isReadOnly, index) {
-  const fieldDiv = document.createElement('div');
+function createGroupField(group, index) {
+  // Main container for the group
+  const groupContainer = document.createElement('div');
+  groupContainer.className = 'group-item';
+
+  // Container for the label
+  const labelDiv = document.createElement('div');
   const labelElement = document.createElement('label');
-  labelElement.textContent = label;
+  labelElement.textContent = 'Group Name:';
+  labelDiv.appendChild(labelElement);
 
-  let inputElement;
-  if (!isReadOnly) {
-    inputElement = document.createElement('input');
-    inputElement.addEventListener('input', () => adjustTextareaHeight(inputElement));
-    adjustTextareaHeight(inputElement); // Initial adjustment
-  } else {
-    inputElement = document.createElement('textarea');
-    inputElement.placeholder = "Enter each website on a new line"; // Set placeholder text
-    if (id.startsWith('websites-')) {
-      addEnterFunctionalityToField(inputElement);
-    }
-  }
-  inputElement.value = value;
-  inputElement.id = id;
-  inputElement.readOnly = isReadOnly;
+  // Container for bullet points
+  const bulletsContainer = document.createElement('div');
+  bulletsContainer.className = 'bullets-container';
 
-  fieldDiv.appendChild(labelElement);
-  fieldDiv.appendChild(inputElement);
+  // Container for editable content
+  const editableContainer = document.createElement('div');
+  editableContainer.contentEditable = !isReadOnly;
+  editableContainer.className = 'editable-container';
 
-  // Add Edit and Save buttons
-  const editButton = createButton('Edit', () => toggleFieldEdit(id, index), 'edit-button');
+  // Populate bullet points and editable content
+  bulletsContainer.innerHTML = group.websites.map(() => '•').join('<br>');
+  editableContainer.innerHTML = group.websites.map(website => `<div>${website}</div>`).join('');
+
+  // Edit and Save buttons
+  const editButton = createButton('Edit', () => toggleFieldEdit(`editable-${index}`, index), 'edit-button');
   const saveButton = createButton('Save', () => updateGroupField(index), 'save-button');
-  saveButton.disabled = true; // Initially disable the Save button
+  saveButton.disabled = isReadOnly;
 
-  fieldDiv.appendChild(editButton);
-  fieldDiv.appendChild(saveButton);
+  // Append elements to the group container
+  groupContainer.appendChild(labelDiv);
+  groupContainer.appendChild(bulletsContainer);
+  groupContainer.appendChild(editableContainer);
+  groupContainer.appendChild(editButton);
+  groupContainer.appendChild(saveButton);
 
-  container.appendChild(fieldDiv);
-  // Adjust both width and height for textareas
-  if (inputElement.tagName.toLowerCase() === 'textarea') {
-    inputElement.addEventListener('input', function() {
-        adjustTextareaHeight(inputElement);
-        adjustTextareaWidth(inputElement);
-    });
-    adjustTextareaHeight(inputElement);
-    adjustTextareaWidth(inputElement);
-  }
+  // Append the group container to the main container in the DOM
+  const listElement = document.getElementById('groupList');
+  listElement.appendChild(groupContainer);
 }
 
+// This function should be called with websiteGroups data when you have it available.
+function initializeUI() {
+  chrome.storage.sync.get('websiteGroups', (data) => {
+    if (data.websiteGroups) {
+      updateGroupsUI(data.websiteGroups);
+    } else {
+      console.log('No website groups data found.');
+    }
+  });
+}
+
+// Call initializeUI when the DOM content has loaded.
+document.addEventListener('DOMContentLoaded', initializeUI);
+
+// Call createGroupField for each group on initialization or when a new group is added
+function initializeGroups(websiteGroups) {
+  const list = document.getElementById('groupList');
+  list.innerHTML = ''; // Clear the list
+  websiteGroups.forEach(createGroupField);
+}
 
 function toggleFieldEdit(fieldId, index) {
   const field = document.getElementById(fieldId);
@@ -285,17 +302,21 @@ document.getElementById('groupNameInput').addEventListener('keypress', (event) =
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Initialize groups UI
-  chrome.storage.sync.get('websiteGroups', ({ websiteGroups = [] }) => {
-    updateGroupsUI(websiteGroups);
+  // Fetch the stored website groups and initialize the UI
+  chrome.storage.sync.get('websiteGroups', ({ websiteGroups }) => {
+    if (websiteGroups) {
+      initializeGroups(websiteGroups); // Call the new function to create the UI
+    }
   });
 
   // Add group functionality
   document.getElementById('addGroupButton').addEventListener('click', addGroup);
+  
+  // Event listener for adding a new group on Enter key press in the group name input field
   document.getElementById('groupNameInput').addEventListener('keypress', (event) => {
     if (event.key === 'Enter') {
-      addGroup();
-      event.preventDefault();
+      addGroup(); // Call the function to add a new group
+      event.preventDefault(); // Prevent the default action of the Enter key
     }
   });
 });

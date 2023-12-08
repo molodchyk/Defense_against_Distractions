@@ -145,6 +145,27 @@
     }
 
 /* Additional styles for group fields */
+.group-container {
+    display: flex;
+    margin-bottom: 10px; /* Space between group items */
+  }
+.group-item {
+    display: flex;
+  }
+  
+  .bullets-container {
+    padding-top: 5px; /* Align with the first line of editable-container */
+  }
+  
+  .editable-container {
+    flex-grow: 1;
+    margin-left: 10px; /* Space between bullets and editable area */
+    border: 1px solid #ddd;
+    padding: 5px;
+    min-height: 100px; /* Adjust as needed */
+    overflow: auto;
+  }
+
 .group-item div {
     display: flex;
     align-items: center;
