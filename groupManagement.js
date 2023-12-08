@@ -24,6 +24,29 @@ function updateGroupsUI(websiteGroups) {
   });
 }
 
+function adjustTextareaWidth(textarea) {
+  const tempSpan = document.createElement('span');
+  document.body.appendChild(tempSpan);
+
+  // Copy font styles to the temporary span
+  const styles = window.getComputedStyle(textarea);
+  tempSpan.style.font = styles.font;
+  tempSpan.style.letterSpacing = styles.letterSpacing;
+  tempSpan.style.whiteSpace = 'pre-wrap';
+  tempSpan.style.wordWrap = 'break-word';
+  tempSpan.style.visibility = 'hidden';
+
+  tempSpan.textContent = textarea.value || textarea.placeholder;
+
+  // Calculate and set new width
+  const padding = parseInt(styles.paddingLeft) + parseInt(styles.paddingRight);
+  textarea.style.width = (tempSpan.offsetWidth + padding) + 'px';
+
+  document.body.removeChild(tempSpan);
+}
+
+
+
 function addEnterFunctionalityToField(field) {
   if (field.dataset.enterFunctionalityAdded) {
     return; // Exit if already added
@@ -36,12 +59,26 @@ function addEnterFunctionalityToField(field) {
       event.preventDefault();
       event.stopPropagation(); // Prevent event propagation
       const cursorPosition = field.selectionStart;
-      field.setRangeText('\n', cursorPosition, cursorPosition, 'end');
-      field.selectionStart = field.selectionEnd = cursorPosition + 1;
+      // Insert a newline and a bullet point
+      field.setRangeText('\n• ', cursorPosition, cursorPosition, 'end');
+      field.selectionStart = field.selectionEnd = cursorPosition + 3; // Adjust cursor position
+
+      adjustTextareaHeight(field); // Adjust the height after adding a newline
+      adjustTextareaWidth(field);
     }
   });
 
   field.dataset.enterFunctionalityAdded = 'true'; // Set flag to indicate event listener added
+}
+
+
+function formatTextareaContent(textarea) {
+  let lines = textarea.value.split('\n');
+  let formattedLines = lines.map(line => {
+    // Add a bullet point only if it's not already there
+    return line.trim().startsWith('•') ? line : '• ' + line;
+  });
+  textarea.value = formattedLines.join('\n');
 }
 
 function adjustTextareaHeight(textarea) {
@@ -61,6 +98,7 @@ function createGroupField(container, label, value, id, isReadOnly, index) {
     adjustTextareaHeight(inputElement); // Initial adjustment
   } else {
     inputElement = document.createElement('textarea');
+    inputElement.placeholder = "Enter each website on a new line"; // Set placeholder text
     if (id.startsWith('websites-')) {
       addEnterFunctionalityToField(inputElement);
     }
@@ -81,7 +119,17 @@ function createGroupField(container, label, value, id, isReadOnly, index) {
   fieldDiv.appendChild(saveButton);
 
   container.appendChild(fieldDiv);
+  // Adjust both width and height for textareas
+  if (inputElement.tagName.toLowerCase() === 'textarea') {
+    inputElement.addEventListener('input', function() {
+        adjustTextareaHeight(inputElement);
+        adjustTextareaWidth(inputElement);
+    });
+    adjustTextareaHeight(inputElement);
+    adjustTextareaWidth(inputElement);
+  }
 }
+
 
 function toggleFieldEdit(fieldId, index) {
   const field = document.getElementById(fieldId);
@@ -90,15 +138,22 @@ function toggleFieldEdit(fieldId, index) {
   const isReadOnly = field.readOnly;
 
   // Extract field name from the id for logging purposes
-  const fieldName = fieldId.replace(/[0-9]/g, '').replace('-', ''); 
+  const fieldName = fieldId.split('-')[0]; // Adjusted to extract field name correctly
 
   if (isReadOnly) {
+    formatTextareaContent(field);
     console.log(`Clicked button Edit, editing field: ${fieldName}, Current Text: '${field.value}'`);
     field.readOnly = false;
-    field.style.height = 'auto'; // Expand the textarea if applicable
+    field.style.height = 'auto'; // Reset height to auto
     editButton.textContent = 'Cancel';
     saveButton.disabled = false;
     field.setAttribute('data-initial-value', field.value);
+
+    // Adjust height for textarea fields
+    if (field.tagName.toLowerCase() === 'textarea') {
+      adjustTextareaHeight(field);
+      adjustTextareaWidth(field);
+    }
 
     // Add Enter key functionality for websites field
     if (fieldId.startsWith('websites-')) {
@@ -110,38 +165,14 @@ function toggleFieldEdit(fieldId, index) {
     field.value = field.getAttribute('data-initial-value'); // Restore original value
     editButton.textContent = 'Edit';
     saveButton.disabled = true;
+
+    // Adjust height for textarea fields
+  }
+  if (field.tagName.toLowerCase() === 'textarea') {
+    adjustTextareaHeight(field);
+    adjustTextareaWidth(field);
   }
 }
-
-function toggleFieldEdit(fieldId, index) {
-  const field = document.getElementById(fieldId);
-  const editButton = field.nextElementSibling;
-  const saveButton = editButton.nextElementSibling;
-  const isReadOnly = field.readOnly;
-
-  if (isReadOnly) {
-    console.log(`Clicked button Edit, editing field: ${fieldName}, Current Text: '${field.value}'`);
-    field.readOnly = false;
-    field.style.height = 'auto'; // Expand the textarea if applicable
-    editButton.textContent = 'Cancel';
-    saveButton.disabled = false;
-    field.setAttribute('data-initial-value', field.value);
-
-    // Add Enter key functionality for websites field
-    if (fieldId.startsWith('websites-')) {
-      addEnterFunctionalityToField(field);
-    }
-  } else {
-    console.log(`Edit canceled for field: ${fieldName}, Original Text: '${field.getAttribute('data-initial-value')}'`);
-    field.readOnly = true;
-    field.value = field.getAttribute('data-initial-value'); // Restore original value
-    editButton.textContent = 'Edit';
-    saveButton.disabled = true;
-  }
-
-  adjustTextareaHeight(field); // Adjust height after changing read-only status
-}
-
 
 
 // Function to update an existing group

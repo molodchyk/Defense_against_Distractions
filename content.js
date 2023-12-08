@@ -125,13 +125,13 @@ function performSiteCheck(){
     // Check if the current normalized URL contains any of the whitelisted URLs
     const isWhitelisted = whitelistedSites.some(whitelistedUrl => normalizedUrl.includes(whitelistedUrl));
 
+    // Log the entire websiteGroups array for debugging
+    console.log("Website Groups:", JSON.stringify(websiteGroups, null, 2));
+
     if (isWhitelisted) {
       console.log("This site or part of it is whitelisted. Skipping keyword scan.");
       return;
     }
-
-    // Log the entire websiteGroups array for debugging
-    console.log("Website Groups:", JSON.stringify(websiteGroups, null, 2));
 
     let matchingGroup = null;
     const keywords = getGroupKeywords(websiteGroups, normalizedUrl, (group) => { matchingGroup = group; });
