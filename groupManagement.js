@@ -1,4 +1,3 @@
-// Function to update the UI for groups
 function updateGroupsUI(websiteGroups) {
   const list = document.getElementById('groupList');
   list.innerHTML = '';
