@@ -20,64 +20,63 @@ function updateGroupsUI(websiteGroups) {
     li.appendChild(deleteButton);
 
     list.appendChild(li);
+    document.querySelectorAll('.group-item textarea').forEach(adjustTextareaHeight);
   });
 }
 
 function addEnterFunctionalityToField(field) {
+  if (field.dataset.enterFunctionalityAdded) {
+    return; // Exit if already added
+  }
+
   field.addEventListener('keypress', function(event) {
+    console.log('Keypress detected:', event.key);
     if (event.key === 'Enter' && !field.readOnly) {
+      console.log('Enter key pressed in editable field');
       event.preventDefault();
+      event.stopPropagation(); // Prevent event propagation
       const cursorPosition = field.selectionStart;
       field.setRangeText('\n', cursorPosition, cursorPosition, 'end');
-
-      console.log('Enter pressed in websites field'); // Log when Enter is pressed
+      field.selectionStart = field.selectionEnd = cursorPosition + 1;
     }
   });
+
+  field.dataset.enterFunctionalityAdded = 'true'; // Set flag to indicate event listener added
 }
 
+function adjustTextareaHeight(textarea) {
+  textarea.style.height = 'auto'; // Reset height to recalculate
+  textarea.style.height = textarea.scrollHeight + 'px'; // Set height to scroll height
+}
 
-  function createGroupField(container, label, value, id, isReadOnly, index) {
-    const fieldDiv = document.createElement('div');
-    const labelElement = document.createElement('label');
-    labelElement.textContent = label;
-  
-    let inputElement;
-    if (isReadOnly) {
-      inputElement = document.createElement('input');
-    } else {
-      inputElement = document.createElement('textarea');
-      // If the field is for websites, add an event listener
-      if (id.startsWith('websites-')) {
-        addEnterFunctionalityToField(inputElement);
-        inputElement.addEventListener('keypress', function(event) {
-          if (event.key === 'Enter') {
-            // Prevent default Enter key behavior (submitting form)
-            event.preventDefault();
-            // Insert a new line for another website entry
-            const cursorPosition = inputElement.selectionStart;
-            const textBeforeCursor = inputElement.value.substring(0, cursorPosition);
-            const textAfterCursor = inputElement.value.substring(cursorPosition);
-            inputElement.value = textBeforeCursor + '\n' + textAfterCursor;
-            // Move the cursor to the start of the new line
-            inputElement.selectionStart = cursorPosition + 1;
-            inputElement.selectionEnd = cursorPosition + 1;
-          }
-        });
-      }
+function createGroupField(container, label, value, id, isReadOnly, index) {
+  const fieldDiv = document.createElement('div');
+  const labelElement = document.createElement('label');
+  labelElement.textContent = label;
+
+  let inputElement;
+  if (!isReadOnly) {
+    inputElement = document.createElement('input');
+    inputElement.addEventListener('input', () => adjustTextareaHeight(inputElement));
+    adjustTextareaHeight(inputElement); // Initial adjustment
+  } else {
+    inputElement = document.createElement('textarea');
+    if (id.startsWith('websites-')) {
+      addEnterFunctionalityToField(inputElement);
     }
-    inputElement.value = value;
-    inputElement.id = id;
-    inputElement.readOnly = isReadOnly;
-  
-    fieldDiv.appendChild(labelElement);
-    fieldDiv.appendChild(inputElement);
+  }
+  inputElement.value = value;
+  inputElement.id = id;
+  inputElement.readOnly = isReadOnly;
 
-  // Add Edit and Save buttons with appropriate functionality
+  fieldDiv.appendChild(labelElement);
+  fieldDiv.appendChild(inputElement);
+
+  // Add Edit and Save buttons
   const editButton = createButton('Edit', () => toggleFieldEdit(id, index), 'edit-button');
   const saveButton = createButton('Save', () => updateGroupField(index), 'save-button');
   saveButton.disabled = true; // Initially disable the Save button
 
-  // Append buttons to the fieldDiv
   fieldDiv.appendChild(editButton);
   fieldDiv.appendChild(saveButton);
 
@@ -113,6 +112,36 @@ function toggleFieldEdit(fieldId, index) {
     saveButton.disabled = true;
   }
 }
+
+function toggleFieldEdit(fieldId, index) {
+  const field = document.getElementById(fieldId);
+  const editButton = field.nextElementSibling;
+  const saveButton = editButton.nextElementSibling;
+  const isReadOnly = field.readOnly;
+
+  if (isReadOnly) {
+    console.log(`Clicked button Edit, editing field: ${fieldName}, Current Text: '${field.value}'`);
+    field.readOnly = false;
+    field.style.height = 'auto'; // Expand the textarea if applicable
+    editButton.textContent = 'Cancel';
+    saveButton.disabled = false;
+    field.setAttribute('data-initial-value', field.value);
+
+    // Add Enter key functionality for websites field
+    if (fieldId.startsWith('websites-')) {
+      addEnterFunctionalityToField(field);
+    }
+  } else {
+    console.log(`Edit canceled for field: ${fieldName}, Original Text: '${field.getAttribute('data-initial-value')}'`);
+    field.readOnly = true;
+    field.value = field.getAttribute('data-initial-value'); // Restore original value
+    editButton.textContent = 'Edit';
+    saveButton.disabled = true;
+  }
+
+  adjustTextareaHeight(field); // Adjust height after changing read-only status
+}
+
 
 
 // Function to update an existing group

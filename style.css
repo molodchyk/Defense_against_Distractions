@@ -161,7 +161,8 @@
     margin-right: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
-    resize: vertical; /* Allow vertical resizing */
+    overflow: hidden; /* Prevent scrollbar */
+    resize: none; /* Disable manual resize */
   }
   
   .group-item input[readonly], .group-item textarea[readonly] {

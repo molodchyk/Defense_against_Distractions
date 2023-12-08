@@ -160,14 +160,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   }
 });
 
-// Listen for a message from the background script to perform the site check
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  if (message.action === "performSiteCheck") {
-    performSiteCheck();
-    sendResponse({status: "Site check performed"});
-  }
-});
-
 function scanForKeywords(keywords) {
   // Same as before, but now it uses the keywords from the matching group
   const rootElement = document.querySelector('body');

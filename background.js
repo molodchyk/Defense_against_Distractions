@@ -21,7 +21,7 @@ chrome.webNavigation.onHistoryStateUpdated.addListener(function(details) {
             console.log(response ? response.status : "No response from content script");
           }
         });
-      }, 500); // Adjust this timeout as needed
+      }, 2000); // Adjust this timeout as needed
     });
   }
 });
