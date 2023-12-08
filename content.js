@@ -70,25 +70,27 @@ function extractContext(text, keyword, maxWords = 15) {
   return text; // Fallback if keyword is not found
 }
 
-function scanTextNodes(element, keywords) {
-  if (window.pageBlocked) return; // Stop scanning if the page is already blocked
+function scanTextNodes(element, parsedKeywords, calculateScore) {
+  if (window.pageBlocked) return false;
+  let shouldBlock = false;
   if (element.nodeType === Node.TEXT_NODE) {
     const text = element.textContent.trim();
     if (text) {
-      keywords.forEach(keyword => {
-        // Convert both text and keyword to lower case to ensure case insensitivity
+      parsedKeywords.forEach(({ keyword, operation, value }) => {
         if (text.toLowerCase().includes(keyword.toLowerCase())) {
           console.log(`Keyword "${keyword}" detected in text.`);
           const contextText = extractContext(text, keyword);
+          calculateScore(operation, value);
           blockPage(keyword, contextText);
         }
       });
     }
   } else if (element.nodeType === Node.ELEMENT_NODE) {
     Array.from(element.childNodes).forEach(child => {
-      scanTextNodes(child, keywords);
+      scanTextNodes(child, parsedKeywords, calculateScore);
     });
   }
+  return shouldBlock;
 }
 
 function getGroupKeywords(websiteGroups, currentSite, callback) {
@@ -117,14 +119,14 @@ function performSiteCheck(){
     const normalizedUrl = normalizeURL(fullUrl);
 
     // Log the whitelisted sites more cleanly
-    console.log("Whitelisted Sites Array:", whitelistedSites.join(', '));
-    console.log("Current URL:", normalizedUrl);
+    console.log("Whitelisted Sites Array:", whitelistedSites.join(', ')); // line 122
+    console.log("Current URL:", normalizedUrl); //line 123
 
     // Check if the current normalized URL contains any of the whitelisted URLs
     const isWhitelisted = whitelistedSites.some(whitelistedUrl => normalizedUrl.includes(whitelistedUrl));
 
     // Log the entire websiteGroups array for debugging
-    console.log("Website Groups:", JSON.stringify(websiteGroups, null, 2));
+    console.log("Website Groups:", JSON.stringify(websiteGroups, null, 2)); //line 129
 
     if (isWhitelisted) {
       console.log("This site or part of it is whitelisted. Skipping keyword scan.");
@@ -135,7 +137,7 @@ function performSiteCheck(){
     const keywords = getGroupKeywords(websiteGroups, normalizedUrl, (group) => { matchingGroup = group; });
 
     // Log the keywords that were found for the current site
-    console.log("Keywords for current site:", keywords.join(', '));
+    console.log("Keywords for current site:", keywords.join(', ')); //line 140
 
     if (keywords.length > 0) {
       scanForKeywords(keywords);
@@ -159,16 +161,52 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 });
 
 function scanForKeywords(keywords) {
-  // Same as before, but now it uses the keywords from the matching group
+  let score = 0;
   const rootElement = document.querySelector('body');
-  scanTextNodes(rootElement, keywords);
+
+  const parseKeyword = (keywordStr) => {
+    const parts = keywordStr.split(/\,(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/); // Split by comma, but ignore commas within quotes
+    return {
+      keyword: parts[0].trim().replace(/\\,/g, ','), // Unescape any escaped commas
+      operation: parts[1].trim(),
+      value: parseFloat(parts[2].trim())
+    };
+  };
+
+  const calculateScore = (operation, value) => {
+    if (operation === '*') {
+      score = score === 0 ? value : score * value;
+    } else if (operation === '+') {
+      score += value;
+    }
+    console.log(`Current score: ${score}`);
+    if (score >= 1000) {
+      console.log("Score reached 1000. Blocking the page.");
+      blockPage("Score limit", "Page blocked due to score limit of 1000 reached.");
+      return true; // Return true to indicate the page should be blocked
+    }
+    return false;
+  };
+
+  const parsedKeywords = keywords.map(parseKeyword);
+
+  const blockPageIfNeeded = () => {
+    if (scanTextNodes(rootElement, parsedKeywords, calculateScore)) {
+      observer.disconnect(); // Disconnect the observer if the page is blocked
+    }
+  };
+
+  blockPageIfNeeded();
+  observeMutations(parsedKeywords, blockPageIfNeeded);
 }
 
 function observeMutations(keywords) {
   const observer = new MutationObserver(mutations => {
     mutations.forEach(mutation => {
       mutation.addedNodes.forEach(node => {
-        scanTextNodes(node, keywords);
+        if (scanTextNodes(node, parsedKeywords, calculateScore)) {
+          observer.disconnect(); // Disconnect if the page is blocked
+        }
       });
     });
   });
