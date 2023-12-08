@@ -155,26 +155,17 @@
     margin-right: 10px;
   }
   
-  .group-item textarea::placeholder {
-    color: #aaa;
-    font-style: italic;
-  }
   .group-item textarea {
     flex-grow: 1;
     padding: 5px;
-    padding-left: 10px;
     margin-right: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
-    overflow: hidden;
+    overflow: hidden; /* Prevent scrollbar */
     resize: none; /* Disable manual resize */
     min-width: 300px; /* Set a minimum width */
-    word-wrap: break-word; /* Wrap long words */
-    word-break:break-all;
-    box-sizing: border-box; /* Include padding and border in the width calculation */
-    max-width: 66%; /* Ensure the max width is 100% of the parent container */
-  }
-  
+    max-width: 80%;
+}
 
   
   .group-item input[readonly], .group-item textarea[readonly] {
