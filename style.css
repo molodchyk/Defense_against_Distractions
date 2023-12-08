@@ -82,21 +82,21 @@
 
     h2 {
         color: #5D5C61;
-        margin-top: 20px; /* Spacing above the h2 element */
+        margin-top: 20px;
     }
 
     /* Groups panel styling */
     #groupNameInput, #groupWebsitesInput, #groupKeywordsInput {
         padding: 10px;
         margin: 5px 0;
-        width: calc(100% - 22px); /* Adjust width considering padding and border */
+        width: calc(100% - 22px);
         border: 1px solid #ddd;
         border-radius: 4px;
     }
 
     #addGroupButton {
         padding: 10px 20px;
-        background-color: #007bff; /* Different color for the Add Group button */
+        background-color: #007bff;
         color: white;
         border: none;
         border-radius: 4px;
@@ -115,12 +115,12 @@
         border: 1px solid #ddd;
         border-radius: 4px;
         display: flex;
-        flex-direction: column; /* Display elements in a column */
-        align-items: flex-start; /* Align items to the start */
+        flex-direction: column;
+        align-items: flex-start;
     }
 
     #groupList li div {
-        margin: 5px 0; /* Margin for each div */
+        margin: 5px 0;
     }
 
     #groupList button {
@@ -131,12 +131,12 @@
     }
 
     #groupList button:nth-child(1) {
-        background-color: #28a745; /* Green color for update button */
+        background-color: #28a745;
         color: white;
     }
 
     #groupList button:nth-child(2) {
-        background-color: #dc3545; /* Red color for delete button */
+        background-color: #dc3545;
         color: white;
     }
 
@@ -144,7 +144,22 @@
         opacity: 0.8;
     }
 
-/* Additional styles for group fields */
+.group-item-textarea {
+  position: absolute;
+}
+
+#editableTextarea {
+  background: transparent;
+  z-index: 2;
+}
+
+#mirroringTextarea {
+  pointer-events: none;
+  color: transparent;
+  z-index: 1;
+  background-image: linear-gradient(to bottom, #f4f4f4 50%, #ffffff 50%);
+  background-size: 100% 2em;
+}
 .group-item div {
     display: flex;
     align-items: center;
@@ -161,11 +176,14 @@
     margin-right: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
-    overflow: hidden; /* Prevent scrollbar */
-    resize: none; /* Disable manual resize */
-    min-width: 300px; /* Set a minimum width */
+    overflow: hidden;
+    resize: none;
+    min-width: 300px;
     max-width: 80%;
+    word-break:break-all;
+    overflow-x: auto; /* Allows horizontal scrolling */
 }
+
 
   
   .group-item input[readonly], .group-item textarea[readonly] {

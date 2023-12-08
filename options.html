@@ -6,26 +6,40 @@
     <meta charset="UTF-8">
 </head>
 <body>
-    <h2>Groups</h2>
-    <!-- <div> -->
-      <input type="text" id="groupNameInput" placeholder="Group Name">
-      <button id="addGroupButton">Add Group</button>
-    <!-- </div> -->
-    <ul id="groupList"></ul>
+    <!-- Groups Section -->
+    <section>
+        <h2>Groups</h2>
+        <div class="input-group">
+            <input type="text" id="groupNameInput" placeholder="Group Name">
+            <button id="addGroupButton">Add Group</button>
+        </div>
+        <ul id="groupList"></ul>
+    </section>
 
-    <script src="groupManagement.js"></script>
+    <!-- Whitelist Websites Section -->
+    <section>
+        <h2>Whitelist Websites</h2>
+        <div class="input-group">
+            <input type="text" id="whitelistInput" placeholder="Enter website URL">
+            <button id="addWhitelistButton">Add to Whitelist</button>
+        </div>
+        <ul id="whitelist"></ul>
+    </section>
 
-    <h2>Whitelist Websites</h2>
-    <input type="text" id="whitelistInput" placeholder="Enter website URL">
-    <button id="addWhitelistButton">Add to Whitelist</button>
-    <ul id="whitelist"></ul>
+    <!-- Keyword Management Section -->
+    <section>
+        <h2>Keyword Management</h2>
+        <div class="input-group">
+            <input type="text" id="keywordInput" placeholder="Enter keyword">
+            <button id="addButton">Add</button>
+        </div>
+        <ul id="keywordList"></ul>
+    </section>
 
-    <script src="whitelistManagement.js"></script>
-
-
-    <h1></h1>
-    <input type="text" id="keywordInput" placeholder="Enter keyword">
-    <button id="addButton">Add</button>
-    <ul id="keywordList"></ul>
-    <script src="keywordManagement.js"></script>
+    <!-- JavaScript Modules -->
+    <script src="utilityFunctions.js" type="module"></script>
+    <script src="uiFunctions.js" type="module"></script>
+    <script src="groupManagementFunctions.js" type="module"></script>
+    <script src="eventListeners.js" type="module"></script>
 </body>
+</html>
