@@ -25,8 +25,8 @@ export function updateGroup(index) {
     const timerCount = document.getElementById(`timerCount-${index}`).value;
     const timerDuration = document.getElementById(`timerDuration-${index}`).value;
     websiteGroups[index].timer = {
-      count: parseInt(timerCount, 10),
-      duration: parseInt(timerDuration, 10),
+      count: parseInt(timerCount, 10) || 0,
+      duration: parseInt(timerDuration, 10) || 20,
       usedToday: 0 // Resets daily
     };
 

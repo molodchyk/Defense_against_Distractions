@@ -67,6 +67,7 @@ function blockPage(keyword = "Unknown", contextText = "N/A") {
         );
   
         if (currentGroup && currentGroup.timer) {
+          console.log(`Timer settings for the group: Count - ${currentGroup.timer.count}, Duration - ${currentGroup.timer.duration}`);
           // Check if the daily limit is not exceeded
           if (currentGroup.timer.usedToday < currentGroup.timer.count) {
             // Increment the usedToday counter
