@@ -73,22 +73,38 @@ function extractContext(text, keyword, maxWords = 15) {
 
 function scanTextNodes(element, parsedKeywords, calculateScore) {
   if (window.pageBlocked) return;
-  if (element.nodeType === Node.TEXT_NODE) {
-    const text = element.textContent.trim();
-    if (text) {
-      parsedKeywords.forEach(({ keyword, operation, value }) => {
-        if (text.toLowerCase().includes(keyword.toLowerCase())) {
+
+  // Function to scan and process text within a single node
+  const scanAndProcessText = (text) => {
+    parsedKeywords.forEach(({ keyword, operation, value }) => {
+      // Use a regular expression to find all occurrences of the keyword
+      const regex = new RegExp(keyword, 'gi');
+      const matches = text.match(regex);
+
+      if (matches && matches.length > 0) {
+        matches.forEach(match => {
           const contextText = extractContext(text, keyword);
-          console.log(`Keyword "${keyword}" detected in text. Context: "${contextText}"`);
           calculateScore(operation, value, keyword, contextText);
-        }
+        });
+      }
+    });
+  };
+
+  // Recursive function to scan all text nodes
+  const recursiveScan = (node) => {
+    if (node.nodeType === Node.TEXT_NODE) {
+      const text = node.textContent.trim();
+      if (text) {
+        scanAndProcessText(text);
+      }
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      Array.from(node.childNodes).forEach(child => {
+        recursiveScan(child);
       });
     }
-  } else if (element.nodeType === Node.ELEMENT_NODE) {
-    Array.from(element.childNodes).forEach(child => {
-      scanTextNodes(child, parsedKeywords, calculateScore);
-    });
-  }
+  };
+
+  recursiveScan(element);
 }
 
 function getGroupKeywords(websiteGroups, currentSite, callback) {
