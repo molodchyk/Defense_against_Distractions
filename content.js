@@ -134,7 +134,7 @@ function performSiteCheck(){
 
     // Log the whitelisted sites more cleanly
     console.log("Whitelisted Sites Array:", whitelistedSites.join(', '));
-    console.log("Current URL:", normalizedUrl);  //line 137
+    console.log("Current URL:", normalizedUrl);
 
     // Check if the current normalized URL contains any of the whitelisted URLs
     const isWhitelisted = whitelistedSites.some(whitelistedUrl => normalizedUrl.includes(whitelistedUrl));
@@ -150,10 +150,13 @@ function performSiteCheck(){
     let matchingGroup = null;
     const keywords = getGroupKeywords(websiteGroups, normalizedUrl, (group) => { matchingGroup = group; });
 
-    const keywordNames = keywords.map(kw => kw.split(',')[0].trim());
+    const keywordNames = keywords.map(kw => {
+    const parts = kw.split(/(?<!\\),/); // Split by unescaped commas
+    return parts[0].trim().replace(/\\,/g, ','); // Replace escaped commas with actual commas
+  });
 
     // Log the keywords that were found for the current site
-    console.log("Keywords for current site:", keywordNames.join(', '));  //line 156
+    console.log("Keywords for current site:", keywordNames.join(', '));
 
     if (keywords.length > 0) {
       scanForKeywords(keywords);
@@ -195,7 +198,7 @@ function calculateScore(operation, value, keyword, contextText) {
   }
   console.log(`Current score: ${score} (Keyword: "${keyword}", Context: "${contextText}")`);
   if (score >= 1000 && !window.pageBlocked) {
-      blockPage(keyword, contextText);
+      blockPage(keyword, contextText); //line 201
   }
 }
 
@@ -210,7 +213,7 @@ function observeMutations(keywords) {
     mutations.forEach(mutation => {
       mutation.addedNodes.forEach(node => {
         const parsedKeywords = keywords.map(parseKeyword); // This should now work
-        scanTextNodes(node, parsedKeywords, calculateScore);
+        scanTextNodes(node, parsedKeywords, calculateScore); //line 216
       });
     });
   });
