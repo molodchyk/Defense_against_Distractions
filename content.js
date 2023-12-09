@@ -1,5 +1,11 @@
-let score = 0;
-let parsedKeywords = [];
+// let window.pageScore = 0;
+// let parsedKeywords = [];
+if (typeof window.pageScore === 'undefined') {
+  window.pageScore = 0;
+}
+if (typeof window.parsedKeywords === 'undefined') {
+  window.parsedKeywords = [];
+}
 
 function blockPage(keyword = "Unknown", contextText = "N/A") {
   if (window.pageBlocked) return; // Return if page is already blocked
@@ -73,12 +79,12 @@ function extractContext(text, keyword, maxWords = 15) {
   return text; // Fallback if keyword is not found
 }
 
-function scanTextNodes(element, parsedKeywords, calculateScore) {
+function scanTextNodes(element, calculateScore) {
   if (window.pageBlocked) return;
 
   // Function to scan and process text within a single node
   const scanAndProcessText = (text) => {
-    parsedKeywords.forEach(({ keyword, operation, value }) => {
+    window.parsedKeywords.forEach(({ keyword, operation, value }) => {
       // Use a regular expression to find all occurrences of the keyword
       const regex = new RegExp(keyword, 'gi');
       const matches = text.match(regex);
@@ -194,28 +200,28 @@ function parseKeyword(keywordStr) {
 
 function calculateScore(operation, value, keyword, contextText) {
   if (operation === '*') {
-      score = score === 0 ? value : score * value;
+      window.pageScore = window.pageScore === 0 ? value : window.pageScore * value;
   } else if (operation === '+') {
-      score += value;
+      window.pageScore += value;
   }
-  console.log(`Current score: ${score} (Keyword: "${keyword}", Context: "${contextText}")`);
-  if (score >= 1000 && !window.pageBlocked) {
+  console.log(`Current window.pageScore: ${window.pageScore} (Keyword: "${keyword}", Context: "${contextText}")`);
+  if (window.pageScore >= 1000 && !window.pageBlocked) {
       blockPage(keyword, contextText); //line 201
   }
 }
 
 function scanForKeywords(keywords) {
   const rootElement = document.querySelector('body');
-  const parsedKeywords = keywords.map(parseKeyword);
-  scanTextNodes(rootElement, parsedKeywords, calculateScore);
+  window.parsedKeywords = keywords.map(parseKeyword);
+  scanTextNodes(rootElement, calculateScore);
 }
 
 function observeMutations(keywords) {
   const observer = new MutationObserver(mutations => {
     mutations.forEach(mutation => {
       mutation.addedNodes.forEach(node => {
-        parsedKeywords = keywords.map(parseKeyword); // This should now work
-        scanTextNodes(node, parsedKeywords, calculateScore); //line 216
+        window.parsedKeywords = keywords.map(parseKeyword); // This should now work
+        scanTextNodes(node, calculateScore); //line 216
       });
     });
   });
