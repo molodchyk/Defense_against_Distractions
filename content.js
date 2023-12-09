@@ -175,34 +175,31 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     sendResponse({status: "Site check performed"});
   }
 });
-  
+
+function parseKeyword(keywordStr) {
+  const parts = keywordStr.split(/\,(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/); // Split by comma, but ignore commas within quotes
+  return {
+    keyword: parts[0].trim().replace(/\\,/g, ','), // Unescape any escaped commas
+    operation: parts[1].trim(),
+    value: parseFloat(parts[2].trim())
+  };
+}
+
+function calculateScore(operation, value, keyword, contextText) {
+  if (operation === '*') {
+      score = score === 0 ? value : score * value;
+  } else if (operation === '+') {
+      score += value;
+  }
+  console.log(`Current score: ${score} (Keyword: "${keyword}", Context: "${contextText}")`);
+  if (score >= 1000 && !window.pageBlocked) {
+      blockPage(keyword, contextText);
+  }
+}
+
 function scanForKeywords(keywords) {
   const rootElement = document.querySelector('body');
-
-  const parseKeyword = (keywordStr) => {
-    const parts = keywordStr.split(/\,(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/); // Split by comma, but ignore commas within quotes
-    return {
-      keyword: parts[0].trim().replace(/\\,/g, ','), // Unescape any escaped commas
-      operation: parts[1].trim(),
-      value: parseFloat(parts[2].trim())
-    };
-  };
-
-  const calculateScore = (operation, value, keyword, contextText) => {
-    if (operation === '*') {
-      score = score === 0 ? value : score * value;
-    } else if (operation === '+') {
-      score += value;
-    }
-    console.log(`Current score: ${score} (Keyword: "${keyword}", Context: "${contextText}")`);
-    if (score >= 1000 && !window.pageBlocked) {
-      blockPage(keyword, contextText);
-    }
-  };
-  
-
   const parsedKeywords = keywords.map(parseKeyword);
-
   scanTextNodes(rootElement, parsedKeywords, calculateScore);
 }
 
@@ -210,7 +207,7 @@ function observeMutations(keywords) {
   const observer = new MutationObserver(mutations => {
     mutations.forEach(mutation => {
       mutation.addedNodes.forEach(node => {
-        const parsedKeywords = keywords.map(parseKeyword); // Make sure to parse keywords again
+        const parsedKeywords = keywords.map(parseKeyword); // This should now work
         scanTextNodes(node, parsedKeywords, calculateScore);
       });
     });
