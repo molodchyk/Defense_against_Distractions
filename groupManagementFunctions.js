@@ -21,6 +21,14 @@ export function updateGroup(index) {
     const groupName = document.getElementById(`name-${index}`).value.trim();
     const websites = document.getElementById(`websites-${index}`).value.split('\n').map(site => site.trim()).filter(site => site !== '');
     const keywords = document.getElementById(`keywords-${index}`).value.split('\n').map(keyword => keyword.trim()).filter(keyword => keyword !== '');
+    // Retrieve timer settings from the UI
+    const timerCount = document.getElementById(`timerCount-${index}`).value;
+    const timerDuration = document.getElementById(`timerDuration-${index}`).value;
+    websiteGroups[index].timer = {
+      count: parseInt(timerCount, 10),
+      duration: parseInt(timerDuration, 10),
+      usedToday: 0 // Resets daily
+    };
 
     websiteGroups[index] = { groupName, websites, keywords };
     chrome.storage.sync.set({ websiteGroups }, () => updateGroupsUI(websiteGroups));

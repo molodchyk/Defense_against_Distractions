@@ -18,6 +18,10 @@ export function updateGroupsUI(websiteGroups) {
     // Keywords
     createGroupField(li, 'Keywords:', group.keywords.join('\n'), `keywords-${index}`, true, index);
 
+     // Timer settings
+     createGroupField(li, 'Timer Count:', group.timer ? group.timer.count.toString() : '0', `timerCount-${index}`, true, index);
+     createGroupField(li, 'Timer Duration (seconds):', group.timer ? group.timer.duration.toString() : '20', `timerDuration-${index}`, true, index);
+
     // Delete button
     const deleteButton = createButton('Delete', () => removeGroup(index), 'delete-button');
     li.appendChild(deleteButton);

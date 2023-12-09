@@ -40,6 +40,59 @@ function blockPage(keyword = "Unknown", contextText = "N/A") {
   contentDiv.style.backgroundColor = '#f8f8f8'; // Light grey background for content area
   contentDiv.style.borderRadius = '8px'; // Rounded corners
 
+    // Create a timer button
+    const timerButton = document.createElement("button");
+    timerButton.textContent = "Activate Timer";
+    timerButton.style.padding = "10px 20px";
+    timerButton.style.backgroundColor = "#4CAF50";
+    timerButton.style.color = "white";
+    timerButton.style.border = "none";
+    timerButton.style.borderRadius = "5px";
+    timerButton.style.cursor = "pointer";
+    timerButton.style.marginTop = "20px";
+  
+    // Add the timer button to the contentDiv
+    contentDiv.appendChild(timerButton);
+  
+    // Timer activation logic
+    timerButton.addEventListener('click', function() {
+      // Retrieve timer settings from chrome storage
+      chrome.storage.sync.get("websiteGroups", ({ websiteGroups }) => {
+        const currentUrl = window.location.href;
+        const normalizedUrl = normalizeURL(currentUrl);
+  
+        // Find the current group based on URL
+        const currentGroup = websiteGroups.find(group =>
+          group.websites.some(website => normalizedUrl.includes(normalizeURL(website)))
+        );
+  
+        if (currentGroup && currentGroup.timer) {
+          // Check if the daily limit is not exceeded
+          if (currentGroup.timer.usedToday < currentGroup.timer.count) {
+            // Increment the usedToday counter
+            currentGroup.timer.usedToday++;
+            chrome.storage.sync.set({ websiteGroups });
+  
+            // Pause scanning
+            window.isTimerActive = true;
+  
+            // Set a timeout to resume scanning after timer duration
+            setTimeout(() => {
+              window.isTimerActive = false;
+            }, currentGroup.timer.duration * 1000); // Convert seconds to milliseconds
+  
+            // Provide feedback to the user
+            timerButton.textContent = `Timer activated for ${currentGroup.timer.duration} seconds`;
+            timerButton.disabled = true;
+          } else {
+            timerButton.textContent = "Daily limit reached";
+            timerButton.disabled = true;
+          }
+        }
+      });
+    });
+  
+
   contentDiv.innerHTML = `
     <h2 style="color: #d32f2f;">Content Blocked</h2>
     <p>This page contains restricted content and has been blocked for your protection.</p>
@@ -80,7 +133,7 @@ function extractContext(text, keyword, maxWords = 15) {
 }
 
 function scanTextNodes(element, calculateScore) {
-  if (window.pageBlocked) return;
+  if (window.pageBlocked || window.isTimerActive) return;
 
   // Function to scan and process text within a single node
   const scanAndProcessText = (text) => {
