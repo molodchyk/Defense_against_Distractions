@@ -78,14 +78,9 @@ function scanTextNodes(element, parsedKeywords, calculateScore) {
     if (text) {
       parsedKeywords.forEach(({ keyword, operation, value }) => {
         if (text.toLowerCase().includes(keyword.toLowerCase())) {
-          console.log(`Keyword "${keyword}" detected in text.`);
           const contextText = extractContext(text, keyword);
-          console.log(`Keyword "${keyword}" triggers operation "${operation}" with value ${value}`);
-          calculateScore(operation, value);
-          if (score >= 1000 && !window.pageBlocked) {
-            console.log('here2!');
-            blockPage(keyword, contextText);
-          }
+          console.log(`Keyword "${keyword}" detected in text. Context: "${contextText}"`);
+          calculateScore(operation, value, keyword, contextText);
         }
       });
     }
@@ -177,18 +172,18 @@ function scanForKeywords(keywords) {
     };
   };
 
-  const calculateScore = (operation, value) => {
+  const calculateScore = (operation, value, keyword, contextText) => {
     if (operation === '*') {
       score = score === 0 ? value : score * value;
     } else if (operation === '+') {
       score += value;
     }
-    console.log(`Current score: ${score}`);
+    console.log(`Current score: ${score} (Keyword: "${keyword}", Context: "${contextText}")`);
     if (score >= 1000 && !window.pageBlocked) {
-      console.log('here!');
-      blockPage(); // Ensure blockPage can handle this scenario
+      blockPage(keyword, contextText);
     }
   };
+  
 
   const parsedKeywords = keywords.map(parseKeyword);
 
