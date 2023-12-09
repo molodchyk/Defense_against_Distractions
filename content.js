@@ -1,5 +1,3 @@
-// let window.pageScore = 0;
-// let parsedKeywords = [];
 if (typeof window.pageScore === 'undefined') {
   window.pageScore = 0;
 }
@@ -7,8 +5,20 @@ if (typeof window.parsedKeywords === 'undefined') {
   window.parsedKeywords = [];
 }
 
+// Global variable for blockDiv
+if (typeof window.blockDiv === 'undefined') {
+  window.blockDiv = null;
+}
+
 function blockPage(keyword = "Unknown", contextText = "N/A") {
   if (window.pageBlocked) return; // Return if page is already blocked
+
+  // Store the original display styles of all children
+  window.originalStyles = Array.from(document.body.children).map(child => child.style.display);
+
+  // Store the original overflow style
+  window.originalOverflow = document.documentElement.style.overflow;
+
   document.documentElement.style.overflow = 'hidden';  // Hide scrollbars
   Array.from(document.body.children).forEach(child => child.style.display = 'none'); // Hide all other elements
 
@@ -33,6 +43,8 @@ function blockPage(keyword = "Unknown", contextText = "N/A") {
   blockDiv.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.1)'; // Subtle box shadow for depth
   blockDiv.style.zIndex = '2147483647'; // Use the maximum possible value
 
+  window.blockDiv = blockDiv; // Store blockDiv globally
+
   var contentDiv = document.createElement("div");
   contentDiv.style.maxWidth = '600px'; // Max width for content area
   contentDiv.style.margin = '0 auto';
@@ -40,7 +52,6 @@ function blockPage(keyword = "Unknown", contextText = "N/A") {
   contentDiv.style.backgroundColor = '#f8f8f8'; // Light grey background for content area
   contentDiv.style.borderRadius = '8px'; // Rounded corners
 
-  
 
   contentDiv.innerHTML = `
     <h2 style="color: #d32f2f;">Content Blocked</h2>
@@ -49,7 +60,6 @@ function blockPage(keyword = "Unknown", contextText = "N/A") {
     <p><strong>Context:</strong> "${contextText}"</p>
     <button id="goBackButton" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px;">Go Back</button>
   `;
-
 
     // Create a timer button
     const timerButton = document.createElement("button");
@@ -65,8 +75,17 @@ function blockPage(keyword = "Unknown", contextText = "N/A") {
     // Add the timer button to the contentDiv
     contentDiv.appendChild(timerButton);
   
+    // Call this function immediately and then every few seconds for a short period
+    pauseNewMedia();
+    const pauseInterval = setInterval(pauseNewMedia, 500); // Check every 0.5 seconds
+    // Set a timeout to stop the interval after 5 seconds
+    setTimeout(() => {
+      clearInterval(pauseInterval);
+    }, 5000);
+
     // Timer activation logic
     timerButton.addEventListener('click', function() {
+
       // Retrieve timer settings from chrome storage
       chrome.storage.sync.get("websiteGroups", ({ websiteGroups }) => {
         const currentUrl = window.location.href;
@@ -78,19 +97,55 @@ function blockPage(keyword = "Unknown", contextText = "N/A") {
         );
   
         if (currentGroup && currentGroup.timer) {
-          console.log(`Timer settings for the group: Count - ${currentGroup.timer.count}, Duration - ${currentGroup.timer.duration}`);
+          
+          // Calculate timers left for the day
+          let timersLeft = currentGroup.timer.count - currentGroup.timer.usedToday;
+          console.log(`Timer settings for the group: Count - ${currentGroup.timer.count}, Duration - ${currentGroup.timer.duration}, Timers Left Today - ${timersLeft}`);
+
           // Check if the daily limit is not exceeded
-          if (currentGroup.timer.usedToday < currentGroup.timer.count) {
+          if (timersLeft > 0) {
+
+            // Hide the blockDiv while timer is active
+            window.blockDiv.style.display = 'none';
+
+            // Restore original styles to the page elements
+            Array.from(document.body.children).forEach((child, index) => {
+              child.style.display = window.originalStyles[index];
+            });
+            // Restore original styles to the page elements and enable scrolling
+            document.documentElement.style.overflow = window.originalOverflow;
+            Array.from(document.body.children).forEach((child, index) => {
+              child.style.display = window.originalStyles[index];
+            });
+
             // Increment the usedToday counter
             currentGroup.timer.usedToday++;
             chrome.storage.sync.set({ websiteGroups });
   
             // Pause scanning
             window.isTimerActive = true;
+
+            // Inside the timer activation logic in blockPage function
+            let timerDuration = currentGroup.timer.duration;
+            let timerInterval = setInterval(() => {
+              updateBadgeScore(timerDuration);
+              timerDuration--;
+
+              if (timerDuration < 0) {
+                clearInterval(timerInterval);
+                window.isTimerActive = false;
+                updateBadgeScore(); // Revert back to displaying the pageScore
+              }
+            }, 1000);
   
             // Set a timeout to resume scanning after timer duration
             setTimeout(() => {
+              window.blockDiv.style.display = 'flex'; // Show the blockDiv again
               window.isTimerActive = false;
+
+               // Re-enable the timer button
+              timerButton.textContent = "Activate Timer";
+              timerButton.disabled = false;
             }, currentGroup.timer.duration * 1000); // Convert seconds to milliseconds
   
             // Provide feedback to the user
@@ -123,16 +178,32 @@ if (typeof window.pageBlocked === 'undefined') {
   window.pageBlocked = false;
 }
 
-function extractContext(text, keyword, maxWords = 15) {
+function pauseNewMedia() {
+  const mediaElements = document.querySelectorAll('video, audio');
+  mediaElements.forEach(media => {
+    if (!media.paused && !media.dataset.wasPaused) {
+      media.pause();
+      media.dataset.wasPaused = 'true'; // Mark it as paused by the script
+    }
+  });
+}
+
+function extractContext(text, keyword, maxWords = 15, maxLength = 100) {
   const words = text.split(/\s+/);
   const keywordIndex = words.findIndex(w => w.toLowerCase().includes(keyword.toLowerCase()));
-  
+
   if (keywordIndex >= 0) {
     const start = Math.max(keywordIndex - Math.floor(maxWords / 2), 0);
     const end = Math.min(start + maxWords, words.length);
-    return words.slice(start, end).join(' ');
+    let context = words.slice(start, end).join(' ');
+
+    // Truncate if context exceeds maxLength
+    if (context.length > maxLength) {
+      context = context.substring(0, maxLength) + '...';
+    }
+    return context;
   }
-  return text; // Fallback if keyword is not found
+  return ''; // Return empty string if keyword is not found
 }
 
 function scanTextNodes(element, calculateScore) {
@@ -192,7 +263,7 @@ function normalizeURL(site) {
 }
 
 function performSiteCheck(){
-  chrome.storage.sync.get(["whitelistedSites", "websiteGroups"], ({ whitelistedSites, websiteGroups }) => {  //line 118
+  chrome.storage.sync.get(["whitelistedSites", "websiteGroups"], ({ whitelistedSites, websiteGroups }) => {
     const fullUrl = window.location.href;
     const normalizedUrl = normalizeURL(fullUrl);
 
@@ -204,7 +275,7 @@ function performSiteCheck(){
     const isWhitelisted = whitelistedSites.some(whitelistedUrl => normalizedUrl.includes(whitelistedUrl));
 
     // Log the entire websiteGroups array for debugging
-    console.log("Website Groups:", JSON.stringify(websiteGroups, null, 2));  //line 143
+    console.log("Website Groups:", JSON.stringify(websiteGroups, null, 2));
 
     if (isWhitelisted) {
       console.log("This site or part of it is whitelisted. Skipping keyword scan.");
@@ -298,8 +369,8 @@ function observeMutations(keywords) {
   const observer = new MutationObserver(mutations => {
     mutations.forEach(mutation => {
       mutation.addedNodes.forEach(node => {
-        window.parsedKeywords = keywords.map(parseKeyword); // This should now work
-        scanTextNodes(node, calculateScore); //line 216
+        window.parsedKeywords = keywords.map(parseKeyword);
+        scanTextNodes(node, calculateScore);
       });
     });
   });
@@ -308,6 +379,7 @@ function observeMutations(keywords) {
   observer.observe(document.body, config);
 }
 
-function updateBadgeScore() {
-  chrome.runtime.sendMessage({ action: 'updateBadge', score: window.pageScore });
+function updateBadgeScore(timerRemaining = null) {
+  let badgeText = timerRemaining !== null ? timerRemaining.toString() : window.pageScore.toString();
+  chrome.runtime.sendMessage({ action: 'updateBadge', score: badgeText });
 }
