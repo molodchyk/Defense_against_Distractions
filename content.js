@@ -1,7 +1,8 @@
-function blockPage(keyword, contextText) {
-if (window.pageBlocked) return;
-  document.documentElement.style.overflow = 'hidden';
-  Array.from(document.body.children).forEach(child => child.style.display = 'none');
+let score = 0;
+function blockPage(keyword = "Unknown", contextText = "N/A") {
+  if (window.pageBlocked) return; // Return if page is already blocked
+  document.documentElement.style.overflow = 'hidden';  // Hide scrollbars
+  Array.from(document.body.children).forEach(child => child.style.display = 'none'); // Hide all other elements
 
   var blockDiv = document.createElement("div");
   blockDiv.style.position = 'fixed';
@@ -9,8 +10,8 @@ if (window.pageBlocked) return;
   blockDiv.style.left = '0';
   blockDiv.style.width = '100vw';
   blockDiv.style.height = '100vh';
-  blockDiv.style.backgroundColor = '#ffffff';
-  blockDiv.style.color = '#333333';
+  blockDiv.style.backgroundColor = '#ffffff'; // Soft white background
+  blockDiv.style.color = '#333333'; // Dark grey text for readability
   blockDiv.style.zIndex = '1000';
   blockDiv.style.display = 'flex';
   blockDiv.style.flexDirection = 'column';
@@ -21,22 +22,22 @@ if (window.pageBlocked) return;
   blockDiv.style.boxSizing = 'border-box';
   blockDiv.style.fontSize = '20px';
   blockDiv.style.fontFamily = 'Arial, sans-serif';
-  blockDiv.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.1)';
-  blockDiv.style.zIndex = '2147483647';
+  blockDiv.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.1)'; // Subtle box shadow for depth
+  blockDiv.style.zIndex = '2147483647'; // Use the maximum possible value
 
   var contentDiv = document.createElement("div");
-  contentDiv.style.maxWidth = '600px';
+  contentDiv.style.maxWidth = '600px'; // Max width for content area
   contentDiv.style.margin = '0 auto';
   contentDiv.style.padding = '30px';
-  contentDiv.style.backgroundColor = '#f8f8f8';
-  contentDiv.style.borderRadius = '8px';
+  contentDiv.style.backgroundColor = '#f8f8f8'; // Light grey background for content area
+  contentDiv.style.borderRadius = '8px'; // Rounded corners
 
   contentDiv.innerHTML = `
-      <h2 style="color: #d32f2f;">Content Blocked</h2>
-      <p>This page contains restricted content and has been blocked for your protection.</p>
-      <p><strong>Keyword Detected:</strong> ${keyword}</p>
-      <p><strong>Context:</strong> "${contextText}"</p>
-      <button id="goBackButton" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px;">Go Back</button>
+    <h2 style="color: #d32f2f;">Content Blocked</h2>
+    <p>This page contains restricted content and has been blocked for your protection.</p>
+    <p><strong>Keyword Detected:</strong> ${keyword}</p>
+    <p><strong>Context:</strong> "${contextText}"</p>
+    <button id="goBackButton" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px;">Go Back</button>
   `;
 
   blockDiv.appendChild(contentDiv);
@@ -47,10 +48,11 @@ if (window.pageBlocked) return;
       window.history.back();
   });
 
+  // Listen to the popstate event to refresh the page
   window.addEventListener('popstate', function() {
       window.location.reload();
   });
-  window.pageBlocked = true;
+  window.pageBlocked = true; // Set the flag to indicate the page is blocked
 }
 
 if (typeof window.pageBlocked === 'undefined') {
@@ -66,12 +68,11 @@ function extractContext(text, keyword, maxWords = 15) {
     const end = Math.min(start + maxWords, words.length);
     return words.slice(start, end).join(' ');
   }
-  return text;
+  return text; // Fallback if keyword is not found
 }
 
 function scanTextNodes(element, parsedKeywords, calculateScore) {
-  if (window.pageBlocked) return false;
-  let shouldBlock = false;
+  if (window.pageBlocked) return;
   if (element.nodeType === Node.TEXT_NODE) {
     const text = element.textContent.trim();
     if (text) {
@@ -79,8 +80,12 @@ function scanTextNodes(element, parsedKeywords, calculateScore) {
         if (text.toLowerCase().includes(keyword.toLowerCase())) {
           console.log(`Keyword "${keyword}" detected in text.`);
           const contextText = extractContext(text, keyword);
+          console.log(`Keyword "${keyword}" triggers operation "${operation}" with value ${value}`);
           calculateScore(operation, value);
-          blockPage(keyword, contextText);
+          if (score >= 1000 && !window.pageBlocked) {
+            console.log('here2!');
+            blockPage(keyword, contextText);
+          }
         }
       });
     }
@@ -89,39 +94,42 @@ function scanTextNodes(element, parsedKeywords, calculateScore) {
       scanTextNodes(child, parsedKeywords, calculateScore);
     });
   }
-  return shouldBlock;
 }
 
 function getGroupKeywords(websiteGroups, currentSite, callback) {
+  // Normalize currentSite by removing 'www.'
   const normalizedCurrentSite = currentSite.replace(/^www\./, '').toLowerCase();
 
   for (let group of websiteGroups) {
+    // Normalize each website in the group for comparison
     const normalizedGroupWebsites = group.websites.map(site => site.replace(/^www\./, '').toLowerCase());
     if (normalizedGroupWebsites.some(site => normalizedCurrentSite.includes(site))) {
-      if (callback) callback(group);
+      if (callback) callback(group);  // Pass the matching group to the callback
       return group.keywords;
     }
   }
-  return [];
+  return []; // Return an empty array if no matching group is found
 }
 
+// Add the normalizeURL function here because functions are not shared across files
 function normalizeURL(site) {
   return site.replace(/^(?:https?:\/\/)?(?:www\.)?/, '').toLowerCase();
 }
 
 function performSiteCheck(){
-  if (window.hasPerformedSiteCheck) return;
-  window.hasPerformedSiteCheck = true;
-  chrome.storage.sync.get(["whitelistedSites", "websiteGroups"], ({ whitelistedSites, websiteGroups }) => {
+  chrome.storage.sync.get(["whitelistedSites", "websiteGroups"], ({ whitelistedSites, websiteGroups }) => {  //line 118
     const fullUrl = window.location.href;
     const normalizedUrl = normalizeURL(fullUrl);
 
+    // Log the whitelisted sites more cleanly
     console.log("Whitelisted Sites Array:", whitelistedSites.join(', '));
     console.log("Current URL:", normalizedUrl);
 
+    // Check if the current normalized URL contains any of the whitelisted URLs
     const isWhitelisted = whitelistedSites.some(whitelistedUrl => normalizedUrl.includes(whitelistedUrl));
 
-    console.log("Website Groups:", JSON.stringify(websiteGroups, null, 2)); //line 125
+    // Log the entire websiteGroups array for debugging
+    console.log("Website Groups:", JSON.stringify(websiteGroups, null, 2));
 
     if (isWhitelisted) {
       console.log("This site or part of it is whitelisted. Skipping keyword scan.");
@@ -131,9 +139,12 @@ function performSiteCheck(){
     let matchingGroup = null;
     const keywords = getGroupKeywords(websiteGroups, normalizedUrl, (group) => { matchingGroup = group; });
 
-    console.log("Keywords for current site:", keywords.join(', ')); //line 135
+    const keywordNames = keywords.map(kw => kw.split(',')[0].trim());
 
-    if (keywords && keywords.length > 0) {
+    // Log the keywords that were found for the current site
+    console.log("Keywords for current site:", keywordNames.join(', '));
+
+    if (keywords.length > 0) {
       scanForKeywords(keywords);
       observeMutations(keywords);
     } else {
@@ -144,20 +155,6 @@ function performSiteCheck(){
       }
     }
   });
-  observePageChanges();
-}
-
-function observePageChanges(parsedKeywords) {
-  let observer = new MutationObserver((mutations) => {
-    mutations.forEach((mutation) => {//line 153
-      if (mutation.addedNodes.length > 0) {
-        console.log("New content detected, performing site check...");
-        scanForKeywords(parsedKeywords); //line 156
-      }
-    });
-  });
-
-  observer.observe(document.body, { childList: true, subtree: true });
 }
 performSiteCheck();
 
@@ -167,56 +164,42 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     sendResponse({status: "Site check performed"});
   }
 });
-
-const calculateScore = (operation, value) => {
-  if (operation === '*') {
-    score = score === 0 ? value : score * value;
-  } else if (operation === '+') {
-    score += value;
-  }
-  console.log(`Current score: ${score}`);
-  if (score >= 1000) {
-    console.log("Score reached 1000. Blocking the page.");
-    blockPage("Score limit", "Page blocked due to score limit of 1000 reached.");
-    return true;
-  }
-  return false;
-};
-
-let score = 0;
+  
 function scanForKeywords(keywords) {
   const rootElement = document.querySelector('body');
 
   const parseKeyword = (keywordStr) => {
-    const parts = keywordStr.split(/\,(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/);
+    const parts = keywordStr.split(/\,(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/); // Split by comma, but ignore commas within quotes
     return {
-      keyword: parts[0].trim().replace(/\\,/g, ','),
+      keyword: parts[0].trim().replace(/\\,/g, ','), // Unescape any escaped commas
       operation: parts[1].trim(),
       value: parseFloat(parts[2].trim())
     };
   };
 
-
-
-  const parsedKeywords = keywords.map(parseKeyword);//line 202
-
-  const blockPageIfNeeded = () => {
-    if (scanTextNodes(rootElement, parsedKeywords, calculateScore)) {
-      observer.disconnect();
+  const calculateScore = (operation, value) => {
+    if (operation === '*') {
+      score = score === 0 ? value : score * value;
+    } else if (operation === '+') {
+      score += value;
+    }
+    console.log(`Current score: ${score}`);
+    if (score >= 1000 && !window.pageBlocked) {
+      console.log('here!');
+      blockPage(); // Ensure blockPage can handle this scenario
     }
   };
 
-  blockPageIfNeeded();
-  observeMutations(parsedKeywords);
+  const parsedKeywords = keywords.map(parseKeyword);
+
+  scanTextNodes(rootElement, parsedKeywords, calculateScore);
 }
 
-function observeMutations(parsedKeywords) {
+function observeMutations(keywords) {
   const observer = new MutationObserver(mutations => {
     mutations.forEach(mutation => {
       mutation.addedNodes.forEach(node => {
-        if (scanTextNodes(node, parsedKeywords, calculateScore)) {
-          observer.disconnect();
-        }
+        scanTextNodes(node, keywords);
       });
     });
   });
