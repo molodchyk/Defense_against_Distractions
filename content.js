@@ -40,6 +40,17 @@ function blockPage(keyword = "Unknown", contextText = "N/A") {
   contentDiv.style.backgroundColor = '#f8f8f8'; // Light grey background for content area
   contentDiv.style.borderRadius = '8px'; // Rounded corners
 
+  
+
+  contentDiv.innerHTML = `
+    <h2 style="color: #d32f2f;">Content Blocked</h2>
+    <p>This page contains restricted content and has been blocked for your protection.</p>
+    <p><strong>Keyword Detected:</strong> ${keyword}</p>
+    <p><strong>Context:</strong> "${contextText}"</p>
+    <button id="goBackButton" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px;">Go Back</button>
+  `;
+
+
     // Create a timer button
     const timerButton = document.createElement("button");
     timerButton.textContent = "Activate Timer";
@@ -92,15 +103,6 @@ function blockPage(keyword = "Unknown", contextText = "N/A") {
         }
       });
     });
-  
-
-  contentDiv.innerHTML = `
-    <h2 style="color: #d32f2f;">Content Blocked</h2>
-    <p>This page contains restricted content and has been blocked for your protection.</p>
-    <p><strong>Keyword Detected:</strong> ${keyword}</p>
-    <p><strong>Context:</strong> "${contextText}"</p>
-    <button id="goBackButton" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px;">Go Back</button>
-  `;
 
   blockDiv.appendChild(contentDiv);
   document.body.appendChild(blockDiv);

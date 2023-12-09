@@ -21,16 +21,20 @@ export function updateGroup(index) {
     const groupName = document.getElementById(`name-${index}`).value.trim();
     const websites = document.getElementById(`websites-${index}`).value.split('\n').map(site => site.trim()).filter(site => site !== '');
     const keywords = document.getElementById(`keywords-${index}`).value.split('\n').map(keyword => keyword.trim()).filter(keyword => keyword !== '');
+
+    websiteGroups[index].groupName = groupName;
+    websiteGroups[index].websites = websites;
+    websiteGroups[index].keywords = keywords;
+
     // Retrieve timer settings from the UI
     const timerCount = document.getElementById(`timerCount-${index}`).value;
     const timerDuration = document.getElementById(`timerDuration-${index}`).value;
     websiteGroups[index].timer = {
       count: parseInt(timerCount, 10) || 0,
       duration: parseInt(timerDuration, 10) || 20,
-      usedToday: 0 // Resets daily
+      usedToday: websiteGroups[index].timer ? websiteGroups[index].timer.usedToday : 0
     };
 
-    websiteGroups[index] = { groupName, websites, keywords };
     chrome.storage.sync.set({ websiteGroups }, () => updateGroupsUI(websiteGroups));
   });
 }
@@ -80,19 +84,30 @@ export function updateGroupField(index) {
     const groupNameField = document.getElementById(`name-${index}`);
     const websitesField = document.getElementById(`websites-${index}`);
     const keywordsField = document.getElementById(`keywords-${index}`);
+    const timerCountField = document.getElementById(`timerCount-${index}`);
+    const timerDurationField = document.getElementById(`timerDuration-${index}`);
 
     const initialGroupName = group.groupName;
     const initialWebsites = group.websites.join('\n');
     const initialKeywords = group.keywords.join('\n');
+    const initialTimerCount = group.timer ? group.timer.count : 0;
+    const initialTimerDuration = group.timer ? group.timer.duration : 20;
 
     group.groupName = groupNameField.value.trim(); // Update group name
     group.websites = websitesField.value.split('\n').map(site => site.trim()).filter(site => site !== '');
     group.keywords = keywordsField.value.split('\n').map(keyword => keyword.trim()).filter(keyword => keyword !== '');
+    group.timer = {
+      count: parseInt(timerCountField.value, 10) || 0,
+      duration: parseInt(timerDurationField.value, 10) || 20,
+      usedToday: group.timer ? group.timer.usedToday : 0
+    };
 
     console.log(`Group updated: [${index}]`);
     console.log(`Group Name: ${initialGroupName} -> ${group.groupName}`);
     console.log(`Websites: ${initialWebsites} -> ${group.websites.join('\n')}`);
     console.log(`Keywords: ${initialKeywords} -> ${group.keywords.join('\n')}`);
+    console.log(`Timer Count: ${initialTimerCount} -> ${group.timer.count}`);
+    console.log(`Timer Duration: ${initialTimerDuration} -> ${group.timer.duration}`);
 
     chrome.storage.sync.set({ websiteGroups }, () => {
       updateGroupsUI(websiteGroups);
