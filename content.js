@@ -188,13 +188,31 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 });
 
 function parseKeyword(keywordStr) {
+  // Check if keywordStr is valid
+  let keyword = '';
+  let operation = '+';
+  let value = 1000;
+  if (!keywordStr) { return {keyword, operation, value}; }
+
   // Split by comma, but only if the comma is not preceded by a backslash (escaped comma)
   const parts = keywordStr.split(/(?<!\\),/);
+
+  keyword = parts[0].trim().replace(/\\,/g, ',');
+
+  // Check if the operation is defined and is either '+' or '*'
+  if (parts[1]) {
+    const trimmedOperation = parts[1].trim();
+    operation = (trimmedOperation === '+' || trimmedOperation === '*') ? trimmedOperation : '+';
+  }
+
+  // Assign default values if operation or value is not provided
+  operation = parts[1] ? parts[1].trim() : '+';
+  value = parts[2] ? parseFloat(parts[2].trim()) : 1000;
+
   return {
-    // Replace escaped commas with actual commas in the keyword part
-    keyword: parts[0].trim().replace(/\\,/g, ','),
-    operation: parts[1].trim(),
-    value: parseFloat(parts[2].trim())
+    keyword, 
+    operation, 
+    value
   };
 }
 
