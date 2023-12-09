@@ -5,9 +5,9 @@ if (typeof window.parsedKeywords === 'undefined') {
   window.parsedKeywords = [];
 }
 
-// Global variable for blockDiv
-if (typeof window.blockDiv === 'undefined') {
-  window.blockDiv = null;
+// Global variable for overlay  
+if (typeof window.overlay === 'undefined') {
+  window.overlay = null;
 }
 
 function blockPage(keyword = "Unknown", contextText = "N/A") {
@@ -22,69 +22,50 @@ function blockPage(keyword = "Unknown", contextText = "N/A") {
   document.documentElement.style.overflow = 'hidden';  // Hide scrollbars
   Array.from(document.body.children).forEach(child => child.style.display = 'none'); // Hide all other elements
 
-  var blockDiv = document.createElement("div");
-  blockDiv.style.position = 'fixed';
-  blockDiv.style.top = '0';
-  blockDiv.style.left = '0';
-  blockDiv.style.width = '100vw';
-  blockDiv.style.height = '100vh';
-  blockDiv.style.backgroundColor = '#ffffff'; // Soft white background
-  blockDiv.style.color = '#333333'; // Dark grey text for readability
-  blockDiv.style.zIndex = '1000';
-  blockDiv.style.display = 'flex';
-  blockDiv.style.flexDirection = 'column';
-  blockDiv.style.justifyContent = 'center';
-  blockDiv.style.alignItems = 'center';
-  blockDiv.style.textAlign = 'center';
-  blockDiv.style.padding = '20px';
-  blockDiv.style.boxSizing = 'border-box';
-  blockDiv.style.fontSize = '20px';
-  blockDiv.style.fontFamily = 'Arial, sans-serif';
-  blockDiv.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.1)'; // Subtle box shadow for depth
-  blockDiv.style.zIndex = '2147483647'; // Use the maximum possible value
-
-  window.blockDiv = blockDiv; // Store blockDiv globally
-
-  var contentDiv = document.createElement("div");
-  contentDiv.style.maxWidth = '600px'; // Max width for content area
-  contentDiv.style.margin = '0 auto';
-  contentDiv.style.padding = '30px';
-  contentDiv.style.backgroundColor = '#f8f8f8'; // Light grey background for content area
-  contentDiv.style.borderRadius = '8px'; // Rounded corners
-
-
-  contentDiv.innerHTML = `
+  var overlay = document.createElement("div");
+  overlay.style.position = 'fixed';
+  overlay.style.top = '0';
+  overlay.style.left = '0';
+  overlay.style.width = '100vw';
+  overlay.style.height = '100vh';
+  overlay.style.backgroundColor = '#ffffff'; // Soft white background
+  overlay.style.color = '#333333'; // Dark grey text for readability
+  overlay.style.zIndex = '1000';
+  overlay.style.display = 'flex';
+  overlay.style.flexDirection = 'column';
+  overlay.style.justifyContent = 'center';
+  overlay.style.alignItems = 'center';
+  overlay.style.textAlign = 'center';
+  overlay.style.padding = '20px';
+  overlay.style.boxSizing = 'border-box';
+  overlay.style.fontSize = '20px';
+  overlay.style.fontFamily = 'Arial, sans-serif';
+  overlay.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.1)'; // Subtle box shadow for depth
+  overlay.style.zIndex = '2147483647'; // Use the maximum possible value
+  overlay.innerHTML = `
     <h2 style="color: #d32f2f;">Content Blocked</h2>
     <p>This page contains restricted content and has been blocked for your protection.</p>
     <p><strong>Keyword Detected:</strong> ${keyword}</p>
     <p><strong>Context:</strong> "${contextText}"</p>
     <button id="goBackButton" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px;">Go Back</button>
+    <button id="timerButton" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px;">Activate Timer</button>
   `;
+  
+  window.overlay = overlay; // Store overlay globally
+  document.body.appendChild(overlay);
 
-    // Create a timer button
-    const timerButton = document.createElement("button");
-    timerButton.textContent = "Activate Timer";
-    timerButton.style.padding = "10px 20px";
-    timerButton.style.backgroundColor = "#4CAF50";
-    timerButton.style.color = "white";
-    timerButton.style.border = "none";
-    timerButton.style.borderRadius = "5px";
-    timerButton.style.cursor = "pointer";
-    timerButton.style.marginTop = "20px";
-  
-    // Add the timer button to the contentDiv
-    contentDiv.appendChild(timerButton);
-  
-    // Call this function immediately and then every few seconds for a short period
-    pauseNewMedia();
-    const pauseInterval = setInterval(pauseNewMedia, 500); // Check every 0.5 seconds
-    // Set a timeout to stop the interval after 5 seconds
-    setTimeout(() => {
-      clearInterval(pauseInterval);
-    }, 5000);
+  // Pause any playing media
+  function pauseMedia() {
+    document.querySelectorAll('video, audio').forEach(media => {
+      if (!media.paused) {
+        media.pause();
+      }
+    });
+  }
+  setInterval(pauseMedia, 1000);
 
     // Timer activation logic
-    timerButton.addEventListener('click', function() {
+    document.getElementById('timerButton').addEventListener('click', function() {
 
       // Retrieve timer settings from chrome storage
       chrome.storage.sync.get("websiteGroups", ({ websiteGroups }) => {
@@ -104,9 +85,10 @@ function blockPage(keyword = "Unknown", contextText = "N/A") {
 
           // Check if the daily limit is not exceeded
           if (timersLeft > 0) {
-
-            // Hide the blockDiv while timer is active
-            window.blockDiv.style.display = 'none';
+          console.log('page available');
+            // Hide the overlay while timer is active
+            window.overlay.style.display = 'none';
+            window.pageBlocked = false;
 
             // Restore original styles to the page elements
             Array.from(document.body.children).forEach((child, index) => {
@@ -140,7 +122,7 @@ function blockPage(keyword = "Unknown", contextText = "N/A") {
   
             // Set a timeout to resume scanning after timer duration
             setTimeout(() => {
-              window.blockDiv.style.display = 'flex'; // Show the blockDiv again
+              window.overlay.style.display = 'flex'; // Show the overlay again
               window.isTimerActive = false;
 
                // Re-enable the timer button
@@ -159,8 +141,8 @@ function blockPage(keyword = "Unknown", contextText = "N/A") {
       });
     });
 
-  blockDiv.appendChild(contentDiv);
-  document.body.appendChild(blockDiv);
+  overlay.appendChild(overlay);
+  document.body.appendChild(overlay);
 
   document.getElementById('goBackButton').addEventListener('click', function(event) {
       event.stopPropagation();
@@ -176,16 +158,6 @@ function blockPage(keyword = "Unknown", contextText = "N/A") {
 
 if (typeof window.pageBlocked === 'undefined') {
   window.pageBlocked = false;
-}
-
-function pauseNewMedia() {
-  const mediaElements = document.querySelectorAll('video, audio');
-  mediaElements.forEach(media => {
-    if (!media.paused && !media.dataset.wasPaused) {
-      media.pause();
-      media.dataset.wasPaused = 'true'; // Mark it as paused by the script
-    }
-  });
 }
 
 function extractContext(text, keyword, maxWords = 15, maxLength = 100) {
@@ -355,7 +327,7 @@ function calculateScore(operation, value, keyword, contextText) {
   updateBadgeScore();
   console.log(`Current window.pageScore: ${window.pageScore} (Keyword: "${keyword}", Context: "${contextText}")`);
   if (window.pageScore >= 1000 && !window.pageBlocked) {
-      blockPage(keyword, contextText); //line 201
+      blockPage(keyword, contextText);
   }
 }
 
