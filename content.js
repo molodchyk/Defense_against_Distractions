@@ -210,7 +210,8 @@ function observeMutations(keywords) {
   const observer = new MutationObserver(mutations => {
     mutations.forEach(mutation => {
       mutation.addedNodes.forEach(node => {
-        scanTextNodes(node, keywords);
+        const parsedKeywords = keywords.map(parseKeyword); // Make sure to parse keywords again
+        scanTextNodes(node, parsedKeywords, calculateScore);
       });
     });
   });
