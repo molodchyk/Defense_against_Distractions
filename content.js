@@ -1,4 +1,6 @@
 let score = 0;
+let parsedKeywords = [];
+
 function blockPage(keyword = "Unknown", contextText = "N/A") {
   if (window.pageBlocked) return; // Return if page is already blocked
   document.documentElement.style.overflow = 'hidden';  // Hide scrollbars
@@ -212,7 +214,7 @@ function observeMutations(keywords) {
   const observer = new MutationObserver(mutations => {
     mutations.forEach(mutation => {
       mutation.addedNodes.forEach(node => {
-        const parsedKeywords = keywords.map(parseKeyword); // This should now work
+        parsedKeywords = keywords.map(parseKeyword); // This should now work
         scanTextNodes(node, parsedKeywords, calculateScore); //line 216
       });
     });
