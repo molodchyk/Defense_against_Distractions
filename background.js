@@ -25,3 +25,10 @@ chrome.webNavigation.onHistoryStateUpdated.addListener(function(details) {
     });
   }
 });
+
+chrome.runtime.onMessage.addListener((message, sender) => {
+  if (message.action === 'updateBadge') {
+    const scoreText = message.score.toString();
+    chrome.action.setBadgeText({ text: scoreText, tabId: sender.tab.id });
+  }
+});

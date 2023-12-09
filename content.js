@@ -199,21 +199,24 @@ function parseKeyword(keywordStr) {
 
   keyword = parts[0].trim().replace(/\\,/g, ',');
 
-  // Check if the operation is defined and is either '+' or '*'
-  if (parts[1]) {
-    const trimmedOperation = parts[1].trim();
-    operation = (trimmedOperation === '+' || trimmedOperation === '*') ? trimmedOperation : '+';
+  // Check if the second part is a number
+  if (parts.length > 1) {
+    const secondPart = parts[1].trim();
+    if (isNaN(secondPart)) {
+      // If second part is not a number, check if it's a valid operation
+      operation = (secondPart === '+' || secondPart === '*') ? secondPart : '+';
+    } else {
+      // If second part is a number, assign it to value
+      value = parseFloat(secondPart);
+    }
   }
 
-  // Assign default values if operation or value is not provided
-  operation = parts[1] ? parts[1].trim() : '+';
-  value = parts[2] ? parseFloat(parts[2].trim()) : 1000;
+  // Assign the third part as value if it exists
+  if (parts.length > 2 && !isNaN(parts[2].trim())) {
+    value = parseFloat(parts[2].trim());
+  }
 
-  return {
-    keyword, 
-    operation, 
-    value
-  };
+  return { keyword, operation, value };
 }
 
 function calculateScore(operation, value, keyword, contextText) {
@@ -222,6 +225,7 @@ function calculateScore(operation, value, keyword, contextText) {
   } else if (operation === '+') {
       window.pageScore += value;
   }
+  updateBadgeScore();
   console.log(`Current window.pageScore: ${window.pageScore} (Keyword: "${keyword}", Context: "${contextText}")`);
   if (window.pageScore >= 1000 && !window.pageBlocked) {
       blockPage(keyword, contextText); //line 201
@@ -246,4 +250,8 @@ function observeMutations(keywords) {
 
   const config = { childList: true, subtree: true };
   observer.observe(document.body, config);
+}
+
+function updateBadgeScore() {
+  chrome.runtime.sendMessage({ action: 'updateBadge', score: window.pageScore });
 }
