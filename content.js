@@ -134,13 +134,13 @@ function performSiteCheck(){
 
     // Log the whitelisted sites more cleanly
     console.log("Whitelisted Sites Array:", whitelistedSites.join(', '));
-    console.log("Current URL:", normalizedUrl);
+    console.log("Current URL:", normalizedUrl);  //line 137
 
     // Check if the current normalized URL contains any of the whitelisted URLs
     const isWhitelisted = whitelistedSites.some(whitelistedUrl => normalizedUrl.includes(whitelistedUrl));
 
     // Log the entire websiteGroups array for debugging
-    console.log("Website Groups:", JSON.stringify(websiteGroups, null, 2));
+    console.log("Website Groups:", JSON.stringify(websiteGroups, null, 2));  //line 143
 
     if (isWhitelisted) {
       console.log("This site or part of it is whitelisted. Skipping keyword scan.");
@@ -153,7 +153,7 @@ function performSiteCheck(){
     const keywordNames = keywords.map(kw => kw.split(',')[0].trim());
 
     // Log the keywords that were found for the current site
-    console.log("Keywords for current site:", keywordNames.join(', '));
+    console.log("Keywords for current site:", keywordNames.join(', '));  //line 156
 
     if (keywords.length > 0) {
       scanForKeywords(keywords);
@@ -177,9 +177,11 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 });
 
 function parseKeyword(keywordStr) {
-  const parts = keywordStr.split(/\,(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/); // Split by comma, but ignore commas within quotes
+  // Split by comma, but only if the comma is not preceded by a backslash (escaped comma)
+  const parts = keywordStr.split(/(?<!\\),/);
   return {
-    keyword: parts[0].trim().replace(/\\,/g, ','), // Unescape any escaped commas
+    // Replace escaped commas with actual commas in the keyword part
+    keyword: parts[0].trim().replace(/\\,/g, ','),
     operation: parts[1].trim(),
     value: parseFloat(parts[2].trim())
   };
