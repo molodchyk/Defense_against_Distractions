@@ -4,27 +4,41 @@ chrome.action.onClicked.addListener(function(tab) {
 
 chrome.webNavigation.onHistoryStateUpdated.addListener(function(details) {
   if (!details.url.startsWith("chrome://")) {
-    chrome.scripting.executeScript({
-      target: { tabId: details.tabId },
-      files: ['content.js']
-    }, () => {
+    chrome.tabs.get(details.tabId, function(tab) {
       if (chrome.runtime.lastError) {
-        console.error("Error injecting script: ", chrome.runtime.lastError.message);
+        console.error("Error retrieving tab: ", chrome.runtime.lastError.message);
         return;
       }
-      // Wait a bit before sending the message
-      setTimeout(() => {
-        chrome.tabs.sendMessage(details.tabId, {action: "performSiteCheck"}, function(response) {
+
+      if (tab.status === "complete") {
+        // Inject the content script
+        chrome.scripting.executeScript({
+          target: { tabId: details.tabId },
+          files: ['content.js']
+        }, () => {
           if (chrome.runtime.lastError) {
-            console.warning("Error sending message: ", chrome.runtime.lastError.message); //line 19
-          } else {
-            console.log(response ? response.status : "No response from content script");
+            console.error("Error injecting script: ", chrome.runtime.lastError.message);
+            return;
           }
+
+          // Send a message to the content script after a delay
+          setTimeout(() => {
+            chrome.tabs.sendMessage(details.tabId, {action: "performSiteCheck"}, function(response) {
+              if (chrome.runtime.lastError) {
+                console.error("Error sending message: ", chrome.runtime.lastError.message);
+              } else {
+                console.log(response ? response.status : "No response from content script");
+              }
+            });
+          }, 1000); // Adjust this timeout as needed
         });
-      }, 2000); // Adjust this timeout as needed
+      } else {
+        console.log("Tab is not complete, waiting to inject script");
+      }
     });
   }
 });
+
 
 chrome.runtime.onMessage.addListener((message, sender) => {
   if (message.action === 'updateBadge') {
