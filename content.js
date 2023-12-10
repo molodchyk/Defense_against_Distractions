@@ -7,6 +7,7 @@ if (typeof window.parsedKeywords === 'undefined') {
 if (typeof window.blockDiv === 'undefined') {
   window.blockDiv = null;
 }
+
 function blockPage(keyword = "Unknown", contextText = "N/A") {
   if (window.pageBlocked || window.isTimerActive) return;
 
@@ -48,24 +49,16 @@ function blockPage(keyword = "Unknown", contextText = "N/A") {
 
 
   contentDiv.innerHTML = `
-    <h2 style="color: #d32f2f;">Content Blocked</h2>
-    <p>This page contains restricted content and has been blocked for your protection.</p>
-    <p><strong>Keyword Detected:</strong> ${keyword}</p>
-    <p><strong>Context:</strong> "${contextText}"</p>
-    <button id="goBackButton" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px;">Go Back</button>
+  <h2 style="color: #d32f2f;">Content Blocked</h2>
+  <p>This page contains restricted content and has been blocked for your protection.</p>
+  <p><strong>Keyword Detected:</strong> ${keyword}</p>
+  <p><strong>Context:</strong> "${contextText}"</p>
+  <button id="goBackButton" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px;">Go Back</button>
+  <button id="timerButton" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px;">Activate Timer</button>
   `;
 
-  const timerButton = document.createElement("button");
-  timerButton.textContent = "Activate Timer";
-  timerButton.style.padding = "10px 20px";
-  timerButton.style.backgroundColor = "#4CAF50";
-  timerButton.style.color = "white";
-  timerButton.style.border = "none";
-  timerButton.style.borderRadius = "5px";
-  timerButton.style.cursor = "pointer";
-  timerButton.style.marginTop = "20px";
-
-  contentDiv.appendChild(timerButton);
+  blockDiv.appendChild(contentDiv);
+  document.body.appendChild(blockDiv);
 
   pauseNewMedia();
   const pauseInterval = setInterval(pauseNewMedia, 500);
@@ -73,8 +66,7 @@ function blockPage(keyword = "Unknown", contextText = "N/A") {
     clearInterval(pauseInterval);
   }, 5000);
 
-  timerButton.addEventListener('click', function() {
-
+  document.getElementById('timerButton').addEventListener('click', function() {
     chrome.storage.sync.get("websiteGroups", ({ websiteGroups }) => {
       const currentUrl = window.location.href;
       const normalizedUrl = normalizeURL(currentUrl);
@@ -136,8 +128,6 @@ function blockPage(keyword = "Unknown", contextText = "N/A") {
     });
   });
 
-  blockDiv.appendChild(contentDiv);
-  document.body.appendChild(blockDiv);
 
   document.getElementById('goBackButton').addEventListener('click', function(event) {
       event.stopPropagation();
