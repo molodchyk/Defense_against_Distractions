@@ -2,43 +2,32 @@ chrome.action.onClicked.addListener(function(tab) {
   chrome.tabs.create({'url': chrome.runtime.getURL('options.html')});
 });
 
-chrome.webNavigation.onHistoryStateUpdated.addListener(function(details) {
-  if (!details.url.startsWith("chrome://")) {
-    chrome.tabs.get(details.tabId, function(tab) {
-      if (chrome.runtime.lastError) {
-        console.error("Error retrieving tab: ", chrome.runtime.lastError.message);
-        return;
-      }
+function injectAndSendMessage(tabId, attempt) {
+  chrome.scripting.executeScript({
+    target: { tabId: tabId },
+    files: ['content.js']
+  }, () => {
+    if (chrome.runtime.lastError) {
+      console.error("Error injecting script: ", chrome.runtime.lastError.message);
+      return;
+    }
 
-      if (tab.status === "complete") {
-        // Inject the content script
-        chrome.scripting.executeScript({
-          target: { tabId: details.tabId },
-          files: ['content.js']
-        }, () => {
-          if (chrome.runtime.lastError) {
-            console.error("Error injecting script: ", chrome.runtime.lastError.message);
-            return;
+    // Wait before sending the message
+    setTimeout(() => {
+      chrome.tabs.sendMessage(tabId, {action: "performSiteCheck"}, function(response) {
+        if (chrome.runtime.lastError) {
+          console.error("Error sending message: ", chrome.runtime.lastError.message);
+          if (attempt < 3) { // Retry up to 3 times
+            console.log(`Retrying... Attempt ${attempt + 1}`);
+            injectAndSendMessage(tabId, attempt + 1);
           }
-
-          // Send a message to the content script after a delay
-          setTimeout(() => {
-            chrome.tabs.sendMessage(details.tabId, {action: "performSiteCheck"}, function(response) {
-              if (chrome.runtime.lastError) {
-                console.error("Error sending message: ", chrome.runtime.lastError.message);
-              } else {
-                console.log(response ? response.status : "No response from content script");
-              }
-            });
-          }, 1000); // Adjust this timeout as needed
-        });
-      } else {
-        console.log("Tab is not complete, waiting to inject script");
-      }
-    });
-  }
-});
-
+        } else {
+          console.log(response ? response.status : "No response from content script");
+        }
+      });
+    }, 1000 * (attempt + 1)); // Increase the wait time with each retry
+  });
+}
 
 chrome.runtime.onMessage.addListener((message, sender) => {
   if (message.action === 'updateBadge') {

@@ -11,7 +11,7 @@ if (typeof window.blockDiv === 'undefined') {
 }
 
 function blockPage(keyword = "Unknown", contextText = "N/A") {
-  if (window.pageBlocked) return; // Return if page is already blocked
+  if (window.pageBlocked || window.isTimerActive) return;
 
   console.log(`page is blocked`);
 
@@ -65,7 +65,6 @@ function blockPage(keyword = "Unknown", contextText = "N/A") {
 
     // Create a timer button
     const timerButton = document.createElement("button");
-    timerButton.id = "activateTimerButton";
     timerButton.textContent = "Activate Timer";
     timerButton.style.padding = "10px 20px";
     timerButton.style.backgroundColor = "#4CAF50";
@@ -74,7 +73,6 @@ function blockPage(keyword = "Unknown", contextText = "N/A") {
     timerButton.style.borderRadius = "5px";
     timerButton.style.cursor = "pointer";
     timerButton.style.marginTop = "20px";
-    timerButton.disabled = true; // Disable the button initially
   
     // Add the timer button to the contentDiv
     contentDiv.appendChild(timerButton);
@@ -82,21 +80,11 @@ function blockPage(keyword = "Unknown", contextText = "N/A") {
     // Call this function immediately and then every few seconds for a short period
     pauseNewMedia();
     console.log("media paused");
-    const pauseInterval = setInterval(pauseNewMedia, 4000); // Check every 0.5 seconds
+    const pauseInterval = setInterval(pauseNewMedia, 500); // Check every 0.5 seconds
     // Set a timeout to stop the interval after 5 seconds
     setTimeout(() => {
       clearInterval(pauseInterval);
-    }, 4000);
-    clearInterval(pauseInterval);
-    // Function to enable the timer button
-    function enableTimerButton() {
-      const button = document.getElementById("activateTimerButton");
-      if (button) {
-        button.disabled = false; // Enable the button
-      }
-    }
-    // Listen for the window to load before enabling the timer button
-    window.onload = enableTimerButton;
+    }, 5000);
 
     // Timer activation logic
     timerButton.addEventListener('click', function() {
@@ -120,7 +108,6 @@ function blockPage(keyword = "Unknown", contextText = "N/A") {
           // Check if the daily limit is not exceeded
           if (timersLeft > 0) {
             console.log(`page is unblocked`);
-            window.isTimerActive = true;
             window.pageBlocked = false;
             window.pageScore = 0;
 
@@ -142,6 +129,7 @@ function blockPage(keyword = "Unknown", contextText = "N/A") {
             chrome.storage.sync.set({ websiteGroups });
   
             // Pause scanning
+            window.isTimerActive = true;
 
             // Inside the timer activation logic in blockPage function
             let timerDuration = currentGroup.timer.duration;
@@ -150,13 +138,11 @@ function blockPage(keyword = "Unknown", contextText = "N/A") {
               timerDuration--;
 
               if (timerDuration < 0) {
-
-                window.isTimerActive = false;
                 clearInterval(timerInterval);
+                window.isTimerActive = false;
                 updateBadgeScore(); // Revert back to displaying the pageScore
               }
             }, 1000);
-            clearInterval(timerInterval);
   
             // Set a timeout to resume scanning after timer duration
             setTimeout(() => {
@@ -167,6 +153,10 @@ function blockPage(keyword = "Unknown", contextText = "N/A") {
               timerButton.textContent = "Activate Timer";
               timerButton.disabled = false;
             }, currentGroup.timer.duration * 1000); // Convert seconds to milliseconds
+  
+            // Provide feedback to the user
+            timerButton.textContent = `Timer activated for ${currentGroup.timer.duration} seconds`;
+            timerButton.disabled = true;
           } else {
             timerButton.textContent = "Daily limit reached";
             timerButton.disabled = true;
@@ -195,22 +185,18 @@ if (typeof window.pageBlocked === 'undefined') {
 }
 
 function pauseNewMedia() {
+  if (window.pageBlocked || window.isTimerActive) return;
   const mediaElements = document.querySelectorAll('video, audio');
   mediaElements.forEach(media => {
-    // Pause if media starts playing
-    media.addEventListener('playing', () => {
+    if (!media.paused && !media.dataset.wasPaused) {
       media.pause();
-    });
-
-    // Pause if media is already playing
-    if (!media.paused) {
-      media.pause();
+      media.dataset.wasPaused = 'true'; // Mark it as paused by the script
     }
   });
 }
 
-
 function extractContext(text, keyword, maxWords = 15, maxLength = 100) {
+  if (window.pageBlocked || window.isTimerActive) return;
   const words = text.split(/\s+/);
   const keywordIndex = words.findIndex(w => w.toLowerCase().includes(keyword.toLowerCase()));
 
@@ -235,10 +221,6 @@ if (typeof window.processedNodes === 'undefined') {
 
 function scanTextNodes(element, calculateScore) {
   if (window.pageBlocked || window.isTimerActive) return;
-  console.log('scanTextNodes...');
-  if (!window.pageBlocked && !window.isTimerActive) console.log('page and timer are false');
-  else if(!window.pageBlocked) console.log('page is not blocked');
-  else console.log('timer is inactive');
 
   // Function to scan and process text within a single node
   const scanAndProcessText = (text, node) => {
@@ -278,6 +260,7 @@ function scanTextNodes(element, calculateScore) {
 }
 
 function getGroupKeywords(websiteGroups, currentSite, callback) {
+  if (window.pageBlocked || window.isTimerActive) return;
   // Normalize currentSite by removing 'www.'
   const normalizedCurrentSite = currentSite.replace(/^www\./, '').toLowerCase();
 
@@ -297,18 +280,9 @@ function normalizeURL(site) {
   return site.replace(/^(?:https?:\/\/)?(?:www\.)?/, '').toLowerCase();
 }
 
-async function performSiteCheck(){
+function performSiteCheck(){
   if (window.pageBlocked || window.isTimerActive) return;
-  console.log('performSiteCheck...');
-  if (!window.pageBlocked && !window.isTimerActive) console.log('page and timer are false');
-  else if (!window.pageBlocked) console.log('page is not blocked');
-  else console.log('timer is inactive');
   chrome.storage.sync.get(["whitelistedSites", "websiteGroups"], ({ whitelistedSites, websiteGroups }) => {
-    if (window.pageBlocked || window.isTimerActive) return;
-    console.log('chrome.storage.sync.get whitelistedSites...');
-    if (!window.pageBlocked && !window.isTimerActive) console.log('page and timer are false');
-    else if (!window.pageBlocked) console.log('page is not blocked');
-    else console.log('timer is inactive');
     const fullUrl = window.location.href;
     const normalizedUrl = normalizeURL(fullUrl);
 
@@ -357,10 +331,10 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     performSiteCheck();
     sendResponse({status: "Site check performed"});
   }
-  return true;
 });
 
 function parseKeyword(keywordStr) {
+  if (window.pageBlocked || window.isTimerActive) return;
   // Check if keywordStr is valid
   let keyword = '';
   let operation = '+';
@@ -394,10 +368,6 @@ function parseKeyword(keywordStr) {
 
 function calculateScore(operation, value, keyword, contextText) {
   if (window.pageBlocked || window.isTimerActive) return;
-  console.log('calculateScore...');
-  if (!window.pageBlocked && !window.isTimerActive) console.log('page and timer are false');
-  else if (!window.pageBlocked) console.log('page is not blocked');
-  else console.log('timer is inactive');
   if (operation === '*') {
       window.pageScore = window.pageScore === 0 ? value : window.pageScore * value;
   } else if (operation === '+') {
@@ -412,10 +382,6 @@ function calculateScore(operation, value, keyword, contextText) {
 
 function scanForKeywords(keywords) {
   if (window.pageBlocked || window.isTimerActive) return;
-  console.log('scanForKeywords...');
-  if (!window.pageBlocked && !window.isTimerActive) console.log('page and timer are false');
-  else if (!window.pageBlocked) console.log('page is not blocked');
-  else console.log('timer is inactive');
   const rootElement = document.querySelector('body');
   window.parsedKeywords = keywords.map(parseKeyword);
   scanTextNodes(rootElement, calculateScore);
@@ -423,10 +389,6 @@ function scanForKeywords(keywords) {
 
 function observeMutations(keywords) {
   if (window.pageBlocked || window.isTimerActive) return;
-  console.log('observeMutations...');
-  if (!window.pageBlocked && !window.isTimerActive) console.log('page and timer are false');
-  else if (!window.pageBlocked) console.log('page is not blocked');
-  else console.log('timer is inactive');
   const observer = new MutationObserver(mutations => {
     mutations.forEach(mutation => {
       mutation.addedNodes.forEach(node => {
@@ -441,6 +403,6 @@ function observeMutations(keywords) {
 }
 
 function updateBadgeScore(timerRemaining = null) {
-  let badgeText = timerRemaining !== null ? (timerRemaining - 1).toString() : window.pageScore.toString();
-  chrome.runtime.sendMessage({ action: 'updateBadge', score: badgeText});
+  let badgeText = timerRemaining !== null ? timerRemaining.toString() : window.pageScore.toString();
+  chrome.runtime.sendMessage({ action: 'updateBadge', score: badgeText });
 }
