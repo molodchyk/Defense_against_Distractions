@@ -326,6 +326,6 @@ function observeMutations(keywords) {
 }
 
 function updateBadgeScore(timerRemaining = null) {
-  let badgeText = timerRemaining !== null ? timerRemaining.toString() : window.pageScore.toString();
+  let badgeText = timerRemaining !== null ? timerRemaining.toString() - 1 : window.pageScore.toString();
   chrome.runtime.sendMessage({ action: 'updateBadge', score: badgeText });
 }
