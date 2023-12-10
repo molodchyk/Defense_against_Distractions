@@ -137,7 +137,7 @@ function blockPage(keyword = "Unknown", contextText = "N/A") {
               updateBadgeScore(timerDuration);
               timerDuration--;
 
-              if (timerDuration < 0) {
+              if (timerDuration <= 0) {
                 clearInterval(timerInterval);
                 window.isTimerActive = false;
                 updateBadgeScore(); // Revert back to displaying the pageScore
@@ -399,6 +399,6 @@ function observeMutations(keywords) {
 }
 
 function updateBadgeScore(timerRemaining = null) {
-  let badgeText = timerRemaining !== null ? timerRemaining.toString() : window.pageScore.toString();
-  chrome.runtime.sendMessage({ action: 'updateBadge', score: badgeText });
+  let badgeText = timerRemaining !== null ? timerRemaining.toString() - 1 : window.pageScore.toString();
+  chrome.runtime.sendMessage({ action: 'updateBadge', score: badgeText});
 }

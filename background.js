@@ -16,7 +16,7 @@ chrome.webNavigation.onHistoryStateUpdated.addListener(function(details) {
       setTimeout(() => {
         chrome.tabs.sendMessage(details.tabId, {action: "performSiteCheck"}, function(response) {
           if (chrome.runtime.lastError) {
-            console.error("Error sending message: ", chrome.runtime.lastError.message); //line 19
+            console.warning("Error sending message: ", chrome.runtime.lastError.message); //line 19
           } else {
             console.log(response ? response.status : "No response from content script");
           }
