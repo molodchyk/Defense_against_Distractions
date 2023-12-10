@@ -55,86 +55,86 @@ function blockPage(keyword = "Unknown", contextText = "N/A") {
     <button id="goBackButton" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px;">Go Back</button>
   `;
 
-    const timerButton = document.createElement("button");
-    timerButton.textContent = "Activate Timer";
-    timerButton.style.padding = "10px 20px";
-    timerButton.style.backgroundColor = "#4CAF50";
-    timerButton.style.color = "white";
-    timerButton.style.border = "none";
-    timerButton.style.borderRadius = "5px";
-    timerButton.style.cursor = "pointer";
-    timerButton.style.marginTop = "20px";
-  
-    contentDiv.appendChild(timerButton);
-  
-    pauseNewMedia();
-    const pauseInterval = setInterval(pauseNewMedia, 500);
-    setTimeout(() => {
-      clearInterval(pauseInterval);
-    }, 5000);
+  const timerButton = document.createElement("button");
+  timerButton.textContent = "Activate Timer";
+  timerButton.style.padding = "10px 20px";
+  timerButton.style.backgroundColor = "#4CAF50";
+  timerButton.style.color = "white";
+  timerButton.style.border = "none";
+  timerButton.style.borderRadius = "5px";
+  timerButton.style.cursor = "pointer";
+  timerButton.style.marginTop = "20px";
 
-    timerButton.addEventListener('click', function() {
+  contentDiv.appendChild(timerButton);
 
-      chrome.storage.sync.get("websiteGroups", ({ websiteGroups }) => {
-        const currentUrl = window.location.href;
-        const normalizedUrl = normalizeURL(currentUrl);
-  
-        const currentGroup = websiteGroups.find(group =>
-          group.websites.some(website => normalizedUrl.includes(normalizeURL(website)))
-        );
-  
-        if (currentGroup && currentGroup.timer) {
-          
-          let timersLeft = currentGroup.timer.count - currentGroup.timer.usedToday;
+  pauseNewMedia();
+  const pauseInterval = setInterval(pauseNewMedia, 500);
+  setTimeout(() => {
+    clearInterval(pauseInterval);
+  }, 5000);
 
-          if (timersLeft > 0) {
-            window.pageBlocked = false;
-            window.pageScore = 0;
+  timerButton.addEventListener('click', function() {
 
-            window.blockDiv.style.display = 'none';
+    chrome.storage.sync.get("websiteGroups", ({ websiteGroups }) => {
+      const currentUrl = window.location.href;
+      const normalizedUrl = normalizeURL(currentUrl);
 
-            Array.from(document.body.children).forEach((child, index) => {
-              child.style.display = window.originalStyles[index];
-            });
-            document.documentElement.style.overflow = window.originalOverflow;
-            Array.from(document.body.children).forEach((child, index) => {
-              child.style.display = window.originalStyles[index];
-            });
+      const currentGroup = websiteGroups.find(group =>
+        group.websites.some(website => normalizedUrl.includes(normalizeURL(website)))
+      );
 
-            currentGroup.timer.usedToday++;
-            chrome.storage.sync.set({ websiteGroups });
-  
-            window.isTimerActive = true;
+      if (currentGroup && currentGroup.timer) {
+        
+        let timersLeft = currentGroup.timer.count - currentGroup.timer.usedToday;
 
-            let timerDuration = currentGroup.timer.duration;
-            let timerInterval = setInterval(() => {
-              updateBadgeScore(timerDuration);
-              timerDuration--;
+        if (timersLeft > 0) {
+          window.pageBlocked = false;
+          window.pageScore = 0;
 
-              if (timerDuration < 0) {
-                clearInterval(timerInterval);
-                window.isTimerActive = false;
-                updateBadgeScore();
-              }
-            }, 1000);
-  
-            setTimeout(() => {
-              window.blockDiv.style.display = 'flex';
+          window.blockDiv.style.display = 'none';
+
+          Array.from(document.body.children).forEach((child, index) => {
+            child.style.display = window.originalStyles[index];
+          });
+          document.documentElement.style.overflow = window.originalOverflow;
+          Array.from(document.body.children).forEach((child, index) => {
+            child.style.display = window.originalStyles[index];
+          });
+
+          currentGroup.timer.usedToday++;
+          chrome.storage.sync.set({ websiteGroups });
+
+          window.isTimerActive = true;
+
+          let timerDuration = currentGroup.timer.duration;
+          let timerInterval = setInterval(() => {
+            updateBadgeScore(timerDuration);
+            timerDuration--;
+
+            if (timerDuration < 0) {
+              clearInterval(timerInterval);
               window.isTimerActive = false;
+              updateBadgeScore();
+            }
+          }, 1000);
 
-              timerButton.textContent = "Activate Timer";
-              timerButton.disabled = false;
-            }, currentGroup.timer.duration * 1000);
-  
-            timerButton.textContent = `Timer activated for ${currentGroup.timer.duration} seconds`;
-            timerButton.disabled = true;
-          } else {
-            timerButton.textContent = "Daily limit reached";
-            timerButton.disabled = true;
-          }
+          setTimeout(() => {
+            window.blockDiv.style.display = 'flex';
+            window.isTimerActive = false;
+
+            timerButton.textContent = "Activate Timer";
+            timerButton.disabled = false;
+          }, currentGroup.timer.duration * 1000);
+
+          timerButton.textContent = `Timer activated for ${currentGroup.timer.duration} seconds`;
+          timerButton.disabled = true;
+        } else {
+          timerButton.textContent = "Daily limit reached";
+          timerButton.disabled = true;
         }
-      });
+      }
     });
+  });
 
   blockDiv.appendChild(contentDiv);
   document.body.appendChild(blockDiv);
