@@ -32,7 +32,6 @@ function blockPage(keyword = "Unknown", contextText = "N/A") {
   blockDiv.style.height = '100vh';
   blockDiv.style.backgroundColor = '#ffffff'; // Soft white background
   blockDiv.style.color = '#333333'; // Dark grey text for readability
-  blockDiv.style.zIndex = '1000';
   blockDiv.style.display = 'flex';
   blockDiv.style.flexDirection = 'column';
   blockDiv.style.justifyContent = 'center';
@@ -54,6 +53,8 @@ function blockPage(keyword = "Unknown", contextText = "N/A") {
   contentDiv.style.backgroundColor = '#f8f8f8'; // Light grey background for content area
   contentDiv.style.borderRadius = '8px'; // Rounded corners
 
+
+    
 
   contentDiv.innerHTML = `
     <h2 style="color: #d32f2f;">Content Blocked</h2>
