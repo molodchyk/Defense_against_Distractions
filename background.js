@@ -12,7 +12,6 @@ function injectAndSendMessage(tabId, attempt) {
       return;
     }
 
-    // Wait before sending the message
     setTimeout(() => {
       chrome.tabs.sendMessage(tabId, {action: "performSiteCheck"}, function(response) {
         if (chrome.runtime.lastError) {
@@ -25,7 +24,7 @@ function injectAndSendMessage(tabId, attempt) {
           console.log(response ? response.status : "No response from content script");
         }
       });
-    }, 1000 * (attempt + 1)); // Increase the wait time with each retry
+    }, 1000 * (attempt + 1));
   });
 }
 
@@ -39,7 +38,7 @@ chrome.runtime.onMessage.addListener((message, sender) => {
 chrome.runtime.onInstalled.addListener((details) => {
   if (details.reason === "install") {
     // This code runs only on the first install
-    const defaultWhitelistedSites = ['example.com']; // Replace with your default site
+    const defaultWhitelistedSites = ['example.com'];
     chrome.storage.sync.set({ whitelistedSites: defaultWhitelistedSites }, () => {
       console.log('Default whitelisted sites added on first install');
     });
