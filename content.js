@@ -13,6 +13,8 @@ if (typeof window.blockDiv === 'undefined') {
 function blockPage(keyword = "Unknown", contextText = "N/A") {
   if (window.pageBlocked) return; // Return if page is already blocked
 
+  console.log(`page is blocked`);
+
   // Store the original display styles of all children
   window.originalStyles = Array.from(document.body.children).map(child => child.style.display);
 
@@ -77,6 +79,7 @@ function blockPage(keyword = "Unknown", contextText = "N/A") {
   
     // Call this function immediately and then every few seconds for a short period
     pauseNewMedia();
+    console.log("media paused");
     const pauseInterval = setInterval(pauseNewMedia, 500); // Check every 0.5 seconds
     // Set a timeout to stop the interval after 5 seconds
     setTimeout(() => {
@@ -104,6 +107,9 @@ function blockPage(keyword = "Unknown", contextText = "N/A") {
 
           // Check if the daily limit is not exceeded
           if (timersLeft > 0) {
+            console.log(`page is unblocked`);
+            window.pageBlocked = false;
+            window.pageScore = 0;
 
             // Hide the blockDiv while timer is active
             window.blockDiv.style.display = 'none';
@@ -206,11 +212,20 @@ function extractContext(text, keyword, maxWords = 15, maxLength = 100) {
   return ''; // Return empty string if keyword is not found
 }
 
+// Global set to keep track of processed nodes
+if (typeof window.processedNodes === 'undefined') {
+  window.processedNodes = new Set();
+}
+
 function scanTextNodes(element, calculateScore) {
   if (window.pageBlocked || window.isTimerActive) return;
 
   // Function to scan and process text within a single node
-  const scanAndProcessText = (text) => {
+  const scanAndProcessText = (text, node) => {
+    // Check if the node has already been processed
+    if (window.processedNodes.has(node)) return;
+    window.processedNodes.add(node);
+
     window.parsedKeywords.forEach(({ keyword, operation, value }) => {
       // Use a regular expression to find all occurrences of the keyword
       const regex = new RegExp(keyword, 'gi');
@@ -230,7 +245,7 @@ function scanTextNodes(element, calculateScore) {
     if (node.nodeType === Node.TEXT_NODE) {
       const text = node.textContent.trim();
       if (text) {
-        scanAndProcessText(text);
+        scanAndProcessText(text, node);
       }
     } else if (node.nodeType === Node.ELEMENT_NODE) {
       Array.from(node.childNodes).forEach(child => {
@@ -263,6 +278,7 @@ function normalizeURL(site) {
 }
 
 function performSiteCheck(){
+  if (window.pageBlocked || window.isTimerActive) return;
   chrome.storage.sync.get(["whitelistedSites", "websiteGroups"], ({ whitelistedSites, websiteGroups }) => {
     const fullUrl = window.location.href;
     const normalizedUrl = normalizeURL(fullUrl);
@@ -347,6 +363,7 @@ function parseKeyword(keywordStr) {
 }
 
 function calculateScore(operation, value, keyword, contextText) {
+  if (window.pageBlocked || window.isTimerActive) return;
   if (operation === '*') {
       window.pageScore = window.pageScore === 0 ? value : window.pageScore * value;
   } else if (operation === '+') {
@@ -360,12 +377,14 @@ function calculateScore(operation, value, keyword, contextText) {
 }
 
 function scanForKeywords(keywords) {
+  if (window.pageBlocked || window.isTimerActive) return;
   const rootElement = document.querySelector('body');
   window.parsedKeywords = keywords.map(parseKeyword);
   scanTextNodes(rootElement, calculateScore);
 }
 
 function observeMutations(keywords) {
+  if (window.pageBlocked || window.isTimerActive) return;
   const observer = new MutationObserver(mutations => {
     mutations.forEach(mutation => {
       mutation.addedNodes.forEach(node => {
