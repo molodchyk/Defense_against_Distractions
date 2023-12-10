@@ -80,11 +80,11 @@ function blockPage(keyword = "Unknown", contextText = "N/A") {
     // Call this function immediately and then every few seconds for a short period
     pauseNewMedia();
     console.log("media paused");
-    const pauseInterval = setInterval(pauseNewMedia, 500); // Check every 0.5 seconds
+    const pauseInterval = setInterval(pauseNewMedia, 4000);
     // Set a timeout to stop the interval after 5 seconds
     setTimeout(() => {
       clearInterval(pauseInterval);
-    }, 5000);
+    }, 4000);
 
     // Timer activation logic
     timerButton.addEventListener('click', function() {
@@ -137,7 +137,7 @@ function blockPage(keyword = "Unknown", contextText = "N/A") {
               updateBadgeScore(timerDuration);
               timerDuration--;
 
-              if (timerDuration <= 0) {
+              if (timerDuration < 0) {
                 clearInterval(timerInterval);
                 window.isTimerActive = false;
                 updateBadgeScore(); // Revert back to displaying the pageScore
@@ -187,10 +187,10 @@ if (typeof window.pageBlocked === 'undefined') {
 function pauseNewMedia() {
   const mediaElements = document.querySelectorAll('video, audio');
   mediaElements.forEach(media => {
-    if (!media.paused && !media.dataset.wasPaused) {
+    // if (!media.paused && !media.dataset.wasPaused) {
       media.pause();
-      media.dataset.wasPaused = 'true'; // Mark it as paused by the script
-    }
+      // media.dataset.wasPaused = 'true'; // Mark it as paused by the script
+    // }
   });
 }
 
