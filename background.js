@@ -32,3 +32,13 @@ chrome.runtime.onMessage.addListener((message, sender) => {
     chrome.action.setBadgeText({ text: scoreText, tabId: sender.tab.id });
   }
 });
+
+chrome.runtime.onInstalled.addListener((details) => {
+  if (details.reason === "install") {
+    // This code runs only on the first install
+    const defaultWhitelistedSites = ['example.com']; // Replace with your default site
+    chrome.storage.sync.set({ whitelistedSites: defaultWhitelistedSites }, () => {
+      console.log('Default whitelisted sites added on first install');
+    });
+  }
+});
