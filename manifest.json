@@ -6,7 +6,8 @@
     "storage", 
     "activeTab", 
     "scripting", 
-    "webNavigation"
+    "webNavigation",
+    "alarms"
   ],
 "host_permissions": ["<all_urls>"],
   "action": {

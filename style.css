@@ -2,14 +2,14 @@
 
     html {
         height: 100%;
-        background-color: #1c1c1c; /* Dark background color */
+        background-color: #1c1c1c;
     }
     body {
         padding: 0;
         margin: 0;
         font-family: Arial, sans-serif;
-        background-color: #1c1c1c; /* Darker background with higher priority */
-        color: #e0e0e0; /* Lighter text color */
+        background-color: #1c1c1c;
+        color: #e0e0e0;
         min-height: max-content;
         box-sizing: border-box;
     }
@@ -23,9 +23,9 @@
         width: 300px;
         margin-right: 10px;
         border: 1px solid #ddd;
-        background-color: #333; /* Darker input background */
+        background-color: #333;
         border-radius: 4px;
-        color: #e0e0e0; /* Lighter input text color */
+        color: #e0e0e0;
     }
 
     #addButton {
@@ -44,14 +44,14 @@
     ul {
         list-style-type: none;
         padding: 0;
-        background-color: #1c1c1c; /* Darker background with higher priority */
+        background-color: #1c1c1c;
     }
 
     li {
-        background-color: #333; /* Darker background for list items */
+        background-color: #333;
         margin-top: 10px;
         padding: 10px;
-        border: 1px solid #555; /* Darker border */
+        border: 1px solid #555;
         border-radius: 4px;
         display: flex;
         justify-content: space-between;
@@ -74,10 +74,10 @@
         padding: 10px;
         width: 300px;
         margin-right: 10px;
-        border: 1px solid #555; /* Darker border */
+        border: 1px solid #555;
         border-radius: 4px;
-        background-color: #333; /* Darker input background */
-        color: #e0e0e0; /* Lighter input text color */
+        background-color: #333;
+        color: #e0e0e0;
     }
 
     #addWhitelistButton {
@@ -93,36 +93,42 @@
         background-color: #45a049;
     }
 
-    /* This will style the list items in the whitelist section */
     #whitelist li {
-        background-color: #333; /* Darker background for list items */
-        color: #e0e0e0; /* Lighter text color for visibility */
+        background-color: #333;
+        color: #e0e0e0;
         padding: 10px;
         margin-top: 10px;
-        border: 1px solid #555; /* Dark border for distinction */
+        border: 1px solid #555;
         border-radius: 4px;
         display: flex;
-        justify-content: space-between; /* Space out the site text and delete button */
+        justify-content: space-between;
         align-items: center;
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
     }
 
-    /* This will style the delete button for each whitelisted site */
     #whitelist button {
         padding: 5px 10px;
-        background-color: #f44336; /* Red color for delete action */
+        background-color: #f44336;
         color: white;
         border: none;
         border-radius: 4px;
         cursor: pointer;
+        margin-left: 20px;
     }
 
     #whitelist button:hover {
-        background-color: #d32f2f; /* Darker red on hover */
+        background-color: #d32f2f;
     }
 
     h2 {
-        color: #c9c9c9;
-        margin-top: 20px;
+        background-color: transparent;
+        padding: 10px;
+        max-width: 600px;
+        margin: 10px auto;
+        margin-top: 10px;
+        margin-bottom: 0px;
     }
 
     /* Groups panel styling */
@@ -130,20 +136,22 @@
         padding: 10px;
         margin: 5px 0;
         width: calc(100% - 22px);
-        border: 1px solid #555; /* Darker border */
+        border: 1px solid #555;
         border-radius: 4px;
-        background-color: #333; /* Darker input background */
-        color: #e0e0e0; /* Lighter input text color */
+        background-color: #333;
+        color: #e0e0e0;
     }
 
     #addGroupButton {
-        padding: 10px 20px;
+        padding: 8px 16px;
         background-color: #007bff;
         color: white;
         border: none;
         border-radius: 4px;
         cursor: pointer;
         margin: 10px 0;
+        margin-right: 10px;
+        margin-left: 10px;
     }
 
     #addGroupButton:hover {
@@ -151,14 +159,17 @@
     }
 
     #groupList li {
-        background-color: #333; /* Change to a darker color */
+        background-color: #333;
         margin-top: 10px;
         padding: 10px;
-        border: 1px solid #555; /* Darker border */
+        border: 1px solid #555;
         border-radius: 4px;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     #groupList li div {
@@ -186,79 +197,114 @@
         opacity: 0.8;
     }
 
-
+    .input-group, .group-item div {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
     
-.group-item-textarea {
-  position: absolute;
-}
+    .group-item-textarea {
+        position: absolute;
+    }
 
-#editableTextarea {
-  background: transparent;
-  z-index: 2;
-  color: #e0e0e0; /* Lighter text color */
-}
+    #editableTextarea {
+    background: transparent;
+    z-index: 2;
+    color: #e0e0e0;
+    }
 
-#mirroringTextarea {
-  pointer-events: none;
-  color: transparent;
-  z-index: 1;
-  background-image: linear-gradient(to bottom, #f4f4f4 50%, #ffffff 50%);
-  background-size: 100% 2em;
-}
-.group-item div {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  .group-item label {
-    margin-right: 10px;
-    color: #e0e0e0; /* Lighter label color */
-  }
-  
-  .group-item textarea {
-    flex-grow: 1;
-    padding: 5px;
-    margin-right: 10px;
-    border: 1px solid #555; /* Darker border */
-    border-radius: 4px;
-    overflow: hidden;
-    resize: none;
-    min-width: 300px;
-    max-width: 80%;
-    word-break:break-all;
-    overflow-x: auto;
-    background-color: #333; /* Darker textarea background */
-    color: #e0e0e0; /* Lighter textarea text color */
-}
+    #mirroringTextarea {
+    pointer-events: none;
+    color: transparent;
+    z-index: 1;
+    background-image: linear-gradient(to bottom, #f4f4f4 50%, #ffffff 50%);
+    background-size: 100% 2em;
+    }
 
+    .group-item div {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
 
-  
-  .group-item input[readonly], .group-item textarea[readonly] {
-    background-color: #242424; /* Even darker for readonly fields */
-    cursor: not-allowed;
-  }
-  
-  .update-button, .save-button {
-    background-color: #007bff;
-    color: white;
-  }
-  
-  .save-button {
-    background-color: #28a745;
-  }
-  
-  .update-button:hover, .save-button:hover {
-    opacity: 0.8;
-  }
-  
-  .delete-button {
-    background-color: #dc3545;
-    color: white;
-  }
-  
-  .delete-button:hover {
-    opacity: 0.8;
-  }
+    .group-item label, input-group label {
+        display: inline-block;
+        white-space: nowrap;
+        margin-right: 10px;
+        color: #e0e0e0;
+        text-align: center;
+        min-width:200px;
+        max-width: 1500px;
+    }
+
+    .group-item textarea {
+        flex-grow: 1;
+        padding: 5px;
+        margin-right: 10px;
+        border: 1px solid #555;
+        border-radius: 4px;
+        overflow: hidden;
+        resize: none;
+        min-width: 400px;
+        max-width: 80%;
+        word-break:break-all;
+        overflow-x: auto;
+        background-color: #333;
+        color: #e0e0e0;
+    }
+    .group-item .delete-button {
+        margin-left: auto;
+    }
+
+    .group-item input, .group-item textarea, .input-group input {
+        flex-grow: 1;
+        padding: 5px;
+        margin-right: 10px;
+        border: 1px solid #555;
+        border-radius: 4px;
+        background-color: #333;
+        color: #e0e0e0;
+        min-width: 400px;
+        width: calc(33% + 133px);
+    }
+
+    .group-item input, .group-item textarea {
+        width: calc(100% - 120px);
+    }
+
+    .edit-button {
+        margin-right: 10px;
+    }
+
+    .group-item input[readonly], .group-item textarea[readonly] {
+        background-color: #242424;
+        cursor: not-allowed;
+    }
+
+    .update-button, .save-button {
+        background-color: #007bff;
+        color: white;
+    }
+
+    .save-button {
+        background-color: #28a745;
+    }
+
+    .update-button:hover, .save-button:hover {
+        opacity: 0.8;
+    }
+
+    .delete-button {
+        background-color: #dc3545;
+        color: white;
+        margin-left:auto;
+    }
+
+    .delete-button:hover {
+        opacity: 0.8;
+    }
 
 </style>
