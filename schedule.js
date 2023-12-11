@@ -1,14 +1,3 @@
-// Add event listeners to buttons
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('#dayButtons button').forEach(button => {
-        button.addEventListener('click', function() {
-            this.classList.toggle('selected');
-        });
-    });
-
-    document.getElementById('saveSchedule').addEventListener('click', saveSchedule); //line 9
-});
-
 // Saves the new or updated schedule to the storage
 function saveSchedule(index) {
   const selectedDays = Array.from(document.querySelectorAll('#dayButtons button.selected')).map(button => button.textContent);
@@ -149,14 +138,6 @@ function updateSchedule(index) {
     });
   });
 }
-
-// Add event listeners to handle page load and button clicks
-document.addEventListener('DOMContentLoaded', () => {
-  // Initialize schedules UI
-  chrome.storage.sync.get('schedules', ({ schedules = [] }) => {
-    updateSchedulesUI(schedules);
-  });
-});
 
 document.addEventListener('DOMContentLoaded', function() {
   // Set up day buttons
