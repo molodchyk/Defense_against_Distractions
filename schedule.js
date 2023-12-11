@@ -27,11 +27,14 @@ function saveSchedule(index) {
   });
 }
 
-function createButton(text, onClick, className) {
+function createButton(text, onClick, className, index) {
   const button = document.createElement('button');
   button.textContent = text;
   button.addEventListener('click', onClick);
   button.className = className;
+  if (index !== undefined) {
+    button.setAttribute('data-index', index);
+  }
   return button;
 }
 
@@ -147,32 +150,44 @@ function createScheduleField(container, label, value, id, isReadOnly, index) {
   container.appendChild(fieldDiv);
 }
 
-// Toggles the schedule fields between read-only and editable
-function toggleScheduleEdit(scheduleId, index) {
-  const scheduleFields = [`schedule-name-${index}`, `schedule-days-${index}`, `schedule-startTime-${index}`, `schedule-endTime-${index}`];
-  scheduleFields.forEach(fieldId => {
-    const field = document.getElementById(fieldId);
-    field.readOnly = !field.readOnly;
+function toggleScheduleEdit(index) {
+  const scheduleNameField = document.getElementById(`schedule-name-${index}`);
+  const startTimeField = document.getElementById(`schedule-startTime-${index}`);
+  const endTimeField = document.getElementById(`schedule-endTime-${index}`);
+  const dayButtons = document.querySelectorAll(`#schedule-days-${index} .day-button`);
+  const activeToggle = document.querySelector(`#active-toggle-${index}`);
+
+  const editButton = document.querySelector(`.edit-button-schedule[data-index="${index}"]`);
+  const saveButton = document.querySelector(`.save-button-schedule[data-index="${index}"]`);
+
+  // Debugging: log the elements to see if they are being selected correctly
+  console.log(`Edit Button: `, editButton);
+  console.log(`Save Button: `, saveButton);
+
+  // Check if the buttons are found
+  if (!editButton || !saveButton) {
+    console.error(`Buttons not found for schedule index ${index}`);//line 165
+    return;
+  }
+
+  // Determine current editing state
+  const isEditing = editButton.textContent === 'Edit';
+
+  // Toggle button text and field states
+  editButton.textContent = isEditing ? 'Cancel' : 'Edit';
+  saveButton.disabled = !isEditing;
+
+  // Toggle field editability
+  [scheduleNameField, startTimeField, endTimeField].forEach(field => {
+    if (field) field.readOnly = !isEditing;
   });
 
-  const dayButtons = document.querySelectorAll('.day-button');
-  const activeToggle = document.querySelector('.active-toggle');
-  const isEditing = editButton.innerText === 'Cancel';
-
-  const editButton = document.getElementById(`edit-schedule-${index}`);
-  const saveButton = document.getElementById(`save-schedule-${index}`);
-
+  // Toggle day buttons and active toggle button
   dayButtons.forEach(button => button.disabled = !isEditing);
-  activeToggle.disabled = !isEditing;
+  if (activeToggle) activeToggle.disabled = !isEditing;
 
-  if (editButton.innerText === 'Edit') {
-    editButton.innerText = 'Cancel';
-    saveButton.disabled = false;
-  } else {
-    editButton.innerText = 'Edit';
-    saveButton.disabled = true;
-    // Optionally reset the values if cancelled
-  }
+  // Add console log for debugging
+  console.log(`Toggled edit mode for schedule ${index}: ${isEditing}`);
 }
 
 // Removes a schedule from the storage and updates the UI
