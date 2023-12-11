@@ -24,8 +24,8 @@ function blockPage(keyword = "Unknown", contextText = "N/A") {
   blockDiv.style.left = '0';
   blockDiv.style.width = '100vw';
   blockDiv.style.height = '100vh';
-  blockDiv.style.backgroundColor = '#ffffff';
-  blockDiv.style.color = '#333333';
+  blockDiv.style.backgroundColor = '#333333'; // Dark background
+  blockDiv.style.color = '#ffffff'; // Light text
   blockDiv.style.display = 'flex';
   blockDiv.style.flexDirection = 'column';
   blockDiv.style.justifyContent = 'center';
@@ -44,12 +44,11 @@ function blockPage(keyword = "Unknown", contextText = "N/A") {
   contentDiv.style.maxWidth = '600px';
   contentDiv.style.margin = '0 auto';
   contentDiv.style.padding = '30px';
-  contentDiv.style.backgroundColor = '#f8f8f8';
+  contentDiv.style.backgroundColor = '#4c4c4c'; // Darker shade for inner div
   contentDiv.style.borderRadius = '8px';
 
-
   contentDiv.innerHTML = `
-  <h2 style="color: #d32f2f;">Content Blocked</h2>
+  <h2 style="color: #ff4444;">Content Blocked</h2>
   <p>This page contains restricted content and has been blocked for your protection.</p>
   <p><strong>Keyword Detected:</strong> ${keyword}</p>
   <p><strong>Context:</strong> "${contextText}"</p>

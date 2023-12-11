@@ -1,5 +1,5 @@
 import { adjustTextareaHeight,  adjustTextareaWidth, addEnterFunctionalityToField} from './utilityFunctions.js';
-import { toggleFieldEdit, updateGroupField } from './groupManagementFunctions.js';
+import { toggleFieldEdit, updateGroupField, removeGroup } from './groupManagementFunctions.js';
 
 // Function to update the UI for groups
 export function updateGroupsUI(websiteGroups) {
