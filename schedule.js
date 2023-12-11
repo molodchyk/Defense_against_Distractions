@@ -66,12 +66,12 @@ function updateSchedulesUI(schedules) {
     controlsContainer.className = 'controls-container';
 
     // Edit button
-    const editButton = createButton('Edit', () => toggleScheduleEdit(index), 'edit-button');
+    const editButton = createButton('Edit', () => toggleScheduleEdit(index), 'edit-button-schedule');
     controlsContainer.appendChild(editButton);
 
     // Save button
-    const saveButton = createButton('Save', () => saveSchedule(index), 'save-button');
-    saveButton.style.display = 'none'; // Initially hidden, shown when editing
+    const saveButton = createButton('Save', () => saveSchedule(index), 'save-button-schedule');
+    // saveButton.style.display = 'none'; // Initially hidden, shown when editing
     controlsContainer.appendChild(saveButton);
 
     // Delete button
@@ -269,6 +269,7 @@ function addSchedule() {
       endTime: '23:59',
       isActive: false // Initially, the schedule is not active
     });
+    console.log("New schedule added:", scheduleName);
 
     chrome.storage.sync.set({ schedules }, () => {
       updateSchedulesUI(schedules); // You will need to implement this function

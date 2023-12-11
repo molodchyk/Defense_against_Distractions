@@ -1,5 +1,4 @@
 <style>
-
     html {
         height: 100%;
         background-color: #1c1c1c;
@@ -113,7 +112,7 @@
 
     #whitelist button {
         padding: 5px 10px;
-        background-color: #f44336;
+        background-color: #dc3545;
         color: white;
         border: none;
         border-radius: 4px;
@@ -262,7 +261,8 @@
         background-color: #333;
         color: #e0e0e0;
     }
-    .group-item .delete-button {
+    .group-item{
+        position: relative;
         margin-left:100px;
     }
 
@@ -282,10 +282,6 @@
         width: calc(100% - 120px);
     }
 
-    .edit-button {
-        margin-right: 10px;
-    }
-
     .group-item input[readonly], .group-item textarea[readonly] {
         background-color: #242424;
         cursor: not-allowed;
@@ -301,16 +297,36 @@
     }
 
     .delete-button {
-        margin-left: 95%;
+        position: absolute;
+        top: 10px;
+        right: 10px;
         background-color: #dc3545;
         color: white;
     }
 
     .delete-button-schedule {
-        margin-left: 90%;
         position: absolute;
+        top: 10px;
+        right: 10px;
         background-color: #dc3545;
         color: white;
+    }
+    .edit-button-schedule {
+        position: absolute;
+        bottom: 0;
+        right: 72px;
+        background-color: #f44336;
+        color: white;
+    }
+    .save-button-schedule {
+        position:absolute;
+        bottom: 0;
+        right: 10px;
+        background-color: #4CAF50;
+        color: white;
+    }
+    .save-button-schedule:hover {
+        background-color: #218838;
     }
 
     #scheduleNameInput {
@@ -338,6 +354,7 @@
         background-color: #45a049;
     }
     #groupList li {
+        position: relative;
         flex-direction: column;
         align-items: flex-start;
     }
@@ -431,6 +448,4 @@
         background-color: #28a745;
         color: #ffffff;
     }
-
-
 </style>
