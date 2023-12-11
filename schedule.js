@@ -40,15 +40,12 @@ function updateSchedulesUI(schedules) {
   const scheduleList = document.getElementById('scheduleList');
   scheduleList.innerHTML = ''; // Clear the list
 
-  schedules.forEach((schedule, index) => { //line 43
+  schedules.forEach((schedule, index) => {
     const li = document.createElement('li');
     li.className = 'schedule-item';
 
     // Schedule Name
     createScheduleField(li, 'Schedule Name:', schedule.name, `schedule-name-${index}`, true, index);
-
-    // // Days of the week (just a placeholder, you'll want to create a proper UI element for this)
-    // createScheduleField(li, 'Days:', schedule.days.join(', '), `schedule-days-${index}`, true, index);
 
     // Days buttons
     const daysContainer = createDayButtons(schedule.days);
@@ -58,26 +55,30 @@ function updateSchedulesUI(schedules) {
     createScheduleField(li, 'Start Time:', schedule.startTime, `schedule-startTime-${index}`, true, index);
 
     // End Time
-    createScheduleField(li, 'End Time:', schedule.endTime, `schedule-endTime-${index}`, true, index);
-
-    // // Active Toggle (again, placeholder for a UI toggle element)
-    // createScheduleField(li, 'Active:', schedule.isActive ? 'Yes' : 'No', `schedule-active-${index}`, true, index);
+    createScheduleField(li, 'End Time: ', schedule.endTime, `schedule-endTime-${index}`, true, index);
 
     // Active toggle button
     const activeToggleButton = createActiveToggleButton(schedule.isActive);
     li.appendChild(activeToggleButton);
 
-    // Edit and Delete buttons
-    const editButton = createButton('Edit', () => toggleScheduleEdit(`schedule-${index}`, index), 'edit-button');//line 63
+    // Control buttons container
+    const controlsContainer = document.createElement('div');
+    controlsContainer.className = 'controls-container';
+
+    // Edit button
+    const editButton = createButton('Edit', () => toggleScheduleEdit(index), 'edit-button');
+    controlsContainer.appendChild(editButton);
 
     // Save button
-    const saveButton = createSaveButton(index);
-    li.appendChild(saveButton);
+    const saveButton = createButton('Save', () => saveSchedule(index), 'save-button');
+    saveButton.style.display = 'none'; // Initially hidden, shown when editing
+    controlsContainer.appendChild(saveButton);
 
-    const deleteButton = createButton('Delete', () => removeSchedule(index), 'delete-button');
+    // Delete button
+    const deleteButton = createButton('Delete', () => removeSchedule(index), 'delete-button-schedule');
+    controlsContainer.appendChild(deleteButton);
 
-    li.appendChild(editButton);
-    li.appendChild(deleteButton);
+    li.appendChild(controlsContainer);
 
     scheduleList.appendChild(li);
   });
@@ -154,8 +155,15 @@ function toggleScheduleEdit(scheduleId, index) {
     field.readOnly = !field.readOnly;
   });
 
+  const dayButtons = document.querySelectorAll('.day-button');
+  const activeToggle = document.querySelector('.active-toggle');
+  const isEditing = editButton.innerText === 'Cancel';
+
   const editButton = document.getElementById(`edit-schedule-${index}`);
   const saveButton = document.getElementById(`save-schedule-${index}`);
+
+  dayButtons.forEach(button => button.disabled = !isEditing);
+  activeToggle.disabled = !isEditing;
 
   if (editButton.innerText === 'Edit') {
     editButton.innerText = 'Cancel';
@@ -222,6 +230,13 @@ document.addEventListener('DOMContentLoaded', function() {
       addScheduleButton.addEventListener('click', addSchedule);
   }
 
+  const scheduleNameInput = document.getElementById('scheduleNameInput');
+  scheduleNameInput.addEventListener('keyup', function(event) {
+    if (event.key === 'Enter') {
+      addSchedule();
+    }
+  });
+
   // Initialize schedules UI
   chrome.storage.sync.get('schedules', ({ schedules = [] }) => {
       updateSchedulesUI(schedules);
@@ -256,7 +271,7 @@ function addSchedule() {
     });
 
     chrome.storage.sync.set({ schedules }, () => {
-      updateSchedulesUI(schedules); // You will need to implement this function //line 182
+      updateSchedulesUI(schedules); // You will need to implement this function
       document.getElementById('scheduleNameInput').value = ''; // Clear input field
     });
   });

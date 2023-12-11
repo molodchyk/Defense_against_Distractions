@@ -82,11 +82,14 @@
 
     #addWhitelistButton {
         padding: 10px 20px;
-        background-color: #4CAF50;
+        background-color: #007bff;
         color: white;
         border: none;
         border-radius: 4px;
         cursor: pointer;
+        margin: 10px 0;
+        white-space: nowrap;
+        flex: 0 0 auto;
     }
 
     #addWhitelistButton:hover {
@@ -134,8 +137,8 @@
     /* Groups panel styling */
     #groupNameInput, #groupWebsitesInput, #groupKeywordsInput {
         padding: 10px;
-        margin: 5px 0;
-        width: calc(100% - 22px);
+        width: 300px;
+        margin-right: 10px;
         border: 1px solid #555;
         border-radius: 4px;
         background-color: #333;
@@ -143,7 +146,7 @@
     }
 
     #addGroupButton {
-        padding: 8px 16px;
+        padding: 10px 20px;
         background-color: #007bff;
         color: white;
         border: none;
@@ -151,11 +154,12 @@
         cursor: pointer;
         margin: 10px 0;
         margin-right: 10px;
-        margin-left: 10px;
+        white-space: nowrap;
+        flex: 0 0 auto;
     }
 
     #addGroupButton:hover {
-        background-color: #0056b3;
+        background-color: #45a049;
     }
 
     #groupList li {
@@ -165,11 +169,13 @@
         border: 1px solid #555;
         border-radius: 4px;
         display: flex;
-        flex-direction: column;
-        align-items: flex-start;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
         max-width: 1200px;
         margin-left: auto;
         margin-right: auto;
+        justify-content: flex-start;
     }
 
     #groupList li div {
@@ -177,6 +183,7 @@
     }
 
     #groupList button {
+        margin: 5px;
         padding: 5px 10px;
         border-radius: 4px;
         cursor: pointer;
@@ -256,7 +263,7 @@
         color: #e0e0e0;
     }
     .group-item .delete-button {
-        margin-left: auto;
+        margin-left:100px;
     }
 
     .group-item input, .group-item textarea, .input-group input {
@@ -289,22 +296,141 @@
         color: white;
     }
 
-    .save-button {
-        background-color: #28a745;
-    }
-
-    .update-button:hover, .save-button:hover {
-        opacity: 0.8;
+    .save-button:hover {
+        background-color: #218838;
     }
 
     .delete-button {
+        margin-left: 95%;
         background-color: #dc3545;
         color: white;
-        margin-left:auto;
     }
 
-    .delete-button:hover {
-        opacity: 0.8;
+    .delete-button-schedule {
+        margin-left: 90%;
+        position: absolute;
+        background-color: #dc3545;
+        color: white;
     }
+
+    #scheduleNameInput {
+        padding: 10px;
+        width: 300px;
+        margin-right: 10px;
+        border: 1px solid #555;
+        border-radius: 4px;
+        background-color: #333;
+        color: #e0e0e0;
+    }
+
+    #addScheduleButton {
+        flex: 0 0 auto;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        white-space: nowrap;
+    }
+
+    #addScheduleButton:hover {
+        background-color: #45a049;
+    }
+    #groupList li {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #scheduleList li {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content:flex-start;
+        margin: 10px auto;
+        padding: 10px;
+        max-width: 900px;
+    }
+
+    .day-button.selected {
+        background-color: #4CAF50;
+    }
+
+    .active-toggle.active {
+        background-color: #4CAF50;
+    }
+
+    .save-button {
+        background-color: #28a745;
+        color: white;
+        margin: 10px 0;
+    }
+    .schedule-item {
+        background-color: #333;
+        margin-top: 10px;
+        padding: 10px;
+        border: 1px solid #555;
+        border-radius: 4px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        color: #e0e0e0;
+        position: relative;
+    }
+    
+    .schedule-item input {
+        flex-grow: 1;
+        padding: 5px;
+        padding-left: 10px;
+        margin-left: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #555;
+        border-radius: 4px;
+        overflow: hidden;
+        resize: none;
+        min-width: 100px;
+        max-width: 600px;
+        word-break:break-all;
+        overflow-x: auto;
+        background-color: #333;
+        color: #e0e0e0;
+    }
+
+    .schedule-item input[readonly] {
+        background-color: #242424;
+        cursor: not-allowed;
+    }
+
+    #dayButtons {
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .schedule-item button {
+        margin-bottom: 10px;
+        padding: 5px 10px;
+        box-sizing: border-box;
+    }
+    
+    .schedule-item .controls-container {
+        padding: 5px 10px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 10px;
+    }
+    
+    .day-button {
+        background-color: #555;
+        color: #e0e0e0;
+        border: 1px solid #777;
+        margin-right: 5px;
+    }
+
+    .day-button.selected {
+        background-color: #28a745;
+        color: #ffffff;
+    }
+
 
 </style>
