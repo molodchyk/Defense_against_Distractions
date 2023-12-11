@@ -1,14 +1,18 @@
 // Saves the new or updated schedule to the storage
 function saveSchedule(index) {
   const selectedDays = Array.from(document.querySelectorAll('#dayButtons button.selected')).map(button => button.textContent);
+
   const startTime = document.getElementById('startTime').value;
   const endTime = document.getElementById('endTime').value;
+
+  // Get the active state from the active toggle button
+  const isActive = document.querySelector('.active-toggle').classList.contains('active');
 
   const schedule = {
     days: selectedDays,
     start: startTime,
     end: endTime,
-    isActive: true // or false, depending on your default or a UI element's state
+    isActive: isActive // or false, depending on your default or a UI element's state
   };
 
   chrome.storage.sync.get('schedules', ({ schedules }) => {
@@ -43,8 +47,12 @@ function updateSchedulesUI(schedules) {
     // Schedule Name
     createScheduleField(li, 'Schedule Name:', schedule.name, `schedule-name-${index}`, true, index);
 
-    // Days of the week (just a placeholder, you'll want to create a proper UI element for this)
-    createScheduleField(li, 'Days:', schedule.days.join(', '), `schedule-days-${index}`, true, index);
+    // // Days of the week (just a placeholder, you'll want to create a proper UI element for this)
+    // createScheduleField(li, 'Days:', schedule.days.join(', '), `schedule-days-${index}`, true, index);
+
+    // Days buttons
+    const daysContainer = createDayButtons(schedule.days);
+    li.appendChild(daysContainer);
 
     // Start Time
     createScheduleField(li, 'Start Time:', schedule.startTime, `schedule-startTime-${index}`, true, index);
@@ -52,11 +60,20 @@ function updateSchedulesUI(schedules) {
     // End Time
     createScheduleField(li, 'End Time:', schedule.endTime, `schedule-endTime-${index}`, true, index);
 
-    // Active Toggle (again, placeholder for a UI toggle element)
-    createScheduleField(li, 'Active:', schedule.isActive ? 'Yes' : 'No', `schedule-active-${index}`, true, index);
+    // // Active Toggle (again, placeholder for a UI toggle element)
+    // createScheduleField(li, 'Active:', schedule.isActive ? 'Yes' : 'No', `schedule-active-${index}`, true, index);
+
+    // Active toggle button
+    const activeToggleButton = createActiveToggleButton(schedule.isActive);
+    li.appendChild(activeToggleButton);
 
     // Edit and Delete buttons
     const editButton = createButton('Edit', () => toggleScheduleEdit(`schedule-${index}`, index), 'edit-button');//line 63
+
+    // Save button
+    const saveButton = createSaveButton(index);
+    li.appendChild(saveButton);
+
     const deleteButton = createButton('Delete', () => removeSchedule(index), 'delete-button');
 
     li.appendChild(editButton);
@@ -64,6 +81,52 @@ function updateSchedulesUI(schedules) {
 
     scheduleList.appendChild(li);
   });
+}
+
+// Function to create day buttons
+function createDayButtons(selectedDays) {
+  const dayButtonsContainer = document.createElement('div');
+  dayButtonsContainer.id = 'dayButtons';
+
+  ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].forEach(day => {
+    const dayButton = document.createElement('button');
+    dayButton.textContent = day;
+    dayButton.classList.add('day-button');
+    if (selectedDays.includes(day)) {
+      dayButton.classList.add('selected');
+    }
+    dayButton.addEventListener('click', function() {
+      this.classList.toggle('selected');
+    });
+    dayButtonsContainer.appendChild(dayButton);
+  });
+
+  return dayButtonsContainer;
+}
+
+// Function to create the active toggle button
+function createActiveToggleButton(isActive) {
+  const activeButton = document.createElement('button');
+  activeButton.textContent = isActive ? 'Active' : 'Inactive';
+  activeButton.classList.add('active-toggle');
+  activeButton.addEventListener('click', function() {
+    this.classList.toggle('active');
+    this.textContent = this.classList.contains('active') ? 'Active' : 'Inactive';
+  });
+
+  return activeButton;
+}
+
+// Function to create a save button
+function createSaveButton(index) {
+  const saveButton = document.createElement('button');
+  saveButton.textContent = 'Save';
+  saveButton.classList.add('save-button');
+  saveButton.addEventListener('click', function() {
+    saveSchedule(index);
+  });
+
+  return saveButton;
 }
 
 // Helper function to create a schedule field
