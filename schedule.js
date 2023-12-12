@@ -1,6 +1,15 @@
 let isEditing = {};
 
 document.addEventListener('DOMContentLoaded', function() {
+  const scheduleNameInput = document.getElementById('scheduleNameInput');
+  scheduleNameInput.addEventListener('keyup', function(event) {
+    if (event.key === 'Enter') {
+      addSchedule();
+    }
+  });
+
+  document.getElementById('addScheduleButton').addEventListener('click', addSchedule);
+
   chrome.storage.sync.get('schedules', ({ schedules = [] }) => {
       updateSchedulesUI(schedules);
   });
@@ -87,6 +96,7 @@ function createDayButtons(selectedDays, index) {
     dayButton.addEventListener('click', function() {
       if (isEditing[index]) {
         this.classList.toggle('selected');
+        updateSchedule(index);
       }
       console.log(`is editing[index] day buttons: ${isEditing[index]}`);
     });
@@ -123,7 +133,6 @@ function saveSchedule(index) {
     return;
   }
 
-    dayButton.id = `dayButton-${index}-${dayIndex}`;
   const selectedDays = Array.from(document.querySelectorAll(`#dayButtons-${index} .day-button.selected`)).map(button => button.textContent);
   const startTime = document.getElementById(`schedule-startTime-${index}`).value;
   const endTime = document.getElementById(`schedule-endTime-${index}`).value;
@@ -294,7 +303,7 @@ function toggleScheduleEdit(index) {
   }
 
   // If canceling, revert to original state
-  if (!isEditing[index] && editButton.textContent === 'Cancel') {
+  if (isEditing[index] && editButton.textContent === 'Cancel') {
     scheduleNameField.value = scheduleNameField.dataset.original;
     startTimeField.value = startTimeField.dataset.original;
     endTimeField.value = endTimeField.dataset.original;
@@ -333,14 +342,14 @@ function updateSchedule(index) {
   chrome.storage.sync.get('schedules', ({ schedules }) => {
     // Assuming you've created editable fields for each of these properties
     const nameField = document.getElementById(`schedule-name-${index}`);
-    const daysField = document.getElementById(`schedule-days-${index}`);
+    const selectedDays = Array.from(document.querySelectorAll(`#dayButtons-${index} .day-button.selected`)).map(button => button.textContent);
     const startTimeField = document.getElementById(`schedule-startTime-${index}`);
     const endTimeField = document.getElementById(`schedule-endTime-${index}`);
 
     // Update the schedule object with new values
     const updatedSchedule = {
       name: nameField.value,
-      days: daysField.value.split(', '), // Assuming a comma-separated list of days
+      days: selectedDays,
       startTime: startTimeField.value,
       endTime: endTimeField.value,
       isActive: schedules[index].isActive // Keep the original active state
@@ -354,10 +363,6 @@ function updateSchedule(index) {
 }
 
 
-
-
-
-document.getElementById('addScheduleButton').addEventListener('click', addSchedule);
 
 function addSchedule() {
   const scheduleName = document.getElementById('scheduleNameInput').value.trim();
