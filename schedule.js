@@ -1,28 +1,36 @@
+let isEditing = {}; // Tracks editing state for each schedule
+
 // Saves the new or updated schedule to the storage
 function saveSchedule(index) {
-  const selectedDays = Array.from(document.querySelectorAll('#dayButtons button.selected')).map(button => button.textContent);
+  console.log(`Saving schedule at index: ${index}`);
 
-  const startTime = document.getElementById('startTime').value;
-  const endTime = document.getElementById('endTime').value;
+  if (!isEditing[index]) {
+    console.error('Not in editing mode, cannot save.'); //line 8
+    return;
+  }
 
-  // Get the active state from the active toggle button
-  const isActive = document.querySelector('.active-toggle').classList.contains('active');
+  const selectedDays = Array.from(document.querySelectorAll(`#schedule-days-${index} .day-button.selected`)).map(button => button.textContent);
+  const startTime = document.getElementById(`schedule-startTime-${index}`).value;
+  const endTime = document.getElementById(`schedule-endTime-${index}`).value;
+  const isActive = document.querySelector(`#active-toggle-${index}`).classList.contains('active');
 
   const schedule = {
+    name: document.getElementById(`schedule-name-${index}`).value,
     days: selectedDays,
     start: startTime,
     end: endTime,
-    isActive: isActive // or false, depending on your default or a UI element's state
+    isActive
   };
 
   chrome.storage.sync.get('schedules', ({ schedules }) => {
-    if (index !== undefined) {
-      schedules[index] = schedule; // Update existing schedule
-    } else {
-      schedules.push(schedule); // Add new schedule
-    }
+    schedules[index] = schedule; // Update existing schedule
     chrome.storage.sync.set({ schedules }, () => {
       updateSchedulesUI(schedules);
+      console.log(`Schedule saved at index ${index}:`, schedule);
+      isEditing[index] = false; // Exit editing mode
+      // Update the button texts after saving
+      document.getElementById(`edit-button-schedule-${index}`).textContent = 'Edit';
+      document.getElementById(`save-button-schedule-${index}`).disabled = true;
     });
   });
 }
@@ -32,9 +40,14 @@ function createButton(text, onClick, className, index) {
   button.textContent = text;
   button.addEventListener('click', onClick);
   button.className = className;
-  if (index !== undefined) {
-    button.setAttribute('data-index', index);
+  
+  if (typeof index === 'number') {
+    button.id = `${className}-${index}`;
+    console.log(`Created button with ID: ${button.id}`);
+  } else {
+    console.log(`Index is not a number, it's: ${index}`);
   }
+
   return button;
 }
 
@@ -69,16 +82,15 @@ function updateSchedulesUI(schedules) {
     controlsContainer.className = 'controls-container';
 
     // Edit button
-    const editButton = createButton('Edit', () => toggleScheduleEdit(index), 'edit-button-schedule');
+    const editButton = createButton('Edit', () => toggleScheduleEdit(index), 'edit-button-schedule', index);
     controlsContainer.appendChild(editButton);
 
     // Save button
-    const saveButton = createButton('Save', () => saveSchedule(index), 'save-button-schedule');
-    // saveButton.style.display = 'none'; // Initially hidden, shown when editing
+    const saveButton = createButton('Save', () => saveSchedule(index), 'save-button-schedule', index); //line 89
     controlsContainer.appendChild(saveButton);
 
     // Delete button
-    const deleteButton = createButton('Delete', () => removeSchedule(index), 'delete-button-schedule');
+    const deleteButton = createButton('Delete', () => removeSchedule(index), 'delete-button-schedule', index);
     controlsContainer.appendChild(deleteButton);
 
     li.appendChild(controlsContainer);
@@ -88,9 +100,9 @@ function updateSchedulesUI(schedules) {
 }
 
 // Function to create day buttons
-function createDayButtons(selectedDays) {
+function createDayButtons(selectedDays, index) { // Add index parameter
   const dayButtonsContainer = document.createElement('div');
-  dayButtonsContainer.id = 'dayButtons';
+  dayButtonsContainer.id = `dayButtons-${index}`; // Add index to ID
 
   ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].forEach(day => {
     const dayButton = document.createElement('button');
@@ -100,7 +112,9 @@ function createDayButtons(selectedDays) {
       dayButton.classList.add('selected');
     }
     dayButton.addEventListener('click', function() {
-      this.classList.toggle('selected');
+      if (isEditing[index]) { // Check editing state for specific index
+        this.classList.toggle('selected');
+      }
     });
     dayButtonsContainer.appendChild(dayButton);
   });
@@ -151,22 +165,41 @@ function createScheduleField(container, label, value, id, isReadOnly, index) {
 }
 
 function toggleScheduleEdit(index) {
+  isEditing[index] = !isEditing[index]; // Toggle editing state //line 168
   const scheduleNameField = document.getElementById(`schedule-name-${index}`);
   const startTimeField = document.getElementById(`schedule-startTime-${index}`);
   const endTimeField = document.getElementById(`schedule-endTime-${index}`);
   const dayButtons = document.querySelectorAll(`#schedule-days-${index} .day-button`);
   const activeToggle = document.querySelector(`#active-toggle-${index}`);
 
-  const editButton = document.querySelector(`.edit-button-schedule[data-index="${index}"]`);
-  const saveButton = document.querySelector(`.save-button-schedule[data-index="${index}"]`);
+  const editButtonId = `edit-button-schedule-${index}`;
+  const saveButtonId = `save-button-schedule-${index}`;
+
+  // Store original state for cancel functionality
+  if (isEditing[index]) {
+    scheduleNameField.dataset.original = scheduleNameField.value;
+    startTimeField.dataset.original = startTimeField.value;
+    endTimeField.dataset.original = endTimeField.value;
+    
+    // Store the selected state for each day button
+    dayButtons.forEach(button => {
+      button.dataset.original = button.classList.contains('selected');
+    });
+    
+    // Store the active state for the active toggle button
+    activeToggle.dataset.original = activeToggle.classList.contains('active');
+  }
+
+  const editButton = document.getElementById(editButtonId);
+  const saveButton = document.getElementById(saveButtonId);
 
   // Debugging: log the elements to see if they are being selected correctly
-  console.log(`Edit Button: `, editButton);
-  console.log(`Save Button: `, saveButton);
+  console.log(`Edit Button ID: ${editButtonId}, Element: `, editButton);
+  console.log(`Save Button ID: ${saveButtonId}, Element: `, saveButton);
 
   // Check if the buttons are found
   if (!editButton || !saveButton) {
-    console.error(`Buttons not found for schedule index ${index}`);//line 165
+    console.error(`Buttons not found for schedule index ${index}`);
     return;
   }
 
@@ -179,12 +212,39 @@ function toggleScheduleEdit(index) {
 
   // Toggle field editability
   [scheduleNameField, startTimeField, endTimeField].forEach(field => {
-    if (field) field.readOnly = !isEditing;
+    if (field) field.readOnly = !isEditing[index];
   });
 
-  // Toggle day buttons and active toggle button
-  dayButtons.forEach(button => button.disabled = !isEditing);
-  if (activeToggle) activeToggle.disabled = !isEditing;
+  // Toggle day buttons and active toggle button, only if in edit mode
+  dayButtons.forEach(button => {
+    button.onclick = isEditing[index] ? () => button.classList.toggle('selected') : null;
+  });
+  if (activeToggle) {
+    activeToggle.onclick = isEditing[index] ? () => {
+      activeToggle.classList.toggle('active');
+      activeToggle.textContent = activeToggle.classList.contains('active') ? 'Active' : 'Inactive';
+    } : null;
+  }
+
+  // If canceling, revert to original state
+  if (!isEditing[index] && editButton.textContent === 'Cancel') {
+    scheduleNameField.value = scheduleNameField.dataset.original;
+    startTimeField.value = startTimeField.dataset.original;
+    endTimeField.value = endTimeField.dataset.original;
+    
+    // Revert the selected state for each day button
+    dayButtons.forEach(button => {
+      const wasOriginallySelected = button.dataset.original === 'true';
+      button.classList.toggle('selected', wasOriginallySelected);
+    });
+    
+    // Revert the active state for the active toggle button
+    const wasOriginallyActive = activeToggle.dataset.original === 'true';
+    activeToggle.classList.toggle('active', wasOriginallyActive);
+    activeToggle.textContent = wasOriginallyActive ? 'Active' : 'Inactive';
+    
+    console.log(`Edit canceled, reverted to original state for schedule ${index}`);
+  }
 
   // Add console log for debugging
   console.log(`Toggled edit mode for schedule ${index}: ${isEditing}`);
