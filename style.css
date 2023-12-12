@@ -369,10 +369,6 @@
         max-width: 900px;
     }
 
-    .day-button.selected {
-        background-color: #4CAF50;
-    }
-
     .active-toggle.active {
         background-color: #4CAF50;
     }
