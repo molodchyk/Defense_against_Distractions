@@ -5,7 +5,7 @@ function saveSchedule(index) {
   console.log(`Saving schedule at index: ${index}`);
 
   if (!isEditing[index]) {
-    console.error('Not in editing mode, cannot save.'); //line 8
+    console.error('Not in editing mode, cannot save.');
     return;
   }
 
@@ -86,7 +86,7 @@ function updateSchedulesUI(schedules) {
     controlsContainer.appendChild(editButton);
 
     // Save button
-    const saveButton = createButton('Save', () => saveSchedule(index), 'save-button-schedule', index); //line 89
+    const saveButton = createButton('Save', () => saveSchedule(index), 'save-button-schedule', index);
     controlsContainer.appendChild(saveButton);
 
     // Delete button
@@ -99,10 +99,9 @@ function updateSchedulesUI(schedules) {
   });
 }
 
-// Function to create day buttons
-function createDayButtons(selectedDays, index) { // Add index parameter
+function createDayButtons(selectedDays, index) {
   const dayButtonsContainer = document.createElement('div');
-  dayButtonsContainer.id = `dayButtons-${index}`; // Add index to ID
+  dayButtonsContainer.id = `dayButtons-${index}`;
 
   ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].forEach(day => {
     const dayButton = document.createElement('button');
@@ -112,7 +111,7 @@ function createDayButtons(selectedDays, index) { // Add index parameter
       dayButton.classList.add('selected');
     }
     dayButton.addEventListener('click', function() {
-      if (isEditing[index]) { // Check editing state for specific index
+      if (isEditing[index]) {
         this.classList.toggle('selected');
       }
     });
@@ -122,14 +121,15 @@ function createDayButtons(selectedDays, index) { // Add index parameter
   return dayButtonsContainer;
 }
 
-// Function to create the active toggle button
-function createActiveToggleButton(isActive) {
+function createActiveToggleButton(isActive, index) {
   const activeButton = document.createElement('button');
   activeButton.textContent = isActive ? 'Active' : 'Inactive';
   activeButton.classList.add('active-toggle');
   activeButton.addEventListener('click', function() {
-    this.classList.toggle('active');
-    this.textContent = this.classList.contains('active') ? 'Active' : 'Inactive';
+    if (isEditing[index]) {
+      this.classList.toggle('active');
+      this.textContent = this.classList.contains('active') ? 'Active' : 'Inactive';
+    }
   });
 
   return activeButton;
