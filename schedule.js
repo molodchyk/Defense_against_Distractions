@@ -1,4 +1,118 @@
-let isEditing = {}; // Tracks editing state for each schedule
+let isEditing = {};
+
+document.addEventListener('DOMContentLoaded', function() {
+  chrome.storage.sync.get('schedules', ({ schedules = [] }) => {
+      updateSchedulesUI(schedules);
+  });
+});
+
+function updateSchedulesUI(schedules) {
+  const scheduleList = document.getElementById('scheduleList');
+  scheduleList.innerHTML = ''; // Clear the list
+
+  schedules.forEach((schedule, index) => {
+    const li = document.createElement('li');
+    li.className = 'schedule-item';
+
+    // Schedule Name
+    createScheduleField(li, 'Schedule Name:', schedule.name, `schedule-name-${index}`, true);
+
+    // Days buttons
+    const daysContainer = createDayButtons(schedule.days, index);
+    li.appendChild(daysContainer);
+
+    // Start Time
+    createScheduleField(li, 'Start Time:', schedule.startTime, `schedule-startTime-${index}`, true);
+
+    // End Time
+    createScheduleField(li, 'End Time: ', schedule.endTime, `schedule-endTime-${index}`, true);
+
+    // Active toggle button
+    const activeToggleButton = createActiveToggleButton(schedule.isActive, index);
+    li.appendChild(activeToggleButton);
+
+    // Control buttons container
+    const controlsContainer = document.createElement('div');
+    controlsContainer.className = 'controls-container';
+
+    // Edit button
+    const editButton = createButton('Edit', () => toggleScheduleEdit(index), 'edit-button-schedule', index);
+    controlsContainer.appendChild(editButton);
+
+    // Save button
+    const saveButton = createButton('Save', () => saveSchedule(index), 'save-button-schedule', index);
+    controlsContainer.appendChild(saveButton);
+
+    // Delete button
+    const deleteButton = createButton('Delete', () => removeSchedule(index), 'delete-button-schedule', index);
+    controlsContainer.appendChild(deleteButton);
+
+    li.appendChild(controlsContainer);
+
+    scheduleList.appendChild(li);
+  });
+}
+
+// Helper function to create a schedule field
+function createScheduleField(container, label, value, id, isReadOnly) {
+  const fieldDiv = document.createElement('div');
+  const labelElement = document.createElement('label');
+  labelElement.textContent = label;
+  const inputElement = document.createElement('input');
+
+  inputElement.value = value;
+  inputElement.id = id;
+  inputElement.readOnly = isReadOnly;
+
+  fieldDiv.appendChild(labelElement);
+  fieldDiv.appendChild(inputElement);
+
+  container.appendChild(fieldDiv);
+}
+
+
+function createDayButtons(selectedDays, index) {
+  const dayButtonsContainer = document.createElement('div');
+  dayButtonsContainer.id = `dayButtons-${index}`;
+  console.log(`day buttons container id: ${dayButtonsContainer.id}`);
+
+  ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].forEach((day, dayIndex) => {
+    const dayButton = document.createElement('button');
+    dayButton.id = `dayButton-${index}-${dayIndex}`;
+    dayButton.textContent = day;
+    dayButton.classList.add('day-button');
+    if (selectedDays.includes(day)) {
+      dayButton.classList.add('selected');
+    }
+    dayButton.addEventListener('click', function() {
+      if (isEditing[index]) {
+        this.classList.toggle('selected');
+      }
+      console.log(`is editing[index] day buttons: ${isEditing[index]}`);
+    });
+    dayButtonsContainer.appendChild(dayButton);
+    console.log(`day: ${day}, id: ${dayButton.id}`);
+  });
+
+  return dayButtonsContainer;
+}
+
+function createActiveToggleButton(isActive, index) {
+  const activeButton = document.createElement('button');
+  activeButton.textContent = isActive ? 'Active' : 'Inactive';
+  activeButton.classList.add('active-toggle');
+  activeButton.id = `active-toggle-${index}`; // Ensuring correct ID
+  console.log(`active button id: ${activeButton.id}`);
+  activeButton.addEventListener('click', function() {
+    if (isEditing[index]) {
+      this.classList.toggle('active');
+      this.textContent = this.classList.contains('active') ? 'Active' : 'Inactive';
+    }
+    console.log(`is editing[index] active toggle button: ${isEditing[index]}`);
+  });
+
+  return activeButton;
+}
 
 // Saves the new or updated schedule to the storage
 function saveSchedule(index) {
@@ -9,7 +123,8 @@ function saveSchedule(index) {
     return;
   }
 
-  const selectedDays = Array.from(document.querySelectorAll(`#schedule-days-${index} .day-button.selected`)).map(button => button.textContent);
+    dayButton.id = `dayButton-${index}-${dayIndex}`;
+  const selectedDays = Array.from(document.querySelectorAll(`#dayButtons-${index} .day-button.selected`)).map(button => button.textContent);
   const startTime = document.getElementById(`schedule-startTime-${index}`).value;
   const endTime = document.getElementById(`schedule-endTime-${index}`).value;
 
@@ -67,7 +182,7 @@ function createButton(text, onClick, className, index) {
   
   if (typeof index === 'number') {
     button.id = `${className}-${index}`;
-    console.log(`Created button with ID: ${button.id}`);//46
+    console.log(`Created button with ID: ${button.id}`);
   } else {
     console.log(`Index is not a number, it's: ${index}`);
   }
@@ -75,98 +190,6 @@ function createButton(text, onClick, className, index) {
   return button;
 }
 
-// Function to dynamically create the schedule UI
-function updateSchedulesUI(schedules) {
-  const scheduleList = document.getElementById('scheduleList');
-  scheduleList.innerHTML = ''; // Clear the list
-
-  schedules.forEach((schedule, index) => {
-    const li = document.createElement('li');
-    li.className = 'schedule-item';
-
-    // Schedule Name
-    createScheduleField(li, 'Schedule Name:', schedule.name, `schedule-name-${index}`, true, index);
-
-    // Days buttons
-    const daysContainer = createDayButtons(schedule.days);
-    li.appendChild(daysContainer);
-
-    // Start Time
-    createScheduleField(li, 'Start Time:', schedule.startTime, `schedule-startTime-${index}`, true, index);
-
-    // End Time
-    createScheduleField(li, 'End Time: ', schedule.endTime, `schedule-endTime-${index}`, true, index);
-
-    // Active toggle button
-    const activeToggleButton = createActiveToggleButton(schedule.isActive);
-    li.appendChild(activeToggleButton);
-
-    // Control buttons container
-    const controlsContainer = document.createElement('div');
-    controlsContainer.className = 'controls-container';
-
-    // Edit button
-    const editButton = createButton('Edit', () => toggleScheduleEdit(index), 'edit-button-schedule', index);
-    controlsContainer.appendChild(editButton);
-
-    // Save button
-    const saveButton = createButton('Save', () => saveSchedule(index), 'save-button-schedule', index);//89
-    controlsContainer.appendChild(saveButton);
-
-    // Delete button
-    const deleteButton = createButton('Delete', () => removeSchedule(index), 'delete-button-schedule', index);
-    controlsContainer.appendChild(deleteButton);
-
-    li.appendChild(controlsContainer);
-
-    scheduleList.appendChild(li);
-  });
-}
-
-function createDayButtons(selectedDays, index) {
-  const dayButtonsContainer = document.createElement('div');
-  dayButtonsContainer.id = `dayButtons-${index}`;
-  console.log(`day buttons container id: ${dayButtonsContainer.id}`);
-  console.log(`index for createDayButtons is: ${index}`);
-
-  ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].forEach(day => {
-    const dayButton = document.createElement('button');
-    dayButton.textContent = day;
-    dayButton.classList.add('day-button');
-    console.log(`day button id: ${dayButton.id}`);
-    if (selectedDays.includes(day)) {
-      dayButton.classList.add('selected');
-    }
-    dayButton.addEventListener('click', function() {
-      if (isEditing[index]) {
-        this.classList.toggle('selected');
-      }
-      console.log(`is editing[index] day buttons: ${isEditing[index]}`);
-    });
-    dayButtonsContainer.appendChild(dayButton);
-    console.log(`Created day button for ${day} with editing check`);//119
-  });
-
-  return dayButtonsContainer;
-}
-
-function createActiveToggleButton(isActive, index) {
-  const activeButton = document.createElement('button');
-  activeButton.textContent = isActive ? 'Active' : 'Inactive';
-  activeButton.classList.add('active-toggle');
-  activeButton.id = `active-toggle-${index}`; // Ensuring correct ID
-  console.log(`active button id: ${activeButton.id}`);
-  activeButton.addEventListener('click', function() {
-    if (isEditing[index]) {
-      this.classList.toggle('active');
-      this.textContent = this.classList.contains('active') ? 'Active' : 'Inactive';
-    }
-    console.log(`is editing[index] active toggle button: ${isEditing[index]}`);
-  });
-
-  console.log(`Created active toggle button with editing check`);//137
-  return activeButton;
-}
 
 // Function to create a save button
 function createSaveButton(index) {
@@ -180,30 +203,13 @@ function createSaveButton(index) {
   return saveButton;
 }
 
-// Helper function to create a schedule field
-function createScheduleField(container, label, value, id, isReadOnly, index) {
-  const fieldDiv = document.createElement('div');
-  const labelElement = document.createElement('label');
-  labelElement.textContent = label;
-  const inputElement = document.createElement('input');
-
-  inputElement.value = value;
-  inputElement.id = id;
-  inputElement.readOnly = isReadOnly;
-
-  fieldDiv.appendChild(labelElement);
-  fieldDiv.appendChild(inputElement);
-
-  container.appendChild(fieldDiv);
-}
-
 function toggleScheduleEdit(index) {
   isEditing[index] = !isEditing[index]; // Toggle editing state globally
 
   const scheduleNameField = document.getElementById(`schedule-name-${index}`);
   const startTimeField = document.getElementById(`schedule-startTime-${index}`);
   const endTimeField = document.getElementById(`schedule-endTime-${index}`);
-  const dayButtons = document.querySelectorAll(`#schedule-days-${index} .day-button`);
+  const dayButtons = document.querySelectorAll(`#dayButtons-${index} .day-button`);
   const activeToggle = document.querySelector(`#active-toggle-${index}`);
 
   const editButtonId = `edit-button-schedule-${index}`;
@@ -212,11 +218,11 @@ function toggleScheduleEdit(index) {
 
   // Log the current state when entering edit mode
   if (isEditing[index]) {
-    console.log(`Editing schedule ${index}`);//185
-    if (scheduleNameField) console.log(`Name: ${scheduleNameField.value}`);//186
-    if (startTimeField) console.log(`Start Time: ${startTimeField.value}`);//187
-    if (endTimeField) console.log(`End Time: ${endTimeField.value}`);//188
-    if (activeToggle) console.log(`Active: ${activeToggle.classList.contains('active')}`);//189
+    console.log(`Editing schedule ${index}`);
+    if (scheduleNameField) console.log(`Name: ${scheduleNameField.value}`);
+    if (startTimeField) console.log(`Start Time: ${startTimeField.value}`);
+    if (endTimeField) console.log(`End Time: ${endTimeField.value}`);
+    if (activeToggle) console.log(`Active: ${activeToggle.classList.contains('active')}`);
 
     let selectedDays = [];
     dayButtons.forEach(button => {
@@ -224,17 +230,17 @@ function toggleScheduleEdit(index) {
             selectedDays.push(button.textContent);
         }
     });
-    console.log(`Selected Days: ${selectedDays.join(', ')}`);//197
+    console.log(`Selected Days: ${selectedDays.join(', ')}`);
 
     // Log day buttons
-    console.log('Day buttons found:', dayButtons.length);//200
+    console.log('Day buttons found:', dayButtons.length);
     dayButtons.forEach(button => console.log(`${button.textContent}: ${button.classList.contains('selected')}`));
 
     // Log active toggle state
     if (activeToggle) {
       console.log(`Active Toggle State: ${activeToggle.classList.contains('active')}`);
     } else {
-      console.log('Active Toggle not found');//207
+      console.log('Active Toggle not found');
     }
   }
 
@@ -255,8 +261,8 @@ function toggleScheduleEdit(index) {
   const saveButton = document.getElementById(saveButtonId);
 
   // Debugging: log the elements to see if they are being selected correctly
-  console.log(`Edit Button ID: ${editButtonId}, Element: `, editButton);//228
-  console.log(`Save Button ID: ${saveButtonId}, Element: `, saveButton);//229
+  console.log(`Edit Button ID: ${editButtonId}, Element: `, editButton);
+  console.log(`Save Button ID: ${saveButtonId}, Element: `, saveButton);
 
   // Check if the buttons are found
   if (!editButton || !saveButton) {
@@ -347,39 +353,6 @@ function updateSchedule(index) {
   });
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-  // Set up day buttons
-  // document.querySelectorAll('#dayButtons button').forEach(button => {
-  //     button.addEventListener('click', function() {
-  //         this.classList.toggle('selected');
-  //     });
-  // });
-
-  // Set up save schedule button
-  const saveScheduleButton = document.getElementById('saveSchedule');
-  if (saveScheduleButton) {
-      saveScheduleButton.addEventListener('click', saveSchedule);
-  }
-
-  // Set up add schedule button
-  const addScheduleButton = document.getElementById('addScheduleButton');
-  if (addScheduleButton) {
-      addScheduleButton.addEventListener('click', addSchedule);
-  }
-
-  const scheduleNameInput = document.getElementById('scheduleNameInput');
-  scheduleNameInput.addEventListener('keyup', function(event) {
-    if (event.key === 'Enter') {
-      addSchedule();
-    }
-  });
-
-  // Initialize schedules UI
-  chrome.storage.sync.get('schedules', ({ schedules = [] }) => {
-      console.log('the first function to be called: updateSchedulesUI');
-      updateSchedulesUI(schedules);
-  });
-});
 
 
 
