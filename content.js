@@ -296,6 +296,7 @@ function calculateScore(operation, value, keyword, contextText) {
   } else if (operation === '+') {
       window.pageScore += value;
   }
+  console.log(`window.pageScore: ${window.pageScore}`)
   updateBadgeScore();
   if (window.pageScore >= 1000 && !window.pageBlocked) {
       blockPage(keyword, contextText);
@@ -325,6 +326,11 @@ function observeMutations(keywords) {
 }
 
 function updateBadgeScore(timerRemaining = null) {
-  let badgeText = timerRemaining !== null ? timerRemaining.toString() - 1 : window.pageScore.toString();
+  let badgeText;
+  if (timerRemaining !== null) {
+    badgeText = Math.round(timerRemaining).toString();
+  } else {
+    badgeText = Math.round(window.pageScore).toString();
+  }
   chrome.runtime.sendMessage({ action: 'updateBadge', score: badgeText });
 }
