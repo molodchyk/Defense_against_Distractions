@@ -26,7 +26,7 @@ export function adjustTextareaHeight(textarea) {
 
 export function addEnterFunctionalityToField(field) {
   if (field.dataset.enterFunctionalityAdded) {
-    return; // Exit if already added
+    return;
   }
 
   field.addEventListener('keypress', function(event) {
