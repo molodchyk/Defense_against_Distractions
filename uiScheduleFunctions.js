@@ -1,7 +1,12 @@
 import {
     toggleScheduleEdit,
-    removeSchedule
+    removeSchedule,
+    updateSchedule
   } from './schedule.js';
+
+import {
+  ScheduleState
+} from './ScheduleState.js';
 
 
 // Helper function to create a schedule field
@@ -21,23 +26,30 @@ export function createScheduleField(container, label, value, id, isReadOnly) {
   container.appendChild(fieldDiv);
 }
 
-
 // Function to save the schedule permanently
-function saveSchedule(index) {
-  if (tempSchedules[index]) {
-    chrome.storage.sync.get('schedules', ({ schedules }) => {
-      schedules[index] = tempSchedules[index];
+export function saveSchedule(scheduleState) {
+  if (!scheduleState) {
+    console.error('scheduleState is not defined');
+    return;
+  }
+
+  const index = scheduleState.index;
+
+  chrome.storage.sync.get('schedules', ({ schedules }) => {
+    if (schedules && schedules.length > index) {
+      schedules[index] = { ...schedules[index], ...scheduleState.tempState };
       chrome.storage.sync.set({ schedules }, () => {
         updateSchedulesUI(schedules);
-        isEditing[index] = false;
+        scheduleState.toggleEditing(); // Toggle off editing mode
         toggleFieldEditability(index, false);
-        delete tempSchedules[index]; // Clear temporary state
       });
-    });
-  }
+    }
+  });
 }
 
-export function createDayButtons(selectedDays, index) {
+
+export function createDayButtons(selectedDays, scheduleState) {
+  const index = scheduleState.index;
   const dayButtonsContainer = document.createElement('div');
   dayButtonsContainer.id = `dayButtons-${index}`;
   console.log(`day buttons container id: ${dayButtonsContainer.id}`);
@@ -50,20 +62,21 @@ export function createDayButtons(selectedDays, index) {
     if (selectedDays.includes(day)) {
       dayButton.classList.add('selected');
     }
+
     dayButton.addEventListener('click', function() {
-      if (isEditing[index]) {
+      if (scheduleState.isEditing) {
         this.classList.toggle('selected');
-        updateSchedule(index);
+        updateSchedule(scheduleState); // Pass the correct scheduleState
       }
-      console.log(`is editing[index] day buttons: ${isEditing[index]}`);
+      console.log(`is editing for schedule ${index}: ${scheduleState.isEditing}`);
     });
+
     dayButtonsContainer.appendChild(dayButton);
     console.log(`day: ${day}, id: ${dayButton.id}`);
   });
 
   return dayButtonsContainer;
 }
-
 
 function createActiveToggleButton(isActive, index) {
   const activeButton = document.createElement('button');
@@ -112,12 +125,12 @@ export function createSaveButton(index) {
   return saveButton;
 }
 
-
-export function updateSchedulesUI(schedules) {
+export function updateSchedulesUI(schedules, scheduleStates) {
   const scheduleList = document.getElementById('scheduleList');
   scheduleList.innerHTML = ''; // Clear the list
 
   schedules.forEach((schedule, index) => {
+    const scheduleState = scheduleStates[index]; // Get the corresponding ScheduleState instance
     const li = document.createElement('li');
     li.className = 'schedule-item';
 
@@ -125,7 +138,7 @@ export function updateSchedulesUI(schedules) {
     createScheduleField(li, 'Schedule Name:', schedule.name, `schedule-name-${index}`, true);
 
     // Days buttons
-    const daysContainer = createDayButtons(schedule.days, index);
+    const daysContainer = createDayButtons(schedule.days, scheduleState); // Pass scheduleState
     li.appendChild(daysContainer);
 
     // Start Time
@@ -135,7 +148,7 @@ export function updateSchedulesUI(schedules) {
     createScheduleField(li, 'End Time: ', schedule.endTime, `schedule-endTime-${index}`, true);
 
     // Active toggle button
-    const activeToggleButton = createActiveToggleButton(schedule.isActive, index);
+    const activeToggleButton = createActiveToggleButton(schedule.isActive, scheduleState); // Pass scheduleState
     li.appendChild(activeToggleButton);
 
     // Control buttons container
@@ -143,11 +156,11 @@ export function updateSchedulesUI(schedules) {
     controlsContainer.className = 'controls-container';
 
     // Edit button
-    const editButton = createButton('Edit', () => toggleScheduleEdit(index), 'edit-button-schedule', index);
+    const editButton = createButton('Edit', () => toggleScheduleEdit(scheduleState), 'edit-button-schedule', index); // Pass scheduleState
     controlsContainer.appendChild(editButton);
 
     // Save button
-    const saveButton = createButton('Save', () => saveSchedule(index), 'save-button-schedule', index);
+    const saveButton = createButton('Save', () => saveSchedule(scheduleState), 'save-button-schedule', index); // Pass scheduleState
     controlsContainer.appendChild(saveButton);
 
     // Delete button
@@ -159,8 +172,6 @@ export function updateSchedulesUI(schedules) {
     scheduleList.appendChild(li);
   });
 }
-
-
 
 // Refreshes the UI for a single schedule item with temporary state
 export function refreshScheduleItemUIWithTempState(index, tempSchedule) {

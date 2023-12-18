@@ -296,7 +296,7 @@ function calculateScore(operation, value, keyword, contextText) {
   } else if (operation === '+') {
       window.pageScore += value;
   }
-  console.log(`window.pageScore: ${window.pageScore}`)
+  console.log(`window.pageScore: ${window.pageScore}. Keyword: ${keyword}`)
   updateBadgeScore();
   if (window.pageScore >= 1000 && !window.pageBlocked) {
       blockPage(keyword, contextText);
