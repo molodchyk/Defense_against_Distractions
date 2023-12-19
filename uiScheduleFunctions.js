@@ -1,7 +1,8 @@
 import {
     toggleScheduleEdit,
     removeSchedule,
-    updateSchedule
+    updateSchedule,
+    toggleFieldEditability
   } from './schedule.js';
 
 import {
@@ -10,7 +11,7 @@ import {
 
 
 // Helper function to create a schedule field
-export function createScheduleField(container, label, value, id, isReadOnly) {
+function createScheduleField(container, label, value, id, isReadOnly) {
   const fieldDiv = document.createElement('div');
   const labelElement = document.createElement('label');
   labelElement.textContent = label;
@@ -27,7 +28,8 @@ export function createScheduleField(container, label, value, id, isReadOnly) {
 }
 
 // Function to save the schedule permanently
-export function saveSchedule(scheduleState) {
+function saveSchedule(scheduleState) {
+  console.log('saveSchedule called for scheduleState:', scheduleState);
   if (!scheduleState) {
     console.error('scheduleState is not defined');
     return;
@@ -37,22 +39,23 @@ export function saveSchedule(scheduleState) {
 
   chrome.storage.sync.get('schedules', ({ schedules }) => {
     if (schedules && schedules.length > index) {
+      // Update the schedule in storage with the temporary state
       schedules[index] = { ...schedules[index], ...scheduleState.tempState };
       chrome.storage.sync.set({ schedules }, () => {
-        updateSchedulesUI(schedules);
+        const scheduleStates = schedules.map((schedule, idx) => new ScheduleState(idx, schedule));
+        updateSchedulesUI(schedules, scheduleStates);
         scheduleState.toggleEditing(); // Toggle off editing mode
         toggleFieldEditability(index, false);
       });
     }
+    console.log('Fetched schedules for saving:', schedules);
   });
 }
 
-
-export function createDayButtons(selectedDays, scheduleState) {
+function createDayButtons(selectedDays, scheduleState) {
   const index = scheduleState.index;
   const dayButtonsContainer = document.createElement('div');
   dayButtonsContainer.id = `dayButtons-${index}`;
-  console.log(`day buttons container id: ${dayButtonsContainer.id}`);
 
   ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].forEach((day, dayIndex) => {
     const dayButton = document.createElement('button');
@@ -66,35 +69,53 @@ export function createDayButtons(selectedDays, scheduleState) {
     dayButton.addEventListener('click', function() {
       if (scheduleState.isEditing) {
         this.classList.toggle('selected');
-        updateSchedule(scheduleState); // Pass the correct scheduleState
+        console.log('Day button clicked:', this.textContent, 'Selected:', this.classList.contains('selected'));
+
+        // Update the tempState here
+        const updatedSelectedDays = Array.from(document.querySelectorAll(`#dayButtons-${index} .day-button.selected`))
+                                        .map(selectedButton => selectedButton.textContent);
+        scheduleState.updateTempState({ days: updatedSelectedDays });
+
+        // Optionally, refresh the UI here if needed
+        // refreshScheduleItemUIWithTempState(index, scheduleState.tempState);
       }
-      console.log(`is editing for schedule ${index}: ${scheduleState.isEditing}`);
     });
 
     dayButtonsContainer.appendChild(dayButton);
-    console.log(`day: ${day}, id: ${dayButton.id}`);
   });
 
   return dayButtonsContainer;
 }
 
-function createActiveToggleButton(isActive, index) {
+
+function createActiveToggleButton(isActive, scheduleState) {
+  console.log('Creating active toggle for schedule', scheduleState.index);
+  if (!scheduleState) {
+    console.error('scheduleState is not defined');
+    return;
+  }
+
   const activeButton = document.createElement('button');
   activeButton.textContent = isActive ? 'Active' : 'Inactive';
   activeButton.classList.add('active-toggle');
-  activeButton.id = `active-toggle-${index}`; // Ensuring correct ID
-  console.log(`active button id: ${activeButton.id}`);
+  activeButton.id = `active-toggle-${scheduleState.index}`; // Using scheduleState for ID
+
   activeButton.addEventListener('click', function() {
-    if (isEditing[index]) {
+    console.log('Active toggle clicked for schedule', scheduleState.index);
+    if (scheduleState.isEditing) {
       this.classList.toggle('active');
       this.textContent = this.classList.contains('active') ? 'Active' : 'Inactive';
+
+      // Update the temporary state in scheduleState
+      scheduleState.updateTempState({
+        isActive: this.classList.contains('active')
+      });
     }
-    console.log(`is editing[index] active toggle button: ${isEditing[index]}`);
+    console.log(`is editing for schedule ${scheduleState.index}: ${scheduleState.isEditing}`);
   });
 
   return activeButton;
 }
-
 
 function createButton(text, onClick, className, index) {
   const button = document.createElement('button');
@@ -126,11 +147,17 @@ export function createSaveButton(index) {
 }
 
 export function updateSchedulesUI(schedules, scheduleStates) {
+  console.log('updateSchedulesUI called with schedules:', schedules, 'and scheduleStates:', scheduleStates);
   const scheduleList = document.getElementById('scheduleList');
   scheduleList.innerHTML = ''; // Clear the list
 
   schedules.forEach((schedule, index) => {
-    const scheduleState = scheduleStates[index]; // Get the corresponding ScheduleState instance
+    console.log('Processing schedule at index', index);
+    const scheduleState = scheduleStates[index]; // Get the corresponding ScheduleState instance//line 142
+    if (!scheduleState) {
+      console.error(`No schedule state found for index ${index}`);
+      return; // Skip this iteration
+    }
     const li = document.createElement('li');
     li.className = 'schedule-item';
 
@@ -175,21 +202,32 @@ export function updateSchedulesUI(schedules, scheduleStates) {
 
 // Refreshes the UI for a single schedule item with temporary state
 export function refreshScheduleItemUIWithTempState(index, tempSchedule) {
+  console.log('Refreshing UI for schedule', index, 'with temp state:', tempSchedule);
+  
   const scheduleNameField = document.getElementById(`schedule-name-${index}`);
-  const startTimeField = document.getElementById(`schedule-startTime-${index}`);
-  const endTimeField = document.getElementById(`schedule-endTime-${index}`);
-  const dayButtons = document.querySelectorAll(`#dayButtons-${index} .day-button`);
-  const activeToggle = document.getElementById(`active-toggle-${index}`);
-
-  // Update the fields with the temporary state
+  console.log('Updating schedule name field:', scheduleNameField.id, 'New value:', tempSchedule.name);
   scheduleNameField.value = tempSchedule.name;
+
+  const startTimeField = document.getElementById(`schedule-startTime-${index}`);
+  console.log('Updating start time field:', startTimeField.id, 'New value:', tempSchedule.startTime);
   startTimeField.value = tempSchedule.startTime;
+
+  const endTimeField = document.getElementById(`schedule-endTime-${index}`);
+  console.log('Updating end time field:', endTimeField.id, 'New value:', tempSchedule.endTime);
   endTimeField.value = tempSchedule.endTime;
+
+  const dayButtons = document.querySelectorAll(`#dayButtons-${index} .day-button`);
   dayButtons.forEach(button => {
-    button.classList.toggle('selected', tempSchedule.days.includes(button.textContent));
+    const isSelected = tempSchedule.days.includes(button.textContent);
+    console.log('Updating day button:', button.id, 'Selected:', isSelected);
+    button.classList.toggle('selected', isSelected);
   });
+
+  const activeToggle = document.getElementById(`active-toggle-${index}`);
   if (activeToggle) {
-    activeToggle.textContent = tempSchedule.isActive ? 'Active' : 'Inactive';
-    activeToggle.classList.toggle('active', tempSchedule.isActive);
+    const isActive = tempSchedule.isActive;
+    console.log('Updating active toggle:', activeToggle.id, 'Active:', isActive);
+    activeToggle.textContent = isActive ? 'Active' : 'Inactive';
+    activeToggle.classList.toggle('active', isActive);
   }
 }
