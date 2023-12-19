@@ -50,30 +50,57 @@ export function toggleScheduleEdit(scheduleState) {
   const isCurrentlyEditing = scheduleState.isEditing;
 
   const scheduleNameField = document.getElementById(`schedule-name-${index}`);
-  // Add event listener for change on scheduleNameField
   scheduleNameField.addEventListener('change', function() {
     console.log('Schedule name changed:', this.value);
     // Update the tempState here
     scheduleState.updateTempState({ name: this.value });
   });
-  const startTimeField = document.getElementById(`schedule-startTime-${index}`);
-  const endTimeField = document.getElementById(`schedule-endTime-${index}`);
-  const dayButtons = document.querySelectorAll(`#dayButtons-${index} .day-button`);
-  const activeToggle = document.querySelector(`#active-toggle-${index}`);
 
-  // Assuming this is inside a function where startTimeField and endTimeField are defined
+  const startTimeField = document.getElementById(`schedule-startTime-${index}`);
   startTimeField.addEventListener('change', function() {
     console.log('Start time changed:', this.value);
     // Update the tempState with the new start time
     scheduleState.updateTempState({ startTime: this.value });
   });
 
+  const endTimeField = document.getElementById(`schedule-endTime-${index}`);
   endTimeField.addEventListener('change', function() {
     console.log('End time changed:', this.value);
     // Update the tempState with the new end time
     scheduleState.updateTempState({ endTime: this.value });
   });
 
+  const dayButtons = document.querySelectorAll(`#dayButtons-${index} .day-button`);
+  dayButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      if (isCurrentlyEditing) {
+        console.log(`Day button ${button.textContent} clicked for schedule ${index}`);
+        this.classList.toggle('selected');
+        const updatedSelectedDays = Array.from(document.querySelectorAll(`#dayButtons-${index} .day-button.selected`))
+                                          .map(selectedButton => selectedButton.textContent);
+        scheduleState.updateTempState({ days: updatedSelectedDays });
+        console.log('Updated selected days:', updatedSelectedDays);
+      }
+    });
+  });
+
+  const activeToggle = document.querySelector(`#active-toggle-${index}`);
+  if (activeToggle) {
+    // Remove any existing click listeners to avoid multiple bindings
+    activeToggle.removeEventListener('click', activeToggleClickHandler);
+
+    // Define a new click handler
+    function activeToggleClickHandler() {
+      console.log(`Before click: Active toggle classList for schedule ${index}:`, activeToggle.classList.toString());
+      this.classList.toggle('active');
+      const isActive = this.classList.contains('active');
+      scheduleState.updateTempState({ isActive: isActive });
+      console.log('After click: Active state updated:', isActive, 'classList:', activeToggle.classList.toString());
+    }
+
+    // Add the new click listener
+    activeToggle.addEventListener('click', activeToggleClickHandler);
+  }
 
   const editButtonId = `edit-button-schedule-${index}`;
   const saveButtonId = `save-button-schedule-${index}`;

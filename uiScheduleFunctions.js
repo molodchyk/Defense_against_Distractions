@@ -98,24 +98,28 @@ function createActiveToggleButton(isActive, scheduleState) {
   const activeButton = document.createElement('button');
   activeButton.textContent = isActive ? 'Active' : 'Inactive';
   activeButton.classList.add('active-toggle');
+  // Add 'active' class if isActive is true
+  if (isActive) {
+    activeButton.classList.add('active');
+  }
   activeButton.id = `active-toggle-${scheduleState.index}`; // Using scheduleState for ID
 
   activeButton.addEventListener('click', function() {
     console.log('Active toggle clicked for schedule', scheduleState.index);
     if (scheduleState.isEditing) {
       this.classList.toggle('active');
-      this.textContent = this.classList.contains('active') ? 'Active' : 'Inactive';
+      const newIsActive = this.classList.contains('active');
+      this.textContent = newIsActive ? 'Active' : 'Inactive';
 
       // Update the temporary state in scheduleState
-      scheduleState.updateTempState({
-        isActive: this.classList.contains('active')
-      });
+      scheduleState.updateTempState({ isActive: newIsActive });
     }
     console.log(`is editing for schedule ${scheduleState.index}: ${scheduleState.isEditing}`);
   });
 
   return activeButton;
 }
+
 
 function createButton(text, onClick, className, index) {
   const button = document.createElement('button');
