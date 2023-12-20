@@ -48,27 +48,59 @@ export function removeGroup(index) {
 }
 
 export function updateGroup(index) {
-  chrome.storage.sync.get('websiteGroups', ({ websiteGroups }) => {
-    const groupName = document.getElementById(`name-${index}`).value.trim();
-    const websites = document.getElementById(`websites-${index}`).value.split('\n').map(site => site.trim()).filter(site => site !== '');
-    const keywords = document.getElementById(`keywords-${index}`).value.split('\n').map(keyword => keyword.trim()).filter(keyword => keyword !== '');
+  chrome.storage.sync.get(['websiteGroups', 'schedules'], ({ websiteGroups, schedules }) => {
+    const group = websiteGroups[index];
 
-    websiteGroups[index].groupName = groupName;
-    websiteGroups[index].websites = websites;
-    websiteGroups[index].keywords = keywords;
+    const groupNameField = document.getElementById(`name-${index}`);
+    const websitesField = document.getElementById(`websites-${index}`);
+    const keywordsField = document.getElementById(`keywords-${index}`);
+    const timerCountField = document.getElementById(`timerCount-${index}`);
+    const timerDurationField = document.getElementById(`timerDuration-${index}`);
 
-    // Retrieve timer settings from the UI
-    const timerCount = document.getElementById(`timerCount-${index}`).value;
-    const timerDuration = document.getElementById(`timerDuration-${index}`).value;
-    websiteGroups[index].timer = {
-      count: parseInt(timerCount, 10) || 0,
-      duration: parseInt(timerDuration, 10) || 20,
-      usedToday: websiteGroups[index].timer ? websiteGroups[index].timer.usedToday : 0
+    const newGroupName = groupNameField.value.trim();
+    const newWebsites = websitesField.value.split('\n').map(site => site.trim()).filter(site => site !== '');
+    const newKeywords = keywordsField.value.split('\n').map(keyword => keyword.trim()).filter(keyword => keyword !== '');
+    const newTimerCount = parseInt(timerCountField.value, 10) || 0;
+    const newTimerDuration = parseInt(timerDurationField.value, 10) || 20;
+
+    if (isCurrentTimeInAnySchedule(schedules)) {
+      // Check for removal or inappropriate modification in websites and keywords
+      if (hasArrayChanged(group.websites, newWebsites) || hasArrayChanged(group.keywords, newKeywords)) {
+        alert("Websites or Keywords entries have been edited or removed, change cannot be saved.");
+        return; // Prevent saving
+      }
+
+      // Check timer settings
+      if (newTimerCount > group.timer.count || newTimerDuration > group.timer.duration) {
+        alert("Cannot increase the number of Timer Count or Timer Duration during active schedule.");
+        return; // Prevent saving
+      }
+    }
+
+    // Update group properties
+    group.groupName = newGroupName;
+    group.websites = newWebsites;
+    group.keywords = newKeywords;
+    group.timer = {
+      count: newTimerCount,
+      duration: newTimerDuration,
+      usedToday: group.timer ? group.timer.usedToday : 0
     };
 
-    chrome.storage.sync.set({ websiteGroups }, () => updateGroupsUI(websiteGroups));
+    chrome.storage.sync.set({ websiteGroups }, () => {
+      updateGroupsUI(websiteGroups);
+    });
   });
 }
+
+// Helper function to check if there's any removal or inappropriate modification
+function hasArrayChanged(originalArray, newArray) {
+  if (originalArray.length !== newArray.length) {
+    return true;
+  }
+  return originalArray.some((element, index) => element !== newArray[index]);
+}
+
 
 export function toggleFieldEdit(fieldId, index) {
   const field = document.getElementById(fieldId);
@@ -109,7 +141,7 @@ export function toggleFieldEdit(fieldId, index) {
 }
 
 export function updateGroupField(index) {
-  chrome.storage.sync.get('websiteGroups', ({ websiteGroups }) => {
+  chrome.storage.sync.get(['websiteGroups', 'schedules'], ({ websiteGroups, schedules }) => {
     const group = websiteGroups[index];
 
     const groupNameField = document.getElementById(`name-${index}`);
@@ -118,27 +150,35 @@ export function updateGroupField(index) {
     const timerCountField = document.getElementById(`timerCount-${index}`);
     const timerDurationField = document.getElementById(`timerDuration-${index}`);
 
-    const initialGroupName = group.groupName;
-    const initialWebsites = group.websites.join('\n');
-    const initialKeywords = group.keywords.join('\n');
-    const initialTimerCount = group.timer ? group.timer.count : 0;
-    const initialTimerDuration = group.timer ? group.timer.duration : 20;
+    const newGroupName = groupNameField.value.trim();
+    const newWebsites = websitesField.value.split('\n').map(site => site.trim()).filter(site => site !== '');
+    const newKeywords = keywordsField.value.split('\n').map(keyword => keyword.trim()).filter(keyword => keyword !== '');
+    const newTimerCount = parseInt(timerCountField.value, 10) || 0;
+    const newTimerDuration = parseInt(timerDurationField.value, 10) || 20;
 
-    group.groupName = groupNameField.value.trim(); // Update group name
-    group.websites = websitesField.value.split('\n').map(site => site.trim()).filter(site => site !== '');
-    group.keywords = keywordsField.value.split('\n').map(keyword => keyword.trim()).filter(keyword => keyword !== '');
+    if (isCurrentTimeInAnySchedule(schedules)) {
+      // Check for removal or inappropriate modification in websites and keywords
+      if (hasArrayChanged(group.websites, newWebsites) || hasArrayChanged(group.keywords, newKeywords)) {
+        alert("Websites or Keywords entries have been edited or removed, change cannot be saved.");
+        return; // Prevent saving
+      }
+
+      // Check timer settings
+      if (newTimerCount > group.timer.count || newTimerDuration > group.timer.duration) {
+        alert("Cannot increase the number of Timer Count or Timer Duration during active schedule.");
+        return; // Prevent saving
+      }
+    }
+
+    // Update group properties
+    group.groupName = newGroupName;
+    group.websites = newWebsites;
+    group.keywords = newKeywords;
     group.timer = {
-      count: parseInt(timerCountField.value, 10) || 0,
-      duration: parseInt(timerDurationField.value, 10) || 20,
+      count: newTimerCount,
+      duration: newTimerDuration,
       usedToday: group.timer ? group.timer.usedToday : 0
     };
-
-    console.log(`Group updated: [${index}]`);
-    console.log(`Group Name: ${initialGroupName} -> ${group.groupName}`);
-    console.log(`Websites: ${initialWebsites} -> ${group.websites.join('\n')}`);
-    console.log(`Keywords: ${initialKeywords} -> ${group.keywords.join('\n')}`);
-    console.log(`Timer Count: ${initialTimerCount} -> ${group.timer.count}`);
-    console.log(`Timer Duration: ${initialTimerDuration} -> ${group.timer.duration}`);
 
     chrome.storage.sync.set({ websiteGroups }, () => {
       updateGroupsUI(websiteGroups);
