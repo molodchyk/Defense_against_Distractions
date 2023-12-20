@@ -9,6 +9,11 @@ import {
   ScheduleState
 } from './ScheduleState.js';
 
+import { 
+  updateWhitelistUI 
+} from './whitelistManagement.js';
+
+
 
 // Helper function to create a schedule field
 function createScheduleField(container, label, value, id, isReadOnly) {
@@ -27,7 +32,12 @@ function createScheduleField(container, label, value, id, isReadOnly) {
   container.appendChild(fieldDiv);
 }
 
-// Function to save the schedule permanently
+// Helper function to convert time string to minutes since midnight
+function timeStringToMinutes(timeStr) {
+  const [hours, minutes] = timeStr.split(':').map(Number);
+  return hours * 60 + minutes;
+}
+
 function saveSchedule(scheduleState) {
   console.log('saveSchedule called for scheduleState:', scheduleState);
   if (!scheduleState) {
@@ -39,7 +49,19 @@ function saveSchedule(scheduleState) {
 
   chrome.storage.sync.get('schedules', ({ schedules }) => {
     if (schedules && schedules.length > index) {
-      // Update the schedule in storage with the temporary state
+      const startTimeField = document.getElementById(`schedule-startTime-${index}`);
+      const endTimeField = document.getElementById(`schedule-endTime-${index}`);
+
+      // Convert start and end times to minutes since midnight
+      const startTimeMinutes = timeStringToMinutes(startTimeField.value);
+      const endTimeMinutes = timeStringToMinutes(endTimeField.value);
+
+      // Check if end time is after start time
+      if (endTimeMinutes <= startTimeMinutes) {
+        alert('End time must be after start time.');
+        return; // Don't proceed with saving
+      }
+
       schedules[index] = { ...schedules[index], ...scheduleState.tempState };
       chrome.storage.sync.set({ schedules }, () => {
         const scheduleStates = schedules.map((schedule, idx) => new ScheduleState(idx, schedule));
@@ -51,6 +73,7 @@ function saveSchedule(scheduleState) {
     console.log('Fetched schedules for saving:', schedules);
   });
 }
+
 
 function createDayButtons(selectedDays, scheduleState) {
   const index = scheduleState.index;

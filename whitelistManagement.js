@@ -1,17 +1,35 @@
+import { isCurrentTimeInAnySchedule } from './utilityFunctions.js';
+
 // Function to update the UI for whitelisted sites
 function updateWhitelistUI(whitelistedSites) {
   const list = document.getElementById('whitelist');
   list.innerHTML = '';
-  whitelistedSites.forEach((site, index) => {
-    const li = document.createElement('li');
-    li.textContent = site;
-    const deleteButton = document.createElement('button');
-    deleteButton.textContent = 'Delete';
-    deleteButton.onclick = () => removeWhitelistSite(index);
-    li.appendChild(deleteButton);
-    list.appendChild(li);
+
+  // Fetch schedules for checking active schedule times
+  chrome.storage.sync.get('schedules', (result) => {
+    const schedules = result.schedules || [];
+    const isInSchedule = isCurrentTimeInAnySchedule(schedules);
+
+    whitelistedSites.forEach((site, index) => {
+      const li = document.createElement('li');
+      li.textContent = site;
+      
+      const deleteButton = document.createElement('button');
+      deleteButton.textContent = 'Delete';
+
+      // Disable delete button if in schedule
+      if (isInSchedule) {
+        deleteButton.disabled = true;
+      } else {
+        deleteButton.onclick = () => removeWhitelistSite(index);
+      }
+
+      li.appendChild(deleteButton);
+      list.appendChild(li);
+    });
   });
 }
+
 
 function normalizeURL(site) {
   // Remove 'http://', 'https://', and 'www.' from the URL for normalization
@@ -48,11 +66,20 @@ function addWhitelistSite() {
 }
 
 function removeWhitelistSite(index) {
-  chrome.storage.sync.get('whitelistedSites', ({ whitelistedSites }) => {
+  // Fetch both whitelistedSites and schedules
+  chrome.storage.sync.get(['whitelistedSites', 'schedules'], (result) => {
+    const { whitelistedSites, schedules } = result;
+
+    if (isCurrentTimeInAnySchedule(schedules)) {
+      alert("Cannot delete whitelisted sites during active schedule.");
+      return;
+    }
+
     whitelistedSites.splice(index, 1);
     chrome.storage.sync.set({ whitelistedSites }, () => updateWhitelistUI(whitelistedSites));
   });
 }
+
 
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize whitelist

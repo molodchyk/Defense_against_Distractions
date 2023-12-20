@@ -1,35 +1,50 @@
 import { adjustTextareaHeight,  adjustTextareaWidth, addEnterFunctionalityToField} from './utilityFunctions.js';
 import { toggleFieldEdit, updateGroupField, removeGroup } from './groupManagementFunctions.js';
 
+import { isCurrentTimeInAnySchedule } from './utilityFunctions.js';
+
 // Function to update the UI for groups
 export function updateGroupsUI(websiteGroups) {
   const list = document.getElementById('groupList');
   list.innerHTML = '';
-  websiteGroups.forEach((group, index) => {
-    const li = document.createElement('li');
-    li.className = 'group-item';
 
-    // Group Name
-    createGroupField(li, 'Group Name:', group.groupName, `name-${index}`, true, index);
+  // Fetch schedules for checking active schedule times
+  chrome.storage.sync.get('schedules', (result) => {
+    const schedules = result.schedules || [];
+    const isInSchedule = isCurrentTimeInAnySchedule(schedules);
 
-    // Websites
-    createGroupField(li, 'Websites:', group.websites.join('\n'), `websites-${index}`, true, index);
+    websiteGroups.forEach((group, index) => {
+      const li = document.createElement('li');
+      li.className = 'group-item';
 
-    // Keywords
-    createGroupField(li, 'Keywords:', group.keywords.join('\n'), `keywords-${index}`, true, index);
+      // Group Name
+      createGroupField(li, 'Group Name:', group.groupName, `name-${index}`, true, index);
 
-     // Timer settings
-     createGroupField(li, 'Timer Count:', group.timer ? group.timer.count.toString() : '0', `timerCount-${index}`, true, index);
-     createGroupField(li, 'Timer Duration (seconds):', group.timer ? group.timer.duration.toString() : '20', `timerDuration-${index}`, true, index);
+      // Websites
+      createGroupField(li, 'Websites:', group.websites.join('\n'), `websites-${index}`, true, index);
 
-    // Delete button
-    const deleteButton = createButton('Delete', () => removeGroup(index), 'delete-button');
-    li.appendChild(deleteButton);
+      // Keywords
+      createGroupField(li, 'Keywords:', group.keywords.join('\n'), `keywords-${index}`, true, index);
 
-    list.appendChild(li);
-    document.querySelectorAll('.group-item textarea').forEach(adjustTextareaHeight);
+      // Timer settings
+      createGroupField(li, 'Timer Count:', group.timer ? group.timer.count.toString() : '0', `timerCount-${index}`, true, index);
+      createGroupField(li, 'Timer Duration (seconds):', group.timer ? group.timer.duration.toString() : '20', `timerDuration-${index}`, true, index);
+
+      // Delete button
+      const deleteButton = createButton('Delete', () => removeGroup(index), 'delete-button');
+      li.appendChild(deleteButton);
+
+      // Disable delete button and any edit functionalities if in schedule
+      if (isInSchedule) {
+        deleteButton.disabled = true;
+      }
+
+      list.appendChild(li);
+      document.querySelectorAll('.group-item textarea').forEach(adjustTextareaHeight);
+    });
   });
 }
+
 
 function createGroupField(container, label, value, id, isReadOnly, index) {
   const fieldDiv = document.createElement('div');

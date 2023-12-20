@@ -47,3 +47,21 @@ export function addEnterFunctionalityToField(field) {
   field.dataset.enterFunctionalityAdded = 'true'; // Set flag to indicate event listener added
 }
 
+
+export function isCurrentTimeInAnySchedule(schedules) {
+  const now = new Date();
+  const currentDay = now.toLocaleString('en-US', { weekday: 'short' });
+  const currentTimeMinutes = now.getHours() * 60 + now.getMinutes();
+
+  return schedules.some(schedule => {//line 56
+    if (!schedule.isActive || !schedule.days.includes(currentDay)) {
+      return false;
+    }
+    const startTime = schedule.startTime.split(':').map(Number);
+    const endTime = schedule.endTime.split(':').map(Number);
+    const startMinutes = startTime[0] * 60 + startTime[1];
+    const endMinutes = endTime[0] * 60 + endTime[1];
+
+    return currentTimeMinutes >= startMinutes && currentTimeMinutes <= endMinutes;
+  });
+}

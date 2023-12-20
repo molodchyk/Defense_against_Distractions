@@ -1,4 +1,10 @@
-import { updateGroupsUI } from './uiFunctions.js';
+import { 
+  updateGroupsUI 
+} from './uiFunctions.js';
+
+import { 
+  addGroup
+} from './groupManagementFunctions.js';
 
 // Event listener for adding group on Enter key press
 document.getElementById('groupNameInput').addEventListener('keypress', (event) => {
@@ -24,24 +30,3 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-function addGroup() {
-  const groupName = document.getElementById('groupNameInput').value.trim();
-  if (!groupName) {
-    alert("Group name cannot be empty.");
-    return;
-  }
-
-  chrome.storage.sync.get('websiteGroups', ({ websiteGroups = [] }) => {
-    if (websiteGroups.some(group => group.groupName.toLowerCase() === groupName.toLowerCase())) {
-      alert("A group with this name already exists.");
-      return;
-    }
-
-    // Add new group
-    websiteGroups.push({ groupName, websites: [], keywords: [] });
-    chrome.storage.sync.set({ websiteGroups }, () => {
-      updateGroupsUI(websiteGroups);
-      document.getElementById('groupNameInput').value = ''; // Clear input field
-    });
-  });
-}

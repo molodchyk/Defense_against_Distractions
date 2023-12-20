@@ -1,16 +1,47 @@
 import { adjustTextareaHeight,  adjustTextareaWidth, addEnterFunctionalityToField} from './utilityFunctions.js';
 import { updateGroupsUI } from './uiFunctions.js';
+import { isCurrentTimeInAnySchedule } from './utilityFunctions.js';
 
 export function addGroup() {
-  const groupName = document.getElementById('groupNameInput').value.trim();
-  if (!groupName) {
-    alert("Group name cannot be empty.");
-    return;
-  }
+  let groupName = document.getElementById('groupNameInput').value.trim();
+
+  chrome.storage.sync.get('websiteGroups', ({ websiteGroups = [] }) => {
+    // Generate a group name if empty
+    if (!groupName) {
+      const existingNames = new Set(websiteGroups.map(group => group.groupName.toLowerCase()));
+      const possibleNames = ["Group 1", "Group 2", "Group 3", "Group 4", "Group 5"];
+      const availableName = possibleNames.find(name => !existingNames.has(name.toLowerCase()));
+
+      if (availableName) {
+        groupName = availableName;
+      } else {
+        alert("Maximum number of unnamed groups reached.");
+        return;
+      }
+    }
+
+    // Check if a group with this name already exists
+    if (websiteGroups.some(group => group.groupName.toLowerCase() === groupName.toLowerCase())) {
+      alert("A group with this name already exists.");
+      return;
+    }
+
+    // Add new group
+    websiteGroups.push({ groupName, websites: [], keywords: [] });
+    chrome.storage.sync.set({ websiteGroups }, () => {
+      updateGroupsUI(websiteGroups);
+      document.getElementById('groupNameInput').value = ''; // Clear input field
+    });
+  });
 }
 
 export function removeGroup(index) {
-  chrome.storage.sync.get('websiteGroups', ({ websiteGroups }) => {
+  chrome.storage.sync.get(['websiteGroups', 'schedules'], ({ websiteGroups, schedules }) => {
+    if (isCurrentTimeInAnySchedule(schedules)) {
+      alert("Cannot delete groups during active schedule.");
+      return;
+    }
+
     websiteGroups.splice(index, 1);
     chrome.storage.sync.set({ websiteGroups }, () => updateGroupsUI(websiteGroups));
   });

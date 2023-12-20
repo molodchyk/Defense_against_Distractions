@@ -59,16 +59,25 @@ export function toggleScheduleEdit(scheduleState) {
   const startTimeField = document.getElementById(`schedule-startTime-${index}`);
   startTimeField.addEventListener('change', function() {
     console.log('Start time changed:', this.value);
-    // Update the tempState with the new start time
-    scheduleState.updateTempState({ startTime: this.value });
+    const formattedTime = formatTime(this.value);
+    scheduleState.updateTempState({ startTime: formattedTime });
   });
 
   const endTimeField = document.getElementById(`schedule-endTime-${index}`);
   endTimeField.addEventListener('change', function() {
     console.log('End time changed:', this.value);
-    // Update the tempState with the new end time
-    scheduleState.updateTempState({ endTime: this.value });
+    const formattedTime = formatTime(this.value);
+    scheduleState.updateTempState({ endTime: formattedTime });
   });
+
+  startTimeField.addEventListener('input', function(event) {
+    handleTimeInput(this, event);
+  });
+
+  endTimeField.addEventListener('input', function(event) {
+      handleTimeInput(this, event);
+  });
+
 
   const dayButtons = document.querySelectorAll(`#dayButtons-${index} .day-button`);
   dayButtons.forEach(button => {
@@ -179,6 +188,73 @@ export function toggleScheduleEdit(scheduleState) {
   console.log(`Toggled edit mode for schedule ${index}: ${isCurrentlyEditing}`);
 }
 
+function handleTimeInput(inputElement, event) {
+  const previousValue = inputElement.dataset.previousValue || '';
+  const keyValue = event.data || 'backspace';
+
+  console.log(`Previous state: ${previousValue}, Key pressed: ${keyValue}`);
+
+  let value = inputElement.value;
+
+  // Remove non-numeric and non-colon characters
+  value = value.replace(/[^0-9:]/g, '');
+
+  // Split the value into hours and minutes
+  let parts = value.split(':');
+  let hours = parts[0];
+  let minutes = parts[1];
+
+  // Adjust for colon input and backspaces
+  if (keyValue === ':') {
+      if (hours.length === 1 || hours.length === 2) {
+          value = `${hours}:`;
+      }
+  } else if (keyValue === 'backspace') {
+      if (previousValue.endsWith(':')) {
+          // Remove last digit of hours if backspacing over colon
+          hours = hours.substring(0, hours.length - 1);
+          value = hours;
+      } else {
+          // Standard backspace handling if not over colon
+          value = value.substring(0, value.length - 1);
+      }
+  }
+
+  // Re-split the value after backspace handling
+  parts = value.split(':');
+  hours = parts[0];
+  minutes = parts[1];
+
+  // Ensure hours and minutes are within their bounds
+  hours = Math.min(Math.max(parseInt(hours, 10) || 0, 0), 23);
+  minutes = minutes ? Math.min(Math.max(parseInt(minutes, 10), 0), 59) : '';
+
+  // Format the value correctly
+  if (minutes !== '') {
+      value = `${hours}:${minutes}`;
+  } else if (value.endsWith(':') || hours >= 10) {
+      value = `${hours}:`;
+  } else {
+      value = `${hours}`;
+  }
+
+  // Update the input value
+  inputElement.value = value;
+  console.log(`New state: ${value}`);
+
+  // Store the current value for future reference
+  inputElement.dataset.previousValue = value;
+}
+
+function formatTime(timeStr) {
+  if (!timeStr.includes(':')) {
+    // If only hours or minutes are provided, add the missing part
+    return timeStr.padStart(2, '0') + ":00";
+  }
+  let [hours, minutes] = timeStr.split(':').map(str => str.padStart(2, '0'));
+  return `${hours}:${minutes}`;
+}
+
 
 // Removes a schedule from the storage and updates the UI
 export function removeSchedule(index) {
@@ -214,6 +290,7 @@ export function updateSchedule(scheduleState) {
     const endTimeField = document.getElementById(`schedule-endTime-${index}`);
     const activeToggle = document.getElementById(`active-toggle-${index}`); // Ensure activeToggle is defined here
 
+
     let isActive = false;
     if (activeToggle && activeToggle.classList.contains('active')) {
       isActive = true;
@@ -238,14 +315,24 @@ export function updateSchedule(scheduleState) {
 
 function addSchedule() {
   console.log('addSchedule called');
-  const scheduleName = document.getElementById('scheduleNameInput').value.trim();
-  if (!scheduleName) {
-    alert("Schedule name cannot be empty.");
-    return;
-  }
-  console.log('Checked for existing schedule name');
+  let scheduleName = document.getElementById('scheduleNameInput').value.trim();
 
   chrome.storage.sync.get('schedules', ({ schedules = [] }) => {
+    // Generate a schedule name if empty
+    if (!scheduleName) {
+      const existingNames = new Set(schedules.map(s => s.name.toLowerCase()));
+      const possibleNames = ["Schedule 1", "Schedule 2", "Schedule 3", "Schedule 4", "Schedule 5"];
+      const availableName = possibleNames.find(name => !existingNames.has(name.toLowerCase()));
+
+      if (availableName) {
+        scheduleName = availableName;
+      } else {
+        alert("Maximum number of unnamed schedules reached.");
+        return;
+      }
+    }
+
+    // Check if a schedule with this name already exists
     if (schedules.some(schedule => schedule.name.toLowerCase() === scheduleName.toLowerCase())) {
       alert("A schedule with this name already exists.");
       return;
