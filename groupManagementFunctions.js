@@ -47,53 +47,6 @@ export function removeGroup(index) {
   });
 }
 
-export function updateGroup(index) {
-  chrome.storage.sync.get(['websiteGroups', 'schedules'], ({ websiteGroups, schedules }) => {
-    const group = websiteGroups[index];
-
-    const groupNameField = document.getElementById(`name-${index}`);
-    const websitesField = document.getElementById(`websites-${index}`);
-    const keywordsField = document.getElementById(`keywords-${index}`);
-    const timerCountField = document.getElementById(`timerCount-${index}`);
-    const timerDurationField = document.getElementById(`timerDuration-${index}`);
-
-    const newGroupName = groupNameField.value.trim();
-    const newWebsites = websitesField.value.split('\n').map(site => site.trim()).filter(site => site !== '');
-    const newKeywords = keywordsField.value.split('\n').map(keyword => keyword.trim()).filter(keyword => keyword !== '');
-    const newTimerCount = parseInt(timerCountField.value, 10) || 0;
-    const newTimerDuration = parseInt(timerDurationField.value, 10) || 20;
-
-    if (isCurrentTimeInAnySchedule(schedules)) {
-      // Check for removal or inappropriate modification in websites and keywords
-      if (hasArrayChanged(group.websites, newWebsites) || hasArrayChanged(group.keywords, newKeywords)) {
-        alert("Websites or Keywords entries have been edited or removed, change cannot be saved.");
-        return; // Prevent saving
-      }
-
-      // Check timer settings
-      if (newTimerCount > group.timer.count || newTimerDuration > group.timer.duration) {
-        alert("Cannot increase the number of Timer Count or Timer Duration during active schedule.");
-        return; // Prevent saving
-      }
-    }
-
-
-    // Update group properties
-    group.groupName = newGroupName;
-    group.websites = newWebsites;
-    group.keywords = newKeywords;
-    group.timer = {
-      count: newTimerCount,
-      duration: newTimerDuration,
-      usedToday: group.timer ? group.timer.usedToday : 0
-    };
-
-    chrome.storage.sync.set({ websiteGroups }, () => {
-      updateGroupsUI(websiteGroups);
-    });
-  });
-}
-
 // Helper function to check if existing entries have been removed or inappropriately modified
 function hasArrayChanged(originalArray, newArray) {
   // Check if any original entry has been modified or removed
@@ -155,8 +108,6 @@ export function updateGroupField(index) {
     const groupNameField = document.getElementById(`name-${index}`);
     const websitesField = document.getElementById(`websites-${index}`);
     const keywordsField = document.getElementById(`keywords-${index}`);
-    const timerCountField = document.getElementById(`timerCount-${index}`);
-    const timerDurationField = document.getElementById(`timerDuration-${index}`);
 
     const newGroupName = groupNameField.value.trim();
     const newKeywords = keywordsField.value.split('\n').map(keyword => keyword.trim()).filter(keyword => keyword !== '');
@@ -165,12 +116,30 @@ export function updateGroupField(index) {
     .map(site => normalizeURL(site.trim()))
     .filter(site => site !== '');
 
+    // Retrieve the original timer values
+    const originalTimerCount = group.timer ? group.timer.count : 0;
+    const originalTimerDuration = group.timer ? group.timer.duration : 20;
+
+    // Extract the new timer values from the UI
+    const newTimerCount = parseInt(document.getElementById(`timerCount-${index}`).value, 10) || 0;
+    const newTimerDuration = parseInt(document.getElementById(`timerDuration-${index}`).value, 10) || 20;
+
     if (isCurrentTimeInAnySchedule(schedules)) {
+      // If the group name is different and the schedule is active, restrict the change
+      if (group.groupName.toLowerCase() !== newGroupName.toLowerCase()) {
+        alert("Changing the group name is not allowed during an active schedule.");
+        return; // Prevent the group name change
+      }
       // Log current field values
       console.log("Current Websites:", group.websites);
       console.log("New Websites:", newWebsites);
-      console.log("Current Keywords:", group.keywords); //line 173
-      console.log("New Keywords:", newKeywords);// line 174
+      console.log("Current Keywords:", group.keywords);
+      console.log("New Keywords:", newKeywords);
+
+      if (originalTimerCount < newTimerCount || originalTimerDuration < newTimerDuration) {
+        alert("Timer duration and the amount of timers cannot be increased during an active schedule.");
+        return; // Prevent saving
+      }
 
       // Check for removal or inappropriate modification in websites and keywords
       if (hasArrayChanged(group.websites, newWebsites) || hasArrayChanged(group.keywords, newKeywords)) {
@@ -178,81 +147,22 @@ export function updateGroupField(index) {
         alert("Websites or Keywords entries have been edited or removed, change cannot be saved.");
         return; // Prevent saving
       }
-
-
-      const lockedScheduleValidation = validateKeywords(newKeywords, true);
-      if (!lockedScheduleValidation.isValid) {
-        console.log(`Invalid keyword value for locked schedule: ${lockedScheduleValidation.invalidKeyword}`);
-        alert(`Invalid keyword value for locked schedule: ${lockedScheduleValidation.invalidKeyword}`);
-        return; // Prevent saving
-      }
-      } else {
-        const validation = validateKeywords(newKeywords, false);
-        if (!validation.isValid) {
-          alert(`Invalid keyword value: ${validation.invalidKeyword}`);
-          return; // Prevent saving
-      }
-
-
     }
 
+    
     // Update group properties
     group.groupName = newGroupName;
     group.websites = newWebsites;
     group.keywords = newKeywords;
     group.timer = {
-      count: parseInt(timerCountField.value, 10) || 0,
-      duration: parseInt(timerDurationField.value, 10) || 20,
+      count: newTimerCount,
+      duration: newTimerDuration,
       usedToday: group.timer ? group.timer.usedToday : 0
     };
 
     chrome.storage.sync.set({ websiteGroups }, () => {
       updateGroupsUI(websiteGroups);
     });
+
   });
-}
-
-
-// Function to validate keyword values and return the first invalid keyword
-function validateKeywords(keywords, isLockedSchedule) {
-  for (let keywordStr of keywords) {
-    const { keyword, operation, value } = parseKeyword(keywordStr);
-
-    if (operation === '+' && ((isLockedSchedule && value <= 0) || (!isLockedSchedule && (value < -1000 || value > 1000 || value === 0)))) {
-      return { isValid: false, invalidKeyword: keywordStr };
-    }
-    if (operation === '*' && ((isLockedSchedule && value <= 1) || (!isLockedSchedule && (value <= 0 || value > 1000)))) {
-      return { isValid: false, invalidKeyword: keywordStr };
-    }
-  }
-  return { isValid: true };
-}
-
-// Helper function to parse a keyword string
-function parseKeyword(keywordStr) {
-  const parts = keywordStr.split(/(?<!\\),/).map(part => part.trim());
-  let keyword = parts[0];
-  let operation = '+';
-  let value = 1000;
-
-  if (parts.length === 1) {
-    // Only keyword is provided, defaults are used for operation and value
-    return { keyword, operation, value };
-  }
-
-  if (parts.length === 2) {
-    // Keyword and value are provided, default is used for operation
-    value = parseFloat(parts[1]);
-    return { keyword, operation, value };
-  }
-
-  if (parts.length === 3) {
-    // All three parts are provided
-    operation = parts[1];
-    value = parseFloat(parts[2]);
-    return { keyword, operation, value };
-  }
-
-  // Invalid format, return defaults
-  return { keyword, operation, value };
 }
