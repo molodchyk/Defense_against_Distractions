@@ -1,7 +1,7 @@
 import { isCurrentTimeInAnySchedule } from './utilityFunctions.js';
 
 // Function to update the UI for whitelisted sites
-function updateWhitelistUI(whitelistedSites) {
+export function updateWhitelistUI(whitelistedSites) {
   const list = document.getElementById('whitelist');
   list.innerHTML = '';
 

@@ -13,6 +13,10 @@ import {
   updateWhitelistUI 
 } from './whitelistManagement.js';
 
+import { 
+  updateGroupsUI
+} from './uiFunctions.js'; // Adjust the path as necessary
+
 
 
 // Helper function to create a schedule field
@@ -62,13 +66,24 @@ function saveSchedule(scheduleState) {
         return; // Don't proceed with saving
       }
 
+      // Update the schedule in storage with the temporary state
       schedules[index] = { ...schedules[index], ...scheduleState.tempState };
       chrome.storage.sync.set({ schedules }, () => {
         const scheduleStates = schedules.map((schedule, idx) => new ScheduleState(idx, schedule));
         updateSchedulesUI(schedules, scheduleStates);
         scheduleState.toggleEditing(); // Toggle off editing mode
         toggleFieldEditability(index, false);
-      });
+
+        // Fetch and update the whitelist UI
+        chrome.storage.sync.get('whitelistedSites', ({ whitelistedSites = [] }) => {
+          updateWhitelistUI(whitelistedSites);
+        });
+
+        // Fetch and update the groups UI
+        chrome.storage.sync.get('websiteGroups', ({ websiteGroups = [] }) => {
+          updateGroupsUI(websiteGroups);
+        });
+    });
     }
     console.log('Fetched schedules for saving:', schedules);
   });
@@ -98,9 +113,6 @@ function createDayButtons(selectedDays, scheduleState) {
         const updatedSelectedDays = Array.from(document.querySelectorAll(`#dayButtons-${index} .day-button.selected`))
                                         .map(selectedButton => selectedButton.textContent);
         scheduleState.updateTempState({ days: updatedSelectedDays });
-
-        // Optionally, refresh the UI here if needed
-        // refreshScheduleItemUIWithTempState(index, scheduleState.tempState);
       }
     });
 
