@@ -159,39 +159,41 @@ export function updateGroupField(index) {
     const timerDurationField = document.getElementById(`timerDuration-${index}`);
 
     const newGroupName = groupNameField.value.trim();
-    const newWebsites = websitesField.value.split('\n').map(site => normalizeURL(site.trim())).filter(site => site !== '');
     const newKeywords = keywordsField.value.split('\n').map(keyword => keyword.trim()).filter(keyword => keyword !== '');
 
-    // Log previous and new keywords state
-    console.log("Previous Keywords:", group.keywords);
-    console.log("New Keywords:", newKeywords);
+    const newWebsites = websitesField.value.split('\n')
+    .map(site => normalizeURL(site.trim()))
+    .filter(site => site !== '');
 
     if (isCurrentTimeInAnySchedule(schedules)) {
-      // Check for inappropriate modification in websites
-      if (hasArrayChanged(group.websites, newWebsites)) {
-        alert("Websites entries have been edited, change cannot be saved.");
+      // Log current field values
+      console.log("Current Websites:", group.websites);
+      console.log("New Websites:", newWebsites);
+      console.log("Current Keywords:", group.keywords); //line 173
+      console.log("New Keywords:", newKeywords);// line 174
+
+      // Check for removal or inappropriate modification in websites and keywords
+      if (hasArrayChanged(group.websites, newWebsites) || hasArrayChanged(group.keywords, newKeywords)) {
+        console.log("change cannot be saved");
+        alert("Websites or Keywords entries have been edited or removed, change cannot be saved.");
         return; // Prevent saving
       }
 
-      // Validate new keywords and get the result
-      const lockedScheduleValidation = validateKeywords(newKeywords, group.keywords, true);
+
+      const lockedScheduleValidation = validateKeywords(newKeywords, true);
       if (!lockedScheduleValidation.isValid) {
+        console.log(`Invalid keyword value for locked schedule: ${lockedScheduleValidation.invalidKeyword}`);
         alert(`Invalid keyword value for locked schedule: ${lockedScheduleValidation.invalidKeyword}`);
         return; // Prevent saving
       }
-    } else {
-      // Check for inappropriate modification in websites
-      if (hasArrayChanged(group.websites, newWebsites)) {
-        alert("Websites entries have been edited, change cannot be saved.");
-        return; // Prevent saving
+      } else {
+        const validation = validateKeywords(newKeywords, false);
+        if (!validation.isValid) {
+          alert(`Invalid keyword value: ${validation.invalidKeyword}`);
+          return; // Prevent saving
       }
 
-      // Validate new keywords and get the result
-      const validation = validateKeywords(newKeywords, group.keywords, false);
-      if (!validation.isValid) {
-        alert(`Invalid keyword value: ${validation.invalidKeyword}`);
-        return; // Prevent saving
-      }
+
     }
 
     // Update group properties
@@ -210,11 +212,10 @@ export function updateGroupField(index) {
   });
 }
 
-// Function to validate new keyword values and return the first invalid keyword
-function validateKeywords(newKeywords, oldKeywords, isLockedSchedule) {
-  const addedKeywords = newKeywords.filter(kw => !oldKeywords.includes(kw));
 
-  for (let keywordStr of addedKeywords) {
+// Function to validate keyword values and return the first invalid keyword
+function validateKeywords(keywords, isLockedSchedule) {
+  for (let keywordStr of keywords) {
     const { keyword, operation, value } = parseKeyword(keywordStr);
 
     if (operation === '+' && ((isLockedSchedule && value <= 0) || (!isLockedSchedule && (value < -1000 || value > 1000 || value === 0)))) {
@@ -226,7 +227,6 @@ function validateKeywords(newKeywords, oldKeywords, isLockedSchedule) {
   }
   return { isValid: true };
 }
-
 
 // Helper function to parse a keyword string
 function parseKeyword(keywordStr) {
