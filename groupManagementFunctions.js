@@ -77,6 +77,7 @@ export function updateGroup(index) {
       }
     }
 
+
     // Update group properties
     group.groupName = newGroupName;
     group.websites = newWebsites;
@@ -93,14 +94,21 @@ export function updateGroup(index) {
   });
 }
 
-// Helper function to check if there's any removal or inappropriate modification
+// Helper function to check if existing entries have been removed or inappropriately modified
 function hasArrayChanged(originalArray, newArray) {
-  if (originalArray.length !== newArray.length) {
-    return true;
+  // Check if any original entry has been modified or removed
+  for (let i = 0; i < originalArray.length; i++) {
+    if (newArray.length <= i || originalArray[i] !== newArray[i]) {
+      return true; // Original entry is modified or removed
+    }
   }
-  return originalArray.some((element, index) => element !== newArray[index]);
+  return false; // No modifications or removals detected
 }
 
+// Normalize URL by removing 'http://', 'https://', and 'www.'
+function normalizeURL(url) {
+  return url.replace(/^(?:https?:\/\/)?(?:www\.)?/, '');
+}
 
 export function toggleFieldEdit(fieldId, index) {
   const field = document.getElementById(fieldId);
@@ -151,21 +159,37 @@ export function updateGroupField(index) {
     const timerDurationField = document.getElementById(`timerDuration-${index}`);
 
     const newGroupName = groupNameField.value.trim();
-    const newWebsites = websitesField.value.split('\n').map(site => site.trim()).filter(site => site !== '');
+    const newWebsites = websitesField.value.split('\n').map(site => normalizeURL(site.trim())).filter(site => site !== '');
     const newKeywords = keywordsField.value.split('\n').map(keyword => keyword.trim()).filter(keyword => keyword !== '');
-    const newTimerCount = parseInt(timerCountField.value, 10) || 0;
-    const newTimerDuration = parseInt(timerDurationField.value, 10) || 20;
+
+    // Log previous and new keywords state
+    console.log("Previous Keywords:", group.keywords);
+    console.log("New Keywords:", newKeywords);
 
     if (isCurrentTimeInAnySchedule(schedules)) {
-      // Check for removal or inappropriate modification in websites and keywords
-      if (hasArrayChanged(group.websites, newWebsites) || hasArrayChanged(group.keywords, newKeywords)) {
-        alert("Websites or Keywords entries have been edited or removed, change cannot be saved.");
+      // Check for inappropriate modification in websites
+      if (hasArrayChanged(group.websites, newWebsites)) {
+        alert("Websites entries have been edited, change cannot be saved.");
         return; // Prevent saving
       }
 
-      // Check timer settings
-      if (newTimerCount > group.timer.count || newTimerDuration > group.timer.duration) {
-        alert("Cannot increase the number of Timer Count or Timer Duration during active schedule.");
+      // Validate new keywords and get the result
+      const lockedScheduleValidation = validateKeywords(newKeywords, group.keywords, true);
+      if (!lockedScheduleValidation.isValid) {
+        alert(`Invalid keyword value for locked schedule: ${lockedScheduleValidation.invalidKeyword}`);
+        return; // Prevent saving
+      }
+    } else {
+      // Check for inappropriate modification in websites
+      if (hasArrayChanged(group.websites, newWebsites)) {
+        alert("Websites entries have been edited, change cannot be saved.");
+        return; // Prevent saving
+      }
+
+      // Validate new keywords and get the result
+      const validation = validateKeywords(newKeywords, group.keywords, false);
+      if (!validation.isValid) {
+        alert(`Invalid keyword value: ${validation.invalidKeyword}`);
         return; // Prevent saving
       }
     }
@@ -175,8 +199,8 @@ export function updateGroupField(index) {
     group.websites = newWebsites;
     group.keywords = newKeywords;
     group.timer = {
-      count: newTimerCount,
-      duration: newTimerDuration,
+      count: parseInt(timerCountField.value, 10) || 0,
+      duration: parseInt(timerDurationField.value, 10) || 20,
       usedToday: group.timer ? group.timer.usedToday : 0
     };
 
@@ -184,4 +208,51 @@ export function updateGroupField(index) {
       updateGroupsUI(websiteGroups);
     });
   });
+}
+
+// Function to validate new keyword values and return the first invalid keyword
+function validateKeywords(newKeywords, oldKeywords, isLockedSchedule) {
+  const addedKeywords = newKeywords.filter(kw => !oldKeywords.includes(kw));
+
+  for (let keywordStr of addedKeywords) {
+    const { keyword, operation, value } = parseKeyword(keywordStr);
+
+    if (operation === '+' && ((isLockedSchedule && value <= 0) || (!isLockedSchedule && (value < -1000 || value > 1000 || value === 0)))) {
+      return { isValid: false, invalidKeyword: keywordStr };
+    }
+    if (operation === '*' && ((isLockedSchedule && value <= 1) || (!isLockedSchedule && (value <= 0 || value > 1000)))) {
+      return { isValid: false, invalidKeyword: keywordStr };
+    }
+  }
+  return { isValid: true };
+}
+
+
+// Helper function to parse a keyword string
+function parseKeyword(keywordStr) {
+  const parts = keywordStr.split(/(?<!\\),/).map(part => part.trim());
+  let keyword = parts[0];
+  let operation = '+';
+  let value = 1000;
+
+  if (parts.length === 1) {
+    // Only keyword is provided, defaults are used for operation and value
+    return { keyword, operation, value };
+  }
+
+  if (parts.length === 2) {
+    // Keyword and value are provided, default is used for operation
+    value = parseFloat(parts[1]);
+    return { keyword, operation, value };
+  }
+
+  if (parts.length === 3) {
+    // All three parts are provided
+    operation = parts[1];
+    value = parseFloat(parts[2]);
+    return { keyword, operation, value };
+  }
+
+  // Invalid format, return defaults
+  return { keyword, operation, value };
 }
