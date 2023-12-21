@@ -18,17 +18,18 @@ export function updateGroupsUI(websiteGroups) {
       li.className = 'group-item';
 
       // Group Name
-      createGroupField(li, 'Group Name:', group.groupName, `name-${index}`, true, index);
+      createGroupField(li, 'groupNameLabel', group.groupName, `name-${index}`, true, index);
 
       // Websites
-      createGroupField(li, 'Websites:', group.websites.join('\n'), `websites-${index}`, true, index);
+      createGroupField(li, 'websitesLabel', group.websites.join('\n'), `websites-${index}`, true, index);
 
       // Keywords
-      createGroupField(li, 'Keywords:', group.keywords.join('\n'), `keywords-${index}`, true, index);
+      createGroupField(li, 'keywordsLabel', group.keywords.join('\n'), `keywords-${index}`, true, index);
 
       // Timer settings
-      createGroupField(li, 'Timer Count:', group.timer ? group.timer.count.toString() : '0', `timerCount-${index}`, true, index);
-      createGroupField(li, 'Timer Duration (seconds):', group.timer ? group.timer.duration.toString() : '20', `timerDuration-${index}`, true, index);
+      createGroupField(li, 'timerCountLabel', group.timer ? group.timer.count.toString() : '0', `timerCount-${index}`, true, index);
+      createGroupField(li, 'timerDurationLabel', group.timer ? group.timer.duration.toString() : '20', `timerDuration-${index}`, true, index);
+
 
       // Delete button
       const deleteButton = createButton('Delete', () => removeGroup(index), 'delete-button');
@@ -46,10 +47,10 @@ export function updateGroupsUI(websiteGroups) {
 }
 
 
-function createGroupField(container, label, value, id, isReadOnly, index) {
+function createGroupField(container, labelKey, value, id, isReadOnly, index) {
   const fieldDiv = document.createElement('div');
   const labelElement = document.createElement('label');
-  labelElement.textContent = label;
+  labelElement.textContent = chrome.i18n.getMessage(labelKey);
 
   let inputElement;
   if (!isReadOnly) {
@@ -89,9 +90,9 @@ function createGroupField(container, label, value, id, isReadOnly, index) {
   }
 }
 
-function createButton(text, onClick, className) {
+function createButton(textKey, onClick, className) {
   const button = document.createElement('button');
-  button.textContent = text;
+  button.textContent = chrome.i18n.getMessage(textKey);
   button.addEventListener('click', onClick);
   button.className = className;
   return button;

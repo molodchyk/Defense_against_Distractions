@@ -15,14 +15,14 @@ export function addGroup() {
       if (availableName) {
         groupName = availableName;
       } else {
-        alert("Maximum number of unnamed groups reached.");
+        alert(chrome.i18n.getMessage("unnamedGroupsMaxReached"));
         return;
       }
     }
 
     // Check if a group with this name already exists
     if (websiteGroups.some(group => group.groupName.toLowerCase() === groupName.toLowerCase())) {
-      alert("A group with this name already exists.");
+      alert(chrome.i18n.getMessage("groupNameExists"));
       return;
     }
 
@@ -38,7 +38,7 @@ export function addGroup() {
 export function removeGroup(index) {
   chrome.storage.sync.get(['websiteGroups', 'schedules'], ({ websiteGroups, schedules }) => {
     if (isCurrentTimeInAnySchedule(schedules)) {
-      alert("Cannot delete groups during active schedule.");
+      alert(chrome.i18n.getMessage("cannotDeleteGroupActiveSchedule"));
       return;
     }
 
@@ -139,7 +139,7 @@ export function updateGroupField(index) {
         console.log("Invalid keyword entry: " + keywordEntry);
         console.log("Current Keywords:", group.keywords);
         console.log("New Keywords:", newKeywords);
-        alert("Invalid keyword entry: " + keywordEntry);
+        alert(chrome.i18n.getMessage("invalidKeywordEntry") + keywordEntry);
         return; // Prevent saving the group data
       }
     }
@@ -147,7 +147,7 @@ export function updateGroupField(index) {
     if (isCurrentTimeInAnySchedule(schedules)) {
       // If the group name is different and the schedule is active, restrict the change
       if (group.groupName.toLowerCase() !== newGroupName.toLowerCase()) {
-        alert("Changing the group name is not allowed during an active schedule.");
+        alert(chrome.i18n.getMessage("cannotChangeGroupNameActiveSchedule"));
         return; // Prevent the group name change
       }
       // Log current field values
@@ -157,14 +157,14 @@ export function updateGroupField(index) {
       console.log("New Keywords:", newKeywords);
 
       if (originalTimerCount < newTimerCount || originalTimerDuration < newTimerDuration) {
-        alert("Timer duration and the amount of timers cannot be increased during an active schedule.");
+        alert(chrome.i18n.getMessage("cannotIncreaseTimerActiveSchedule"));
         return; // Prevent saving
       }
 
       // Check for removal or inappropriate modification in websites and keywords
       if (hasArrayChanged(group.websites, newWebsites) || hasArrayChanged(group.keywords, newKeywords)) {
         console.log("change cannot be saved");
-        alert("Websites or Keywords entries have been edited or removed, change cannot be saved.");
+        alert(chrome.i18n.getMessage("invalidEditOnWebsitesOrKeywords"));
         return; // Prevent saving
       }
     }

@@ -48,12 +48,12 @@ function blockPage(keyword = "Unknown", contextText = "N/A") {
   contentDiv.style.borderRadius = '8px';
 
   contentDiv.innerHTML = `
-  <h2 style="color: #ff4444;">Content Blocked</h2>
-  <p>This page contains restricted content and has been blocked for your protection.</p>
-  <p><strong>Keyword Detected:</strong> ${keyword}</p>
-  <p><strong>Context:</strong> "${contextText}"</p>
-  <button id="goBackButton" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px;">Go Back</button>
-  <button id="timerButton" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px;">Activate Timer</button>
+    <h2 style="color: #ff4444;">${chrome.i18n.getMessage("contentBlockedTitle")}</h2>
+    <p>${chrome.i18n.getMessage("contentBlockedMessage")}</p>
+    <p><strong>${chrome.i18n.getMessage("keywordDetected")}:</strong> ${keyword}</p>
+    <p><strong>${chrome.i18n.getMessage("context")}:</strong> "${contextText}"</p>
+    <button id="goBackButton" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px;">${chrome.i18n.getMessage("goBackButton")}</button>
+    <button id="timerButton" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px;">${chrome.i18n.getMessage("activateTimerButton")}</button>
   `;
 
   blockDiv.appendChild(contentDiv);

@@ -15,7 +15,7 @@ export function updateWhitelistUI(whitelistedSites) {
       li.textContent = site;
       
       const deleteButton = document.createElement('button');
-      deleteButton.textContent = 'Delete';
+      deleteButton.textContent = chrome.i18n.getMessage("deleteButtonLabel");
 
       // Disable delete button if in schedule
       if (isInSchedule) {
@@ -60,7 +60,7 @@ function addWhitelistSite() {
       });
     } else {
       console.log("Site already in whitelist"); // Log if site is already in list
-      alert("This site is already in the whitelist.");
+      alert(chrome.i18n.getMessage("whitelistExistsMessage"));
     }
   });
 }
@@ -71,7 +71,7 @@ function removeWhitelistSite(index) {
     const { whitelistedSites, schedules } = result;
 
     if (isCurrentTimeInAnySchedule(schedules)) {
-      alert("Cannot delete whitelisted sites during active schedule.");
+      alert(chrome.i18n.getMessage("deleteWhitelistError"));
       return;
     }
 

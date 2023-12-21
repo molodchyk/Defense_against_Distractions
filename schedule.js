@@ -264,7 +264,7 @@ export function removeSchedule(index) {
   console.log('removeSchedule called for index:', index);
   chrome.storage.sync.get('schedules', ({ schedules }) => {
     if (isCurrentTimeInAnySchedule([schedules[index]])) {
-      alert("Cannot delete an active schedule. Please wait until the schedule is not active.");
+      alert(chrome.i18n.getMessage("cannotDeleteActiveSchedule"));
       return;
     }
 
@@ -333,14 +333,14 @@ function addSchedule() {
       if (availableName) {
         scheduleName = availableName;
       } else {
-        alert("Maximum number of unnamed schedules reached.");
+        alert(chrome.i18n.getMessage("unnamedSchedulesMaxReached"));
         return;
       }
     }
 
     // Check if a schedule with this name already exists
     if (schedules.some(schedule => schedule.name.toLowerCase() === scheduleName.toLowerCase())) {
-      alert("A schedule with this name already exists.");
+      alert(chrome.i18n.getMessage("scheduleNameExists"));
       return;
     }
 

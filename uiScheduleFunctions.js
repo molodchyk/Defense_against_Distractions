@@ -26,10 +26,10 @@ import {
 
 
 // Helper function to create a schedule field
-function createScheduleField(container, label, value, id, isReadOnly) {
+function createScheduleField(container, labelKey, value, id, isReadOnly) {
   const fieldDiv = document.createElement('div');
   const labelElement = document.createElement('label');
-  labelElement.textContent = label;
+  labelElement.textContent = chrome.i18n.getMessage(labelKey);
   const inputElement = document.createElement('input');
 
   inputElement.value = value;
@@ -72,7 +72,7 @@ function saveSchedule(scheduleState) {
 
       // Check if end time is after start time
       if (endTimeMinutes <= startTimeMinutes) {
-        alert('End time must be after start time.');
+        alert(chrome.i18n.getMessage("endTimeAfterStartTimeError"));
         return; // Don't proceed with saving
       }
 
@@ -83,23 +83,34 @@ function saveSchedule(scheduleState) {
 
       if (doSchedulesOverlap(combinedSchedules)) {
         console.log("Schedules cannot overlap.");
-        alert("Schedules cannot overlap.");
+        alert(chrome.i18n.getMessage("schedulesOverlapError"));
         return; // Prevent saving
       }
 
       if (!hasMinimumUnlockedTime(combinedSchedules)) {
         console.log("Each day must have at least 1 hour of unlocked time.");
-        alert("Each day must have at least 1 hour of unlocked time.");
+        alert(chrome.i18n.getMessage("minimumUnlockedTimeError"));
         return; // Prevent saving
       }
 
-      // Restrict relaxation only if the original schedule is active
-      if (originalSchedule.isActive && 
-        (originalSchedule.name !== tempSchedule.name || !isScheduleMoreStrict(originalSchedule, tempSchedule))) {
+
+      // Determine if any schedule is currently active
+      const isAnyScheduleActive = isCurrentTimeInAnySchedule(schedules);
+
+      // Updated call to isScheduleMoreStrict
+      if (isAnyScheduleActive && !isScheduleMoreStrict(originalSchedule, tempSchedule)) {
         console.log('Cannot relax the schedule constraints.');
-        alert('Cannot relax the schedule constraints.');
+        alert(chrome.i18n.getMessage("cannotRelaxConstraints"));
         return; // Prevent saving
       }
+
+      // // Restrict relaxation only if the original schedule is active
+      // if (originalSchedule.isActive && 
+      //   (originalSchedule.name !== tempSchedule.name || !isScheduleMoreStrict(originalSchedule, tempSchedule))) {
+      //   console.log('Cannot relax the schedule constraints.');
+      //   alert(chrome.i18n.getMessage("cannotRelaxConstraints"));
+      //   return; // Prevent saving
+      // }
 
       // Update the schedule in storage with the temporary state
       schedules[index] = { ...schedules[index], ...scheduleState.tempState };
@@ -167,10 +178,11 @@ function createDayButtons(selectedDays, scheduleState) {
   const dayButtonsContainer = document.createElement('div');
   dayButtonsContainer.id = `dayButtons-${index}`;
 
-  ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].forEach((day, dayIndex) => {
+  const daysOfWeek = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+    daysOfWeek.forEach((day, dayIndex) => {
     const dayButton = document.createElement('button');
     dayButton.id = `dayButton-${index}-${dayIndex}`;
-    dayButton.textContent = day;
+    dayButton.textContent = chrome.i18n.getMessage(day);
     dayButton.classList.add('day-button');
     if (selectedDays.includes(day)) {
       dayButton.classList.add('selected');
@@ -230,7 +242,7 @@ function createActiveToggleButton(isActive, scheduleState) {
 
 function createButton(text, onClick, className, index) {
   const button = document.createElement('button');
-  button.textContent = text;
+  button.textContent = chrome.i18n.getMessage(text);
   button.addEventListener('click', onClick);
   button.className = className;
   
@@ -264,7 +276,7 @@ export function updateSchedulesUI(schedules, scheduleStates) {
 
   schedules.forEach((schedule, index) => {
     console.log('Processing schedule at index', index);
-    const scheduleState = scheduleStates[index]; // Get the corresponding ScheduleState instance//line 142
+    const scheduleState = scheduleStates[index]; // Get the corresponding ScheduleState instance
     if (!scheduleState) {
       console.error(`No schedule state found for index ${index}`);
       return; // Skip this iteration
@@ -273,17 +285,17 @@ export function updateSchedulesUI(schedules, scheduleStates) {
     li.className = 'schedule-item';
 
     // Schedule Name
-    createScheduleField(li, 'Schedule Name:', schedule.name, `schedule-name-${index}`, true);
+    createScheduleField(li, 'scheduleNameLabel', schedule.name, `schedule-name-${index}`, true);
 
     // Days buttons
     const daysContainer = createDayButtons(schedule.days, scheduleState); // Pass scheduleState
     li.appendChild(daysContainer);
 
     // Start Time
-    createScheduleField(li, 'Start Time:', schedule.startTime, `schedule-startTime-${index}`, true);
+    createScheduleField(li, 'startTimeLabel', schedule.startTime, `schedule-startTime-${index}`, true);
 
     // End Time
-    createScheduleField(li, 'End Time: ', schedule.endTime, `schedule-endTime-${index}`, true);
+    createScheduleField(li, 'endTimeLabel', schedule.endTime, `schedule-endTime-${index}`, true);
 
     // Active toggle button
     const activeToggleButton = createActiveToggleButton(schedule.isActive, scheduleState); // Pass scheduleState
@@ -301,12 +313,8 @@ export function updateSchedulesUI(schedules, scheduleStates) {
     const saveButton = createButton('Save', () => saveSchedule(scheduleState), 'save-button-schedule', index); // Pass scheduleState
     controlsContainer.appendChild(saveButton);
 
-    // Delete button
-    // const deleteButton = createButton('Delete', () => removeSchedule(index), 'delete-button-schedule', index);
-    // controlsContainer.appendChild(deleteButton);
-
-    const isActive = isCurrentTimeInAnySchedule([schedule]);
-    const deleteButton = createDeleteButton(index, isActive);
+    // const isActive = isCurrentTimeInAnySchedule([schedule]);
+    const deleteButton = createDeleteButton(index, schedules[index], schedules);
     controlsContainer.appendChild(deleteButton);
 
     li.appendChild(controlsContainer);
@@ -316,19 +324,25 @@ export function updateSchedulesUI(schedules, scheduleStates) {
 }
 
 // Function to create a delete button
-function createDeleteButton(index, isActive) {
+function createDeleteButton(index, schedule, allSchedules) {
   const deleteButton = document.createElement('button');
-  deleteButton.textContent = 'Delete';
+  deleteButton.textContent = chrome.i18n.getMessage("deleteButtonLabel");
   deleteButton.classList.add('delete-button');
-  if (isActive) {
+  
+  const anyScheduleActive = isCurrentTimeInAnySchedule(allSchedules);
+  const isThisScheduleSetForActivation = schedule.isActive && schedule.days.length > 0;
+
+  if (anyScheduleActive && isThisScheduleSetForActivation) {
       deleteButton.disabled = true;
   } else {
       deleteButton.addEventListener('click', function() {
           removeSchedule(index);
       });
   }
+
   return deleteButton;
 }
+
 
 
 // Refreshes the UI for a single schedule item with temporary state
