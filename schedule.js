@@ -7,6 +7,10 @@ import {
   ScheduleState
 } from './ScheduleState.js';
 
+import {
+  isCurrentTimeInAnySchedule
+} from './utilityFunctions.js';
+
 document.addEventListener('DOMContentLoaded', function() {
   const scheduleNameInput = document.getElementById('scheduleNameInput');
   scheduleNameInput.addEventListener('keyup', function(event) {
@@ -255,23 +259,25 @@ function formatTime(timeStr) {
   return `${hours}:${minutes}`;
 }
 
-
 // Removes a schedule from the storage and updates the UI
 export function removeSchedule(index) {
   console.log('removeSchedule called for index:', index);
   chrome.storage.sync.get('schedules', ({ schedules }) => {
-    schedules.splice(index, 1);
+    if (isCurrentTimeInAnySchedule([schedules[index]])) {
+      alert("Cannot delete an active schedule. Please wait until the schedule is not active.");
+      return;
+    }
 
+    // Proceed with schedule removal
+    schedules.splice(index, 1);
     chrome.storage.sync.set({ schedules }, () => {
       // After updating the schedules in storage, recreate the scheduleStates
       const scheduleStates = schedules.map((schedule, index) => new ScheduleState(index, schedule));
-      updateSchedulesUI(schedules, scheduleStates); // Pass both schedules and their states
-      console.log('Schedules after removal:', schedules); // Moved inside the callback
+      updateSchedulesUI(schedules, scheduleStates);
+      console.log('Schedules after removal:', schedules);
     });
   });
 }
-
-
 
 // Updates the schedule with new values from the fields
 export function updateSchedule(scheduleState) {
@@ -364,4 +370,86 @@ function addSchedule() {
       });
     });
   });
+}
+
+export function hasMinimumUnlockedTime(schedules, minimumUnlockedTime = 60) {
+  const minutesInDay = 1440; // Total minutes in a day
+
+  // Convert time string to minutes since midnight
+  function timeToMinutes(time) {
+    const [hours, minutes] = time.split(':').map(Number);
+    return hours * 60 + minutes;
+  }
+
+  // Aggregate all active schedules for each day
+  const dailySchedules = {};
+  schedules.forEach(schedule => {
+    if (schedule.isActive) {  // Only consider active schedules
+      schedule.days.forEach(day => {
+        if (!dailySchedules[day]) {
+          dailySchedules[day] = [];
+        }
+        dailySchedules[day].push({
+          start: timeToMinutes(schedule.startTime),
+          end: timeToMinutes(schedule.endTime)
+        });
+      });
+    }
+  });
+
+  // Check for each day
+  for (const day in dailySchedules) {
+    let totalLockedTime = 0;
+    dailySchedules[day].forEach(timeBlock => {
+      totalLockedTime += timeBlock.end - timeBlock.start;
+    });
+
+    if (minutesInDay - totalLockedTime < minimumUnlockedTime) {
+      return false; // Not enough unlocked time
+    }
+  }
+  return true; // All days have enough unlocked time
+}
+
+
+export function doSchedulesOverlap(schedules) {
+  // Convert time string to minutes since midnight
+  function timeToMinutes(time) {
+      const [hours, minutes] = time.split(':').map(Number);
+      return hours * 60 + minutes;
+  }
+
+  // Create a map to hold arrays of time ranges for each day
+  const dayTimeRanges = {};
+
+  schedules.forEach(schedule => {
+      schedule.days.forEach(day => {
+          if (!dayTimeRanges[day]) {
+              dayTimeRanges[day] = [];
+          }
+          dayTimeRanges[day].push({
+              start: timeToMinutes(schedule.startTime),
+              end: timeToMinutes(schedule.endTime)
+          });
+      });
+  });
+
+  // Function to check if two time ranges overlap
+  function rangesOverlap(range1, range2) {
+      return range1.start < range2.end && range1.end > range2.start;
+  }
+
+  // Check for overlaps in each day's schedule
+  for (const day in dayTimeRanges) {
+      const ranges = dayTimeRanges[day];
+      for (let i = 0; i < ranges.length; i++) {
+          for (let j = i + 1; j < ranges.length; j++) {
+              if (rangesOverlap(ranges[i], ranges[j])) {
+                  return true; // Found an overlap
+              }
+          }
+      }
+  }
+
+  return false; // No overlaps found
 }

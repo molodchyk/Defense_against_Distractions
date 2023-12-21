@@ -2,7 +2,9 @@ import {
     toggleScheduleEdit,
     removeSchedule,
     updateSchedule,
-    toggleFieldEditability
+    toggleFieldEditability,
+    hasMinimumUnlockedTime,
+    doSchedulesOverlap
   } from './schedule.js';
 
 import {
@@ -15,7 +17,11 @@ import {
 
 import { 
   updateGroupsUI
-} from './uiFunctions.js'; // Adjust the path as necessary
+} from './uiFunctions.js';
+
+import { 
+  isCurrentTimeInAnySchedule
+} from './utilityFunctions.js';
 
 
 
@@ -53,6 +59,10 @@ function saveSchedule(scheduleState) {
 
   chrome.storage.sync.get('schedules', ({ schedules }) => {
     if (schedules && schedules.length > index) {
+
+      const originalSchedule = schedules[index];
+      const tempSchedule = scheduleState.tempState;
+
       const startTimeField = document.getElementById(`schedule-startTime-${index}`);
       const endTimeField = document.getElementById(`schedule-endTime-${index}`);
 
@@ -64,6 +74,31 @@ function saveSchedule(scheduleState) {
       if (endTimeMinutes <= startTimeMinutes) {
         alert('End time must be after start time.');
         return; // Don't proceed with saving
+      }
+
+      // Create a combined list of schedules including the temporary state
+      const combinedSchedules = schedules.map((schedule, idx) => 
+        idx === index ? { ...schedule, ...scheduleState.tempState } : schedule
+      );
+
+      if (doSchedulesOverlap(combinedSchedules)) {
+        console.log("Schedules cannot overlap.");
+        alert("Schedules cannot overlap.");
+        return; // Prevent saving
+      }
+
+      if (!hasMinimumUnlockedTime(combinedSchedules)) {
+        console.log("Each day must have at least 1 hour of unlocked time.");
+        alert("Each day must have at least 1 hour of unlocked time.");
+        return; // Prevent saving
+      }
+
+      // Restrict relaxation only if the original schedule is active
+      if (originalSchedule.isActive && 
+        (originalSchedule.name !== tempSchedule.name || !isScheduleMoreStrict(originalSchedule, tempSchedule))) {
+        console.log('Cannot relax the schedule constraints.');
+        alert('Cannot relax the schedule constraints.');
+        return; // Prevent saving
       }
 
       // Update the schedule in storage with the temporary state
@@ -87,6 +122,43 @@ function saveSchedule(scheduleState) {
     }
     console.log('Fetched schedules for saving:', schedules);
   });
+}
+
+function isScheduleMoreStrict(original, temp) {
+  // Log current day and time
+  const now = new Date();
+  console.log(`Current day: ${now.toLocaleDateString()}, Time: ${now.toLocaleTimeString()}`);
+
+  // Check for day of week relaxation
+  if (!original.days.every(day => temp.days.includes(day))) {
+    console.log(`Original days: ${original.days}, Temp days: ${temp.days}`);
+    return false;
+  }
+
+  // Check for time relaxation
+  if (isTimeLater(original.startTime, temp.startTime) ||
+      isTimeEarlier(original.endTime, temp.endTime)) {
+    console.log(`Original start time: ${original.startTime}, Temp start time: ${temp.startTime}`);
+    console.log(`Original end time: ${original.endTime}, Temp end time: ${temp.endTime}`);
+    return false;
+  }
+
+  // Check for active to inactive
+  if (original.isActive && !temp.isActive) {
+    console.log(`Original active state: ${original.isActive}, Temp active state: ${temp.isActive}`);
+    return false;
+  }
+
+  return true;
+}
+
+
+function isTimeLater(time1, time2) {
+  return timeStringToMinutes(time1) < timeStringToMinutes(time2);
+}
+
+function isTimeEarlier(time1, time2) {
+  return timeStringToMinutes(time1) > timeStringToMinutes(time2);
 }
 
 
@@ -230,7 +302,11 @@ export function updateSchedulesUI(schedules, scheduleStates) {
     controlsContainer.appendChild(saveButton);
 
     // Delete button
-    const deleteButton = createButton('Delete', () => removeSchedule(index), 'delete-button-schedule', index);
+    // const deleteButton = createButton('Delete', () => removeSchedule(index), 'delete-button-schedule', index);
+    // controlsContainer.appendChild(deleteButton);
+
+    const isActive = isCurrentTimeInAnySchedule([schedule]);
+    const deleteButton = createDeleteButton(index, isActive);
     controlsContainer.appendChild(deleteButton);
 
     li.appendChild(controlsContainer);
@@ -238,6 +314,22 @@ export function updateSchedulesUI(schedules, scheduleStates) {
     scheduleList.appendChild(li);
   });
 }
+
+// Function to create a delete button
+function createDeleteButton(index, isActive) {
+  const deleteButton = document.createElement('button');
+  deleteButton.textContent = 'Delete';
+  deleteButton.classList.add('delete-button');
+  if (isActive) {
+      deleteButton.disabled = true;
+  } else {
+      deleteButton.addEventListener('click', function() {
+          removeSchedule(index);
+      });
+  }
+  return deleteButton;
+}
+
 
 // Refreshes the UI for a single schedule item with temporary state
 export function refreshScheduleItemUIWithTempState(index, tempSchedule) {

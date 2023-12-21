@@ -53,7 +53,7 @@ export function isCurrentTimeInAnySchedule(schedules) {
   const currentDay = now.toLocaleString('en-US', { weekday: 'short' });
   const currentTimeMinutes = now.getHours() * 60 + now.getMinutes();
 
-  return schedules.some(schedule => {//line 56
+  return schedules.some(schedule => {
     if (!schedule.isActive || !schedule.days.includes(currentDay)) {
       return false;
     }

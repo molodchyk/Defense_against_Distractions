@@ -110,7 +110,7 @@ export function updateGroupField(index) {
     const keywordsField = document.getElementById(`keywords-${index}`);
 
     const newGroupName = groupNameField.value.trim();
-    const newKeywords = keywordsField.value.split('\n').map(keyword => keyword.trim()).filter(keyword => keyword !== '');
+    // const newKeywords = keywordsField.value.split('\n').map(keyword => keyword.trim()).filter(keyword => keyword !== '');
 
     const newWebsites = websitesField.value.split('\n')
     .map(site => normalizeURL(site.trim()))
@@ -123,6 +123,26 @@ export function updateGroupField(index) {
     // Extract the new timer values from the UI
     const newTimerCount = parseInt(document.getElementById(`timerCount-${index}`).value, 10) || 0;
     const newTimerDuration = parseInt(document.getElementById(`timerDuration-${index}`).value, 10) || 20;
+
+    const isLockedSchedule = isCurrentTimeInAnySchedule(schedules);
+
+    const originalKeywords = group.keywords;
+    const newKeywords = keywordsField.value.split('\n')
+    .map(keyword => keyword.trim())
+    .filter(keyword => keyword !== '');
+
+
+    // Validate only new or modified keywords
+    for (let keywordEntry of newKeywords) {
+      const isNewOrModified = !originalKeywords.includes(keywordEntry);
+      if (isNewOrModified && !validateKeywordEntry(keywordEntry, isLockedSchedule)) {
+        console.log("Invalid keyword entry: " + keywordEntry);
+        console.log("Current Keywords:", group.keywords);
+        console.log("New Keywords:", newKeywords);
+        alert("Invalid keyword entry: " + keywordEntry);
+        return; // Prevent saving the group data
+      }
+    }
 
     if (isCurrentTimeInAnySchedule(schedules)) {
       // If the group name is different and the schedule is active, restrict the change
@@ -165,4 +185,35 @@ export function updateGroupField(index) {
     });
 
   });
+}
+
+
+/**
+ * Validates a keyword entry based on specified rules.
+ * @param {string} entry - The keyword entry line from the input field.
+ * @param {boolean} isLockedSchedule - Indicates if the locked schedule is active.
+ * @returns {boolean} - True if the keyword entry is valid, false otherwise.
+ */
+
+function validateKeywordEntry(entry, isLockedSchedule) {
+  const components = entry.split(',').map(comp => comp.trim());
+  if (components.length === 0 || components.length > 3) return false;
+
+  const keyword = components[0];
+  const sign = components.length === 3 ? components[1] : '+';
+  const numericValue = components.length > 1 ? parseFloat(components[components.length - 1]) : null;
+
+  if (sign !== '+' && sign !== '*') return false;
+  if (numericValue !== null && isNaN(numericValue)) return false;
+
+  if (isLockedSchedule) {
+    if (sign === '+' && (numericValue <= 0 || numericValue > 1000)) return false;
+    if (sign === '*' && (numericValue <= 1 || numericValue > 1000)) return false;
+  } else {
+    // Allow -1000 for addition when not in a locked schedule
+    if (sign === '+' && (numericValue < -1000 || numericValue > 1000 || numericValue == 0)) return false;
+    if (sign === '*' && (numericValue <= 0 || numericValue > 1000 || numericValue == 1)) return false;
+  }
+
+  return true;
 }

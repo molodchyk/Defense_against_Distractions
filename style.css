@@ -1,453 +1,501 @@
-<style>
-    html {
-        height: 100%;
-        background-color: #1c1c1c;
-    }
-    body {
-        padding: 0;
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background-color: #1c1c1c;
-        color: #e0e0e0;
-        min-height: max-content;
-        box-sizing: border-box;
-    }
-
-    h1 {
-        color: #c9c9c9;
-    }
-
-    #keywordInput {
-        padding: 10px;
-        width: 300px;
-        margin-right: 10px;
-        border: 1px solid #ddd;
-        background-color: #333;
-        border-radius: 4px;
-        color: #e0e0e0;
-    }
-
-    #addButton {
-        padding: 10px 20px;
-        background-color: #4CAF50;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-
-    #addButton:hover {
-        background-color: #45a049;
-    }
-
-    ul {
-        list-style-type: none;
-        padding: 0;
-        background-color: #1c1c1c;
-    }
-
-    li {
-        background-color: #333;
-        margin-top: 10px;
-        padding: 10px;
-        border: 1px solid #555;
-        border-radius: 4px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    button {
-        padding: 5px 10px;
-        background-color: #f44336;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-
-    button:hover {
-        background-color: #d32f2f;
-    }
-    button:disabled {
-        background-color: #a9a9a9; /* Grey background */
-        color: #666666; /* Darker grey text */
-        cursor: not-allowed; /* Cursor indicates the button is not clickable */
-        opacity: 0.7; /* Slightly transparent to show it's disabled */
-    }
-    #whitelistInput {
-        padding: 10px;
-        width: 300px;
-        margin-right: 10px;
-        border: 1px solid #555;
-        border-radius: 4px;
-        background-color: #333;
-        color: #e0e0e0;
-    }
-
-    #addWhitelistButton {
-        padding: 10px 20px;
-        background-color: #007bff;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        margin: 10px 0;
-        white-space: nowrap;
-        flex: 0 0 auto;
-    }
-
-    #addWhitelistButton:hover {
-        background-color: #45a049;
-    }
-
-    #whitelist li {
-        background-color: #333;
-        color: #e0e0e0;
-        padding: 10px;
-        margin-top: 10px;
-        border: 1px solid #555;
-        border-radius: 4px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        max-width: 900px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    #whitelist button {
-        padding: 5px 10px;
-        background-color: #dc3545;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        margin-left: 20px;
-    }
-
-    #whitelist button:hover {
-        background-color: #d32f2f;
-    }
-
-    h2 {
-        background-color: transparent;
-        padding: 10px;
-        max-width: 600px;
-        margin: 10px auto;
-        margin-top: 10px;
-        margin-bottom: 0px;
-    }
-
-    /* Groups panel styling */
-    #groupNameInput, #groupWebsitesInput, #groupKeywordsInput {
-        padding: 10px;
-        width: 300px;
-        margin-right: 10px;
-        border: 1px solid #555;
-        border-radius: 4px;
-        background-color: #333;
-        color: #e0e0e0;
-    }
-
-    #addGroupButton {
-        padding: 10px 20px;
-        background-color: #007bff;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        margin: 10px 0;
-        margin-right: 10px;
-        white-space: nowrap;
-        flex: 0 0 auto;
-    }
-
-    #addGroupButton:hover {
-        background-color: #45a049;
-    }
-
-    #groupList li {
-        background-color: #333;
-        margin-top: 10px;
-        padding: 10px;
-        border: 1px solid #555;
-        border-radius: 4px;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        align-items: center;
-        max-width: 1200px;
-        margin-left: auto;
-        margin-right: auto;
-        justify-content: flex-start;
-    }
-
-    #groupList li div {
-        margin: 5px 0;
-    }
-
-    #groupList button {
-        margin: 5px;
-        padding: 5px 10px;
-        border-radius: 4px;
-        cursor: pointer;
-        margin-top: 10px;
-    }
-
-    #groupList button:nth-child(1) {
-        background-color: #28a745;
-        color: white;
-    }
-
-    #groupList button:nth-child(2) {
-        background-color: #dc3545;
-        color: white;
-    }
-
-    #groupList button:hover {
-        opacity: 0.8;
-    }
-
-    .input-group, .group-item div {
-        display: flex;
-        align-items: center;
-        margin-bottom: 10px;
-        max-width: 600px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    
-    .group-item-textarea {
-        position: absolute;
-    }
-
-    #editableTextarea {
-    background: transparent;
-    z-index: 2;
+html {
+    height: 100%;
+    background-color: #1c1c1c;
+}
+body {
+    padding: 0;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #1c1c1c;
     color: #e0e0e0;
-    }
+    min-height: max-content;
+}
+#keywordInput {
+    padding: 10px;
+    width: 300px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    background-color: #333;
+    border-radius: 4px;
+    color: #e0e0e0;
+}
 
-    #mirroringTextarea {
-    pointer-events: none;
-    color: transparent;
-    z-index: 1;
-    background-image: linear-gradient(to bottom, #f4f4f4 50%, #ffffff 50%);
-    background-size: 100% 2em;
-    }
+#addButton {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
 
-    .group-item div {
-        display: flex;
-        align-items: center;
-        margin-bottom: 10px;
-    }
+#addButton:hover {
+    background-color: #45a049;
+}
 
-    .group-item label, input-group label {
-        display: inline-block;
-        white-space: nowrap;
-        margin-right: 10px;
-        color: #e0e0e0;
-        text-align: center;
-        min-width:200px;
-        max-width: 1500px;
-    }
+li {
+    background-color: #333;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-    .group-item textarea {
-        flex-grow: 1;
-        padding: 5px;
-        margin-right: 10px;
-        border: 1px solid #555;
-        border-radius: 4px;
-        overflow: hidden;
-        resize: none;
-        min-width: 400px;
-        max-width: 80%;
-        word-break:break-all;
-        overflow-x: auto;
-        background-color: #333;
-        color: #e0e0e0;
-    }
-    .group-item{
-        position: relative;
-        margin-left:100px;
-    }
+button {
+    padding: 5px 10px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
 
-    .group-item input, .group-item textarea, .input-group input {
-        flex-grow: 1;
-        padding: 5px;
-        margin-right: 10px;
-        border: 1px solid #555;
-        border-radius: 4px;
-        background-color: #333;
-        color: #e0e0e0;
-        min-width: 400px;
-        width: calc(33% + 133px);
-    }
+button:hover {
+    background-color: #d32f2f;
+}
+button:disabled {
+    background-color: #a9a9a9;
+    color: #666666;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+button:disabled:hover {
+    background-color: #a9a9a9;
+    color: #666666;
+}
+#whitelistInput {
+    padding: 10px;
+    width: 300px;
+    margin-right: 10px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    background-color: #333;
+    color: #e0e0e0;
+}
 
-    .group-item input, .group-item textarea {
-        width: calc(100% - 120px);
-    }
+#addWhitelistButton {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 10px 0;
+    white-space: nowrap;
+    flex: 0 0 auto;
+}
 
-    .group-item input[readonly], .group-item textarea[readonly] {
-        background-color: #242424;
-        cursor: not-allowed;
-    }
+#addWhitelistButton:hover {
+    background-color: #45a049;
+}
 
-    .update-button, .save-button {
-        background-color: #007bff;
-        color: white;
-    }
+#whitelist li {
+    background-color: #333;
+    color: #e0e0e0;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
 
-    .save-button:hover {
-        background-color: #218838;
-    }
+#whitelist button {
+    padding: 5px 10px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 20px;
+}
 
-    .delete-button {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        background-color: #dc3545;
-        color: white;
-    }
+#whitelist button:hover {
+    background-color: #d32f2f;
+}
 
-    .delete-button-schedule {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        background-color: #dc3545;
-        color: white;
-    }
-    .edit-button-schedule {
-        position: absolute;
-        bottom: 0;
-        right: 72px;
-        background-color: #f44336;
-        color: white;
-    }
-    .save-button-schedule {
-        position:absolute;
-        bottom: 0;
-        right: 10px;
-        background-color: #4CAF50;
-        color: white;
-    }
-    .save-button-schedule:hover {
-        background-color: #218838;
-    }
+#whitelist button:disabled {
+    background-color: #a9a9a9;
+    color: #666666;
+    cursor: default;
+    opacity: 0.7;
+}
+#whitelist button:disabled:hover {
+    background-color: #a9a9a9;
+    color: #666666;
+    cursor: default;
+    opacity: 0.7;
+}
 
-    #scheduleNameInput {
-        padding: 10px;
-        width: 300px;
-        margin-right: 10px;
-        border: 1px solid #555;
-        border-radius: 4px;
-        background-color: #333;
-        color: #e0e0e0;
-    }
+h2 {
+    background-color: transparent;
+    padding: 10px;
+    max-width: 600px;
+    margin: 10px auto;
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
 
-    #addScheduleButton {
-        flex: 0 0 auto;
-        padding: 10px 20px;
-        background-color: #007bff;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        white-space: nowrap;
-    }
+/* Groups panel styling */
+#groupNameInput, #groupWebsitesInput, #groupKeywordsInput {
+    padding: 10px;
+    width: 300px;
+    margin-right: 10px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    background-color: #333;
+    color: #e0e0e0;
+}
 
-    #addScheduleButton:hover {
-        background-color: #45a049;
-    }
-    #groupList li {
-        position: relative;
-        flex-direction: column;
-        align-items: flex-start;
-    }
+#addGroupButton {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 10px 0;
+    margin-right: 10px;
+    white-space: nowrap;
+    flex: 0 0 auto;
+}
 
-    #scheduleList li {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content:flex-start;
-        margin: 10px auto;
-        padding: 10px;
-        max-width: 900px;
-    }
+#addGroupButton:hover {
+    background-color: #45a049;
+}
 
-    .active-toggle.active {
-        background-color: #4CAF50;
-    }
+#groupList li {
+    background-color: #333;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: flex-start;
+}
 
-    .save-button {
-        background-color: #28a745;
-        color: white;
-        margin: 10px 0;
-    }
-    .schedule-item {
-        background-color: #333;
-        margin-top: 10px;
-        padding: 10px;
-        border: 1px solid #555;
-        border-radius: 4px;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        color: #e0e0e0;
-        position: relative;
-    }
-    
-    .schedule-item input {
-        flex-grow: 1;
-        padding: 5px;
-        padding-left: 10px;
-        margin-left: 10px;
-        margin-bottom: 10px;
-        border: 1px solid #555;
-        border-radius: 4px;
-        overflow: hidden;
-        resize: none;
-        min-width: 100px;
-        max-width: 600px;
-        word-break:break-all;
-        overflow-x: auto;
-        background-color: #333;
-        color: #e0e0e0;
-    }
+#groupList li div {
+    margin: 5px 0;
+}
 
-    .schedule-item input[readonly] {
-        background-color: #242424;
-        cursor: not-allowed;
-    }
+#groupList button {
+    margin: 5px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
 
-    #dayButtons {
-        display: flex;
-        justify-content: flex-start;
-    }
+#groupList button:nth-child(1) {
+    background-color: #28a745;
+    color: white;
+}
 
-    .schedule-item button {
-        margin-bottom: 10px;
-        padding: 5px 10px;
-        box-sizing: border-box;
-    }
-    
-    .schedule-item .controls-container {
-        padding: 5px 10px;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-start;
-        gap: 10px;
-    }
-    
-    .day-button {
-        background-color: #555;
-        color: #e0e0e0;
-        border: 1px solid #777;
-        margin-right: 5px;
-    }
+#groupList button:nth-child(2) {
+    background-color: #dc3545;
+    color: white;
+}
 
-    .day-button.selected {
-        background-color: #28a745;
-        color: #ffffff;
-    }
-</style>
+#groupList button:hover {
+    opacity: 0.8;
+}
+#groupList button:disabled {
+    background-color: #a9a9a9;
+    color: #666666;
+    cursor: default;
+    opacity: 0.7;
+}
+#groupList button:disabled:hover {
+    background-color: #a9a9a9;
+    color: #666666;
+    cursor: default;
+    opacity: 0.7;
+}
+
+
+.input-group, .group-item div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.group-item-textarea {
+    position: absolute;
+}
+
+#editableTextarea {
+background: transparent;
+z-index: 2;
+color: #e0e0e0;
+}
+
+#mirroringTextarea {
+pointer-events: none;
+color: transparent;
+z-index: 1;
+background-image: linear-gradient(to bottom, #f4f4f4 50%, #ffffff 50%);
+background-size: 100% 2em;
+}
+
+.group-item div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.group-item label, input-group label {
+    display: inline-block;
+    white-space: nowrap;
+    margin-right: 10px;
+    color: #e0e0e0;
+    text-align: center;
+    min-width:200px;
+    max-width: 1500px;
+}
+
+.group-item textarea {
+    flex-grow: 1;
+    padding: 5px;
+    margin-right: 10px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    overflow: hidden;
+    resize: none;
+    min-width: 400px;
+    max-width: 80%;
+    word-break:break-all;
+    overflow-x: auto;
+    background-color: #333;
+    color: #e0e0e0;
+}
+.group-item{
+    position: relative;
+    margin-left:100px;
+}
+
+.group-item input, .group-item textarea, .input-group input {
+    flex-grow: 1;
+    padding: 5px;
+    margin-right: 10px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    background-color: #333;
+    color: #e0e0e0;
+    min-width: 400px;
+    width: calc(33% + 133px);
+}
+
+.group-item input, .group-item textarea {
+    width: calc(100% - 120px);
+}
+
+.group-item input[readonly], .group-item textarea[readonly] {
+    background-color: #242424;
+    cursor: not-allowed;
+}
+
+.update-button, .save-button {
+    background-color: #007bff;
+    color: white;
+}
+
+.save-button:hover {
+    background-color: #218838;
+}
+
+.delete-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #dc3545;
+    color: white;
+}
+.delete-button:hover {
+    background-color: #d32f2f;
+}
+
+.delete-button:disabled {
+    background-color: #a9a9a9;
+    color: #666666;
+    cursor: default;
+    opacity: 0.7;
+}
+.delete-button:disabled:hover {
+    background-color: #a9a9a9;
+    color: #666666;
+    cursor: default;
+    opacity: 0.7;
+}
+
+.delete-button-schedule {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #dc3545;
+    color: white;
+}
+.delete-button-schedule:hover {
+    background-color: #d32f2f;
+}
+
+.delete-button-schedule:disabled {
+    background-color: #a9a9a9;
+    color: #666666;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+.delete-button-schedule:disabled:hover {
+    background-color: #a9a9a9;
+    color: #666666;
+    cursor: default;
+    opacity: 0.7;
+}
+.edit-button-schedule {
+    position: absolute;
+    bottom: 0;
+    right: 72px;
+    background-color: #f44336;
+    color: white;
+}
+.save-button-schedule {
+    position:absolute;
+    bottom: 0;
+    right: 10px;
+    background-color: #4CAF50;
+    color: white;
+}
+.save-button-schedule:hover {
+    background-color: #218838;
+}
+
+#scheduleNameInput {
+    padding: 10px;
+    width: 300px;
+    margin-right: 10px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    background-color: #333;
+    color: #e0e0e0;
+}
+
+#addScheduleButton {
+    flex: 0 0 auto;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+#addScheduleButton:hover {
+    background-color: #45a049;
+}
+#groupList li {
+    position: relative;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+#scheduleList li {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content:flex-start;
+    margin: 10px auto;
+    padding: 10px;
+    max-width: 900px;
+}
+
+.active-toggle.active {
+    background-color: #4CAF50;
+}
+
+.save-button {
+    background-color: #28a745;
+    color: white;
+    margin: 10px 0;
+}
+.schedule-item {
+    background-color: #333;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    color: #e0e0e0;
+    position: relative;
+}
+
+.schedule-item input {
+    flex-grow: 1;
+    padding: 5px;
+    padding-left: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    overflow: hidden;
+    resize: none;
+    min-width: 100px;
+    max-width: 600px;
+    word-break:break-all;
+    overflow-x: auto;
+    background-color: #333;
+    color: #e0e0e0;
+}
+
+.schedule-item input[readonly] {
+    background-color: #242424;
+    cursor: not-allowed;
+}
+
+#dayButtons {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.schedule-item button {
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    box-sizing: border-box;
+}
+
+.schedule-item .controls-container {
+    padding: 5px 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.day-button {
+    background-color: #555;
+    color: #e0e0e0;
+    border: 1px solid #777;
+    margin-right: 5px;
+}
+
+.day-button.selected {
+    background-color: #28a745;
+    color: #ffffff;
+}
