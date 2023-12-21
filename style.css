@@ -3,10 +3,7 @@ html {
     background-color: #1c1c1c;
 }
 body {
-    padding: 0;
-    margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #1c1c1c;
     color: #e0e0e0;
     min-height: max-content;
 }
@@ -135,7 +132,6 @@ button:disabled:hover {
 }
 
 h2 {
-    background-color: transparent;
     padding: 10px;
     max-width: 600px;
     margin: 10px auto;

@@ -196,15 +196,34 @@ export function updateGroupField(index) {
  */
 
 function validateKeywordEntry(entry, isLockedSchedule) {
-  const components = entry.split(',').map(comp => comp.trim());
-  if (components.length === 0 || components.length > 3) return false;
 
-  const keyword = components[0];
+  console.log("Original entry:", entry);
+  const components = entry.split(/(?<!\\),/).map(comp => comp.trim().replace(/\\,/g, ','));
+
+  // Check for number of components
+  if (components.length === 0 || components.length > 3) {
+    console.log("Invalid due to incorrect number of components");
+    return false;
+  }
+
+  // If there's only one component, it's a valid keyword
+  if (components.length === 1) {
+    return true;
+  }
+
+  // Extract sign and numeric value for further validation
   const sign = components.length === 3 ? components[1] : '+';
-  const numericValue = components.length > 1 ? parseFloat(components[components.length - 1]) : null;
+  const numericValue = parseFloat(components[components.length - 1]);
 
-  if (sign !== '+' && sign !== '*') return false;
-  if (numericValue !== null && isNaN(numericValue)) return false;
+  if (sign !== '+' && sign !== '*') {
+    console.log("Invalid due to incorrect sign");
+    return false;
+  }
+
+  if (isNaN(numericValue)) {
+    console.log("Invalid due to non-numeric value");
+    return false;
+  }
 
   if (isLockedSchedule) {
     if (sign === '+' && (numericValue <= 0 || numericValue > 1000)) return false;
