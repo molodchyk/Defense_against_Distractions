@@ -429,6 +429,23 @@ background-size: 100% 2em;
     color: white;
     margin: 10px 0;
 }
+.save-button-group {
+    background-color: #28a745;
+    color: white;
+    margin: 10px 0;
+}
+.save-button-group:disabled {
+    background-color: #a9a9a9;
+    color: #666666;
+    cursor: default;
+    opacity: 0.7;
+}
+.save-button-group:disabled:hover {
+    background-color: #a9a9a9;
+    color: #666666;
+    cursor: default;
+    opacity: 0.7;
+}
 .schedule-item {
     background-color: #333;
     margin-top: 10px;

@@ -93,8 +93,38 @@ function createGroupField(container, labelKey, value, id, isReadOnly, index) {
 function createButton(textKey, onClick, className) {
   const button = document.createElement('button');
   button.textContent = chrome.i18n.getMessage(textKey);
-  button.addEventListener('click', onClick);
+  // button.addEventListener('click', onClick);
+  button.addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default action
+    onClick(); // Call the original click handler function
+  });
   button.className = className;
+
+  // Assign additional class for group save buttons
+  if (className === 'save-button-group') {
+    button.classList.add('save-button-group');
+  }
+
   return button;
 }
 
+
+export function checkScheduleStatus() {
+  chrome.storage.sync.get('schedules', ({ schedules }) => {
+    if (!isCurrentTimeInAnySchedule(schedules)) {
+      enableUIElements(); // Enable UI elements when no schedule is active
+    }
+  });
+}
+
+// Set an interval for checking the schedule status
+setInterval(checkScheduleStatus, 3000); // Checks every 3 seconds
+
+export function enableUIElements() {
+  // Select all disabled buttons except group save buttons
+  const buttonsToEnable = document.querySelectorAll('button:disabled:not(.save-button)');
+
+  buttonsToEnable.forEach(button => {
+    button.disabled = false;
+  });
+}

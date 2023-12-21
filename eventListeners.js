@@ -6,6 +6,11 @@ import {
   addGroup
 } from './groupManagementFunctions.js';
 
+import { 
+  checkScheduleStatus,
+  enableUIElements
+} from './uiFunctions.js';
+
 // Event listener for adding group on Enter key press
 document.getElementById('groupNameInput').addEventListener('keypress', (event) => {
   if (event.key === 'Enter') {
@@ -33,4 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
       event.preventDefault();
     }
   });
+
+  // Initialize checking schedule status
+  checkScheduleStatus();
 });

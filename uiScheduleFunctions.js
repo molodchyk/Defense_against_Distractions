@@ -104,14 +104,6 @@ function saveSchedule(scheduleState) {
         return; // Prevent saving
       }
 
-      // // Restrict relaxation only if the original schedule is active
-      // if (originalSchedule.isActive && 
-      //   (originalSchedule.name !== tempSchedule.name || !isScheduleMoreStrict(originalSchedule, tempSchedule))) {
-      //   console.log('Cannot relax the schedule constraints.');
-      //   alert(chrome.i18n.getMessage("cannotRelaxConstraints"));
-      //   return; // Prevent saving
-      // }
-
       // Update the schedule in storage with the temporary state
       schedules[index] = { ...schedules[index], ...scheduleState.tempState };
       chrome.storage.sync.set({ schedules }, () => {
@@ -242,8 +234,13 @@ function createActiveToggleButton(isActive, scheduleState) {
 
 function createButton(text, onClick, className, index) {
   const button = document.createElement('button');
+  button.type = 'button';
   button.textContent = chrome.i18n.getMessage(text);
-  button.addEventListener('click', onClick);
+  button.addEventListener('click', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    onClick();
+  });
   button.className = className;
   
   if (typeof index === 'number') {
@@ -260,9 +257,11 @@ function createButton(text, onClick, className, index) {
 // Function to create a save button
 export function createSaveButton(index) {
   const saveButton = document.createElement('button');
+  saveButton.type = 'button'; // Explicitly set the button type
   saveButton.textContent = 'Save';
   saveButton.classList.add('save-button');
   saveButton.addEventListener('click', function() {
+    event.preventDefault(); // Prevent the default action
     saveSchedule(index);
   });
 
