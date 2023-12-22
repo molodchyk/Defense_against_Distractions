@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   chrome.storage.sync.get('schedules', ({ schedules = [] }) => {
     const scheduleStates = schedules.map((schedule, index) => new ScheduleState(index, schedule));
-    updateSchedulesUI(schedules, scheduleStates); // Pass scheduleStates here
+    updateSchedulesUI(schedules, scheduleStates);
   });
 });
 
@@ -56,7 +56,6 @@ export function toggleScheduleEdit(scheduleState) {
   const scheduleNameField = document.getElementById(`schedule-name-${index}`);
   scheduleNameField.addEventListener('change', function() {
     console.log('Schedule name changed:', this.value);
-    // Update the tempState here
     scheduleState.updateTempState({ name: this.value });
   });
 
@@ -89,20 +88,19 @@ export function toggleScheduleEdit(scheduleState) {
       if (isCurrentlyEditing) {
         console.log(`Day button ${button.textContent} clicked for schedule ${index}`);
         this.classList.toggle('selected');
+
         const updatedSelectedDays = Array.from(document.querySelectorAll(`#dayButtons-${index} .day-button.selected`))
-                                          .map(selectedButton => selectedButton.textContent);
+                  .map(selectedButton => selectedButton.getAttribute('data-day'));
         scheduleState.updateTempState({ days: updatedSelectedDays });
-        console.log('Updated selected days:', updatedSelectedDays);
+        console.log('Updated selected days array:', updatedSelectedDays);
       }
     });
   });
 
   const activeToggle = document.querySelector(`#active-toggle-${index}`);
   if (activeToggle) {
-    // Remove any existing click listeners to avoid multiple bindings
     activeToggle.removeEventListener('click', activeToggleClickHandler);
 
-    // Define a new click handler
     function activeToggleClickHandler() {
       console.log(`Before click: Active toggle classList for schedule ${index}:`, activeToggle.classList.toString());
       this.classList.toggle('active');
@@ -111,14 +109,12 @@ export function toggleScheduleEdit(scheduleState) {
       console.log('After click: Active state updated:', isActive, 'classList:', activeToggle.classList.toString());
     }
 
-    // Add the new click listener
     activeToggle.addEventListener('click', activeToggleClickHandler);
   }
 
   const editButtonId = `edit-button-schedule-${index}`;
   const saveButtonId = `save-button-schedule-${index}`;
 
-  // Log the current state when entering edit mode
   if (isCurrentlyEditing) {
     console.log(`Editing schedule ${index}`);
     // Log the field values
@@ -133,7 +129,8 @@ export function toggleScheduleEdit(scheduleState) {
     let selectedDays = [];
     dayButtons.forEach(button => {
       if (button.classList.contains('selected')) {
-        selectedDays.push(button.textContent);
+        console.log('right there');
+        selectedDays.push(button.getAttribute('data-day'));
       }
     });
     console.log(`Selected Days: ${selectedDays.join(', ')}`);
@@ -147,23 +144,20 @@ export function toggleScheduleEdit(scheduleState) {
     return;
   }
 
-  // Toggle button text and field states
   editButton.textContent = isCurrentlyEditing ? 
     chrome.i18n.getMessage("cancelLabel") : chrome.i18n.getMessage("editButtonLabel");
   console.log('isCurrentlyEditing:', isCurrentlyEditing);
   saveButton.disabled = !isCurrentlyEditing;
 
-  // Toggle field editability
   [scheduleNameField, startTimeField, endTimeField].forEach(field => {
     if (field) field.readOnly = !isCurrentlyEditing;
   });
 
-  // Toggle day buttons and active toggle button, only if in edit mode
   dayButtons.forEach(button => {
     button.onclick = isCurrentlyEditing ? () => {
       button.classList.toggle('selected');
-      const updatedSelectedDays = Array.from(document.querySelectorAll(`#dayButtons-${scheduleState.index} .day-button.selected`))
-                                        .map(selectedButton => selectedButton.textContent);
+      const updatedSelectedDays = Array.from(document.querySelectorAll(`#dayButtons-${index} .day-button.selected`))
+      .map(selectedButton => selectedButton.getAttribute('data-day')); // Use data-day attribute
       scheduleState.updateTempState({ days: updatedSelectedDays });
     } : null;
   });
@@ -202,40 +196,32 @@ function handleTimeInput(inputElement, event) {
 
   let value = inputElement.value;
 
-  // Remove non-numeric and non-colon characters
   value = value.replace(/[^0-9:]/g, '');
 
-  // Split the value into hours and minutes
   let parts = value.split(':');
   let hours = parts[0];
   let minutes = parts[1];
 
-  // Adjust for colon input and backspaces
   if (keyValue === ':') {
       if (hours.length === 1 || hours.length === 2) {
           value = `${hours}:`;
       }
   } else if (keyValue === 'backspace') {
       if (previousValue.endsWith(':')) {
-          // Remove last digit of hours if backspacing over colon
           hours = hours.substring(0, hours.length - 1);
           value = hours;
       } else {
-          // Standard backspace handling if not over colon
           value = value.substring(0, value.length - 1);
       }
   }
 
-  // Re-split the value after backspace handling
   parts = value.split(':');
   hours = parts[0];
   minutes = parts[1];
 
-  // Ensure hours and minutes are within their bounds
   hours = Math.min(Math.max(parseInt(hours, 10) || 0, 0), 23);
   minutes = minutes ? Math.min(Math.max(parseInt(minutes, 10), 0), 59) : '';
 
-  // Format the value correctly
   if (minutes !== '') {
       value = `${hours}:${minutes}`;
   } else if (value.endsWith(':') || hours >= 10) {
@@ -244,24 +230,20 @@ function handleTimeInput(inputElement, event) {
       value = `${hours}`;
   }
 
-  // Update the input value
   inputElement.value = value;
   console.log(`New state: ${value}`);
 
-  // Store the current value for future reference
   inputElement.dataset.previousValue = value;
 }
 
 function formatTime(timeStr) {
   if (!timeStr.includes(':')) {
-    // If only hours or minutes are provided, add the missing part
     return timeStr.padStart(2, '0') + ":00";
   }
   let [hours, minutes] = timeStr.split(':').map(str => str.padStart(2, '0'));
   return `${hours}:${minutes}`;
 }
 
-// Removes a schedule from the storage and updates the UI
 export function removeSchedule(index) {
   console.log('removeSchedule called for index:', index);
   chrome.storage.sync.get('schedules', ({ schedules }) => {
@@ -270,7 +252,6 @@ export function removeSchedule(index) {
       return;
     }
 
-    // Proceed with schedule removal
     schedules.splice(index, 1);
     chrome.storage.sync.set({ schedules }, () => {
       // After updating the schedules in storage, recreate the scheduleStates
@@ -281,7 +262,6 @@ export function removeSchedule(index) {
   });
 }
 
-// Updates the schedule with new values from the fields
 export function updateSchedule(scheduleState) {
   console.log('updateSchedule called with scheduleState:', scheduleState);
   if (!scheduleState) {
@@ -293,7 +273,8 @@ export function updateSchedule(scheduleState) {
 
   chrome.storage.sync.get('schedules', ({ schedules }) => {
     const nameField = document.getElementById(`schedule-name-${index}`);
-    const selectedDays = Array.from(document.querySelectorAll(`#dayButtons-${index} .day-button.selected`)).map(button => button.textContent);
+    const selectedDays = Array.from(document.querySelectorAll(`#dayButtons-${index} .day-button.selected`))
+                              .map(button => button.getAttribute('data-day'));
     const startTimeField = document.getElementById(`schedule-startTime-${index}`);
     const endTimeField = document.getElementById(`schedule-endTime-${index}`);
     const activeToggle = document.getElementById(`active-toggle-${index}`); // Ensure activeToggle is defined here
@@ -313,8 +294,13 @@ export function updateSchedule(scheduleState) {
       isActive: isActive
     });
     console.log('updateSchedule: ', scheduleState);
-
-    // Optionally, refresh UI for the current item
+    console.log('Updating schedule with state:', {
+      name: nameField.value,
+      days: selectedDays,
+      startTime: startTimeField.value,
+      endTime: endTimeField.value,
+      isActive: isActive
+    });
     refreshScheduleItemUIWithTempState(index, scheduleState.tempState);
     console.log('Fetched schedules for update:', schedules);
   });
@@ -326,7 +312,6 @@ function addSchedule() {
   let scheduleName = document.getElementById('scheduleNameInput').value.trim();
 
   chrome.storage.sync.get('schedules', ({ schedules = [] }) => {
-    // Generate a schedule name if empty
     if (!scheduleName) {
       const existingNames = new Set(schedules.map(s => s.name.toLowerCase()));
       let scheduleNumber = 1;
@@ -336,53 +321,46 @@ function addSchedule() {
       scheduleName = chrome.i18n.getMessage("unnamedSchedulePrefix") + scheduleNumber;
     }
 
-    // Check if a schedule with this name already exists
     if (schedules.some(schedule => schedule.name.toLowerCase() === scheduleName.toLowerCase())) {
       alert(chrome.i18n.getMessage("scheduleNameExists"));
       return;
     }
 
-    // Construct the new schedule object
     const newSchedule = {
       name: scheduleName,
       days: [],
       startTime: '00:00',
       endTime: '23:59',
-      isActive: false // Initially, the schedule is not active
+      isActive: false
     };
 
-    // Add new schedule
     schedules.push(newSchedule);
     console.log('Adding new schedule to storage:', newSchedule);
 
-    // Create a new ScheduleState instance for the new schedule
     const newScheduleState = new ScheduleState(schedules.length - 1, newSchedule);
 
     // Save the updated schedules to Chrome storage
     chrome.storage.sync.set({ schedules }, () => {
-      // Retrieve updated schedules and their states
       chrome.storage.sync.get('schedules', ({ schedules = [] }) => {
         const scheduleStates = schedules.map((schedule, index) => new ScheduleState(index, schedule));
-        updateSchedulesUI(schedules, scheduleStates); // Pass both schedules and their states
-        document.getElementById('scheduleNameInput').value = ''; // Clear input field
+        updateSchedulesUI(schedules, scheduleStates);
+        document.getElementById('scheduleNameInput').value = '';
       });
     });
   });
 }
 
 export function hasMinimumUnlockedTime(schedules, minimumUnlockedTime = 60) {
-  const minutesInDay = 1440; // Total minutes in a day
+  const minutesInDay = 1440;
 
-  // Convert time string to minutes since midnight
   function timeToMinutes(time) {
     const [hours, minutes] = time.split(':').map(Number);
     return hours * 60 + minutes;
   }
 
-  // Aggregate all active schedules for each day
   const dailySchedules = {};
   schedules.forEach(schedule => {
-    if (schedule.isActive) {  // Only consider active schedules
+    if (schedule.isActive) {
       schedule.days.forEach(day => {
         if (!dailySchedules[day]) {
           dailySchedules[day] = [];
@@ -395,7 +373,6 @@ export function hasMinimumUnlockedTime(schedules, minimumUnlockedTime = 60) {
     }
   });
 
-  // Check for each day
   for (const day in dailySchedules) {
     let totalLockedTime = 0;
     dailySchedules[day].forEach(timeBlock => {
@@ -403,21 +380,19 @@ export function hasMinimumUnlockedTime(schedules, minimumUnlockedTime = 60) {
     });
 
     if (minutesInDay - totalLockedTime < minimumUnlockedTime) {
-      return false; // Not enough unlocked time
+      return false;
     }
   }
-  return true; // All days have enough unlocked time
+  return true;
 }
 
 
 export function doSchedulesOverlap(schedules) {
-  // Convert time string to minutes since midnight
   function timeToMinutes(time) {
       const [hours, minutes] = time.split(':').map(Number);
       return hours * 60 + minutes;
   }
 
-  // Create a map to hold arrays of time ranges for each day
   const dayTimeRanges = {};
 
   schedules.forEach(schedule => {
@@ -432,12 +407,10 @@ export function doSchedulesOverlap(schedules) {
       });
   });
 
-  // Function to check if two time ranges overlap
   function rangesOverlap(range1, range2) {
       return range1.start < range2.end && range1.end > range2.start;
   }
 
-  // Check for overlaps in each day's schedule
   for (const day in dayTimeRanges) {
       const ranges = dayTimeRanges[day];
       for (let i = 0; i < ranges.length; i++) {
@@ -449,5 +422,5 @@ export function doSchedulesOverlap(schedules) {
       }
   }
 
-  return false; // No overlaps found
+  return false;
 }

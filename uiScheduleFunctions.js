@@ -110,6 +110,7 @@ function saveSchedule(scheduleState) {
         updateSchedulesUI(schedules, scheduleStates);
         scheduleState.toggleEditing(); // Toggle off editing mode
         toggleFieldEditability(index, false);
+        console.log('Schedules saved to storage:', schedules);
 
         // Fetch and update the whitelist UI
         chrome.storage.sync.get('whitelistedSites', ({ whitelistedSites = [] }) => {
@@ -170,24 +171,30 @@ function createDayButtons(selectedDays, scheduleState) {
   dayButtonsContainer.id = `dayButtons-${index}`;
 
   const daysOfWeek = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-    daysOfWeek.forEach((day, dayIndex) => {
+  daysOfWeek.forEach((day, dayIndex) => {
     const dayButton = document.createElement('button');
     dayButton.id = `dayButton-${index}-${dayIndex}`;
-    dayButton.textContent = chrome.i18n.getMessage(day);
+    dayButton.textContent = chrome.i18n.getMessage(day); // Localized day name
     dayButton.classList.add('day-button');
+    dayButton.setAttribute('data-day', day); // Use data attribute for day
+    console.log('Creating day button:', day, 'with data-day:', dayButton.getAttribute('data-day'));
+
+
     if (selectedDays.includes(day)) {
       dayButton.classList.add('selected');
     }
 
     dayButton.addEventListener('click', function() {
       if (scheduleState.isEditing) {
-        this.classList.toggle('selected');
-        console.log('Day button clicked:', this.textContent, 'Selected:', this.classList.contains('selected'));
 
-        // Update the tempState here
+        this.classList.toggle('selected');
+        console.log(`Day button [${this.getAttribute('data-day')}] clicked. Selected:`, this.classList.contains('selected'));
+
+        // Update the tempState using data-day attribute
         const updatedSelectedDays = Array.from(document.querySelectorAll(`#dayButtons-${index} .day-button.selected`))
-                                        .map(selectedButton => selectedButton.textContent);
+                                        .map(selectedButton => selectedButton.getAttribute('data-day'));
         scheduleState.updateTempState({ days: updatedSelectedDays });
+        console.log(`Button classList: ${this.classList}, isSelected: ${this.classList.contains('selected')}`);
       }
     });
 
@@ -196,6 +203,7 @@ function createDayButtons(selectedDays, scheduleState) {
 
   return dayButtonsContainer;
 }
+
 
 
 function createActiveToggleButton(isActive, scheduleState) {
@@ -347,6 +355,7 @@ function createDeleteButton(index, schedule, allSchedules) {
 // Refreshes the UI for a single schedule item with temporary state
 export function refreshScheduleItemUIWithTempState(index, tempSchedule) {
   console.log('Refreshing UI for schedule', index, 'with temp state:', tempSchedule);
+  console.log('Refreshing UI with tempSchedule:', tempSchedule);
 
   const scheduleNameField = document.getElementById(`schedule-name-${index}`);
   console.log('Updating schedule name field:', scheduleNameField.id, 'New value:', tempSchedule.name);
@@ -362,7 +371,7 @@ export function refreshScheduleItemUIWithTempState(index, tempSchedule) {
 
   const dayButtons = document.querySelectorAll(`#dayButtons-${index} .day-button`);
   dayButtons.forEach(button => {
-    const isSelected = tempSchedule.days.includes(button.textContent);
+    const isSelected = tempSchedule.days.includes(button.getAttribute('data-day'));
     console.log('Updating day button:', button.id, 'Selected:', isSelected);
     button.classList.toggle('selected', isSelected);
   });
