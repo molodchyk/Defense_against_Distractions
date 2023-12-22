@@ -1,2 +1,203 @@
-
-{}
+{
+    "deleteButtonLabel": {
+        "message": "Zmazať"
+    },
+    "whitelistExistsMessage": {
+        "message": "Táto stránka je už v zozname povolených."
+    },
+    "deleteWhitelistError": {
+        "message": "Počas aktívneho harmonogramu nemožno odstrániť stránky zo zoznamu povolených."
+    },
+    "scheduleNameLabel": {
+        "message": "Názov harmonogramu"
+    },
+    "startTimeLabel": {
+        "message": "Čas začiatku"
+    },
+    "endTimeLabel": {
+        "message": "Čas ukončenia"
+    },
+    "activeStateLabel": {
+        "message": "Aktívny stav"
+    },
+    "editButtonLabel": {
+        "message": "Upraviť"
+    },
+    "saveButtonLabel": {
+        "message": "Uložiť"
+    },
+    "endTimeAfterStartTimeError": {
+        "message": "Čas ukončenia musí byť po čase začiatku."
+    },
+    "schedulesOverlapError": {
+        "message": "Harmonogramy sa nesmú prekrývať."
+    },
+    "minimumUnlockedTimeError": {
+        "message": "Každý deň musí mať aspoň 1 hodinu nezamknutého času."
+    },
+    "Mon": {
+        "message": "Pon"
+    },
+    "Tue": {
+        "message": "Uto"
+    },
+    "Wed": {
+        "message": "Str"
+    },
+    "Thu": {
+        "message": "Štv"
+    },
+    "Fri": {
+        "message": "Pia"
+    },
+    "Sat": {
+        "message": "Sob"
+    },
+    "Sun": {
+        "message": "Ned"
+    },
+    "Edit": {
+        "message": "Upraviť"
+    },
+    "Save": {
+        "message": "Uložiť"
+    },
+    "Delete": {
+        "message": "Zmazať"
+    },
+    "groupNameLabel": {
+        "message": "Názov skupiny"
+    },
+    "websitesLabel": {
+        "message": "Webové stránky"
+    },
+    "keywordsLabel": {
+        "message": "Kľúčové slová"
+    },
+    "timerCountLabel": {
+        "message": "Počet časovačov"
+    },
+    "timerDurationLabel": {
+        "message": "Trvanie časovača (sekundy)"
+    },
+    "unnamedSchedulesMaxReached": {
+        "message": "Dosiahnutý maximálny počet neoznačených harmonogramov."
+    },
+    "scheduleNameExists": {
+        "message": "Harmonogram s týmto názvom už existuje."
+    },
+    "cannotDeleteActiveSchedule": {
+        "message": "Aktívny harmonogram nemožno odstrániť. Počkajte, kým harmonogram nebude aktívny."
+    },
+    "optionsTitle": {
+        "message": "Ovládací panel"
+    },
+    "groupsHeading": {
+        "message": "Skupiny"
+    },
+    "whitelistHeading": {
+        "message": "Zoznam povolených webových stránok"
+    },
+    "schedulesHeading": {
+        "message": "Zamknuté harmonogramy"
+    },
+    "unnamedGroupsMaxReached": {
+        "message": "Dosiahnutý maximálny počet neoznačených skupín."
+    },
+    "groupNameExists": {
+        "message": "Skupina s týmto názvom už existuje."
+    },
+    "cannotDeleteGroupActiveSchedule": {
+        "message": "Počas aktívneho harmonogramu nemožno odstrániť skupiny."
+    },
+    "cannotIncreaseTimerActiveSchedule": {
+        "message": "Počas aktívneho harmonogramu nemožno zvyšovať trvanie časovača a počet časovačov."
+    },
+    "invalidKeywordValue": {
+        "message": "Neplatná hodnota kľúčového slova. Musí byť v špecifikovanom rozsahu."
+    },
+    "cannotChangeGroupNameActiveSchedule": {
+        "message": "Zmena názvu skupiny nie je počas aktívneho harmonogramu povolená."
+    },
+    "invalidEditOnWebsitesOrKeywords": {
+        "message": "Úpravy alebo odstránenia vstupov webových stránok alebo kľúčových slov, zmena nemôže byť uložená."
+    },
+    "invalidKeywordEntry": {
+        "message": "Neplatný záznam kľúčového slova: "
+    },
+    "addGroupButtonText": {
+        "message": "Pridať skupinu"
+    },
+    "contentBlockedTitle": {
+        "message": "Obsah zablokovaný"
+    },
+    "contentBlockedMessage": {
+        "message": "Táto stránka obsahuje obmedzený obsah a bola zablokovaná pre vašu ochranu."
+    },
+    "keywordDetected": {
+        "message": "Detekované kľúčové slovo"
+    },
+    "context": {
+        "message": "Kontext"
+    },
+    "goBackButton": {
+        "message": "Vrátiť späť"
+    },
+    "activateTimerButton": {
+        "message": "Aktivovať časovač"
+    },
+    "cannotRelaxConstraints": {
+        "message": "Nemožno uvoľniť obmedzenia harmonogramu."
+    },
+    "activeButtonText": {
+        "message": "Aktívne"
+    },
+    "inactiveButtonText": {
+        "message": "Neaktívne"
+    },
+    "addScheduleButton": {
+        "message": "Pridať harmonogram"
+    },
+    "enterWebsiteURLPlaceholder": {
+        "message": "Zadajte URL adresu webového sídla"
+    },
+    "addToWhitelistButton": {
+        "message": "Pridať do zoznamu povolených"
+    },
+    "cancelButton": {
+        "message": "Zrušiť"
+    },
+    "groupNamePlaceholder": {
+        "message": "Názov skupiny"
+    },
+    "addScheduleButtonLabel": {
+        "message": "Pridať harmonogram"
+    },
+    "unnamedSchedulePrefix": {
+        "message": "Harmonogram "
+    },
+    "addToWhitelistButtonLabel": {
+        "message": "Pridať do zoznamu povolených"
+    },
+    "cancelButtonLabel": {
+        "message": "Zrušiť"
+    },
+    "activeLabel": {
+        "message": "Aktívne"
+    },
+    "inactiveLabel": {
+        "message": "Neaktívne"
+    },
+    "cancelLabel": {
+        "message": "Zrušiť"
+    },
+    "scheduleNamePlaceholder": {
+        "message": "Názov harmonogramu"
+    },
+    "editLabel": {
+        "message": "Upraviť"
+    },
+    "unnamedGroupPrefix": {
+        "message": "Skupina "
+    }
+}
