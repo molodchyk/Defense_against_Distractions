@@ -148,5 +148,56 @@
     },
     "cannotRelaxConstraints": {
         "message": "Cannot relax the schedule constraints."
+    },
+    "activeButtonText": {
+        "message": "Active"
+    },
+    "inactiveButtonText": {
+        "message": "Inactive"
+    },
+    "addScheduleButton": {
+        "message": "Add Schedule"
+    },
+    "enterWebsiteURLPlaceholder": {
+        "message": "Enter website URL"
+    },
+    "addToWhitelistButton": {
+        "message": "Add to Whitelist"
+    },
+    "cancelButton": {
+        "message": "Cancel"
+    },
+    "groupNamePlaceholder": {
+        "message": "Group Name"
+    },
+    "addScheduleButtonLabel": {
+        "message": "Add Schedule"
+    },
+    "unnamedSchedulePrefix": {
+        "message": "Schedule "
+    },
+    "addToWhitelistButtonLabel": {
+        "message": "Add to Whitelist"
+    },
+    "cancelButtonLabel": {
+        "message": "Cancel"
+    },
+    "activeLabel": {
+        "message": "Active"
+    },
+    "inactiveLabel": {
+        "message": "Inactive"
+    },
+    "cancelLabel": {
+        "message": "Cancel"
+    },
+    "scheduleNamePlaceholder": {
+        "message": "Schedule Name"
+    },
+    "editLabel": {
+        "message": "Edit"
+    },
+    "unnamedGroupPrefix": {
+        "message": "Group "
     }
 }

@@ -1,11 +1,10 @@
 import {
-    toggleScheduleEdit,
-    removeSchedule,
-    updateSchedule,
-    toggleFieldEditability,
-    hasMinimumUnlockedTime,
-    doSchedulesOverlap
-  } from './schedule.js';
+  toggleScheduleEdit,
+  removeSchedule,
+  toggleFieldEditability,
+  hasMinimumUnlockedTime,
+  doSchedulesOverlap
+} from './schedule.js';
 
 import {
   ScheduleState
@@ -207,7 +206,8 @@ function createActiveToggleButton(isActive, scheduleState) {
   }
 
   const activeButton = document.createElement('button');
-  activeButton.textContent = isActive ? 'Active' : 'Inactive';
+  activeButton.textContent = isActive ? chrome.i18n.getMessage
+    ("activeButtonText") : chrome.i18n.getMessage("inactiveButtonText");
   activeButton.classList.add('active-toggle');
   // Add 'active' class if isActive is true
   if (isActive) {
@@ -242,7 +242,7 @@ function createButton(text, onClick, className, index) {
     onClick();
   });
   button.className = className;
-  
+
   if (typeof index === 'number') {
     button.id = `${className}-${index}`;
     console.log(`Created button with ID: ${button.id}`);
@@ -327,7 +327,7 @@ function createDeleteButton(index, schedule, allSchedules) {
   const deleteButton = document.createElement('button');
   deleteButton.textContent = chrome.i18n.getMessage("deleteButtonLabel");
   deleteButton.classList.add('delete-button');
-  
+
   const anyScheduleActive = isCurrentTimeInAnySchedule(allSchedules);
   const isThisScheduleSetForActivation = schedule.isActive && schedule.days.length > 0;
 
@@ -347,7 +347,7 @@ function createDeleteButton(index, schedule, allSchedules) {
 // Refreshes the UI for a single schedule item with temporary state
 export function refreshScheduleItemUIWithTempState(index, tempSchedule) {
   console.log('Refreshing UI for schedule', index, 'with temp state:', tempSchedule);
-  
+
   const scheduleNameField = document.getElementById(`schedule-name-${index}`);
   console.log('Updating schedule name field:', scheduleNameField.id, 'New value:', tempSchedule.name);
   scheduleNameField.value = tempSchedule.name;

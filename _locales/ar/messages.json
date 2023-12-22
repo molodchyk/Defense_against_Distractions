@@ -1,1 +1,203 @@
-{}
+{
+    "deleteButtonLabel": {
+        "message": "حذف"
+    },
+    "whitelistExistsMessage": {
+        "message": "هذا الموقع موجود بالفعل في القائمة البيضاء."
+    },
+    "deleteWhitelistError": {
+        "message": "لا يمكن حذف المواقع من القائمة البيضاء أثناء جدول زمني نشط."
+    },
+    "scheduleNameLabel": {
+        "message": "اسم الجدول الزمني"
+    },
+    "startTimeLabel": {
+        "message": "وقت البدء"
+    },
+    "endTimeLabel": {
+        "message": "وقت الانتهاء"
+    },
+    "activeStateLabel": {
+        "message": "الحالة النشطة"
+    },
+    "editButtonLabel": {
+        "message": "تعديل"
+    },
+    "saveButtonLabel": {
+        "message": "حفظ"
+    },
+    "endTimeAfterStartTimeError": {
+        "message": "يجب أن يكون وقت الانتهاء بعد وقت البدء."
+    },
+    "schedulesOverlapError": {
+        "message": "لا يمكن أن تتداخل الجداول الزمنية."
+    },
+    "minimumUnlockedTimeError": {
+        "message": "يجب أن يكون هناك ساعة واحدة على الأقل غير مقفلة كل يوم."
+    },
+    "Mon": {
+        "message": "الإثنين"
+    },
+    "Tue": {
+        "message": "الثلاثاء"
+    },
+    "Wed": {
+        "message": "الأربعاء"
+    },
+    "Thu": {
+        "message": "الخميس"
+    },
+    "Fri": {
+        "message": "الجمعة"
+    },
+    "Sat": {
+        "message": "السبت"
+    },
+    "Sun": {
+        "message": "الأحد"
+    },
+    "Edit": {
+        "message": "تعديل"
+    },
+    "Save": {
+        "message": "حفظ"
+    },
+    "Delete": {
+        "message": "حذف"
+    },
+    "groupNameLabel": {
+        "message": "اسم المجموعة"
+    },
+    "websitesLabel": {
+        "message": "المواقع"
+    },
+    "keywordsLabel": {
+        "message": "الكلمات المفتاحية"
+    },
+    "timerCountLabel": {
+        "message": "عدد الساعات"
+    },
+    "timerDurationLabel": {
+        "message": "مدة الساعة (ثواني)"
+    },
+    "unnamedSchedulesMaxReached": {
+        "message": "تم الوصول إلى الحد الأقصى لعدد الجداول الزمنية بدون اسم."
+    },
+    "scheduleNameExists": {
+        "message": "يوجد بالفعل جدول زمني بهذا الاسم."
+    },
+    "cannotDeleteActiveSchedule": {
+        "message": "لا يمكن حذف جدول زمني نشط. يرجى الانتظار حتى لا يكون الجدول نشطًا."
+    },
+    "optionsTitle": {
+        "message": "لوحة الدفاع"
+    },
+    "groupsHeading": {
+        "message": "المجموعات"
+    },
+    "whitelistHeading": {
+        "message": "قائمة المواقع الموثوقة"
+    },
+    "schedulesHeading": {
+        "message": "الجداول الزمنية المقفلة"
+    },
+    "unnamedGroupsMaxReached": {
+        "message": "تم الوصول إلى الحد الأقصى لعدد المجموعات بدون اسم."
+    },
+    "groupNameExists": {
+        "message": "يوجد بالفعل مجموعة بهذا الاسم."
+    },
+    "cannotDeleteGroupActiveSchedule": {
+        "message": "لا يمكن حذف المجموعات خلال جدول زمني نشط."
+    },
+    "cannotIncreaseTimerActiveSchedule": {
+        "message": "لا يمكن زيادة مدة الساعة وعددها خلال جدول زمني نشط."
+    },
+    "invalidKeywordValue": {
+        "message": "قيمة كلمة مفتاحية غير صالحة. يجب أن تكون ضمن النطاق المحدد."
+    },
+    "cannotChangeGroupNameActiveSchedule": {
+        "message": "لا يسمح بتغيير اسم المجموعة أثناء جدول زمني نشط."
+    },
+    "invalidEditOnWebsitesOrKeywords": {
+        "message": "تم تعديل أو إزالة إدخالات المواقع أو الكلمات المفتاحية، لا يمكن حفظ التغيير."
+    },
+    "invalidKeywordEntry": {
+        "message": "إدخال كلمة مفتاحية غير صالح: "
+    },
+    "addGroupButtonText": {
+        "message": "إضافة مجموعة"
+    },
+    "contentBlockedTitle": {
+        "message": "المحتوى محظور"
+    },
+    "contentBlockedMessage": {
+        "message": "تم حظر هذه الصفحة لاحتوائها على محتوى مقيد لحمايتك."
+    },
+    "keywordDetected": {
+        "message": "كلمة مفتاحية تم اكتشافها"
+    },
+    "context": {
+        "message": "السياق"
+    },
+    "goBackButton": {
+        "message": "عودة"
+    },
+    "activateTimerButton": {
+        "message": "تفعيل الساعة"
+    },
+    "cannotRelaxConstraints": {
+        "message": "لا يمكن تخفيف قيود الجدول الزمني."
+    },
+    "activeButtonText": {
+        "message": "نشط"
+    },
+    "inactiveButtonText": {
+        "message": "غير نشط"
+    },
+    "addScheduleButton": {
+        "message": "أضف جدول"
+    },
+    "enterWebsiteURLPlaceholder": {
+        "message": "أدخل عنوان URL للموقع"
+    },
+    "addToWhitelistButton": {
+        "message": "أضف إلى القائمة البيضاء"
+    },
+    "cancelButton": {
+        "message": "إلغاء"
+    },
+    "groupNamePlaceholder": {
+        "message": "اسم المجموعة"
+    },
+    "addScheduleButtonLabel": {
+        "message": "أضف جدول"
+    },
+    "unnamedSchedulePrefix": {
+        "message": "جدول "
+    },
+    "addToWhitelistButtonLabel": {
+        "message": "أضف إلى القائمة البيضاء"
+    },
+    "cancelButtonLabel": {
+        "message": "إلغاء"
+    },
+    "activeLabel": {
+        "message": "نشط"
+    },
+    "inactiveLabel": {
+        "message": "غير نشط"
+    },
+    "cancelLabel": {
+        "message": "إلغاء"
+    },
+    "scheduleNamePlaceholder": {
+        "message": "اسم الجدول"
+    },
+    "editLabel": {
+        "message": "تعديل"
+    },
+    "unnamedGroupPrefix": {
+        "message": "مجموعة "
+    }
+}

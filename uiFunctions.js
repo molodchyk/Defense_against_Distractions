@@ -111,7 +111,7 @@ function createButton(textKey, onClick, className) {
 
 export function checkScheduleStatus() {
   chrome.storage.sync.get('schedules', ({ schedules }) => {
-    if (!isCurrentTimeInAnySchedule(schedules)) {
+    if (!isCurrentTimeInAnySchedule(schedules)) { //line 114
       enableUIElements(); // Enable UI elements when no schedule is active
     }
   });

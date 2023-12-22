@@ -9,16 +9,12 @@ export function addGroup() {
     // Generate a group name if empty
     if (!groupName) {
       const existingNames = new Set(websiteGroups.map(group => group.groupName.toLowerCase()));
-      const possibleNames = ["Group 1", "Group 2", "Group 3", "Group 4", "Group 5"];
-      const availableName = possibleNames.find(name => !existingNames.has(name.toLowerCase()));
-
-      if (availableName) {
-        groupName = availableName;
-      } else {
-        alert(chrome.i18n.getMessage("unnamedGroupsMaxReached"));
-        return;
+      let groupNumber = 1;
+      while (existingNames.has(chrome.i18n.getMessage("unnamedGroupPrefix").toLowerCase() + groupNumber)) {
+          groupNumber++;
       }
-    }
+      groupName = chrome.i18n.getMessage("unnamedGroupPrefix") + groupNumber;
+  }
 
     // Check if a group with this name already exists
     if (websiteGroups.some(group => group.groupName.toLowerCase() === groupName.toLowerCase())) {
@@ -75,7 +71,7 @@ export function toggleFieldEdit(fieldId, index) {
     console.log(`Clicked button Edit, editing field: ${fieldName}, Current Text: '${field.value}'`);
     field.readOnly = false;
     field.style.height = 'auto';
-    editButton.textContent = 'Cancel';
+    editButton.textContent = chrome.i18n.getMessage("cancelLabel");
     saveButton.disabled = false;
     field.setAttribute('data-initial-value', field.value);
 
@@ -91,7 +87,7 @@ export function toggleFieldEdit(fieldId, index) {
     console.log(`Edit canceled for field: ${fieldName}, Original Text: '${field.getAttribute('data-initial-value')}'`);
     field.readOnly = true;
     field.value = field.getAttribute('data-initial-value'); // Restore original value
-    editButton.textContent = 'Edit';
+    editButton.textContent = chrome.i18n.getMessage("editLabel");
     saveButton.disabled = true;
 
     if (field.tagName.toLowerCase() === 'textarea') {

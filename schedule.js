@@ -148,7 +148,8 @@ export function toggleScheduleEdit(scheduleState) {
   }
 
   // Toggle button text and field states
-  editButton.textContent = isCurrentlyEditing ? 'Cancel' : 'Edit';
+  editButton.textContent = isCurrentlyEditing ? 
+    chrome.i18n.getMessage("cancelLabel") : chrome.i18n.getMessage("editButtonLabel");
   console.log('isCurrentlyEditing:', isCurrentlyEditing);
   saveButton.disabled = !isCurrentlyEditing;
 
@@ -173,7 +174,8 @@ export function toggleScheduleEdit(scheduleState) {
     activeToggle.onclick = isCurrentlyEditing ? () => {
       activeToggle.classList.toggle('active');
       scheduleState.updateTempState({ isActive: activeToggle.classList.contains('active') });
-      activeToggle.textContent = activeToggle.classList.contains('active') ? 'Active' : 'Inactive';
+      activeToggle.textContent = activeToggle.classList.contains('active') ? 
+        chrome.i18n.getMessage("activeLabel") : chrome.i18n.getMessage("inactiveLabel");
     } : null;
   }
 
@@ -327,15 +329,11 @@ function addSchedule() {
     // Generate a schedule name if empty
     if (!scheduleName) {
       const existingNames = new Set(schedules.map(s => s.name.toLowerCase()));
-      const possibleNames = ["Schedule 1", "Schedule 2", "Schedule 3", "Schedule 4", "Schedule 5"];
-      const availableName = possibleNames.find(name => !existingNames.has(name.toLowerCase()));
-
-      if (availableName) {
-        scheduleName = availableName;
-      } else {
-        alert(chrome.i18n.getMessage("unnamedSchedulesMaxReached"));
-        return;
+      let scheduleNumber = 1;
+      while (existingNames.has(chrome.i18n.getMessage("unnamedSchedulePrefix") + scheduleNumber)) {
+        scheduleNumber++;
       }
+      scheduleName = chrome.i18n.getMessage("unnamedSchedulePrefix") + scheduleNumber;
     }
 
     // Check if a schedule with this name already exists

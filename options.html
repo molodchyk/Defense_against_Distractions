@@ -9,7 +9,10 @@
     <section>
         <h2 id="groupsHeading">Groups</h2>
         <div class="input-group">
-            <input type="text" id="groupNameInput" placeholder="Group Name">
+            <!-- <input type="text" id="groupNameInput" placeholder="Group Name"> -->
+            <input type="text" id="groupNameInput" placeholder="">
+            <!-- document.getElementById('groupNameInput').
+                setAttribute('placeholder', chrome.i18n.getMessage("groupNamePlaceholder")); -->
             <button id="addGroupButton">Add Group</button>
         </div>
         <ul id="groupList"></ul>
@@ -18,8 +21,15 @@
     <section>
         <h2 id="whitelistHeading">Whitelist Websites</h2>
         <div class="input-group">
-            <input type="text" id="whitelistInput" placeholder="Enter website URL">
-            <button id="addWhitelistButton">Add to Whitelist</button>
+            <!-- document.getElementById('whitelistInput').
+                setAttribute('placeholder', chrome.i18n.getMessage("enterWebsiteURLPlaceholder")); -->
+
+            <input type="text" id="whitelistInput" placeholder="">
+            <!-- <input type="text" id="whitelistInput" placeholder="Enter website URL"> -->
+            <!-- <button id="addWhitelistButton">Add to Whitelist</button> -->
+            <!-- document.getElementById('addWhitelistButton').
+                textContent = chrome.i18n.getMessage("addToWhitelistButtonLabel"); -->
+            <button id="addWhitelistButton"></button>
         </div>
         <ul id="whitelist"></ul>
     </section>
@@ -27,8 +37,14 @@
     <section>
         <h2 id="schedulesHeading">Locked Schedules</h2>
         <div class="input-group">
-            <input type="text" id="scheduleNameInput" placeholder="Schedule Name">
-            <button id="addScheduleButton">Add Schedule</button>
+            <!-- <input type="text" id="scheduleNameInput" placeholder="Schedule Name"> -->
+            <!-- document.getElementById('scheduleNameInput').
+                setAttribute('placeholder', chrome.i18n.getMessage("scheduleNamePlaceholder")); -->
+            <input type="text" id="scheduleNameInput" placeholder="">
+            <!-- <button id="addScheduleButton">Add Schedule</button> -->
+            <!-- document.getElementById('addScheduleButton').
+                textContent = chrome.i18n.getMessage("addScheduleButtonLabel"); -->
+            <button id="addScheduleButton"></button>
         </div>
         <ul id="scheduleList"></ul>
     </section>

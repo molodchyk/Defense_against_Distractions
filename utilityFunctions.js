@@ -49,11 +49,14 @@ export function addEnterFunctionalityToField(field) {
 
 
 export function isCurrentTimeInAnySchedule(schedules) {
+  if (!schedules || schedules.length === 0) {
+    return false; // Return false if schedules is undefined or empty
+  }
   const now = new Date();
   const currentDay = now.toLocaleString('en-US', { weekday: 'short' });
   const currentTimeMinutes = now.getHours() * 60 + now.getMinutes();
 
-  return schedules.some(schedule => {
+  return schedules.some(schedule => {//line 56
     if (!schedule.isActive || !schedule.days.includes(currentDay)) {
       return false;
     }

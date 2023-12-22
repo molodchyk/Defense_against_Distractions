@@ -24,6 +24,15 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('groupsHeading').textContent = chrome.i18n.getMessage("groupsHeading");
   document.getElementById('whitelistHeading').textContent = chrome.i18n.getMessage("whitelistHeading");
   document.getElementById('schedulesHeading').textContent = chrome.i18n.getMessage("schedulesHeading");
+
+
+  document.getElementById('groupNameInput').placeholder = chrome.i18n.getMessage("groupNamePlaceholder");
+  document.getElementById('whitelistInput').placeholder = chrome.i18n.getMessage("enterWebsiteURLPlaceholder");
+  document.getElementById('addWhitelistButton').textContent = chrome.i18n.getMessage("addToWhitelistButtonLabel");
+  document.getElementById('scheduleNameInput').placeholder = chrome.i18n.getMessage("scheduleNamePlaceholder");
+  document.getElementById('addScheduleButton').textContent = chrome.i18n.getMessage("addScheduleButtonLabel");
+
+
   chrome.storage.sync.get('websiteGroups', ({ websiteGroups = [] }) => {
     updateGroupsUI(websiteGroups);
   });
