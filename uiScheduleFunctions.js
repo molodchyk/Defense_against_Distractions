@@ -93,11 +93,14 @@ function saveSchedule(scheduleState) {
       }
 
 
+      // Check if the current schedule is set to active and has days selected
+      const isCurrentScheduleActiveAndSetForWeek = tempSchedule.isActive && tempSchedule.days.length > 0;
+
       // Determine if any schedule is currently active
       const isAnyScheduleActive = isCurrentTimeInAnySchedule(schedules);
 
-      // Updated call to isScheduleMoreStrict
-      if (isAnyScheduleActive && !isScheduleMoreStrict(originalSchedule, tempSchedule)) {
+      // Apply the strictness check only if the current schedule is active and has days selected
+      if (isCurrentScheduleActiveAndSetForWeek && isAnyScheduleActive && !isScheduleMoreStrict(originalSchedule, tempSchedule)) {
         console.log('Cannot relax the schedule constraints.');
         alert(chrome.i18n.getMessage("cannotRelaxConstraints"));
         return; // Prevent saving
@@ -106,6 +109,8 @@ function saveSchedule(scheduleState) {
       // Update the schedule in storage with the temporary state
       schedules[index] = { ...schedules[index], ...scheduleState.tempState };
       chrome.storage.sync.set({ schedules }, () => {
+
+        updateAddWhitelistButtonState();
         const scheduleStates = schedules.map((schedule, idx) => new ScheduleState(idx, schedule));
         updateSchedulesUI(schedules, scheduleStates);
         scheduleState.toggleEditing(); // Toggle off editing mode
@@ -124,6 +129,14 @@ function saveSchedule(scheduleState) {
     });
     }
     console.log('Fetched schedules for saving:', schedules);
+  });
+}
+
+function updateAddWhitelistButtonState() {
+  chrome.storage.sync.get('schedules', ({ schedules }) => {
+      const isLocked = isCurrentTimeInAnySchedule(schedules);
+      const addWhitelistButton = document.getElementById('addWhitelistButton');
+      addWhitelistButton.disabled = isLocked;
   });
 }
 
@@ -164,7 +177,6 @@ function isTimeEarlier(time1, time2) {
   return timeStringToMinutes(time1) > timeStringToMinutes(time2);
 }
 
-
 function createDayButtons(selectedDays, scheduleState) {
   const index = scheduleState.index;
   const dayButtonsContainer = document.createElement('div');
@@ -174,11 +186,9 @@ function createDayButtons(selectedDays, scheduleState) {
   daysOfWeek.forEach((day, dayIndex) => {
     const dayButton = document.createElement('button');
     dayButton.id = `dayButton-${index}-${dayIndex}`;
-    dayButton.textContent = chrome.i18n.getMessage(day); // Localized day name
+    dayButton.textContent = chrome.i18n.getMessage(day);
     dayButton.classList.add('day-button');
-    dayButton.setAttribute('data-day', day); // Use data attribute for day
-    console.log('Creating day button:', day, 'with data-day:', dayButton.getAttribute('data-day'));
-
+    dayButton.setAttribute('data-day', day);
 
     if (selectedDays.includes(day)) {
       dayButton.classList.add('selected');
@@ -186,15 +196,26 @@ function createDayButtons(selectedDays, scheduleState) {
 
     dayButton.addEventListener('click', function() {
       if (scheduleState.isEditing) {
+        // Asynchronously fetch schedules to check current schedule status
+        chrome.storage.sync.get('schedules', ({ schedules }) => {
+          const isScheduleActive = scheduleState.tempState.isActive;
+          const isButtonSelected = this.classList.contains('selected');
+          const isAnyScheduleActive = isCurrentTimeInAnySchedule(schedules);
 
-        this.classList.toggle('selected');
-        console.log(`Day button [${this.getAttribute('data-day')}] clicked. Selected:`, this.classList.contains('selected'));
+          // Check if the schedule is active, the button is already selected, and any schedule is currently active
+          if (isScheduleActive && isButtonSelected && isAnyScheduleActive) {
+            alert(chrome.i18n.getMessage("cannotDeselectDaysError"));
+          } else {
+            this.classList.toggle('selected');
+            console.log(`Day button [${this.getAttribute('data-day')}] clicked. Selected:`, this.classList.contains('selected'));
 
-        // Update the tempState using data-day attribute
-        const updatedSelectedDays = Array.from(document.querySelectorAll(`#dayButtons-${index} .day-button.selected`))
-                                        .map(selectedButton => selectedButton.getAttribute('data-day'));
-        scheduleState.updateTempState({ days: updatedSelectedDays });
-        console.log(`Button classList: ${this.classList}, isSelected: ${this.classList.contains('selected')}`);
+            // Update the tempState using data-day attribute
+            const updatedSelectedDays = Array.from(document.querySelectorAll(`#dayButtons-${index} .day-button.selected`))
+                                            .map(selectedButton => selectedButton.getAttribute('data-day'));
+            scheduleState.updateTempState({ days: updatedSelectedDays });
+            console.log(`Button classList: ${this.classList}, isSelected: ${this.classList.contains('selected')}`);
+          }
+        });
       }
     });
 
@@ -205,7 +226,6 @@ function createDayButtons(selectedDays, scheduleState) {
 }
 
 
-
 function createActiveToggleButton(isActive, scheduleState) {
   console.log('Creating active toggle for schedule', scheduleState.index);
   if (!scheduleState) {
@@ -214,24 +234,32 @@ function createActiveToggleButton(isActive, scheduleState) {
   }
 
   const activeButton = document.createElement('button');
-  activeButton.textContent = isActive ? chrome.i18n.getMessage
-    ("activeButtonText") : chrome.i18n.getMessage("inactiveButtonText");
+  activeButton.textContent = isActive ? chrome.i18n.getMessage("activeButtonText") : chrome.i18n.getMessage("inactiveButtonText");
   activeButton.classList.add('active-toggle');
-  // Add 'active' class if isActive is true
   if (isActive) {
     activeButton.classList.add('active');
   }
-  activeButton.id = `active-toggle-${scheduleState.index}`; // Using scheduleState for ID
+  activeButton.id = `active-toggle-${scheduleState.index}`;
 
   activeButton.addEventListener('click', function() {
     console.log('Active toggle clicked for schedule', scheduleState.index);
     if (scheduleState.isEditing) {
-      this.classList.toggle('active');
-      const newIsActive = this.classList.contains('active');
-      this.textContent = newIsActive ? 'Active' : 'Inactive';
+      chrome.storage.sync.get('schedules', ({ schedules }) => {
+        const isAnyScheduleActive = isCurrentTimeInAnySchedule(schedules);
+        const isThisScheduleSetForActivation = scheduleState.tempState.isActive && scheduleState.tempState.days.length > 0;
 
-      // Update the temporary state in scheduleState
-      scheduleState.updateTempState({ isActive: newIsActive });
+        if (!isAnyScheduleActive || !isThisScheduleSetForActivation) {
+          this.classList.toggle('active');
+          const newIsActive = this.classList.contains('active');
+          this.textContent = newIsActive ? chrome.i18n.getMessage("activeLabel") : chrome.i18n.getMessage("inactiveLabel");
+
+          // Update the temporary state in scheduleState
+          scheduleState.updateTempState({ isActive: newIsActive });
+        } else {
+          console.log('Cannot toggle active state under current conditions.');
+          alert(chrome.i18n.getMessage("cannotToggleActiveState"));
+        }
+      });
     }
     console.log(`is editing for schedule ${scheduleState.index}: ${scheduleState.isEditing}`);
   });
@@ -380,7 +408,7 @@ export function refreshScheduleItemUIWithTempState(index, tempSchedule) {
   if (activeToggle) {
     const isActive = tempSchedule.isActive;
     console.log('Updating active toggle:', activeToggle.id, 'Active:', isActive);
-    activeToggle.textContent = isActive ? 'Active' : 'Inactive';
+    activeToggle.textContent = isActive ? chrome.i18n.getMessage("activeLabel") : chrome.i18n.getMessage("inactiveLabel");
     activeToggle.classList.toggle('active', isActive);
   }
 }

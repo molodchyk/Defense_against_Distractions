@@ -88,6 +88,16 @@ button:disabled:hover {
 #addWhitelistButton:hover {
     background-color: #45a049;
 }
+#addWhitelistButton:disabled {
+    background-color: #a9a9a9;
+    color: #666666;
+    cursor: default;
+    opacity: 0.7;
+}
+#addWhitelistButton:disabled:hover {
+    background-color: #a9a9a9;
+    color: #666666;
+}
 
 #whitelist li {
     background-color: #333;
@@ -404,6 +414,7 @@ background-size: 100% 2em;
 #addScheduleButton:hover {
     background-color: #45a049;
 }
+
 #groupList li {
     position: relative;
     flex-direction: column;

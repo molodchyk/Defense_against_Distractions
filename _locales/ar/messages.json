@@ -199,5 +199,14 @@
     },
     "unnamedGroupPrefix": {
         "message": "مجموعة "
+    },
+    "lockedScheduleErrorMessage": {
+        "message": "لا يمكن إضافة الموقع إلى القائمة البيضاء أثناء جدول نشط."
+    },
+    "cannotToggleActiveState": {
+        "message": "لا يمكن تغيير الحالة النشطة في ظل الظروف الحالية."
+    },
+    "cannotDeselectDaysError": {
+        "message": "لا يمكن إلغاء تحديد الأيام لجدول زمني نشط وقائم حاليًا."
     }
 }

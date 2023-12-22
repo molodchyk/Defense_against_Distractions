@@ -45,24 +45,34 @@ function addWhitelistSite() {
     return;
   }
 
-  // Normalize the site URL before adding it to the list
-  site = normalizeURL(site);
-  console.log(`Normalized site: ${site}`); // Log normalized site
-
-  chrome.storage.sync.get('whitelistedSites', (result) => {
-    let whitelistedSites = result.whitelistedSites || [];
-    if (!whitelistedSites.includes(site)) {
-      const updatedSites = [...whitelistedSites, site];
-      chrome.storage.sync.set({ whitelistedSites: updatedSites }, () => {
-        console.log(`Added site: ${site}`); // Log site addition
-        updateWhitelistUI(updatedSites);
-        input.value = '';
-      });
-    } else {
-      console.log("Site already in whitelist"); // Log if site is already in list
-      alert(chrome.i18n.getMessage("whitelistExistsMessage"));
+  chrome.storage.sync.get('schedules', (result) => {
+    const schedules = result.schedules || [];
+    if (isCurrentTimeInAnySchedule(schedules)) {
+      console.log("Cannot add site to whitelist during active schedule");
+      alert(chrome.i18n.getMessage("lockedScheduleErrorMessage"));
+      return;
     }
+
+    // Normalize the site URL before adding it to the list
+    site = normalizeURL(site);
+    console.log(`Normalized site: ${site}`); // Log normalized site
+
+    chrome.storage.sync.get('whitelistedSites', (result) => {
+      let whitelistedSites = result.whitelistedSites || [];
+      if (!whitelistedSites.includes(site)) {
+        const updatedSites = [...whitelistedSites, site];
+        chrome.storage.sync.set({ whitelistedSites: updatedSites }, () => {
+          console.log(`Added site: ${site}`); // Log site addition
+          updateWhitelistUI(updatedSites);
+          input.value = '';
+        });
+      } else {
+        console.log("Site already in whitelist"); // Log if site is already in list
+        alert(chrome.i18n.getMessage("whitelistExistsMessage"));
+      }
+    });
   });
+
 }
 
 function removeWhitelistSite(index) {
@@ -82,17 +92,27 @@ function removeWhitelistSite(index) {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize whitelist
-    chrome.storage.sync.get('whitelistedSites', ({ whitelistedSites = [] }) => {
+
+  const whitelistInput = document.getElementById('whitelistInput');
+  const addWhitelistButton = document.getElementById('addWhitelistButton'); // Initialize before first use
+
+  chrome.storage.sync.get('whitelistedSites', ({ whitelistedSites = [] }) => {
       updateWhitelistUI(whitelistedSites);
-    });
-  
-    // Add whitelist functionality
-    document.getElementById('addWhitelistButton').addEventListener('click', addWhitelistSite);
-    document.getElementById('whitelistInput').addEventListener('keypress', (event) => {
-      if (event.key === 'Enter') {
-        addWhitelistSite();
-        event.preventDefault(); // Prevent default to stop form submission if applicable
-      }
-    });
+  });
+
+  chrome.storage.sync.get('schedules', ({ schedules }) => {
+      const isLocked = isCurrentTimeInAnySchedule(schedules);
+      addWhitelistButton.disabled = isLocked; // Disable the button if in a locked schedule
+
+      addWhitelistButton.addEventListener('click', addWhitelistSite);
+
+      whitelistInput.addEventListener('keypress', (event) => {
+          if (event.key === 'Enter') {
+              if (!isLocked) {
+                  addWhitelistSite();
+              }
+              event.preventDefault(); // Prevent default action regardless of schedule state
+          }
+      });
+  });
 });

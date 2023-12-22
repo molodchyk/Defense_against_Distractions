@@ -129,7 +129,6 @@ export function toggleScheduleEdit(scheduleState) {
     let selectedDays = [];
     dayButtons.forEach(button => {
       if (button.classList.contains('selected')) {
-        console.log('right there');
         selectedDays.push(button.getAttribute('data-day'));
       }
     });
@@ -173,7 +172,7 @@ export function toggleScheduleEdit(scheduleState) {
     } : null;
   }
 
-  if (!isCurrentlyEditing && editButton.textContent === 'Edit') {
+  if (!isCurrentlyEditing && editButton.textContent === chrome.i18n.getMessage("editButtonLabel")) {
     console.log('Exiting edit mode for schedule', index);
     chrome.storage.sync.get('schedules', ({ schedules = [] }) => {
       const scheduleStates = schedules.map((schedule, index) => new ScheduleState(index, schedule));
@@ -183,8 +182,6 @@ export function toggleScheduleEdit(scheduleState) {
     });
     console.log(`Edit canceled, reverted to original state for schedule ${index}`);
   }
-  console.log(`editButton.text: ${editButton.textContent}`)
-
   console.log(`Toggled edit mode for schedule ${index}: ${isCurrentlyEditing}`);
 }
 
@@ -416,7 +413,7 @@ export function doSchedulesOverlap(schedules) {
       for (let i = 0; i < ranges.length; i++) {
           for (let j = i + 1; j < ranges.length; j++) {
               if (rangesOverlap(ranges[i], ranges[j])) {
-                  return true; // Found an overlap
+                  return true;
               }
           }
       }

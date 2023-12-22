@@ -199,5 +199,14 @@
     },
     "unnamedGroupPrefix": {
         "message": "Group "
+    },
+    "lockedScheduleErrorMessage": {
+        "message": "Cannot add site to whitelist during an active schedule."
+    },
+    "cannotToggleActiveState": {
+        "message": "Cannot change the active state under the current conditions."
+    },
+    "cannotDeselectDaysError": {
+        "message": "Cannot de-select days for an active schedule that's currently in effect."
     }
 }

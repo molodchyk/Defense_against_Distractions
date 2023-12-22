@@ -199,5 +199,14 @@
     },
     "unnamedGroupPrefix": {
         "message": "Skupina "
+    },
+    "lockedScheduleErrorMessage": {
+        "message": "Počas aktívneho harmonogramu nie je možné pridať stránku do zoznamu povolených."
+    },
+    "cannotToggleActiveState": {
+        "message": "V súčasných podmienkach nie je možné zmeniť aktívny stav."
+    },
+    "cannotDeselectDaysError": {
+        "message": "Nemôžete zrušiť výber dní pre aktívny harmonogram, ktorý je momentálne v platnosti."
     }
 }
