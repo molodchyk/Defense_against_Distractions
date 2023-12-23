@@ -6,6 +6,7 @@ body {
     font-family: Arial, sans-serif;
     color: #e0e0e0;
     min-height: max-content;
+    padding-bottom: 30px;
 }
 #keywordInput {
     padding: 10px;
@@ -99,6 +100,10 @@ button:disabled:hover {
     color: #666666;
 }
 
+#whitelist {
+    /* margin-bottom: 30px; */
+}
+
 #whitelist li {
     background-color: #333;
     color: #e0e0e0;
@@ -187,7 +192,7 @@ h2 {
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
-    max-width: 1200px;
+    max-width: 900px;
     margin-left: auto;
     margin-right: auto;
     justify-content: flex-start;
@@ -246,17 +251,17 @@ h2 {
 }
 
 #editableTextarea {
-background: transparent;
-z-index: 2;
-color: #e0e0e0;
+    background: transparent;
+    z-index: 2;
+    color: #e0e0e0;
 }
 
 #mirroringTextarea {
-pointer-events: none;
-color: transparent;
-z-index: 1;
-background-image: linear-gradient(to bottom, #f4f4f4 50%, #ffffff 50%);
-background-size: 100% 2em;
+    pointer-events: none;
+    color: transparent;
+    z-index: 1;
+    background-image: linear-gradient(to bottom, #f4f4f4 50%, #ffffff 50%);
+    background-size: 100% 2em;
 }
 
 .group-item div {
@@ -522,4 +527,35 @@ background-size: 100% 2em;
 .day-button.selected {
     background-color: #28a745;
     color: #ffffff;
+}
+
+.schedule-input {
+    min-width: 200px;
+    margin: 0 auto;
+}
+
+.schedule-item div {
+    flex-basis: 50%;
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.schedule-item label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px;
+    min-width: 150px;
+    height: 36px;
+}
+#passwordManagement button.enabled {
+    background-color: #4CAF50; /* Active state color */
+}
+
+#passwordManagement button.disabled {
+    background-color: #a9a9a9; /* Disabled state color */
+    color: #666666;
+    cursor: not-allowed;
 }

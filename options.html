@@ -16,14 +16,6 @@
     </section>
 
     <section>
-        <h2 id="whitelistHeading">Whitelist Websites</h2>
-        <div class="input-group">
-            <input type="text" id="whitelistInput" placeholder="">
-            <button id="addWhitelistButton"></button>
-        </div>
-        <ul id="whitelist"></ul>
-    </section>
-    <section>
         <h2 id="schedulesHeading">Locked Schedules</h2>
         <div class="input-group">
             <input type="text" id="scheduleNameInput" placeholder="">
@@ -31,6 +23,32 @@
         </div>
         <ul id="scheduleList"></ul>
     </section>
+    <section>
+        <h2 id="whitelistHeading">Whitelist Websites</h2>
+        <div class="input-group">
+            <input type="text" id="whitelistInput" placeholder="">
+            <button id="addWhitelistButton"></button>
+        </div>
+        <ul id="whitelist"></ul>
+    </section>
+
+    <section>
+        <h2>Password Management</h2>
+        <div id="passwordManagement">
+            <input type="password" id="passwordInputField" placeholder="Enter password" style="display: none;">
+            <button id="setPasswordButton">Set Password</button>
+            <button id="editPasswordButton" disabled>Edit Password</button>
+            <button id="deletePasswordButton" disabled>Delete Password</button>
+        </div>
+    </section>
+
+    <div id="passwordOverlay" style="display:none;">
+        <form id="passwordForm">
+            <input type="password" id="passwordInput" placeholder="Enter password">
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+
     <script src="utilityFunctions.js" type="module"></script>
     <script src="uiFunctions.js" type="module"></script>
     <script src="groupManagementFunctions.js" type="module"></script>
@@ -38,5 +56,6 @@
     <script src="whitelistManagement.js" type="module"></script>
     <script src="schedule.js" type="module"></script>
     <script src="uiScheduleFunctions.js" type="module"></script>
+    <script src="passwordManager.js" type="module"></script>
 </body>
 </html>

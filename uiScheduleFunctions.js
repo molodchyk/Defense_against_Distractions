@@ -30,6 +30,7 @@ function createScheduleField(container, labelKey, value, id, isReadOnly) {
   const labelElement = document.createElement('label');
   labelElement.textContent = chrome.i18n.getMessage(labelKey);
   const inputElement = document.createElement('input');
+  inputElement.classList.add('schedule-input'); // Add this line
 
   inputElement.value = value;
   inputElement.id = id;
