@@ -1,2 +1,212 @@
-
-{}
+{
+    "deleteButtonLabel": {
+        "message": "Șterge"
+    },
+    "whitelistExistsMessage": {
+        "message": "Acest site este deja în lista albă."
+    },
+    "deleteWhitelistError": {
+        "message": "Nu se pot șterge site-urile din lista albă în timpul unui program activ."
+    },
+    "scheduleNameLabel": {
+        "message": "Numele Programului"
+    },
+    "startTimeLabel": {
+        "message": "Ora de Început"
+    },
+    "endTimeLabel": {
+        "message": "Ora de Sfârșit"
+    },
+    "activeStateLabel": {
+        "message": "Starea Activă"
+    },
+    "editButtonLabel": {
+        "message": "Editează"
+    },
+    "saveButtonLabel": {
+        "message": "Salvează"
+    },
+    "endTimeAfterStartTimeError": {
+        "message": "Ora de sfârșit trebuie să fie după ora de început."
+    },
+    "schedulesOverlapError": {
+        "message": "Programele nu pot suprapune."
+    },
+    "minimumUnlockedTimeError": {
+        "message": "Fiecare zi trebuie să aibă cel puțin 1 oră de timp deblocat."
+    },
+    "Mon": {
+        "message": "Lun"
+    },
+    "Tue": {
+        "message": "Mar"
+    },
+    "Wed": {
+        "message": "Mie"
+    },
+    "Thu": {
+        "message": "Joi"
+    },
+    "Fri": {
+        "message": "Vin"
+    },
+    "Sat": {
+        "message": "Sâm"
+    },
+    "Sun": {
+        "message": "Dum"
+    },
+    "Edit": {
+        "message": "Editează"
+    },
+    "Save": {
+        "message": "Salvează"
+    },
+    "Delete": {
+        "message": "Șterge"
+    },
+    "groupNameLabel": {
+        "message": "Numele Grupului"
+    },
+    "websitesLabel": {
+        "message": "Site-uri Web"
+    },
+    "keywordsLabel": {
+        "message": "Cuvinte Cheie"
+    },
+    "timerCountLabel": {
+        "message": "Numărul Temporizatorului"
+    },
+    "timerDurationLabel": {
+        "message": "Durata Temporizatorului (secunde)"
+    },
+    "unnamedSchedulesMaxReached": {
+        "message": "Numărul maxim de programe fără nume a fost atins."
+    },
+    "scheduleNameExists": {
+        "message": "Un program cu acest nume există deja."
+    },
+    "cannotDeleteActiveSchedule": {
+        "message": "Nu se poate șterge un program activ. Vă rugăm să așteptați până când programul nu este activ."
+    },
+    "optionsTitle": {
+        "message": "Panoul de Apărare"
+    },
+    "groupsHeading": {
+        "message": "Grupuri"
+    },
+    "whitelistHeading": {
+        "message": "Site-uri în Lista Albă"
+    },
+    "schedulesHeading": {
+        "message": "Programe Blocate"
+    },
+    "unnamedGroupsMaxReached": {
+        "message": "Numărul maxim de grupuri fără nume a fost atins."
+    },
+    "groupNameExists": {
+        "message": "Un grup cu acest nume există deja."
+    },
+    "cannotDeleteGroupActiveSchedule": {
+        "message": "Nu se pot șterge grupuri în timpul unui program activ."
+    },
+    "cannotIncreaseTimerActiveSchedule": {
+        "message": "Durata temporizatorului și numărul de temporizatoare nu pot fi mărite în timpul unui program activ."
+    },
+    "invalidKeywordValue": {
+        "message": "Valoare nevalidă pentru cuvântul cheie. Trebuie să fie în intervalul specificat."
+    },
+    "cannotChangeGroupNameActiveSchedule": {
+        "message": "Schimbarea numelui grupului nu este permisă în timpul unui program activ."
+    },
+    "invalidEditOnWebsitesOrKeywords": {
+        "message": "Intrările pentru Site-uri Web sau Cuvinte Cheie au fost editate sau eliminate, schimbarea nu poate fi salvată."
+    },
+    "invalidKeywordEntry": {
+        "message": "Intrare nevalidă pentru cuvântul cheie: "
+    },
+    "addGroupButtonText": {
+        "message": "Adaugă Grup"
+    },
+    "contentBlockedTitle": {
+        "message": "Conținut Blocat"
+    },
+    "contentBlockedMessage": {
+        "message": "Această pagină conține conținut restricționat și a fost blocată pentru protecția dvs."
+    },
+    "keywordDetected": {
+        "message": "Cuvânt Cheie Detectat"
+    },
+    "context": {
+        "message": "Context"
+    },
+    "goBackButton": {
+        "message": "Înapoi"
+    },
+    "activateTimerButton": {
+        "message": "Activează Temporizatorul"
+    },
+    "cannotRelaxConstraints": {
+        "message": "Nu se pot relaxa constrângerile programului."
+    },
+    "activeButtonText": {
+        "message": "Activ"
+    },
+    "inactiveButtonText": {
+        "message": "Inactiv"
+    },
+    "addScheduleButton": {
+        "message": "Adaugă Program"
+    },
+    "enterWebsiteURLPlaceholder": {
+        "message": "Introduceți URL-ul site-ului web"
+    },
+    "addToWhitelistButton": {
+        "message": "Adaugă în Lista Albă"
+    },
+    "cancelButton": {
+        "message": "Anulează"
+    },
+    "groupNamePlaceholder": {
+        "message": "Numele Grupului"
+    },
+    "addScheduleButtonLabel": {
+        "message": "Adaugă Program"
+    },
+    "unnamedSchedulePrefix": {
+        "message": "Programul "
+    },
+    "addToWhitelistButtonLabel": {
+        "message": "Adaugă în Lista Albă"
+    },
+    "cancelButtonLabel": {
+        "message": "Anulează"
+    },
+    "activeLabel": {
+        "message": "Activ"
+    },
+    "inactiveLabel": {
+        "message": "Inactiv"
+    },
+    "cancelLabel": {
+        "message": "Anulează"
+    },
+    "scheduleNamePlaceholder": {
+        "message": "Numele Programului"
+    },
+    "editLabel": {
+        "message": "Editează"
+    },
+    "unnamedGroupPrefix": {
+        "message": "Grupul "
+    },
+    "lockedScheduleErrorMessage": {
+        "message": "Nu se poate adăuga un site în lista albă în timpul unui program activ."
+    },
+    "cannotToggleActiveState": {
+        "message": "Nu se poate schimba starea activă în condițiile actuale."
+    },
+    "cannotDeselectDaysError": {
+        "message": "Nu se pot deselecta zilele pentru un program activ care este în desfășurare."
+    }
+}

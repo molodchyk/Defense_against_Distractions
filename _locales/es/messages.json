@@ -1,2 +1,212 @@
-
-{}
+{
+    "deleteButtonLabel": {
+        "message": "Eliminar"
+    },
+    "whitelistExistsMessage": {
+        "message": "Este sitio ya está en la lista blanca."
+    },
+    "deleteWhitelistError": {
+        "message": "No se pueden eliminar sitios de la lista blanca durante un horario activo."
+    },
+    "scheduleNameLabel": {
+        "message": "Nombre del Horario"
+    },
+    "startTimeLabel": {
+        "message": "Hora de Inicio"
+    },
+    "endTimeLabel": {
+        "message": "Hora de Fin"
+    },
+    "activeStateLabel": {
+        "message": "Estado Activo"
+    },
+    "editButtonLabel": {
+        "message": "Editar"
+    },
+    "saveButtonLabel": {
+        "message": "Guardar"
+    },
+    "endTimeAfterStartTimeError": {
+        "message": "La hora de fin debe ser después de la hora de inicio."
+    },
+    "schedulesOverlapError": {
+        "message": "Los horarios no pueden solaparse."
+    },
+    "minimumUnlockedTimeError": {
+        "message": "Cada día debe tener al menos 1 hora sin bloqueo."
+    },
+    "Mon": {
+        "message": "Lun"
+    },
+    "Tue": {
+        "message": "Mar"
+    },
+    "Wed": {
+        "message": "Mié"
+    },
+    "Thu": {
+        "message": "Jue"
+    },
+    "Fri": {
+        "message": "Vie"
+    },
+    "Sat": {
+        "message": "Sáb"
+    },
+    "Sun": {
+        "message": "Dom"
+    },
+    "Edit": {
+        "message": "Editar"
+    },
+    "Save": {
+        "message": "Guardar"
+    },
+    "Delete": {
+        "message": "Eliminar"
+    },
+    "groupNameLabel": {
+        "message": "Nombre del Grupo"
+    },
+    "websitesLabel": {
+        "message": "Sitios Web"
+    },
+    "keywordsLabel": {
+        "message": "Palabras Clave"
+    },
+    "timerCountLabel": {
+        "message": "Cantidad de Temporizadores"
+    },
+    "timerDurationLabel": {
+        "message": "Duración del Temporizador (segundos)"
+    },
+    "unnamedSchedulesMaxReached": {
+        "message": "Se alcanzó el número máximo de horarios sin nombre."
+    },
+    "scheduleNameExists": {
+        "message": "Ya existe un horario con este nombre."
+    },
+    "cannotDeleteActiveSchedule": {
+        "message": "No se puede eliminar un horario activo. Por favor, espere hasta que el horario no esté activo."
+    },
+    "optionsTitle": {
+        "message": "Panel de Defensa"
+    },
+    "groupsHeading": {
+        "message": "Grupos"
+    },
+    "whitelistHeading": {
+        "message": "Lista Blanca de Sitios Web"
+    },
+    "schedulesHeading": {
+        "message": "Horarios Bloqueados"
+    },
+    "unnamedGroupsMaxReached": {
+        "message": "Se alcanzó el número máximo de grupos sin nombre."
+    },
+    "groupNameExists": {
+        "message": "Ya existe un grupo con este nombre."
+    },
+    "cannotDeleteGroupActiveSchedule": {
+        "message": "No se pueden eliminar grupos durante un horario activo."
+    },
+    "cannotIncreaseTimerActiveSchedule": {
+        "message": "No se puede aumentar la duración del temporizador ni la cantidad de temporizadores durante un horario activo."
+    },
+    "invalidKeywordValue": {
+        "message": "Valor de palabra clave inválido. Debe estar dentro del rango especificado."
+    },
+    "cannotChangeGroupNameActiveSchedule": {
+        "message": "No se permite cambiar el nombre del grupo durante un horario activo."
+    },
+    "invalidEditOnWebsitesOrKeywords": {
+        "message": "Las entradas de Sitios Web o Palabras Clave han sido editadas o eliminadas, el cambio no puede guardarse."
+    },
+    "invalidKeywordEntry": {
+        "message": "Entrada de palabra clave inválida: "
+    },
+    "addGroupButtonText": {
+        "message": "Añadir Grupo"
+    },
+    "contentBlockedTitle": {
+        "message": "Contenido Bloqueado"
+    },
+    "contentBlockedMessage": {
+        "message": "Esta página contiene contenido restringido y ha sido bloqueada para su protección."
+    },
+    "keywordDetected": {
+        "message": "Palabra Clave Detectada"
+    },
+    "context": {
+        "message": "Contexto"
+    },
+    "goBackButton": {
+        "message": "Regresar"
+    },
+    "activateTimerButton": {
+        "message": "Activar Temporizador"
+    },
+    "cannotRelaxConstraints": {
+        "message": "No se pueden relajar las restricciones del horario."
+    },
+    "activeButtonText": {
+        "message": "Activo"
+    },
+    "inactiveButtonText": {
+        "message": "Inactivo"
+    },
+    "addScheduleButton": {
+        "message": "Añadir Horario"
+    },
+    "enterWebsiteURLPlaceholder": {
+        "message": "Introduzca la URL del sitio web"
+    },
+    "addToWhitelistButton": {
+        "message": "Añadir a Lista Blanca"
+    },
+    "cancelButton": {
+        "message": "Cancelar"
+    },
+    "groupNamePlaceholder": {
+        "message": "Nombre del Grupo"
+    },
+    "addScheduleButtonLabel": {
+        "message": "Añadir Horario"
+    },
+    "unnamedSchedulePrefix": {
+        "message": "Horario "
+    },
+    "addToWhitelistButtonLabel": {
+        "message": "Añadir a Lista Blanca"
+    },
+    "cancelButtonLabel": {
+        "message": "Cancelar"
+    },
+    "activeLabel": {
+        "message": "Activo"
+    },
+    "inactiveLabel": {
+        "message": "Inactivo"
+    },
+    "cancelLabel": {
+        "message": "Cancelar"
+    },
+    "scheduleNamePlaceholder": {
+        "message": "Nombre del Horario"
+    },
+    "editLabel": {
+        "message": "Editar"
+    },
+    "unnamedGroupPrefix": {
+        "message": "Grupo "
+    },
+    "lockedScheduleErrorMessage": {
+        "message": "No se puede añadir un sitio a la lista blanca durante un horario activo."
+    },
+    "cannotToggleActiveState": {
+        "message": "No se puede cambiar el estado activo bajo las condiciones actuales."
+    },
+    "cannotDeselectDaysError": {
+        "message": "No se pueden deseleccionar días para un horario activo que está actualmente en efecto."
+    }
+}

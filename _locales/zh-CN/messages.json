@@ -1,2 +1,212 @@
-
-{}
+{
+    "deleteButtonLabel": {
+        "message": "删除"
+    },
+    "whitelistExistsMessage": {
+        "message": "此网站已在白名单中。"
+    },
+    "deleteWhitelistError": {
+        "message": "在活动时间表期间无法删除白名单中的网站。"
+    },
+    "scheduleNameLabel": {
+        "message": "时间表名称"
+    },
+    "startTimeLabel": {
+        "message": "开始时间"
+    },
+    "endTimeLabel": {
+        "message": "结束时间"
+    },
+    "activeStateLabel": {
+        "message": "活动状态"
+    },
+    "editButtonLabel": {
+        "message": "编辑"
+    },
+    "saveButtonLabel": {
+        "message": "保存"
+    },
+    "endTimeAfterStartTimeError": {
+        "message": "结束时间必须在开始时间之后。"
+    },
+    "schedulesOverlapError": {
+        "message": "时间表不得重叠。"
+    },
+    "minimumUnlockedTimeError": {
+        "message": "每天必须至少有1小时的解锁时间。"
+    },
+    "Mon": {
+        "message": "周一"
+    },
+    "Tue": {
+        "message": "周二"
+    },
+    "Wed": {
+        "message": "周三"
+    },
+    "Thu": {
+        "message": "周四"
+    },
+    "Fri": {
+        "message": "周五"
+    },
+    "Sat": {
+        "message": "周六"
+    },
+    "Sun": {
+        "message": "周日"
+    },
+    "Edit": {
+        "message": "编辑"
+    },
+    "Save": {
+        "message": "保存"
+    },
+    "Delete": {
+        "message": "删除"
+    },
+    "groupNameLabel": {
+        "message": "组名"
+    },
+    "websitesLabel": {
+        "message": "网站"
+    },
+    "keywordsLabel": {
+        "message": "关键词"
+    },
+    "timerCountLabel": {
+        "message": "计时器数量"
+    },
+    "timerDurationLabel": {
+        "message": "计时器持续时间（秒）"
+    },
+    "unnamedSchedulesMaxReached": {
+        "message": "未命名时间表数量达到最大值。"
+    },
+    "scheduleNameExists": {
+        "message": "此名称的时间表已存在。"
+    },
+    "cannotDeleteActiveSchedule": {
+        "message": "无法删除活动中的时间表。请等待时间表不再活动。"
+    },
+    "optionsTitle": {
+        "message": "防御面板"
+    },
+    "groupsHeading": {
+        "message": "组"
+    },
+    "whitelistHeading": {
+        "message": "白名单网站"
+    },
+    "schedulesHeading": {
+        "message": "锁定时间表"
+    },
+    "unnamedGroupsMaxReached": {
+        "message": "未命名组数达到最大值。"
+    },
+    "groupNameExists": {
+        "message": "此名称的组已存在。"
+    },
+    "cannotDeleteGroupActiveSchedule": {
+        "message": "在活动时间表期间不能删除组。"
+    },
+    "cannotIncreaseTimerActiveSchedule": {
+        "message": "在活动时间表期间不能增加计时器持续时间和数量。"
+    },
+    "invalidKeywordValue": {
+        "message": "关键词值无效。必须在指定范围内。"
+    },
+    "cannotChangeGroupNameActiveSchedule": {
+        "message": "在活动时间表期间不允许更改组名。"
+    },
+    "invalidEditOnWebsitesOrKeywords": {
+        "message": "网站或关键词条目已编辑或删除，不能保存更改。"
+    },
+    "invalidKeywordEntry": {
+        "message": "无效的关键词条目："
+    },
+    "addGroupButtonText": {
+        "message": "添加组"
+    },
+    "contentBlockedTitle": {
+        "message": "内容已屏蔽"
+    },
+    "contentBlockedMessage": {
+        "message": "此页面包含受限内容，已为您屏蔽。"
+    },
+    "keywordDetected": {
+        "message": "检测到关键词"
+    },
+    "context": {
+        "message": "上下文"
+    },
+    "goBackButton": {
+        "message": "返回"
+    },
+    "activateTimerButton": {
+        "message": "激活计时器"
+    },
+    "cannotRelaxConstraints": {
+        "message": "不能放宽时间表限制。"
+    },
+    "activeButtonText": {
+        "message": "激活"
+    },
+    "inactiveButtonText": {
+        "message": "非活动"
+    },
+    "addScheduleButton": {
+        "message": "添加时间表"
+    },
+    "enterWebsiteURLPlaceholder": {
+        "message": "输入网站URL"
+    },
+    "addToWhitelistButton": {
+        "message": "添加到白名单"
+    },
+    "cancelButton": {
+        "message": "取消"
+    },
+    "groupNamePlaceholder": {
+        "message": "组名"
+    },
+    "addScheduleButtonLabel": {
+        "message": "添加时间表"
+    },
+    "unnamedSchedulePrefix": {
+        "message": "时间表 "
+    },
+    "addToWhitelistButtonLabel": {
+        "message": "添加到白名单"
+    },
+    "cancelButtonLabel": {
+        "message": "取消"
+    },
+    "activeLabel": {
+        "message": "激活"
+    },
+    "inactiveLabel": {
+        "message": "非活动"
+    },
+    "cancelLabel": {
+        "message": "取消"
+    },
+    "scheduleNamePlaceholder": {
+        "message": "时间表名称"
+    },
+    "editLabel": {
+        "message": "编辑"
+    },
+    "unnamedGroupPrefix": {
+        "message": "组 "
+    },
+    "lockedScheduleErrorMessage": {
+        "message": "在活动时间表期间不能将网站添加到白名单。"
+    },
+    "cannotToggleActiveState": {
+        "message": "在当前条件下无法更改活动状态。"
+    },
+    "cannotDeselectDaysError": {
+        "message": "不能为当前生效的活动时间表取消选择日期。"
+    }
+}

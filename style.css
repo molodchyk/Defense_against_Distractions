@@ -557,5 +557,30 @@ h2 {
 #passwordManagement button.disabled {
     background-color: #a9a9a9; /* Disabled state color */
     color: #666666;
-    cursor: not-allowed;
+    cursor: default;
+}
+
+/* Add styles for input fields */
+input[type='password'] {
+    background-color: #282c34; /* Dark background for dark mode */
+    color: white; /* White text for dark mode */
+    border: 1px solid #555; /* Subtle border */
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 100%; /* Full-width inputs */
+    box-sizing: border-box; /* Border-box sizing */
+    border-radius: 4px;
+}
+
+/* Centering password section */
+#passwordManagement {
+    align-items:center;
+    text-align: center; /* Center align content */
+    margin: auto; /* Center the div */
+    max-width: 400px; /* Adjust as needed */
+}
+
+/* Ensure the confirmation password field is displayed */
+#confirmPasswordInputField {
+    display: block; /* Change to block to make it visible */
 }

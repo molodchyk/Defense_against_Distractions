@@ -1,2 +1,212 @@
-
-{}
+{
+    "deleteButtonLabel": {
+        "message": "Видалити"
+    },
+    "whitelistExistsMessage": {
+        "message": "Цей сайт вже є у білому списку."
+    },
+    "deleteWhitelistError": {
+        "message": "Неможливо видалити сайти з білого списку під час діючого розкладу."
+    },
+    "scheduleNameLabel": {
+        "message": "Назва розкладу"
+    },
+    "startTimeLabel": {
+        "message": "Час початку"
+    },
+    "endTimeLabel": {
+        "message": "Час завершення"
+    },
+    "activeStateLabel": {
+        "message": "Стан активності"
+    },
+    "editButtonLabel": {
+        "message": "Редагувати"
+    },
+    "saveButtonLabel": {
+        "message": "Зберегти"
+    },
+    "endTimeAfterStartTimeError": {
+        "message": "Час завершення повинен бути після часу початку."
+    },
+    "schedulesOverlapError": {
+        "message": "Розклади не можуть перекриватися."
+    },
+    "minimumUnlockedTimeError": {
+        "message": "Щодня має бути принаймні 1 година без блокування."
+    },
+    "Mon": {
+        "message": "Пн"
+    },
+    "Tue": {
+        "message": "Вт"
+    },
+    "Wed": {
+        "message": "Ср"
+    },
+    "Thu": {
+        "message": "Чт"
+    },
+    "Fri": {
+        "message": "Пт"
+    },
+    "Sat": {
+        "message": "Сб"
+    },
+    "Sun": {
+        "message": "Нд"
+    },
+    "Edit": {
+        "message": "Редагувати"
+    },
+    "Save": {
+        "message": "Зберегти"
+    },
+    "Delete": {
+        "message": "Видалити"
+    },
+    "groupNameLabel": {
+        "message": "Назва групи"
+    },
+    "websitesLabel": {
+        "message": "Сайти"
+    },
+    "keywordsLabel": {
+        "message": "Ключові слова"
+    },
+    "timerCountLabel": {
+        "message": "Кількість таймерів"
+    },
+    "timerDurationLabel": {
+        "message": "Тривалість таймера (секунди)"
+    },
+    "unnamedSchedulesMaxReached": {
+        "message": "Досягнуто максимальну кількість неназваних розкладів."
+    },
+    "scheduleNameExists": {
+        "message": "Розклад з такою назвою вже існує."
+    },
+    "cannotDeleteActiveSchedule": {
+        "message": "Неможливо видалити активний розклад. Будь ласка, почекайте, поки розклад не стане неактивним."
+    },
+    "optionsTitle": {
+        "message": "Панель захисту"
+    },
+    "groupsHeading": {
+        "message": "Групи"
+    },
+    "whitelistHeading": {
+        "message": "Білий список сайтів"
+    },
+    "schedulesHeading": {
+        "message": "Заблоковані розклади"
+    },
+    "unnamedGroupsMaxReached": {
+        "message": "Досягнуто максимальну кількість неназваних груп."
+    },
+    "groupNameExists": {
+        "message": "Група з такою назвою вже існує."
+    },
+    "cannotDeleteGroupActiveSchedule": {
+        "message": "Неможливо видалити групи під час активного розкладу."
+    },
+    "cannotIncreaseTimerActiveSchedule": {
+        "message": "Не можна збільшувати тривалість таймера та кількість таймерів під час активного розкладу."
+    },
+    "invalidKeywordValue": {
+        "message": "Неправильне значення ключового слова. Має бути в межах вказаного діапазону."
+    },
+    "cannotChangeGroupNameActiveSchedule": {
+        "message": "Зміна назви групи заборонена під час активного розкладу."
+    },
+    "invalidEditOnWebsitesOrKeywords": {
+        "message": "Внесені зміни або видалені записи веб-сайтів або ключових слів, зміну не можна зберегти."
+    },
+    "invalidKeywordEntry": {
+        "message": "Неправильний запис ключового слова: "
+    },
+    "addGroupButtonText": {
+        "message": "Додати групу"
+    },
+    "contentBlockedTitle": {
+        "message": "Контент заблоковано"
+    },
+    "contentBlockedMessage": {
+        "message": "Ця сторінка містить обмежений контент і була заблокована для вашого захисту."
+    },
+    "keywordDetected": {
+        "message": "Ключове слово виявлено"
+    },
+    "context": {
+        "message": "Контекст"
+    },
+    "goBackButton": {
+        "message": "Повернутися назад"
+    },
+    "activateTimerButton": {
+        "message": "Активувати таймер"
+    },
+    "cannotRelaxConstraints": {
+        "message": "Неможливо послабити обмеження розкладу."
+    },
+    "activeButtonText": {
+        "message": "Активний"
+    },
+    "inactiveButtonText": {
+        "message": "Неактивний"
+    },
+    "addScheduleButton": {
+        "message": "Додати розклад"
+    },
+    "enterWebsiteURLPlaceholder": {
+        "message": "Введіть URL веб-сайту"
+    },
+    "addToWhitelistButton": {
+        "message": "Додати до білого списку"
+    },
+    "cancelButton": {
+        "message": "Скасувати"
+    },
+    "groupNamePlaceholder": {
+        "message": "Назва групи"
+    },
+    "addScheduleButtonLabel": {
+        "message": "Додати розклад"
+    },
+    "unnamedSchedulePrefix": {
+        "message": "Розклад "
+    },
+    "addToWhitelistButtonLabel": {
+        "message": "Додати до білого списку"
+    },
+    "cancelButtonLabel": {
+        "message": "Скасувати"
+    },
+    "activeLabel": {
+        "message": "Активний"
+    },
+    "inactiveLabel": {
+        "message": "Неактивний"
+    },
+    "cancelLabel": {
+        "message": "Скасувати"
+    },
+    "scheduleNamePlaceholder": {
+        "message": "Назва розкладу"
+    },
+    "editLabel": {
+        "message": "Редагувати"
+    },
+    "unnamedGroupPrefix": {
+        "message": "Група "
+    },
+    "lockedScheduleErrorMessage": {
+        "message": "Неможливо додати сайт до білого списку під час активного розкладу."
+    },
+    "cannotToggleActiveState": {
+        "message": "Неможливо змінити стан активності в поточних умовах."
+    },
+    "cannotDeselectDaysError": {
+        "message": "Неможливо скасувати вибір днів для активного розкладу, який зараз діє."
+    }
+}

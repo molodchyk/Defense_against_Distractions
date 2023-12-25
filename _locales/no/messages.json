@@ -1,2 +1,212 @@
-
-{}
+{
+    "deleteButtonLabel": {
+        "message": "Slett"
+    },
+    "whitelistExistsMessage": {
+        "message": "Dette nettstedet er allerede i hvitelisten."
+    },
+    "deleteWhitelistError": {
+        "message": "Kan ikke slette nettsteder på hvitelisten under en aktiv tidsplan."
+    },
+    "scheduleNameLabel": {
+        "message": "Navn på tidsplan"
+    },
+    "startTimeLabel": {
+        "message": "Starttid"
+    },
+    "endTimeLabel": {
+        "message": "Sluttid"
+    },
+    "activeStateLabel": {
+        "message": "Aktiv tilstand"
+    },
+    "editButtonLabel": {
+        "message": "Rediger"
+    },
+    "saveButtonLabel": {
+        "message": "Lagre"
+    },
+    "endTimeAfterStartTimeError": {
+        "message": "Sluttid må være etter starttid."
+    },
+    "schedulesOverlapError": {
+        "message": "Tidsplaner kan ikke overlappe."
+    },
+    "minimumUnlockedTimeError": {
+        "message": "Hver dag må ha minst 1 time uten lås."
+    },
+    "Mon": {
+        "message": "Man"
+    },
+    "Tue": {
+        "message": "Tir"
+    },
+    "Wed": {
+        "message": "Ons"
+    },
+    "Thu": {
+        "message": "Tor"
+    },
+    "Fri": {
+        "message": "Fre"
+    },
+    "Sat": {
+        "message": "Lør"
+    },
+    "Sun": {
+        "message": "Søn"
+    },
+    "Edit": {
+        "message": "Rediger"
+    },
+    "Save": {
+        "message": "Lagre"
+    },
+    "Delete": {
+        "message": "Slett"
+    },
+    "groupNameLabel": {
+        "message": "Gruppenavn"
+    },
+    "websitesLabel": {
+        "message": "Nettsteder"
+    },
+    "keywordsLabel": {
+        "message": "Nøkkelord"
+    },
+    "timerCountLabel": {
+        "message": "Tidtakerantall"
+    },
+    "timerDurationLabel": {
+        "message": "Varighet av tidtaker (sekunder)"
+    },
+    "unnamedSchedulesMaxReached": {
+        "message": "Maksimalt antall navnløse tidsplaner nådd."
+    },
+    "scheduleNameExists": {
+        "message": "En tidsplan med dette navnet finnes allerede."
+    },
+    "cannotDeleteActiveSchedule": {
+        "message": "Kan ikke slette en aktiv tidsplan. Vennligst vent til tidsplanen ikke er aktiv."
+    },
+    "optionsTitle": {
+        "message": "Forsvarspanel"
+    },
+    "groupsHeading": {
+        "message": "Grupper"
+    },
+    "whitelistHeading": {
+        "message": "Hvitlist Nettsteder"
+    },
+    "schedulesHeading": {
+        "message": "Låste Tidsplaner"
+    },
+    "unnamedGroupsMaxReached": {
+        "message": "Maksimalt antall navnløse grupper nådd."
+    },
+    "groupNameExists": {
+        "message": "En gruppe med dette navnet finnes allerede."
+    },
+    "cannotDeleteGroupActiveSchedule": {
+        "message": "Kan ikke slette grupper under en aktiv tidsplan."
+    },
+    "cannotIncreaseTimerActiveSchedule": {
+        "message": "Varigheten og antallet av tidtakere kan ikke økes under en aktiv tidsplan."
+    },
+    "invalidKeywordValue": {
+        "message": "Ugyldig nøkkelordverdi. Må være innenfor det angitte området."
+    },
+    "cannotChangeGroupNameActiveSchedule": {
+        "message": "Endring av gruppenavn er ikke tillatt under en aktiv tidsplan."
+    },
+    "invalidEditOnWebsitesOrKeywords": {
+        "message": "Nettsteder eller nøkkelordoppføringer har blitt redigert eller fjernet, endring kan ikke lagres."
+    },
+    "invalidKeywordEntry": {
+        "message": "Ugyldig nøkkelordoppføring: "
+    },
+    "addGroupButtonText": {
+        "message": "Legg til gruppe"
+    },
+    "contentBlockedTitle": {
+        "message": "Innhold Blokkert"
+    },
+    "contentBlockedMessage": {
+        "message": "Denne siden inneholder begrenset innhold og har blitt blokkert for din beskyttelse."
+    },
+    "keywordDetected": {
+        "message": "Nøkkelord Oppdaget"
+    },
+    "context": {
+        "message": "Kontekst"
+    },
+    "goBackButton": {
+        "message": "Gå Tilbake"
+    },
+    "activateTimerButton": {
+        "message": "Aktiver Tidtaker"
+    },
+    "cannotRelaxConstraints": {
+        "message": "Kan ikke slakke tidsplanens begrensninger."
+    },
+    "activeButtonText": {
+        "message": "Aktiv"
+    },
+    "inactiveButtonText": {
+        "message": "Inaktiv"
+    },
+    "addScheduleButton": {
+        "message": "Legg til Tidsplan"
+    },
+    "enterWebsiteURLPlaceholder": {
+        "message": "Skriv inn nettstedets URL"
+    },
+    "addToWhitelistButton": {
+        "message": "Legg til i Hvitelisten"
+    },
+    "cancelButton": {
+        "message": "Avbryt"
+    },
+    "groupNamePlaceholder": {
+        "message": "Gruppenavn"
+    },
+    "addScheduleButtonLabel": {
+        "message": "Legg til Tidsplan"
+    },
+    "unnamedSchedulePrefix": {
+        "message": "Tidsplan "
+    },
+    "addToWhitelistButtonLabel": {
+        "message": "Legg til i Hvitelisten"
+    },
+    "cancelButtonLabel": {
+        "message": "Avbryt"
+    },
+    "activeLabel": {
+        "message": "Aktiv"
+    },
+    "inactiveLabel": {
+        "message": "Inaktiv"
+    },
+    "cancelLabel": {
+        "message": "Avbryt"
+    },
+    "scheduleNamePlaceholder": {
+        "message": "Navn på Tidsplan"
+    },
+    "editLabel": {
+        "message": "Rediger"
+    },
+    "unnamedGroupPrefix": {
+        "message": "Gruppe "
+    },
+    "lockedScheduleErrorMessage": {
+        "message": "Kan ikke legge til nettsted i hvitelisten under en aktiv tidsplan."
+    },
+    "cannotToggleActiveState": {
+        "message": "Kan ikke endre den aktive tilstanden under gjeldende forhold."
+    },
+    "cannotDeselectDaysError": {
+        "message": "Kan ikke fjerne markering av dager for en aktiv tidsplan som er i effekt."
+    }
+}

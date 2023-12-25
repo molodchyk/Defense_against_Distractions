@@ -1,2 +1,212 @@
-
-{}
+{
+    "deleteButtonLabel": {
+        "message": "삭제"
+    },
+    "whitelistExistsMessage": {
+        "message": "이 사이트는 이미 화이트리스트에 있습니다."
+    },
+    "deleteWhitelistError": {
+        "message": "활성 스케줄 중에는 화이트리스트 사이트를 삭제할 수 없습니다."
+    },
+    "scheduleNameLabel": {
+        "message": "스케줄 이름"
+    },
+    "startTimeLabel": {
+        "message": "시작 시간"
+    },
+    "endTimeLabel": {
+        "message": "종료 시간"
+    },
+    "activeStateLabel": {
+        "message": "활성 상태"
+    },
+    "editButtonLabel": {
+        "message": "편집"
+    },
+    "saveButtonLabel": {
+        "message": "저장"
+    },
+    "endTimeAfterStartTimeError": {
+        "message": "종료 시간은 시작 시간 이후여야 합니다."
+    },
+    "schedulesOverlapError": {
+        "message": "스케줄이 겹칠 수 없습니다."
+    },
+    "minimumUnlockedTimeError": {
+        "message": "하루에 최소 1시간은 잠금 해제되어야 합니다."
+    },
+    "Mon": {
+        "message": "월"
+    },
+    "Tue": {
+        "message": "화"
+    },
+    "Wed": {
+        "message": "수"
+    },
+    "Thu": {
+        "message": "목"
+    },
+    "Fri": {
+        "message": "금"
+    },
+    "Sat": {
+        "message": "토"
+    },
+    "Sun": {
+        "message": "일"
+    },
+    "Edit": {
+        "message": "편집"
+    },
+    "Save": {
+        "message": "저장"
+    },
+    "Delete": {
+        "message": "삭제"
+    },
+    "groupNameLabel": {
+        "message": "그룹 이름"
+    },
+    "websitesLabel": {
+        "message": "웹사이트"
+    },
+    "keywordsLabel": {
+        "message": "키워드"
+    },
+    "timerCountLabel": {
+        "message": "타이머 횟수"
+    },
+    "timerDurationLabel": {
+        "message": "타이머 지속 시간(초)"
+    },
+    "unnamedSchedulesMaxReached": {
+        "message": "이름 없는 스케줄의 최대 개수에 도달했습니다."
+    },
+    "scheduleNameExists": {
+        "message": "이 이름을 가진 스케줄이 이미 존재합니다."
+    },
+    "cannotDeleteActiveSchedule": {
+        "message": "활성 스케줄은 삭제할 수 없습니다. 스케줄이 비활성화될 때까지 기다려 주세요."
+    },
+    "optionsTitle": {
+        "message": "방어 패널"
+    },
+    "groupsHeading": {
+        "message": "그룹"
+    },
+    "whitelistHeading": {
+        "message": "화이트리스트 웹사이트"
+    },
+    "schedulesHeading": {
+        "message": "잠긴 스케줄"
+    },
+    "unnamedGroupsMaxReached": {
+        "message": "이름 없는 그룹의 최대 개수에 도달했습니다."
+    },
+    "groupNameExists": {
+        "message": "이 이름을 가진 그룹이 이미 존재합니다."
+    },
+    "cannotDeleteGroupActiveSchedule": {
+        "message": "활성 스케줄 중에는 그룹을 삭제할 수 없습니다."
+    },
+    "cannotIncreaseTimerActiveSchedule": {
+        "message": "활성 스케줄 중에는 타이머 지속 시간과 타이머 횟수를 늘릴 수 없습니다."
+    },
+    "invalidKeywordValue": {
+        "message": "잘못된 키워드 값입니다. 지정된 범위 내에 있어야 합니다."
+    },
+    "cannotChangeGroupNameActiveSchedule": {
+        "message": "활성 스케줄 중에는 그룹 이름 변경이 허용되지 않습니다."
+    },
+    "invalidEditOnWebsitesOrKeywords": {
+        "message": "웹사이트 또는 키워드 항목이 편집되었거나 삭제되었습니다. 변경을 저장할 수 없습니다."
+    },
+    "invalidKeywordEntry": {
+        "message": "잘못된 키워드 항목: "
+    },
+    "addGroupButtonText": {
+        "message": "그룹 추가"
+    },
+    "contentBlockedTitle": {
+        "message": "콘텐츠 차단됨"
+    },
+    "contentBlockedMessage": {
+        "message": "이 페이지에는 제한된 콘텐츠가 포함되어 있어 보호를 위해 차단되었습니다."
+    },
+    "keywordDetected": {
+        "message": "키워드 감지됨"
+    },
+    "context": {
+        "message": "문맥"
+    },
+    "goBackButton": {
+        "message": "뒤로 가기"
+    },
+    "activateTimerButton": {
+        "message": "타이머 활성화"
+    },
+    "cannotRelaxConstraints": {
+        "message": "스케줄 제약 조건을 완화할 수 없습니다."
+    },
+    "activeButtonText": {
+        "message": "활성"
+    },
+    "inactiveButtonText": {
+        "message": "비활성"
+    },
+    "addScheduleButton": {
+        "message": "스케줄 추가"
+    },
+    "enterWebsiteURLPlaceholder": {
+        "message": "웹사이트 URL 입력"
+    },
+    "addToWhitelistButton": {
+        "message": "화이트리스트에 추가"
+    },
+    "cancelButton": {
+        "message": "취소"
+    },
+    "groupNamePlaceholder": {
+        "message": "그룹 이름"
+    },
+    "addScheduleButtonLabel": {
+        "message": "스케줄 추가"
+    },
+    "unnamedSchedulePrefix": {
+        "message": "스케줄 "
+    },
+    "addToWhitelistButtonLabel": {
+        "message": "화이트리스트에 추가"
+    },
+    "cancelButtonLabel": {
+        "message": "취소"
+    },
+    "activeLabel": {
+        "message": "활성"
+    },
+    "inactiveLabel": {
+        "message": "비활성"
+    },
+    "cancelLabel": {
+        "message": "취소"
+    },
+    "scheduleNamePlaceholder": {
+        "message": "스케줄 이름"
+    },
+    "editLabel": {
+        "message": "편집"
+    },
+    "unnamedGroupPrefix": {
+        "message": "그룹 "
+    },
+    "lockedScheduleErrorMessage": {
+        "message": "활성 스케줄 중에는 사이트를 화이트리스트에 추가할 수 없습니다."
+    },
+    "cannotToggleActiveState": {
+        "message": "현재 조건에서 활성 상태를 변경할 수 없습니다."
+    },
+    "cannotDeselectDaysError": {
+        "message": "현재 효력을 발휘 중인 활성 스케줄에 대해 요일을 선택 해제할 수 없습니다."
+    }
+}

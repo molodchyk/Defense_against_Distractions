@@ -1,2 +1,212 @@
-
-{}
+{
+    "deleteButtonLabel": {
+        "message": "Usuń"
+    },
+    "whitelistExistsMessage": {
+        "message": "Ta strona jest już na białej liście."
+    },
+    "deleteWhitelistError": {
+        "message": "Nie można usunąć stron z białej listy podczas aktywnego harmonogramu."
+    },
+    "scheduleNameLabel": {
+        "message": "Nazwa Harmonogramu"
+    },
+    "startTimeLabel": {
+        "message": "Czas Rozpoczęcia"
+    },
+    "endTimeLabel": {
+        "message": "Czas Zakończenia"
+    },
+    "activeStateLabel": {
+        "message": "Stan Aktywny"
+    },
+    "editButtonLabel": {
+        "message": "Edytuj"
+    },
+    "saveButtonLabel": {
+        "message": "Zapisz"
+    },
+    "endTimeAfterStartTimeError": {
+        "message": "Czas zakończenia musi być po czasie rozpoczęcia."
+    },
+    "schedulesOverlapError": {
+        "message": "Harmonogramy nie mogą się nakładać."
+    },
+    "minimumUnlockedTimeError": {
+        "message": "Każdy dzień musi mieć co najmniej 1 godzinę niezablokowanego czasu."
+    },
+    "Mon": {
+        "message": "Pon"
+    },
+    "Tue": {
+        "message": "Wt"
+    },
+    "Wed": {
+        "message": "Śr"
+    },
+    "Thu": {
+        "message": "Czw"
+    },
+    "Fri": {
+        "message": "Pt"
+    },
+    "Sat": {
+        "message": "Sob"
+    },
+    "Sun": {
+        "message": "Ndz"
+    },
+    "Edit": {
+        "message": "Edytuj"
+    },
+    "Save": {
+        "message": "Zapisz"
+    },
+    "Delete": {
+        "message": "Usuń"
+    },
+    "groupNameLabel": {
+        "message": "Nazwa Grupy"
+    },
+    "websitesLabel": {
+        "message": "Strony internetowe"
+    },
+    "keywordsLabel": {
+        "message": "Słowa kluczowe"
+    },
+    "timerCountLabel": {
+        "message": "Liczba Minutników"
+    },
+    "timerDurationLabel": {
+        "message": "Czas Trwania Minutnika (sekundy)"
+    },
+    "unnamedSchedulesMaxReached": {
+        "message": "Osiągnięto maksymalną liczbę nienazwanych harmonogramów."
+    },
+    "scheduleNameExists": {
+        "message": "Harmonogram o tej nazwie już istnieje."
+    },
+    "cannotDeleteActiveSchedule": {
+        "message": "Nie można usunąć aktywnego harmonogramu. Proszę poczekać, aż harmonogram będzie nieaktywny."
+    },
+    "optionsTitle": {
+        "message": "Panel Obrony"
+    },
+    "groupsHeading": {
+        "message": "Grupy"
+    },
+    "whitelistHeading": {
+        "message": "Biała Lista Stron"
+    },
+    "schedulesHeading": {
+        "message": "Zablokowane Harmonogramy"
+    },
+    "unnamedGroupsMaxReached": {
+        "message": "Osiągnięto maksymalną liczbę nienazwanych grup."
+    },
+    "groupNameExists": {
+        "message": "Grupa o tej nazwie już istnieje."
+    },
+    "cannotDeleteGroupActiveSchedule": {
+        "message": "Nie można usunąć grup podczas aktywnego harmonogramu."
+    },
+    "cannotIncreaseTimerActiveSchedule": {
+        "message": "Nie można zwiększyć czasu trwania i liczby minutników podczas aktywnego harmonogramu."
+    },
+    "invalidKeywordValue": {
+        "message": "Nieprawidłowa wartość słowa kluczowego. Musi być w określonym zakresie."
+    },
+    "cannotChangeGroupNameActiveSchedule": {
+        "message": "Zmiana nazwy grupy jest niedozwolona podczas aktywnego harmonogramu."
+    },
+    "invalidEditOnWebsitesOrKeywords": {
+        "message": "Wpisy stron internetowych lub słów kluczowych zostały zmienione lub usunięte, zmiana nie może być zapisana."
+    },
+    "invalidKeywordEntry": {
+        "message": "Nieprawidłowy wpis słowa kluczowego: "
+    },
+    "addGroupButtonText": {
+        "message": "Dodaj Grupę"
+    },
+    "contentBlockedTitle": {
+        "message": "Zawartość Zablokowana"
+    },
+    "contentBlockedMessage": {
+        "message": "Ta strona zawiera ograniczone treści i została zablokowana dla Twojej ochrony."
+    },
+    "keywordDetected": {
+        "message": "Wykryto Słowo Kluczowe"
+    },
+    "context": {
+        "message": "Kontekst"
+    },
+    "goBackButton": {
+        "message": "Wróć"
+    },
+    "activateTimerButton": {
+        "message": "Aktywuj Minutnik"
+    },
+    "cannotRelaxConstraints": {
+        "message": "Nie można złagodzić ograniczeń harmonogramu."
+    },
+    "activeButtonText": {
+        "message": "Aktywny"
+    },
+    "inactiveButtonText": {
+        "message": "Nieaktywny"
+    },
+    "addScheduleButton": {
+        "message": "Dodaj Harmonogram"
+    },
+    "enterWebsiteURLPlaceholder": {
+        "message": "Wpisz adres URL strony"
+    },
+    "addToWhitelistButton": {
+        "message": "Dodaj do Białej Listy"
+    },
+    "cancelButton": {
+        "message": "Anuluj"
+    },
+    "groupNamePlaceholder": {
+        "message": "Nazwa Grupy"
+    },
+    "addScheduleButtonLabel": {
+        "message": "Dodaj Harmonogram"
+    },
+    "unnamedSchedulePrefix": {
+        "message": "Harmonogram "
+    },
+    "addToWhitelistButtonLabel": {
+        "message": "Dodaj do Białej Listy"
+    },
+    "cancelButtonLabel": {
+        "message": "Anuluj"
+    },
+    "activeLabel": {
+        "message": "Aktywny"
+    },
+    "inactiveLabel": {
+        "message": "Nieaktywny"
+    },
+    "cancelLabel": {
+        "message": "Anuluj"
+    },
+    "scheduleNamePlaceholder": {
+        "message": "Nazwa Harmonogramu"
+    },
+    "editLabel": {
+        "message": "Edytuj"
+    },
+    "unnamedGroupPrefix": {
+        "message": "Grupa "
+    },
+    "lockedScheduleErrorMessage": {
+        "message": "Nie można dodać strony do białej listy podczas aktywnego harmonogramu."
+    },
+    "cannotToggleActiveState": {
+        "message": "Nie można zmienić stanu aktywnego w obecnych warunkach."
+    },
+    "cannotDeselectDaysError": {
+        "message": "Nie można odznaczyć dni dla aktywnego harmonogramu, który obecnie obowiązuje."
+    }
+}

@@ -1,2 +1,212 @@
-
-{}
+{
+    "deleteButtonLabel": {
+        "message": "Töröl"
+    },
+    "whitelistExistsMessage": {
+        "message": "Ez az oldal már szerepel a fehér listán."
+    },
+    "deleteWhitelistError": {
+        "message": "A fehér listában szereplő oldalakat nem lehet törölni az aktív időzítés alatt."
+    },
+    "scheduleNameLabel": {
+        "message": "Időzítés neve"
+    },
+    "startTimeLabel": {
+        "message": "Kezdési idő"
+    },
+    "endTimeLabel": {
+        "message": "Befejezési idő"
+    },
+    "activeStateLabel": {
+        "message": "Aktív állapot"
+    },
+    "editButtonLabel": {
+        "message": "Szerkeszt"
+    },
+    "saveButtonLabel": {
+        "message": "Mentés"
+    },
+    "endTimeAfterStartTimeError": {
+        "message": "A befejezési időnek a kezdési idő után kell lennie."
+    },
+    "schedulesOverlapError": {
+        "message": "Az időzítések nem fedhetik egymást."
+    },
+    "minimumUnlockedTimeError": {
+        "message": "Minden napnak legalább 1 órányi zárolatlan idővel kell rendelkeznie."
+    },
+    "Mon": {
+        "message": "Hét"
+    },
+    "Tue": {
+        "message": "Ked"
+    },
+    "Wed": {
+        "message": "Sze"
+    },
+    "Thu": {
+        "message": "Csü"
+    },
+    "Fri": {
+        "message": "Pén"
+    },
+    "Sat": {
+        "message": "Szo"
+    },
+    "Sun": {
+        "message": "Vas"
+    },
+    "Edit": {
+        "message": "Szerkeszt"
+    },
+    "Save": {
+        "message": "Mentés"
+    },
+    "Delete": {
+        "message": "Töröl"
+    },
+    "groupNameLabel": {
+        "message": "Csoport neve"
+    },
+    "websitesLabel": {
+        "message": "Weboldalak"
+    },
+    "keywordsLabel": {
+        "message": "Kulcsszavak"
+    },
+    "timerCountLabel": {
+        "message": "Időzítő száma"
+    },
+    "timerDurationLabel": {
+        "message": "Időzítő időtartama (másodpercek)"
+    },
+    "unnamedSchedulesMaxReached": {
+        "message": "A névtelen időzítések maximális száma elérve."
+    },
+    "scheduleNameExists": {
+        "message": "Már létezik ilyen nevű időzítés."
+    },
+    "cannotDeleteActiveSchedule": {
+        "message": "Aktív időzítést nem lehet törölni. Kérjük, várjon, amíg az időzítés inaktív nem lesz."
+    },
+    "optionsTitle": {
+        "message": "Védelmi Panel"
+    },
+    "groupsHeading": {
+        "message": "Csoportok"
+    },
+    "whitelistHeading": {
+        "message": "Fehérlista Weboldalak"
+    },
+    "schedulesHeading": {
+        "message": "Zárolt Időzítések"
+    },
+    "unnamedGroupsMaxReached": {
+        "message": "A névtelen csoportok maximális száma elérve."
+    },
+    "groupNameExists": {
+        "message": "Már létezik ilyen nevű csoport."
+    },
+    "cannotDeleteGroupActiveSchedule": {
+        "message": "Csoportokat nem lehet törölni aktív időzítés alatt."
+    },
+    "cannotIncreaseTimerActiveSchedule": {
+        "message": "Az időzítő időtartamát és a mennyiségét nem lehet növelni az aktív időzítés alatt."
+    },
+    "invalidKeywordValue": {
+        "message": "Érvénytelen kulcsszó érték. A megadott tartományon belül kell lennie."
+    },
+    "cannotChangeGroupNameActiveSchedule": {
+        "message": "A csoport nevének megváltoztatása nem engedélyezett az aktív időzítés alatt."
+    },
+    "invalidEditOnWebsitesOrKeywords": {
+        "message": "A weboldalak vagy a kulcsszavak bejegyzései módosítva vagy eltávolítva lettek, a változtatás nem menthető el."
+    },
+    "invalidKeywordEntry": {
+        "message": "Érvénytelen kulcsszó bejegyzés: "
+    },
+    "addGroupButtonText": {
+        "message": "Csoport hozzáadása"
+    },
+    "contentBlockedTitle": {
+        "message": "Tartalom Blokkolva"
+    },
+    "contentBlockedMessage": {
+        "message": "Ez az oldal korlátozott tartalmat tartalmaz, és védelme érdekében blokkolva lett."
+    },
+    "keywordDetected": {
+        "message": "Kulcsszó Észlelve"
+    },
+    "context": {
+        "message": "Környezet"
+    },
+    "goBackButton": {
+        "message": "Vissza"
+    },
+    "activateTimerButton": {
+        "message": "Időzítő aktiválása"
+    },
+    "cannotRelaxConstraints": {
+        "message": "Az időzítési korlátozásokat nem lehet lazítani."
+    },
+    "activeButtonText": {
+        "message": "Aktív"
+    },
+    "inactiveButtonText": {
+        "message": "Inaktív"
+    },
+    "addScheduleButton": {
+        "message": "Időzítés hozzáadása"
+    },
+    "enterWebsiteURLPlaceholder": {
+        "message": "Adja meg a weboldal URL-jét"
+    },
+    "addToWhitelistButton": {
+        "message": "Hozzáadás a fehérlistához"
+    },
+    "cancelButton": {
+        "message": "Mégse"
+    },
+    "groupNamePlaceholder": {
+        "message": "Csoport neve"
+    },
+    "addScheduleButtonLabel": {
+        "message": "Időzítés hozzáadása"
+    },
+    "unnamedSchedulePrefix": {
+        "message": "Időzítés "
+    },
+    "addToWhitelistButtonLabel": {
+        "message": "Hozzáadás a fehérlistához"
+    },
+    "cancelButtonLabel": {
+        "message": "Mégse"
+    },
+    "activeLabel": {
+        "message": "Aktív"
+    },
+    "inactiveLabel": {
+        "message": "Inaktív"
+    },
+    "cancelLabel": {
+        "message": "Mégse"
+    },
+    "scheduleNamePlaceholder": {
+        "message": "Időzítés neve"
+    },
+    "editLabel": {
+        "message": "Szerkeszt"
+    },
+    "unnamedGroupPrefix": {
+        "message": "Csoport "
+    },
+    "lockedScheduleErrorMessage": {
+        "message": "Az oldalt nem lehet hozzáadni a fehér listához az aktív időzítés alatt."
+    },
+    "cannotToggleActiveState": {
+        "message": "Az aktív állapotot nem lehet megváltoztatni a jelenlegi feltételek mellett."
+    },
+    "cannotDeselectDaysError": {
+        "message": "Nem lehet kiválasztani a napokat egy aktív időzítés esetén, amely jelenleg hatályban van."
+    }
+}

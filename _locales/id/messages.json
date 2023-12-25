@@ -1,2 +1,212 @@
-
-{}
+{
+    "deleteButtonLabel": {
+        "message": "Hapus"
+    },
+    "whitelistExistsMessage": {
+        "message": "Situs ini sudah ada dalam daftar putih."
+    },
+    "deleteWhitelistError": {
+        "message": "Tidak dapat menghapus situs daftar putih selama jadwal aktif."
+    },
+    "scheduleNameLabel": {
+        "message": "Nama Jadwal"
+    },
+    "startTimeLabel": {
+        "message": "Waktu Mulai"
+    },
+    "endTimeLabel": {
+        "message": "Waktu Selesai"
+    },
+    "activeStateLabel": {
+        "message": "Keadaan Aktif"
+    },
+    "editButtonLabel": {
+        "message": "Edit"
+    },
+    "saveButtonLabel": {
+        "message": "Simpan"
+    },
+    "endTimeAfterStartTimeError": {
+        "message": "Waktu selesai harus setelah waktu mulai."
+    },
+    "schedulesOverlapError": {
+        "message": "Jadwal tidak boleh tumpang tindih."
+    },
+    "minimumUnlockedTimeError": {
+        "message": "Setiap hari harus memiliki setidaknya 1 jam waktu tidak terkunci."
+    },
+    "Mon": {
+        "message": "Sen"
+    },
+    "Tue": {
+        "message": "Sel"
+    },
+    "Wed": {
+        "message": "Rab"
+    },
+    "Thu": {
+        "message": "Kam"
+    },
+    "Fri": {
+        "message": "Jum"
+    },
+    "Sat": {
+        "message": "Sab"
+    },
+    "Sun": {
+        "message": "Min"
+    },
+    "Edit": {
+        "message": "Edit"
+    },
+    "Save": {
+        "message": "Simpan"
+    },
+    "Delete": {
+        "message": "Hapus"
+    },
+    "groupNameLabel": {
+        "message": "Nama Grup"
+    },
+    "websitesLabel": {
+        "message": "Situs Web"
+    },
+    "keywordsLabel": {
+        "message": "Kata Kunci"
+    },
+    "timerCountLabel": {
+        "message": "Hitungan Timer"
+    },
+    "timerDurationLabel": {
+        "message": "Durasi Timer (detik)"
+    },
+    "unnamedSchedulesMaxReached": {
+        "message": "Jumlah maksimum jadwal tanpa nama telah tercapai."
+    },
+    "scheduleNameExists": {
+        "message": "Jadwal dengan nama ini sudah ada."
+    },
+    "cannotDeleteActiveSchedule": {
+        "message": "Tidak dapat menghapus jadwal yang aktif. Harap tunggu sampai jadwal tidak aktif."
+    },
+    "optionsTitle": {
+        "message": "Panel Pertahanan"
+    },
+    "groupsHeading": {
+        "message": "Grup"
+    },
+    "whitelistHeading": {
+        "message": "Daftar Putih Situs Web"
+    },
+    "schedulesHeading": {
+        "message": "Jadwal Terkunci"
+    },
+    "unnamedGroupsMaxReached": {
+        "message": "Jumlah maksimum grup tanpa nama telah tercapai."
+    },
+    "groupNameExists": {
+        "message": "Grup dengan nama ini sudah ada."
+    },
+    "cannotDeleteGroupActiveSchedule": {
+        "message": "Tidak dapat menghapus grup selama jadwal aktif."
+    },
+    "cannotIncreaseTimerActiveSchedule": {
+        "message": "Durasi timer dan jumlah timer tidak dapat ditingkatkan selama jadwal aktif."
+    },
+    "invalidKeywordValue": {
+        "message": "Nilai kata kunci tidak valid. Harus berada dalam rentang yang ditentukan."
+    },
+    "cannotChangeGroupNameActiveSchedule": {
+        "message": "Mengubah nama grup tidak diizinkan selama jadwal aktif."
+    },
+    "invalidEditOnWebsitesOrKeywords": {
+        "message": "Entri Situs Web atau Kata Kunci telah diedit atau dihapus, perubahan tidak dapat disimpan."
+    },
+    "invalidKeywordEntry": {
+        "message": "Entri kata kunci tidak valid: "
+    },
+    "addGroupButtonText": {
+        "message": "Tambah Grup"
+    },
+    "contentBlockedTitle": {
+        "message": "Konten Diblokir"
+    },
+    "contentBlockedMessage": {
+        "message": "Halaman ini berisi konten terbatas dan telah diblokir demi perlindungan Anda."
+    },
+    "keywordDetected": {
+        "message": "Kata Kunci Terdeteksi"
+    },
+    "context": {
+        "message": "Konteks"
+    },
+    "goBackButton": {
+        "message": "Kembali"
+    },
+    "activateTimerButton": {
+        "message": "Aktifkan Timer"
+    },
+    "cannotRelaxConstraints": {
+        "message": "Tidak dapat melonggarkan batasan jadwal."
+    },
+    "activeButtonText": {
+        "message": "Aktif"
+    },
+    "inactiveButtonText": {
+        "message": "Tidak Aktif"
+    },
+    "addScheduleButton": {
+        "message": "Tambah Jadwal"
+    },
+    "enterWebsiteURLPlaceholder": {
+        "message": "Masukkan URL situs web"
+    },
+    "addToWhitelistButton": {
+        "message": "Tambahkan ke Daftar Putih"
+    },
+    "cancelButton": {
+        "message": "Batal"
+    },
+    "groupNamePlaceholder": {
+        "message": "Nama Grup"
+    },
+    "addScheduleButtonLabel": {
+        "message": "Tambah Jadwal"
+    },
+    "unnamedSchedulePrefix": {
+        "message": "Jadwal "
+    },
+    "addToWhitelistButtonLabel": {
+        "message": "Tambahkan ke Daftar Putih"
+    },
+    "cancelButtonLabel": {
+        "message": "Batal"
+    },
+    "activeLabel": {
+        "message": "Aktif"
+    },
+    "inactiveLabel": {
+        "message": "Tidak Aktif"
+    },
+    "cancelLabel": {
+        "message": "Batal"
+    },
+    "scheduleNamePlaceholder": {
+        "message": "Nama Jadwal"
+    },
+    "editLabel": {
+        "message": "Edit"
+    },
+    "unnamedGroupPrefix": {
+        "message": "Grup "
+    },
+    "lockedScheduleErrorMessage": {
+        "message": "Tidak dapat menambahkan situs ke daftar putih selama jadwal aktif."
+    },
+    "cannotToggleActiveState": {
+        "message": "Tidak dapat mengubah keadaan aktif dalam kondisi saat ini."
+    },
+    "cannotDeselectDaysError": {
+        "message": "Tidak dapat membatalkan pilihan hari untuk jadwal aktif yang saat ini berlaku."
+    }
+}

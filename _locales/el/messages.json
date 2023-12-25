@@ -1,2 +1,212 @@
-
-{}
+{
+    "deleteButtonLabel": {
+        "message": "Διαγραφή"
+    },
+    "whitelistExistsMessage": {
+        "message": "Αυτός ο ιστότοπος βρίσκεται ήδη στη λίστα επιτρεπόμενων."
+    },
+    "deleteWhitelistError": {
+        "message": "Δεν είναι δυνατή η διαγραφή ιστοτόπων από τη λίστα επιτρεπόμενων κατά τη διάρκεια ενεργού προγράμματος."
+    },
+    "scheduleNameLabel": {
+        "message": "Όνομα Προγράμματος"
+    },
+    "startTimeLabel": {
+        "message": "Ώρα Έναρξης"
+    },
+    "endTimeLabel": {
+        "message": "Ώρα Λήξης"
+    },
+    "activeStateLabel": {
+        "message": "Ενεργή Κατάσταση"
+    },
+    "editButtonLabel": {
+        "message": "Επεξεργασία"
+    },
+    "saveButtonLabel": {
+        "message": "Αποθήκευση"
+    },
+    "endTimeAfterStartTimeError": {
+        "message": "Η ώρα λήξης πρέπει να είναι μετά την ώρα έναρξης."
+    },
+    "schedulesOverlapError": {
+        "message": "Τα προγράμματα δεν μπορούν να επικαλύπτονται."
+    },
+    "minimumUnlockedTimeError": {
+        "message": "Κάθε μέρα πρέπει να έχει τουλάχιστον 1 ώρα ανοιχτού χρόνου."
+    },
+    "Mon": {
+        "message": "Δευ"
+    },
+    "Tue": {
+        "message": "Τρι"
+    },
+    "Wed": {
+        "message": "Τετ"
+    },
+    "Thu": {
+        "message": "Πεμ"
+    },
+    "Fri": {
+        "message": "Παρ"
+    },
+    "Sat": {
+        "message": "Σαβ"
+    },
+    "Sun": {
+        "message": "Κυρ"
+    },
+    "Edit": {
+        "message": "Επεξεργασία"
+    },
+    "Save": {
+        "message": "Αποθήκευση"
+    },
+    "Delete": {
+        "message": "Διαγραφή"
+    },
+    "groupNameLabel": {
+        "message": "Όνομα Ομάδας"
+    },
+    "websitesLabel": {
+        "message": "Ιστότοποι"
+    },
+    "keywordsLabel": {
+        "message": "Λέξεις-κλειδιά"
+    },
+    "timerCountLabel": {
+        "message": "Μετρητής Χρόνου"
+    },
+    "timerDurationLabel": {
+        "message": "Διάρκεια Χρονοδιακόπτη (δευτερόλεπτα)"
+    },
+    "unnamedSchedulesMaxReached": {
+        "message": "Μέγιστος αριθμός ανώνυμων προγραμμάτων επιτεύχθηκε."
+    },
+    "scheduleNameExists": {
+        "message": "Ένα πρόγραμμα με αυτό το όνομα υπάρχει ήδη."
+    },
+    "cannotDeleteActiveSchedule": {
+        "message": "Δεν είναι δυνατή η διαγραφή ενός ενεργού προγράμματος. Παρακαλώ περιμένετε μέχρι το πρόγραμμα να μην είναι ενεργό."
+    },
+    "optionsTitle": {
+        "message": "Πίνακας Άμυνας"
+    },
+    "groupsHeading": {
+        "message": "Ομάδες"
+    },
+    "whitelistHeading": {
+        "message": "Λίστα Επιτρεπόμενων Ιστοτόπων"
+    },
+    "schedulesHeading": {
+        "message": "Κλειδωμένα Προγράμματα"
+    },
+    "unnamedGroupsMaxReached": {
+        "message": "Μέγιστος αριθμός ανώνυμων ομάδων επιτεύχθηκε."
+    },
+    "groupNameExists": {
+        "message": "Μια ομάδα με αυτό το όνομα υπάρχει ήδη."
+    },
+    "cannotDeleteGroupActiveSchedule": {
+        "message": "Δεν είναι δυνατή η διαγραφή ομάδων κατά τη διάρκεια ενεργού προγράμματος."
+    },
+    "cannotIncreaseTimerActiveSchedule": {
+        "message": "Η διάρκεια του χρονοδιακόπτη και ο αριθμός των χρονοδιακοπτών δεν μπορεί να αυξηθεί κατά τη διάρκεια ενεργού προγράμματος."
+    },
+    "invalidKeywordValue": {
+        "message": "Μη έγκυρη τιμή λέξης-κλειδιού. Πρέπει να βρίσκεται εντός του καθορισμένου εύρους."
+    },
+    "cannotChangeGroupNameActiveSchedule": {
+        "message": "Η αλλαγή του ονόματος της ομάδας δεν επιτρέπεται κατά τη διάρκεια ενεργού προγράμματος."
+    },
+    "invalidEditOnWebsitesOrKeywords": {
+        "message": "Οι καταχωρήσεις ιστοτόπων ή λέξεων-κλειδιών έχουν επεξεργαστεί ή αφαιρεθεί, η αλλαγή δεν μπορεί να αποθηκευτεί."
+    },
+    "invalidKeywordEntry": {
+        "message": "Μη έγκυρη καταχώρηση λέξης-κλειδιού: "
+    },
+    "addGroupButtonText": {
+        "message": "Προσθήκη Ομάδας"
+    },
+    "contentBlockedTitle": {
+        "message": "Περιεχόμενο Αποκλεισμένο"
+    },
+    "contentBlockedMessage": {
+        "message": "Αυτή η σελίδα περιέχει περιορισμένο περιεχόμενο και έχει αποκλειστεί για την προστασία σας."
+    },
+    "keywordDetected": {
+        "message": "Λέξη-Κλειδί Εντοπίστηκε"
+    },
+    "context": {
+        "message": "Περιεχόμενο"
+    },
+    "goBackButton": {
+        "message": "Επιστροφή"
+    },
+    "activateTimerButton": {
+        "message": "Ενεργοποίηση Χρονοδιακόπτη"
+    },
+    "cannotRelaxConstraints": {
+        "message": "Δεν είναι δυνατή η χαλάρωση των περιορισμών του προγράμματος."
+    },
+    "activeButtonText": {
+        "message": "Ενεργό"
+    },
+    "inactiveButtonText": {
+        "message": "Ανενεργό"
+    },
+    "addScheduleButton": {
+        "message": "Προσθήκη Προγράμματος"
+    },
+    "enterWebsiteURLPlaceholder": {
+        "message": "Εισάγετε τη διεύθυνση URL του ιστότοπου"
+    },
+    "addToWhitelistButton": {
+        "message": "Προσθήκη στη Λίστα Εξαιρέσεων"
+    },
+    "cancelButton": {
+        "message": "Ακύρωση"
+    },
+    "groupNamePlaceholder": {
+        "message": "Όνομα Ομάδας"
+    },
+    "addScheduleButtonLabel": {
+        "message": "Προσθήκη Προγράμματος"
+    },
+    "unnamedSchedulePrefix": {
+        "message": "Πρόγραμμα "
+    },
+    "addToWhitelistButtonLabel": {
+        "message": "Προσθήκη στη Λίστα Εξαιρέσεων"
+    },
+    "cancelButtonLabel": {
+        "message": "Ακύρωση"
+    },
+    "activeLabel": {
+        "message": "Ενεργό"
+    },
+    "inactiveLabel": {
+        "message": "Ανενεργό"
+    },
+    "cancelLabel": {
+        "message": "Ακύρωση"
+    },
+    "scheduleNamePlaceholder": {
+        "message": "Όνομα Προγράμματος"
+    },
+    "editLabel": {
+        "message": "Επεξεργασία"
+    },
+    "unnamedGroupPrefix": {
+        "message": "Ομάδα "
+    },
+    "lockedScheduleErrorMessage": {
+        "message": "Δεν είναι δυνατή η προσθήκη ιστότοπου στη λίστα εξαιρέσεων κατά τη διάρκεια ενός ενεργού προγράμματος."
+    },
+    "cannotToggleActiveState": {
+        "message": "Δεν είναι δυνατή η αλλαγή της ενεργής κατάστασης υπό τις τρέχουσες συνθήκες."
+    },
+    "cannotDeselectDaysError": {
+        "message": "Δεν είναι δυνατή η αποεπιλογή ημερών για ένα ενεργό πρόγραμμα που βρίσκεται σε ισχύ."
+    }
+}

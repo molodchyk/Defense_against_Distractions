@@ -1,2 +1,212 @@
-
-{}
+{
+    "deleteButtonLabel": {
+        "message": "Padam"
+    },
+    "whitelistExistsMessage": {
+        "message": "Laman web ini sudah ada dalam senarai putih."
+    },
+    "deleteWhitelistError": {
+        "message": "Tidak dapat memadam laman web dalam senarai putih semasa jadual aktif."
+    },
+    "scheduleNameLabel": {
+        "message": "Nama Jadual"
+    },
+    "startTimeLabel": {
+        "message": "Masa Mula"
+    },
+    "endTimeLabel": {
+        "message": "Masa Tamat"
+    },
+    "activeStateLabel": {
+        "message": "Keadaan Aktif"
+    },
+    "editButtonLabel": {
+        "message": "Edit"
+    },
+    "saveButtonLabel": {
+        "message": "Simpan"
+    },
+    "endTimeAfterStartTimeError": {
+        "message": "Masa tamat mesti selepas masa mula."
+    },
+    "schedulesOverlapError": {
+        "message": "Jadual tidak boleh bertindih."
+    },
+    "minimumUnlockedTimeError": {
+        "message": "Setiap hari mesti mempunyai sekurang-kurangnya 1 jam masa tidak terkunci."
+    },
+    "Mon": {
+        "message": "Isn"
+    },
+    "Tue": {
+        "message": "Sel"
+    },
+    "Wed": {
+        "message": "Rab"
+    },
+    "Thu": {
+        "message": "Kha"
+    },
+    "Fri": {
+        "message": "Jum"
+    },
+    "Sat": {
+        "message": "Sab"
+    },
+    "Sun": {
+        "message": "Aha"
+    },
+    "Edit": {
+        "message": "Edit"
+    },
+    "Save": {
+        "message": "Simpan"
+    },
+    "Delete": {
+        "message": "Padam"
+    },
+    "groupNameLabel": {
+        "message": "Nama Kumpulan"
+    },
+    "websitesLabel": {
+        "message": "Laman Web"
+    },
+    "keywordsLabel": {
+        "message": "Kata Kunci"
+    },
+    "timerCountLabel": {
+        "message": "Kiraan Pengatur Waktu"
+    },
+    "timerDurationLabel": {
+        "message": "Tempoh Pengatur Waktu (saat)"
+    },
+    "unnamedSchedulesMaxReached": {
+        "message": "Jumlah maksimum jadual tanpa nama telah dicapai."
+    },
+    "scheduleNameExists": {
+        "message": "Jadual dengan nama ini sudah wujud."
+    },
+    "cannotDeleteActiveSchedule": {
+        "message": "Tidak dapat memadam jadual aktif. Sila tunggu sehingga jadual tidak aktif."
+    },
+    "optionsTitle": {
+        "message": "Panel Pertahanan"
+    },
+    "groupsHeading": {
+        "message": "Kumpulan"
+    },
+    "whitelistHeading": {
+        "message": "Senarai Putih Laman Web"
+    },
+    "schedulesHeading": {
+        "message": "Jadual Terkunci"
+    },
+    "unnamedGroupsMaxReached": {
+        "message": "Jumlah maksimum kumpulan tanpa nama telah dicapai."
+    },
+    "groupNameExists": {
+        "message": "Kumpulan dengan nama ini sudah wujud."
+    },
+    "cannotDeleteGroupActiveSchedule": {
+        "message": "Tidak dapat memadam kumpulan semasa jadual aktif."
+    },
+    "cannotIncreaseTimerActiveSchedule": {
+        "message": "Tempoh pengatur waktu dan jumlah pengatur waktu tidak boleh ditambah semasa jadual aktif."
+    },
+    "invalidKeywordValue": {
+        "message": "Nilai kata kunci tidak sah. Mesti berada dalam julat yang ditetapkan."
+    },
+    "cannotChangeGroupNameActiveSchedule": {
+        "message": "Pertukaran nama kumpulan tidak dibenarkan semasa jadual aktif."
+    },
+    "invalidEditOnWebsitesOrKeywords": {
+        "message": "Entri Laman Web atau Kata Kunci telah diedit atau dibuang, perubahan tidak boleh disimpan."
+    },
+    "invalidKeywordEntry": {
+        "message": "Entri kata kunci tidak sah: "
+    },
+    "addGroupButtonText": {
+        "message": "Tambah Kumpulan"
+    },
+    "contentBlockedTitle": {
+        "message": "Kandungan Disekat"
+    },
+    "contentBlockedMessage": {
+        "message": "Laman ini mengandungi kandungan terhad dan telah disekat untuk perlindungan anda."
+    },
+    "keywordDetected": {
+        "message": "Kata Kunci Dikesan"
+    },
+    "context": {
+        "message": "Konteks"
+    },
+    "goBackButton": {
+        "message": "Kembali"
+    },
+    "activateTimerButton": {
+        "message": "Aktifkan Pengatur Waktu"
+    },
+    "cannotRelaxConstraints": {
+        "message": "Tidak boleh melonggarkan batasan jadual."
+    },
+    "activeButtonText": {
+        "message": "Aktif"
+    },
+    "inactiveButtonText": {
+        "message": "Tidak Aktif"
+    },
+    "addScheduleButton": {
+        "message": "Tambah Jadual"
+    },
+    "enterWebsiteURLPlaceholder": {
+        "message": "Masukkan URL laman web"
+    },
+    "addToWhitelistButton": {
+        "message": "Tambah ke Senarai Putih"
+    },
+    "cancelButton": {
+        "message": "Batal"
+    },
+    "groupNamePlaceholder": {
+        "message": "Nama Kumpulan"
+    },
+    "addScheduleButtonLabel": {
+        "message": "Tambah Jadual"
+    },
+    "unnamedSchedulePrefix": {
+        "message": "Jadual "
+    },
+    "addToWhitelistButtonLabel": {
+        "message": "Tambah ke Senarai Putih"
+    },
+    "cancelButtonLabel": {
+        "message": "Batal"
+    },
+    "activeLabel": {
+        "message": "Aktif"
+    },
+    "inactiveLabel": {
+        "message": "Tidak Aktif"
+    },
+    "cancelLabel": {
+        "message": "Batal"
+    },
+    "scheduleNamePlaceholder": {
+        "message": "Nama Jadual"
+    },
+    "editLabel": {
+        "message": "Edit"
+    },
+    "unnamedGroupPrefix": {
+        "message": "Kumpulan "
+    },
+    "lockedScheduleErrorMessage": {
+        "message": "Tidak boleh menambah laman web ke senarai putih semasa jadual aktif."
+    },
+    "cannotToggleActiveState": {
+        "message": "Tidak boleh mengubah keadaan aktif di bawah keadaan semasa."
+    },
+    "cannotDeselectDaysError": {
+        "message": "Tidak boleh nyahpilih hari untuk jadual aktif yang sedang berkuat kuasa."
+    }
+}

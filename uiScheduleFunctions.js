@@ -228,7 +228,7 @@ function createDayButtons(selectedDays, scheduleState) {
 
 
 function createActiveToggleButton(isActive, scheduleState) {
-  console.log('Creating active toggle for schedule', scheduleState.index);
+  // console.log('Creating active toggle for schedule', scheduleState.index);
   if (!scheduleState) {
     console.error('scheduleState is not defined');
     return;
@@ -282,7 +282,7 @@ function createButton(text, onClick, className, index) {
 
   if (typeof index === 'number') {
     button.id = `${className}-${index}`;
-    console.log(`Created button with ID: ${button.id}`);
+    // console.log(`Created button with ID: ${button.id}`);
   } else {
     console.log(`Index is not a number, it's: ${index}`);
   }
@@ -306,12 +306,12 @@ export function createSaveButton(index) {
 }
 
 export function updateSchedulesUI(schedules, scheduleStates) {
-  console.log('updateSchedulesUI called with schedules:', schedules, 'and scheduleStates:', scheduleStates);
+  // console.log('updateSchedulesUI called with schedules:', schedules, 'and scheduleStates:', scheduleStates);
   const scheduleList = document.getElementById('scheduleList');
   scheduleList.innerHTML = ''; // Clear the list
 
   schedules.forEach((schedule, index) => {
-    console.log('Processing schedule at index', index);
+    // console.log('Processing schedule at index', index);
     const scheduleState = scheduleStates[index]; // Get the corresponding ScheduleState instance
     if (!scheduleState) {
       console.error(`No schedule state found for index ${index}`);

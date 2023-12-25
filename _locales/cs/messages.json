@@ -1,2 +1,212 @@
-
-{}
+{
+    "deleteButtonLabel": {
+        "message": "Smazat"
+    },
+    "whitelistExistsMessage": {
+        "message": "Tato stránka je již na seznamu povolených."
+    },
+    "deleteWhitelistError": {
+        "message": "Nelze smazat stránky ze seznamu povolených během aktivního rozvrhu."
+    },
+    "scheduleNameLabel": {
+        "message": "Název rozvrhu"
+    },
+    "startTimeLabel": {
+        "message": "Čas začátku"
+    },
+    "endTimeLabel": {
+        "message": "Čas konce"
+    },
+    "activeStateLabel": {
+        "message": "Stav aktivity"
+    },
+    "editButtonLabel": {
+        "message": "Upravit"
+    },
+    "saveButtonLabel": {
+        "message": "Uložit"
+    },
+    "endTimeAfterStartTimeError": {
+        "message": "Čas konce musí být po čase začátku."
+    },
+    "schedulesOverlapError": {
+        "message": "Rozvrhy se nesmí překrývat."
+    },
+    "minimumUnlockedTimeError": {
+        "message": "Každý den musí mít alespoň 1 hodinu nezamčeného času."
+    },
+    "Mon": {
+        "message": "Po"
+    },
+    "Tue": {
+        "message": "Út"
+    },
+    "Wed": {
+        "message": "St"
+    },
+    "Thu": {
+        "message": "Čt"
+    },
+    "Fri": {
+        "message": "Pá"
+    },
+    "Sat": {
+        "message": "So"
+    },
+    "Sun": {
+        "message": "Ne"
+    },
+    "Edit": {
+        "message": "Upravit"
+    },
+    "Save": {
+        "message": "Uložit"
+    },
+    "Delete": {
+        "message": "Smazat"
+    },
+    "groupNameLabel": {
+        "message": "Název skupiny"
+    },
+    "websitesLabel": {
+        "message": "Webové stránky"
+    },
+    "keywordsLabel": {
+        "message": "Klíčová slova"
+    },
+    "timerCountLabel": {
+        "message": "Počet časovačů"
+    },
+    "timerDurationLabel": {
+        "message": "Délka časovače (sekundy)"
+    },
+    "unnamedSchedulesMaxReached": {
+        "message": "Dosaženo maximálního počtu nerozvrhnutých rozvrhů."
+    },
+    "scheduleNameExists": {
+        "message": "Rozvrh s tímto názvem již existuje."
+    },
+    "cannotDeleteActiveSchedule": {
+        "message": "Nelze smazat aktivní rozvrh. Počkejte, až nebude rozvrh aktivní."
+    },
+    "optionsTitle": {
+        "message": "Ovládací panel"
+    },
+    "groupsHeading": {
+        "message": "Skupiny"
+    },
+    "whitelistHeading": {
+        "message": "Seznam povolených webových stránek"
+    },
+    "schedulesHeading": {
+        "message": "Zamčené rozvrhy"
+    },
+    "unnamedGroupsMaxReached": {
+        "message": "Dosaženo maximálního počtu nerozvrhnutých skupin."
+    },
+    "groupNameExists": {
+        "message": "Skupina s tímto názvem již existuje."
+    },
+    "cannotDeleteGroupActiveSchedule": {
+        "message": "Nelze smazat skupiny během aktivního rozvrhu."
+    },
+    "cannotIncreaseTimerActiveSchedule": {
+        "message": "Během aktivního rozvrhu nelze zvyšovat dobu trvání časovače a počet časovačů."
+    },
+    "invalidKeywordValue": {
+        "message": "Neplatná hodnota klíčového slova. Musí být v zadaném rozsahu."
+    },
+    "cannotChangeGroupNameActiveSchedule": {
+        "message": "Během aktivního rozvrhu není povoleno měnit název skupiny."
+    },
+    "invalidEditOnWebsitesOrKeywords": {
+        "message": "Záznamy o webových stránkách nebo klíčových slovech byly upraveny nebo odstraněny, změnu nelze uložit."
+    },
+    "invalidKeywordEntry": {
+        "message": "Neplatný záznam klíčového slova: "
+    },
+    "addGroupButtonText": {
+        "message": "Přidat skupinu"
+    },
+    "contentBlockedTitle": {
+        "message": "Obsah zablokován"
+    },
+    "contentBlockedMessage": {
+        "message": "Tato stránka obsahuje omezený obsah a byla zablokována pro vaši ochranu."
+    },
+    "keywordDetected": {
+        "message": "Detekováno klíčové slovo"
+    },
+    "context": {
+        "message": "Kontext"
+    },
+    "goBackButton": {
+        "message": "Jít zpět"
+    },
+    "activateTimerButton": {
+        "message": "Aktivovat časovač"
+    },
+    "cannotRelaxConstraints": {
+        "message": "Nelze uvolnit omezení rozvrhu."
+    },
+    "activeButtonText": {
+        "message": "Aktivní"
+    },
+    "inactiveButtonText": {
+        "message": "Neaktivní"
+    },
+    "addScheduleButton": {
+        "message": "Přidat rozvrh"
+    },
+    "enterWebsiteURLPlaceholder": {
+        "message": "Zadejte URL webové stránky"
+    },
+    "addToWhitelistButton": {
+        "message": "Přidat na seznam povolených"
+    },
+    "cancelButton": {
+        "message": "Zrušit"
+    },
+    "groupNamePlaceholder": {
+        "message": "Název skupiny"
+    },
+    "addScheduleButtonLabel": {
+        "message": "Přidat rozvrh"
+    },
+    "unnamedSchedulePrefix": {
+        "message": "Rozvrh "
+    },
+    "addToWhitelistButtonLabel": {
+        "message": "Přidat na seznam povolených"
+    },
+    "cancelButtonLabel": {
+        "message": "Zrušit"
+    },
+    "activeLabel": {
+        "message": "Aktivní"
+    },
+    "inactiveLabel": {
+        "message": "Neaktivní"
+    },
+    "cancelLabel": {
+        "message": "Zrušit"
+    },
+    "scheduleNamePlaceholder": {
+        "message": "Název rozvrhu"
+    },
+    "editLabel": {
+        "message": "Upravit"
+    },
+    "unnamedGroupPrefix": {
+        "message": "Skupina "
+    },
+    "lockedScheduleErrorMessage": {
+        "message": "Během aktivního rozvrhu nelze přidat stránku na seznam povolených."
+    },
+    "cannotToggleActiveState": {
+        "message": "Nelze změnit stav aktivity za současných podmínek."
+    },
+    "cannotDeselectDaysError": {
+        "message": "Nelze odznačit dny pro aktivní rozvrh, který je právě v platnosti."
+    }
+}

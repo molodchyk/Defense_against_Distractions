@@ -312,7 +312,7 @@ function addSchedule() {
     if (!scheduleName) {
       const existingNames = new Set(schedules.map(s => s.name.toLowerCase()));
       let scheduleNumber = 1;
-      while (existingNames.has(chrome.i18n.getMessage("unnamedSchedulePrefix") + scheduleNumber)) {
+      while (existingNames.has(chrome.i18n.getMessage("unnamedSchedulePrefix").toLowerCase() + scheduleNumber)) {
         scheduleNumber++;
       }
       scheduleName = chrome.i18n.getMessage("unnamedSchedulePrefix") + scheduleNumber;

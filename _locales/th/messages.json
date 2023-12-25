@@ -1,2 +1,212 @@
-
-{}
+{
+    "deleteButtonLabel": {
+        "message": "ลบ"
+    },
+    "whitelistExistsMessage": {
+        "message": "เว็บไซต์นี้อยู่ในรายการอนุญาตแล้ว"
+    },
+    "deleteWhitelistError": {
+        "message": "ไม่สามารถลบเว็บไซต์ที่อยู่ในรายการอนุญาตได้ระหว่างกำหนดการทำงาน"
+    },
+    "scheduleNameLabel": {
+        "message": "ชื่อกำหนดการ"
+    },
+    "startTimeLabel": {
+        "message": "เวลาเริ่มต้น"
+    },
+    "endTimeLabel": {
+        "message": "เวลาสิ้นสุด"
+    },
+    "activeStateLabel": {
+        "message": "สถานะการใช้งาน"
+    },
+    "editButtonLabel": {
+        "message": "แก้ไข"
+    },
+    "saveButtonLabel": {
+        "message": "บันทึก"
+    },
+    "endTimeAfterStartTimeError": {
+        "message": "เวลาสิ้นสุดต้องหลังจากเวลาเริ่มต้น"
+    },
+    "schedulesOverlapError": {
+        "message": "กำหนดการไม่ควรทับซ้อนกัน"
+    },
+    "minimumUnlockedTimeError": {
+        "message": "แต่ละวันต้องมีเวลาไม่ถูกล็อกอย่างน้อย 1 ชั่วโมง"
+    },
+    "Mon": {
+        "message": "จันทร์"
+    },
+    "Tue": {
+        "message": "อังคาร"
+    },
+    "Wed": {
+        "message": "พุธ"
+    },
+    "Thu": {
+        "message": "พฤหัส"
+    },
+    "Fri": {
+        "message": "ศุกร์"
+    },
+    "Sat": {
+        "message": "เสาร์"
+    },
+    "Sun": {
+        "message": "อาทิตย์"
+    },
+    "Edit": {
+        "message": "แก้ไข"
+    },
+    "Save": {
+        "message": "บันทึก"
+    },
+    "Delete": {
+        "message": "ลบ"
+    },
+    "groupNameLabel": {
+        "message": "ชื่อกลุ่ม"
+    },
+    "websitesLabel": {
+        "message": "เว็บไซต์"
+    },
+    "keywordsLabel": {
+        "message": "คำหลัก"
+    },
+    "timerCountLabel": {
+        "message": "จำนวนตัวจับเวลา"
+    },
+    "timerDurationLabel": {
+        "message": "ระยะเวลาตัวจับเวลา (วินาที)"
+    },
+    "unnamedSchedulesMaxReached": {
+        "message": "จำนวนกำหนดการที่ไม่มีชื่อถึงขีดจำกัดแล้ว"
+    },
+    "scheduleNameExists": {
+        "message": "มีกำหนดการที่มีชื่อนี้อยู่แล้ว"
+    },
+    "cannotDeleteActiveSchedule": {
+        "message": "ไม่สามารถลบกำหนดการที่กำลังใช้งานได้ กรุณารอจนกว่าจะไม่ใช้งาน"
+    },
+    "optionsTitle": {
+        "message": "แผงการป้องกัน"
+    },
+    "groupsHeading": {
+        "message": "กลุ่ม"
+    },
+    "whitelistHeading": {
+        "message": "เว็บไซต์ในรายการอนุญาต"
+    },
+    "schedulesHeading": {
+        "message": "กำหนดการที่ถูกล็อก"
+    },
+    "unnamedGroupsMaxReached": {
+        "message": "จำนวนกลุ่มที่ไม่มีชื่อถึงขีดจำกัดแล้ว"
+    },
+    "groupNameExists": {
+        "message": "มีกลุ่มที่มีชื่อนี้อยู่แล้ว"
+    },
+    "cannotDeleteGroupActiveSchedule": {
+        "message": "ไม่สามารถลบกลุ่มระหว่างกำหนดการทำงานได้"
+    },
+    "cannotIncreaseTimerActiveSchedule": {
+        "message": "ไม่สามารถเพิ่มระยะเวลาตัวจับเวลาและจำนวนตัวจับเวลาได้ระหว่างกำหนดการทำงาน"
+    },
+    "invalidKeywordValue": {
+        "message": "ค่าคำหลักไม่ถูกต้อง ต้องอยู่ในช่วงที่กำหนด"
+    },
+    "cannotChangeGroupNameActiveSchedule": {
+        "message": "ไม่อนุญาตให้เปลี่ยนชื่อกลุ่มระหว่างกำหนดการทำงาน"
+    },
+    "invalidEditOnWebsitesOrKeywords": {
+        "message": "มีการแก้ไขหรือลบรายการเว็บไซต์หรือคำหลัก ไม่สามารถบันทึกการเปลี่ยนแปลงได้"
+    },
+    "invalidKeywordEntry": {
+        "message": "รายการคำหลักไม่ถูกต้อง: "
+    },
+    "addGroupButtonText": {
+        "message": "เพิ่มกลุ่ม"
+    },
+    "contentBlockedTitle": {
+        "message": "เนื้อหาถูกบล็อก"
+    },
+    "contentBlockedMessage": {
+        "message": "หน้านี้มีเนื้อหาที่ถูกจำกัด และได้ถูกบล็อกเพื่อความปลอดภัยของคุณ"
+    },
+    "keywordDetected": {
+        "message": "ตรวจพบคำหลัก"
+    },
+    "context": {
+        "message": "บริบท"
+    },
+    "goBackButton": {
+        "message": "ย้อนกลับ"
+    },
+    "activateTimerButton": {
+        "message": "เปิดใช้ตัวจับเวลา"
+    },
+    "cannotRelaxConstraints": {
+        "message": "ไม่สามารถผ่อนคลายข้อจำกัดของกำหนดการได้"
+    },
+    "activeButtonText": {
+        "message": "ใช้งาน"
+    },
+    "inactiveButtonText": {
+        "message": "ไม่ใช้งาน"
+    },
+    "addScheduleButton": {
+        "message": "เพิ่มกำหนดการ"
+    },
+    "enterWebsiteURLPlaceholder": {
+        "message": "ใส่ URL เว็บไซต์"
+    },
+    "addToWhitelistButton": {
+        "message": "เพิ่มลงในรายการอนุญาต"
+    },
+    "cancelButton": {
+        "message": "ยกเลิก"
+    },
+    "groupNamePlaceholder": {
+        "message": "ชื่อกลุ่ม"
+    },
+    "addScheduleButtonLabel": {
+        "message": "เพิ่มกำหนดการ"
+    },
+    "unnamedSchedulePrefix": {
+        "message": "กำหนดการ "
+    },
+    "addToWhitelistButtonLabel": {
+        "message": "เพิ่มลงในรายการที่อนุญาต"
+    },
+    "cancelButtonLabel": {
+        "message": "ยกเลิก"
+    },
+    "activeLabel": {
+        "message": "ใช้งานอยู่"
+    },
+    "inactiveLabel": {
+        "message": "ไม่ได้ใช้งาน"
+    },
+    "cancelLabel": {
+        "message": "ยกเลิก"
+    },
+    "scheduleNamePlaceholder": {
+        "message": "ชื่อตารางเวลา"
+    },
+    "editLabel": {
+        "message": "แก้ไข"
+    },
+    "unnamedGroupPrefix": {
+        "message": "กลุ่ม "
+    },
+    "lockedScheduleErrorMessage": {
+        "message": "ไม่สามารถเพิ่มไซต์ไปยังรายการที่อนุญาตได้ขณะตารางเวลากำลังใช้งานอยู่"
+    },
+    "cannotToggleActiveState": {
+        "message": "ไม่สามารถเปลี่ยนสถานะการใช้งานได้ภายใต้เงื่อนไขปัจจุบัน"
+    },
+    "cannotDeselectDaysError": {
+        "message": "ไม่สามารถยกเลิกการเลือกวันสำหรับตารางเวลาที่ใช้งานอยู่และมีผลในปัจจุบัน"
+    }
+}

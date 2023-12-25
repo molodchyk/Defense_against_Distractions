@@ -1,2 +1,212 @@
-
-{}
+{
+    "deleteButtonLabel": {
+        "message": "हटाएं"
+    },
+    "whitelistExistsMessage": {
+        "message": "यह साइट पहले से ही सफेद सूची में है।"
+    },
+    "deleteWhitelistError": {
+        "message": "सक्रिय अनुसूची के दौरान सफेद सूचीबद्ध साइटों को हटा नहीं सकते।"
+    },
+    "scheduleNameLabel": {
+        "message": "अनुसूची का नाम"
+    },
+    "startTimeLabel": {
+        "message": "प्रारंभ समय"
+    },
+    "endTimeLabel": {
+        "message": "समाप्ति समय"
+    },
+    "activeStateLabel": {
+        "message": "सक्रिय स्थिति"
+    },
+    "editButtonLabel": {
+        "message": "संपादित करें"
+    },
+    "saveButtonLabel": {
+        "message": "सहेजें"
+    },
+    "endTimeAfterStartTimeError": {
+        "message": "समाप्ति समय प्रारंभ समय के बाद होना चाहिए।"
+    },
+    "schedulesOverlapError": {
+        "message": "अनुसूचियाँ एक दूसरे के ऊपर नहीं हो सकतीं।"
+    },
+    "minimumUnlockedTimeError": {
+        "message": "प्रत्येक दिन कम से कम 1 घंटा अनलॉक समय होना चाहिए।"
+    },
+    "Mon": {
+        "message": "सोम"
+    },
+    "Tue": {
+        "message": "मंगल"
+    },
+    "Wed": {
+        "message": "बुध"
+    },
+    "Thu": {
+        "message": "गुरु"
+    },
+    "Fri": {
+        "message": "शुक्र"
+    },
+    "Sat": {
+        "message": "शनि"
+    },
+    "Sun": {
+        "message": "रवि"
+    },
+    "Edit": {
+        "message": "संपादित करें"
+    },
+    "Save": {
+        "message": "सहेजें"
+    },
+    "Delete": {
+        "message": "हटाएं"
+    },
+    "groupNameLabel": {
+        "message": "समूह का नाम"
+    },
+    "websitesLabel": {
+        "message": "वेबसाइटें"
+    },
+    "keywordsLabel": {
+        "message": "कीवर्ड"
+    },
+    "timerCountLabel": {
+        "message": "टाइमर गणना"
+    },
+    "timerDurationLabel": {
+        "message": "टाइमर अवधि (सेकंड)"
+    },
+    "unnamedSchedulesMaxReached": {
+        "message": "अनाम अनुसूचियों की अधिकतम संख्या पहुंच गई।"
+    },
+    "scheduleNameExists": {
+        "message": "इस नाम की एक अनुसूची पहले से मौजूद है।"
+    },
+    "cannotDeleteActiveSchedule": {
+        "message": "सक्रिय अनुसूची को हटा नहीं सकते। कृपया अनुसूची सक्रिय न होने तक प्रतीक्षा करें।"
+    },
+    "optionsTitle": {
+        "message": "रक्षा पैनल"
+    },
+    "groupsHeading": {
+        "message": "समूह"
+    },
+    "whitelistHeading": {
+        "message": "सफेद सूची वेबसाइटें"
+    },
+    "schedulesHeading": {
+        "message": "लॉक की गई अनुसूचियाँ"
+    },
+    "unnamedGroupsMaxReached": {
+        "message": "अनाम समूहों की अधिकतम संख्या पहुंच गई।"
+    },
+    "groupNameExists": {
+        "message": "इस नाम का एक समूह पहले से मौजूद है।"
+    },
+    "cannotDeleteGroupActiveSchedule": {
+        "message": "सक्रिय अनुसूची के दौरान समूहों को हटा नहीं सकते।"
+    },
+    "cannotIncreaseTimerActiveSchedule": {
+        "message": "सक्रिय अनुसूची के दौरान टाइमर अवधि और टाइमरों की संख्या नहीं बढ़ा सकते।"
+    },
+    "invalidKeywordValue": {
+        "message": "अवैध कीवर्ड मान। निर्दिष्ट सीमा के भीतर होना चाहिए।"
+    },
+    "cannotChangeGroupNameActiveSchedule": {
+        "message": "सक्रिय अनुसूची के दौरान समूह का नाम बदलना मना है।"
+    },
+    "invalidEditOnWebsitesOrKeywords": {
+        "message": "वेबसाइट या कीवर्ड प्रविष्टियों में संपादन या हटाना किया गया है, परिवर्तन सहेजा नहीं जा सकता।"
+    },
+    "invalidKeywordEntry": {
+        "message": "अवैध कीवर्ड प्रविष्टि: "
+    },
+    "addGroupButtonText": {
+        "message": "समूह जोड़ें"
+    },
+    "contentBlockedTitle": {
+        "message": "सामग्री अवरुद्ध"
+    },
+    "contentBlockedMessage": {
+        "message": "इस पृष्ठ में प्रतिबंधित सामग्री है और आपकी सुरक्षा के लिए अवरुद्ध कर दिया गया है।"
+    },
+    "keywordDetected": {
+        "message": "कीवर्ड का पता चला"
+    },
+    "context": {
+        "message": "संदर्भ"
+    },
+    "goBackButton": {
+        "message": "वापस जाएं"
+    },
+    "activateTimerButton": {
+        "message": "टाइमर सक्रिय करें"
+    },
+    "cannotRelaxConstraints": {
+        "message": "अनुसूची प्रतिबंधों को शिथिल नहीं कर सकते।"
+    },
+    "activeButtonText": {
+        "message": "सक्रिय"
+    },
+    "inactiveButtonText": {
+        "message": "निष्क्रिय"
+    },
+    "addScheduleButton": {
+        "message": "अनुसूची जोड़ें"
+    },
+    "enterWebsiteURLPlaceholder": {
+        "message": "वेबसाइट का URL दर्ज करें"
+    },
+    "addToWhitelistButton": {
+        "message": "व्हाइटलिस्ट में जोड़ें"
+    },
+    "cancelButton": {
+        "message": "रद्द करें"
+    },
+    "groupNamePlaceholder": {
+        "message": "समूह का नाम"
+    },
+    "addScheduleButtonLabel": {
+        "message": "अनुसूची जोड़ें"
+    },
+    "unnamedSchedulePrefix": {
+        "message": "अनुसूची "
+    },
+    "addToWhitelistButtonLabel": {
+        "message": "व्हाइटलिस्ट में जोड़ें"
+    },
+    "cancelButtonLabel": {
+        "message": "रद्द करें"
+    },
+    "activeLabel": {
+        "message": "सक्रिय"
+    },
+    "inactiveLabel": {
+        "message": "निष्क्रिय"
+    },
+    "cancelLabel": {
+        "message": "रद्द करें"
+    },
+    "scheduleNamePlaceholder": {
+        "message": "अनुसूची का नाम"
+    },
+    "editLabel": {
+        "message": "संपादित करें"
+    },
+    "unnamedGroupPrefix": {
+        "message": "समूह "
+    },
+    "lockedScheduleErrorMessage": {
+        "message": "सक्रिय अनुसूची के दौरान साइट को व्हाइटलिस्ट में नहीं जोड़ा जा सकता।"
+    },
+    "cannotToggleActiveState": {
+        "message": "वर्तमान परिस्थितियों में सक्रिय अवस्था नहीं बदली जा सकती।"
+    },
+    "cannotDeselectDaysError": {
+        "message": "वर्तमान में प्रभावी एक सक्रिय अनुसूची के लिए दिनों का चयन रद्द नहीं किया जा सकता।"
+    }
+}

@@ -1,2 +1,212 @@
-
-{}
+{
+    "deleteButtonLabel": {
+        "message": "刪除"
+    },
+    "whitelistExistsMessage": {
+        "message": "此站點已在白名單中。"
+    },
+    "deleteWhitelistError": {
+        "message": "在活動時間表期間無法刪除白名單網站。"
+    },
+    "scheduleNameLabel": {
+        "message": "時間表名稱"
+    },
+    "startTimeLabel": {
+        "message": "開始時間"
+    },
+    "endTimeLabel": {
+        "message": "結束時間"
+    },
+    "activeStateLabel": {
+        "message": "活動狀態"
+    },
+    "editButtonLabel": {
+        "message": "編輯"
+    },
+    "saveButtonLabel": {
+        "message": "儲存"
+    },
+    "endTimeAfterStartTimeError": {
+        "message": "結束時間必須在開始時間之後。"
+    },
+    "schedulesOverlapError": {
+        "message": "時間表不得重疊。"
+    },
+    "minimumUnlockedTimeError": {
+        "message": "每天必須至少有1小時的解鎖時間。"
+    },
+    "Mon": {
+        "message": "週一"
+    },
+    "Tue": {
+        "message": "週二"
+    },
+    "Wed": {
+        "message": "週三"
+    },
+    "Thu": {
+        "message": "週四"
+    },
+    "Fri": {
+        "message": "週五"
+    },
+    "Sat": {
+        "message": "週六"
+    },
+    "Sun": {
+        "message": "週日"
+    },
+    "Edit": {
+        "message": "編輯"
+    },
+    "Save": {
+        "message": "儲存"
+    },
+    "Delete": {
+        "message": "刪除"
+    },
+    "groupNameLabel": {
+        "message": "群組名稱"
+    },
+    "websitesLabel": {
+        "message": "網站"
+    },
+    "keywordsLabel": {
+        "message": "關鍵詞"
+    },
+    "timerCountLabel": {
+        "message": "計時器計數"
+    },
+    "timerDurationLabel": {
+        "message": "計時器持續時間（秒）"
+    },
+    "unnamedSchedulesMaxReached": {
+        "message": "達到未命名時間表的最大數量。"
+    },
+    "scheduleNameExists": {
+        "message": "此名稱的時間表已存在。"
+    },
+    "cannotDeleteActiveSchedule": {
+        "message": "無法刪除活動時間表。請等到時間表不活動時。"
+    },
+    "optionsTitle": {
+        "message": "防禦面板"
+    },
+    "groupsHeading": {
+        "message": "群組"
+    },
+    "whitelistHeading": {
+        "message": "白名單網站"
+    },
+    "schedulesHeading": {
+        "message": "鎖定時間表"
+    },
+    "unnamedGroupsMaxReached": {
+        "message": "達到未命名群組的最大數量。"
+    },
+    "groupNameExists": {
+        "message": "此名稱的群組已存在。"
+    },
+    "cannotDeleteGroupActiveSchedule": {
+        "message": "在活動時間表期間無法刪除群組。"
+    },
+    "cannotIncreaseTimerActiveSchedule": {
+        "message": "在活動時間表期間無法增加計時器持續時間和計時器數量。"
+    },
+    "invalidKeywordValue": {
+        "message": "關鍵詞值無效。必須在指定範圍內。"
+    },
+    "cannotChangeGroupNameActiveSchedule": {
+        "message": "在活動時間表期間不允許更改群組名稱。"
+    },
+    "invalidEditOnWebsitesOrKeywords": {
+        "message": "網站或關鍵詞條目已被編輯或移除，無法保存更改。"
+    },
+    "invalidKeywordEntry": {
+        "message": "無效的關鍵詞條目："
+    },
+    "addGroupButtonText": {
+        "message": "添加群組"
+    },
+    "contentBlockedTitle": {
+        "message": "內容已阻擋"
+    },
+    "contentBlockedMessage": {
+        "message": "此頁面包含限制內容，已為您的保護而被阻擋。"
+    },
+    "keywordDetected": {
+        "message": "檢測到關鍵詞"
+    },
+    "context": {
+        "message": "上下文"
+    },
+    "goBackButton": {
+        "message": "返回"
+    },
+    "activateTimerButton": {
+        "message": "啟動計時器"
+    },
+    "cannotRelaxConstraints": {
+        "message": "無法放鬆時間表限制。"
+    },
+    "activeButtonText": {
+        "message": "活動"
+    },
+    "inactiveButtonText": {
+        "message": "非活動"
+    },
+    "addScheduleButton": {
+        "message": "添加時間表"
+    },
+    "enterWebsiteURLPlaceholder": {
+        "message": "輸入網站網址"
+    },
+    "addToWhitelistButton": {
+        "message": "添加到白名單"
+    },
+    "cancelButton": {
+        "message": "取消"
+    },
+    "groupNamePlaceholder": {
+        "message": "群組名稱"
+    },
+    "addScheduleButtonLabel": {
+        "message": "添加時間表"
+    },
+    "unnamedSchedulePrefix": {
+        "message": "時間表 "
+    },
+    "addToWhitelistButtonLabel": {
+        "message": "添加到白名單"
+    },
+    "cancelButtonLabel": {
+        "message": "取消"
+    },
+    "activeLabel": {
+        "message": "活動"
+    },
+    "inactiveLabel": {
+        "message": "非活動"
+    },
+    "cancelLabel": {
+        "message": "取消"
+    },
+    "scheduleNamePlaceholder": {
+        "message": "時間表名稱"
+    },
+    "editLabel": {
+        "message": "編輯"
+    },
+    "unnamedGroupPrefix": {
+        "message": "群組 "
+    },
+    "lockedScheduleErrorMessage": {
+        "message": "在活動時間表期間無法將網站添加到白名單。"
+    },
+    "cannotToggleActiveState": {
+        "message": "在當前條件下無法更改活動狀態。"
+    },
+    "cannotDeselectDaysError": {
+        "message": "無法為當前有效的活動時間表取消選擇天數。"
+    }
+}

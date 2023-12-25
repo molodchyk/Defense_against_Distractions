@@ -1,2 +1,212 @@
-
-{}
+{
+    "deleteButtonLabel": {
+        "message": "Poista"
+    },
+    "whitelistExistsMessage": {
+        "message": "Tämä sivusto on jo valkoisella listalla."
+    },
+    "deleteWhitelistError": {
+        "message": "Valkolistattuja sivustoja ei voi poistaa aktiivisen aikataulun aikana."
+    },
+    "scheduleNameLabel": {
+        "message": "Aikataulun nimi"
+    },
+    "startTimeLabel": {
+        "message": "Aloitusaika"
+    },
+    "endTimeLabel": {
+        "message": "Lopetusaika"
+    },
+    "activeStateLabel": {
+        "message": "Aktiivinen tila"
+    },
+    "editButtonLabel": {
+        "message": "Muokkaa"
+    },
+    "saveButtonLabel": {
+        "message": "Tallenna"
+    },
+    "endTimeAfterStartTimeError": {
+        "message": "Lopetusaika on oltava aloitusajan jälkeen."
+    },
+    "schedulesOverlapError": {
+        "message": "Aikataulut eivät voi olla päällekkäisiä."
+    },
+    "minimumUnlockedTimeError": {
+        "message": "Jokaisessa päivässä on oltava vähintään 1 tunti lukitsematonta aikaa."
+    },
+    "Mon": {
+        "message": "Ma"
+    },
+    "Tue": {
+        "message": "Ti"
+    },
+    "Wed": {
+        "message": "Ke"
+    },
+    "Thu": {
+        "message": "To"
+    },
+    "Fri": {
+        "message": "Pe"
+    },
+    "Sat": {
+        "message": "La"
+    },
+    "Sun": {
+        "message": "Su"
+    },
+    "Edit": {
+        "message": "Muokkaa"
+    },
+    "Save": {
+        "message": "Tallenna"
+    },
+    "Delete": {
+        "message": "Poista"
+    },
+    "groupNameLabel": {
+        "message": "Ryhmän nimi"
+    },
+    "websitesLabel": {
+        "message": "Verkkosivustot"
+    },
+    "keywordsLabel": {
+        "message": "Avainsanat"
+    },
+    "timerCountLabel": {
+        "message": "Ajastimen laskuri"
+    },
+    "timerDurationLabel": {
+        "message": "Ajastimen kesto (sekunneissa)"
+    },
+    "unnamedSchedulesMaxReached": {
+        "message": "Nimetöntä aikataulua maksimimäärä saavutettu."
+    },
+    "scheduleNameExists": {
+        "message": "Tämänniminen aikataulu on jo olemassa."
+    },
+    "cannotDeleteActiveSchedule": {
+        "message": "Aktiivista aikataulua ei voi poistaa. Odota, kunnes aikataulu ei ole aktiivinen."
+    },
+    "optionsTitle": {
+        "message": "Puolustuspaneeli"
+    },
+    "groupsHeading": {
+        "message": "Ryhmät"
+    },
+    "whitelistHeading": {
+        "message": "Valkolista Verkkosivustot"
+    },
+    "schedulesHeading": {
+        "message": "Lukitut Aikataulut"
+    },
+    "unnamedGroupsMaxReached": {
+        "message": "Nimetöntä ryhmää maksimimäärä saavutettu."
+    },
+    "groupNameExists": {
+        "message": "Tämänniminen ryhmä on jo olemassa."
+    },
+    "cannotDeleteGroupActiveSchedule": {
+        "message": "Ryhmää ei voi poistaa aktiivisen aikataulun aikana."
+    },
+    "cannotIncreaseTimerActiveSchedule": {
+        "message": "Ajastimen kestoa ja määrää ei voi lisätä aktiivisen aikataulun aikana."
+    },
+    "invalidKeywordValue": {
+        "message": "Virheellinen avainsanan arvo. Sen on oltava määritetyissä rajoissa."
+    },
+    "cannotChangeGroupNameActiveSchedule": {
+        "message": "Ryhmän nimen muuttaminen ei ole sallittua aktiivisen aikataulun aikana."
+    },
+    "invalidEditOnWebsitesOrKeywords": {
+        "message": "Verkkosivustojen tai Avainsanojen syötteitä on muokattu tai poistettu, muutosta ei voi tallentaa."
+    },
+    "invalidKeywordEntry": {
+        "message": "Virheellinen avainsanan syöte: "
+    },
+    "addGroupButtonText": {
+        "message": "Lisää ryhmä"
+    },
+    "contentBlockedTitle": {
+        "message": "Sisältö Estetty"
+    },
+    "contentBlockedMessage": {
+        "message": "Tämä sivu sisältää rajoitettua sisältöä ja on estetty suojelemiseksi."
+    },
+    "keywordDetected": {
+        "message": "Avainsana Havaittu"
+    },
+    "context": {
+        "message": "Konteksti"
+    },
+    "goBackButton": {
+        "message": "Palaa takaisin"
+    },
+    "activateTimerButton": {
+        "message": "Aktivoi ajastin"
+    },
+    "cannotRelaxConstraints": {
+        "message": "Aikataulun rajoituksia ei voi lieventää."
+    },
+    "activeButtonText": {
+        "message": "Aktiivinen"
+    },
+    "inactiveButtonText": {
+        "message": "Ei-aktiivinen"
+    },
+    "addScheduleButton": {
+        "message": "Lisää aikataulu"
+    },
+    "enterWebsiteURLPlaceholder": {
+        "message": "Syötä verkkosivuston URL"
+    },
+    "addToWhitelistButton": {
+        "message": "Lisää valkolistaan"
+    },
+    "cancelButton": {
+        "message": "Peruuta"
+    },
+    "groupNamePlaceholder": {
+        "message": "Ryhmän nimi"
+    },
+    "addScheduleButtonLabel": {
+        "message": "Lisää aikataulu"
+    },
+    "unnamedSchedulePrefix": {
+        "message": "Aikataulu "
+    },
+    "addToWhitelistButtonLabel": {
+        "message": "Lisää valkolistaan"
+    },
+    "cancelButtonLabel": {
+        "message": "Peruuta"
+    },
+    "activeLabel": {
+        "message": "Aktiivinen"
+    },
+    "inactiveLabel": {
+        "message": "Ei-aktiivinen"
+    },
+    "cancelLabel": {
+        "message": "Peruuta"
+    },
+    "scheduleNamePlaceholder": {
+        "message": "Aikataulun nimi"
+    },
+    "editLabel": {
+        "message": "Muokkaa"
+    },
+    "unnamedGroupPrefix": {
+        "message": "Ryhmä "
+    },
+    "lockedScheduleErrorMessage": {
+        "message": "Sivustoa ei voi lisätä valkoiselle listalle aktiivisen aikataulun aikana."
+    },
+    "cannotToggleActiveState": {
+        "message": "Aktiivista tilaa ei voi vaihtaa nykyisissä olosuhteissa."
+    },
+    "cannotDeselectDaysError": {
+        "message": "Aktiivisen ja voimassaolevan aikataulun päiviä ei voi poistaa valinnasta."
+    }
+}

@@ -50,7 +50,7 @@ export function addEnterFunctionalityToField(field) {
 
 export function isCurrentTimeInAnySchedule(schedules) {
   if (!Array.isArray(schedules) || schedules.length === 0) {
-    console.log('here'); //line 53
+    // console.log('here'); //line 53
     return false; // Return false if schedules is not an array or is empty
   }
   const now = new Date();

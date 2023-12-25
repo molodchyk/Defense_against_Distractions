@@ -1,2 +1,212 @@
-
-{}
+{
+    "deleteButtonLabel": {
+        "message": "Удалить"
+    },
+    "whitelistExistsMessage": {
+        "message": "Этот сайт уже в белом списке."
+    },
+    "deleteWhitelistError": {
+        "message": "Нельзя удалять сайты из белого списка во время активного расписания."
+    },
+    "scheduleNameLabel": {
+        "message": "Название Расписания"
+    },
+    "startTimeLabel": {
+        "message": "Время Начала"
+    },
+    "endTimeLabel": {
+        "message": "Время Окончания"
+    },
+    "activeStateLabel": {
+        "message": "Активное Состояние"
+    },
+    "editButtonLabel": {
+        "message": "Редактировать"
+    },
+    "saveButtonLabel": {
+        "message": "Сохранить"
+    },
+    "endTimeAfterStartTimeError": {
+        "message": "Время окончания должно быть после времени начала."
+    },
+    "schedulesOverlapError": {
+        "message": "Расписания не должны перекрываться."
+    },
+    "minimumUnlockedTimeError": {
+        "message": "Каждый день должен иметь как минимум 1 час незаблокированного времени."
+    },
+    "Mon": {
+        "message": "Пн"
+    },
+    "Tue": {
+        "message": "Вт"
+    },
+    "Wed": {
+        "message": "Ср"
+    },
+    "Thu": {
+        "message": "Чт"
+    },
+    "Fri": {
+        "message": "Пт"
+    },
+    "Sat": {
+        "message": "Сб"
+    },
+    "Sun": {
+        "message": "Вс"
+    },
+    "Edit": {
+        "message": "Редактировать"
+    },
+    "Save": {
+        "message": "Сохранить"
+    },
+    "Delete": {
+        "message": "Удалить"
+    },
+    "groupNameLabel": {
+        "message": "Название Группы"
+    },
+    "websitesLabel": {
+        "message": "Сайты"
+    },
+    "keywordsLabel": {
+        "message": "Ключевые Слова"
+    },
+    "timerCountLabel": {
+        "message": "Количество Таймеров"
+    },
+    "timerDurationLabel": {
+        "message": "Длительность Таймера (секунды)"
+    },
+    "unnamedSchedulesMaxReached": {
+        "message": "Достигнуто максимальное количество неименованных расписаний."
+    },
+    "scheduleNameExists": {
+        "message": "Расписание с таким именем уже существует."
+    },
+    "cannotDeleteActiveSchedule": {
+        "message": "Нельзя удалить активное расписание. Пожалуйста, подождите, пока оно не станет неактивным."
+    },
+    "optionsTitle": {
+        "message": "Панель Управления"
+    },
+    "groupsHeading": {
+        "message": "Группы"
+    },
+    "whitelistHeading": {
+        "message": "Белый Список Сайтов"
+    },
+    "schedulesHeading": {
+        "message": "Заблокированные Расписания"
+    },
+    "unnamedGroupsMaxReached": {
+        "message": "Достигнуто максимальное количество неименованных групп."
+    },
+    "groupNameExists": {
+        "message": "Группа с таким именем уже существует."
+    },
+    "cannotDeleteGroupActiveSchedule": {
+        "message": "Нельзя удалять группы во время активного расписания."
+    },
+    "cannotIncreaseTimerActiveSchedule": {
+        "message": "Нельзя увеличивать длительность таймера и количество таймеров во время активного расписания."
+    },
+    "invalidKeywordValue": {
+        "message": "Неверное значение ключевого слова. Должно быть в указанном диапазоне."
+    },
+    "cannotChangeGroupNameActiveSchedule": {
+        "message": "Изменение названия группы не разрешено во время активного расписания."
+    },
+    "invalidEditOnWebsitesOrKeywords": {
+        "message": "Изменены или удалены записи веб-сайтов или ключевых слов, изменения не могут быть сохранены."
+    },
+    "invalidKeywordEntry": {
+        "message": "Неверная запись ключевого слова: "
+    },
+    "addGroupButtonText": {
+        "message": "Добавить Группу"
+    },
+    "contentBlockedTitle": {
+        "message": "Контент Заблокирован"
+    },
+    "contentBlockedMessage": {
+        "message": "Эта страница содержит ограниченный контент и была заблокирована для вашей защиты."
+    },
+    "keywordDetected": {
+        "message": "Обнаружено Ключевое Слово"
+    },
+    "context": {
+        "message": "Контекст"
+    },
+    "goBackButton": {
+        "message": "Вернуться Назад"
+    },
+    "activateTimerButton": {
+        "message": "Активировать Таймер"
+    },
+    "cannotRelaxConstraints": {
+        "message": "Нельзя ослабить ограничения расписания."
+    },
+    "activeButtonText": {
+        "message": "Активно"
+    },
+    "inactiveButtonText": {
+        "message": "Неактивно"
+    },
+    "addScheduleButton": {
+        "message": "Добавить Расписание"
+    },
+    "enterWebsiteURLPlaceholder": {
+        "message": "Введите URL сайта"
+    },
+    "addToWhitelistButton": {
+        "message": "Добавить в Белый Список"
+    },
+    "cancelButton": {
+        "message": "Отмена"
+    },
+    "groupNamePlaceholder": {
+        "message": "Название Группы"
+    },
+    "addScheduleButtonLabel": {
+        "message": "Добавить Расписание"
+    },
+    "unnamedSchedulePrefix": {
+        "message": "Расписание "
+    },
+    "addToWhitelistButtonLabel": {
+        "message": "Добавить в Белый Список"
+    },
+    "cancelButtonLabel": {
+        "message": "Отмена"
+    },
+    "activeLabel": {
+        "message": "Активно"
+    },
+    "inactiveLabel": {
+        "message": "Неактивно"
+    },
+    "cancelLabel": {
+        "message": "Отмена"
+    },
+    "scheduleNamePlaceholder": {
+        "message": "Название Расписания"
+    },
+    "editLabel": {
+        "message": "Редактировать"
+    },
+    "unnamedGroupPrefix": {
+        "message": "Группа "
+    },
+    "lockedScheduleErrorMessage": {
+        "message": "Невозможно добавить сайт в белый список во время активного расписания."
+    },
+    "cannotToggleActiveState": {
+        "message": "Нельзя изменить активное состояние в текущих условиях."
+    },
+    "cannotDeselectDaysError": {
+        "message": "Нельзя отменить выбор дней для активного расписания, которое в данный момент действует."
+    }
+}

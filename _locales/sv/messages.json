@@ -1,2 +1,212 @@
-
-{}
+{
+    "deleteButtonLabel": {
+        "message": "Radera"
+    },
+    "whitelistExistsMessage": {
+        "message": "Denna webbplats är redan på vitlistan."
+    },
+    "deleteWhitelistError": {
+        "message": "Kan inte radera webbplatser på vitlistan under aktivt schema."
+    },
+    "scheduleNameLabel": {
+        "message": "Schemanamn"
+    },
+    "startTimeLabel": {
+        "message": "Starttid"
+    },
+    "endTimeLabel": {
+        "message": "Sluttid"
+    },
+    "activeStateLabel": {
+        "message": "Aktivt tillstånd"
+    },
+    "editButtonLabel": {
+        "message": "Redigera"
+    },
+    "saveButtonLabel": {
+        "message": "Spara"
+    },
+    "endTimeAfterStartTimeError": {
+        "message": "Sluttiden måste vara efter starttiden."
+    },
+    "schedulesOverlapError": {
+        "message": "Scheman får inte överlappa varandra."
+    },
+    "minimumUnlockedTimeError": {
+        "message": "Varje dag måste ha minst 1 timmes olåst tid."
+    },
+    "Mon": {
+        "message": "Mån"
+    },
+    "Tue": {
+        "message": "Tis"
+    },
+    "Wed": {
+        "message": "Ons"
+    },
+    "Thu": {
+        "message": "Tors"
+    },
+    "Fri": {
+        "message": "Fre"
+    },
+    "Sat": {
+        "message": "Lör"
+    },
+    "Sun": {
+        "message": "Sön"
+    },
+    "Edit": {
+        "message": "Redigera"
+    },
+    "Save": {
+        "message": "Spara"
+    },
+    "Delete": {
+        "message": "Radera"
+    },
+    "groupNameLabel": {
+        "message": "Gruppnamn"
+    },
+    "websitesLabel": {
+        "message": "Webbplatser"
+    },
+    "keywordsLabel": {
+        "message": "Nyckelord"
+    },
+    "timerCountLabel": {
+        "message": "Timerantal"
+    },
+    "timerDurationLabel": {
+        "message": "Timers varaktighet (sekunder)"
+    },
+    "unnamedSchedulesMaxReached": {
+        "message": "Maximalt antal ospecificerade scheman nått."
+    },
+    "scheduleNameExists": {
+        "message": "Ett schema med detta namn finns redan."
+    },
+    "cannotDeleteActiveSchedule": {
+        "message": "Kan inte radera ett aktivt schema. Vänta tills schemat inte är aktivt."
+    },
+    "optionsTitle": {
+        "message": "Försvarspanel"
+    },
+    "groupsHeading": {
+        "message": "Grupper"
+    },
+    "whitelistHeading": {
+        "message": "Vitlista Webbplatser"
+    },
+    "schedulesHeading": {
+        "message": "Låsta Scheman"
+    },
+    "unnamedGroupsMaxReached": {
+        "message": "Maximalt antal ospecificerade grupper nått."
+    },
+    "groupNameExists": {
+        "message": "En grupp med detta namn finns redan."
+    },
+    "cannotDeleteGroupActiveSchedule": {
+        "message": "Kan inte radera grupper under aktivt schema."
+    },
+    "cannotIncreaseTimerActiveSchedule": {
+        "message": "Timer varaktighet och antal timers kan inte ökas under ett aktivt schema."
+    },
+    "invalidKeywordValue": {
+        "message": "Ogiltigt nyckelordsvärde. Måste vara inom det angivna intervallet."
+    },
+    "cannotChangeGroupNameActiveSchedule": {
+        "message": "Det är inte tillåtet att ändra gruppnamnet under ett aktivt schema."
+    },
+    "invalidEditOnWebsitesOrKeywords": {
+        "message": "Webbplats- eller nyckelordsinlägg har redigerats eller tagits bort, ändringen kan inte sparas."
+    },
+    "invalidKeywordEntry": {
+        "message": "Ogiltig nyckelordsinmatning: "
+    },
+    "addGroupButtonText": {
+        "message": "Lägg till Grupp"
+    },
+    "contentBlockedTitle": {
+        "message": "Innehåll Blockerat"
+    },
+    "contentBlockedMessage": {
+        "message": "Denna sida innehåller begränsat innehåll och har blockerats för ditt skydd."
+    },
+    "keywordDetected": {
+        "message": "Nyckelord Upptäckt"
+    },
+    "context": {
+        "message": "Sammanhang"
+    },
+    "goBackButton": {
+        "message": "Gå Tillbaka"
+    },
+    "activateTimerButton": {
+        "message": "Aktivera Timer"
+    },
+    "cannotRelaxConstraints": {
+        "message": "Kan inte lätta på schemabegränsningarna."
+    },
+    "activeButtonText": {
+        "message": "Aktiv"
+    },
+    "inactiveButtonText": {
+        "message": "Inaktiv"
+    },
+    "addScheduleButton": {
+        "message": "Lägg Till Schema"
+    },
+    "enterWebsiteURLPlaceholder": {
+        "message": "Ange webbplatsens URL"
+    },
+    "addToWhitelistButton": {
+        "message": "Lägg till på Vitlista"
+    },
+    "cancelButton": {
+        "message": "Avbryt"
+    },
+    "groupNamePlaceholder": {
+        "message": "Gruppnamn"
+    },
+    "addScheduleButtonLabel": {
+        "message": "Lägg Till Schema"
+    },
+    "unnamedSchedulePrefix": {
+        "message": "Schema "
+    },
+    "addToWhitelistButtonLabel": {
+        "message": "Lägg till på Vitlista"
+    },
+    "cancelButtonLabel": {
+        "message": "Avbryt"
+    },
+    "activeLabel": {
+        "message": "Aktiv"
+    },
+    "inactiveLabel": {
+        "message": "Inaktiv"
+    },
+    "cancelLabel": {
+        "message": "Avbryt"
+    },
+    "scheduleNamePlaceholder": {
+        "message": "Schemanamn"
+    },
+    "editLabel": {
+        "message": "Redigera"
+    },
+    "unnamedGroupPrefix": {
+        "message": "Grupp "
+    },
+    "lockedScheduleErrorMessage": {
+        "message": "Kan inte lägga till webbplats på vitlista under ett aktivt schema."
+    },
+    "cannotToggleActiveState": {
+        "message": "Kan inte ändra det aktiva tillståndet under nuvarande förhållanden."
+    },
+    "cannotDeselectDaysError": {
+        "message": "Kan inte avmarkera dagar för ett aktivt schema som för närvarande är i effekt."
+    }
+}

@@ -1,16 +1,19 @@
-// passwordManager.js
+import './cipher-core.js';
+import CryptoJS from './core.js';
 
 // Function to encrypt the password
 function encryptPassword(password) {
-    let encryptedPassword = btoa(password);
+    let encryptedPassword = CryptoJS.AES.encrypt(password, 'your-secret-key').toString();
     return encryptedPassword;
 }
 
-// Function to decrypt the password
+// Function to decrypt the password using AES
 function decryptPassword(encryptedPassword) {
-    let password = atob(encryptedPassword);
+    let bytes = CryptoJS.AES.decrypt(encryptedPassword, 'your-secret-key');
+    let password = bytes.toString(CryptoJS.enc.Utf8);
     return password;
 }
+
 
 // Function to set the password
 function setPassword(password) {
@@ -59,6 +62,17 @@ function hidePasswordOverlay() {
     document.getElementById('passwordOverlay').style.display = 'none';
 }
 
+
+function confirmPassword() {
+    const password = document.getElementById('passwordInputField').value;
+    const confirmPassword = document.getElementById('confirmPasswordInputField').value;
+    if (password === confirmPassword) {
+        setPassword(password);
+    } else {
+        console.log('Passwords do not match.');
+    }
+}
+
 // New function to update button states
 function updateButtonStates() {
     chrome.storage.sync.get('password', function(data) {
@@ -78,6 +92,9 @@ function updateButtonStates() {
 
 // Call updateButtonStates on page load
 document.addEventListener('DOMContentLoaded', updateButtonStates);
+
+document.getElementById('setPasswordButton').addEventListener('click', confirmPassword);
+
 
 
 // Export the functions if using modules

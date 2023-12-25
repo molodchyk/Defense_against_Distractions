@@ -1,2 +1,212 @@
-
-{}
+{
+    "deleteButtonLabel": {
+        "message": "Verwijderen"
+    },
+    "whitelistExistsMessage": {
+        "message": "Deze site staat al op de witte lijst."
+    },
+    "deleteWhitelistError": {
+        "message": "Kan geen sites van de witte lijst verwijderen tijdens een actief schema."
+    },
+    "scheduleNameLabel": {
+        "message": "Naam van schema"
+    },
+    "startTimeLabel": {
+        "message": "Starttijd"
+    },
+    "endTimeLabel": {
+        "message": "Eindtijd"
+    },
+    "activeStateLabel": {
+        "message": "Actieve toestand"
+    },
+    "editButtonLabel": {
+        "message": "Bewerken"
+    },
+    "saveButtonLabel": {
+        "message": "Opslaan"
+    },
+    "endTimeAfterStartTimeError": {
+        "message": "Eindtijd moet na starttijd zijn."
+    },
+    "schedulesOverlapError": {
+        "message": "Schema's mogen niet overlappen."
+    },
+    "minimumUnlockedTimeError": {
+        "message": "Elke dag moet ten minste 1 uur ongesloten tijd hebben."
+    },
+    "Mon": {
+        "message": "Ma"
+    },
+    "Tue": {
+        "message": "Di"
+    },
+    "Wed": {
+        "message": "Wo"
+    },
+    "Thu": {
+        "message": "Do"
+    },
+    "Fri": {
+        "message": "Vr"
+    },
+    "Sat": {
+        "message": "Za"
+    },
+    "Sun": {
+        "message": "Zo"
+    },
+    "Edit": {
+        "message": "Bewerken"
+    },
+    "Save": {
+        "message": "Opslaan"
+    },
+    "Delete": {
+        "message": "Verwijderen"
+    },
+    "groupNameLabel": {
+        "message": "Groepsnaam"
+    },
+    "websitesLabel": {
+        "message": "Websites"
+    },
+    "keywordsLabel": {
+        "message": "Sleutelwoorden"
+    },
+    "timerCountLabel": {
+        "message": "Timer Aantal"
+    },
+    "timerDurationLabel": {
+        "message": "Timer Duur (seconden)"
+    },
+    "unnamedSchedulesMaxReached": {
+        "message": "Maximaal aantal niet-benoemde schema's bereikt."
+    },
+    "scheduleNameExists": {
+        "message": "Er bestaat al een schema met deze naam."
+    },
+    "cannotDeleteActiveSchedule": {
+        "message": "Kan geen actief schema verwijderen. Wacht alstublieft tot het schema niet actief is."
+    },
+    "optionsTitle": {
+        "message": "Verdedigingspaneel"
+    },
+    "groupsHeading": {
+        "message": "Groepen"
+    },
+    "whitelistHeading": {
+        "message": "Witte Lijst Websites"
+    },
+    "schedulesHeading": {
+        "message": "Gesloten Schema's"
+    },
+    "unnamedGroupsMaxReached": {
+        "message": "Maximaal aantal niet-benoemde groepen bereikt."
+    },
+    "groupNameExists": {
+        "message": "Er bestaat al een groep met deze naam."
+    },
+    "cannotDeleteGroupActiveSchedule": {
+        "message": "Kan geen groepen verwijderen tijdens een actief schema."
+    },
+    "cannotIncreaseTimerActiveSchedule": {
+        "message": "Duur van de timer en het aantal timers kunnen niet worden verhoogd tijdens een actief schema."
+    },
+    "invalidKeywordValue": {
+        "message": "Ongeldige sleutelwoordwaarde. Moet binnen het opgegeven bereik liggen."
+    },
+    "cannotChangeGroupNameActiveSchedule": {
+        "message": "Het veranderen van de groepsnaam is niet toegestaan tijdens een actief schema."
+    },
+    "invalidEditOnWebsitesOrKeywords": {
+        "message": "Websites of Sleutelwoordvermeldingen zijn bewerkt of verwijderd, wijziging kan niet worden opgeslagen."
+    },
+    "invalidKeywordEntry": {
+        "message": "Ongeldige sleutelwoordingang: "
+    },
+    "addGroupButtonText": {
+        "message": "Groep Toevoegen"
+    },
+    "contentBlockedTitle": {
+        "message": "Inhoud Geblokkeerd"
+    },
+    "contentBlockedMessage": {
+        "message": "Deze pagina bevat beperkte inhoud en is geblokkeerd voor uw bescherming."
+    },
+    "keywordDetected": {
+        "message": "Sleutelwoord Gedetecteerd"
+    },
+    "context": {
+        "message": "Context"
+    },
+    "goBackButton": {
+        "message": "Ga Terug"
+    },
+    "activateTimerButton": {
+        "message": "Activeer Timer"
+    },
+    "cannotRelaxConstraints": {
+        "message": "Kan de schema beperkingen niet versoepelen."
+    },
+    "activeButtonText": {
+        "message": "Actief"
+    },
+    "inactiveButtonText": {
+        "message": "Inactief"
+    },
+    "addScheduleButton": {
+        "message": "Schema Toevoegen"
+    },
+    "enterWebsiteURLPlaceholder": {
+        "message": "Voer website URL in"
+    },
+    "addToWhitelistButton": {
+        "message": "Toevoegen aan Witte Lijst"
+    },
+    "cancelButton": {
+        "message": "Annuleren"
+    },
+    "groupNamePlaceholder": {
+        "message": "Groepsnaam"
+    },
+    "addScheduleButtonLabel": {
+        "message": "Schema Toevoegen"
+    },
+    "unnamedSchedulePrefix": {
+        "message": "Schema "
+    },
+    "addToWhitelistButtonLabel": {
+        "message": "Toevoegen aan Witte Lijst"
+    },
+    "cancelButtonLabel": {
+        "message": "Annuleren"
+    },
+    "activeLabel": {
+        "message": "Actief"
+    },
+    "inactiveLabel": {
+        "message": "Inactief"
+    },
+    "cancelLabel": {
+        "message": "Annuleren"
+    },
+    "scheduleNamePlaceholder": {
+        "message": "Naam van Schema"
+    },
+    "editLabel": {
+        "message": "Bewerken"
+    },
+    "unnamedGroupPrefix": {
+        "message": "Groep "
+    },
+    "lockedScheduleErrorMessage": {
+        "message": "Kan tijdens een actief schema geen site toevoegen aan de witte lijst."
+    },
+    "cannotToggleActiveState": {
+        "message": "Kan de actieve toestand niet wijzigen onder de huidige omstandigheden."
+    },
+    "cannotDeselectDaysError": {
+        "message": "Kan geen dagen de-selecteren voor een actief schema dat momenteel van kracht is."
+    }
+}

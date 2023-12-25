@@ -1,2 +1,212 @@
-
-{}
+{
+    "deleteButtonLabel": {
+        "message": "削除"
+    },
+    "whitelistExistsMessage": {
+        "message": "このサイトはすでにホワイトリストに登録されています。"
+    },
+    "deleteWhitelistError": {
+        "message": "アクティブなスケジュール中にホワイトリストのサイトを削除することはできません。"
+    },
+    "scheduleNameLabel": {
+        "message": "スケジュール名"
+    },
+    "startTimeLabel": {
+        "message": "開始時刻"
+    },
+    "endTimeLabel": {
+        "message": "終了時刻"
+    },
+    "activeStateLabel": {
+        "message": "アクティブ状態"
+    },
+    "editButtonLabel": {
+        "message": "編集"
+    },
+    "saveButtonLabel": {
+        "message": "保存"
+    },
+    "endTimeAfterStartTimeError": {
+        "message": "終了時刻は開始時刻より後でなければなりません。"
+    },
+    "schedulesOverlapError": {
+        "message": "スケジュールが重複してはいけません。"
+    },
+    "minimumUnlockedTimeError": {
+        "message": "1日に少なくとも1時間はロックされていない時間が必要です。"
+    },
+    "Mon": {
+        "message": "月"
+    },
+    "Tue": {
+        "message": "火"
+    },
+    "Wed": {
+        "message": "水"
+    },
+    "Thu": {
+        "message": "木"
+    },
+    "Fri": {
+        "message": "金"
+    },
+    "Sat": {
+        "message": "土"
+    },
+    "Sun": {
+        "message": "日"
+    },
+    "Edit": {
+        "message": "編集"
+    },
+    "Save": {
+        "message": "保存"
+    },
+    "Delete": {
+        "message": "削除"
+    },
+    "groupNameLabel": {
+        "message": "グループ名"
+    },
+    "websitesLabel": {
+        "message": "ウェブサイト"
+    },
+    "keywordsLabel": {
+        "message": "キーワード"
+    },
+    "timerCountLabel": {
+        "message": "タイマーの数"
+    },
+    "timerDurationLabel": {
+        "message": "タイマーの持続時間（秒）"
+    },
+    "unnamedSchedulesMaxReached": {
+        "message": "名前のないスケジュールの最大数に達しました。"
+    },
+    "scheduleNameExists": {
+        "message": "この名前のスケジュールはすでに存在します。"
+    },
+    "cannotDeleteActiveSchedule": {
+        "message": "アクティブなスケジュールは削除できません。スケジュールが非アクティブになるまでお待ちください。"
+    },
+    "optionsTitle": {
+        "message": "防御パネル"
+    },
+    "groupsHeading": {
+        "message": "グループ"
+    },
+    "whitelistHeading": {
+        "message": "ホワイトリストウェブサイト"
+    },
+    "schedulesHeading": {
+        "message": "ロックされたスケジュール"
+    },
+    "unnamedGroupsMaxReached": {
+        "message": "名前のないグループの最大数に達しました。"
+    },
+    "groupNameExists": {
+        "message": "この名前のグループはすでに存在します。"
+    },
+    "cannotDeleteGroupActiveSchedule": {
+        "message": "アクティブなスケジュール中にグループを削除することはできません。"
+    },
+    "cannotIncreaseTimerActiveSchedule": {
+        "message": "アクティブなスケジュール中にタイマーの持続時間とタイマーの数を増やすことはできません。"
+    },
+    "invalidKeywordValue": {
+        "message": "無効なキーワード値です。指定された範囲内でなければなりません。"
+    },
+    "cannotChangeGroupNameActiveSchedule": {
+        "message": "アクティブなスケジュール中にグループ名を変更することは許可されていません。"
+    },
+    "invalidEditOnWebsitesOrKeywords": {
+        "message": "ウェブサイトまたはキーワードのエントリーが編集されたり削除されたりしたため、変更を保存できません。"
+    },
+    "invalidKeywordEntry": {
+        "message": "無効なキーワードエントリー："
+    },
+    "addGroupButtonText": {
+        "message": "グループを追加"
+    },
+    "contentBlockedTitle": {
+        "message": "コンテンツがブロックされました"
+    },
+    "contentBlockedMessage": {
+        "message": "このページには制限されたコンテンツが含まれており、保護のためにブロックされました。"
+    },
+    "keywordDetected": {
+        "message": "キーワードが検出されました"
+    },
+    "context": {
+        "message": "コンテキスト"
+    },
+    "goBackButton": {
+        "message": "戻る"
+    },
+    "activateTimerButton": {
+        "message": "タイマーを起動"
+    },
+    "cannotRelaxConstraints": {
+        "message": "スケジュールの制約を緩和することはできません。"
+    },
+    "activeButtonText": {
+        "message": "アクティブ"
+    },
+    "inactiveButtonText": {
+        "message": "非アクティブ"
+    },
+    "addScheduleButton": {
+        "message": "スケジュールを追加"
+    },
+    "enterWebsiteURLPlaceholder": {
+        "message": "ウェブサイトのURLを入力"
+    },
+    "addToWhitelistButton": {
+        "message": "ホワイトリストに追加"
+    },
+    "cancelButton": {
+        "message": "キャンセル"
+    },
+    "groupNamePlaceholder": {
+        "message": "グループ名"
+    },
+    "addScheduleButtonLabel": {
+        "message": "スケジュールを追加"
+    },
+    "unnamedSchedulePrefix": {
+        "message": "スケジュール"
+    },
+    "addToWhitelistButtonLabel": {
+        "message": "ホワイトリストに追加"
+    },
+    "cancelButtonLabel": {
+        "message": "キャンセル"
+    },
+    "activeLabel": {
+        "message": "アクティブ"
+    },
+    "inactiveLabel": {
+        "message": "非アクティブ"
+    },
+    "cancelLabel": {
+        "message": "キャンセル"
+    },
+    "scheduleNamePlaceholder": {
+        "message": "スケジュール名"
+    },
+    "editLabel": {
+        "message": "編集"
+    },
+    "unnamedGroupPrefix": {
+        "message": "グループ"
+    },
+    "lockedScheduleErrorMessage": {
+        "message": "アクティブなスケジュール中にサイトをホワイトリストに追加することはできません。"
+    },
+    "cannotToggleActiveState": {
+        "message": "現在の条件下ではアクティブ状態を変更することはできません。"
+    },
+    "cannotDeselectDaysError": {
+        "message": "現在効果中のアクティブなスケジュールの日を選択解除することはできません。"
+    }
+}

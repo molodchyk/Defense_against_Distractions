@@ -1,2 +1,212 @@
-
-{}
+{
+    "deleteButtonLabel": {
+        "message": "Izbriši"
+    },
+    "whitelistExistsMessage": {
+        "message": "Ova stranica je već na popisu dopuštenih."
+    },
+    "deleteWhitelistError": {
+        "message": "Ne mogu se izbrisati stranice s popisa dopuštenih tijekom aktivnog rasporeda."
+    },
+    "scheduleNameLabel": {
+        "message": "Naziv Rasporeda"
+    },
+    "startTimeLabel": {
+        "message": "Vrijeme Početka"
+    },
+    "endTimeLabel": {
+        "message": "Vrijeme Završetka"
+    },
+    "activeStateLabel": {
+        "message": "Aktivno Stanje"
+    },
+    "editButtonLabel": {
+        "message": "Uredi"
+    },
+    "saveButtonLabel": {
+        "message": "Spremi"
+    },
+    "endTimeAfterStartTimeError": {
+        "message": "Vrijeme završetka mora biti nakon vremena početka."
+    },
+    "schedulesOverlapError": {
+        "message": "Rasporedi se ne mogu preklapati."
+    },
+    "minimumUnlockedTimeError": {
+        "message": "Svaki dan mora imati najmanje 1 sat nezaključanog vremena."
+    },
+    "Mon": {
+        "message": "Pon"
+    },
+    "Tue": {
+        "message": "Uto"
+    },
+    "Wed": {
+        "message": "Sri"
+    },
+    "Thu": {
+        "message": "Čet"
+    },
+    "Fri": {
+        "message": "Pet"
+    },
+    "Sat": {
+        "message": "Sub"
+    },
+    "Sun": {
+        "message": "Ned"
+    },
+    "Edit": {
+        "message": "Uredi"
+    },
+    "Save": {
+        "message": "Spremi"
+    },
+    "Delete": {
+        "message": "Izbriši"
+    },
+    "groupNameLabel": {
+        "message": "Naziv Grupe"
+    },
+    "websitesLabel": {
+        "message": "Web stranice"
+    },
+    "keywordsLabel": {
+        "message": "Ključne Riječi"
+    },
+    "timerCountLabel": {
+        "message": "Broj Tjemerova"
+    },
+    "timerDurationLabel": {
+        "message": "Trajanje Tjemerova (sekunde)"
+    },
+    "unnamedSchedulesMaxReached": {
+        "message": "Dosegnut maksimalni broj neimenovanih rasporeda."
+    },
+    "scheduleNameExists": {
+        "message": "Raspored s ovim imenom već postoji."
+    },
+    "cannotDeleteActiveSchedule": {
+        "message": "Ne može se izbrisati aktivan raspored. Pričekajte dok raspored ne postane neaktivan."
+    },
+    "optionsTitle": {
+        "message": "Panel Zaštite"
+    },
+    "groupsHeading": {
+        "message": "Grupe"
+    },
+    "whitelistHeading": {
+        "message": "Popis Dopuštenih Web Stranica"
+    },
+    "schedulesHeading": {
+        "message": "Zaključani Rasporedi"
+    },
+    "unnamedGroupsMaxReached": {
+        "message": "Dosegnut maksimalni broj neimenovanih grupa."
+    },
+    "groupNameExists": {
+        "message": "Grupa s ovim imenom već postoji."
+    },
+    "cannotDeleteGroupActiveSchedule": {
+        "message": "Ne može se izbrisati grupe tijekom aktivnog rasporeda."
+    },
+    "cannotIncreaseTimerActiveSchedule": {
+        "message": "Trajanje tajmera i broj tajmera ne mogu se povećati tijekom aktivnog rasporeda."
+    },
+    "invalidKeywordValue": {
+        "message": "Neispravna vrijednost ključne riječi. Mora biti unutar određenog raspona."
+    },
+    "cannotChangeGroupNameActiveSchedule": {
+        "message": "Promjena imena grupe nije dopuštena tijekom aktivnog rasporeda."
+    },
+    "invalidEditOnWebsitesOrKeywords": {
+        "message": "Unosi web stranica ili ključnih riječi su uređeni ili uklonjeni, promjena se ne može spremiti."
+    },
+    "invalidKeywordEntry": {
+        "message": "Neispravan unos ključne riječi: "
+    },
+    "addGroupButtonText": {
+        "message": "Dodaj Grupu"
+    },
+    "contentBlockedTitle": {
+        "message": "Sadržaj Blokiran"
+    },
+    "contentBlockedMessage": {
+        "message": "Ova stranica sadrži ograničen sadržaj i blokirana je za vašu zaštitu."
+    },
+    "keywordDetected": {
+        "message": "Detektirana Ključna Riječ"
+    },
+    "context": {
+        "message": "Kontekst"
+    },
+    "goBackButton": {
+        "message": "Povratak"
+    },
+    "activateTimerButton": {
+        "message": "Aktiviraj Tajmer"
+    },
+    "cannotRelaxConstraints": {
+        "message": "Ne mogu se opustiti ograničenja rasporeda."
+    },
+    "activeButtonText": {
+        "message": "Aktivan"
+    },
+    "inactiveButtonText": {
+        "message": "Neaktivan"
+    },
+    "addScheduleButton": {
+        "message": "Dodaj Raspored"
+    },
+    "enterWebsiteURLPlaceholder": {
+        "message": "Unesite URL web stranice"
+    },
+    "addToWhitelistButton": {
+        "message": "Dodaj na Popis Dopuštenih"
+    },
+    "cancelButton": {
+        "message": "Otkaži"
+    },
+    "groupNamePlaceholder": {
+        "message": "Naziv Grupe"
+    },
+    "addScheduleButtonLabel": {
+        "message": "Dodaj Raspored"
+    },
+    "unnamedSchedulePrefix": {
+        "message": "Raspored "
+    },
+    "addToWhitelistButtonLabel": {
+        "message": "Dodaj na Popis Dopuštenih"
+    },
+    "cancelButtonLabel": {
+        "message": "Otkaži"
+    },
+    "activeLabel": {
+        "message": "Aktivan"
+    },
+    "inactiveLabel": {
+        "message": "Neaktivan"
+    },
+    "cancelLabel": {
+        "message": "Otkaži"
+    },
+    "scheduleNamePlaceholder": {
+        "message": "Naziv Rasporeda"
+    },
+    "editLabel": {
+        "message": "Uredi"
+    },
+    "unnamedGroupPrefix": {
+        "message": "Grupa "
+    },
+    "lockedScheduleErrorMessage": {
+        "message": "Ne može se dodati stranica na popis dopuštenih tijekom aktivnog rasporeda."
+    },
+    "cannotToggleActiveState": {
+        "message": "Ne može se promijeniti aktivno stanje pod trenutnim uvjetima."
+    },
+    "cannotDeselectDaysError": {
+        "message": "Ne mogu se odznačiti dani za aktivan raspored koji je trenutno na snazi."
+    }
+}

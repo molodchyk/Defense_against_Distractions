@@ -1,2 +1,212 @@
-
-{}
+{
+    "deleteButtonLabel": {
+        "message": "Изтрий"
+    },
+    "whitelistExistsMessage": {
+        "message": "Този сайт вече е в списъка с разрешени."
+    },
+    "deleteWhitelistError": {
+        "message": "Не може да се изтриват сайтове от списъка с разрешени по време на активен график."
+    },
+    "scheduleNameLabel": {
+        "message": "Име на графика"
+    },
+    "startTimeLabel": {
+        "message": "Начален час"
+    },
+    "endTimeLabel": {
+        "message": "Краен час"
+    },
+    "activeStateLabel": {
+        "message": "Активно състояние"
+    },
+    "editButtonLabel": {
+        "message": "Редактирай"
+    },
+    "saveButtonLabel": {
+        "message": "Запази"
+    },
+    "endTimeAfterStartTimeError": {
+        "message": "Крайният час трябва да е след началния час."
+    },
+    "schedulesOverlapError": {
+        "message": "Графиците не могат да се припокриват."
+    },
+    "minimumUnlockedTimeError": {
+        "message": "Всеки ден трябва да има поне 1 час не заключено време."
+    },
+    "Mon": {
+        "message": "Пон"
+    },
+    "Tue": {
+        "message": "Вто"
+    },
+    "Wed": {
+        "message": "Сря"
+    },
+    "Thu": {
+        "message": "Чет"
+    },
+    "Fri": {
+        "message": "Пет"
+    },
+    "Sat": {
+        "message": "Съб"
+    },
+    "Sun": {
+        "message": "Нед"
+    },
+    "Edit": {
+        "message": "Редактирай"
+    },
+    "Save": {
+        "message": "Запази"
+    },
+    "Delete": {
+        "message": "Изтрий"
+    },
+    "groupNameLabel": {
+        "message": "Име на групата"
+    },
+    "websitesLabel": {
+        "message": "Уебсайтове"
+    },
+    "keywordsLabel": {
+        "message": "Ключови думи"
+    },
+    "timerCountLabel": {
+        "message": "Брой таймери"
+    },
+    "timerDurationLabel": {
+        "message": "Продължителност на таймера (секунди)"
+    },
+    "unnamedSchedulesMaxReached": {
+        "message": "Достигнат максимален брой неименувани графици."
+    },
+    "scheduleNameExists": {
+        "message": "Вече съществува график с това име."
+    },
+    "cannotDeleteActiveSchedule": {
+        "message": "Не може да се изтрие активен график. Моля, изчакайте до края на активния график."
+    },
+    "optionsTitle": {
+        "message": "Панел за защита"
+    },
+    "groupsHeading": {
+        "message": "Групи"
+    },
+    "whitelistHeading": {
+        "message": "Списък с разрешени уебсайтове"
+    },
+    "schedulesHeading": {
+        "message": "Заключени графици"
+    },
+    "unnamedGroupsMaxReached": {
+        "message": "Достигнат максимален брой неименувани групи."
+    },
+    "groupNameExists": {
+        "message": "Вече съществува група с това име."
+    },
+    "cannotDeleteGroupActiveSchedule": {
+        "message": "Не може да се изтрият групи по време на активен график."
+    },
+    "cannotIncreaseTimerActiveSchedule": {
+        "message": "Продължителността на таймера и броят на таймерите не могат да се увеличават по време на активен график."
+    },
+    "invalidKeywordValue": {
+        "message": "Невалидна стойност на ключовата дума. Трябва да е в определения диапазон."
+    },
+    "cannotChangeGroupNameActiveSchedule": {
+        "message": "Промяната на името на групата не е разрешена по време на активен график."
+    },
+    "invalidEditOnWebsitesOrKeywords": {
+        "message": "Променени или изтрити записи на уебсайтове или ключови думи, промяната не може да бъде запазена."
+    },
+    "invalidKeywordEntry": {
+        "message": "Невалиден запис на ключова дума: "
+    },
+    "addGroupButtonText": {
+        "message": "Добави група"
+    },
+    "contentBlockedTitle": {
+        "message": "Съдържанието е блокирано"
+    },
+    "contentBlockedMessage": {
+        "message": "Тази страница съдържа ограничено съдържание и е блокирана за вашата защита."
+    },
+    "keywordDetected": {
+        "message": "Открита ключова дума"
+    },
+    "context": {
+        "message": "Контекст"
+    },
+    "goBackButton": {
+        "message": "Върни се назад"
+    },
+    "activateTimerButton": {
+        "message": "Активирай таймера"
+    },
+    "cannotRelaxConstraints": {
+        "message": "Не може да се облекчат ограниченията на графика."
+    },
+    "activeButtonText": {
+        "message": "Активен"
+    },
+    "inactiveButtonText": {
+        "message": "Неактивен"
+    },
+    "addScheduleButton": {
+        "message": "Добави график"
+    },
+    "enterWebsiteURLPlaceholder": {
+        "message": "Въведете URL на уебсайта"
+    },
+    "addToWhitelistButton": {
+        "message": "Добави в списъка с разрешени"
+    },
+    "cancelButton": {
+        "message": "Отмени"
+    },
+    "groupNamePlaceholder": {
+        "message": "Име на групата"
+    },
+    "addScheduleButtonLabel": {
+        "message": "Добави график"
+    },
+    "unnamedSchedulePrefix": {
+        "message": "График "
+    },
+    "addToWhitelistButtonLabel": {
+        "message": "Добави в списъка с разрешени"
+    },
+    "cancelButtonLabel": {
+        "message": "Отмени"
+    },
+    "activeLabel": {
+        "message": "Активен"
+    },
+    "inactiveLabel": {
+        "message": "Неактивен"
+    },
+    "cancelLabel": {
+        "message": "Отмени"
+    },
+    "scheduleNamePlaceholder": {
+        "message": "Име на графика"
+    },
+    "editLabel": {
+        "message": "Редактирай"
+    },
+    "unnamedGroupPrefix": {
+        "message": "Група "
+    },
+    "lockedScheduleErrorMessage": {
+        "message": "Не може да се добави сайт в списъка с разрешени по време на активен график."
+    },
+    "cannotToggleActiveState": {
+        "message": "Не може да се промени активното състояние при текущите условия."
+    },
+    "cannotDeselectDaysError": {
+        "message": "Не може да се деселектират дни за активен график, който в момента е в сила."
+    }
+}

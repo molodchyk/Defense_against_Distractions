@@ -1,2 +1,212 @@
-
-{}
+{
+    "deleteButtonLabel": {
+        "message": "Sil"
+    },
+    "whitelistExistsMessage": {
+        "message": "Bu site zaten beyaz listede."
+    },
+    "deleteWhitelistError": {
+        "message": "Aktif program sırasında beyaz listedeki siteler silinemez."
+    },
+    "scheduleNameLabel": {
+        "message": "Program Adı"
+    },
+    "startTimeLabel": {
+        "message": "Başlangıç Zamanı"
+    },
+    "endTimeLabel": {
+        "message": "Bitiş Zamanı"
+    },
+    "activeStateLabel": {
+        "message": "Aktif Durum"
+    },
+    "editButtonLabel": {
+        "message": "Düzenle"
+    },
+    "saveButtonLabel": {
+        "message": "Kaydet"
+    },
+    "endTimeAfterStartTimeError": {
+        "message": "Bitiş zamanı başlangıç zamanından sonra olmalıdır."
+    },
+    "schedulesOverlapError": {
+        "message": "Programlar çakışamaz."
+    },
+    "minimumUnlockedTimeError": {
+        "message": "Her günün en az 1 saat kilitsiz zamanı olmalıdır."
+    },
+    "Mon": {
+        "message": "Pzt"
+    },
+    "Tue": {
+        "message": "Sal"
+    },
+    "Wed": {
+        "message": "Çar"
+    },
+    "Thu": {
+        "message": "Per"
+    },
+    "Fri": {
+        "message": "Cum"
+    },
+    "Sat": {
+        "message": "Cmt"
+    },
+    "Sun": {
+        "message": "Paz"
+    },
+    "Edit": {
+        "message": "Düzenle"
+    },
+    "Save": {
+        "message": "Kaydet"
+    },
+    "Delete": {
+        "message": "Sil"
+    },
+    "groupNameLabel": {
+        "message": "Grup Adı"
+    },
+    "websitesLabel": {
+        "message": "Web Siteleri"
+    },
+    "keywordsLabel": {
+        "message": "Anahtar Kelimeler"
+    },
+    "timerCountLabel": {
+        "message": "Zamanlayıcı Sayısı"
+    },
+    "timerDurationLabel": {
+        "message": "Zamanlayıcı Süresi (saniye)"
+    },
+    "unnamedSchedulesMaxReached": {
+        "message": "İsimsiz programların maksimum sayısına ulaşıldı."
+    },
+    "scheduleNameExists": {
+        "message": "Bu isimde bir program zaten var."
+    },
+    "cannotDeleteActiveSchedule": {
+        "message": "Aktif bir program silinemez. Lütfen program aktif olmadığında bekleyin."
+    },
+    "optionsTitle": {
+        "message": "Savunma Paneli"
+    },
+    "groupsHeading": {
+        "message": "Gruplar"
+    },
+    "whitelistHeading": {
+        "message": "Beyaz Liste Web Siteleri"
+    },
+    "schedulesHeading": {
+        "message": "Kilitli Programlar"
+    },
+    "unnamedGroupsMaxReached": {
+        "message": "İsimsiz grupların maksimum sayısına ulaşıldı."
+    },
+    "groupNameExists": {
+        "message": "Bu isimde bir grup zaten var."
+    },
+    "cannotDeleteGroupActiveSchedule": {
+        "message": "Aktif program sırasında gruplar silinemez."
+    },
+    "cannotIncreaseTimerActiveSchedule": {
+        "message": "Aktif program sırasında zamanlayıcı süresi ve miktarı artırılamaz."
+    },
+    "invalidKeywordValue": {
+        "message": "Geçersiz anahtar kelime değeri. Belirtilen aralıkta olmalıdır."
+    },
+    "cannotChangeGroupNameActiveSchedule": {
+        "message": "Aktif program sırasında grup adının değiştirilmesine izin verilmez."
+    },
+    "invalidEditOnWebsitesOrKeywords": {
+        "message": "Web Siteleri veya Anahtar Kelimeler girdileri düzenlendi veya kaldırıldı, değişiklik kaydedilemez."
+    },
+    "invalidKeywordEntry": {
+        "message": "Geçersiz anahtar kelime girişi: "
+    },
+    "addGroupButtonText": {
+        "message": "Grup Ekle"
+    },
+    "contentBlockedTitle": {
+        "message": "İçerik Engellendi"
+    },
+    "contentBlockedMessage": {
+        "message": "Bu sayfa kısıtlanmış içerik içeriyor ve korumanız için engellendi."
+    },
+    "keywordDetected": {
+        "message": "Anahtar Kelime Tespit Edildi"
+    },
+    "context": {
+        "message": "Bağlam"
+    },
+    "goBackButton": {
+        "message": "Geri Dön"
+    },
+    "activateTimerButton": {
+        "message": "Zamanlayıcıyı Aktifleştir"
+    },
+    "cannotRelaxConstraints": {
+        "message": "Program kısıtlamaları hafifletilemez."
+    },
+    "activeButtonText": {
+        "message": "Aktif"
+    },
+    "inactiveButtonText": {
+        "message": "Pasif"
+    },
+    "addScheduleButton": {
+        "message": "Program Ekle"
+    },
+    "enterWebsiteURLPlaceholder": {
+        "message": "Web sitesi URL'si girin"
+    },
+    "addToWhitelistButton": {
+        "message": "Beyaz Listeye Ekle"
+    },
+    "cancelButton": {
+        "message": "İptal"
+    },
+    "groupNamePlaceholder": {
+        "message": "Grup Adı"
+    },
+    "addScheduleButtonLabel": {
+        "message": "Program Ekle"
+    },
+    "unnamedSchedulePrefix": {
+        "message": "Program "
+    },
+    "addToWhitelistButtonLabel": {
+        "message": "Beyaz Listeye Ekle"
+    },
+    "cancelButtonLabel": {
+        "message": "İptal"
+    },
+    "activeLabel": {
+        "message": "Aktif"
+    },
+    "inactiveLabel": {
+        "message": "Pasif"
+    },
+    "cancelLabel": {
+        "message": "İptal"
+    },
+    "scheduleNamePlaceholder": {
+        "message": "Program Adı"
+    },
+    "editLabel": {
+        "message": "Düzenle"
+    },
+    "unnamedGroupPrefix": {
+        "message": "Grup "
+    },
+    "lockedScheduleErrorMessage": {
+        "message": "Aktif bir program sırasında site beyaz listeye eklenemez."
+    },
+    "cannotToggleActiveState": {
+        "message": "Mevcut koşullar altında aktif durumu değiştirmek mümkün değil."
+    },
+    "cannotDeselectDaysError": {
+        "message": "Şu anda etkili olan aktif bir program için günlerin seçimi kaldırılamaz."
+    }
+}

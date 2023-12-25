@@ -1,2 +1,212 @@
-
-{}
+{
+    "deleteButtonLabel": {
+        "message": "מחק"
+    },
+    "whitelistExistsMessage": {
+        "message": "האתר כבר נמצא ברשימה הלבנה."
+    },
+    "deleteWhitelistError": {
+        "message": "לא ניתן למחוק אתרים מהרשימה הלבנה במהלך לוח זמנים פעיל."
+    },
+    "scheduleNameLabel": {
+        "message": "שם הלוח זמנים"
+    },
+    "startTimeLabel": {
+        "message": "זמן התחלה"
+    },
+    "endTimeLabel": {
+        "message": "זמן סיום"
+    },
+    "activeStateLabel": {
+        "message": "מצב פעיל"
+    },
+    "editButtonLabel": {
+        "message": "ערוך"
+    },
+    "saveButtonLabel": {
+        "message": "שמור"
+    },
+    "endTimeAfterStartTimeError": {
+        "message": "זמן הסיום חייב להיות לאחר זמן ההתחלה."
+    },
+    "schedulesOverlapError": {
+        "message": "לוחות זמנים לא יכולים להחפיף."
+    },
+    "minimumUnlockedTimeError": {
+        "message": "כל יום חייב להכיל לפחות שעה אחת של זמן לא נעול."
+    },
+    "Mon": {
+        "message": "שני"
+    },
+    "Tue": {
+        "message": "שלישי"
+    },
+    "Wed": {
+        "message": "רביעי"
+    },
+    "Thu": {
+        "message": "חמישי"
+    },
+    "Fri": {
+        "message": "שישי"
+    },
+    "Sat": {
+        "message": "שבת"
+    },
+    "Sun": {
+        "message": "ראשון"
+    },
+    "Edit": {
+        "message": "ערוך"
+    },
+    "Save": {
+        "message": "שמור"
+    },
+    "Delete": {
+        "message": "מחק"
+    },
+    "groupNameLabel": {
+        "message": "שם הקבוצה"
+    },
+    "websitesLabel": {
+        "message": "אתרים"
+    },
+    "keywordsLabel": {
+        "message": "מילות מפתח"
+    },
+    "timerCountLabel": {
+        "message": "ספירת טיימר"
+    },
+    "timerDurationLabel": {
+        "message": "משך טיימר (שניות)"
+    },
+    "unnamedSchedulesMaxReached": {
+        "message": "הגיע למספר המרבי של לוחות זמנים ללא שם."
+    },
+    "scheduleNameExists": {
+        "message": "לוח זמנים עם שם זה כבר קיים."
+    },
+    "cannotDeleteActiveSchedule": {
+        "message": "לא ניתן למחוק לוח זמנים פעיל. המתן עד שלא יהיה פעיל."
+    },
+    "optionsTitle": {
+        "message": "לוח בקרה"
+    },
+    "groupsHeading": {
+        "message": "קבוצות"
+    },
+    "whitelistHeading": {
+        "message": "רשימה לבנה של אתרים"
+    },
+    "schedulesHeading": {
+        "message": "לוחות זמנים נעולים"
+    },
+    "unnamedGroupsMaxReached": {
+        "message": "הגיע למספר המרבי של קבוצות ללא שם."
+    },
+    "groupNameExists": {
+        "message": "קבוצה עם שם זה כבר קיימת."
+    },
+    "cannotDeleteGroupActiveSchedule": {
+        "message": "לא ניתן למחוק קבוצות במהלך לוח זמנים פעיל."
+    },
+    "cannotIncreaseTimerActiveSchedule": {
+        "message": "לא ניתן להגדיל את משך הטיימר ואת כמות הטיימרים במהלך לוח זמנים פעיל."
+    },
+    "invalidKeywordValue": {
+        "message": "ערך מילת מפתח לא תקין. חייב להיות בתוך הטווח המצוין."
+    },
+    "cannotChangeGroupNameActiveSchedule": {
+        "message": "שינוי שם הקבוצה אינו מותר במהלך לוח זמנים פעיל."
+    },
+    "invalidEditOnWebsitesOrKeywords": {
+        "message": "עריכת רשומות באתרים או מילות מפתח שונו או נמחקו, לא ניתן לשמור את השינוי."
+    },
+    "invalidKeywordEntry": {
+        "message": "רשומת מילת מפתח לא תקינה: "
+    },
+    "addGroupButtonText": {
+        "message": "הוסף קבוצה"
+    },
+    "contentBlockedTitle": {
+        "message": "תוכן חסום"
+    },
+    "contentBlockedMessage": {
+        "message": "העמוד מכיל תוכן מוגבל ונחסם להגנתך."
+    },
+    "keywordDetected": {
+        "message": "מילת מפתח זוהתה"
+    },
+    "context": {
+        "message": "הקשר"
+    },
+    "goBackButton": {
+        "message": "חזור אחורה"
+    },
+    "activateTimerButton": {
+        "message": "הפעל טיימר"
+    },
+    "cannotRelaxConstraints": {
+        "message": "לא ניתן להקל על המגבלות של הלוח זמנים."
+    },
+    "activeButtonText": {
+        "message": "פעיל"
+    },
+    "inactiveButtonText": {
+        "message": "לא פעיל"
+    },
+    "addScheduleButton": {
+        "message": "הוסף לוח זמנים"
+    },
+    "enterWebsiteURLPlaceholder": {
+        "message": "הכנס כתובת URL של אתר"
+    },
+    "addToWhitelistButton": {
+        "message": "הוסף לרשימה הלבנה"
+    },
+    "cancelButton": {
+        "message": "בטל"
+    },
+    "groupNamePlaceholder": {
+        "message": "שם הקבוצה"
+    },
+    "addScheduleButtonLabel": {
+        "message": "הוסף לוח זמנים"
+    },
+    "unnamedSchedulePrefix": {
+        "message": "לוח זמנים "
+    },
+    "addToWhitelistButtonLabel": {
+        "message": "הוסף לרשימה הלבנה"
+    },
+    "cancelButtonLabel": {
+        "message": "ביטול"
+    },
+    "activeLabel": {
+        "message": "פעיל"
+    },
+    "inactiveLabel": {
+        "message": "לא פעיל"
+    },
+    "cancelLabel": {
+        "message": "ביטול"
+    },
+    "scheduleNamePlaceholder": {
+        "message": "שם התזמון"
+    },
+    "editLabel": {
+        "message": "עריכה"
+    },
+    "unnamedGroupPrefix": {
+        "message": "קבוצה "
+    },
+    "lockedScheduleErrorMessage": {
+        "message": "לא ניתן להוסיף אתר לרשימת האתרים המותרים במהלך לו\"ז פעיל."
+    },
+    "cannotToggleActiveState": {
+        "message": "לא ניתן לשנות את מצב הפעילות תחת התנאים הנוכחיים."
+    },
+    "cannotDeselectDaysError": {
+        "message": "לא ניתן לבטל בחירה של ימים עבור לו\"ז פעיל שנמצא כרגע בתוקף."
+    }
+}

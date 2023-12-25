@@ -1,2 +1,212 @@
-
-{}
+{
+    "deleteButtonLabel": {
+        "message": "Xóa"
+    },
+    "whitelistExistsMessage": {
+        "message": "Trang này đã có trong danh sách trắng."
+    },
+    "deleteWhitelistError": {
+        "message": "Không thể xóa trang trong danh sách trắng khi lịch trình đang hoạt động."
+    },
+    "scheduleNameLabel": {
+        "message": "Tên Lịch Trình"
+    },
+    "startTimeLabel": {
+        "message": "Thời Gian Bắt Đầu"
+    },
+    "endTimeLabel": {
+        "message": "Thời Gian Kết Thúc"
+    },
+    "activeStateLabel": {
+        "message": "Trạng Thái Hoạt Động"
+    },
+    "editButtonLabel": {
+        "message": "Chỉnh Sửa"
+    },
+    "saveButtonLabel": {
+        "message": "Lưu"
+    },
+    "endTimeAfterStartTimeError": {
+        "message": "Thời gian kết thúc phải sau thời gian bắt đầu."
+    },
+    "schedulesOverlapError": {
+        "message": "Các lịch trình không được chồng chéo."
+    },
+    "minimumUnlockedTimeError": {
+        "message": "Mỗi ngày phải có ít nhất 1 giờ không bị khóa."
+    },
+    "Mon": {
+        "message": "Thứ Hai"
+    },
+    "Tue": {
+        "message": "Thứ Ba"
+    },
+    "Wed": {
+        "message": "Thứ Tư"
+    },
+    "Thu": {
+        "message": "Thứ Năm"
+    },
+    "Fri": {
+        "message": "Thứ Sáu"
+    },
+    "Sat": {
+        "message": "Thứ Bảy"
+    },
+    "Sun": {
+        "message": "Chủ Nhật"
+    },
+    "Edit": {
+        "message": "Chỉnh Sửa"
+    },
+    "Save": {
+        "message": "Lưu"
+    },
+    "Delete": {
+        "message": "Xóa"
+    },
+    "groupNameLabel": {
+        "message": "Tên Nhóm"
+    },
+    "websitesLabel": {
+        "message": "Trang Web"
+    },
+    "keywordsLabel": {
+        "message": "Từ Khóa"
+    },
+    "timerCountLabel": {
+        "message": "Số Lần Hẹn Giờ"
+    },
+    "timerDurationLabel": {
+        "message": "Thời Lượng Hẹn Giờ (giây)"
+    },
+    "unnamedSchedulesMaxReached": {
+        "message": "Đã đạt tối đa số lịch trình không tên."
+    },
+    "scheduleNameExists": {
+        "message": "Đã có lịch trình với tên này."
+    },
+    "cannotDeleteActiveSchedule": {
+        "message": "Không thể xóa lịch trình đang hoạt động. Vui lòng đợi khi lịch trình không hoạt động."
+    },
+    "optionsTitle": {
+        "message": "Bảng Điều Khiển"
+    },
+    "groupsHeading": {
+        "message": "Nhóm"
+    },
+    "whitelistHeading": {
+        "message": "Danh Sách Trắng"
+    },
+    "schedulesHeading": {
+        "message": "Lịch Trình Đã Khóa"
+    },
+    "unnamedGroupsMaxReached": {
+        "message": "Đã đạt tối đa số nhóm không tên."
+    },
+    "groupNameExists": {
+        "message": "Đã có nhóm với tên này."
+    },
+    "cannotDeleteGroupActiveSchedule": {
+        "message": "Không thể xóa nhóm khi lịch trình đang hoạt động."
+    },
+    "cannotIncreaseTimerActiveSchedule": {
+        "message": "Không thể tăng thời lượng và số lần hẹn giờ trong khi lịch trình đang hoạt động."
+    },
+    "invalidKeywordValue": {
+        "message": "Giá trị từ khóa không hợp lệ. Phải nằm trong phạm vi quy định."
+    },
+    "cannotChangeGroupNameActiveSchedule": {
+        "message": "Không được phép thay đổi tên nhóm khi lịch trình đang hoạt động."
+    },
+    "invalidEditOnWebsitesOrKeywords": {
+        "message": "Mục nhập Trang Web hoặc Từ Khóa đã được chỉnh sửa hoặc loại bỏ, không thể lưu thay đổi."
+    },
+    "invalidKeywordEntry": {
+        "message": "Mục nhập từ khóa không hợp lệ: "
+    },
+    "addGroupButtonText": {
+        "message": "Thêm Nhóm"
+    },
+    "contentBlockedTitle": {
+        "message": "Nội Dung Bị Chặn"
+    },
+    "contentBlockedMessage": {
+        "message": "Trang này chứa nội dung bị hạn chế và đã bị chặn để bảo vệ bạn."
+    },
+    "keywordDetected": {
+        "message": "Phát Hiện Từ Khóa"
+    },
+    "context": {
+        "message": "Ngữ Cảnh"
+    },
+    "goBackButton": {
+        "message": "Quay Lại"
+    },
+    "activateTimerButton": {
+        "message": "Kích Hoạt Hẹn Giờ"
+    },
+    "cannotRelaxConstraints": {
+        "message": "Không thể nới lỏng các hạn chế của lịch trình."
+    },
+    "activeButtonText": {
+        "message": "Hoạt Động"
+    },
+    "inactiveButtonText": {
+        "message": "Không Hoạt Động"
+    },
+    "addScheduleButton": {
+        "message": "Thêm Lịch Trình"
+    },
+    "enterWebsiteURLPlaceholder": {
+        "message": "Nhập URL trang web"
+    },
+    "addToWhitelistButton": {
+        "message": "Thêm Vào Danh Sách Trắng"
+    },
+    "cancelButton": {
+        "message": "Hủy Bỏ"
+    },
+    "groupNamePlaceholder": {
+        "message": "Tên Nhóm"
+    },
+    "addScheduleButtonLabel": {
+        "message": "Thêm Lịch Trình"
+    },
+    "unnamedSchedulePrefix": {
+        "message": "Lịch Trình "
+    },
+    "addToWhitelistButtonLabel": {
+        "message": "Thêm Vào Danh Sách Trắng"
+    },
+    "cancelButtonLabel": {
+        "message": "Hủy Bỏ"
+    },
+    "activeLabel": {
+        "message": "Hoạt Động"
+    },
+    "inactiveLabel": {
+        "message": "Không Hoạt Động"
+    },
+    "cancelLabel": {
+        "message": "Hủy"
+    },
+    "scheduleNamePlaceholder": {
+        "message": "Tên Lịch Trình"
+    },
+    "editLabel": {
+        "message": "Chỉnh Sửa"
+    },
+    "unnamedGroupPrefix": {
+        "message": "Nhóm "
+    },
+    "lockedScheduleErrorMessage": {
+        "message": "Không thể thêm trang vào danh sách trắng khi lịch trình đang hoạt động."
+    },
+    "cannotToggleActiveState": {
+        "message": "Không thể thay đổi trạng thái hoạt động trong điều kiện hiện tại."
+    },
+    "cannotDeselectDaysError": {
+        "message": "Không thể bỏ chọn các ngày cho lịch trình đang hoạt động và đang có hiệu lực."
+    }
+}

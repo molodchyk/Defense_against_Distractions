@@ -1,2 +1,212 @@
-
-{}
+{
+    "deleteButtonLabel": {
+        "message": "Löschen"
+    },
+    "whitelistExistsMessage": {
+        "message": "Diese Seite ist bereits auf der Whitelist."
+    },
+    "deleteWhitelistError": {
+        "message": "Whitelisted Seiten können während eines aktiven Zeitplans nicht gelöscht werden."
+    },
+    "scheduleNameLabel": {
+        "message": "Name des Zeitplans"
+    },
+    "startTimeLabel": {
+        "message": "Startzeit"
+    },
+    "endTimeLabel": {
+        "message": "Endzeit"
+    },
+    "activeStateLabel": {
+        "message": "Aktiver Zustand"
+    },
+    "editButtonLabel": {
+        "message": "Bearbeiten"
+    },
+    "saveButtonLabel": {
+        "message": "Speichern"
+    },
+    "endTimeAfterStartTimeError": {
+        "message": "Endzeit muss nach Startzeit sein."
+    },
+    "schedulesOverlapError": {
+        "message": "Zeitpläne dürfen sich nicht überschneiden."
+    },
+    "minimumUnlockedTimeError": {
+        "message": "Jeder Tag muss mindestens 1 Stunde ungesperrte Zeit haben."
+    },
+    "Mon": {
+        "message": "Mo"
+    },
+    "Tue": {
+        "message": "Di"
+    },
+    "Wed": {
+        "message": "Mi"
+    },
+    "Thu": {
+        "message": "Do"
+    },
+    "Fri": {
+        "message": "Fr"
+    },
+    "Sat": {
+        "message": "Sa"
+    },
+    "Sun": {
+        "message": "So"
+    },
+    "Edit": {
+        "message": "Bearbeiten"
+    },
+    "Save": {
+        "message": "Speichern"
+    },
+    "Delete": {
+        "message": "Löschen"
+    },
+    "groupNameLabel": {
+        "message": "Gruppenname"
+    },
+    "websitesLabel": {
+        "message": "Webseiten"
+    },
+    "keywordsLabel": {
+        "message": "Schlüsselwörter"
+    },
+    "timerCountLabel": {
+        "message": "Timer-Anzahl"
+    },
+    "timerDurationLabel": {
+        "message": "Timerdauer (Sekunden)"
+    },
+    "unnamedSchedulesMaxReached": {
+        "message": "Maximale Anzahl an namenlosen Zeitplänen erreicht."
+    },
+    "scheduleNameExists": {
+        "message": "Ein Zeitplan mit diesem Namen existiert bereits."
+    },
+    "cannotDeleteActiveSchedule": {
+        "message": "Ein aktiver Zeitplan kann nicht gelöscht werden. Bitte warten Sie, bis der Zeitplan nicht aktiv ist."
+    },
+    "optionsTitle": {
+        "message": "Verteidigungspanel"
+    },
+    "groupsHeading": {
+        "message": "Gruppen"
+    },
+    "whitelistHeading": {
+        "message": "Whitelist-Webseiten"
+    },
+    "schedulesHeading": {
+        "message": "Gesperrte Zeitpläne"
+    },
+    "unnamedGroupsMaxReached": {
+        "message": "Maximale Anzahl an namenlosen Gruppen erreicht."
+    },
+    "groupNameExists": {
+        "message": "Eine Gruppe mit diesem Namen existiert bereits."
+    },
+    "cannotDeleteGroupActiveSchedule": {
+        "message": "Gruppen können während eines aktiven Zeitplans nicht gelöscht werden."
+    },
+    "cannotIncreaseTimerActiveSchedule": {
+        "message": "Die Dauer des Timers und die Anzahl der Timer können während eines aktiven Zeitplans nicht erhöht werden."
+    },
+    "invalidKeywordValue": {
+        "message": "Ungültiger Schlüsselwortwert. Muss innerhalb des angegebenen Bereichs liegen."
+    },
+    "cannotChangeGroupNameActiveSchedule": {
+        "message": "Ändern des Gruppennamens ist während eines aktiven Zeitplans nicht erlaubt."
+    },
+    "invalidEditOnWebsitesOrKeywords": {
+        "message": "Einträge von Webseiten oder Schlüsselwörtern wurden bearbeitet oder entfernt, Änderung kann nicht gespeichert werden."
+    },
+    "invalidKeywordEntry": {
+        "message": "Ungültiger Schlüsselworteintrag: "
+    },
+    "addGroupButtonText": {
+        "message": "Gruppe hinzufügen"
+    },
+    "contentBlockedTitle": {
+        "message": "Inhalt Blockiert"
+    },
+    "contentBlockedMessage": {
+        "message": "Diese Seite enthält eingeschränkten Inhalt und wurde zu Ihrem Schutz blockiert."
+    },
+    "keywordDetected": {
+        "message": "Schlüsselwort erkannt"
+    },
+    "context": {
+        "message": "Kontext"
+    },
+    "goBackButton": {
+        "message": "Zurück"
+    },
+    "activateTimerButton": {
+        "message": "Timer aktivieren"
+    },
+    "cannotRelaxConstraints": {
+        "message": "Die Zeitplanbeschränkungen können nicht gelockert werden."
+    },
+    "activeButtonText": {
+        "message": "Aktiv"
+    },
+    "inactiveButtonText": {
+        "message": "Inaktiv"
+    },
+    "addScheduleButton": {
+        "message": "Zeitplan hinzufügen"
+    },
+    "enterWebsiteURLPlaceholder": {
+        "message": "Webseiten-URL eingeben"
+    },
+    "addToWhitelistButton": {
+        "message": "Zur Whitelist hinzufügen"
+    },
+    "cancelButton": {
+        "message": "Abbrechen"
+    },
+    "groupNamePlaceholder": {
+        "message": "Gruppenname"
+    },
+    "addScheduleButtonLabel": {
+        "message": "Zeitplan hinzufügen"
+    },
+    "unnamedSchedulePrefix": {
+        "message": "Zeitplan "
+    },
+    "addToWhitelistButtonLabel": {
+        "message": "Zur Whitelist hinzufügen"
+    },
+    "cancelButtonLabel": {
+        "message": "Abbrechen"
+    },
+    "activeLabel": {
+        "message": "Aktiv"
+    },
+    "inactiveLabel": {
+        "message": "Inaktiv"
+    },
+    "cancelLabel": {
+        "message": "Abbrechen"
+    },
+    "scheduleNamePlaceholder": {
+        "message": "Name des Zeitplans"
+    },
+    "editLabel": {
+        "message": "Bearbeiten"
+    },
+    "unnamedGroupPrefix": {
+        "message": "Gruppe "
+    },
+    "lockedScheduleErrorMessage": {
+        "message": "Während eines aktiven Zeitplans kann keine Seite zur Whitelist hinzugefügt werden."
+    },
+    "cannotToggleActiveState": {
+        "message": "Der aktive Zustand kann unter den aktuellen Bedingungen nicht geändert werden."
+    },
+    "cannotDeselectDaysError": {
+        "message": "Tage können für einen aktiven Zeitplan, der gerade in Kraft ist, nicht abgewählt werden."
+    }
+}
