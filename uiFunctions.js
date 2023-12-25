@@ -121,8 +121,8 @@ export function checkScheduleStatus() {
 setInterval(checkScheduleStatus, 3000); // Checks every 3 seconds
 
 export function enableUIElements() {
-  // Select all disabled buttons except group save buttons
-  const buttonsToEnable = document.querySelectorAll('button:disabled:not(.save-button)');
+  // Select all disabled buttons except group save buttons, password management buttons, and password set button
+  const buttonsToEnable = document.querySelectorAll('button:disabled:not(.save-button):not(.password-management-button):not(.password-set-button)');
 
   buttonsToEnable.forEach(button => {
     button.disabled = false;

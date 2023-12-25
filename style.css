@@ -554,12 +554,6 @@ h2 {
     background-color: #4CAF50; /* Active state color */
 }
 
-#passwordManagement button.disabled {
-    background-color: #a9a9a9; /* Disabled state color */
-    color: #666666;
-    cursor: default;
-}
-
 /* Add styles for input fields */
 input[type='password'] {
     background-color: #282c34; /* Dark background for dark mode */
@@ -570,6 +564,10 @@ input[type='password'] {
     width: 100%; /* Full-width inputs */
     box-sizing: border-box; /* Border-box sizing */
     border-radius: 4px;
+}
+/* Add styles for input fields */
+input[type='password']:disabled:hover {
+    cursor:not-allowed;
 }
 
 /* Centering password section */
@@ -583,4 +581,12 @@ input[type='password'] {
 /* Ensure the confirmation password field is displayed */
 #confirmPasswordInputField {
     display: block; /* Change to block to make it visible */
+}
+
+#passwordManagement button.disabled,
+#passwordManagement button.password-set-button:disabled:hover,
+#passwordManagement button.password-set-button:disabled {
+    background-color: #a9a9a9; /* Disabled state color */
+    color: #666666;
+    cursor: default;
 }

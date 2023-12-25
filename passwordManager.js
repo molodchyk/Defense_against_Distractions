@@ -22,8 +22,29 @@ async function generateKey() {
     );
 }
 
+function bufferToBase64(buffer) {
+    var binary = '';
+    var bytes = new Uint8Array(buffer);
+    var len = bytes.byteLength;
+    for (var i = 0; i < len; i++) {
+        binary += String.fromCharCode(bytes[i]);
+    }
+    return window.btoa(binary);
+}
 
-async function decryptPassword(combined, key) {
+function base64ToBuffer(base64) {
+    var binaryString = window.atob(base64);
+    var len = binaryString.length;
+    var bytes = new Uint8Array(len);
+    for (var i = 0; i < len; i++) {
+        bytes[i] = binaryString.charCodeAt(i);
+    }
+    return bytes.buffer;
+}
+
+
+async function decryptPassword(combinedBase64, key) {
+    const combined = base64ToBuffer(combinedBase64);
     // Extract the IV and encrypted data
     const iv = combined.slice(0, 12);
     const encryptedData = combined.slice(12);
@@ -38,8 +59,11 @@ async function decryptPassword(combined, key) {
         encryptedData
     );
     const decoded = new TextDecoder().decode(decrypted);
+    console.log('Decrypted Password:', decoded); // Log the decrypted password
     return decoded;
 }
+
+
 
 
 
@@ -82,12 +106,18 @@ async function decryptData(combined, key) {
 async function setPassword(password) {
     const key = await generateKey(); // Ideally, use a previously generated/stored key
     const encryptedPassword = await encryptPassword(password, key);
+    const encryptedPasswordBase64 = bufferToBase64(encryptedPassword);
 
-    chrome.storage.sync.set({ password: encryptedPassword }, function() {
+    chrome.storage.sync.set({ password: encryptedPasswordBase64 }, function() {
         console.log('Password is set.');
+        console.log('Unencrypted Password:', password); // Log the unencrypted password
+        console.log('Encrypted Password:', encryptedPasswordBase64); // Log the encrypted password
         updateButtonStates(); // Update UI state
     });
 }
+
+
+
 
 
 // Function to edit the password
@@ -104,10 +134,15 @@ function editPassword(oldPassword, newPassword) {
 // Function to delete the password
 function deletePassword() {
     chrome.storage.sync.remove('password', function() {
-        console.log('Password is removed.');
-        updateButtonStates(); // Update UI state
+        if (chrome.runtime.lastError) {
+            console.error('Error deleting password:', chrome.runtime.lastError);
+        } else {
+            console.log('Password is removed.');
+            updateButtonStates(); // Update UI state
+        }
     });
 }
+
 
 async function verifyPassword(inputPassword, callback) {
     chrome.storage.sync.get('password', async function(data) {
@@ -140,23 +175,43 @@ async function confirmPassword() {
     }
 }
 
+// Function to validate password entered in the overlay
+async function validateOverlayPassword() {
+    const overlayPassword = document.getElementById('passwordInput').value;
+    await verifyPassword(overlayPassword, function(isMatch) {
+        if (isMatch) {
+            hidePasswordOverlay();
+            console.log('Access granted.');
+        } else {
+            console.log('Access denied. Incorrect password.');
+        }
+    });
+}
+
+// Event listener for the password overlay form submission
+document.getElementById('passwordForm').addEventListener('submit', async (event) => {
+    event.preventDefault();
+    await validateOverlayPassword();
+});
+document.getElementById('deletePasswordButton').addEventListener('click', deletePassword);
+
+
 
 // New function to update button states
 function updateButtonStates() {
     chrome.storage.sync.get('password', function(data) {
         const hasPassword = !!data.password;
-        document.getElementById('editPasswordButton').disabled = !hasPassword;
         document.getElementById('deletePasswordButton').disabled = !hasPassword;
-        document.getElementById('setPasswordButton').style.display = hasPassword ? 'none' : 'inline-block';
-        document.getElementById('passwordInputField').style.display = hasPassword ? 'none' : 'inline-block';
+        document.getElementById('setPasswordButton').disabled = hasPassword;
+        document.getElementById('passwordInputField').disabled = hasPassword;
+        document.getElementById('confirmPasswordInputField').disabled = hasPassword;
 
-        // Update button classes for styling
-        const editButton = document.getElementById('editPasswordButton');
+        // Update button class for styling
         const deleteButton = document.getElementById('deletePasswordButton');
-        editButton.className = hasPassword ? 'enabled' : 'disabled';
         deleteButton.className = hasPassword ? 'enabled' : 'disabled';
     });
 }
+
 
 // Call updateButtonStates on page load
 document.addEventListener('DOMContentLoaded', updateButtonStates);

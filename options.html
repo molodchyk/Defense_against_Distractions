@@ -37,18 +37,19 @@
         <div id="passwordManagement">
             <input type="password" id="passwordInputField" placeholder="Enter password">
             <input type="password" id="confirmPasswordInputField" placeholder="Confirm password">
-            <button id="setPasswordButton">Set Password</button>
-            <button id="editPasswordButton" disabled>Edit Password</button>
+            <button id="setPasswordButton" class="password-set-button">Set Password</button>
             <button id="deletePasswordButton" disabled>Delete Password</button>
         </div>
     </section>
 
     <div id="passwordOverlay" style="display:none;">
         <form id="passwordForm">
+            <label for="passwordInput">Enter Password to Access:</label>
             <input type="password" id="passwordInput" placeholder="Enter password">
             <button type="submit">Submit</button>
-        </div>
-    </form>
+        </form>
+    </div>
+    
 
     <script src="utilityFunctions.js" type="module"></script>
     <script src="uiFunctions.js" type="module"></script>
