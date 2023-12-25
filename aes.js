@@ -35,6 +35,7 @@ var C_algo = C.algo;
 
 var SBOX = [];
 var INV_SBOX = [];
+
 var SUB_MIX_0 = [];
 var SUB_MIX_1 = [];
 var SUB_MIX_2 = [];

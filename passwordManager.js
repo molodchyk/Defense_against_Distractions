@@ -1,28 +1,94 @@
-import './cipher-core.js';
-import CryptoJS from './core.js';
-
-// Function to encrypt the password
-function encryptPassword(password) {
-    let encryptedPassword = CryptoJS.AES.encrypt(password, 'your-secret-key').toString();
-    return encryptedPassword;
+async function encryptPassword(password, key) {
+    const encoded = new TextEncoder().encode(password);
+    const encrypted = await crypto.subtle.encrypt(
+        {
+            name: "AES-GCM",
+            iv: window.crypto.getRandomValues(new Uint8Array(12))
+        },
+        key,
+        encoded
+    );
+    return encrypted;
 }
 
-// Function to decrypt the password using AES
-function decryptPassword(encryptedPassword) {
-    let bytes = CryptoJS.AES.decrypt(encryptedPassword, 'your-secret-key');
-    let password = bytes.toString(CryptoJS.enc.Utf8);
-    return password;
+async function generateKey() {
+    return await crypto.subtle.generateKey(
+        {
+            name: "AES-GCM",
+            length: 256,
+        },
+        true,
+        ["encrypt", "decrypt"]
+    );
 }
 
 
-// Function to set the password
-function setPassword(password) {
-    let encryptedPassword = encryptPassword(password);
-    chrome.storage.sync.set({password: encryptedPassword}, function() {
+async function decryptPassword(combined, key) {
+    // Extract the IV and encrypted data
+    const iv = combined.slice(0, 12);
+    const encryptedData = combined.slice(12);
+
+    // Decrypt data
+    const decrypted = await crypto.subtle.decrypt(
+        {
+            name: "AES-GCM",
+            iv: iv
+        },
+        key,
+        encryptedData
+    );
+    const decoded = new TextDecoder().decode(decrypted);
+    return decoded;
+}
+
+
+
+async function encryptData(data, key) {
+    // Generate a random IV for each encryption
+    const iv = crypto.getRandomValues(new Uint8Array(12));
+
+    // Encrypt data
+    const encoded = new TextEncoder().encode(data);
+    const encryptedData = await crypto.subtle.encrypt(
+        { name: "AES-GCM", iv: iv },
+        key,
+        encoded
+    );
+
+    // Combine the IV with the encrypted data
+    const combined = new Uint8Array(iv.length + encryptedData.byteLength);
+    combined.set(iv, 0);
+    combined.set(new Uint8Array(encryptedData), iv.length);
+
+    return combined;
+}
+
+async function decryptData(combined, key) {
+    // Extract the IV and encrypted data
+    const iv = combined.slice(0, 12);
+    const encryptedData = combined.slice(12);
+
+    // Decrypt data
+    const decryptedData = await crypto.subtle.decrypt(
+        { name: "AES-GCM", iv: iv },
+        key,
+        encryptedData
+    );
+
+    return new TextDecoder().decode(decryptedData);
+}
+
+
+async function setPassword(password) {
+    const key = await generateKey(); // Ideally, use a previously generated/stored key
+    const encryptedPassword = await encryptPassword(password, key);
+
+    chrome.storage.sync.set({ password: encryptedPassword }, function() {
         console.log('Password is set.');
         updateButtonStates(); // Update UI state
     });
 }
+
 
 // Function to edit the password
 function editPassword(oldPassword, newPassword) {
@@ -43,13 +109,14 @@ function deletePassword() {
     });
 }
 
-// Function to verify the password
-function verifyPassword(inputPassword, callback) {
-    chrome.storage.sync.get('password', function(data) {
-        let storedPassword = decryptPassword(data.password);
+async function verifyPassword(inputPassword, callback) {
+    chrome.storage.sync.get('password', async function(data) {
+        const key = await generateKey(); // Use the correct key for decryption
+        const storedPassword = await decryptPassword(data.password, key);
         callback(inputPassword === storedPassword);
     });
 }
+
 
 // Utility functions
 function showPasswordOverlay() {
@@ -63,15 +130,16 @@ function hidePasswordOverlay() {
 }
 
 
-function confirmPassword() {
+async function confirmPassword() {
     const password = document.getElementById('passwordInputField').value;
     const confirmPassword = document.getElementById('confirmPasswordInputField').value;
     if (password === confirmPassword) {
-        setPassword(password);
+        await setPassword(password); // This is now an async call
     } else {
         console.log('Passwords do not match.');
     }
 }
+
 
 // New function to update button states
 function updateButtonStates() {
@@ -93,17 +161,6 @@ function updateButtonStates() {
 // Call updateButtonStates on page load
 document.addEventListener('DOMContentLoaded', updateButtonStates);
 
-document.getElementById('setPasswordButton').addEventListener('click', confirmPassword);
-
-
-
-// Export the functions if using modules
-export {
-    setPassword,
-    editPassword,
-    deletePassword,
-    verifyPassword,
-    showPasswordOverlay,
-    hidePasswordOverlay,
-    updateButtonStates
-};
+document.getElementById('setPasswordButton').addEventListener('click', async () => {
+    await confirmPassword();
+});
