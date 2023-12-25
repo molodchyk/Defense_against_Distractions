@@ -607,3 +607,171 @@ input[type='password']:disabled:hover {
 #confirmPasswordInputField {
     display: block;
 }
+
+
+
+
+
+/* General styling for form elements */
+form {
+    background-color: #242424;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Style the password form inside the overlay */
+#passwordForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+#passwordForm label {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+#passwordForm input[type='password'] {
+    width: 80%; /* Responsive width */
+    margin: 0 auto; /* Center input field */
+}
+
+#passwordForm button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+}
+
+#passwordForm button:hover {
+    background-color: #3e8e41;
+}
+
+/* Styling for the password management section */
+#passwordManagement {
+    background-color: none;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px auto; /* Ensure some space around */
+}
+
+#passwordManagement input[type='password'] {
+    width: 80%; /* Responsive width */
+    margin-bottom: 10px; /* Space between inputs and button */
+}
+
+/* Adjust the alignment and spacing for buttons */
+#passwordManagement button {
+    margin-top: 10px; /* Space above buttons */
+    width: 80%; /* Match input width */
+    padding: 10px 0; /* More vertical padding */
+}
+
+/* Centering password section */
+#passwordManagement {
+    display: flex; /* Use Flexbox */
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center items horizontally */
+    text-align: center;
+    margin: auto;
+    max-width: 400px;
+    background-color: none;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+/* Adjust input fields and buttons */
+#passwordManagement input[type='password'],
+#passwordManagement button {
+    width: 80%; /* Responsive width */
+    margin-bottom: 10px; /* Space between inputs and button */
+}
+
+
+
+
+/* Ensure consistent styling for input fields */
+#passwordForm input[type='password'],
+#passwordManagement input[type='password'] {
+    /* Existing styles */
+    margin: 10px 0; /* Adjust margin */
+}
+
+/* Button styling consistency */
+#passwordForm button,
+#passwordManagement button {
+    /* Existing styles */
+    width: 80%; /* Responsive width */
+    margin-top: 10px; /* Space above buttons */
+    padding: 10px 0; /* More vertical padding */
+}
+
+
+#passwordForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center items inside the form */
+    gap: 10px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px; /* Set a fixed width */
+    margin: auto; /* Center the form in the overlay */
+}
+
+
+
+#passwordOverlay {
+    position: fixed;
+    top: 0; 
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(83, 83, 83, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2147483647;
+}
+
+#passwordForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px; /* Adjust the width as needed */
+    background-color: rgb(182, 182, 182);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: auto; /* Center the form in the overlay */
+}
+
+/* Ensure the inputs and buttons in the form are styled consistently */
+#passwordForm input[type='password'],
+#passwordForm button {
+    width: 100%; /* Full width of the form */
+    margin: 10px 0; /* Space between elements */
+    padding: 10px; /* Padding for better visuals */
+    border-radius: 4px; /* Rounded corners */
+}
+
+/* Optionally, style the label for better visibility */
+#passwordForm label {
+    color: #000; /* Change as per your color scheme */
+    margin-bottom: 10px;
+}
+
+.centered-form-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}

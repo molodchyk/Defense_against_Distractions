@@ -43,12 +43,20 @@
     </section>
 
     <div id="passwordOverlay" style="display:none;">
-        <form id="passwordForm">
-            <label for="passwordInput">Enter Password to Access:</label>
-            <input type="password" id="passwordInput" placeholder="Enter password">
-            <button type="submit">Submit</button>
-        </form>
+        <div class="centered-form-wrapper">
+            <form id="passwordForm">
+                <label for="passwordInput">Enter Password to Access:</label>
+                <input type="password" id="passwordInput" placeholder="Enter password">
+                <button type="submit">Submit</button>
+            </form>
+        </div>
     </div>
+
+    <div id="messageContainer">
+        <span id="errorMessage" style="color: red; display: none;"></span>
+        <span id="successMessage" style="color: green; display: none;"></span>
+    </div>
+
     
 
     <script src="utilityFunctions.js" type="module"></script>
