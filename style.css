@@ -550,43 +550,60 @@ h2 {
     min-width: 150px;
     height: 36px;
 }
+
+#passwordManagement button.enabled, 
+#passwordManagement button.disabled, 
+#passwordManagement button.password-set-button:enabled,
+#passwordManagement button.password-set-button:disabled:hover, 
+#passwordManagement button.password-set-button:disabled {
+    padding: 10px 20px; /* Adjusted padding */
+    font-size: 14px; /* Adjusted font size */
+    border-radius: 4px; /* Matching border-radius */
+    border: none; /* Consistent with other buttons */
+    box-shadow: none; /* Remove shadow for consistency */
+}
+
 #passwordManagement button.enabled {
     background-color: #4CAF50; /* Active state color */
+    cursor: pointer; /* Pointer cursor on hover */
 }
 
-/* Add styles for input fields */
-input[type='password'] {
-    background-color: #282c34; /* Dark background for dark mode */
-    color: white; /* White text for dark mode */
-    border: 1px solid #555; /* Subtle border */
-    padding: 10px;
-    margin-bottom: 10px;
-    width: 100%; /* Full-width inputs */
-    box-sizing: border-box; /* Border-box sizing */
-    border-radius: 4px;
-}
-/* Add styles for input fields */
-input[type='password']:disabled:hover {
-    cursor:not-allowed;
+#passwordManagement button.enabled:hover {
+    background-color: #3e8e41; /* Slightly darker color on hover */
 }
 
-/* Centering password section */
-#passwordManagement {
-    align-items:center;
-    text-align: center; /* Center align content */
-    margin: auto; /* Center the div */
-    max-width: 400px; /* Adjust as needed */
-}
-
-/* Ensure the confirmation password field is displayed */
-#confirmPasswordInputField {
-    display: block; /* Change to block to make it visible */
-}
-
-#passwordManagement button.disabled,
-#passwordManagement button.password-set-button:disabled:hover,
+#passwordManagement button.disabled, 
 #passwordManagement button.password-set-button:disabled {
     background-color: #a9a9a9; /* Disabled state color */
     color: #666666;
     cursor: default;
+}
+
+/* Styles for input fields remain unchanged */
+input[type='password'] {
+    background-color: #282c34;
+    color: white;
+    border: 1px solid #555;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+input[type='password']:disabled:hover {
+    cursor: not-allowed;
+}
+
+/* Centering password section */
+#passwordManagement {
+    align-items: center;
+    text-align: center;
+    margin: auto;
+    max-width: 400px;
+}
+
+/* Ensure the confirmation password field is displayed */
+#confirmPasswordInputField {
+    display: block;
 }
