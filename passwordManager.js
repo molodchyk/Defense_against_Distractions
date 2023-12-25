@@ -1,5 +1,8 @@
+const MAX_ATTEMPTS = 5;
+const LOCKOUT_INTERVAL = 30 * 1000; // 30 seconds
+
+
 async function encryptPassword(password, key) {
-    console.log("Input password for encryption:", password);
     
     // Generate IV
     const iv = crypto.getRandomValues(new Uint8Array(12));
@@ -19,7 +22,6 @@ async function encryptPassword(password, key) {
     combined.set(iv);
     combined.set(new Uint8Array(encrypted), iv.length);
 
-    console.log("Combined IV and encrypted data:", combined);
     return combined;
 }
 
@@ -52,7 +54,6 @@ function base64ToBuffer(base64) {
         return null;
     }
     try {
-        console.log("Base64 string to decode:", base64); // Debug log
         var binaryString = window.atob(base64);
         var len = binaryString.length;
         var bytes = new Uint8Array(len);
@@ -69,7 +70,6 @@ function base64ToBuffer(base64) {
 
 
 async function decryptPassword(combinedBase64, key) {
-    console.log("Starting decryption process...");
 
     // Convert Base64 to ArrayBuffer and extract IV and encrypted data
     const combined = base64ToBuffer(combinedBase64);
@@ -91,10 +91,8 @@ async function decryptPassword(combinedBase64, key) {
             encryptedData
         );
         const decoded = new TextDecoder().decode(decrypted);
-        console.log('Decrypted and decoded password:', decoded);
         return decoded;
     } catch (decryptError) {
-        console.error('Error during decryption:', decryptError);
         return null;
     }
 }
@@ -140,10 +138,6 @@ async function decryptData(combined, key) {
 
 async function setPassword(password) {
     try {
-        console.log("Starting to set password...");
-
-        // Generate a new encryption key
-        console.log("Generating encryption key...");
         const key = await crypto.subtle.generateKey(
             {
                 name: "AES-GCM",
@@ -152,38 +146,29 @@ async function setPassword(password) {
             true,
             ["encrypt", "decrypt"]
         );
-        console.log("Encryption key generated:", key);
 
-        // Export the key and convert it to a Base64 string for storage
-        console.log("Exporting and encoding key...");
+
         const exportedKey = await crypto.subtle.exportKey("raw", key);
-        console.log("Exported key (raw):", exportedKey);
-        const keyBase64 = bufferToBase64(exportedKey);
-        console.log("Key exported and encoded (Base64):", keyBase64);
 
-        // Store the exported key securely in chrome.storage.local
-        console.log("Storing key in chrome.storage.local...");
+        const keyBase64 = bufferToBase64(exportedKey);
+
+
+
         chrome.storage.local.set({ key: keyBase64 }, async function() {
             if (chrome.runtime.lastError) {
                 console.error("Error storing the key:", chrome.runtime.lastError);
                 return;
             }
-            console.log("Key stored successfully in chrome.storage.local.");
 
             // Encrypt the password
-            console.log("Encrypting password...");
             const encryptedPassword = await encryptPassword(password, key);
-            console.log("Encrypted password (ArrayBuffer):", encryptedPassword);
             const encryptedPasswordBase64 = bufferToBase64(encryptedPassword);
-            console.log("Encrypted password (Base64):", encryptedPasswordBase64);
 
             // Store the encrypted password in chrome.storage.sync
-            console.log("Storing encrypted password in chrome.storage.sync...");
             chrome.storage.sync.set({ password: encryptedPasswordBase64 }, function() {
                 if (chrome.runtime.lastError) {
                     console.error("Error storing the password:", chrome.runtime.lastError);
                 } else {
-                    console.log('Password is set successfully in chrome.storage.sync.');
                     updateButtonStates(); // Update UI state
                 }
             });
@@ -201,8 +186,6 @@ function editPassword(oldPassword, newPassword) {
     verifyPassword(oldPassword, function(isMatch) {
         if (isMatch) {
             setPassword(newPassword);
-        } else {
-            console.log('Old password is incorrect.');
         }
     });
 }
@@ -213,7 +196,6 @@ function deletePassword() {
         if (chrome.runtime.lastError) {
             console.error('Error deleting password:', chrome.runtime.lastError);
         } else {
-            console.log('Password is removed.');
             updateButtonStates(); // Update UI state
         }
     });
@@ -221,6 +203,28 @@ function deletePassword() {
 
 
 async function verifyPassword(inputPassword, callback) {
+    const attemptData = await getAttemptData();
+    const currentTime = new Date().getTime();
+    const timeSinceLastAttempt = currentTime - attemptData.lastAttempt;
+    const timeRemaining = LOCKOUT_INTERVAL - timeSinceLastAttempt;
+
+
+    // Check if the lockout period is active
+    if (attemptData.attempts >= MAX_ATTEMPTS && timeSinceLastAttempt < LOCKOUT_INTERVAL) {
+        alert('Too many failed attempts. Please wait ' + Math.ceil(timeRemaining / 1000) + ' seconds before retrying.');
+        if (timeSinceLastAttempt >= LOCKOUT_INTERVAL) {
+            await updateAttemptData(0); // Reset attempts after lockout duration
+        }
+        return;
+    }
+
+    // Reset attempts if the lockout interval has passed
+    if (timeSinceLastAttempt >= LOCKOUT_INTERVAL) {
+        await updateAttemptData(0);
+        attemptData.attempts = 0; // Update local copy of attempts
+    }
+
+
     try {
         // Retrieve the stored encryption key securely from chrome.storage.local
         chrome.storage.local.get('key', async function(data) {
@@ -251,7 +255,6 @@ async function verifyPassword(inputPassword, callback) {
                 }
 
                 const encryptedPasswordBase64 = data.password;
-                console.log("Retrieved encrypted password (Base64):", encryptedPasswordBase64);
 
                 // Add a check here to ensure the data type
                 if (typeof encryptedPasswordBase64 !== 'string') {
@@ -269,13 +272,16 @@ async function verifyPassword(inputPassword, callback) {
                 try {
                     const decryptedPassword = await decryptPassword(encryptedPasswordBase64, key);
 
-                    if (decryptedPassword === null) {
-                        console.error('Verification error: Decryption failed.');
+                    // After updating attempt count
+                    if (decryptedPassword === null || inputPassword !== decryptedPassword) {
+                        await updateAttemptData(attemptData.attempts + 1);
+                        alert('Incorrect password. ' + (MAX_ATTEMPTS - attemptData.attempts) + ' attempts left.');
                         callback(false);
                         return;
                     }
 
                     // Continue with the password verification
+                    await updateAttemptData(0);
                     callback(inputPassword === decryptedPassword);
                 } catch (decryptError) {
                     console.error('Error decrypting the password:', decryptError);
@@ -290,6 +296,29 @@ async function verifyPassword(inputPassword, callback) {
 }
 
 
+
+// Function to get attempt data from storage
+async function getAttemptData() {
+    return new Promise((resolve) => {
+        chrome.storage.local.get(['attempts', 'lastAttempt'], function(data) {
+            resolve({
+                attempts: data.attempts || 0,
+                lastAttempt: data.lastAttempt || 0
+            });
+        });
+    });
+}
+
+// Function to update attempt data in storage
+async function updateAttemptData(attempts) {
+    const data = {
+        attempts: attempts,
+        lastAttempt: new Date().getTime()
+    };
+    return new Promise((resolve) => {
+        chrome.storage.local.set(data, resolve);
+    });
+}
 
 
 
@@ -311,20 +340,14 @@ async function confirmPassword() {
     const confirmPassword = document.getElementById('confirmPasswordInputField').value;
     if (password === confirmPassword) {
         await setPassword(password); // This is now an async call
-    } else {
-        console.log('Passwords do not match.');
     }
 }
 
 async function validateOverlayPassword() {
     const overlayPassword = document.getElementById('passwordInput').value;
-    console.log('Password entered for unlocking:', overlayPassword);
     await verifyPassword(overlayPassword, function(isMatch) {
         if (isMatch) {
             hidePasswordOverlay();
-            console.log('Access granted.');
-        } else {
-            console.log('Access denied. Incorrect password.');
         }
     });
 }
@@ -387,27 +410,3 @@ async function isPasswordSet() {
 document.getElementById('setPasswordButton').addEventListener('click', async () => {
     await confirmPassword();
 });
-
-
-
-function showErrorMessage(message) {
-    const errorMessageElement = document.getElementById('errorMessage');
-    errorMessageElement.textContent = message;
-    errorMessageElement.style.display = 'block';
-
-    // Optionally, hide the message after a few seconds
-    setTimeout(() => {
-        errorMessageElement.style.display = 'none';
-    }, 5000);
-}
-
-function showSuccessMessage(message) {
-    const successMessageElement = document.getElementById('successMessage');
-    successMessageElement.textContent = message;
-    successMessageElement.style.display = 'block';
-
-    // Optionally, hide the message after a few seconds
-    setTimeout(() => {
-        successMessageElement.style.display = 'none';
-    }, 5000);
-}

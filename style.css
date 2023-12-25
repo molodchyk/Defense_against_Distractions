@@ -100,10 +100,6 @@ button:disabled:hover {
     color: #666666;
 }
 
-#whitelist {
-    /* margin-bottom: 30px; */
-}
-
 #whitelist li {
     background-color: #333;
     color: #e0e0e0;

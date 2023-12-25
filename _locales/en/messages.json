@@ -208,5 +208,84 @@
     },
     "cannotDeselectDaysError": {
         "message": "Cannot de-select days for an active schedule that's currently in effect."
+    },
+
+
+
+
+    "addGroupButtonLabel": {
+        "message": "Add Group"
+    },
+    "addWhitelistButtonLabel": {
+        "message": "Add to Whitelist"
+    },
+    "whitelistInputPlaceholder": {
+        "message": "Enter website URL"
+    },
+    "passwordManagementHeading": {
+        "message": "Password Management"
+    },
+    "enterPasswordPlaceholder": {
+        "message": "Enter password"
+    },
+    "confirmPasswordPlaceholder": {
+        "message": "Confirm password"
+    },
+    "setPasswordButtonLabel": {
+        "message": "Set Password"
+    },
+    "deletePasswordButtonLabel": {
+        "message": "Delete Password"
+    },
+    "passwordInputLabel": {
+        "message": "Enter Password to Access:"
+    },
+    "submitPasswordButtonLabel": {
+        "message": "Submit"
+    },
+    "maxAttemptsWarning": {
+        "message": "Too many failed attempts. Seconds to wait before retrying: "
+    },
+    "incorrectPasswordWarning": {
+        "message": "Incorrect password. Attempts left: "
+    },
+    "errorStoringKey": {
+        "message": "Error storing the key: error"
+    },
+    "errorStoringPassword": {
+        "message": "Error storing the password: error"
+    },
+    "errorSettingPassword": {
+        "message": "Error setting the password: error"
+    },
+    "errorDeletingPassword": {
+        "message": "Error deleting password: error"
+    },
+    "errorRetrievingPassword": {
+        "message": "Error retrieving the password: error"
+    },
+    "errorDecryptingPassword": {
+        "message": "Error decrypting the password: error"
+    },
+    "errorVerifyingPassword": {
+        "message": "Error verifying the password: error"
+    },
+    "errorCheckingPasswordSet": {
+        "message": "Error checking if password is set: error"
+    },
+    "enterOverlayPasswordLabel": {
+        "message": "Enter Password to Access"
+    },
+    "submitOverlayButtonLabel": {
+        "message": "Submit"
+    },
+    "errorBase64ToBufferTypeCheck": {
+        "message": "base64ToBuffer expects a string, got: error"
+    },
+    "errorBase64Decode": {
+        "message": "Failed to decode Base64 string: error"
+    },
+    "errorExpectedBase64String": {
+        "message": "Expected a Base64 string, got: error"
     }
 }
