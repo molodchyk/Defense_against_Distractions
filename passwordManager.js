@@ -1,8 +1,7 @@
+import { isCurrentTimeInAnySchedule } from './utilityFunctions.js';
+
 const MAX_ATTEMPTS = 5;
 const LOCKOUT_INTERVAL = 30 * 1000; // 30 seconds
-
-const timeRemainingMessage = chrome.i18n.getMessage("tooManyAttempts");
-const attemptsLeftMessage = chrome.i18n.getMessage("incorrectPassword");
 
 async function encryptPassword(password, key) {
     
@@ -366,20 +365,53 @@ document.getElementById('deletePasswordButton').addEventListener('click', delete
 
 
 
-// New function to update button states
-function updateButtonStates() {
-    chrome.storage.sync.get('password', function(data) {
-        const hasPassword = !!data.password;
-        document.getElementById('deletePasswordButton').disabled = !hasPassword;
-        document.getElementById('setPasswordButton').disabled = hasPassword;
-        document.getElementById('passwordInputField').disabled = hasPassword;
-        document.getElementById('confirmPasswordInputField').disabled = hasPassword;
+// // New function to update button states
+// function updateButtonStates() {
+//     chrome.storage.sync.get('password', function(data) {
+//         const hasPassword = !!data.password;
+//         document.getElementById('deletePasswordButton').disabled = !hasPassword;
+//         document.getElementById('setPasswordButton').disabled = hasPassword;
+//         document.getElementById('passwordInputField').disabled = hasPassword;
+//         document.getElementById('confirmPasswordInputField').disabled = hasPassword;
 
-        // Update button class for styling
-        const deleteButton = document.getElementById('deletePasswordButton');
-        deleteButton.className = hasPassword ? 'enabled' : 'disabled';
+//         // Update button class for styling
+//         const deleteButton = document.getElementById('deletePasswordButton');
+//         deleteButton.className = hasPassword ? 'enabled' : 'disabled';
+//     });
+// }
+
+
+export function updateButtonStates() {
+    chrome.storage.sync.get(['password', 'schedules'], function(data) {
+        const hasPassword = !!data.password;
+
+        // Check if current time is in any schedule
+        chrome.storage.sync.get('schedules', ({ schedules }) => {
+            if (isCurrentTimeInAnySchedule(schedules)) {
+                // Disable all elements if current time is in any schedule
+                document.getElementById('deletePasswordButton').disabled = true;
+                document.getElementById('setPasswordButton').disabled = true;
+                document.getElementById('passwordInputField').disabled = true;
+                document.getElementById('confirmPasswordInputField').disabled = true;
+
+                const deleteButton = document.getElementById('deletePasswordButton');
+                deleteButton.className = 'disabled';
+            } else {
+                // Otherwise, enable/disable based on password
+                document.getElementById('deletePasswordButton').disabled = !hasPassword;
+                document.getElementById('setPasswordButton').disabled = hasPassword;
+                document.getElementById('passwordInputField').disabled = hasPassword;
+                document.getElementById('confirmPasswordInputField').disabled = hasPassword;
+
+                // Update button class for styling
+                const deleteButton = document.getElementById('deletePasswordButton');
+                deleteButton.className = hasPassword ? 'enabled' : 'disabled';
+            }
+
+        });
     });
 }
+
 
 document.addEventListener('DOMContentLoaded', async () => {
     // Check if password is set

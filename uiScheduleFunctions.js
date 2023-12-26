@@ -21,6 +21,7 @@ import {
 import { 
   isCurrentTimeInAnySchedule
 } from './utilityFunctions.js';
+import { updateButtonStates } from './passwordManager.js';
 
 
 
@@ -127,6 +128,8 @@ function saveSchedule(scheduleState) {
         chrome.storage.sync.get('websiteGroups', ({ websiteGroups = [] }) => {
           updateGroupsUI(websiteGroups);
         });
+
+        updateButtonStates();
     });
     }
     console.log('Fetched schedules for saving:', schedules);

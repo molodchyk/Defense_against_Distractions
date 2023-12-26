@@ -771,3 +771,28 @@ form {
     align-items: center;
     height: 100%;
 }
+
+
+
+.instruction-link {
+    position: absolute;
+    top: 10px; /* Adjust as needed */
+    right: 10px; /* Adjust as needed */
+    font-size: 16px; /* Adjust as needed */
+}
+
+.instruction-link a {
+    color: #f8f9fa; /* Light text color for dark mode */
+    text-decoration: none;
+    background-color: #343a40; /* Dark background color */
+    padding: 5px 10px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px rgba(255, 255, 255, 0.1); /* Optional, light shadow for depth */
+}
+
+.instruction-link a:hover,
+.instruction-link a:focus {
+    color: #adb5bd; /* Slightly lighter color for hover */
+    text-decoration: underline;
+    background-color: #495057; /* Slightly lighter background for hover */
+}

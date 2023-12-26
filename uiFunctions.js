@@ -2,6 +2,7 @@ import { adjustTextareaHeight,  adjustTextareaWidth, addEnterFunctionalityToFiel
 import { toggleFieldEdit, updateGroupField, removeGroup } from './groupManagementFunctions.js';
 
 import { isCurrentTimeInAnySchedule } from './utilityFunctions.js';
+import { updateButtonStates } from './passwordManager.js';
 
 // Function to update the UI for groups
 export function updateGroupsUI(websiteGroups) {
@@ -113,6 +114,7 @@ export function checkScheduleStatus() {
   chrome.storage.sync.get('schedules', ({ schedules }) => {
     if (!isCurrentTimeInAnySchedule(schedules)) { //line 114
       enableUIElements(); // Enable UI elements when no schedule is active
+      updateButtonStates();
     }
   });
 }
