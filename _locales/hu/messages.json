@@ -208,5 +208,44 @@
     },
     "cannotDeselectDaysError": {
         "message": "Nem lehet kiválasztani a napokat egy aktív időzítés esetén, amely jelenleg hatályban van."
+    },
+    "passwordManagementHeader": { 
+        "message": "Jelszókezelés" 
+    },
+    "enterPasswordPlaceholder": { 
+        "message": "Írja be a jelszót" 
+    },
+    "confirmPasswordPlaceholder": { 
+        "message": "Erősítse meg a jelszót" 
+    },
+    "setPasswordButton": { 
+        "message": "Jelszó beállítása" 
+    },
+    "deletePasswordButton": { 
+        "message": "Jelszó törlése" 
+    },
+    "enterPasswordToAccessLabel": { 
+        "message": "Írja be a hozzáférési jelszót:" 
+    },
+    "submitButton": { 
+        "message": "Beküldés" 
+    },
+    "tooManyAttempts": {
+        "message": "Túl sok sikertelen próbálkozás. Várjon kérlek $TIME$ másodpercet a újrapróbálkozás előtt.",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "30"
+            }
+        }
+    },
+    "incorrectPassword": {
+        "message": "Helytelen jelszó. $ATTEMPTS$ próbálkozás maradt.",
+        "placeholders": {
+            "attempts": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
     }
 }

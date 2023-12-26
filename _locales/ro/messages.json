@@ -208,5 +208,44 @@
     },
     "cannotDeselectDaysError": {
         "message": "Nu se pot deselecta zilele pentru un program activ care este în desfășurare."
+    },
+    "passwordManagementHeader": { 
+        "message": "Administrare Parolă" 
+    },
+    "enterPasswordPlaceholder": { 
+        "message": "Introduceți parola" 
+    },
+    "confirmPasswordPlaceholder": { 
+        "message": "Confirmați parola" 
+    },
+    "setPasswordButton": { 
+        "message": "Setează Parola" 
+    },
+    "deletePasswordButton": { 
+        "message": "Șterge Parola" 
+    },
+    "enterPasswordToAccessLabel": { 
+        "message": "Introduceți Parola pentru Acces:" 
+    },
+    "submitButton": { 
+        "message": "Trimite" 
+    },
+    "tooManyAttempts": {
+        "message": "Prea multe încercări eșuate. Vă rugăm să așteptați $TIME$ secunde înainte de a încerca din nou.",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "30"
+            }
+        }
+    },
+    "incorrectPassword": {
+        "message": "Parolă incorectă. Mai aveți $ATTEMPTS$ încercări.",
+        "placeholders": {
+            "attempts": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
     }
 }

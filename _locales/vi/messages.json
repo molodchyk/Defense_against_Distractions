@@ -208,5 +208,44 @@
     },
     "cannotDeselectDaysError": {
         "message": "Không thể bỏ chọn các ngày cho lịch trình đang hoạt động và đang có hiệu lực."
-    }
+    },
+    "passwordManagementHeader": {
+        "message": "Quản lý Mật khẩu"
+    },
+    "enterPasswordPlaceholder": {
+        "message": "Nhập mật khẩu"
+    },
+    "confirmPasswordPlaceholder": {
+        "message": "Xác nhận mật khẩu"
+    },
+    "setPasswordButton": {
+        "message": "Thiết lập Mật khẩu"
+    },
+    "deletePasswordButton": {
+        "message": "Xóa Mật khẩu"
+    },
+    "enterPasswordToAccessLabel": {
+        "message": "Nhập Mật khẩu để Truy cập:"
+    },
+    "submitButton": {
+        "message": "Gửi"
+    },
+    "tooManyAttempts": {
+        "message": "Quá nhiều lần thử không thành công. Vui lòng đợi $TIME$ giây trước khi thử lại.",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "30"
+            }
+        }
+    },
+    "incorrectPassword": {
+        "message": "Mật khẩu không đúng. Còn $ATTEMPTS$ lần thử.",
+        "placeholders": {
+            "attempts": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
+    }    
 }

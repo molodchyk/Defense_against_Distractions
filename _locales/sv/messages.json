@@ -208,5 +208,44 @@
     },
     "cannotDeselectDaysError": {
         "message": "Kan inte avmarkera dagar för ett aktivt schema som för närvarande är i effekt."
+    },
+    "passwordManagementHeader": { 
+        "message": "Lösenordshantering" 
+    },
+    "enterPasswordPlaceholder": { 
+        "message": "Ange lösenord" 
+    },
+    "confirmPasswordPlaceholder": { 
+        "message": "Bekräfta lösenord" 
+    },
+    "setPasswordButton": { 
+        "message": "Ange Lösenord" 
+    },
+    "deletePasswordButton": { 
+        "message": "Radera Lösenord" 
+    },
+    "enterPasswordToAccessLabel": { 
+        "message": "Ange lösenord för att få tillgång:" 
+    },
+    "submitButton": { 
+        "message": "Skicka in" 
+    },
+    "tooManyAttempts": {
+        "message": "För många misslyckade försök. Vänligen vänta $TIME$ sekunder innan du försöker igen.",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "30"
+            }
+        }
+    },
+    "incorrectPassword": {
+        "message": "Felaktigt lösenord. $ATTEMPTS$ försök kvar.",
+        "placeholders": {
+            "attempts": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
     }
 }

@@ -208,5 +208,44 @@
     },
     "cannotDeselectDaysError": {
         "message": "Δεν είναι δυνατή η αποεπιλογή ημερών για ένα ενεργό πρόγραμμα που βρίσκεται σε ισχύ."
+    },
+    "passwordManagementHeader": { 
+        "message": "Διαχείριση Κωδικών" 
+    },
+    "enterPasswordPlaceholder": { 
+        "message": "Εισάγετε κωδικό" 
+    },
+    "confirmPasswordPlaceholder": { 
+        "message": "Επιβεβαιώστε τον κωδικό" 
+    },
+    "setPasswordButton": { 
+        "message": "Ορίστε Κωδικό" 
+    },
+    "deletePasswordButton": { 
+        "message": "Διαγραφή Κωδικού" 
+    },
+    "enterPasswordToAccessLabel": { 
+        "message": "Εισάγετε Κωδικό για Πρόσβαση:" 
+    },
+    "submitButton": { 
+        "message": "Υποβολή" 
+    },
+    "tooManyAttempts": {
+        "message": "Υπερβολικά πολλές αποτυχημένες προσπάθειες. Παρακαλούμε περιμένετε $TIME$ δευτερόλεπτα πριν δοκιμάσετε ξανά.",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "30"
+            }
+        }
+    },
+    "incorrectPassword": {
+        "message": "Λάθος κωδικός. Απομένουν $ATTEMPTS$ προσπάθειες.",
+        "placeholders": {
+            "attempts": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
     }
 }

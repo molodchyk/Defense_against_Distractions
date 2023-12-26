@@ -1,6 +1,8 @@
 const MAX_ATTEMPTS = 5;
 const LOCKOUT_INTERVAL = 30 * 1000; // 30 seconds
 
+const timeRemainingMessage = chrome.i18n.getMessage("tooManyAttempts");
+const attemptsLeftMessage = chrome.i18n.getMessage("incorrectPassword");
 
 async function encryptPassword(password, key) {
     
@@ -211,7 +213,9 @@ async function verifyPassword(inputPassword, callback) {
 
     // Check if the lockout period is active
     if (attemptData.attempts >= MAX_ATTEMPTS && timeSinceLastAttempt < LOCKOUT_INTERVAL) {
-        alert('Too many failed attempts. Please wait ' + Math.ceil(timeRemaining / 1000) + ' seconds before retrying.');
+        const timeRemainingAlert = chrome.i18n.getMessage("tooManyAttempts", [Math.ceil(timeRemaining / 1000).toString()]);
+        alert(timeRemainingAlert);
+
         if (timeSinceLastAttempt >= LOCKOUT_INTERVAL) {
             await updateAttemptData(0); // Reset attempts after lockout duration
         }
@@ -263,11 +267,6 @@ async function verifyPassword(inputPassword, callback) {
                     return;
                 }
 
-
-                const encryptedPassword = base64ToBuffer(encryptedPasswordBase64);
-
-
-
                  // Pass the Base64 string directly to decryptPassword
                 try {
                     const decryptedPassword = await decryptPassword(encryptedPasswordBase64, key);
@@ -275,7 +274,9 @@ async function verifyPassword(inputPassword, callback) {
                     // After updating attempt count
                     if (decryptedPassword === null || inputPassword !== decryptedPassword) {
                         await updateAttemptData(attemptData.attempts + 1);
-                        alert('Incorrect password. ' + (MAX_ATTEMPTS - attemptData.attempts) + ' attempts left.');
+                        const attemptsLeftAlert = chrome.i18n.getMessage("incorrectPassword", [(MAX_ATTEMPTS - attemptData.attempts).toString()]);
+                        alert(attemptsLeftAlert);
+
                         callback(false);
                         return;
                     }

@@ -208,5 +208,44 @@
     },
     "cannotDeselectDaysError": {
         "message": "Nemôžete zrušiť výber dní pre aktívny harmonogram, ktorý je momentálne v platnosti."
+    },
+    "passwordManagementHeader": { 
+        "message": "Správa hesiel" 
+    },
+    "enterPasswordPlaceholder": { 
+        "message": "Zadajte heslo" 
+    },
+    "confirmPasswordPlaceholder": { 
+        "message": "Potvrďte heslo" 
+    },
+    "setPasswordButton": { 
+        "message": "Nastaviť heslo" 
+    },
+    "deletePasswordButton": { 
+        "message": "Vymazať heslo" 
+    },
+    "enterPasswordToAccessLabel": { 
+        "message": "Zadajte heslo pre prístup:" 
+    },
+    "submitButton": { 
+        "message": "Odoslať" 
+    },
+    "tooManyAttempts": {
+        "message": "Príliš veľa neúspešných pokusov. Počkajte prosím $TIME$ sekúnd pred opätovným pokusom.",
+        "placeholders": {
+        "time": {
+            "content": "$1",
+            "example": "30"
+        }
+        }
+    },
+    "incorrectPassword": {
+        "message": "Nesprávne heslo. Zostáva $ATTEMPTS$ pokusov.",
+        "placeholders": {
+        "attempts": {
+            "content": "$1",
+            "example": "5"
+        }
+        }
     }
 }

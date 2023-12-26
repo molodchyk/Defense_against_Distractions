@@ -208,5 +208,44 @@
     },
     "cannotDeselectDaysError": {
         "message": "無法為當前有效的活動時間表取消選擇天數。"
-    }
+    },
+    "passwordManagementHeader": {
+        "message": "密碼管理"
+    },
+    "enterPasswordPlaceholder": {
+        "message": "輸入密碼"
+    },
+    "confirmPasswordPlaceholder": {
+        "message": "確認密碼"
+    },
+    "setPasswordButton": {
+        "message": "設定密碼"
+    },
+    "deletePasswordButton": {
+        "message": "刪除密碼"
+    },
+    "enterPasswordToAccessLabel": {
+        "message": "輸入密碼以訪問："
+    },
+    "submitButton": {
+        "message": "提交"
+    },
+    "tooManyAttempts": {
+        "message": "嘗試次數過多。請等待 $TIME$ 秒後再試。",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "30"
+            }
+        }
+    },
+    "incorrectPassword": {
+        "message": "密碼不正確。還有 $ATTEMPTS$ 次嘗試機會。",
+        "placeholders": {
+            "attempts": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
+    }    
 }

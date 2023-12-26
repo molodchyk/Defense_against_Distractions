@@ -208,5 +208,44 @@
     },
     "cannotDeselectDaysError": {
         "message": "Tidak dapat membatalkan pilihan hari untuk jadwal aktif yang saat ini berlaku."
-    }
+    },
+    "passwordManagementHeader": { 
+        "message": "Manajemen Kata Sandi" 
+    },
+    "enterPasswordPlaceholder": { 
+        "message": "Masukkan kata sandi" 
+    },
+    "confirmPasswordPlaceholder": { 
+        "message": "Konfirmasi kata sandi" 
+    },
+    "setPasswordButton": { 
+        "message": "Atur Kata Sandi" 
+    },
+    "deletePasswordButton": { 
+        "message": "Hapus Kata Sandi" 
+    },
+    "enterPasswordToAccessLabel": { 
+        "message": "Masukkan Kata Sandi untuk Akses:" 
+    },
+    "submitButton": { 
+        "message": "Kirim" 
+    },
+    "tooManyAttempts": {
+        "message": "Terlalu banyak percobaan gagal. Harap tunggu $TIME$ detik sebelum mencoba kembali.",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "30"
+            }
+        }
+    },
+    "incorrectPassword": {
+        "message": "Kata sandi salah. $ATTEMPTS$ percobaan tersisa.",
+        "placeholders": {
+            "attempts": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
+    }    
 }

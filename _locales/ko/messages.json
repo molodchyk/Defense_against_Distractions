@@ -208,5 +208,44 @@
     },
     "cannotDeselectDaysError": {
         "message": "현재 효력을 발휘 중인 활성 스케줄에 대해 요일을 선택 해제할 수 없습니다."
-    }
+    },
+    "passwordManagementHeader": { 
+        "message": "비밀번호 관리" 
+    },
+    "enterPasswordPlaceholder": { 
+        "message": "비밀번호 입력" 
+    },
+    "confirmPasswordPlaceholder": { 
+        "message": "비밀번호 확인" 
+    },
+    "setPasswordButton": { 
+        "message": "비밀번호 설정" 
+    },
+    "deletePasswordButton": { 
+        "message": "비밀번호 삭제" 
+    },
+    "enterPasswordToAccessLabel": { 
+        "message": "접근하려면 비밀번호를 입력하세요:" 
+    },
+    "submitButton": { 
+        "message": "제출" 
+    },
+    "tooManyAttempts": {
+        "message": "시도 횟수가 너무 많습니다. $TIME$초 후에 다시 시도하세요.",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "30"
+            }
+        }
+    },
+    "incorrectPassword": {
+        "message": "잘못된 비밀번호입니다. $ATTEMPTS$번의 시도가 남았습니다.",
+        "placeholders": {
+            "attempts": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
+    }    
 }

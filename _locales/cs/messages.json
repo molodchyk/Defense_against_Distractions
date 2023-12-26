@@ -208,5 +208,44 @@
     },
     "cannotDeselectDaysError": {
         "message": "Nelze odznačit dny pro aktivní rozvrh, který je právě v platnosti."
+    },
+    "passwordManagementHeader": { 
+    "message": "Správa hesel" 
+    },
+    "enterPasswordPlaceholder": { 
+        "message": "Zadejte heslo" 
+    },
+    "confirmPasswordPlaceholder": { 
+        "message": "Potvrďte heslo" 
+    },
+    "setPasswordButton": { 
+        "message": "Nastavit heslo" 
+    },
+    "deletePasswordButton": { 
+        "message": "Smazat heslo" 
+    },
+    "enterPasswordToAccessLabel": { 
+        "message": "Zadejte heslo pro přístup:" 
+    },
+    "submitButton": { 
+        "message": "Odeslat" 
+    },
+    "tooManyAttempts": {
+        "message": "Příliš mnoho neúspěšných pokusů. Počkejte prosím $TIME$ sekund před dalším pokusem.",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "30"
+            }
+        }
+    },
+    "incorrectPassword": {
+        "message": "Nesprávné heslo. Zbývá $ATTEMPTS$ pokusů.",
+        "placeholders": {
+            "attempts": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
     }
 }

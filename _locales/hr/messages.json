@@ -208,5 +208,44 @@
     },
     "cannotDeselectDaysError": {
         "message": "Ne mogu se odznačiti dani za aktivan raspored koji je trenutno na snazi."
+    },
+    "passwordManagementHeader": { 
+        "message": "Upravljanje lozinkama" 
+    },
+    "enterPasswordPlaceholder": { 
+        "message": "Unesite lozinku" 
+    },
+    "confirmPasswordPlaceholder": { 
+        "message": "Potvrdite lozinku" 
+    },
+    "setPasswordButton": { 
+        "message": "Postavite lozinku" 
+    },
+    "deletePasswordButton": { 
+        "message": "Izbriši lozinku" 
+    },
+    "enterPasswordToAccessLabel": { 
+        "message": "Unesite lozinku za pristup:" 
+    },
+    "submitButton": { 
+        "message": "Pošalji" 
+    },
+    "tooManyAttempts": {
+        "message": "Previše neuspjelih pokušaja. Molimo pričekajte $TIME$ sekundi prije ponovnog pokušaja.",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "30"
+            }
+        }
+    },
+    "incorrectPassword": {
+        "message": "Netočna lozinka. Preostalo $ATTEMPTS$ pokušaja.",
+        "placeholders": {
+            "attempts": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
     }
 }

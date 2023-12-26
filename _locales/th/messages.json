@@ -208,5 +208,44 @@
     },
     "cannotDeselectDaysError": {
         "message": "ไม่สามารถยกเลิกการเลือกวันสำหรับตารางเวลาที่ใช้งานอยู่และมีผลในปัจจุบัน"
-    }
+    },
+    "passwordManagementHeader": { 
+        "message": "การจัดการรหัสผ่าน" 
+    },
+    "enterPasswordPlaceholder": { 
+        "message": "ใส่รหัสผ่าน" 
+    },
+    "confirmPasswordPlaceholder": { 
+        "message": "ยืนยันรหัสผ่าน" 
+    },
+    "setPasswordButton": { 
+        "message": "ตั้งค่ารหัสผ่าน" 
+    },
+    "deletePasswordButton": { 
+        "message": "ลบรหัสผ่าน" 
+    },
+    "enterPasswordToAccessLabel": { 
+        "message": "ใส่รหัสผ่านเพื่อเข้าถึง:" 
+    },
+    "submitButton": { 
+        "message": "ส่ง" 
+    },
+    "tooManyAttempts": {
+        "message": "พยายามไม่สำเร็จมากเกินไป กรุณารอ $TIME$ วินาทีก่อนที่จะลองใหม่",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "30"
+            }
+        }
+    },
+    "incorrectPassword": {
+        "message": "รหัสผ่านไม่ถูกต้อง คุณมี $ATTEMPTS$ ครั้งที่เหลือ",
+        "placeholders": {
+            "attempts": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
+    }    
 }

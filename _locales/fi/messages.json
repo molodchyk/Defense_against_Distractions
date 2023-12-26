@@ -208,5 +208,44 @@
     },
     "cannotDeselectDaysError": {
         "message": "Aktiivisen ja voimassaolevan aikataulun päiviä ei voi poistaa valinnasta."
+    },
+    "passwordManagementHeader": { 
+        "message": "Salasanojen Hallinta" 
+    },
+    "enterPasswordPlaceholder": { 
+        "message": "Anna salasana" 
+    },
+    "confirmPasswordPlaceholder": { 
+        "message": "Vahvista salasana" 
+    },
+    "setPasswordButton": { 
+        "message": "Aseta Salasana" 
+    },
+    "deletePasswordButton": { 
+        "message": "Poista Salasana" 
+    },
+    "enterPasswordToAccessLabel": { 
+        "message": "Anna Salasana Päästäksesi Käsiksi:" 
+    },
+    "submitButton": { 
+        "message": "Lähetä" 
+    },
+    "tooManyAttempts": {
+        "message": "Liian monta epäonnistunutta yritystä. Odota $TIME$ sekuntia ennen uudelleen yrittämistä.",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "30"
+            }
+        }
+    },
+    "incorrectPassword": {
+        "message": "Väärä salasana. Jäljellä $ATTEMPTS$ yritystä.",
+        "placeholders": {
+            "attempts": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
     }
 }

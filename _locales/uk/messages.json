@@ -208,5 +208,44 @@
     },
     "cannotDeselectDaysError": {
         "message": "Неможливо скасувати вибір днів для активного розкладу, який зараз діє."
-    }
+    },
+    "passwordManagementHeader": { 
+        "message": "Управління Паролями" 
+    },
+    "enterPasswordPlaceholder": { 
+        "message": "Введіть пароль" 
+    },
+    "confirmPasswordPlaceholder": { 
+        "message": "Підтвердіть пароль" 
+    },
+    "setPasswordButton": { 
+        "message": "Встановити Пароль" 
+    },
+    "deletePasswordButton": { 
+        "message": "Видалити Пароль" 
+    },
+    "enterPasswordToAccessLabel": { 
+        "message": "Введіть пароль для доступу:" 
+    },
+    "submitButton": { 
+        "message": "Надіслати" 
+    },
+    "tooManyAttempts": {
+        "message": "Забагато невдалих спроб. Зачекайте $TIME$ секунд перед повторною спробою.",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "30"
+            }
+        }
+    },
+    "incorrectPassword": {
+        "message": "Неправильний пароль. Залишилось спроб: $ATTEMPTS$.",
+        "placeholders": {
+            "attempts": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
+    }    
 }

@@ -208,5 +208,44 @@
     },
     "cannotDeselectDaysError": {
         "message": "Не може да се деселектират дни за активен график, който в момента е в сила."
+    },
+    "passwordManagementHeader": { 
+        "message": "Управление на паролите" 
+    },
+    "enterPasswordPlaceholder": { 
+        "message": "Въведете парола" 
+    },
+    "confirmPasswordPlaceholder": { 
+        "message": "Потвърдете паролата" 
+    },
+    "setPasswordButton": { 
+        "message": "Задайте парола" 
+    },
+    "deletePasswordButton": { 
+        "message": "Изтрийте паролата" 
+    },
+    "enterPasswordToAccessLabel": { 
+        "message": "Въведете парола за достъп:" 
+    },
+    "submitButton": { 
+        "message": "Изпратете" 
+    },
+    "tooManyAttempts": {
+        "message": "Твърде много неуспешни опити. Моля, изчакайте $TIME$ секунди преди да опитате отново.",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "30"
+            }
+        }
+    },
+    "incorrectPassword": {
+        "message": "Грешна парола. Остават $ATTEMPTS$ опита.",
+        "placeholders": {
+            "attempts": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
     }
 }

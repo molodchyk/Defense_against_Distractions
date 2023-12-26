@@ -208,5 +208,44 @@
     },
     "cannotDeselectDaysError": {
         "message": "Şu anda etkili olan aktif bir program için günlerin seçimi kaldırılamaz."
+    },
+    "passwordManagementHeader": { 
+        "message": "Şifre Yönetimi" 
+    },
+    "enterPasswordPlaceholder": { 
+        "message": "Şifre girin" 
+    },
+    "confirmPasswordPlaceholder": { 
+        "message": "Şifreyi Onaylayın" 
+    },
+    "setPasswordButton": { 
+        "message": "Şifre Belirle" 
+    },
+    "deletePasswordButton": { 
+        "message": "Şifreyi Sil" 
+    },
+    "enterPasswordToAccessLabel": { 
+        "message": "Erişmek için Şifre Girin:" 
+    },
+    "submitButton": { 
+        "message": "Gönder" 
+    },
+    "tooManyAttempts": {
+        "message": "Çok fazla başarısız deneme. Yeniden denemeden önce lütfen $TIME$ saniye bekleyin.",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "30"
+            }
+        }
+    },
+    "incorrectPassword": {
+        "message": "Yanlış şifre. $ATTEMPTS$ hakkınız kaldı.",
+        "placeholders": {
+            "attempts": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
     }
 }

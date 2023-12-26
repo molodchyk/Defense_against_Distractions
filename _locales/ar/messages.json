@@ -208,5 +208,44 @@
     },
     "cannotDeselectDaysError": {
         "message": "لا يمكن إلغاء تحديد الأيام لجدول زمني نشط وقائم حاليًا."
+    },
+    "passwordManagementHeader": { 
+        "message": "إدارة كلمة المرور" 
+    },
+    "enterPasswordPlaceholder": { 
+        "message": "أدخل كلمة المرور" 
+    },
+    "confirmPasswordPlaceholder": { 
+        "message": "تأكيد كلمة المرور" 
+    },
+    "setPasswordButton": { 
+        "message": "تعيين كلمة المرور" 
+    },
+    "deletePasswordButton": { 
+        "message": "حذف كلمة المرور" 
+    },
+    "enterPasswordToAccessLabel": { 
+        "message": "أدخل كلمة المرور للوصول:" 
+    },
+    "submitButton": { 
+        "message": "إرسال" 
+    },
+    "tooManyAttempts": {
+        "message": "عدد كبير جدًا من المحاولات الفاشلة. يرجى الانتظار $TIME$ ثانية قبل المحاولة مرة أخرى.",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "30"
+            }
+        }
+    },
+    "incorrectPassword": {
+        "message": "كلمة المرور غير صحيحة. $ATTEMPTS$ محاولات متبقية.",
+        "placeholders": {
+            "attempts": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
     }
 }

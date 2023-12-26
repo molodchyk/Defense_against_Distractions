@@ -208,5 +208,44 @@
     },
     "cannotDeselectDaysError": {
         "message": "Nie można odznaczyć dni dla aktywnego harmonogramu, który obecnie obowiązuje."
+    },
+    "passwordManagementHeader": { 
+        "message": "Zarządzanie hasłami" 
+    },
+    "enterPasswordPlaceholder": { 
+        "message": "Wpisz hasło" 
+    },
+    "confirmPasswordPlaceholder": { 
+        "message": "Potwierdź hasło" 
+    },
+    "setPasswordButton": { 
+        "message": "Ustaw hasło" 
+    },
+    "deletePasswordButton": { 
+        "message": "Usuń hasło" 
+    },
+    "enterPasswordToAccessLabel": { 
+        "message": "Wpisz hasło, aby uzyskać dostęp:" 
+    },
+    "submitButton": { 
+        "message": "Zatwierdź" 
+    },
+    "tooManyAttempts": {
+        "message": "Zbyt wiele nieudanych prób. Poczekaj $TIME$ sekund przed ponowną próbą.",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "30"
+            }
+        }
+    },
+    "incorrectPassword": {
+        "message": "Nieprawidłowe hasło. Pozostało $ATTEMPTS$ prób.",
+        "placeholders": {
+            "attempts": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
     }
 }

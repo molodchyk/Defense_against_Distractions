@@ -208,5 +208,44 @@
     },
     "cannotDeselectDaysError": {
         "message": "Tidak boleh nyahpilih hari untuk jadual aktif yang sedang berkuat kuasa."
+    },
+    "passwordManagementHeader": { 
+        "message": "Pengurusan Kata Laluan" 
+    },
+    "enterPasswordPlaceholder": { 
+        "message": "Masukkan kata laluan" 
+    },
+    "confirmPasswordPlaceholder": { 
+        "message": "Sahkan kata laluan" 
+    },
+    "setPasswordButton": { 
+        "message": "Tetapkan Kata Laluan" 
+    },
+    "deletePasswordButton": { 
+        "message": "Padam Kata Laluan" 
+    },
+    "enterPasswordToAccessLabel": { 
+        "message": "Masukkan Kata Laluan untuk Akses:" 
+    },
+    "submitButton": { 
+        "message": "Hantar" 
+    },
+    "tooManyAttempts": {
+        "message": "Terlalu banyak percubaan gagal. Sila tunggu $TIME$ saat sebelum mencuba semula.",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "30"
+            }
+        }
+    },
+    "incorrectPassword": {
+        "message": "Kata laluan salah. Tinggal $ATTEMPTS$ percubaan.",
+        "placeholders": {
+            "attempts": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
     }
 }

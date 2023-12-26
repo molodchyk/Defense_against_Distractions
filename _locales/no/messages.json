@@ -208,5 +208,44 @@
     },
     "cannotDeselectDaysError": {
         "message": "Kan ikke fjerne markering av dager for en aktiv tidsplan som er i effekt."
-    }
+    },
+    "passwordManagementHeader": { 
+        "message": "Passordforvaltning" 
+    },
+    "enterPasswordPlaceholder": { 
+        "message": "Skriv inn passord" 
+    },
+    "confirmPasswordPlaceholder": { 
+        "message": "Bekreft passord" 
+    },
+    "setPasswordButton": { 
+        "message": "Sett Passord" 
+    },
+    "deletePasswordButton": { 
+        "message": "Slett Passord" 
+    },
+    "enterPasswordToAccessLabel": { 
+        "message": "Skriv inn passord for å få tilgang:" 
+    },
+    "submitButton": { 
+        "message": "Send inn" 
+    },
+    "tooManyAttempts": {
+        "message": "For mange mislykkede forsøk. Vennligst vent $TIME$ sekunder før du prøver igjen.",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "30"
+            }
+        }
+    },
+    "incorrectPassword": {
+        "message": "Feil passord. $ATTEMPTS$ forsøk igjen.",
+        "placeholders": {
+            "attempts": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
+    }    
 }

@@ -208,5 +208,44 @@
     },
     "cannotDeselectDaysError": {
         "message": "No se pueden deseleccionar días para un horario activo que está actualmente en efecto."
+    },
+    "passwordManagementHeader": { 
+        "message": "Gestión de Contraseñas" 
+    },
+    "enterPasswordPlaceholder": { 
+        "message": "Introduzca la contraseña" 
+    },
+    "confirmPasswordPlaceholder": { 
+        "message": "Confirme la contraseña" 
+    },
+    "setPasswordButton": { 
+        "message": "Establecer Contraseña" 
+    },
+    "deletePasswordButton": { 
+        "message": "Eliminar Contraseña" 
+    },
+    "enterPasswordToAccessLabel": { 
+        "message": "Introduzca la contraseña para acceder:" 
+    },
+    "submitButton": { 
+        "message": "Enviar" 
+    },
+    "tooManyAttempts": {
+        "message": "Demasiados intentos fallidos. Espere $TIME$ segundos antes de reintentar.",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "30"
+            }
+        }
+    },
+    "incorrectPassword": {
+        "message": "Contraseña incorrecta. Quedan $ATTEMPTS$ intentos.",
+        "placeholders": {
+            "attempts": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
     }
 }

@@ -33,6 +33,14 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('addScheduleButton').textContent = chrome.i18n.getMessage("addScheduleButtonLabel");
 
 
+  document.querySelector('h2[data-i18n="passwordManagementHeader"]').textContent = chrome.i18n.getMessage("passwordManagementHeader");
+  document.getElementById('passwordInputField').placeholder = chrome.i18n.getMessage("enterPasswordPlaceholder");
+  document.getElementById('confirmPasswordInputField').placeholder = chrome.i18n.getMessage("confirmPasswordPlaceholder");
+  document.getElementById('setPasswordButton').textContent = chrome.i18n.getMessage("setPasswordButton");
+  document.getElementById('deletePasswordButton').textContent = chrome.i18n.getMessage("deletePasswordButton");
+  document.querySelector('label[data-i18n="enterPasswordToAccessLabel"]').textContent = chrome.i18n.getMessage("enterPasswordToAccessLabel");
+  document.getElementById('passwordInput').placeholder = chrome.i18n.getMessage("enterPasswordPlaceholder");
+  document.querySelector('#passwordForm button[type="submit"]').textContent = chrome.i18n.getMessage("submitButton");
   // document.getElementById('passwordManagementHeading').textContent = chrome.i18n.getMessage("passwordManagementHeading");
   // document.getElementById('passwordInputField').placeholder = chrome.i18n.getMessage("enterPasswordPlaceholder");
   // document.getElementById('confirmPasswordInputField').placeholder = chrome.i18n.getMessage("confirmPasswordPlaceholder");

@@ -208,5 +208,44 @@
     },
     "cannotDeselectDaysError": {
         "message": "Нельзя отменить выбор дней для активного расписания, которое в данный момент действует."
+    },
+    "passwordManagementHeader": { 
+        "message": "Управление Паролями" 
+    },
+    "enterPasswordPlaceholder": { 
+        "message": "Введите пароль" 
+    },
+    "confirmPasswordPlaceholder": { 
+        "message": "Подтвердите пароль" 
+    },
+    "setPasswordButton": { 
+        "message": "Установить Пароль" 
+    },
+    "deletePasswordButton": { 
+        "message": "Удалить Пароль" 
+    },
+    "enterPasswordToAccessLabel": { 
+        "message": "Введите пароль для доступа:" 
+    },
+    "submitButton": { 
+        "message": "Отправить" 
+    },
+    "tooManyAttempts": {
+        "message": "Слишком много неудачных попыток. Пожалуйста, подождите $TIME$ секунд перед повторной попыткой.",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "30"
+            }
+        }
+    },
+    "incorrectPassword": {
+        "message": "Неверный пароль. Осталось попыток: $ATTEMPTS$.",
+        "placeholders": {
+            "attempts": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
     }
 }

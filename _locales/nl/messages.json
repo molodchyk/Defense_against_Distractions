@@ -208,5 +208,44 @@
     },
     "cannotDeselectDaysError": {
         "message": "Kan geen dagen de-selecteren voor een actief schema dat momenteel van kracht is."
+    },
+    "passwordManagementHeader": { 
+        "message": "Wachtwoordbeheer" 
+    },
+    "enterPasswordPlaceholder": { 
+        "message": "Voer wachtwoord in" 
+    },
+    "confirmPasswordPlaceholder": { 
+        "message": "Bevestig wachtwoord" 
+    },
+    "setPasswordButton": { 
+        "message": "Stel Wachtwoord In" 
+    },
+    "deletePasswordButton": { 
+        "message": "Verwijder Wachtwoord" 
+    },
+    "enterPasswordToAccessLabel": { 
+        "message": "Voer wachtwoord in om toegang te krijgen:" 
+    },
+    "submitButton": { 
+        "message": "Indienen" 
+    },
+    "tooManyAttempts": {
+        "message": "Te veel mislukte pogingen. Wacht alstublieft $TIME$ seconden voor het opnieuw proberen.",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "30"
+            }
+        }
+    },
+    "incorrectPassword": {
+        "message": "Onjuist wachtwoord. $ATTEMPTS$ pogingen over.",
+        "placeholders": {
+            "attempts": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
     }
 }

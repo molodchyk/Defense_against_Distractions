@@ -208,5 +208,44 @@
     },
     "cannotDeselectDaysError": {
         "message": "Tage können für einen aktiven Zeitplan, der gerade in Kraft ist, nicht abgewählt werden."
+    },
+    "passwordManagementHeader": { 
+        "message": "Passwortverwaltung" 
+    },
+    "enterPasswordPlaceholder": { 
+        "message": "Passwort eingeben" 
+    },
+    "confirmPasswordPlaceholder": { 
+        "message": "Passwort bestätigen" 
+    },
+    "setPasswordButton": { 
+        "message": "Passwort festlegen" 
+    },
+    "deletePasswordButton": { 
+        "message": "Passwort löschen" 
+    },
+    "enterPasswordToAccessLabel": { 
+        "message": "Geben Sie das Passwort für den Zugriff ein:" 
+    },
+    "submitButton": { 
+        "message": "Einreichen" 
+    },
+    "tooManyAttempts": {
+        "message": "Zu viele Fehlversuche. Bitte warten Sie $TIME$ Sekunden, bevor Sie es erneut versuchen.",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "30"
+            }
+        }
+    },
+    "incorrectPassword": {
+        "message": "Falsches Passwort. Es verbleiben $ATTEMPTS$ Versuche.",
+        "placeholders": {
+            "attempts": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
     }
 }

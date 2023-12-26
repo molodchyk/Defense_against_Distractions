@@ -208,5 +208,44 @@
     },
     "cannotDeselectDaysError": {
         "message": "現在効果中のアクティブなスケジュールの日を選択解除することはできません。"
-    }
+    },
+    "passwordManagementHeader": { 
+        "message": "パスワード管理" 
+    },
+    "enterPasswordPlaceholder": { 
+        "message": "パスワードを入力" 
+    },
+    "confirmPasswordPlaceholder": { 
+        "message": "パスワードを確認" 
+    },
+    "setPasswordButton": { 
+        "message": "パスワードを設定" 
+    },
+    "deletePasswordButton": { 
+        "message": "パスワードを削除" 
+    },
+    "enterPasswordToAccessLabel": { 
+        "message": "アクセスするためのパスワードを入力：" 
+    },
+    "submitButton": { 
+        "message": "送信" 
+    },
+    "tooManyAttempts": {
+        "message": "試行回数が多すぎます。$TIME$秒後に再試行してください。",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "30"
+            }
+        }
+    },
+    "incorrectPassword": {
+        "message": "パスワードが間違っています。残り$ATTEMPTS$回の試行が可能です。",
+        "placeholders": {
+            "attempts": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
+    }    
 }

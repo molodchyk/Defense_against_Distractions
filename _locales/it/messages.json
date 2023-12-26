@@ -208,5 +208,44 @@
     },
     "cannotDeselectDaysError": {
         "message": "Non è possibile deselezionare i giorni per un programma attivo che è attualmente in vigore."
+    },
+    "passwordManagementHeader": { 
+        "message": "Gestione delle Password" 
+    },
+    "enterPasswordPlaceholder": { 
+        "message": "Inserisci password" 
+    },
+    "confirmPasswordPlaceholder": { 
+        "message": "Conferma password" 
+    },
+    "setPasswordButton": { 
+        "message": "Imposta Password" 
+    },
+    "deletePasswordButton": { 
+        "message": "Elimina Password" 
+    },
+    "enterPasswordToAccessLabel": { 
+        "message": "Inserisci Password per Accedere:" 
+    },
+    "submitButton": { 
+        "message": "Invia" 
+    },
+    "tooManyAttempts": {
+        "message": "Troppi tentativi falliti. Attendere $TIME$ secondi prima di riprovare.",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "30"
+            }
+        }
+    },
+    "incorrectPassword": {
+        "message": "Password errata. Rimangono $ATTEMPTS$ tentativi.",
+        "placeholders": {
+            "attempts": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
     }
 }

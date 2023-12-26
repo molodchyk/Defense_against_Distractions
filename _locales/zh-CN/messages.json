@@ -208,5 +208,46 @@
     },
     "cannotDeselectDaysError": {
         "message": "不能为当前生效的活动时间表取消选择日期。"
-    }
+    },
+    "zh-CN": {
+        "passwordManagementHeader": {
+            "message": "密码管理"
+        },
+        "enterPasswordPlaceholder": {
+            "message": "输入密码"
+        },
+        "confirmPasswordPlaceholder": {
+            "message": "确认密码"
+        },
+        "setPasswordButton": {
+            "message": "设置密码"
+        },
+        "deletePasswordButton": {
+            "message": "删除密码"
+        },
+        "enterPasswordToAccessLabel": {
+            "message": "输入密码以访问："
+        },
+        "submitButton": {
+            "message": "提交"
+        },
+        "tooManyAttempts": {
+            "message": "尝试次数过多。请等待 $TIME$ 秒后重试。",
+            "placeholders": {
+                "time": {
+                    "content": "$1",
+                    "example": "30"
+                }
+            }
+        },
+        "incorrectPassword": {
+            "message": "密码不正确。剩余 $ATTEMPTS$ 次尝试机会。",
+            "placeholders": {
+                "attempts": {
+                    "content": "$1",
+                    "example": "5"
+                }
+            }
+        }
+    }    
 }

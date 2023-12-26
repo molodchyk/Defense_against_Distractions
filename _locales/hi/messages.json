@@ -208,5 +208,44 @@
     },
     "cannotDeselectDaysError": {
         "message": "वर्तमान में प्रभावी एक सक्रिय अनुसूची के लिए दिनों का चयन रद्द नहीं किया जा सकता।"
-    }
+    },
+    "passwordManagementHeader": {
+        "message": "पासवर्ड प्रबंधन"
+    },
+    "enterPasswordPlaceholder": {
+        "message": "पासवर्ड दर्ज करें"
+    },
+    "confirmPasswordPlaceholder": {
+        "message": "पासवर्ड की पुष्टि करें"
+    },
+    "setPasswordButton": {
+        "message": "पासवर्ड सेट करें"
+    },
+    "deletePasswordButton": {
+        "message": "पासवर्ड हटाएं"
+    },
+    "enterPasswordToAccessLabel": {
+        "message": "पहुँचने के लिए पासवर्ड दर्ज करें:"
+    },
+    "submitButton": {
+        "message": "जमा करें"
+    },
+    "tooManyAttempts": {
+        "message": "बहुत सारे असफल प्रयास। कृपया $TIME$ सेकंड प्रतीक्षा करें और फिर प्रयास करें।",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "30"
+            }
+        }
+    },
+    "incorrectPassword": {
+        "message": "गलत पासवर्ड। $ATTEMPTS$ प्रयास शेष हैं।",
+        "placeholders": {
+            "attempts": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
+    }    
 }

@@ -208,5 +208,44 @@
     },
     "cannotDeselectDaysError": {
         "message": "Não é possível desmarcar dias para um horário ativo que está atualmente em vigor."
-    }
+    },
+    "passwordManagementHeader": {
+        "message": "Gerenciamento de Senhas"
+    },
+    "enterPasswordPlaceholder": {
+        "message": "Digite a senha"
+    },
+    "confirmPasswordPlaceholder": {
+        "message": "Confirme a senha"
+    },
+    "setPasswordButton": {
+        "message": "Definir Senha"
+    },
+    "deletePasswordButton": {
+        "message": "Excluir Senha"
+    },
+    "enterPasswordToAccessLabel": {
+        "message": "Digite a Senha para Acessar:"
+    },
+    "submitButton": {
+        "message": "Enviar"
+    },
+    "tooManyAttempts": {
+        "message": "Muitas tentativas falhadas. Aguarde $TIME$ segundos antes de tentar novamente.",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "30"
+            }
+        }
+    },
+    "incorrectPassword": {
+        "message": "Senha incorreta. Restam $ATTEMPTS$ tentativas.",
+        "placeholders": {
+            "attempts": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
+    }    
 }

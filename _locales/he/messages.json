@@ -208,5 +208,44 @@
     },
     "cannotDeselectDaysError": {
         "message": "לא ניתן לבטל בחירה של ימים עבור לו\"ז פעיל שנמצא כרגע בתוקף."
+    },
+    "passwordManagementHeader": { 
+        "message": "ניהול סיסמאות" 
+    },
+    "enterPasswordPlaceholder": { 
+        "message": "הכנס סיסמה" 
+    },
+    "confirmPasswordPlaceholder": { 
+        "message": "אשר סיסמה" 
+    },
+    "setPasswordButton": { 
+        "message": "הגדר סיסמה" 
+    },
+    "deletePasswordButton": { 
+        "message": "מחק סיסמה" 
+    },
+    "enterPasswordToAccessLabel": { 
+        "message": "הכנס סיסמה לגישה:" 
+    },
+    "submitButton": { 
+        "message": "שלח" 
+    },
+    "tooManyAttempts": {
+        "message": "יותר מדי ניסיונות כושלים. המתן בבקשה $TIME$ שניות לפני ניסיון חוזר.",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "30"
+            }
+        }
+    },
+    "incorrectPassword": {
+        "message": "סיסמה שגויה. נותרו $ATTEMPTS$ ניסיונות.",
+        "placeholders": {
+            "attempts": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
     }
 }

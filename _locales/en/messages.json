@@ -209,83 +209,43 @@
     "cannotDeselectDaysError": {
         "message": "Cannot de-select days for an active schedule that's currently in effect."
     },
-
-
-
-
-    "addGroupButtonLabel": {
-        "message": "Add Group"
+    "passwordManagementHeader": { 
+        "message": "Password Management" 
     },
-    "addWhitelistButtonLabel": {
-        "message": "Add to Whitelist"
+    "enterPasswordPlaceholder": { 
+        "message": "Enter password" 
     },
-    "whitelistInputPlaceholder": {
-        "message": "Enter website URL"
+    "confirmPasswordPlaceholder": { 
+        "message": "Confirm password" 
     },
-    "passwordManagementHeading": {
-        "message": "Password Management"
+    "setPasswordButton": { 
+        "message": "Set Password" 
     },
-    "enterPasswordPlaceholder": {
-        "message": "Enter password"
+    "deletePasswordButton": { 
+        "message": "Delete Password" 
     },
-    "confirmPasswordPlaceholder": {
-        "message": "Confirm password"
+    "enterPasswordToAccessLabel": { 
+        "message": "Enter Password to Access:" 
     },
-    "setPasswordButtonLabel": {
-        "message": "Set Password"
+    "submitButton": { 
+        "message": "Submit" 
     },
-    "deletePasswordButtonLabel": {
-        "message": "Delete Password"
+    "tooManyAttempts": {
+        "message": "Too many failed attempts. Please wait $TIME$ seconds before retrying.",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "30"
+            }
+        }
     },
-    "passwordInputLabel": {
-        "message": "Enter Password to Access:"
-    },
-    "submitPasswordButtonLabel": {
-        "message": "Submit"
-    },
-    "maxAttemptsWarning": {
-        "message": "Too many failed attempts. Seconds to wait before retrying: "
-    },
-    "incorrectPasswordWarning": {
-        "message": "Incorrect password. Attempts left: "
-    },
-    "errorStoringKey": {
-        "message": "Error storing the key: error"
-    },
-    "errorStoringPassword": {
-        "message": "Error storing the password: error"
-    },
-    "errorSettingPassword": {
-        "message": "Error setting the password: error"
-    },
-    "errorDeletingPassword": {
-        "message": "Error deleting password: error"
-    },
-    "errorRetrievingPassword": {
-        "message": "Error retrieving the password: error"
-    },
-    "errorDecryptingPassword": {
-        "message": "Error decrypting the password: error"
-    },
-    "errorVerifyingPassword": {
-        "message": "Error verifying the password: error"
-    },
-    "errorCheckingPasswordSet": {
-        "message": "Error checking if password is set: error"
-    },
-    "enterOverlayPasswordLabel": {
-        "message": "Enter Password to Access"
-    },
-    "submitOverlayButtonLabel": {
-        "message": "Submit"
-    },
-    "errorBase64ToBufferTypeCheck": {
-        "message": "base64ToBuffer expects a string, got: error"
-    },
-    "errorBase64Decode": {
-        "message": "Failed to decode Base64 string: error"
-    },
-    "errorExpectedBase64String": {
-        "message": "Expected a Base64 string, got: error"
+    "incorrectPassword": {
+        "message": "Incorrect password. $ATTEMPTS$ attempts left.",
+        "placeholders": {
+            "attempts": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
     }
 }

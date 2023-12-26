@@ -208,5 +208,44 @@
     },
     "cannotDeselectDaysError": {
         "message": "Kan ikke fravælge dage for en aktiv tidsplan, der i øjeblikket er i kraft."
+    },
+    "passwordManagementHeader": { 
+    "message": "Adgangskodeadministration" 
+    },
+    "enterPasswordPlaceholder": { 
+        "message": "Indtast adgangskode" 
+    },
+    "confirmPasswordPlaceholder": { 
+        "message": "Bekræft adgangskode" 
+    },
+    "setPasswordButton": { 
+        "message": "Indstil adgangskode" 
+    },
+    "deletePasswordButton": { 
+        "message": "Slet adgangskode" 
+    },
+    "enterPasswordToAccessLabel": { 
+        "message": "Indtast adgangskode for at få adgang:" 
+    },
+    "submitButton": { 
+        "message": "Indsend" 
+    },
+    "tooManyAttempts": {
+        "message": "For mange fejlede forsøg. Vent venligst $TIME$ sekunder før du prøver igen.",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "30"
+            }
+        }
+    },
+    "incorrectPassword": {
+        "message": "Forkert adgangskode. $ATTEMPTS$ forsøg tilbage.",
+        "placeholders": {
+            "attempts": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
     }
 }
