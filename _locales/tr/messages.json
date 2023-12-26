@@ -247,5 +247,8 @@
                 "example": "5"
             }
         }
-    }
+    },
+    "passwordMismatchAlert": {
+        "message": "Şifreler eşleşmiyor. Her iki şifrenin aynı olduğundan emin olun."
+    }    
 }

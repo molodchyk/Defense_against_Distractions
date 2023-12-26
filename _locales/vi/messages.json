@@ -247,5 +247,8 @@
                 "example": "5"
             }
         }
+    },
+    "passwordMismatchAlert": {
+        "message": "Mật khẩu không khớp. Vui lòng đảm bảo rằng cả hai mật khẩu giống nhau."
     }    
 }

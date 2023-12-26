@@ -247,5 +247,8 @@
                 "example": "5"
             }
         }
-    }
+    },
+    "passwordMismatchAlert": {
+        "message": "Salasanat eivät täsmää. Varmista, että molemmat salasanat ovat samat."
+    }    
 }

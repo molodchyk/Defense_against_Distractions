@@ -247,5 +247,8 @@
                 "example": "5"
             }
         }
-    }
+    },
+    "passwordMismatchAlert": {
+        "message": "Hesla se neshodují. Ujistěte se, že obě hesla jsou stejná."
+    }    
 }

@@ -247,5 +247,8 @@
                 "example": "5"
             }
         }
-    }
+    },
+    "passwordMismatchAlert": {
+        "message": "Lösenorden matchar inte. Se till att båda lösenorden är identiska."
+    }    
 }

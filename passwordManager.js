@@ -342,6 +342,9 @@ async function confirmPassword() {
     if (password === confirmPassword) {
         await setPassword(password); // This is now an async call
     }
+    else {
+        alert(chrome.i18n.getMessage("passwordMismatchAlert"));
+    }
 }
 
 async function validateOverlayPassword() {
@@ -410,4 +413,22 @@ async function isPasswordSet() {
 
 document.getElementById('setPasswordButton').addEventListener('click', async () => {
     await confirmPassword();
+});
+
+
+
+// Add an event listener for passwordInputField
+document.getElementById('passwordInputField').addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+        event.preventDefault(); // Prevent the default form submission
+        document.getElementById('confirmPasswordInputField').focus();
+    }
+});
+
+// Add an event listener for confirmPasswordInputField
+document.getElementById('confirmPasswordInputField').addEventListener('keydown', async (event) => {
+    if (event.key === 'Enter') {
+        event.preventDefault(); // Prevent the default form submission
+        await confirmPassword();
+    }
 });

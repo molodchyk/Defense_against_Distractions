@@ -247,5 +247,8 @@
                 "example": "5"
             }
         }
+    },
+    "passwordMismatchAlert": {
+        "message": "비밀번호가 일치하지 않습니다. 두 비밀번호가 동일한지 확인해주세요."
     }    
 }

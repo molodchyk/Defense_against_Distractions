@@ -247,5 +247,8 @@
                 "example": "5"
             }
         }
-    }
+    },
+    "passwordMismatchAlert": {
+        "message": "Lozinke se ne poklapaju. Molimo vas da se uverite da su obe lozinke iste."
+    }    
 }

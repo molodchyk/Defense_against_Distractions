@@ -247,5 +247,8 @@
                 "example": "5"
             }
         }
-    }
+    },
+    "passwordMismatchAlert": {
+        "message": "Wachtwoorden komen niet overeen. Zorg ervoor dat beide wachtwoorden hetzelfde zijn."
+    }    
 }

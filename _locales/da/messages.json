@@ -247,5 +247,8 @@
                 "example": "5"
             }
         }
-    }
+    },
+    "passwordMismatchAlert": {
+        "message": "Adgangskoderne stemmer ikke overens. Vær venlig at sikre dig, at begge adgangskoder er ens."
+    }    
 }

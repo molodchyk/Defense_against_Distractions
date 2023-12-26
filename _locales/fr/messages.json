@@ -247,5 +247,8 @@
                 "example": "5"
             }
         }
+    },
+    "passwordMismatchAlert": {
+        "message": "Les mots de passe ne correspondent pas. Veuillez vous assurer que les deux mots de passe sont identiques."
     }    
 }

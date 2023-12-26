@@ -247,5 +247,8 @@
                 "example": "5"
             }
         }
-    }
+    },
+    "passwordMismatchAlert": {
+        "message": "A jelszavak nem egyeznek meg. Kérjük, győződjön meg róla, hogy mindkét jelszó ugyanaz."
+    }    
 }

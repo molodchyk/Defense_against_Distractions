@@ -247,5 +247,8 @@
                 "example": "5"
             }
         }
+    },
+    "passwordMismatchAlert": {
+        "message": "Hasła nie pasują do siebie. Upewnij się, że oba hasła są identyczne."
     }
 }

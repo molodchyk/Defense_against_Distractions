@@ -247,5 +247,8 @@
                 "example": "5"
             }
         }
+    },
+    "passwordMismatchAlert": {
+        "message": "密碼不符。請確保兩個密碼相同。"
     }    
 }

@@ -247,5 +247,8 @@
                 "example": "5"
             }
         }
-    }    
+    },
+    "passwordMismatchAlert": {
+        "message": "Kata sandi tidak cocok. Harap pastikan kedua kata sandi sama."
+    }
 }

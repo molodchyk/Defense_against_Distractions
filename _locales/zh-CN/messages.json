@@ -249,5 +249,8 @@
                 }
             }
         }
+    },
+    "passwordMismatchAlert": {
+        "message": "密码不匹配。请确保两个密码相同。"
     }    
 }

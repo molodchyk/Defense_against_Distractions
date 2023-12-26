@@ -247,5 +247,8 @@
                 "example": "5"
             }
         }
-    }
+    },
+    "passwordMismatchAlert": {
+        "message": "Passwords do not match. Please make sure both passwords are the same."
+    }    
 }

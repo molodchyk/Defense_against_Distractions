@@ -247,5 +247,8 @@
                 "example": "5"
             }
         }
-    }
+    },
+    "passwordMismatchAlert": {
+        "message": "Kata laluan tidak sepadan. Sila pastikan kedua-dua kata laluan adalah sama."
+    }    
 }
