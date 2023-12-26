@@ -363,24 +363,6 @@ document.getElementById('passwordForm').addEventListener('submit', async (event)
 });
 document.getElementById('deletePasswordButton').addEventListener('click', deletePassword);
 
-
-
-// // New function to update button states
-// function updateButtonStates() {
-//     chrome.storage.sync.get('password', function(data) {
-//         const hasPassword = !!data.password;
-//         document.getElementById('deletePasswordButton').disabled = !hasPassword;
-//         document.getElementById('setPasswordButton').disabled = hasPassword;
-//         document.getElementById('passwordInputField').disabled = hasPassword;
-//         document.getElementById('confirmPasswordInputField').disabled = hasPassword;
-
-//         // Update button class for styling
-//         const deleteButton = document.getElementById('deletePasswordButton');
-//         deleteButton.className = hasPassword ? 'enabled' : 'disabled';
-//     });
-// }
-
-
 export function updateButtonStates() {
     chrome.storage.sync.get(['password', 'schedules'], function(data) {
         const hasPassword = !!data.password;
