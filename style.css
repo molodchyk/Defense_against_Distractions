@@ -375,8 +375,8 @@ h2 {
 }
 .edit-button-schedule {
     position: absolute;
-    bottom: 0;
-    right: 72px;
+    bottom: 40px;
+    right: 10px;
     background-color: #f44336;
     color: white;
 }
@@ -387,6 +387,7 @@ h2 {
     background-color: #4CAF50;
     color: white;
 }
+
 .save-button-schedule:hover {
     background-color: #218838;
 }
@@ -795,4 +796,35 @@ form {
     color: #adb5bd; /* Slightly lighter color for hover */
     text-decoration: underline;
     background-color: #495057; /* Slightly lighter background for hover */
+}
+
+
+
+/* Basic Styling for deletePasswordButton */
+#deletePasswordButton {
+    background-color: #f44336; /* Red color for delete button */
+    color: white; /* White text */
+    padding: 10px 20px; /* Padding for size */
+    border-radius: 4px; /* Rounded corners */
+    border: none; /* No border */
+    cursor: pointer; /* Cursor changes to pointer */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+/* Hover State for deletePasswordButton */
+#deletePasswordButton:hover {
+    background-color: #d32f2f; /* Slightly darker shade of red */
+}
+
+/* Disabled State for deletePasswordButton */
+#deletePasswordButton:disabled {
+    background-color: #a9a9a9; /* Grey color for disabled state */
+    color: #666666; /* Dark grey text */
+    cursor: not-allowed; /* Cursor shows it's not clickable */
+    opacity: 0.7; /* Slightly transparent */
+}
+
+#deletePasswordButton:disabled:hover {
+    background-color: #a9a9a9; /* Keep the same color on hover in disabled state */
+    color: #666666;
 }

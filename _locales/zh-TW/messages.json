@@ -250,5 +250,176 @@
     },
     "passwordMismatchAlert": {
         "message": "密碼不符。請確保兩個密碼相同。"
-    }    
+    },
+    "pageTitle": {
+        "message": "說明指南 - 對抗分心"
+    },
+    "headerTitle": {
+        "message": "對抗分心：說明指南"
+    },
+    "introTitle": {
+        "message": "介紹"
+    },
+    "introText1": {
+        "message": "嗨！在互聯網上分心和拖延是非常容易的。這個擴展允許您根據您不想看到的關鍵字來阻擋網頁。"
+    },
+    "introText2": {
+        "message": "有成千上萬的視頻遊戲可以玩，新聞故事可以閱讀，視頻可以觀看等等。通常，當項目截止日期或考試還遠時，這就是我們所做的。有時，強迫自己做你需要做的事情可能會有點困難。"
+    },
+    "introText3": {
+        "message": "到處都是分心的事！即使您使用StayFocusd、Cold Turkey或FocusMe通過它們的URL封鎖一些網站，您也無法封鎖一切。例如，即使使用ChatGPT，如果您真的不想學習或工作，您也可以談論新聞或視頻遊戲。"
+    },
+    "introText4": {
+        "message": "使用這個擴展，您可以根據網站文本中的詞語和短語來封鎖網站。"
+    },
+    "howToUseTitle": {
+        "message": "如何使用擴展"
+    },
+    "createGroupTitle": {
+        "message": "第一步：創建群組"
+    },
+    "createGroupText1": {
+        "message": "您可以按下「添加群組」按鈕或輸入群組名稱然後按Enter或添加群組按鈕。您可以創建多個群組。"
+    },
+    "createGroupText2": {
+        "message": "您將看到群組面板。"
+    },
+    "websitesTitle": {
+        "message": "網站"
+    },
+    "websitesText": {
+        "message": "您可以通過按下網站行左側的「編輯」按鈕開始添加網站。該欄位負責擴展將封鎖關鍵字的網站。在這裡您必須輸入網站URL，例如：'google.com'。您可以輸入多個網站，每新行是一個新網站。只需按Enter。準備好後，按綠色「儲存」按鈕。或者您可以取消。"
+    },
+    "keywordsTitle": {
+        "message": "關鍵詞"
+    },
+    "keywordsText1": {
+        "message": "要添加新的關鍵詞或進行任何更改，請按「編輯」。您在此輸入的關鍵詞將在您為此群組輸入的網站上進行掃描。"
+    },
+    "keywordFormatsIntroduction": {
+        "message": "關鍵詞有3種格式："
+    },
+    "keywordFormat1Title": {
+        "message": "第一種格式："
+    },
+    "keywordFormat1Text": {
+        "message": "只需輸入關鍵詞。它可以是一個單詞或一個短語。如果關鍵詞包含逗號 '，'，您必須在其前面使用轉義字符 '\\'。一旦檢測到關鍵詞，網站將被封鎖。您可以輸入盡可能多的關鍵詞，只需按enter。每新行是一個新的關鍵詞。"
+    },
+    "keywordFormat1_2": {
+        "message": "例子：'視頻遊戲' 或 '新聞'。"
+    },
+    "keywordFormat2Title": {
+        "message": "第二種格式："
+    },
+    "keywordFormat2Text": {
+        "message": "輸入關鍵詞，然後跟隨一個數字值。您在一個群組中輸入的每個網站必須達到1000分。網站從0分開始，基於關鍵詞的數字值，分數會增加。一旦網站達到1000分，它將被封鎖。"
+    },
+    "keywordFormat2_2": {
+        "message": "例子：'新聞, 50'"
+    },
+    "keywordFormat2_3": {
+        "message": "您在一個群組中輸入的每個網站必須達到1000分。網站從0分開始，基於關鍵詞的數字值，分數會增加。一旦網站達到1000分，它將被封鎖。"
+    },
+    "keywordFormat3Title": {
+        "message": "第三種格式："
+    },
+    "keywordFormat3Text": {
+        "message": "輸入關鍵詞，然後跟隨乘法或加法符號（* 或 +），然後是一個數字值。在這種情況下，頁面的分數會基於找到的關鍵詞的數字值被乘以。"
+    },
+    "keywordFormat3_2": {
+        "message": "例子：'新聞, *, 10'"
+    },
+    "keywordFormat3_3": {
+        "message": "在這種情況下，頁面的分數會基於找到的關鍵詞的數字值被乘以。"
+    },
+    "timerCountTitle": {
+        "message": "計時器計數"
+    },
+    "timerCountText": {
+        "message": "在頁面被封鎖後，您將有選擇按下「啟動計時器」按鈕的選項。之後，您將有時間在頁面再次被封鎖前進行一些操作。在計時器計數欄位中，您可以決定一天中想要有多少計時器。"
+    },
+    "timerDurationTitle": {
+        "message": "計時器持續時間（秒）"
+    },
+    "timerDurationText": {
+        "message": "在此欄位中，您決定每個計時器的秒數。"
+    },
+    "lockedSchedulesTitle": {
+        "message": "鎖定時間表"
+    },
+    "lockedSchedulesNote": {
+        "message": "! 鎖定的時間表在時間過去之前無法解鎖（除非您卸載擴展） !"
+    },
+    "lockedSchedulesText1": {
+        "message": "您可以通過在時間表名稱欄位中創建時間表名稱並按Enter或添加時間表按鈕來添加新的鎖定時間表。"
+    },
+    "lockedSchedulesText2": {
+        "message": "要修改您的時間表設置，請按“編輯”。按下天數按鈕，您可以啟用該天的時間表（按鈕變綠色）或禁用它。通過修改“開始時間”和“結束時間”欄位，您設定了時間表可以活動的時間。每天必須有至少1小時的非活動時間窗口，以便您在此期間停用時間表。非活動/活動按鈕用於切換時間表。如果當前天啟用（綠色）並且按鈕顯示“活動”且同樣是綠色，且當前時間在開始和結束時間之間，則時間表將被鎖定並啟用。"
+    },
+    "lockedSchedulesText3": {
+        "message": "“刪除”按鈕會移除鎖定的時間表。群組和白名單網站同樣適用。"
+    },
+    "lockedSchedulesText4": {
+        "message": "在鎖定時間表期間適用若干限制："
+    },
+    "lockedScheduleRestriction1": {
+        "message": "您不能更改群組名稱。"
+    },
+    "lockedScheduleRestriction2": {
+        "message": "您不能更改或移除群組中現有的網站。"
+    },
+    "lockedScheduleRestriction3": {
+        "message": "您不能更改或移除現有的關鍵詞及其值。"
+    },
+    "lockedScheduleRestriction4": {
+        "message": "您僅能為乘法設定關鍵詞值：從1到1000。加法：從0到1000。"
+    },
+    "lockedScheduleRestriction5": {
+        "message": "計時器次數不能增加。"
+    },
+    "lockedScheduleRestriction6": {
+        "message": "計時器持續時間不能增加。"
+    },
+    "lockedScheduleRestriction7": {
+        "message": "無法刪除活動中的時間表。"
+    },
+    "lockedScheduleRestriction8": {
+        "message": "您不能取消選擇天數、使時間表非活動或更改活動時間表的開始或結束時間。"
+    },
+    "lockedScheduleRestriction9": {
+        "message": "您不能添加白名單網站。"
+    },
+    "lockedScheduleRestriction10": {
+        "message": "您不能設置或刪除擴展的密碼。"
+    },
+    "whitelistWebsitesTitle": {
+        "message": "白名單網站"
+    },
+    "whitelistWebsitesText": {
+        "message": "允許您輸入白名單網站，這意味著這些網站上不會執行關鍵詞掃描，因此不會被阻擋。目前，我們無法使用通配符(*)來一次包含許多網站（例如*.io，所有含有'.io'的網站將被阻擋），所以這項功能不是非常有用，但它確實存在。"
+    },
+    "passwordManagementTitle": {
+        "message": "密碼管理"
+    },
+    "passwordManagementText": {
+        "message": "允許您為擴展頁面設置密碼。任何打開擴展頁面的人都需要輸入正確的密碼才能訪問。這有助於防止他人無意間（或故意地）加嚴設置。"
+    },
+    "contactFeedbackTitle": {
+        "message": "聯繫和反饋"
+    },
+    "feedbackText1": {
+        "message": "如果您想分享任何反饋或您遇到問題，請訪問擴展的GitHub頁面："
+    },
+    "githubLink": {
+        "message": "GitHub - 防禦分心"
+    },
+    "feedbackText2": {
+        "message": "在那裡，導航到“問題”標籤，然後點擊綠色按鈕“新問題”。填寫標題和描述，然後按“提交新問題”。"
+    },
+    "thanks": {
+        "message": "謝謝。"
+    },
+    "instructionGuideLink": {
+        "message": "指導手冊"
+    }
 }

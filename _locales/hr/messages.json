@@ -250,5 +250,176 @@
     },
     "passwordMismatchAlert": {
         "message": "Lozinke se ne podudaraju. Molimo provjerite jesu li obje lozinke iste."
-    }    
+    },
+    "pageTitle": {
+        "message": "Vodič za upute - Obrana od Ometanja"
+    },
+    "headerTitle": {
+        "message": "Obrana od Ometanja: Vodič za upute"
+    },
+    "introTitle": {
+        "message": "Uvod"
+    },
+    "introText1": {
+        "message": "Pozdrav! Tako je lako biti ometen na internetu i odgađati obveze. Ovaj dodatak omogućuje blokiranje web stranica na temelju ključnih riječi koje ne želite vidjeti."
+    },
+    "introText2": {
+        "message": "Postoje tisuće video igara za igranje, vijesti za čitanje, videozapisi za gledanje i slično. I često, to radimo kada su rokovi projekata ili ispiti još daleko. Ponekad može biti teško natjerati sebe da učinite ono što trebate učiniti."
+    },
+    "introText3": {
+        "message": "I ometanja su svuda! Čak i ako koristite StayFocusd ili Cold Turkey ili FocusMe za blokiranje nekih web stranica po njihovim URL-ovima, ne možete blokirati sve. Na primjer, čak i s ChatGPT-om, mogli biste razgovarati o vijestima ili video igrama ako stvarno ne želite učiti ili raditi."
+    },
+    "introText4": {
+        "message": "S ovim dodatkom, možete blokirati web stranice na temelju riječi i fraza u njihovom tekstu."
+    },
+    "howToUseTitle": {
+        "message": "Kako koristiti dodatak"
+    },
+    "createGroupTitle": {
+        "message": "Prvi korak: Stvorite grupu"
+    },
+    "createGroupText1": {
+        "message": "Možete pritisnuti gumb 'Dodaj grupu' ili unijeti naziv grupe i pritisnuti Enter ili gumb Dodaj grupu. Možete stvoriti više grupa."
+    },
+    "createGroupText2": {
+        "message": "Vidjet ćete ploču grupe."
+    },
+    "websitesTitle": {
+        "message": "Web stranice"
+    },
+    "websitesText": {
+        "message": "Možete početi dodavati web stranice pritiskom na gumb 'Uredi' lijevo od linije Web stranice. Ovo polje je odgovorno za web stranice gdje će dodatak blokirati ključne riječi. Ovdje morate unijeti URL-ove web stranica, na primjer, 'google.com'. Možete unijeti više web stranica, svaki novi red je nova web stranica. Samo pritisnite Enter. Kada ste spremni, pritisnite zeleni gumb 'Spremi'. Ili možete odustati."
+    },
+    "keywordsTitle": {
+        "message": "Ključne riječi"
+    },
+    "keywordsText1": {
+        "message": "Za dodavanje novih ključnih riječi ili bilo kakve promjene, pritisnite 'Uredi'. Ključne riječi koje ovdje unesete bit će skenirane na web stranicama koje ste unijeli za ovu grupu."
+    },
+    "keywordFormatsIntroduction": {
+        "message": "Postoje 3 formata za ključne riječi:"
+    },
+    "keywordFormat1Title": {
+        "message": "Prvi Format:"
+    },
+    "keywordFormat1Text": {
+        "message": "Samo unesite ključne riječi. Može biti riječ ili fraza. Ako ključna riječ sadrži zarez ',', morate koristiti znak za bijeg '\\' prije njega. Web stranica će biti blokirana čim se otkrije ključna riječ. Možete unijeti koliko god želite ključnih riječi, samo pritisnite enter. Svaki novi red je nova ključna riječ."
+    },
+    "keywordFormat1_2": {
+        "message": "Primjer: 'video igre' ili 'vijesti'."
+    },
+    "keywordFormat2Title": {
+        "message": "Drugi Format:"
+    },
+    "keywordFormat2Text": {
+        "message": "Unesite ključnu riječ, zatim numeričku vrijednost. Svaka web stranica koju ste unijeli u grupu mora doseći rezultat od 1000. Web stranica počinje s vrijednošću 0, a na temelju numeričke vrijednosti ključne riječi, vrijednost se povećava. Kada web stranica dosegne rezultat od 1000, bit će blokirana."
+    },
+    "keywordFormat2_2": {
+        "message": "Primjer: 'vijesti, 50'"
+    },
+    "keywordFormat2_3": {
+        "message": "Svaka web stranica koju ste unijeli u grupu mora doseći rezultat od 1000. Stranica počinje s vrijednošću 0, a na temelju numeričke vrijednosti ključne riječi, vrijednost se povećava. Kada web stranica dosegne rezultat od 1000, bit će blokirana."
+    },
+    "keywordFormat3Title": {
+        "message": "Treći Format:"
+    },
+    "keywordFormat3Text": {
+        "message": "Unesite ključnu riječ, zatim znak za množenje ili zbrajanje (* ili +), a zatim numeričku vrijednost. U ovom scenariju, rezultat za stranicu se množi na temelju numeričke vrijednosti pronađene ključne riječi."
+    },
+    "keywordFormat3_2": {
+        "message": "Primjer: 'vijesti, *, 10'"
+    },
+    "keywordFormat3_3": {
+        "message": "U ovom scenariju, rezultat za stranicu se množi na temelju numeričke vrijednosti pronađene ključne riječi."
+    },
+    "timerCountTitle": {
+        "message": "Brojač Tajmera"
+    },
+    "timerCountText": {
+        "message": "Nakon što je stranica blokirana, imat ćete mogućnost pritisnuti gumb 'Aktiviraj Tajmer'. Nakon toga, imat ćete vremena za obavljanje nekih radnji na stranici prije nego što se ponovno blokira. U polju Brojač Tajmera možete odlučiti koliko tajmera želite imati tijekom dana."
+    },
+    "timerDurationTitle": {
+        "message": "Trajanje Tajmera (sekunde)"
+    },
+    "timerDurationText": {
+        "message": "U ovom polju odlučujete koliko sekundi će svaki tajmer trajati."
+    },
+    "lockedSchedulesTitle": {
+        "message": "Zaključani Rasporedi"
+    },
+    "lockedSchedulesNote": {
+        "message": "! Zaključani raspored ne može se otključati dok ne prođe vrijeme (osim ako ne deinstalirate dodatak) !"
+    },
+    "lockedSchedulesText1": {
+        "message": "Novi zaključani raspored možete dodati tako što ćete u polje 'Naziv Rasporeda' upisati ime rasporeda i pritisnuti Enter ili gumb 'Dodaj Raspored'."
+    },
+    "lockedSchedulesText2": {
+        "message": "Za promjenu postavki rasporeda pritisnite 'Uredi'. Pritiskom na gumbe dana omogućujete raspored za taj dan (gumb postaje zelen) ili ga isključujete. Promjenom polja 'Vrijeme Početka' i 'Vrijeme Završetka' postavljate vremena kada raspored može biti aktivan. Svaki dan mora imati 1 sat neaktivnog vremena kako biste mogli deaktivirati raspored u to vrijeme. Gumb 'Aktivan'/'Neaktivan' prebacuje stanje rasporeda. Raspored će biti zaključan i aktivan ako je trenutni dan omogućen (zelen) i ako je gumb 'Aktivan' također zelen, te ako je trenutno vrijeme unutar postavljenih vremena početka i završetka."
+    },
+    "lockedSchedulesText3": {
+        "message": "Gumb 'Izbriši' uklanja zaključani raspored. Isto vrijedi i za grupe te web stranice na popisu dopuštenih."
+    },
+    "lockedSchedulesText4": {
+        "message": "Tijekom zaključanog rasporeda vrijede sljedeća ograničenja:"
+    },
+    "lockedScheduleRestriction1": {
+        "message": "Ne možete mijenjati imena grupa."
+    },
+    "lockedScheduleRestriction2": {
+        "message": "Ne možete mijenjati ili uklanjati postojeće web stranice u grupama."
+    },
+    "lockedScheduleRestriction3": {
+        "message": "Ne možete mijenjati ili uklanjati postojeće ključne riječi i njihove vrijednosti."
+    },
+    "lockedScheduleRestriction4": {
+        "message": "Možete postavljati vrijednosti ključnih riječi samo za množenje: od 1 do 1000. Za zbrajanje: od 0 do 1000."
+    },
+    "lockedScheduleRestriction5": {
+        "message": "Broj tajmera se ne može povećati."
+    },
+    "lockedScheduleRestriction6": {
+        "message": "Trajanje tajmera se ne može povećati."
+    },
+    "lockedScheduleRestriction7": {
+        "message": "Aktivne rasporede ne možete izbrisati."
+    },
+    "lockedScheduleRestriction8": {
+        "message": "Ne možete odznačiti dane, učiniti raspored neaktivnim, niti mijenjati vremena početka i završetka za aktivne rasporede."
+    },
+    "lockedScheduleRestriction9": {
+        "message": "Ne možete dodavati web stranice na popis dopuštenih."
+    },
+    "lockedScheduleRestriction10": {
+        "message": "Ne možete postavljati niti brisati lozinke za proširenje."
+    },
+    "whitelistWebsitesTitle": {
+        "message": "Popis Dopuštenih Web Stranica"
+    },
+    "whitelistWebsitesText": {
+        "message": "Omogućuje vam unos web stranica koje su na popisu dopuštenih, što znači da se skeniranje ključnih riječi neće izvoditi na tim stranicama i stoga neće biti blokirane. Trenutno nemamo mogućnost korištenja znaka zvjezdice (*) za uključivanje mnogo web stranica u jedan unos (poput *.io, gdje bi sve stranice s '.io' bile blokirane), pa ova funkcija nije vrlo korisna, ali postoji."
+    },
+    "passwordManagementTitle": {
+        "message": "Upravljanje Lozinkama"
+    },
+    "passwordManagementText": {
+        "message": "Omogućuje vam postavljanje lozinke za stranicu proširenja. Svaki tko otvori stranicu proširenja morat će unijeti točnu lozinku da bi dobio pristup. Korisno za sprječavanje drugih da slučajno (ili namjerno) pooštre postavke."
+    },
+    "contactFeedbackTitle": {
+        "message": "Kontakt i Povratne Informacije"
+    },
+    "feedbackText1": {
+        "message": "Ako želite podijeliti povratne informacije ili imate problem, posjetite GitHub stranicu proširenja:"
+    },
+    "githubLink": {
+        "message": "GitHub - Obrana od Ometanja"
+    },
+    "feedbackText2": {
+        "message": "Tamo, pređite na karticu 'Issues' i kliknite zeleni gumb 'New Issue'. Ispunite naslov i opis te pritisnite 'Submit new issue'."
+    },
+    "thanks": {
+        "message": "Hvala."
+    },
+    "instructionGuideLink": {
+        "message": "Upute za Korištenje"
+    }
 }

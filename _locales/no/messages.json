@@ -250,5 +250,176 @@
     },
     "passwordMismatchAlert": {
         "message": "Passordene stemmer ikke overens. Vennligst sørg for at begge passordene er like."
-    }    
+    },
+    "pageTitle": {
+        "message": "Instruksjonsguide - Forsvar mot Distrahering"
+    },
+    "headerTitle": {
+        "message": "Forsvar mot Distrahering: Instruksjonsguide"
+    },
+    "introTitle": {
+        "message": "Introduksjon"
+    },
+    "introText1": {
+        "message": "Hei! Det er så lett å bli distrahert på internett og utsette ting. Denne utvidelsen lar deg blokkere nettsider basert på nøkkelord du ikke ønsker å se."
+    },
+    "introText2": {
+        "message": "Det finnes tusenvis av videospill å spille, nyhetshistorier å lese, videoer å se på, og så videre. Og ofte er dette det vi gjør når prosjektfrister eller eksamener fortsatt er langt unna. Noen ganger kan det være litt vanskelig å tvinge seg selv til å gjøre det man trenger å gjøre."
+    },
+    "introText3": {
+        "message": "Og distraksjoner er overalt! Selv om du bruker StayFocusd eller Cold Turkey eller FocusMe for å blokkere noen nettsteder etter deres URL-er, kan du ikke blokkere alt. For eksempel, selv med ChatGPT, kan du snakke om nyheter eller videospill hvis du virkelig ikke føler for å studere eller jobbe."
+    },
+    "introText4": {
+        "message": "Med denne utvidelsen kan du blokkere nettsteder basert på ord og fraser i deres tekst."
+    },
+    "howToUseTitle": {
+        "message": "Hvordan bruke utvidelsen"
+    },
+    "createGroupTitle": {
+        "message": "Første steg: Opprett en gruppe"
+    },
+    "createGroupText1": {
+        "message": "Du kan trykke på 'Legg til gruppe'-knappen eller skrive inn gruppenavnet og trykke Enter eller Legg til gruppe-knappen. Du kan opprette flere grupper."
+    },
+    "createGroupText2": {
+        "message": "Du vil se gruppepanelet."
+    },
+    "websitesTitle": {
+        "message": "Nettsteder"
+    },
+    "websitesText": {
+        "message": "Du kan begynne å legge til nettsteder ved å trykke på 'Rediger'-knappen til venstre for Nettsteder-linjen. Dette feltet er ansvarlig for nettsteder der utvidelsen vil blokkere nøkkelord. Her må du skrive inn nettstedets URL-er, for eksempel 'google.com'. Du kan skrive inn flere nettsteder, hver ny linje er et nytt nettsted. Bare trykk Enter. Når du er klar, trykk på den grønne 'Lagre'-knappen. Eller du kan Avbryte."
+    },
+    "keywordsTitle": {
+        "message": "Nøkkelord"
+    },
+    "keywordsText1": {
+        "message": "For å legge til nye nøkkelord eller foreta endringer, trykk 'Rediger'. Nøkkelordene du skriver inn her, vil bli skannet på nettstedene du har lagt inn for denne gruppen."
+    },
+    "keywordFormatsIntroduction": {
+        "message": "Det er 3 formater for nøkkelord:"
+    },
+    "keywordFormat1Title": {
+        "message": "Første format:"
+    },
+    "keywordFormat1Text": {
+        "message": "Skriv bare inn nøkkelordene. Det kan være et ord eller en frase. Hvis nøkkelordet inneholder et komma ',', må du bruke et escape-tegn '\\' før det. Nettstedet vil bli blokkert så snart nøkkelordet oppdages. Du kan skrive inn så mange nøkkelord du vil, bare trykk enter. Hver ny linje er et nytt nøkkelord."
+    },
+    "keywordFormat1_2": {
+        "message": "Eksempel: 'videospill' eller 'nyheter'."
+    },
+    "keywordFormat2Title": {
+        "message": "Andre format:"
+    },
+    "keywordFormat2Text": {
+        "message": "Skriv inn nøkkelordet, etterfulgt av en numerisk verdi. Hvert nettsted du har lagt inn i en gruppe må nå en poengsum på 1000. Nettstedet starter med en verdi på 0, og basert på den numeriske verdien av nøkkelordet, øker verdien. Når nettstedet når en poengsum på 1000, vil det bli blokkert."
+    },
+    "keywordFormat2_2": {
+        "message": "Eksempel: 'nyheter, 50'"
+    },
+    "keywordFormat2_3": {
+        "message": "Hvert nettsted du har lagt inn i en gruppe må nå en poengsum på 1000. Nettstedet starter med en verdi på 0, og basert på den numeriske verdien av nøkkelordet, øker verdien. Når nettstedet når en poengsum på 1000, vil det bli blokkert."
+    },
+    "keywordFormat3Title": {
+        "message": "Tredje format:"
+    },
+    "keywordFormat3Text": {
+        "message": "Skriv inn nøkkelordet, etterfulgt av et multiplikasjons- eller addisjonstegn (* eller +), deretter en numerisk verdi. I dette scenariet multipliseres poengsummen for siden basert på den numeriske verdien av det funnede nøkkelordet."
+    },
+    "keywordFormat3_2": {
+        "message": "Eksempel: 'nyheter, *, 10'"
+    },
+    "keywordFormat3_3": {
+        "message": "I dette scenariet multipliseres poengsummen for siden basert på den numeriske verdien av det funnede nøkkelordet."
+    },
+    "timerCountTitle": {
+        "message": "Tidtakerantall"
+    },
+    "timerCountText": {
+        "message": "Etter at siden er blokkert, vil du ha muligheten til å trykke på 'Aktiver tidtaker'-knappen. Etter det vil du ha tid til å utføre noen handlinger på siden før den blir blokkert igjen. I feltet for tidtakerantall kan du bestemme hvor mange tidtakere du ønsker å ha i løpet av dagen."
+    },
+    "timerDurationTitle": {
+        "message": "Varighet av tidtaker (sekunder)"
+    },
+    "timerDurationText": {
+        "message": "I dette feltet bestemmer du hvor mange sekunder hver tidtaker vil ha."
+    },
+    "lockedSchedulesTitle": {
+        "message": "Låste tidsplaner"
+    },
+    "lockedSchedulesNote": {
+        "message": "! En låst tidsplan kan ikke låses opp før tiden går (med mindre du avinstallerer utvidelsen) !"
+    },
+    "lockedSchedulesText1": {
+        "message": "Du kan legge til en ny låst tidsplan ved å opprette tidsplannavnet i feltet for tidsplannavn og trykke Enter eller knappen for å legge til tidsplan."
+    },
+    "lockedSchedulesText2": {
+        "message": "For å endre innstillingene for tidsplanen din, trykk 'Rediger'. Ved å trykke på dagsknappene, enten aktiverer du tidsplanen den dagen (knappen blir grønn), eller deaktiverer du den for den dagen. Ved å endre feltene for starttid og sluttid, setter du tidene tidsplanen kan være aktiv. Hver dag må ha et 1-times inaktivt tidsvindu slik at du kan deaktivere tidsplanen i løpet av den tiden. Knappen for inaktiv/aktiv veksler tidsplanen. Tidsplanen vil være låst og aktiv hvis den aktuelle dagen er aktivert (grønn) og knappen viser 'Aktiv' og er også grønn, og hvis den nåværende tiden er mellom start- og sluttidene."
+    },
+    "lockedSchedulesText3": {
+        "message": "Slett-knappen fjerner den låste tidsplanen. Det samme gjelder for grupper og nettsteder på hvitelisten."
+    },
+    "lockedSchedulesText4": {
+        "message": "Flere begrensninger gjelder under den låste tidsplanen:"
+    },
+    "lockedScheduleRestriction1": {
+        "message": "Du kan ikke endre gruppenavn."
+    },
+    "lockedScheduleRestriction2": {
+        "message": "Du kan ikke endre eller fjerne eksisterende nettsteder i grupper."
+    },
+    "lockedScheduleRestriction3": {
+        "message": "Du kan ikke endre eller fjerne eksisterende nøkkelord og deres verdier."
+    },
+    "lockedScheduleRestriction4": {
+        "message": "Du kan bare sette nøkkelordverdier for multiplikasjon: fra 1 til 1000. For addisjon: fra 0 til 1000."
+    },
+    "lockedScheduleRestriction5": {
+        "message": "Antall tidtakere kan ikke økes."
+    },
+    "lockedScheduleRestriction6": {
+        "message": "Varigheten av tidtakeren kan ikke økes."
+    },
+    "lockedScheduleRestriction7": {
+        "message": "Aktive tidsplaner kan ikke slettes."
+    },
+    "lockedScheduleRestriction8": {
+        "message": "Du kan ikke fjerne markering av dager, gjøre tidsplanen inaktiv, eller endre start- eller sluttidene for aktive tidsplaner."
+    },
+    "lockedScheduleRestriction9": {
+        "message": "Du kan ikke legge til hvitelistede nettsteder."
+    },
+    "lockedScheduleRestriction10": {
+        "message": "Du kan ikke sette eller slette passordet for utvidelsen."
+    },
+    "whitelistWebsitesTitle": {
+        "message": "Hvitlist Nettsteder"
+    },
+    "whitelistWebsitesText": {
+        "message": "Gir deg mulighet til å angi hvitelistede nettsteder, noe som betyr at søk etter nøkkelord ikke vil bli utført på disse nettstedene, og dermed vil de ikke bli blokkert. For øyeblikket har vi ikke muligheten til å bruke en jokertegn (*) for å inkludere mange nettsteder i ett oppføring (som *.io, hvor alle nettsteder med '.io' ville blitt blokkert), så denne funksjonen er ikke veldig nyttig, men den finnes."
+    },
+    "passwordManagementTitle": {
+        "message": "Passordforvaltning"
+    },
+    "passwordManagementText": {
+        "message": "Gir deg mulighet til å sette opp et passord for utvidelsessiden. Alle som åpner utvidelsessiden må skrive inn riktig passord for å få tilgang. Nyttig for å hindre andre i utilsiktet (eller med vilje) å stramme innstillingene."
+    },
+    "contactFeedbackTitle": {
+        "message": "Kontakt og Tilbakemelding"
+    },
+    "feedbackText1": {
+        "message": "Hvis du ønsker å dele tilbakemelding eller hvis du har et problem, besøk gjerne GitHub-siden til utvidelsen:"
+    },
+    "githubLink": {
+        "message": "GitHub - Forsvar Mot Forstyrrelser"
+    },
+    "feedbackText2": {
+        "message": "Der kan du navigere til fanen 'Problemer' og klikke på den grønne knappen 'Nytt Problem'. Fyll inn tittelen og beskrivelsen og trykk 'Send inn nytt problem'."
+    },
+    "thanks": {
+        "message": "Takk."
+    },
+    "instructionGuideLink": {
+        "message": "Instruksjonsveiledning"
+    }
 }

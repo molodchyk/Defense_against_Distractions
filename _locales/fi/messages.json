@@ -250,5 +250,177 @@
     },
     "passwordMismatchAlert": {
         "message": "Salasanat eivät täsmää. Varmista, että molemmat salasanat ovat samat."
-    }    
+    },
+    "pageTitle": {
+        "message": "Ohjeopas - Häiriötekijöiden Torjunta"
+    },
+    "headerTitle": {
+        "message": "Häiriötekijöiden Torjunta: Ohjeopas"
+    },
+    "introTitle": {
+        "message": "Johdanto"
+    },
+    "introText1": {
+        "message": "Hei! Internetissä on niin helppo häiriintyä ja viivytellä. Tämä laajennus mahdollistaa verkkosivujen estämisen avainsanojen perusteella, joita et halua nähdä."
+    },
+    "introText2": {
+        "message": "On tuhansia videopelejä pelattavaksi, uutistarinoita luettavaksi, videoita katsottavaksi ja niin edelleen. Usein tämä on se, mitä teemme, kun projektin määräajat tai tentit ovat vielä kaukana. Joskus voi olla vaikeaa pakottaa itsensä tekemään tarvittavia asioita."
+    },
+    "introText3": {
+        "message": "Ja häiriötekijöitä on kaikkialla! Vaikka käyttäisit StayFocusd-, Cold Turkey- tai FocusMe-sovelluksia estääksesi joitakin verkkosivustoja niiden URL-osoitteiden perusteella, et voi estää kaikkea. Esimerkiksi ChatGPT:n kanssa voit puhua uutisista tai videopeleistä, jos et todella tunne opiskelemisen tai työnteon tarvetta."
+    },
+    "introText4": {
+        "message": "Tämän laajennuksen avulla voit estää verkkosivustoja niiden tekstissä olevien sanojen ja lauseiden perusteella."
+    },
+    "howToUseTitle": {
+        "message": "Laajennuksen Käyttö"
+    },
+    "createGroupTitle": {
+        "message": "Ensimmäinen vaihe: Luo ryhmä"
+    },
+    "createGroupText1": {
+        "message": "Voit painaa 'Lisää ryhmä' -painiketta tai syöttää ryhmän nimen ja painaa Enter tai Lisää ryhmä -painiketta. Voit luoda useita ryhmiä."
+    },
+    "createGroupText2": {
+        "message": "Näet ryhmäpaneelin."
+    },
+    "websitesTitle": {
+        "message": "Verkkosivustot"
+    },
+    "websitesText": {
+        "message": "Voit aloittaa verkkosivustojen lisäämisen painamalla 'Muokkaa' -painiketta Verkkosivustot-kohdan vasemmalla puolella. Tämä kenttä on vastuussa niistä verkkosivustoista, joilla laajennus estää avainsanat. Sinun on syötettävä verkkosivustojen URL-osoitteet, esimerkiksi 'google.com'. Voit syöttää useita verkkosivustoja, jokainen uusi rivi on uusi verkkosivusto. Paina vain Enter. Kun olet valmis, paina vihreää 'Tallenna' -painiketta. Tai voit Peruuttaa."
+    },
+    "keywordsTitle": {
+        "message": "Avainsanat"
+    },
+    "keywordsText1": {
+        "message": "Lisätäksesi uusia avainsanoja tai tehdäksesi muutoksia, paina 'Muokkaa'. Täällä syöttämäsi avainsanat skannataan ryhmääsi syöttämillesi verkkosivustoille."
+    },
+    "keywordFormatsIntroduction": {
+        "message": "Avainsanoille on kolme muotoa:"
+    },
+    "keywordFormat1Title": {
+        "message": "Ensimmäinen muoto:"
+    },
+    "keywordFormat1Text": {
+        "message": "Syötä vain avainsanat. Se voi olla sana tai lause. Jos avainsana sisältää pilkun ',', sinun on käytettävä kenoviivaa '\\' sitä ennen. Verkkosivusto estetään heti, kun avainsana havaitaan. Voit syöttää niin monta avainsanaa kuin haluat, paina vain enter. Jokainen uusi rivi on uusi avainsana."
+    },
+    "keywordFormat1_2": {
+        "message": "Esimerkkejä: 'videopelit' tai 'uutiset'."
+    },
+    "keywordFormat2Title": {
+        "message": "Toinen muoto:"
+    },
+    "keywordFormat2Text": {
+        "message": "Syötä avainsana, jonka jälkeen seuraa numeerinen arvo. Jokaisen ryhmään syöttämäsi verkkosivuston on saavutettava 1000 pisteen tulos. Verkkosivusto alkaa 0 arvosta, ja avainsanan numeerisen arvon perusteella arvo kasvaa. Kun verkkosivusto saavuttaa 1000 pisteen tuloksen, se estetään."
+    },
+    "keywordFormat2_2": {
+        "message": "Esimerkki: 'uutiset, 50'"
+    },
+    "keywordFormat2_3": {
+        "message": "Jokaisen ryhmään syöttämäsi verkkosivuston on saavutettava 1000 pisteen tulos. Sivusto alkaa 0 arvosta, ja avainsanan numeerisen arvon perusteella arvo kasvaa. Kun verkkosivusto saavuttaa 1000 pisteen tuloksen, se estetään."
+    },
+    "keywordFormat3Title": {
+        "message": "Kolmas muoto:"
+    },
+    "keywordFormat3Text": {
+        "message": "Syötä avainsana, jonka jälkeen tulee kerto- tai plusmerkki (* tai +), sitten numeerinen arvo. Tässä skenaariossa sivun pisteet kerrotaan löydetyn avainsanan numeerisen arvon perusteella."
+    },
+    "keywordFormat3_2": {
+        "message": "Esimerkki: 'uutiset, *, 10'"
+    },
+    "keywordFormat3_3": {
+        "message": "Tässä skenaariossa sivun pisteet kerrotaan löydetyn avainsanan numeerisen arvon perusteella."
+    },
+    "timerCountTitle": {
+        "message": "Ajastimien Lukumäärä"
+    },
+    "timerCountText": {
+        "message": "Sivun estämisen jälkeen sinulla on mahdollisuus painaa 'Aktivoi ajastin' -painiketta. Sen jälkeen sinulla on aikaa suorittaa joitakin toimia sivulla ennen sen uudelleen estämistä. Ajastimien Lukumäärä -kentässä voit päättää, kuinka monta ajastinta haluat päivän aikana."
+    },
+    "timerDurationTitle": {
+        "message": "Ajastimen Kesto (sekunneissa)"
+    },
+    "timerDurationText": {
+        "message": "Tässä kentässä päätät, kuinka monta sekuntia jokainen ajastin kestää."
+    },
+    "lockedSchedulesTitle": {
+        "message": "Lukitut Aikataulut"
+    },
+    "lockedSchedulesNote": {
+        "message": "! Lukittua aikataulua ei voi avata ennen kuin aika kuluu (ellet poista laajennusta) !"
+    },
+    "lockedSchedulesText1": {
+        "message": "Voit lisätä uuden lukitun aikataulun luomalla aikataulun nimen Aikataulun nimi -kenttään ja painamalla Enter-näppäintä tai Lisää aikataulu -painiketta."
+    },
+    "lockedSchedulesText2": {
+        "message": "Muuttaaksesi aikataulusi asetuksia, paina 'Muokkaa'. Päiväpainikkeita painamalla voit joko aktivoida aikataulun kyseisenä päivänä (painike muuttuu vihreäksi) tai poistaa sen käytöstä. Muokkaamalla Aloitus- ja Lopetusaika -kenttiä, asetat ajat, jolloin aikataulu voi olla aktiivinen. Jokaisessa päivässä on oltava vähintään yksi tunti lukitsematonta aikaa, jotta voit poistaa aikataulun käytöstä kyseisenä aikana. Aktiivinen/Ei-aktiivinen -painike vaihtaa aikataulun tilaa. Aikataulu on lukittu ja aktiivinen, jos nykyinen päivä on aktivoitu (vihreä) ja Aktiivinen/Ei-aktiivinen -näyttää 'Aktiivinen' ja on myös vihreä, ja jos nykyinen aika on aloitus- ja lopetusajan välillä."
+    },
+    "lockedSchedulesText3": {
+        "message": "Poista-painike poistaa lukitun aikataulun. Sama pätee ryhmiin ja valkolistaan lisättyihin verkkosivustoihin."
+    },
+    "lockedSchedulesText4": {
+        "message": "Lukitun aikataulun aikana sovelletaan useita rajoituksia:"
+    },
+    "lockedScheduleRestriction1": {
+        "message": "Ryhmän nimiä ei voi muuttaa."
+    },
+    "lockedScheduleRestriction2": {
+        "message": "Et voi muuttaa tai poistaa olemassa olevia verkkosivustoja ryhmissä."
+    },
+    "lockedScheduleRestriction3": {
+        "message": "Et voi muuttaa tai poistaa olemassa olevia avainsanoja ja niiden arvoja."
+    },
+    "lockedScheduleRestriction4": {
+        "message": "Voit asettaa avainsanojen arvot vain kertolaskulle: 1 - 1000. Yhteenlaskulle: 0 - 1000."
+    },
+    "lockedScheduleRestriction5": {
+        "message": "Ajastinten määrää ei voi lisätä."
+    },
+    "lockedScheduleRestriction6": {
+        "message": "Ajastimen kestoa ei voi lisätä."
+    },
+    "lockedScheduleRestriction7": {
+        "message": "Aktiivisia aikatauluja ei voi poistaa."
+    },
+    "lockedScheduleRestriction8": {
+        "message": "Et voi poistaa päivien valintaa, tehdä aikataulusta ei-aktiivista tai muuttaa aktiivisen aikataulun aloitus- tai lopetusaikoja."
+    },
+    "lockedScheduleRestriction9": {
+        "message": "Et voi lisätä verkkosivustoja valkolistaan."
+    },
+    "lockedScheduleRestriction10": {
+        "message": "Et voi asettaa tai poistaa laajennuksen salasanaa."
+    },
+    "whitelistWebsitesTitle": {
+        "message": "Valkolista Verkkosivustot"
+    },
+    "whitelistWebsitesText": {
+        "message": "Voit lisätä valkolistaan verkkosivustoja, mikä tarkoittaa, että kyseisillä sivustoilla avainsanojen skannausta ei suoriteta, ja näin ollen sivustot eivät tule estetyiksi. Tällä hetkellä meillä ei ole mahdollisuutta käyttää jokerimerkkiä (*) sisällyttääksemme monta verkkosivustoa yhteen syötteeseen (kuten *.io, jossa kaikki '.io' -päätteiset sivustot olisi estetty), joten tämä ominaisuus ei ole erityisen hyödyllinen, mutta se on olemassa."
+    },
+    "passwordManagementTitle": {
+        "message": "Salasanojen Hallinta"
+    },
+    "passwordManagementText": {
+        "message": "Voit asettaa salasanan laajennuksen sivulle. Kuka tahansa, joka avaa laajennuksen sivun, tarvitsee syöttää oikean salasanan päästäkseen sisään. Tämä on hyödyllistä estämään toisia tiukentamasta asetuksia vahingossa (tai tahallisesti)."
+    },
+    "contactFeedbackTitle": {
+        "message": "Yhteydenotto ja Palaute"
+    },
+    "feedbackText1": {
+        "message": "Jos haluat jakaa palautetta tai sinulla on ongelma, käy laajennuksen GitHub-sivulla:"
+    },
+    "githubLink": {
+        "message": "GitHub - Häiriöiden Vastaista Puolustusta"
+    },
+    "feedbackText2": {
+        "message": "Siellä siirry 'Ongelmat'-välilehdelle ja klikkaa vihreää 'Uusi Ongelma' -painiketta. Täytä otsikko ja kuvaus ja paina 'Lähetä uusi ongelma'."
+    },
+    "thanks": {
+        "message": "Kiitos."
+    },
+    "instructionGuideLink": {
+        "message": "Ohjeopas"
+    }
+
 }

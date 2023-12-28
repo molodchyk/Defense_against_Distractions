@@ -250,5 +250,176 @@
     },
     "passwordMismatchAlert": {
         "message": "Kata sandi tidak cocok. Harap pastikan kedua kata sandi sama."
+    },
+    "pageTitle": {
+        "message": "Panduan Instruksi - Pertahanan Terhadap Gangguan"
+    },
+    "headerTitle": {
+        "message": "Pertahanan Terhadap Gangguan: Panduan Instruksi"
+    },
+    "introTitle": {
+        "message": "Pendahuluan"
+    },
+    "introText1": {
+        "message": "Hai! Sangat mudah untuk teralihkan di internet dan menunda-nunda. Ekstensi ini memungkinkan Anda untuk memblokir halaman web berdasarkan kata kunci yang tidak ingin Anda lihat."
+    },
+    "introText2": {
+        "message": "Ada ribuan permainan video untuk dimainkan, berita untuk dibaca, video untuk ditonton, dan lain-lain. Dan seringkali, inilah yang kita lakukan ketika tenggat proyek atau ujian masih jauh. Terkadang, bisa sedikit sulit untuk memaksa diri sendiri melakukan apa yang perlu dilakukan."
+    },
+    "introText3": {
+        "message": "Dan gangguan ada di mana-mana! Bahkan jika Anda menggunakan StayFocusd atau Cold Turkey atau FocusMe untuk memblokir beberapa situs web berdasarkan URL mereka, Anda tidak dapat memblokir segalanya. Misalnya, bahkan dengan ChatGPT, Anda bisa berbicara tentang berita atau video game jika Anda benar-benar tidak ingin belajar atau bekerja."
+    },
+    "introText4": {
+        "message": "Dengan ekstensi ini, Anda dapat memblokir situs web berdasarkan kata dan frasa dalam teks mereka."
+    },
+    "howToUseTitle": {
+        "message": "Cara Menggunakan Ekstensi"
+    },
+    "createGroupTitle": {
+        "message": "Langkah Pertama: Buat Grup"
+    },
+    "createGroupText1": {
+        "message": "Anda dapat menekan tombol 'Tambah Grup' atau memasukkan nama grup dan menekan Enter atau tombol Tambah Grup. Anda dapat membuat beberapa grup."
+    },
+    "createGroupText2": {
+        "message": "Anda akan melihat panel grup."
+    },
+    "websitesTitle": {
+        "message": "Situs Web"
+    },
+    "websitesText": {
+        "message": "Anda dapat mulai menambahkan situs web dengan menekan tombol 'Edit' di sebelah kiri baris Situs Web. Bidang ini bertanggung jawab atas situs web tempat ekstensi akan memblokir kata kunci. Di sini Anda harus memasukkan URL situs web, misalnya, 'google.com'. Anda dapat memasukkan beberapa situs web, setiap baris baru adalah situs web baru. Cukup tekan Enter. Ketika Anda siap, tekan tombol 'Simpan' hijau. Atau Anda dapat membatalkan."
+    },
+    "keywordsTitle": {
+        "message": "Kata Kunci"
+    },
+    "keywordsText1": {
+        "message": "Untuk menambahkan kata kunci baru atau melakukan perubahan apa pun, tekan 'Edit'. Kata kunci yang Anda masukkan di sini akan dipindai pada situs web yang Anda masukkan untuk grup ini."
+    },
+    "keywordFormatsIntroduction": {
+        "message": "Ada 3 format untuk kata kunci:"
+    },
+    "keywordFormat1Title": {
+        "message": "Format Pertama:"
+    },
+    "keywordFormat1Text": {
+        "message": "Cukup masukkan kata kunci. Bisa berupa kata atau frasa. Jika kata kunci mengandung koma ',', Anda harus menggunakan karakter pelarian '\\' sebelumnya. Situs web akan diblokir segera setelah kata kunci terdeteksi. Anda dapat memasukkan sebanyak mungkin kata kunci yang Anda inginkan, cukup tekan enter. Setiap baris baru adalah kata kunci baru."
+    },
+    "keywordFormat1_2": {
+        "message": "Contoh: 'video games' atau 'news'."
+    },
+    "keywordFormat2Title": {
+        "message": "Format Kedua:"
+    },
+    "keywordFormat2Text": {
+        "message": "Masukkan kata kunci, diikuti oleh nilai numerik. Setiap situs web yang Anda masukkan dalam grup harus mencapai skor 1000. Situs web dimulai dengan nilai 0, dan berdasarkan nilai numerik kata kunci, nilainya meningkat. Setelah situs web mencapai skor 1000, itu akan diblokir."
+    },
+    "keywordFormat2_2": {
+        "message": "Contoh: 'news, 50'"
+    },
+    "keywordFormat2_3": {
+        "message": "Setiap situs web yang Anda masukkan dalam grup harus mencapai skor 1000. Situs dimulai dengan nilai 0, dan berdasarkan nilai numerik kata kunci, nilainya meningkat. Setelah situs web mencapai skor 1000, itu akan diblokir."
+    },
+    "keywordFormat3Title": {
+        "message": "Format Ketiga:"
+    },
+    "keywordFormat3Text": {
+        "message": "Masukkan kata kunci, diikuti oleh tanda perkalian atau penambahan (* atau +), kemudian nilai numerik. Dalam skenario ini, skor untuk halaman dikalikan berdasarkan nilai numerik kata kunci yang ditemukan."
+    },
+    "keywordFormat3_2": {
+        "message": "Contoh: 'news, *, 10'"
+    },
+    "keywordFormat3_3": {
+        "message": "Dalam skenario ini, skor untuk halaman dikalikan berdasarkan nilai numerik kata kunci yang ditemukan."
+    },
+    "timerCountTitle": {
+        "message": "Hitungan Timer"
+    },
+    "timerCountText": {
+        "message": "Setelah halaman diblokir, Anda memiliki opsi untuk menekan tombol 'Aktifkan Timer'. Setelah itu, Anda akan memiliki waktu untuk melakukan beberapa tindakan di halaman sebelum diblokir lagi. Di bidang Hitungan Timer, Anda dapat memutuskan berapa banyak timer yang ingin Anda miliki selama hari itu."
+    },
+    "timerDurationTitle": {
+        "message": "Durasi Timer (detik)"
+    },
+    "timerDurationText": {
+        "message": "Di bidang ini, Anda memutuskan berapa detik setiap timer akan berlangsung."
+    },
+    "lockedSchedulesTitle": {
+        "message": "Jadwal Terkunci"
+    },
+    "lockedSchedulesNote": {
+        "message": "! Jadwal terkunci tidak dapat dibuka sampai waktu berlalu (kecuali Anda mencopot pemasangan ekstensi) !"
+    },
+    "lockedSchedulesText1": {
+        "message": "Anda dapat menambahkan jadwal terkunci baru dengan membuat nama jadwal di bidang Nama Jadwal dan menekan Enter atau tombol Tambah Jadwal."
+    },
+    "lockedSchedulesText2": {
+        "message": "Untuk memodifikasi pengaturan jadwal Anda, tekan 'Edit'. Dengan menekan tombol hari, Anda mengaktifkan jadwal pada hari itu (tombol berubah menjadi hijau), atau menonaktifkannya untuk hari itu. Dengan memodifikasi bidang Waktu Mulai dan Waktu Selesai, Anda menetapkan waktu jadwal dapat aktif. Setiap hari harus memiliki jendela waktu tidak aktif 1 jam sehingga Anda dapat menonaktifkan jadwal selama waktu itu. Tombol Aktif/Tidak Aktif mengalihkan jadwal. Jadwal akan terkunci dan aktif jika hari saat ini diaktifkan (hijau) dan tombol menunjukkan 'Aktif' dan juga hijau, dan jika waktu saat ini berada di antara waktu mulai dan selesai."
+    },
+    "lockedSchedulesText3": {
+        "message": "Tombol Hapus menghilangkan jadwal terkunci. Hal yang sama berlaku untuk grup dan situs web daftar putih."
+    },
+    "lockedSchedulesText4": {
+        "message": "Beberapa pembatasan berlaku selama jadwal terkunci:"
+    },
+    "lockedScheduleRestriction1": {
+        "message": "Anda tidak dapat mengubah nama grup."
+    },
+    "lockedScheduleRestriction2": {
+        "message": "Anda tidak dapat mengubah atau menghapus situs web yang ada di grup."
+    },
+    "lockedScheduleRestriction3": {
+        "message": "Anda tidak dapat mengubah atau menghapus kata kunci dan nilai mereka yang ada."
+    },
+    "lockedScheduleRestriction4": {
+        "message": "Anda hanya dapat mengatur nilai kata kunci untuk perkalian: dari 1 hingga 1000. Untuk penambahan: dari 0 hingga 1000."
+    },
+    "lockedScheduleRestriction5": {
+        "message": "Jumlah timer tidak dapat ditingkatkan."
+    },
+    "lockedScheduleRestriction6": {
+        "message": "Durasi timer tidak dapat ditingkatkan."
+    },
+    "lockedScheduleRestriction7": {
+        "message": "Jadwal aktif tidak dapat dihapus."
+    },
+    "lockedScheduleRestriction8": {
+        "message": "Anda tidak dapat membatalkan pilihan hari, membuat jadwal tidak aktif, atau mengubah waktu mulai atau waktu selesai untuk jadwal aktif."
+    },
+    "lockedScheduleRestriction9": {
+        "message": "Anda tidak dapat menambahkan situs web ke daftar putih."
+    },
+    "lockedScheduleRestriction10": {
+        "message": "Anda tidak dapat mengatur atau menghapus kata sandi ekstensi."
+    },
+    "whitelistWebsitesTitle": {
+        "message": "Daftar Putih Situs Web"
+    },
+    "whitelistWebsitesText": {
+        "message": "Memungkinkan Anda memasukkan situs web daftar putih, yang berarti pemindaian kata kunci tidak akan dilakukan di situs web ini, dan dengan demikian, mereka tidak akan diblokir. Saat ini, kami tidak memiliki kemampuan untuk menggunakan wildcard (*) untuk memasukkan banyak situs web dalam satu entri (seperti *.io, di mana semua situs web dengan '.io' akan diblokir), jadi fitur ini tidak terlalu berguna, tetapi ada."
+    },
+    "passwordManagementTitle": {
+        "message": "Manajemen Kata Sandi"
+    },
+    "passwordManagementText": {
+        "message": "Memungkinkan Anda mengatur kata sandi untuk halaman ekstensi. Siapa pun yang membuka halaman ekstensi perlu memasukkan kata sandi yang benar untuk mendapatkan akses. Berguna untuk mencegah orang lain secara tidak sengaja (atau sengaja) memperketat pengaturan."
+    },
+    "contactFeedbackTitle": {
+        "message": "Kontak dan Umpan Balik"
+    },
+    "feedbackText1": {
+        "message": "Jika Anda ingin berbagi umpan balik atau jika Anda memiliki masalah, silakan kunjungi halaman GitHub ekstensi:"
+    },
+    "githubLink": {
+        "message": "GitHub - Defense Against Distractions"
+    },
+    "feedbackText2": {
+        "message": "Di sana, navigasikan ke tab 'Issues' dan klik tombol hijau 'New Issue'. Isi judul dan deskripsi dan tekan 'Submit new issue'."
+    },
+    "thanks": {
+        "message": "Terima kasih."
+    },
+    "instructionGuideLink": {
+        "message": "Panduan Instruksi"
     }
 }

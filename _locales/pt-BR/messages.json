@@ -250,5 +250,176 @@
     },
     "passwordMismatchAlert": {
         "message": "As senhas não correspondem. Certifique-se de que ambas as senhas sejam iguais."
-    }    
+    },
+    "pageTitle": {
+        "message": "Guia de Instruções - Defesa Contra Distrações"
+    },
+    "headerTitle": {
+        "message": "Defesa Contra Distrações: Guia de Instruções"
+    },
+    "introTitle": {
+        "message": "Introdução"
+    },
+    "introText1": {
+        "message": "Olá! É tão fácil se distrair na internet e procrastinar. Esta extensão permite que você bloqueie páginas da web com base em palavras-chave que você não quer ver."
+    },
+    "introText2": {
+        "message": "Há milhares de jogos para jogar, notícias para ler, vídeos para assistir, e assim por diante. E muitas vezes, isso é o que fazemos quando os prazos dos projetos ou exames ainda estão longe. Às vezes, pode ser um pouco difícil se forçar a fazer o que você precisa."
+    },
+    "introText3": {
+        "message": "E as distrações estão em toda parte! Mesmo que você use StayFocusd, Cold Turkey ou FocusMe para bloquear alguns sites pelos seus URLs, você não pode bloquear tudo. Por exemplo, mesmo com o ChatGPT, você poderia falar sobre notícias ou jogos se realmente não quiser estudar ou trabalhar."
+    },
+    "introText4": {
+        "message": "Com esta extensão, você pode bloquear sites com base em palavras e frases em seu texto."
+    },
+    "howToUseTitle": {
+        "message": "Como Usar a Extensão"
+    },
+    "createGroupTitle": {
+        "message": "Primeiro Passo: Criar um Grupo"
+    },
+    "createGroupText1": {
+        "message": "Você pode pressionar o botão 'Adicionar Grupo' ou inserir o nome do grupo e pressionar Enter ou o botão Adicionar Grupo. Você pode criar vários grupos."
+    },
+    "createGroupText2": {
+        "message": "Você verá o painel do grupo."
+    },
+    "websitesTitle": {
+        "message": "Sites"
+    },
+    "websitesText": {
+        "message": "Você pode começar a adicionar sites pressionando o botão 'Editar' à esquerda da linha Sites. Este campo é responsável pelos sites onde a extensão bloqueará palavras-chave. Aqui você deve inserir os URLs dos sites, por exemplo, 'google.com'. Você pode inserir vários sites, cada nova linha é um novo site. Basta pressionar Enter. Quando estiver pronto, pressione o botão verde 'Salvar'. Ou você pode Cancelar."
+    },
+    "keywordsTitle": {
+        "message": "Palavras-chave"
+    },
+    "keywordsText1": {
+        "message": "Para adicionar novas palavras-chave ou fazer qualquer alteração, pressione 'Editar'. As palavras-chave que você inserir aqui serão verificadas nos sites que você inseriu para este grupo."
+    },
+    "keywordFormatsIntroduction": {
+        "message": "Há 3 formatos para as palavras-chave:"
+    },
+    "keywordFormat1Title": {
+        "message": "Primeiro Formato:"
+    },
+    "keywordFormat1Text": {
+        "message": "Basta inserir as palavras-chave. Pode ser uma palavra ou uma frase. Se a palavra-chave contiver uma vírgula ',', você deve usar um caractere de escape '\\' antes dela. O site será bloqueado assim que a palavra-chave for detectada. Você pode inserir quantas palavras-chave quiser, basta pressionar enter. Cada nova linha é uma nova palavra-chave."
+    },
+    "keywordFormat1_2": {
+        "message": "Exemplo: 'jogos' ou 'notícias'."
+    },
+    "keywordFormat2Title": {
+        "message": "Segundo Formato:"
+    },
+    "keywordFormat2Text": {
+        "message": "Insira a palavra-chave, seguida por um valor numérico. Cada site que você inseriu em um grupo deve atingir uma pontuação de 1000. O site começa com um valor de 0, e com base no valor numérico da palavra-chave, o valor aumenta. Uma vez que o site atinja uma pontuação de 1000, ele será bloqueado."
+    },
+    "keywordFormat2_2": {
+        "message": "Exemplo: 'notícias, 50'"
+    },
+    "keywordFormat2_3": {
+        "message": "Cada site que você inseriu em um grupo deve atingir uma pontuação de 1000. O site começa com um valor de 0, e com base no valor numérico da palavra-chave, o valor aumenta. Uma vez que o site atinja uma pontuação de 1000, ele será bloqueado."
+    },
+    "keywordFormat3Title": {
+        "message": "Terceiro Formato:"
+    },
+    "keywordFormat3Text": {
+        "message": "Insira a palavra-chave, seguida por um sinal de multiplicação ou adição (* ou +), e depois um valor numérico. Neste cenário, a pontuação da página é multiplicada com base no valor numérico da palavra-chave encontrada."
+    },
+    "keywordFormat3_2": {
+        "message": "Exemplo: 'notícias, *, 10'"
+    },
+    "keywordFormat3_3": {
+        "message": "Neste cenário, a pontuação da página é multiplicada com base no valor numérico da palavra-chave encontrada."
+    },
+    "timerCountTitle": {
+        "message": "Contagem do Temporizador"
+    },
+    "timerCountText": {
+        "message": "Após a página ser bloqueada, você terá a opção de pressionar o botão 'Ativar Temporizador'. Depois disso, você terá tempo para realizar algumas ações na página antes de ser bloqueada novamente. No campo Contagem do Temporizador, você pode decidir quantos temporizadores deseja ter durante o dia."
+    },
+    "timerDurationTitle": {
+        "message": "Duração do Temporizador (segundos)"
+    },
+    "timerDurationText": {
+        "message": "Neste campo, você decide quantos segundos cada temporizador terá."
+    },
+    "lockedSchedulesTitle": {
+        "message": "Horários Bloqueados"
+    },
+    "lockedSchedulesNote": {
+        "message": "! Um horário bloqueado não pode ser desbloqueado até que o tempo passe (a menos que você desinstale a extensão) !"
+    },
+    "lockedSchedulesText1": {
+        "message": "Você pode adicionar um novo horário bloqueado criando o nome do horário no campo Nome do Horário e pressionando Enter ou o botão Adicionar Horário."
+    },
+    "lockedSchedulesText2": {
+        "message": "Para modificar as configurações do seu horário, pressione 'Editar'. Ao pressionar os botões dos dias, você ou ativa o horário naquele dia (botão fica verde) ou o desativa naquele dia. Ao modificar os campos Hora de Início e Hora de Término, você define os horários em que o horário pode ser ativo. Cada dia deve ter uma janela de tempo inativa de pelo menos 1 hora para que você possa desativar o horário durante esse período. O botão Ativo/Inativo alterna o horário. O horário será bloqueado e ativo se o dia atual estiver ativado (verde) e o botão mostrar 'Ativo' e também estiver verde, e se o horário atual estiver entre os horários de início e término."
+    },
+    "lockedSchedulesText3": {
+        "message": "O botão Excluir remove o horário bloqueado. O mesmo se aplica a grupos e sites na lista de permissões."
+    },
+    "lockedSchedulesText4": {
+        "message": "Várias restrições se aplicam durante o horário bloqueado:"
+    },
+    "lockedScheduleRestriction1": {
+        "message": "Você não pode alterar os nomes dos grupos."
+    },
+    "lockedScheduleRestriction2": {
+        "message": "Você não pode alterar ou remover os sites existentes nos grupos."
+    },
+    "lockedScheduleRestriction3": {
+        "message": "Você não pode alterar ou remover as palavras-chave existentes e seus valores."
+    },
+    "lockedScheduleRestriction4": {
+        "message": "Você só pode definir valores de palavras-chave para multiplicação: de 1 a 1000. Para adição: de 0 a 1000."
+    },
+    "lockedScheduleRestriction5": {
+        "message": "A contagem do temporizador não pode ser aumentada."
+    },
+    "lockedScheduleRestriction6": {
+        "message": "Não é possível aumentar a duração do temporizador."
+    },
+    "lockedScheduleRestriction7": {
+        "message": "Não é possível excluir horários ativos."
+    },
+    "lockedScheduleRestriction8": {
+        "message": "Não é possível desmarcar dias, tornar o horário inativo ou alterar os horários de início ou término para horários ativos."
+    },
+    "lockedScheduleRestriction9": {
+        "message": "Não é possível adicionar sites à lista de permissões."
+    },
+    "lockedScheduleRestriction10": {
+        "message": "Não é possível definir ou excluir a senha da extensão."
+    },
+    "whitelistWebsitesTitle": {
+        "message": "Sites na Lista de Permissões"
+    },
+    "whitelistWebsitesText": {
+        "message": "Permite que você insira sites na lista de permissões, o que significa que a varredura de palavras-chave não será realizada nesses sites, e, portanto, eles não serão bloqueados. Atualmente, não temos a capacidade de usar um curinga (*) para incluir muitos sites em uma única entrada (como *.io, onde todos os sites com '.io' seriam bloqueados), então essa funcionalidade não é muito útil, mas existe."
+    },
+    "passwordManagementTitle": {
+        "message": "Gerenciamento de Senhas"
+    },
+    "passwordManagementText": {
+        "message": "Permite que você defina uma senha para a página da extensão. Qualquer pessoa que abrir a página da extensão precisará inserir a senha correta para acessar. Útil para evitar que outras pessoas apertem acidentalmente (ou intencionalmente) as configurações."
+    },
+    "contactFeedbackTitle": {
+        "message": "Contato e Feedback"
+    },
+    "feedbackText1": {
+        "message": "Se você quiser compartilhar algum feedback ou se tiver um problema, visite a página do GitHub da extensão:"
+    },
+    "githubLink": {
+        "message": "GitHub - Defesa Contra Distrações"
+    },
+    "feedbackText2": {
+        "message": "Lá, navegue até a aba 'Problemas' e clique no botão verde 'Nova Questão'. Preencha o título e a descrição e pressione 'Enviar nova questão'."
+    },
+    "thanks": {
+        "message": "Obrigado."
+    },
+    "instructionGuideLink": {
+        "message": "Guia de Instruções"
+    }
 }

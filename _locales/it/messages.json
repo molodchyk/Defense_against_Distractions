@@ -250,5 +250,176 @@
     },
     "passwordMismatchAlert": {
         "message": "Le password non corrispondono. Assicurati che entrambe le password siano uguali."
-    }    
+    },
+    "pageTitle": {
+        "message": "Guida alle Istruzioni - Difesa dalle Distrazioni"
+    },
+    "headerTitle": {
+        "message": "Difesa dalle Distrazioni: Guida alle Istruzioni"
+    },
+    "introTitle": {
+        "message": "Introduzione"
+    },
+    "introText1": {
+        "message": "Ciao! È così facile distrarsi su internet e procrastinare. Questa estensione ti permette di bloccare le pagine web in base a parole chiave che non vuoi vedere."
+    },
+    "introText2": {
+        "message": "Ci sono migliaia di videogiochi da giocare, notizie da leggere, video da guardare, e così via. E spesso, è ciò che facciamo quando le scadenze dei progetti o gli esami sono ancora lontani. A volte, può essere un po' difficile costringersi a fare ciò che si deve fare."
+    },
+    "introText3": {
+        "message": "E le distrazioni sono ovunque! Anche se usi StayFocusd, Cold Turkey o FocusMe per bloccare alcuni siti web tramite i loro URL, non puoi bloccare tutto. Ad esempio, anche con ChatGPT, potresti parlare di notizie o videogiochi se davvero non hai voglia di studiare o lavorare."
+    },
+    "introText4": {
+        "message": "Con questa estensione, puoi bloccare siti web in base a parole e frasi nel loro testo."
+    },
+    "howToUseTitle": {
+        "message": "Come Utilizzare l'Estensione"
+    },
+    "createGroupTitle": {
+        "message": "Primo Passo: Crea un Gruppo"
+    },
+    "createGroupText1": {
+        "message": "Puoi premere il pulsante 'Aggiungi Gruppo' o inserire il nome del gruppo e premere Invio o il pulsante Aggiungi Gruppo. Puoi creare più gruppi."
+    },
+    "createGroupText2": {
+        "message": "Vedrai il pannello del gruppo."
+    },
+    "websitesTitle": {
+        "message": "Siti Web"
+    },
+    "websitesText": {
+        "message": "Puoi iniziare ad aggiungere siti web premendo il pulsante 'Modifica' a sinistra della linea Siti Web. Questo campo è responsabile dei siti web su cui l'estensione bloccherà le parole chiave. Qui devi inserire gli URL dei siti web, ad esempio, 'google.com'. Puoi inserire più siti web, ogni nuova riga è un nuovo sito web. Basta premere Invio. Quando sei pronto, premi il pulsante verde 'Salva'. Oppure puoi Annullare."
+    },
+    "keywordsTitle": {
+        "message": "Parole Chiave"
+    },
+    "keywordsText1": {
+        "message": "Per aggiungere nuove parole chiave o apportare modifiche, premi 'Modifica'. Le parole chiave che inserisci qui verranno scansionate sui siti web che hai inserito per questo gruppo."
+    },
+    "keywordFormatsIntroduction": {
+        "message": "Ci sono 3 formati per le parole chiave:"
+    },
+    "keywordFormat1Title": {
+        "message": "Primo Formato:"
+    },
+    "keywordFormat1Text": {
+        "message": "Inserisci semplicemente le parole chiave. Può essere una parola o una frase. Se la parola chiave contiene una virgola ',', devi usare un carattere di escape '\\' prima di essa. Il sito web verrà bloccato non appena viene rilevata la parola chiave. Puoi inserire quante parole chiave vuoi, basta premere invio. Ogni nuova riga è una nuova parola chiave."
+    },
+    "keywordFormat1_2": {
+        "message": "Esempio: 'videogiochi' o 'notizie'."
+    },
+    "keywordFormat2Title": {
+        "message": "Secondo Formato:"
+    },
+    "keywordFormat2Text": {
+        "message": "Inserisci la parola chiave, seguita da un valore numerico. Ogni sito web che hai inserito in un gruppo deve raggiungere un punteggio di 1000. Il sito inizia con un valore di 0, e in base al valore numerico della parola chiave, il valore aumenta. Una volta che il sito raggiunge un punteggio di 1000, verrà bloccato."
+    },
+    "keywordFormat2_2": {
+        "message": "Esempio: 'notizie, 50'"
+    },
+    "keywordFormat2_3": {
+        "message": "Ogni sito web inserito in un gruppo deve raggiungere un punteggio di 1000. Il sito inizia con un valore di 0, e in base al valore numerico della parola chiave, il valore aumenta. Una volta che il sito raggiunge un punteggio di 1000, verrà bloccato."
+    },
+    "keywordFormat3Title": {
+        "message": "Terzo Formato:"
+    },
+    "keywordFormat3Text": {
+        "message": "Inserisci la parola chiave, seguita da un segno di moltiplicazione o addizione (* o +), quindi un valore numerico. In questo scenario, il punteggio della pagina viene moltiplicato in base al valore numerico della parola chiave trovata."
+    },
+    "keywordFormat3_2": {
+        "message": "Esempio: 'notizie, *, 10'"
+    },
+    "keywordFormat3_3": {
+        "message": "In questo scenario, il punteggio della pagina viene moltiplicato in base al valore numerico della parola chiave trovata."
+    },
+    "timerCountTitle": {
+        "message": "Conteggio Timer"
+    },
+    "timerCountText": {
+        "message": "Dopo che la pagina è stata bloccata, avrai l'opzione di premere il pulsante 'Attiva Timer'. Dopo di che, avrai del tempo per eseguire alcune azioni sulla pagina prima che venga nuovamente bloccata. Nel campo Conteggio Timer, puoi decidere quanti timer vuoi avere durante il giorno."
+    },
+    "timerDurationTitle": {
+        "message": "Durata del Timer (secondi)"
+    },
+    "timerDurationText": {
+        "message": "In questo campo, decidi quanti secondi avrà ogni timer."
+    },
+    "lockedSchedulesTitle": {
+        "message": "Programmi Bloccati"
+    },
+    "lockedSchedulesNote": {
+        "message": "! Un programma bloccato non può essere sbloccato fino a quando non passa il tempo (a meno che non disinstalli l'estensione) !"
+    },
+    "lockedSchedulesText1": {
+        "message": "Puoi aggiungere un nuovo programma bloccato creando il nome del programma nel campo Nome del Programma e premendo Invio o il pulsante Aggiungi Programma."
+    },
+    "lockedSchedulesText2": {
+        "message": "Per modificare le impostazioni del tuo programma, premi 'Modifica'. Premendo i pulsanti dei giorni, attivi il programma in quel giorno (il pulsante diventa verde) o lo disattivi per quel giorno. Modificando i campi Ora di Inizio e Ora di Fine, imposti gli orari in cui il programma può essere attivo. Ogni giorno deve avere una finestra di tempo di un'ora non attiva per poter disattivare il programma durante quel tempo. Il pulsante Attivo/Inattivo attiva il programma. Il programma sarà bloccato e attivo se il giorno corrente è abilitato (verde) e il pulsante mostra 'Attivo' ed è anche verde, e se l'ora corrente è tra l'ora di inizio e l'ora di fine."
+    },
+    "lockedSchedulesText3": {
+        "message": "Il pulsante Elimina rimuove il programma bloccato. Lo stesso vale per i gruppi e i siti web nella lista bianca."
+    },
+    "lockedSchedulesText4": {
+        "message": "Diverse restrizioni si applicano durante il programma bloccato:"
+    },
+    "lockedScheduleRestriction1": {
+        "message": "Non è possibile modificare i nomi dei gruppi."
+    },
+    "lockedScheduleRestriction2": {
+        "message": "Non è possibile modificare o rimuovere i siti web esistenti nei gruppi."
+    },
+    "lockedScheduleRestriction3": {
+        "message": "Non è possibile modificare o rimuovere le parole chiave esistenti e i loro valori."
+    },
+    "lockedScheduleRestriction4": {
+        "message": "È possibile impostare i valori delle parole chiave solo per la moltiplicazione: da 1 a 1000. Per l'aggiunta: da 0 a 1000."
+    },
+    "lockedScheduleRestriction5": {
+        "message": "Non è possibile aumentare il conteggio dei timer."
+    },
+    "lockedScheduleRestriction6": {
+        "message": "Non è possibile aumentare la durata del timer."
+    },
+    "lockedScheduleRestriction7": {
+        "message": "I programmi attivi non possono essere eliminati."
+    },
+    "lockedScheduleRestriction8": {
+        "message": "Non è possibile deselezionare i giorni, rendere inattivo il programma o modificare gli orari di inizio e fine dei programmi attivi."
+    },
+    "lockedScheduleRestriction9": {
+        "message": "Non è possibile aggiungere siti web alla lista bianca."
+    },
+    "lockedScheduleRestriction10": {
+        "message": "Non è possibile impostare o eliminare la password per l'estensione."
+    },
+    "whitelistWebsitesTitle": {
+        "message": "Siti Web nella Lista Bianca"
+    },
+    "whitelistWebsitesText": {
+        "message": "Consente di inserire siti web nella lista bianca, il che significa che la scansione delle parole chiave non verrà eseguita su questi siti web e quindi non verranno bloccati. Attualmente, non abbiamo la capacità di utilizzare un carattere jolly (*) per includere molti siti web in una sola voce (come *.io, dove tutti i siti web con '.io' verrebbero bloccati), quindi questa funzionalità non è molto utile, ma esiste."
+    },
+    "passwordManagementTitle": {
+        "message": "Gestione delle Password"
+    },
+    "passwordManagementText": {
+        "message": "Consente di impostare una password per la pagina dell'estensione. Chiunque apra la pagina dell'estensione dovrà inserire la password corretta per accedere. Utile per impedire agli altri di stringere accidentalmente (o intenzionalmente) le impostazioni."
+    },
+    "contactFeedbackTitle": {
+        "message": "Contatti e Feedback"
+    },
+    "feedbackText1": {
+        "message": "Se desideri condividere un feedback o se hai un problema, visita la pagina GitHub dell'estensione:"
+    },
+    "githubLink": {
+        "message": "GitHub - Difesa Contro le Distrazioni"
+    },
+    "feedbackText2": {
+        "message": "Lì, vai alla scheda 'Problemi' e fai clic sul pulsante verde 'Nuovo Problema'. Compila il titolo e la descrizione e premi 'Invia nuovo problema'."
+    },
+    "thanks": {
+        "message": "Grazie."
+    },
+    "instructionGuideLink": {
+        "message": "Guida alle Istruzioni"
+    }
 }

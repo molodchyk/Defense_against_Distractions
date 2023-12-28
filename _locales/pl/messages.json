@@ -250,5 +250,176 @@
     },
     "passwordMismatchAlert": {
         "message": "Hasła nie pasują do siebie. Upewnij się, że oba hasła są identyczne."
+    },
+    "pageTitle": {
+        "message": "Instrukcja Obsługi - Obrona Przed Rozpraszaniem"
+    },
+    "headerTitle": {
+        "message": "Obrona Przed Rozpraszaniem: Instrukcja Obsługi"
+    },
+    "introTitle": {
+        "message": "Wprowadzenie"
+    },
+    "introText1": {
+        "message": "Cześć! Tak łatwo jest dać się rozproszyć w internecie i odkładać rzeczy na później. To rozszerzenie pozwala na blokowanie stron internetowych na podstawie słów kluczowych, których nie chcesz widzieć."
+    },
+    "introText2": {
+        "message": "Jest tysiące gier wideo do zagrania, historii do przeczytania, filmów do obejrzenia i tak dalej. I często to właśnie robimy, kiedy terminy projektów lub egzaminy są jeszcze daleko. Czasami może być trudno zmusić się do zrobienia tego, co trzeba."
+    },
+    "introText3": {
+        "message": "A rozpraszacze są wszędzie! Nawet jeśli używasz StayFocusd, Cold Turkey lub FocusMe, aby blokować niektóre strony internetowe za pomocą ich adresów URL, nie możesz zablokować wszystkiego. Na przykład, nawet z ChatGPT, możesz rozmawiać o wiadomościach czy grach wideo, jeśli naprawdę nie masz ochoty uczyć się lub pracować."
+    },
+    "introText4": {
+        "message": "Z tym rozszerzeniem możesz blokować strony internetowe na podstawie słów i fraz w ich tekście."
+    },
+    "howToUseTitle": {
+        "message": "Jak korzystać z rozszerzenia"
+    },
+    "createGroupTitle": {
+        "message": "Pierwszy krok: Utwórz Grupę"
+    },
+    "createGroupText1": {
+        "message": "Możesz nacisnąć przycisk 'Dodaj Grupę' lub wpisać nazwę grupy i nacisnąć Enter lub przycisk Dodaj Grupę. Możesz utworzyć wiele grup."
+    },
+    "createGroupText2": {
+        "message": "Zobaczysz panel grupy."
+    },
+    "websitesTitle": {
+        "message": "Strony internetowe"
+    },
+    "websitesText": {
+        "message": "Możesz zacząć dodawać strony internetowe, naciskając przycisk 'Edytuj' po lewej stronie linii Stron internetowych. To pole jest odpowiedzialne za strony internetowe, na których rozszerzenie będzie blokować słowa kluczowe. Tutaj musisz wprowadzić adresy URL stron, na przykład 'google.com'. Możesz wprowadzić wiele stron, każda nowa linia to nowa strona. Wystarczy nacisnąć Enter. Gdy będziesz gotowy, naciśnij zielony przycisk 'Zapisz'. Lub możesz Anulować."
+    },
+    "keywordsTitle": {
+        "message": "Słowa kluczowe"
+    },
+    "keywordsText1": {
+        "message": "Aby dodać nowe słowa kluczowe lub dokonać jakichkolwiek zmian, naciśnij 'Edytuj'. Słowa kluczowe, które tutaj wprowadzisz, będą skanowane na stronach, które wprowadziłeś dla tej grupy."
+    },
+    "keywordFormatsIntroduction": {
+        "message": "Istnieją 3 formaty dla słów kluczowych:"
+    },
+    "keywordFormat1Title": {
+        "message": "Pierwszy Format:"
+    },
+    "keywordFormat1Text": {
+        "message": "Wprowadź po prostu słowa kluczowe. Może to być słowo lub fraza. Jeśli słowo kluczowe zawiera przecinek ',', musisz użyć znaku ucieczki '\\' przed nim. Strona zostanie zablokowana, jak tylko zostanie wykryte słowo kluczowe. Możesz wprowadzić tyle słów kluczowych, ile chcesz, wystarczy nacisnąć enter. Każda nowa linia to nowe słowo kluczowe."
+    },
+    "keywordFormat1_2": {
+        "message": "Przykład: 'gry wideo' lub 'wiadomości'."
+    },
+    "keywordFormat2Title": {
+        "message": "Drugi Format:"
+    },
+    "keywordFormat2Text": {
+        "message": "Wprowadź słowo kluczowe, a następnie wartość liczbową. Każda strona, którą wprowadziłeś w grupie, musi osiągnąć wynik 1000. Strona zaczyna z wartością 0, a na podstawie wartości liczbowej słowa kluczowego wartość rośnie. Gdy strona osiągnie wynik 1000, zostanie zablokowana."
+    },
+    "keywordFormat2_2": {
+        "message": "Przykład: 'wiadomości, 50'"
+    },
+    "keywordFormat2_3": {
+        "message": "Każda strona, którą wprowadziłeś w grupie, musi osiągnąć wynik 1000. Strona zaczyna z wartością 0, a na podstawie wartości liczbowej słowa kluczowego wartość rośnie. Gdy strona osiągnie wynik 1000, zostanie zablokowana."
+    },
+    "keywordFormat3Title": {
+        "message": "Trzeci Format:"
+    },
+    "keywordFormat3Text": {
+        "message": "Wprowadź słowo kluczowe, a następnie znak mnożenia lub dodawania (* lub +), a potem wartość liczbową. W tym scenariuszu wynik dla strony jest mnożony na podstawie wartości liczbowej znalezionego słowa kluczowego."
+    },
+    "keywordFormat3_2": {
+        "message": "Przykład: 'wiadomości, *, 10'"
+    },
+    "keywordFormat3_3": {
+        "message": "W tym scenariuszu wynik dla strony jest mnożony na podstawie wartości liczbowej znalezionego słowa kluczowego."
+    },
+    "timerCountTitle": {
+        "message": "Liczba Minutników"
+    },
+    "timerCountText": {
+        "message": "Po zablokowaniu strony będziesz miał możliwość naciśnięcia przycisku 'Aktywuj Minutnik'. Po tym będziesz miał czas na wykonanie niektórych czynności na stronie, zanim zostanie ona ponownie zablokowana. W polu Liczba Minutników możesz zdecydować, ile minutników chcesz mieć w ciągu dnia."
+    },
+    "timerDurationTitle": {
+        "message": "Czas Trwania Minutnika (sekundy)"
+    },
+    "timerDurationText": {
+        "message": "W tym polu decydujesz, ile sekund będzie trwał każdy minutnik."
+    },
+    "lockedSchedulesTitle": {
+        "message": "Zablokowane Harmonogramy"
+    },
+    "lockedSchedulesNote": {
+        "message": "! Zablokowany harmonogram nie może zostać odblokowany, dopóki czas nie upłynie (chyba że odinstalujesz rozszerzenie) !"
+    },
+    "lockedSchedulesText1": {
+        "message": "Możesz dodać nowy zablokowany harmonogram, tworząc nazwę harmonogramu w polu Nazwa Harmonogramu i naciskając Enter lub przycisk Dodaj Harmonogram."
+    },
+    "lockedSchedulesText2": {
+        "message": "Aby zmodyfikować ustawienia swojego harmonogramu, naciśnij 'Edytuj'. Naciskając przyciski dni, możesz aktywować harmonogram na ten dzień (przycisk staje się zielony) lub dezaktywować go na ten dzień. Zmieniając pola Czas Rozpoczęcia i Czas Zakończenia, ustawiasz czas, w którym harmonogram może być aktywny. Każdy dzień musi mieć 1-godzinne okno czasowe nieaktywne, abyś mógł dezaktywować harmonogram w tym czasie. Przycisk Aktywny/Nieaktywny przełącza harmonogram. Harmonogram będzie zablokowany i aktywny, jeśli obecny dzień jest włączony (zielony), przycisk pokazuje 'Aktywny' i jest również zielony, a obecny czas znajduje się między czasem rozpoczęcia a zakończenia."
+    },
+    "lockedSchedulesText3": {
+        "message": "Przycisk Usuń usuwa zablokowany harmonogram. To samo dotyczy grup i stron na białej liście."
+    },
+    "lockedSchedulesText4": {
+        "message": "Podczas zablokowanego harmonogramu obowiązują różne ograniczenia:"
+    },
+    "lockedScheduleRestriction1": {
+        "message": "Nie można zmieniać nazw grup."
+    },
+    "lockedScheduleRestriction2": {
+        "message": "Nie można zmieniać lub usuwać istniejących stron internetowych w grupach."
+    },
+    "lockedScheduleRestriction3": {
+        "message": "Nie można zmieniać lub usuwać istniejących słów kluczowych i ich wartości."
+    },
+    "lockedScheduleRestriction4": {
+        "message": "Można tylko ustawić wartości słów kluczowych dla mnożenia: od 1 do 1000. Dla dodawania: od 0 do 1000."
+    },
+    "lockedScheduleRestriction5": {
+        "message": "Nie można zwiększyć liczby minutników."
+    },
+    "lockedScheduleRestriction6": {
+        "message": "Nie można zwiększyć czasu trwania minutnika."
+    },
+    "lockedScheduleRestriction7": {
+        "message": "Nie można usunąć aktywnego harmonogramu."
+    },
+    "lockedScheduleRestriction8": {
+        "message": "Nie można odznaczać dni, wyłączać harmonogramu, ani zmieniać czasu rozpoczęcia lub zakończenia dla aktywnych harmonogramów."
+    },
+    "lockedScheduleRestriction9": {
+        "message": "Nie można dodawać stron do białej listy."
+    },
+    "lockedScheduleRestriction10": {
+        "message": "Nie można ustawić ani usunąć hasła do rozszerzenia."
+    },
+    "whitelistWebsitesTitle": {
+        "message": "Biała Lista Stron"
+    },
+    "whitelistWebsitesText": {
+        "message": "Pozwala na wprowadzenie stron do białej listy, co oznacza, że skanowanie słów kluczowych nie będzie na nich przeprowadzane, a zatem nie zostaną zablokowane. Obecnie nie mamy możliwości użycia symbolu wieloznacznego (*) do uwzględnienia wielu stron w jednym wpisie (takim jak *.io, gdzie wszystkie strony z '.io' zostałyby zablokowane), więc ta funkcja nie jest bardzo użyteczna, ale istnieje."
+    },
+    "passwordManagementTitle": {
+        "message": "Zarządzanie hasłami"
+    },
+    "passwordManagementText": {
+        "message": "Pozwala ustawić hasło dla strony rozszerzenia. Każdy, kto otworzy stronę rozszerzenia, będzie musiał wpisać poprawne hasło, aby uzyskać dostęp. Przydatne, aby uniemożliwić innym przypadkowe (lub celowe) zaostrzenie ustawień."
+    },
+    "contactFeedbackTitle": {
+        "message": "Kontakt i Opinie"
+    },
+    "feedbackText1": {
+        "message": "Jeśli chcesz podzielić się opinią lub masz problem, odwiedź stronę rozszerzenia na GitHubie:"
+    },
+    "githubLink": {
+        "message": "GitHub - Obrona przed Rozpraszaniem"
+    },
+    "feedbackText2": {
+        "message": "Tam przejdź do zakładki 'Issues' i kliknij zielony przycisk 'New Issue'. Wpisz tytuł i opis, a następnie naciśnij 'Submit new issue'."
+    },
+    "thanks": {
+        "message": "Dzięki."
+    },
+    "instructionGuideLink": {
+        "message": "Przewodnik Instruktażowy"
     }
 }

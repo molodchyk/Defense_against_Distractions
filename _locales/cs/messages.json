@@ -250,5 +250,176 @@
     },
     "passwordMismatchAlert": {
         "message": "Hesla se neshodují. Ujistěte se, že obě hesla jsou stejná."
-    }    
+    },
+    "pageTitle": {
+        "message": "Návod k použití - Obrana proti rozptylování"
+    },
+    "headerTitle": {
+        "message": "Obrana proti rozptylování: Návod k použití"
+    },
+    "introTitle": {
+        "message": "Úvod"
+    },
+    "introText1": {
+        "message": "Ahoj! Je tak snadné nechat se rozptýlit na internetu a odkládat práci. Toto rozšíření vám umožní blokovat webové stránky na základě klíčových slov, která nechcete vidět."
+    },
+    "introText2": {
+        "message": "Je tu tisíce videoher k hraní, zpravodajských příběhů ke čtení, videí ke sledování a tak dále. A často to děláme, když jsou termíny projektů nebo zkoušek ještě daleko. Někdy může být trochu těžké donutit se udělat to, co potřebujete."
+    },
+    "introText3": {
+        "message": "A rozptylování je všude! I když používáte StayFocusd nebo Cold Turkey nebo FocusMe k blokování některých webových stránek podle jejich URL, nemůžete zablokovat vše. Například i s ChatGPT můžete mluvit o zprávách nebo videohrách, pokud se vám opravdu nechce studovat nebo pracovat."
+    },
+    "introText4": {
+        "message": "S tímto rozšířením můžete blokovat webové stránky na základě slov a frází v jejich textu."
+    },
+    "howToUseTitle": {
+        "message": "Jak používat rozšíření"
+    },
+    "createGroupTitle": {
+        "message": "První krok: Vytvoření skupiny"
+    },
+    "createGroupText1": {
+        "message": "Můžete stisknout tlačítko 'Přidat skupinu' nebo zadat název skupiny a stisknout Enter nebo tlačítko Přidat skupinu. Můžete vytvořit více skupin."
+    },
+    "createGroupText2": {
+        "message": "Uvidíte panel skupiny."
+    },
+    "websitesTitle": {
+        "message": "Webové stránky"
+    },
+    "websitesText": {
+        "message": "Přidávání webových stránek můžete začít stisknutím tlačítka 'Upravit' vlevo od řádku Webové stránky. Toto pole je určeno pro webové stránky, kde rozšíření bude blokovat klíčová slova. Zde musíte zadat URL webových stránek, například 'google.com'. Můžete zadat více webových stránek, každý nový řádek je nová webová stránka. Stačí stisknout Enter. Až budete připraveni, stiskněte zelené tlačítko 'Uložit'. Nebo můžete zrušit."
+    },
+    "keywordsTitle": {
+        "message": "Klíčová slova"
+    },
+    "keywordsText1": {
+        "message": "Pro přidání nových klíčových slov nebo provedení jakýchkoli změn stiskněte 'Upravit'. Klíčová slova, která zde zadáte, budou skenována na webových stránkách, které jste zadali pro tuto skupinu."
+    },
+    "keywordFormatsIntroduction": {
+        "message": "Existují 3 formáty pro klíčová slova:"
+    },
+    "keywordFormat1Title": {
+        "message": "První formát:"
+    },
+    "keywordFormat1Text": {
+        "message": "Jednoduše zadejte klíčová slova. Může to být slovo nebo fráze. Pokud klíčové slovo obsahuje čárku ',', musíte před ní použít escape znak '\\'. Webová stránka bude zablokována, jakmile bude klíčové slovo detekováno. Můžete zadat tolik klíčových slov, kolik chcete, stačí stisknout enter. Každý nový řádek je nové klíčové slovo."
+    },
+    "keywordFormat1_2": {
+        "message": "Příklad: 'videohry' nebo 'zprávy'."
+    },
+    "keywordFormat2Title": {
+        "message": "Druhý formát:"
+    },
+    "keywordFormat2Text": {
+        "message": "Zadejte klíčové slovo, následované číselnou hodnotou. Každý web, který jste zadali do skupiny, musí dosáhnout skóre 1000. Web začíná s hodnotou 0 a na základě číselné hodnoty klíčového slova se hodnota zvyšuje. Jakmile web dosáhne skóre 1000, bude zablokován."
+    },
+    "keywordFormat2_2": {
+        "message": "Příklad: 'novinky, 50'"
+    },
+    "keywordFormat2_3": {
+        "message": "Každý web, který jste zadali do skupiny, musí dosáhnout skóre 1000. Stránka začíná s hodnotou 0 a na základě číselné hodnoty klíčového slova se hodnota zvyšuje. Jakmile web dosáhne skóre 1000, bude zablokován."
+    },
+    "keywordFormat3Title": {
+        "message": "Třetí formát:"
+    },
+    "keywordFormat3Text": {
+        "message": "Zadejte klíčové slovo, následované znaménkem násobení nebo sčítání (* nebo +), a pak číselnou hodnotu. V tomto scénáři se skóre stránky násobí na základě číselné hodnoty nalezeného klíčového slova."
+    },
+    "keywordFormat3_2": {
+        "message": "Příklad: 'novinky, *, 10'"
+    },
+    "keywordFormat3_3": {
+        "message": "V tomto scénáři se skóre stránky násobí na základě číselné hodnoty nalezeného klíčového slova."
+    },
+    "timerCountTitle": {
+        "message": "Počet časovačů"
+    },
+    "timerCountText": {
+        "message": "Po zablokování stránky budete mít možnost stisknout tlačítko 'Aktivovat časovač'. Poté budete mít čas provést některé akce na stránce před jejím opětovným zablokováním. V poli Počet časovačů můžete rozhodnout, kolik časovačů chcete mít během dne."
+    },
+    "timerDurationTitle": {
+        "message": "Délka časovače (v sekundách)"
+    },
+    "timerDurationText": {
+        "message": "V tomto poli rozhodnete, kolik sekund bude mít každý časovač."
+    },
+    "lockedSchedulesTitle": {
+        "message": "Zamčené rozvrhy"
+    },
+    "lockedSchedulesNote": {
+        "message": "! Zamčený rozvrh nelze odemknout, dokud nepřejde čas (pokud neodinstalujete rozšíření) !"
+    },
+    "lockedSchedulesText1": {
+        "message": "Nový zamčený rozvrh můžete přidat vytvořením názvu rozvrhu v poli Název rozvrhu a stisknutím Enter nebo tlačítka Přidat rozvrh."
+    },
+    "lockedSchedulesText2": {
+        "message": "Pro úpravu nastavení rozvrhu stiskněte 'Upravit'. Stisknutím tlačítek dnů buď rozvrh pro tento den povolíte (tlačítko zezelená), nebo jej pro tento den zakážete. Úpravou polí Čas začátku a Čas konce nastavíte doby, kdy může být rozvrh aktivní. Každý den musí mít alespoň jednu hodinu neaktivního času, aby bylo možné rozvrh v tuto dobu deaktivovat. Tlačítko Aktivní/Neaktivní přepíná rozvrh. Rozvrh bude zamčený a aktivní, pokud je aktuální den povolen (zelený) a tlačítko ukazuje 'Aktivní' a je také zelené, a pokud je aktuální čas mezi časem začátku a konce."
+    },
+    "lockedSchedulesText3": {
+        "message": "Tlačítko Smazat odstraní zamčený rozvrh. Totéž platí pro skupiny a webové stránky na seznamu povolených."
+    },
+    "lockedSchedulesText4": {
+        "message": "Během zamčeného rozvrhu platí několik omezení:"
+    },
+    "lockedScheduleRestriction1": {
+        "message": "Nelze změnit názvy skupin."
+    },
+    "lockedScheduleRestriction2": {
+        "message": "Nelze změnit nebo odstranit existující webové stránky ve skupinách."
+    },
+    "lockedScheduleRestriction3": {
+        "message": "Nelze změnit nebo odstranit existující klíčová slova a jejich hodnoty."
+    },
+    "lockedScheduleRestriction4": {
+        "message": "Můžete nastavit hodnoty klíčových slov pouze pro násobení: od 1 do 1000. Pro sčítání: od 0 do 1000."
+    },
+    "lockedScheduleRestriction5": {
+        "message": "Nelze zvýšit počet časovačů."
+    },
+    "lockedScheduleRestriction6": {
+        "message": "Nelze zvýšit dobu trvání časovače."
+    },
+    "lockedScheduleRestriction7": {
+        "message": "Aktivní rozvrhy nelze smazat."
+    },
+    "lockedScheduleRestriction8": {
+        "message": "Nelze odznačit dny, deaktivovat rozvrh nebo změnit časy začátku a konce pro aktivní rozvrhy."
+    },
+    "lockedScheduleRestriction9": {
+        "message": "Nelze přidávat webové stránky na seznam povolených."
+    },
+    "lockedScheduleRestriction10": {
+        "message": "Nelze nastavit nebo smazat heslo pro rozšíření."
+    },
+    "whitelistWebsitesTitle": {
+        "message": "Seznam povolených webových stránek"
+    },
+    "whitelistWebsitesText": {
+        "message": "Umožňuje vám zadávat povolené webové stránky, což znamená, že na těchto webových stránkách nebude prováděno skenování klíčových slov a tedy nebudou blokovány. V současné době nemáme možnost použít zástupný znak (*) k zahrnutí mnoha webových stránek v jednom záznamu (jako *.io, kde by byly blokovány všechny webové stránky s '.io'), takže tato funkce není příliš užitečná, ale existuje."
+    },
+    "passwordManagementTitle": {
+        "message": "Správa hesel"
+    },
+    "passwordManagementText": {
+        "message": "Umožňuje vám nastavit heslo pro stránku rozšíření. Každý, kdo otevře stránku rozšíření, bude muset zadat správné heslo pro získání přístupu. Užitečné pro zabránění ostatním v náhodném (nebo úmyslném) zpřísnění nastavení."
+    },
+    "contactFeedbackTitle": {
+        "message": "Kontakt a zpětná vazba"
+    },
+    "feedbackText1": {
+        "message": "Pokud chcete sdílet jakoukoli zpětnou vazbu nebo máte problém, navštivte prosím stránku GitHub rozšíření:"
+    },
+    "githubLink": {
+        "message": "GitHub - Obrana proti rozptylování"
+    },
+    "feedbackText2": {
+        "message": "Tam přejděte na kartu 'Problémy' a klikněte na zelené tlačítko 'Nový problém'. Vyplňte název a popis a stiskněte 'Odeslat nový problém'."
+    },
+    "thanks": {
+        "message": "Děkujeme."
+    },
+    "instructionGuideLink": {
+        "message": "Instruktážní příručka"
+    }
 }

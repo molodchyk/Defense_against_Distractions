@@ -250,5 +250,176 @@
     },
     "passwordMismatchAlert": {
         "message": "Lozinke se ne poklapaju. Molimo vas da se uverite da su obe lozinke iste."
-    }    
+    },
+    "pageTitle": {
+        "message": "Uputstvo za Korišćenje - Odbrana od Ometanja"
+    },
+    "headerTitle": {
+        "message": "Odbrana od Ometanja: Uputstvo za Korišćenje"
+    },
+    "introTitle": {
+        "message": "Uvod"
+    },
+    "introText1": {
+        "message": "Zdravo! Tako je lako da se omete na internetu i odlaže obaveze. Ova ekstenzija omogućava blokiranje web stranica na osnovu ključnih reči koje ne želite videti."
+    },
+    "introText2": {
+        "message": "Postoje hiljade video igara za igranje, vesti za čitanje, video sadržaji za gledanje i slično. Često, to je ono što radimo kada su rokovi za projekte ili ispiti još uvek daleko. Ponekad, može biti teško naterati sebe da radite ono što trebate."
+    },
+    "introText3": {
+        "message": "Ometanja su svuda! Čak i ako koristite StayFocusd, Cold Turkey ili FocusMe da blokirate neke sajtove po URL-u, ne možete blokirati sve. Na primer, čak i sa ChatGPT, možete pričati o vestima ili video igrama ako stvarno ne želite učiti ili raditi."
+    },
+    "introText4": {
+        "message": "Sa ovom ekstenzijom, možete blokirati web stranice na osnovu reči i fraza u njihovom tekstu."
+    },
+    "howToUseTitle": {
+        "message": "Kako Koristiti Ekstenziju"
+    },
+    "createGroupTitle": {
+        "message": "Prvi korak: Kreiranje Grupe"
+    },
+    "createGroupText1": {
+        "message": "Možete pritisnuti dugme 'Dodaj Grupu' ili uneti naziv grupe i pritisnuti Enter ili dugme Dodaj Grupu. Možete kreirati više grupa."
+    },
+    "createGroupText2": {
+        "message": "Videćete panel grupe."
+    },
+    "websitesTitle": {
+        "message": "Sajtovi"
+    },
+    "websitesText": {
+        "message": "Možete početi sa dodavanjem sajtova pritiskom na dugme 'Uredi' levo od linije Sajtovi. Ovo polje je zaduženo za sajtove na kojima će ekstenzija blokirati ključne reči. Ovde trebate uneti URL-ove sajtova, na primer, 'google.com'. Možete uneti više sajtova, svaki novi red je novi sajt. Samo pritisnite Enter. Kada ste spremni, pritisnite zeleno dugme 'Sačuvaj'. Ili možete otkazati."
+    },
+    "keywordsTitle": {
+        "message": "Ključne Reči"
+    },
+    "keywordsText1": {
+        "message": "Da dodate nove ključne reči ili napravite promene, pritisnite 'Uredi'. Ključne reči koje ovde unesete će biti skenirane na sajtovima koje ste uneli za ovu grupu."
+    },
+    "keywordFormatsIntroduction": {
+        "message": "Postoje 3 formata za ključne reči:"
+    },
+    "keywordFormat1Title": {
+        "message": "Prvi Format:"
+    },
+    "keywordFormat1Text": {
+        "message": "Samo unesite ključne reči. To može biti reč ili fraza. Ako ključna reč sadrži zarez ',', morate koristiti escape karakter '\\' pre nje. Sajt će biti blokiran čim se detektuje ključna reč. Možete uneti koliko god ključnih reči želite, samo pritisnite enter. Svaki novi red je nova ključna reč."
+    },
+    "keywordFormat1_2": {
+        "message": "Primer: 'video igre' ili 'vesti'."
+    },
+    "keywordFormat2Title": {
+        "message": "Drugi Format:"
+    },
+    "keywordFormat2Text": {
+        "message": "Unesite ključnu reč, a zatim numeričku vrednost. Svaki sajt koji ste uneli u grupu mora dostići skor od 1000. Sajt počinje sa vrednošću 0, i na osnovu numeričke vrednosti ključne reči, vrednost se povećava. Kada sajt dostigne skor od 1000, biće blokiran."
+    },
+    "keywordFormat2_2": {
+        "message": "Primer: 'vesti, 50'"
+    },
+    "keywordFormat2_3": {
+        "message": "Svaki sajt koji ste uneli u grupu mora dostići skor od 1000. Sajt počinje sa vrednošću 0, i na osnovu numeričke vrednosti ključne reči, vrednost se povećava. Kada sajt dostigne skor od 1000, biće blokiran."
+    },
+    "keywordFormat3Title": {
+        "message": "Treći Format:"
+    },
+    "keywordFormat3Text": {
+        "message": "Unesite ključnu reč, zatim znak množenja ili sabiranja (* ili +), pa numeričku vrednost. U ovom scenariju, skor stranice se množi na osnovu numeričke vrednosti pronađene ključne reči."
+    },
+    "keywordFormat3_2": {
+        "message": "Primer: 'vesti, *, 10'"
+    },
+    "keywordFormat3_3": {
+        "message": "U ovom scenariju, skor stranice se množi na osnovu numeričke vrednosti pronađene ključne reči."
+    },
+    "timerCountTitle": {
+        "message": "Brojač Tajmera"
+    },
+    "timerCountText": {
+        "message": "Nakon što je stranica blokirana, imaćete opciju da pritisnete dugme 'Aktiviraj Tajmer'. Nakon toga, imaćete vremena da izvršite neke akcije na stranici pre nego što se ponovo blokira. U polju Brojač Tajmera, možete odlučiti koliko tajmera želite imati tokom dana."
+    },
+    "timerDurationTitle": {
+        "message": "Trajanje Tajmera (sekunde)"
+    },
+    "timerDurationText": {
+        "message": "U ovom polju odlučujete koliko sekundi će trajati svaki tajmer."
+    },
+    "lockedSchedulesTitle": {
+        "message": "Zaključani Rasporedi"
+    },
+    "lockedSchedulesNote": {
+        "message": "! Zaključani raspored ne može biti otključan dok ne prođe vreme (osim ako ne deinstalirate ekstenziju) !"
+    },
+    "lockedSchedulesText1": {
+        "message": "Možete dodati novi zaključani raspored kreiranjem imena rasporeda u polju Naziv Rasporeda i pritiskom na Enter ili dugme Dodaj Raspored."
+    },
+    "lockedSchedulesText2": {
+        "message": "Za izmenu postavki vašeg rasporeda, pritisnite 'Uredi'. Pritiskom na dugmad dana, ili aktivirate raspored za taj dan (dugme postaje zeleno) ili ga deaktivirate za taj dan. Menjanjem polja za Vreme Početka i Vreme Završetka, postavljate vremena kada može biti aktivan raspored. Svaki dan mora imati najmanje 1 sat nezaključanog vremena kako biste mogli deaktivirati raspored u to vreme. Dugme Aktivno/Neaktivno prebacuje stanje rasporeda. Raspored će biti zaključan i aktivan ako je trenutni dan omogućen (zeleno) i ako dugme pokazuje 'Aktivno' i takođe je zeleno, i ako je trenutno vreme između vremena početka i završetka."
+    },
+    "lockedSchedulesText3": {
+        "message": "Dugme Obriši uklanja zaključani raspored. Isto važi i za grupe i sajtove na beloj listi."
+    },
+    "lockedSchedulesText4": {
+        "message": "Tokom zaključanog rasporeda važe sledeća ograničenja:"
+    },
+    "lockedScheduleRestriction1": {
+        "message": "Ne možete menjati nazive grupa."
+    },
+    "lockedScheduleRestriction2": {
+        "message": "Ne možete menjati ili uklanjati postojeće sajtove u grupama."
+    },
+    "lockedScheduleRestriction3": {
+        "message": "Ne možete menjati ili uklanjati postojeće ključne reči i njihove vrednosti."
+    },
+    "lockedScheduleRestriction4": {
+        "message": "Možete postaviti vrednosti ključnih reči samo za množenje: od 1 do 1000. Za sabiranje: od 0 do 1000."
+    },
+    "lockedScheduleRestriction5": {
+        "message": "Ne može se povećati broj tajmera."
+    },
+    "lockedScheduleRestriction6": {
+        "message": "Ne može se povećati trajanje tajmera."
+    },
+    "lockedScheduleRestriction7": {
+        "message": "Aktivni rasporedi ne mogu biti obrisani."
+    },
+    "lockedScheduleRestriction8": {
+        "message": "Ne možete de-selektovati dane, učiniti raspored neaktivnim, ili menjati vreme početka ili završetka za aktivne rasporede."
+    },
+    "lockedScheduleRestriction9": {
+        "message": "Ne možete dodavati sajtove na belu listu."
+    },
+    "lockedScheduleRestriction10": {
+        "message": "Ne možete postavljati ili brisati lozinku za ekstenziju."
+    },
+    "whitelistWebsitesTitle": {
+        "message": "Bela Lista Sajtova"
+    },
+    "whitelistWebsitesText": {
+        "message": "Omogućava vam da unesete sajtove na beloj listi, što znači da se pretraga ključnih reči neće izvršiti na tim sajtovima, te stoga neće biti blokirani. Trenutno, nemamo mogućnost da koristimo džoker znak (*) za uključivanje mnogo sajtova u jedan unos (kao što je *.io, gde bi svi sajtovi sa '.io' bili blokirani), pa ova funkcija nije previše korisna, ali postoji."
+    },
+    "passwordManagementTitle": {
+        "message": "Upravljanje Lozinkama"
+    },
+    "passwordManagementText": {
+        "message": "Omogućava vam da postavite lozinku za stranicu ekstenzije. Svako ko otvori stranicu ekstenzije moraće uneti ispravnu lozinku da bi pristupio. Korisno za sprečavanje drugih da slučajno (ili namerno) pooštre postavke."
+    },
+    "contactFeedbackTitle": {
+        "message": "Kontakt i Povratne Informacije"
+    },
+    "feedbackText1": {
+        "message": "Ako želite da podelite bilo kakve povratne informacije ili imate problem, molimo posetite GitHub stranicu ekstenzije:"
+    },
+    "githubLink": {
+        "message": "GitHub - Odbrana od Ometanja"
+    },
+    "feedbackText2": {
+        "message": "Tamo, pređite na karticu 'Problemi' i kliknite na zeleno dugme 'Novi Problem'. Popunite naslov i opis i pritisnite 'Pošalji novi problem'."
+    },
+    "thanks": {
+        "message": "Hvala."
+    },
+    "instructionGuideLink": {
+        "message": "Uputstvo za Korišćenje"
+    }
 }

@@ -250,5 +250,176 @@
     },
     "passwordMismatchAlert": {
         "message": "Parolele nu se potrivesc. Asigurați-vă că ambele parole sunt identice."
-    }    
+    },
+    "pageTitle": {
+        "message": "Ghid de Instrucțiuni - Apărare Împotriva Distracțiilor"
+    },
+    "headerTitle": {
+        "message": "Apărare Împotriva Distracțiilor: Ghid de Instrucțiuni"
+    },
+    "introTitle": {
+        "message": "Introducere"
+    },
+    "introText1": {
+        "message": "Bună! Este atât de ușor să te distragi pe internet și să amâni lucrurile. Această extensie îți permite să blochezi pagini web pe baza cuvintelor cheie pe care nu dorești să le vezi."
+    },
+    "introText2": {
+        "message": "Există mii de jocuri video de jucat, știri de citit, videoclipuri de vizionat, și așa mai departe. Și adesea, aceasta este ceea ce facem atunci când termenele limită pentru proiecte sau examene sunt încă departe. Uneori, poate fi dificil să te forțezi să faci ceea ce trebuie să faci."
+    },
+    "introText3": {
+        "message": "Și distracțiile sunt peste tot! Chiar dacă folosești StayFocusd sau Cold Turkey sau FocusMe pentru a bloca unele site-uri web după URL-urile lor, nu poți bloca totul. De exemplu, chiar și cu ChatGPT, ai putea vorbi despre știri sau jocuri video dacă nu ai chef să studiezi sau să lucrezi."
+    },
+    "introText4": {
+        "message": "Cu această extensie, poți bloca site-uri web pe baza cuvintelor și expresiilor din textul lor."
+    },
+    "howToUseTitle": {
+        "message": "Cum să Utilizezi Extensia"
+    },
+    "createGroupTitle": {
+        "message": "Primul Pas: Creează un Grup"
+    },
+    "createGroupText1": {
+        "message": "Poți apăsa pe butonul 'Adaugă Grup' sau introdu numele grupului și apasă Enter sau butonul Adaugă Grup. Poți crea mai multe grupuri."
+    },
+    "createGroupText2": {
+        "message": "Vei vedea panoul grupului."
+    },
+    "websitesTitle": {
+        "message": "Site-uri Web"
+    },
+    "websitesText": {
+        "message": "Poți începe să adaugi site-uri web apăsând pe butonul 'Editează' din stânga liniei Site-uri Web. Acest câmp este responsabil pentru site-urile web unde extensia va bloca cuvintele cheie. Aici trebuie să introduci URL-uri de site-uri web, de exemplu, 'google.com'. Poți introduce mai multe site-uri web, fiecare linie nouă este un site web nou. Doar apasă Enter. Când ești gata, apasă butonul verde 'Salvează'. Sau poți Anula."
+    },
+    "keywordsTitle": {
+        "message": "Cuvinte Cheie"
+    },
+    "keywordsText1": {
+        "message": "Pentru a adăuga cuvinte cheie noi sau pentru a face orice modificări, apasă 'Editează'. Cuvintele cheie pe care le introduci aici vor fi scanate pe site-urile web pe care le-ai introdus pentru acest grup."
+    },
+    "keywordFormatsIntroduction": {
+        "message": "Există 3 formate pentru cuvintele cheie:"
+    },
+    "keywordFormat1Title": {
+        "message": "Primul Format:"
+    },
+    "keywordFormat1Text": {
+        "message": "Introdu doar cuvintele cheie. Poate fi un cuvânt sau o frază. Dacă cuvântul cheie conține o virgulă ',', trebuie să folosești un caracter de evadare '\\' înainte de aceasta. Site-ul web va fi blocat imediat ce cuvântul cheie este detectat. Poți introduce cât mai multe cuvinte cheie dorești, doar apasă enter. Fiecare linie nouă este un cuvânt cheie nou."
+    },
+    "keywordFormat1_2": {
+        "message": "Exemplu: 'jocuri video' sau 'știri'."
+    },
+    "keywordFormat2Title": {
+        "message": "Al Doilea Format:"
+    },
+    "keywordFormat2Text": {
+        "message": "Introdu cuvântul cheie, urmat de o valoare numerică. Fiecare site web introdus într-un grup trebuie să atingă un scor de 1000. Site-ul începe cu o valoare de 0, și pe baza valorii numerice a cuvântului cheie, valoarea crește. Odată ce site-ul web atinge un scor de 1000, va fi blocat."
+    },
+    "keywordFormat2_2": {
+        "message": "Exemplu: 'știri, 50'"
+    },
+    "keywordFormat2_3": {
+        "message": "Fiecare site web introdus într-un grup trebuie să atingă un scor de 1000. Site-ul începe cu o valoare de 0, și pe baza valorii numerice a cuvântului cheie, valoarea crește. Odată ce site-ul web atinge un scor de 1000, va fi blocat."
+    },
+    "keywordFormat3Title": {
+        "message": "Al Treilea Format:"
+    },
+    "keywordFormat3Text": {
+        "message": "Introdu cuvântul cheie, urmat de un semn de înmulțire sau adunare (* sau +), apoi o valoare numerică. În acest scenariu, scorul pentru pagina este înmulțit pe baza valorii numerice a cuvântului cheie găsit."
+    },
+    "keywordFormat3_2": {
+        "message": "Exemplu: 'știri, *, 10'"
+    },
+    "keywordFormat3_3": {
+        "message": "În acest scenariu, scorul pentru pagina este înmulțit pe baza valorii numerice a cuvântului cheie găsit."
+    },
+    "timerCountTitle": {
+        "message": "Numărul Temporizatoarelor"
+    },
+    "timerCountText": {
+        "message": "După ce pagina este blocată, vei avea opțiunea să apeși pe butonul 'Activează Temporizatorul'. După aceea, vei avea timp să efectuezi unele acțiuni pe pagină înainte de a fi blocată din nou. În câmpul Numărul Temporizatoarelor, poți decide câte temporizatoare dorești să ai în timpul zilei."
+    },
+    "timerDurationTitle": {
+        "message": "Durata Temporizatorului (secunde)"
+    },
+    "timerDurationText": {
+        "message": "În acest câmp, decizi câte secunde va avea fiecare temporizator."
+    },
+    "lockedSchedulesTitle": {
+        "message": "Programe Blocate"
+    },
+    "lockedSchedulesNote": {
+        "message": "! Un program blocat nu poate fi deblocat până când nu trece timpul (cu excepția cazului în care dezinstalezi extensia) !"
+    },
+    "lockedSchedulesText1": {
+        "message": "Poți adăuga un nou program blocat creând numele programului în câmpul Numele Programului și apăsând Enter sau butonul Adaugă Program."
+    },
+    "lockedSchedulesText2": {
+        "message": "Pentru a modifica setările programului, apăsați 'Editează'. Prin apăsarea butoanelor zilelor, fie activați programul în acea zi (butonul devine verde), fie îl dezactivați pentru acea zi. Modificând câmpurile Ora de Început și Ora de Sfârșit, setați timpurile în care programul poate fi activ. Fiecare zi trebuie să aibă o fereastră de timp inactivă de 1 oră, astfel încât să puteți dezactiva programul în acel timp. Butonul Inactiv/Activ comută programul. Programul va fi blocat și activ dacă ziua curentă este activată (verde) și butonul arată 'Activ' și este, de asemenea, verde, și dacă ora curentă este între timpul de început și de sfârșit."
+    },
+    "lockedSchedulesText3": {
+        "message": "Butonul Șterge elimină programul blocat. Același lucru se aplică și pentru grupuri și site-uri web din lista albă."
+    },
+    "lockedSchedulesText4": {
+        "message": "Mai multe restricții se aplică în timpul programului blocat:"
+    },
+    "lockedScheduleRestriction1": {
+        "message": "Nu puteți schimba numele grupurilor."
+    },
+    "lockedScheduleRestriction2": {
+        "message": "Nu puteți schimba sau elimina site-urile web existente în grupuri."
+    },
+    "lockedScheduleRestriction3": {
+        "message": "Nu puteți schimba sau elimina cuvintele cheie existente și valorile acestora."
+    },
+    "lockedScheduleRestriction4": {
+        "message": "Puteți seta doar valorile cuvintelor cheie pentru înmulțire: de la 1 la 1000. Pentru adunare: de la 0 la 1000."
+    },
+    "lockedScheduleRestriction5": {
+        "message": "Numărul de temporizatoare nu poate fi mărit."
+    },
+    "lockedScheduleRestriction6": {
+        "message": "Durata temporizatorului nu poate fi mărită."
+    },
+    "lockedScheduleRestriction7": {
+        "message": "Programele active nu pot fi șterse."
+    },
+    "lockedScheduleRestriction8": {
+        "message": "Nu puteți deselecta zilele, face programul inactiv, sau schimba orele de început sau de sfârșit pentru programele active."
+    },
+    "lockedScheduleRestriction9": {
+        "message": "Nu puteți adăuga site-uri web în lista albă."
+    },
+    "lockedScheduleRestriction10": {
+        "message": "Nu puteți seta sau șterge parola pentru extensie."
+    },
+    "whitelistWebsitesTitle": {
+        "message": "Site-uri în Lista Albă"
+    },
+    "whitelistWebsitesText": {
+        "message": "Vă permite să introduceți site-uri web în lista albă, ceea ce înseamnă că scanarea cuvintelor cheie nu va fi efectuată pe aceste site-uri și, prin urmare, nu vor fi blocate. În prezent, nu avem capacitatea de a utiliza un wildcard (*) pentru a include multe site-uri web într-o singură intrare (cum ar fi *.io, unde toate site-urile web cu '.io' ar fi blocate), deci această caracteristică nu este foarte utilă, dar există."
+    },
+    "passwordManagementTitle": {
+        "message": "Administrare Parolă"
+    },
+    "passwordManagementText": {
+        "message": "Vă permite să setați o parolă pentru pagina de extensie. Oricine deschide pagina de extensie va trebui să introducă parola corectă pentru a obține acces. Util pentru a preveni ca alții să strângă accidental (sau intenționat) setările."
+    },
+    "contactFeedbackTitle": {
+        "message": "Contact și Feedback"
+    },
+    "feedbackText1": {
+        "message": "Dacă doriți să împărtășiți un feedback sau dacă aveți o problemă, vă rugăm să vizitați pagina GitHub a extensiei:"
+    },
+    "githubLink": {
+        "message": "GitHub - Apărare Împotriva Distragerilor"
+    },
+    "feedbackText2": {
+        "message": "Acolo, navigați la fila 'Issues' și apăsați butonul verde 'New Issue'. Completați titlul și descrierea și apăsați 'Submit new issue'."
+    },
+    "thanks": {
+        "message": "Mulțumesc."
+    },
+    "instructionGuideLink": {
+        "message": "Ghidul de Instrucțiuni"
+    }
 }

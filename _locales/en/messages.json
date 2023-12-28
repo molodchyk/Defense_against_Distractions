@@ -250,5 +250,176 @@
     },
     "passwordMismatchAlert": {
         "message": "Passwords do not match. Please make sure both passwords are the same."
-    }    
+    },
+    "pageTitle": {
+        "message": "Instruction Guide - Defense Against Distractions"
+    },
+    "headerTitle": {
+        "message": "Defense Against Distractions: Instruction Guide"
+    },
+    "introTitle": {
+        "message": "Introduction"
+    },
+    "introText1": {
+        "message": "Hi! It's so easy to get distracted on the internet and to procrastinate. This extension allows you to block web pages based on keywords you don't want to see."
+    },
+    "introText2": {
+        "message": "There are thousands of video games to play, news stories to read, videos to watch, and so on. And often, this is what we do when project deadlines or exams are still far off. Sometimes, it can be a bit hard to force yourself to do what you need to do."
+    },
+    "introText3": {
+        "message": "And distractions are everywhere! Even if you use StayFocusd or Cold Turkey or FocusMe to block some websites by their URLs, you can't block everything. For example, even with ChatGPT, you could talk about news or video games if you really don't feel like studying or doing work."
+    },
+    "introText4": {
+        "message": "With this extension, you can block websites based on words and phrases in their text."
+    },
+    "howToUseTitle": {
+        "message": "How to Use the Extension"
+    },
+    "createGroupTitle": {
+        "message": "First Step: Create a Group"
+    },
+    "createGroupText1": {
+        "message": "You can press the 'Add Group' button or input the group name and press Enter or the Add Group button. You can create multiple groups."
+    },
+    "createGroupText2": {
+        "message": "You will see the group panel."
+    },
+    "websitesTitle": {
+        "message": "Websites"
+    },
+    "websitesText": {
+        "message": "You can start adding websites by pressing the 'Edit' button to the left of the Websites line. This field is responsible for websites where the extension will block keywords. Here you have to input website URLs, for example, 'google.com'. You can input multiple websites, each new line is a new website. Just press Enter. When you are ready, press the green 'Save' button. Or you can Cancel."
+    },
+    "keywordsTitle": {
+        "message": "Keywords"
+    },
+    "keywordsText1": {
+        "message": "To add new keywords or make any changes, press 'Edit'. The keywords you enter here will be scanned on the websites you entered for this group."
+    },
+    "keywordFormatsIntroduction": {
+        "message": "There are 3 formats for the keywords:"
+    },
+    "keywordFormat1Title": {
+        "message": "First Format:"
+    },
+    "keywordFormat1Text": {
+        "message": "Just enter the keywords. It can be a word or a phrase. If the keyword contains a comma ',', you must use an escape character '\\' before it. The website will be blocked as soon as the keyword is detected. You can enter as many keywords as you want, just press enter. Each new line is a new keyword."
+    },
+    "keywordFormat1_2": {
+        "message": "Example: 'video games' or 'news'."
+    },
+    "keywordFormat2Title": {
+        "message": "Second Format:"
+    },
+    "keywordFormat2Text": {
+        "message": "Enter the keyword, followed by a numeric value. Each website you entered in a group must reach a score of 1000. The website starts with a value of 0, and based on the numeric value of the keyword, the value increases. Once the website reaches a score of 1000, it will be blocked."
+    },
+    "keywordFormat2_2": {
+        "message": "Example: 'news, 50'"
+    },
+    "keywordFormat2_3": {
+        "message": "Each website you entered in a group must reach a score of 1000. The site starts with a value of 0, and based on the numeric value of the keyword, the value increases. Once the website reaches a score of 1000, it will be blocked."
+    },
+    "keywordFormat3Title": {
+        "message": "Third Format:"
+    },
+    "keywordFormat3Text": {
+        "message": "Enter the keyword, followed by a multiplication or addition sign (* or +), then a numeric value. In this scenario, the score for the page is multiplied based on the numeric value of the found keyword."
+    },
+    "keywordFormat3_2": {
+        "message": "Example: 'news, *, 10'"
+    },
+    "keywordFormat3_3": {
+        "message": "In this scenario, the score for the page is multiplied based on the numeric value of the found keyword."
+    },
+    "timerCountTitle": {
+        "message": "Timer Count"
+    },
+    "timerCountText": {
+        "message": "After the page is blocked, you'll have the option to press the 'Activate Timer' button. After that, you'll have time to perform some actions on the page before it is blocked again. In the Timer Count field, you can decide how many timers you want to have during the day."
+    },
+    "timerDurationTitle": {
+        "message": "Timer Duration (seconds)"
+    },
+    "timerDurationText": {
+        "message": "In this field, you decide how many seconds each timer will have."
+    },
+    "lockedSchedulesTitle": {
+        "message": "Locked Schedules"
+    },
+    "lockedSchedulesNote": {
+        "message": "! A locked schedule cannot be unlocked until the time passes (unless you uninstall the extension) !"
+    },
+    "lockedSchedulesText1": {
+        "message": "You can add a new locked schedule by creating the schedule name in the Schedule Name field and pressing Enter or the Add Schedule button."
+    },
+    "lockedSchedulesText2": {
+        "message": "To modify the settings of your schedule, press 'Edit'. By pressing the day buttons, you either enable the schedule on that day (button turns green), or disable it for that day. By modifying the Start Time and End Time fields, you set the times the schedule can be active. Each day must have a 1-hour inactive time window so you can deactivate the schedule during that time. The Inactive/Active button toggles the schedule. The schedule will be locked and active if the current day is enabled (green) and the button shows 'Active' and is also green, and if the current time is between the start and end times."
+    },
+    "lockedSchedulesText3": {
+        "message": "The Delete button removes the locked schedule. The same applies to groups and whitelisted websites."
+    },
+    "lockedSchedulesText4": {
+        "message": "Several restrictions apply during the locked schedule:"
+    },
+    "lockedScheduleRestriction1": {
+        "message": "You can't change group names."
+    },
+    "lockedScheduleRestriction2": {
+        "message": "You can't change or remove existing websites in groups."
+    },
+    "lockedScheduleRestriction3": {
+        "message": "You can't change or remove existing keywords and their values."
+    },
+    "lockedScheduleRestriction4": {
+        "message": "You can only set keyword values for multiplication: from 1 to 1000. For addition: from 0 to 1000."
+    },
+    "lockedScheduleRestriction5": {
+        "message": "The timer count cannot be increased."
+    },
+    "lockedScheduleRestriction6": {
+        "message": "The timer duration cannot be increased."
+    },
+    "lockedScheduleRestriction7": {
+        "message": "Active schedules cannot be deleted."
+    },
+    "lockedScheduleRestriction8": {
+        "message": "You can't deselect days, make the schedule inactive, or change the start or end times for active schedules."
+    },
+    "lockedScheduleRestriction9": {
+        "message": "You cannot add whitelisted websites."
+    },
+    "lockedScheduleRestriction10": {
+        "message": "You cannot set or delete the password for the extension."
+    },
+    "whitelistWebsitesTitle": {
+        "message": "Whitelist Websites"
+    },
+    "whitelistWebsitesText": {
+        "message": "Allows you to enter whitelisted websites, meaning that the keyword scan will not be performed on these websites, and thus they will not be blocked. Currently, we don't have the ability to use a wildcard (*) to include a lot of websites in one entry (like *.io, where all websites with '.io' would be blocked), so this feature isn't very useful, but it exists."
+    },
+    "passwordManagementTitle": {
+        "message": "Password Management"
+    },
+    "passwordManagementText": {
+        "message": "Allows you to set up a password for the extension page. Anyone who opens the extension page will need to enter the correct password to gain access. Useful for preventing others from accidentally (or intentionally) tightening the settings."
+    },
+    "contactFeedbackTitle": {
+        "message": "Contact and Feedback"
+    },
+    "feedbackText1": {
+        "message": "If you want to share any feedback or if you have an issue, please visit the extension’s GitHub page:"
+    },
+    "githubLink": {
+        "message": "GitHub - Defense Against Distractions"
+    },
+    "feedbackText2": {
+        "message": "There, navigate to the 'Issues' tab and click the green button 'New Issue'. Fill in the title and description and press 'Submit new issue'."
+    },
+    "thanks": {
+        "message": "Thanks."
+    },
+    "instructionGuideLink": {
+        "message": "Instruction Guide"
+    }
 }

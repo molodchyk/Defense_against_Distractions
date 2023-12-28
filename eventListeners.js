@@ -41,18 +41,8 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelector('label[data-i18n="enterPasswordToAccessLabel"]').textContent = chrome.i18n.getMessage("enterPasswordToAccessLabel");
   document.getElementById('passwordInput').placeholder = chrome.i18n.getMessage("enterPasswordPlaceholder");
   document.querySelector('#passwordForm button[type="submit"]').textContent = chrome.i18n.getMessage("submitButton");
-  // document.getElementById('passwordManagementHeading').textContent = chrome.i18n.getMessage("passwordManagementHeading");
-  // document.getElementById('passwordInputField').placeholder = chrome.i18n.getMessage("enterPasswordPlaceholder");
-  // document.getElementById('confirmPasswordInputField').placeholder = chrome.i18n.getMessage("confirmPasswordPlaceholder");
-  // document.getElementById('setPasswordButton').textContent = chrome.i18n.getMessage("setPasswordButtonLabel");
-  // document.getElementById('deletePasswordButton').textContent = chrome.i18n.getMessage("deletePasswordButtonLabel");
-  // document.getElementById('passwordInputLabel').textContent = chrome.i18n.getMessage("enterPasswordToAccessLabel");
-  // document.getElementById('submitPasswordButton').textContent = chrome.i18n.getMessage("submitPasswordButtonLabel");
+  document.getElementById('instructionGuideLink').textContent = chrome.i18n.getMessage("instructionGuideLink");
 
-
-  // document.getElementById('passwordInputLabel').textContent = chrome.i18n.getMessage("passwordInputLabel");
-  // document.getElementById('enterPasswordPlaceholder').placeholder = chrome.i18n.getMessage("enterPasswordPlaceholder");
-  
   chrome.storage.sync.get('websiteGroups', ({ websiteGroups = [] }) => {
     updateGroupsUI(websiteGroups);
   });

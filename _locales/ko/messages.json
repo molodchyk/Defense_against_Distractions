@@ -250,5 +250,176 @@
     },
     "passwordMismatchAlert": {
         "message": "비밀번호가 일치하지 않습니다. 두 비밀번호가 동일한지 확인해주세요."
-    }    
+    },
+    "pageTitle": {
+        "message": "사용 설명서 - 주의 산만에 대한 방어"
+    },
+    "headerTitle": {
+        "message": "주의 산만에 대한 방어: 사용 설명서"
+    },
+    "introTitle": {
+        "message": "소개"
+    },
+    "introText1": {
+        "message": "안녕하세요! 인터넷에서 산만해지고 미루는 것은 너무 쉽습니다. 이 확장 프로그램을 사용하면 보고 싶지 않은 키워드를 기반으로 웹 페이지를 차단할 수 있습니다."
+    },
+    "introText2": {
+        "message": "수천 개의 비디오 게임을 할 수 있고, 뉴스 기사를 읽고, 비디오를 시청할 수 있습니다. 그리고 종종 이것이 프로젝트 마감 시한이나 시험이 아직 멀었을 때 우리가 하는 일입니다. 때로는 필요한 일을 강요하기 어려울 수 있습니다."
+    },
+    "introText3": {
+        "message": "주의 산만은 어디에나 있습니다! StayFocusd, Cold Turkey, FocusMe와 같은 웹사이트 차단 프로그램을 사용하여 일부 웹사이트를 URL로 차단할 수 있지만, 모든 것을 차단할 수는 없습니다. 예를 들어, ChatGPT를 사용하더라도 공부하거나 일을 하고 싶지 않다면 뉴스나 비디오 게임에 대해 이야기할 수 있습니다."
+    },
+    "introText4": {
+        "message": "이 확장 프로그램을 사용하면 웹사이트의 텍스트에 있는 단어와 구문을 기반으로 웹사이트를 차단할 수 있습니다."
+    },
+    "howToUseTitle": {
+        "message": "확장 프로그램 사용 방법"
+    },
+    "createGroupTitle": {
+        "message": "첫 번째 단계: 그룹 생성"
+    },
+    "createGroupText1": {
+        "message": "'그룹 추가' 버튼을 누르거나 그룹 이름을 입력하고 Enter 또는 '그룹 추가' 버튼을 누를 수 있습니다. 여러 그룹을 생성할 수 있습니다."
+    },
+    "createGroupText2": {
+        "message": "그룹 패널을 볼 수 있습니다."
+    },
+    "websitesTitle": {
+        "message": "웹사이트"
+    },
+    "websitesText": {
+        "message": "'웹사이트' 줄 왼쪽의 '편집' 버튼을 눌러 웹사이트를 추가하기 시작할 수 있습니다. 이 필드는 확장 프로그램이 키워드를 차단할 웹사이트를 담당합니다. 여기에 웹사이트 URL을 입력해야 합니다. 예를 들어, 'google.com'. 여러 웹사이트를 입력할 수 있으며, 새 줄마다 새 웹사이트입니다. Enter를 누르세요. 준비가 되면 녹색 '저장' 버튼을 누르세요. 또는 취소할 수 있습니다."
+    },
+    "keywordsTitle": {
+        "message": "키워드"
+    },
+    "keywordsText1": {
+        "message": "새 키워드를 추가하거나 변경하려면 '편집'을 누릅니다. 여기에 입력한 키워드는 이 그룹에 입력한 웹사이트에서 검색됩니다."
+    },
+    "keywordFormatsIntroduction": {
+        "message": "키워드에는 세 가지 형식이 있습니다:"
+    },
+    "keywordFormat1Title": {
+        "message": "첫 번째 형식:"
+    },
+    "keywordFormat1Text": {
+        "message": "키워드를 그냥 입력하세요. 단어나 구문일 수 있습니다. 키워드에 쉼표 ','가 포함된 경우, 그 앞에 이스케이프 문자 '\\'를 사용해야 합니다. 키워드가 감지되는 즉시 웹사이트가 차단됩니다. 원하는 만큼 많은 키워드를 입력할 수 있습니다. enter를 누르세요. 새 줄마다 새 키워드입니다."
+    },
+    "keywordFormat1_2": {
+        "message": "예시: '비디오 게임' 또는 '뉴스'."
+    },
+    "keywordFormat2Title": {
+        "message": "두 번째 형식:"
+    },
+    "keywordFormat2Text": {
+        "message": "키워드를 입력한 다음 숫자 값을 입력합니다. 각 그룹에 입력한 웹사이트는 1000점에 도달해야 합니다. 웹사이트는 0점에서 시작하며, 키워드의 숫자 값에 따라 값이 증가합니다. 웹사이트가 1000점에 도달하면 차단됩니다."
+    },
+    "keywordFormat2_2": {
+        "message": "예시: '뉴스, 50'"
+    },
+    "keywordFormat2_3": {
+        "message": "각 그룹에 입력한 웹사이트는 1000점에 도달해야 합니다. 사이트는 0점에서 시작하며, 키워드의 숫자 값에 따라 값이 증가합니다. 웹사이트가 1000점에 도달하면 차단됩니다."
+    },
+    "keywordFormat3Title": {
+        "message": "세 번째 형식:"
+    },
+    "keywordFormat3Text": {
+        "message": "키워드를 입력한 다음 곱셈 또는 덧셈 기호 (* 또는 +)를 입력하고 숫자 값을 입력합니다. 이 시나리오에서는 발견된 키워드의 숫자 값에 따라 페이지의 점수가 곱해집니다."
+    },
+    "keywordFormat3_2": {
+        "message": "예시: '뉴스, *, 10'"
+    },
+    "keywordFormat3_3": {
+        "message": "이 시나리오에서는 발견된 키워드의 숫자 값에 따라 페이지의 점수가 곱해집니다."
+    },
+    "timerCountTitle": {
+        "message": "타이머 횟수"
+    },
+    "timerCountText": {
+        "message": "페이지가 차단된 후 '타이머 활성화' 버튼을 누를 수 있는 옵션이 있습니다. 그 후, 페이지가 다시 차단되기 전에 몇 가지 조치를 취할 시간이 있습니다. 타이머 횟수 필드에서 하루에 원하는 타이머 횟수를 결정할 수 있습니다."
+    },
+    "timerDurationTitle": {
+        "message": "타이머 지속 시간(초)"
+    },
+    "timerDurationText": {
+        "message": "이 필드에서 각 타이머의 지속 시간(초)을 결정합니다."
+    },
+    "lockedSchedulesTitle": {
+        "message": "잠긴 스케줄"
+    },
+    "lockedSchedulesNote": {
+        "message": "! 잠긴 스케줄은 시간이 지나기 전에는 해제할 수 없습니다 (확장 프로그램을 제거하지 않는 한) !"
+    },
+    "lockedSchedulesText1": {
+        "message": "스케줄 이름 필드에 스케줄 이름을 입력하고 Enter를 누르거나 스케줄 추가 버튼을 눌러 새로운 잠긴 스케줄을 추가할 수 있습니다."
+    },
+    "lockedSchedulesText2": {
+        "message": "스케줄 설정을 수정하려면 '편집'을 누르세요. 일 버튼을 눌러 해당 일에 스케줄을 활성화(버튼이 녹색으로 변함)하거나 비활성화할 수 있습니다. 시작 시간과 종료 시간 필드를 수정하여 스케줄이 활성화될 시간을 설정합니다. 매일 최소 1시간은 비활성 시간이 있어야 하므로 그 시간 동안 스케줄을 비활성화할 수 있습니다. 활성/비활성 버튼으로 스케줄을 전환할 수 있습니다. 현재 날짜가 활성화되어 있고(녹색), '활성/비활성' 버튼이 '활성'을 나타내고 녹색이며, 현재 시간이 시작 및 종료 시간 사이에 있을 때 스케줄은 잠겨 있고 활성화됩니다."
+    },
+    "lockedSchedulesText3": {
+        "message": "삭제 버튼을 누르면 잠긴 스케줄이 제거됩니다. 이것은 그룹 및 화이트리스트 웹사이트에도 적용됩니다."
+    },
+    "lockedSchedulesText4": {
+        "message": "잠긴 스케줄 동안 여러 제한이 적용됩니다:"
+    },
+    "lockedScheduleRestriction1": {
+        "message": "그룹 이름을 변경할 수 없습니다."
+    },
+    "lockedScheduleRestriction2": {
+        "message": "기존 그룹 내 웹사이트를 변경하거나 제거할 수 없습니다."
+    },
+    "lockedScheduleRestriction3": {
+        "message": "기존 키워드 및 그 값들을 변경하거나 제거할 수 없습니다."
+    },
+    "lockedScheduleRestriction4": {
+        "message": "곱셈에 대한 키워드 값은 1에서 1000 사이로 설정할 수 있습니다. 덧셈에 대해서는 0에서 1000 사이로 설정할 수 있습니다."
+    },
+    "lockedScheduleRestriction5": {
+        "message": "타이머 횟수를 늘릴 수 없습니다."
+    },
+    "lockedScheduleRestriction6": {
+        "message": "타이머 지속 시간을 늘릴 수 없습니다."
+    },
+    "lockedScheduleRestriction7": {
+        "message": "활성 스케줄은 삭제할 수 없습니다."
+    },
+    "lockedScheduleRestriction8": {
+        "message": "활성 스케줄에 대해 일을 선택 해제하거나 스케줄을 비활성화하거나 시작 또는 종료 시간을 변경할 수 없습니다."
+    },
+    "lockedScheduleRestriction9": {
+        "message": "화이트리스트 웹사이트를 추가할 수 없습니다."
+    },
+    "lockedScheduleRestriction10": {
+        "message": "확장 프로그램에 대한 비밀번호를 설정하거나 삭제할 수 없습니다."
+    },
+    "whitelistWebsitesTitle": {
+        "message": "화이트리스트 웹사이트"
+    },
+    "whitelistWebsitesText": {
+        "message": "화이트리스트에 웹사이트를 입력할 수 있으며, 이러한 웹사이트에서는 키워드 검사가 수행되지 않아 차단되지 않습니다. 현재는 와일드카드(*)를 사용하여 한 번에 많은 웹사이트를 포함시키는 기능(예: *.io, '.io'가 포함된 모든 웹사이트 차단)을 지원하지 않으므로 이 기능은 그다지 유용하지 않지만 존재합니다."
+    },
+    "passwordManagementTitle": {
+        "message": "비밀번호 관리"
+    },
+    "passwordManagementText": {
+        "message": "확장 프로그램 페이지에 대한 비밀번호를 설정할 수 있습니다. 확장 프로그램 페이지를 여는 누구라도 올바른 비밀번호를 입력해야 접근할 수 있습니다. 다른 사람이 실수로 또는 의도적으로 설정을 강화하는 것을 방지하는 데 유용합니다."
+    },
+    "contactFeedbackTitle": {
+        "message": "연락 및 피드백"
+    },
+    "feedbackText1": {
+        "message": "피드백을 공유하거나 문제가 있는 경우 확장 프로그램의 GitHub 페이지를 방문하세요:"
+    },
+    "githubLink": {
+        "message": "GitHub - 주의 산만 방지"
+    },
+    "feedbackText2": {
+        "message": "거기에서 '문제(Issues)' 탭으로 이동하여 '새 문제(New Issue)' 버튼을 누르세요. 제목과 설명을 채우고 '새 문제 제출(Submit new issue)'을 누르세요."
+    },
+    "thanks": {
+        "message": "감사합니다."
+    },
+    "instructionGuideLink": {
+        "message": "사용 설명서"
+    }
 }

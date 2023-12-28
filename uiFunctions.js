@@ -113,17 +113,16 @@ function createButton(textKey, onClick, className) {
 export function checkScheduleStatus() {
   chrome.storage.sync.get('schedules', ({ schedules }) => {
     if (!isCurrentTimeInAnySchedule(schedules)) { //line 114
-      enableUIElements(); // Enable UI elements when no schedule is active
+      enableUIElements();
       updateButtonStates();
     }
   });
 }
 
 // Set an interval for checking the schedule status
-setInterval(checkScheduleStatus, 3000); // Checks every 3 seconds
+setInterval(checkScheduleStatus, 15000); // Checks every 15 seconds
 
 export function enableUIElements() {
-  // Select all disabled buttons except group save buttons, password management buttons, and password set button
   const buttonsToEnable = document.querySelectorAll('button:disabled:not(.save-button):not(.password-management-button):not(.password-set-button)');
 
   buttonsToEnable.forEach(button => {

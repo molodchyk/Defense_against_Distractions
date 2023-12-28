@@ -250,5 +250,176 @@
     },
     "passwordMismatchAlert": {
         "message": "Şifreler eşleşmiyor. Her iki şifrenin aynı olduğundan emin olun."
-    }    
+    },
+    "pageTitle": {
+        "message": "Talimat Kılavuzu - Dikkat Dağıtıcılarına Karşı Savunma"
+    },
+    "headerTitle": {
+        "message": "Dikkat Dağıtıcılarına Karşı Savunma: Talimat Kılavuzu"
+    },
+    "introTitle": {
+        "message": "Giriş"
+    },
+    "introText1": {
+        "message": "Merhaba! İnternette dikkatinizin dağılması ve erteleme yapmanız çok kolay. Bu eklenti, görmek istemediğiniz anahtar kelimeleri içeren web sayfalarını engellemenize olanak tanır."
+    },
+    "introText2": {
+        "message": "Oynanacak binlerce video oyunu, okunacak haber hikayeleri, izlenecek videolar ve daha fazlası var. Ve genellikle, proje teslim tarihleri veya sınavlar hala uzakken bunları yaparız. Bazen, yapmanız gereken şeylere kendinizi zorlamak biraz zor olabilir."
+    },
+    "introText3": {
+        "message": "Ve dikkat dağıtıcılar her yerde! StayFocusd, Cold Turkey veya FocusMe gibi bazı web sitelerini URL'leri üzerinden engelleme araçlarını kullansanız bile, her şeyi engelleyemezsiniz. Örneğin, ChatGPT ile bile, çalışmak veya iş yapmak istemediğinizde haberler veya video oyunları hakkında konuşabilirsiniz."
+    },
+    "introText4": {
+        "message": "Bu eklenti ile, metinlerindeki kelimeler ve ifadeler temel alınarak web sitelerini engelleyebilirsiniz."
+    },
+    "howToUseTitle": {
+        "message": "Eklentinin Kullanımı"
+    },
+    "createGroupTitle": {
+        "message": "İlk Adım: Grup Oluştur"
+    },
+    "createGroupText1": {
+        "message": "'Grup Ekle' düğmesine basabilir veya grup adını girip Enter'a basabilir veya Grup Ekle düğmesine basabilirsiniz. Birden fazla grup oluşturabilirsiniz."
+    },
+    "createGroupText2": {
+        "message": "Grup panelini göreceksiniz."
+    },
+    "websitesTitle": {
+        "message": "Web Siteleri"
+    },
+    "websitesText": {
+        "message": "Web siteleri eklemeye, Web Siteleri satırının solundaki 'Düzenle' düğmesine basarak başlayabilirsiniz. Bu alan, eklentinin anahtar kelimeleri engelleyeceği web sitelerinden sorumludur. Buraya web sitelerinin URL'lerini, örneğin 'google.com' gibi girmeniz gerekmektedir. Birden fazla web sitesi girebilirsiniz, her yeni satır yeni bir web sitesidir. Hazır olduğunuzda, yeşil 'Kaydet' düğmesine basın. Veya İptal edebilirsiniz."
+    },
+    "keywordsTitle": {
+        "message": "Anahtar Kelimeler"
+    },
+    "keywordsText1": {
+        "message": "Yeni anahtar kelimeler eklemek veya herhangi bir değişiklik yapmak için 'Düzenle'ye basın. Buraya girdiğiniz anahtar kelimeler, bu grup için girdiğiniz web sitelerinde taranacaktır."
+    },
+    "keywordFormatsIntroduction": {
+        "message": "Anahtar kelimeler için 3 format vardır:"
+    },
+    "keywordFormat1Title": {
+        "message": "İlk Format:"
+    },
+    "keywordFormat1Text": {
+        "message": "Sadece anahtar kelimeleri girin. Bu, bir kelime veya bir ifade olabilir. Anahtar kelime bir virgül ',' içeriyorsa, ondan önce bir kaçış karakteri '\\' kullanmanız gerekir. Anahtar kelime tespit edildiği anda web sitesi engellenecektir. İstediğiniz kadar anahtar kelime girebilirsiniz, sadece enter'a basın. Her yeni satır yeni bir anahtar kelimedir."
+    },
+    "keywordFormat1_2": {
+        "message": "Örnek: 'video oyunları' veya 'haberler'."
+    },
+    "keywordFormat2Title": {
+        "message": "İkinci Format:"
+    },
+    "keywordFormat2Text": {
+        "message": "Anahtar kelimeyi girin, ardından sayısal bir değer girin. Her bir grup içinde girdiğiniz web sitesi 1000 puanlık bir skora ulaşmalıdır. Web sitesi 0 değerinden başlar ve anahtar kelimenin sayısal değerine bağlı olarak değer artar. Web sitesi 1000 puanlık skora ulaştığında, engellenir."
+    },
+    "keywordFormat2_2": {
+        "message": "Örnek: 'haberler, 50'"
+    },
+    "keywordFormat2_3": {
+        "message": "Her bir grup içinde girdiğiniz web sitesi 1000 puanlık bir skora ulaşmalıdır. Site 0 değerinden başlar ve anahtar kelimenin sayısal değerine bağlı olarak değer artar. Site 1000 puanlık skora ulaştığında, engellenir."
+    },
+    "keywordFormat3Title": {
+        "message": "Üçüncü Format:"
+    },
+    "keywordFormat3Text": {
+        "message": "Anahtar kelimeyi girin, ardından bir çarpma veya toplama işareti (* veya +) ve bir sayısal değer girin. Bu senaryoda, sayfanın skoru bulunan anahtar kelimenin sayısal değerine göre çarpılır."
+    },
+    "keywordFormat3_2": {
+        "message": "Örnek: 'haberler, *, 10'"
+    },
+    "keywordFormat3_3": {
+        "message": "Bu senaryoda, sayfanın skoru bulunan anahtar kelimenin sayısal değerine göre çarpılır."
+    },
+    "timerCountTitle": {
+        "message": "Zamanlayıcı Sayısı"
+    },
+    "timerCountText": {
+        "message": "Sayfa engellendikten sonra, 'Zamanlayıcıyı Aktifleştir' düğmesine basma seçeneğiniz olacak. Bundan sonra, sayfa tekrar engellenmeden önce sayfada bazı işlemler yapmak için zamanınız olacak. Zamanlayıcı Sayısı alanında, günde kaç zamanlayıcı istediğinizi belirleyebilirsiniz."
+    },
+    "timerDurationTitle": {
+        "message": "Zamanlayıcı Süresi (saniye)"
+    },
+    "timerDurationText": {
+        "message": "Bu alanda, her zamanlayıcının kaç saniye süreceğine karar verirsiniz."
+    },
+    "lockedSchedulesTitle": {
+        "message": "Kilitli Programlar"
+    },
+    "lockedSchedulesNote": {
+        "message": "! Kilitli bir program, zaman geçene kadar açılamaz (eklentiyi kaldırmadıkça) !"
+    },
+    "lockedSchedulesText1": {
+        "message": "Program Adı alanında program adını oluşturarak ve Enter'a basarak veya Program Ekle düğmesine basarak yeni kilitli bir program ekleyebilirsiniz."
+    },
+    "lockedSchedulesText2": {
+        "message": "Program ayarlarınızı değiştirmek için 'Düzenle'ye basın. Gün düğmelerine basarak, o gün için programı etkinleştirirsiniz (düğme yeşile döner) ya da devre dışı bırakırsınız. Başlangıç ve Bitiş Zamanı alanlarını değiştirerek, programın aktif olacağı zamanları belirlersiniz. Her gün için en az 1 saatlik etkin olmayan bir zaman penceresi olmalıdır, bu süre zarfında programı devre dışı bırakabilirsiniz. Aktif/Pasif düğmesi programı değiştirir. Şu anki gün etkinleştirilmiş (yeşil) ve düğme 'Aktif' gösteriyorsa ve şu anki zaman Başlangıç ve Bitiş zamanları arasındaysa program kilitlenir ve aktif olur."
+    },
+    "lockedSchedulesText3": {
+        "message": "Silme düğmesi, kilitli programı kaldırır. Aynı şey gruplar ve beyaz listeye alınmış web siteleri için de geçerlidir."
+    },
+    "lockedSchedulesText4": {
+        "message": "Kilitli program sırasında birkaç kısıtlama uygulanır:"
+    },
+    "lockedScheduleRestriction1": {
+        "message": "Grup adlarını değiştiremezsiniz."
+    },
+    "lockedScheduleRestriction2": {
+        "message": "Mevcut gruplardaki web sitelerini değiştiremez veya kaldıramazsınız."
+    },
+    "lockedScheduleRestriction3": {
+        "message": "Mevcut anahtar kelimeleri ve değerlerini değiştiremez veya kaldıramazsınız."
+    },
+    "lockedScheduleRestriction4": {
+        "message": "Yalnızca çarpım için anahtar kelime değerlerini 1'den 1000'e kadar ayarlayabilirsiniz. Toplama için: 0'dan 1000'e kadar."
+    },
+    "lockedScheduleRestriction5": {
+        "message": "Zamanlayıcı sayısını artıramazsınız."
+    },
+    "lockedScheduleRestriction6": {
+        "message": "Zamanlayıcı süresini artıramazsınız."
+    },
+    "lockedScheduleRestriction7": {
+        "message": "Aktif programları silemezsiniz."
+    },
+    "lockedScheduleRestriction8": {
+        "message": "Aktif programlar için günleri seçemez, programı pasif yapamaz veya başlangıç veya bitiş zamanlarını değiştiremezsiniz."
+    },
+    "lockedScheduleRestriction9": {
+        "message": "Beyaz listeye web siteleri ekleyemezsiniz."
+    },
+    "lockedScheduleRestriction10": {
+        "message": "Eklentinin şifresini ayarlayamaz veya silemezsiniz."
+    },
+    "whitelistWebsitesTitle": {
+        "message": "Beyaz Liste Web Siteleri"
+    },
+    "whitelistWebsitesText": {
+        "message": "Beyaz listeye web siteleri eklemenize izin verir, bu da bu sitelerde anahtar kelime taraması yapılmayacağı ve böylece sitelerin engellenmeyeceği anlamına gelir. Şu anda bir girişte birçok siteyi kapsayacak şekilde joker karakter (*) kullanma yeteneğimiz yok (örneğin, *.io gibi, '.io' içeren tüm siteler engellenecektir), bu nedenle bu özellik çok kullanışlı değildir, ancak mevcuttur."
+    },
+    "passwordManagementTitle": {
+        "message": "Şifre Yönetimi"
+    },
+    "passwordManagementText": {
+        "message": "Eklenti sayfası için bir şifre belirlemenize izin verir. Eklenti sayfasını açan herkes, erişim sağlamak için doğru şifreyi girmek zorundadır. Başkalarının yanlışlıkla (veya kasıtlı olarak) ayarları sıkılaştırmasını önlemek için yararlıdır."
+    },
+    "contactFeedbackTitle": {
+        "message": "İletişim ve Geri Bildirim"
+    },
+    "feedbackText1": {
+        "message": "Herhangi bir geri bildirim paylaşmak isterseniz veya bir sorununuz varsa, lütfen eklentinin GitHub sayfasını ziyaret edin:"
+    },
+    "githubLink": {
+        "message": "GitHub - Dikkati Dağıtmaya Karşı Savunma"
+    },
+    "feedbackText2": {
+        "message": "Orada, 'Sorunlar' sekmesine gidin ve yeşil 'Yeni Sorun' düğmesine tıklayın. Başlığı ve açıklamayı doldurun ve 'Yeni sorun gönder' düğmesine basın."
+    },
+    "thanks": {
+        "message": "Teşekkürler."
+    },
+    "instructionGuideLink": {
+        "message": "Kullanım Kılavuzu"
+    }
 }

@@ -250,5 +250,176 @@
     },
     "passwordMismatchAlert": {
         "message": "Kata laluan tidak sepadan. Sila pastikan kedua-dua kata laluan adalah sama."
-    }    
+    },
+    "pageTitle": {
+        "message": "Panduan Arahan - Pertahanan Daripada Gangguan"
+    },
+    "headerTitle": {
+        "message": "Pertahanan Daripada Gangguan: Panduan Arahan"
+    },
+    "introTitle": {
+        "message": "Pendahuluan"
+    },
+    "introText1": {
+        "message": "Hai! Sangat mudah untuk terganggu di internet dan melengahkan kerja. Ekstensi ini membolehkan anda menyekat laman web berdasarkan kata kunci yang anda tidak mahu lihat."
+    },
+    "introText2": {
+        "message": "Terdapat ribuan permainan video untuk dimainkan, berita untuk dibaca, video untuk ditonton, dan sebagainya. Dan seringkali, inilah yang kita lakukan apabila tarikh akhir projek atau peperiksaan masih jauh. Kadangkala, agak sukar untuk memaksa diri anda melakukan apa yang perlu dilakukan."
+    },
+    "introText3": {
+        "message": "Dan gangguan ada di mana-mana! Walaupun anda menggunakan StayFocusd atau Cold Turkey atau FocusMe untuk menyekat beberapa laman web mengikut URL mereka, anda tidak dapat menyekat semua. Sebagai contoh, walaupun dengan ChatGPT, anda boleh bercakap mengenai berita atau permainan video jika anda benar-benar tidak ingin belajar atau bekerja."
+    },
+    "introText4": {
+        "message": "Dengan ekstensi ini, anda boleh menyekat laman web berdasarkan kata dan frasa dalam teks mereka."
+    },
+    "howToUseTitle": {
+        "message": "Cara Menggunakan Ekstensi"
+    },
+    "createGroupTitle": {
+        "message": "Langkah Pertama: Cipta Kumpulan"
+    },
+    "createGroupText1": {
+        "message": "Anda boleh menekan butang 'Tambah Kumpulan' atau memasukkan nama kumpulan dan tekan Enter atau butang Tambah Kumpulan. Anda boleh mencipta beberapa kumpulan."
+    },
+    "createGroupText2": {
+        "message": "Anda akan melihat panel kumpulan."
+    },
+    "websitesTitle": {
+        "message": "Laman Web"
+    },
+    "websitesText": {
+        "message": "Anda boleh mula menambah laman web dengan menekan butang 'Edit' di sebelah kiri baris Laman Web. Ruangan ini bertanggungjawab untuk laman web di mana ekstensi akan menyekat kata kunci. Di sini anda perlu memasukkan URL laman web, contohnya, 'google.com'. Anda boleh memasukkan beberapa laman web, setiap baris baru adalah laman web baru. Hanya tekan Enter. Apabila anda sudah bersedia, tekan butang hijau 'Simpan'. Atau anda boleh Batal."
+    },
+    "keywordsTitle": {
+        "message": "Kata Kunci"
+    },
+    "keywordsText1": {
+        "message": "Untuk menambah kata kunci baru atau membuat perubahan apa pun, tekan 'Edit'. Kata kunci yang anda masukkan di sini akan diimbas pada laman web yang anda masukkan untuk kumpulan ini."
+    },
+    "keywordFormatsIntroduction": {
+        "message": "Terdapat 3 format untuk kata kunci:"
+    },
+    "keywordFormat1Title": {
+        "message": "Format Pertama:"
+    },
+    "keywordFormat1Text": {
+        "message": "Hanya masukkan kata kunci. Ia boleh menjadi perkataan atau frasa. Jika kata kunci mengandungi koma ',', anda mesti menggunakan karakter lari '\\' sebelumnya. Laman web akan disekat sebaik sahaja kata kunci dikesan. Anda boleh memasukkan seberapa banyak kata kunci yang anda mahu, hanya tekan enter. Setiap baris baru adalah kata kunci baru."
+    },
+    "keywordFormat1_2": {
+        "message": "Contoh: 'permainan video' atau 'berita'."
+    },
+    "keywordFormat2Title": {
+        "message": "Format Kedua:"
+    },
+    "keywordFormat2Text": {
+        "message": "Masukkan kata kunci, diikuti dengan nilai numerik. Setiap laman web yang anda masukkan dalam kumpulan mesti mencapai skor 1000. Laman web bermula dengan nilai 0, dan berdasarkan nilai numerik kata kunci, nilai itu meningkat. Apabila laman web mencapai skor 1000, ia akan disekat."
+    },
+    "keywordFormat2_2": {
+        "message": "Contoh: 'berita, 50'"
+    },
+    "keywordFormat2_3": {
+        "message": "Setiap laman web yang anda masukkan dalam kumpulan mesti mencapai skor 1000. Laman bermula dengan nilai 0, dan berdasarkan nilai numerik kata kunci, nilai itu meningkat. Apabila laman web mencapai skor 1000, ia akan disekat."
+    },
+    "keywordFormat3Title": {
+        "message": "Format Ketiga:"
+    },
+    "keywordFormat3Text": {
+        "message": "Masukkan kata kunci, diikuti oleh tanda perkalian atau tambahan (* atau +), kemudian nilai numerik. Dalam senario ini, skor untuk laman adalah didarab berdasarkan nilai numerik kata kunci yang ditemui."
+    },
+    "keywordFormat3_2": {
+        "message": "Contoh: 'berita, *, 10'"
+    },
+    "keywordFormat3_3": {
+        "message": "Dalam senario ini, skor untuk laman adalah didarab berdasarkan nilai numerik kata kunci yang ditemui."
+    },
+    "timerCountTitle": {
+        "message": "Kiraan Pengatur Waktu"
+    },
+    "timerCountText": {
+        "message": "Selepas laman disekat, anda akan mempunyai pilihan untuk menekan butang 'Aktifkan Pengatur Waktu'. Selepas itu, anda akan mempunyai masa untuk melakukan beberapa tindakan pada laman sebelum ia disekat semula. Dalam medan Kiraan Pengatur Waktu, anda boleh memutuskan berapa banyak pengatur waktu yang anda ingin ada sepanjang hari."
+    },
+    "timerDurationTitle": {
+        "message": "Tempoh Pengatur Waktu (saat)"
+    },
+    "timerDurationText": {
+        "message": "Dalam medan ini, anda memutuskan berapa banyak saat setiap pengatur waktu akan mempunyai."
+    },
+    "lockedSchedulesTitle": {
+        "message": "Jadual Terkunci"
+    },
+    "lockedSchedulesNote": {
+        "message": "! Jadual terkunci tidak boleh dibuka kunci sehingga waktu berlalu (melainkan anda menyahpasang ekstensi) !"
+    },
+    "lockedSchedulesText1": {
+        "message": "Anda boleh menambah jadual terkunci baru dengan mencipta nama jadual dalam medan Nama Jadual dan menekan Enter atau butang Tambah Jadual."
+    },
+    "lockedSchedulesText2": {
+        "message": "Untuk mengubah tetapan jadual anda, tekan 'Edit'. Dengan menekan butang hari, anda sama ada mengaktifkan jadual pada hari itu (butang menjadi hijau), atau menyahaktifkannya pada hari itu. Dengan mengubah medan Masa Mula dan Masa Tamat, anda menetapkan waktu jadual boleh aktif. Setiap hari mesti mempunyai tingkap waktu tidak aktif 1 jam supaya anda boleh menyahaktifkan jadual semasa waktu itu. Butang Tidak Aktif/Aktif mengalih jadual. Jadual akan terkunci dan aktif jika hari semasa diaktifkan (hijau) dan butang menunjukkan 'Aktif' dan juga hijau, dan jika waktu semasa adalah di antara masa mula dan tamat."
+    },
+    "lockedSchedulesText3": {
+        "message": "Butang Padam menghilangkan jadual terkunci. Perkara yang sama berlaku untuk kumpulan dan laman web senarai putih."
+    },
+    "lockedSchedulesText4": {
+        "message": "Beberapa sekatan dikenakan semasa jadual terkunci:"
+    },
+    "lockedScheduleRestriction1": {
+        "message": "Anda tidak boleh mengubah nama kumpulan."
+    },
+    "lockedScheduleRestriction2": {
+        "message": "Anda tidak boleh mengubah atau membuang laman web yang ada dalam kumpulan."
+    },
+    "lockedScheduleRestriction3": {
+        "message": "Anda tidak boleh mengubah atau membuang kata kunci dan nilai-nilainya yang sedia ada."
+    },
+    "lockedScheduleRestriction4": {
+        "message": "Anda hanya boleh menetapkan nilai kata kunci untuk penggandaan: dari 1 hingga 1000. Untuk penambahan: dari 0 hingga 1000."
+    },
+    "lockedScheduleRestriction5": {
+        "message": "Bilangan pengatur waktu tidak boleh ditambah."
+    },
+    "lockedScheduleRestriction6": {
+        "message": "Tempoh pengatur waktu tidak boleh ditambah."
+    },
+    "lockedScheduleRestriction7": {
+        "message": "Jadual aktif tidak boleh dipadam."
+    },
+    "lockedScheduleRestriction8": {
+        "message": "Anda tidak boleh nyahpilih hari, menjadikan jadual tidak aktif, atau mengubah masa mula atau tamat untuk jadual aktif."
+    },
+    "lockedScheduleRestriction9": {
+        "message": "Anda tidak boleh menambah laman web ke dalam senarai putih."
+    },
+    "lockedScheduleRestriction10": {
+        "message": "Anda tidak boleh menetapkan atau memadam kata laluan untuk sambungan."
+    },
+    "whitelistWebsitesTitle": {
+        "message": "Senarai Putih Laman Web"
+    },
+    "whitelistWebsitesText": {
+        "message": "Membolehkan anda memasukkan laman web ke dalam senarai putih, bermakna imbasan kata kunci tidak akan dilakukan pada laman web ini, dan oleh itu, laman web tersebut tidak akan disekat. Buat masa ini, kami tidak mempunyai kemampuan untuk menggunakan wildcard (*) untuk memasukkan banyak laman web dalam satu entri (seperti *.io, di mana semua laman web dengan '.io' akan disekat), jadi ciri ini tidak begitu berguna, tetapi ia wujud."
+    },
+    "passwordManagementTitle": {
+        "message": "Pengurusan Kata Laluan"
+    },
+    "passwordManagementText": {
+        "message": "Membolehkan anda menetapkan kata laluan untuk halaman sambungan. Sesiapa yang membuka halaman sambungan perlu memasukkan kata laluan yang betul untuk mendapat akses. Berguna untuk mencegah orang lain daripada secara tidak sengaja (atau sengaja) mengetatkan tetapan."
+    },
+    "contactFeedbackTitle": {
+        "message": "Hubungi dan Maklum Balas"
+    },
+    "feedbackText1": {
+        "message": "Jika anda ingin berkongsi sebarang maklum balas atau jika anda mempunyai masalah, sila lawati halaman GitHub sambungan ini:"
+    },
+    "githubLink": {
+        "message": "GitHub - Pertahanan Daripada Gangguan"
+    },
+    "feedbackText2": {
+        "message": "Di sana, navigasi ke tab 'Issues' dan klik butang hijau 'New Issue'. Isikan tajuk dan deskripsi lalu tekan 'Submit new issue'."
+    },
+    "thanks": {
+        "message": "Terima kasih."
+    },
+    "instructionGuideLink": {
+        "message": "Panduan Arahan"
+    }
 }

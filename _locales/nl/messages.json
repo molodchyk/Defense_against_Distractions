@@ -250,5 +250,176 @@
     },
     "passwordMismatchAlert": {
         "message": "Wachtwoorden komen niet overeen. Zorg ervoor dat beide wachtwoorden hetzelfde zijn."
-    }    
+    },
+    "pageTitle": {
+        "message": "Instructiegids - Verdediging Tegen Afleidingen"
+    },
+    "headerTitle": {
+        "message": "Verdediging Tegen Afleidingen: Instructiegids"
+    },
+    "introTitle": {
+        "message": "Introductie"
+    },
+    "introText1": {
+        "message": "Hallo! Het is zo gemakkelijk om afgeleid te worden op het internet en te gaan uitstellen. Deze extensie stelt je in staat om webpagina's te blokkeren op basis van sleutelwoorden die je niet wilt zien."
+    },
+    "introText2": {
+        "message": "Er zijn duizenden videogames om te spelen, nieuwsverhalen om te lezen, video's om te bekijken, enzovoort. En vaak is dit wat we doen als projectdeadlines of examens nog ver weg zijn. Soms kan het moeilijk zijn om jezelf te dwingen te doen wat je moet doen."
+    },
+    "introText3": {
+        "message": "En afleidingen zijn overal! Zelfs als je StayFocusd, Cold Turkey of FocusMe gebruikt om sommige websites te blokkeren op basis van hun URL's, kun je niet alles blokkeren. Bijvoorbeeld, zelfs met ChatGPT kun je praten over nieuws of videogames als je echt geen zin hebt om te studeren of te werken."
+    },
+    "introText4": {
+        "message": "Met deze extensie kun je websites blokkeren op basis van woorden en zinnen in hun tekst."
+    },
+    "howToUseTitle": {
+        "message": "Hoe de Extensie te Gebruiken"
+    },
+    "createGroupTitle": {
+        "message": "Eerste Stap: Maak een Groep"
+    },
+    "createGroupText1": {
+        "message": "Je kunt op de knop 'Groep Toevoegen' drukken of de groepsnaam invoeren en op Enter of de knop Groep Toevoegen drukken. Je kunt meerdere groepen maken."
+    },
+    "createGroupText2": {
+        "message": "Je ziet het groepspaneel."
+    },
+    "websitesTitle": {
+        "message": "Websites"
+    },
+    "websitesText": {
+        "message": "Je kunt beginnen met het toevoegen van websites door op de knop 'Bewerken' links van de regel Websites te drukken. Dit veld is verantwoordelijk voor websites waar de extensie sleutelwoorden zal blokkeren. Hier moet je website-URL's invoeren, bijvoorbeeld 'google.com'. Je kunt meerdere websites invoeren, elke nieuwe regel is een nieuwe website. Druk gewoon op Enter. Als je klaar bent, druk op de groene knop 'Opslaan'. Of je kunt Annuleren."
+    },
+    "keywordsTitle": {
+        "message": "Sleutelwoorden"
+    },
+    "keywordsText1": {
+        "message": "Om nieuwe sleutelwoorden toe te voegen of wijzigingen aan te brengen, druk op 'Bewerken'. De sleutelwoorden die je hier invoert, worden gescand op de websites die je voor deze groep hebt ingevoerd."
+    },
+    "keywordFormatsIntroduction": {
+        "message": "Er zijn 3 formaten voor de sleutelwoorden:"
+    },
+    "keywordFormat1Title": {
+        "message": "Eerste Formaat:"
+    },
+    "keywordFormat1Text": {
+        "message": "Voer gewoon de sleutelwoorden in. Het kan een woord of een zin zijn. Als het sleutelwoord een komma ',' bevat, moet je een escape-teken '\\' ervoor gebruiken. De website wordt geblokkeerd zodra het sleutelwoord wordt gedetecteerd. Je kunt zoveel sleutelwoorden invoeren als je wilt, druk gewoon op enter. Elke nieuwe regel is een nieuw sleutelwoord."
+    },
+    "keywordFormat1_2": {
+        "message": "Voorbeeld: 'videogames' of 'nieuws'."
+    },
+    "keywordFormat2Title": {
+        "message": "Tweede Formaat:"
+    },
+    "keywordFormat2Text": {
+        "message": "Voer het sleutelwoord in, gevolgd door een numerieke waarde. Elke website die je in een groep hebt ingevoerd, moet een score van 1000 bereiken. De website begint met een waarde van 0, en op basis van de numerieke waarde van het sleutelwoord, neemt de waarde toe. Zodra de website een score van 1000 bereikt, wordt deze geblokkeerd."
+    },
+    "keywordFormat2_2": {
+        "message": "Voorbeeld: 'nieuws, 50'"
+    },
+    "keywordFormat2_3": {
+        "message": "Elke website die je in een groep hebt ingevoerd, moet een score van 1000 bereiken. De site begint met een waarde van 0, en op basis van de numerieke waarde van het sleutelwoord, neemt de waarde toe. Zodra de website een score van 1000 bereikt, wordt deze geblokkeerd."
+    },
+    "keywordFormat3Title": {
+        "message": "Derde Formaat:"
+    },
+    "keywordFormat3Text": {
+        "message": "Voer het sleutelwoord in, gevolgd door een vermenigvuldigings- of optelteken (* of +), dan een numerieke waarde. In dit scenario wordt de score voor de pagina vermenigvuldigd op basis van de numerieke waarde van het gevonden sleutelwoord."
+    },
+    "keywordFormat3_2": {
+        "message": "Voorbeeld: 'nieuws, *, 10'"
+    },
+    "keywordFormat3_3": {
+        "message": "In dit scenario wordt de score voor de pagina vermenigvuldigd op basis van de numerieke waarde van het gevonden sleutelwoord."
+    },
+    "timerCountTitle": {
+        "message": "Timer Aantal"
+    },
+    "timerCountText": {
+        "message": "Nadat de pagina is geblokkeerd, heb je de mogelijkheid om op de knop 'Activeer Timer' te drukken. Daarna heb je tijd om enkele acties op de pagina uit te voeren voordat deze opnieuw wordt geblokkeerd. In het veld Timer Aantal kun je beslissen hoeveel timers je gedurende de dag wilt hebben."
+    },
+    "timerDurationTitle": {
+        "message": "Timer Duur (seconden)"
+    },
+    "timerDurationText": {
+        "message": "In dit veld beslis je hoeveel seconden elke timer zal hebben."
+    },
+    "lockedSchedulesTitle": {
+        "message": "Gesloten Schema's"
+    },
+    "lockedSchedulesNote": {
+        "message": "! Een gesloten schema kan niet worden ontgrendeld totdat de tijd voorbij is (tenzij je de extensie verwijdert) !"
+    },
+    "lockedSchedulesText1": {
+        "message": "Je kunt een nieuw gesloten schema toevoegen door de schemanaam in het veld Naam van Schema te creëren en op Enter of de knop Schema Toevoegen te drukken."
+    },
+    "lockedSchedulesText2": {
+        "message": "Om de instellingen van je schema te wijzigen, druk op 'Bewerken'. Door op de dagknoppen te drukken, schakel je het schema in voor die dag (knop wordt groen), of schakel je het uit voor die dag. Door de velden Starttijd en Eindtijd te wijzigen, stel je de tijden in waarop het schema actief kan zijn. Elke dag moet een inactief tijdvenster van 1 uur hebben zodat je het schema gedurende die tijd kunt deactiveren. De Inactief/Actief-knop schakelt het schema om. Het schema wordt vergrendeld en actief als de huidige dag is ingeschakeld (groen) en de knop 'Actief' toont en ook groen is, en als de huidige tijd tussen de start- en eindtijden ligt."
+    },
+    "lockedSchedulesText3": {
+        "message": "De knop Verwijderen verwijdert het gesloten schema. Hetzelfde geldt voor groepen en websites op de witte lijst."
+    },
+    "lockedSchedulesText4": {
+        "message": "Er gelden verschillende beperkingen tijdens het vergrendelde schema:"
+    },
+    "lockedScheduleRestriction1": {
+        "message": "U kunt groepsnamen niet wijzigen."
+    },
+    "lockedScheduleRestriction2": {
+        "message": "U kunt bestaande websites in groepen niet wijzigen of verwijderen."
+    },
+    "lockedScheduleRestriction3": {
+        "message": "U kunt bestaande sleutelwoorden en hun waarden niet wijzigen of verwijderen."
+    },
+    "lockedScheduleRestriction4": {
+        "message": "U kunt alleen sleutelwoordwaarden instellen voor vermenigvuldiging: van 1 tot 1000. Voor optelling: van 0 tot 1000."
+    },
+    "lockedScheduleRestriction5": {
+        "message": "Het aantal timers kan niet worden verhoogd."
+    },
+    "lockedScheduleRestriction6": {
+        "message": "De duur van de timer kan niet worden verhoogd."
+    },
+    "lockedScheduleRestriction7": {
+        "message": "Actieve schema's kunnen niet worden verwijderd."
+    },
+    "lockedScheduleRestriction8": {
+        "message": "U kunt dagen niet de-selecteren, het schema inactief maken, of de start- of eindtijden voor actieve schema's wijzigen."
+    },
+    "lockedScheduleRestriction9": {
+        "message": "U kunt geen websites aan de witte lijst toevoegen."
+    },
+    "lockedScheduleRestriction10": {
+        "message": "U kunt het wachtwoord voor de extensie niet instellen of verwijderen."
+    },
+    "whitelistWebsitesTitle": {
+        "message": "Witte Lijst Websites"
+    },
+    "whitelistWebsitesText": {
+        "message": "Stelt u in staat om websites op de witte lijst te zetten, wat betekent dat de sleutelwoordscan niet op deze websites wordt uitgevoerd, en ze dus niet geblokkeerd zullen worden. Momenteel hebben we niet de mogelijkheid om een jokerteken (*) te gebruiken om veel websites in één vermelding op te nemen (zoals *.io, waar alle websites met '.io' zouden worden geblokkeerd), dus deze functie is niet erg nuttig, maar bestaat wel."
+    },
+    "passwordManagementTitle": {
+        "message": "Wachtwoordbeheer"
+    },
+    "passwordManagementText": {
+        "message": "Stelt u in staat om een wachtwoord in te stellen voor de extensiepagina. Iedereen die de extensiepagina opent, moet het juiste wachtwoord invoeren om toegang te krijgen. Handig om te voorkomen dat anderen per ongeluk (of opzettelijk) de instellingen aanscherpen."
+    },
+    "contactFeedbackTitle": {
+        "message": "Contact en Feedback"
+    },
+    "feedbackText1": {
+        "message": "Als u feedback wilt delen of als u een probleem heeft, bezoek dan de GitHub-pagina van de extensie:"
+    },
+    "githubLink": {
+        "message": "GitHub - Defense Against Distractions"
+    },
+    "feedbackText2": {
+        "message": "Navigeer daar naar het tabblad 'Issues' en klik op de groene knop 'New Issue'. Vul de titel en beschrijving in en druk op 'Submit new issue'."
+    },
+    "thanks": {
+        "message": "Bedankt."
+    },
+    "instructionGuideLink": {
+        "message": "Instructiegids"
+    }
 }

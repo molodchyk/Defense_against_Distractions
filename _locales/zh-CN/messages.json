@@ -209,48 +209,217 @@
     "cannotDeselectDaysError": {
         "message": "不能为当前生效的活动时间表取消选择日期。"
     },
-    "zh-CN": {
-        "passwordManagementHeader": {
-            "message": "密码管理"
-        },
-        "enterPasswordPlaceholder": {
-            "message": "输入密码"
-        },
-        "confirmPasswordPlaceholder": {
-            "message": "确认密码"
-        },
-        "setPasswordButton": {
-            "message": "设置密码"
-        },
-        "deletePasswordButton": {
-            "message": "删除密码"
-        },
-        "enterPasswordToAccessLabel": {
-            "message": "输入密码以访问："
-        },
-        "submitButton": {
-            "message": "提交"
-        },
-        "tooManyAttempts": {
-            "message": "尝试次数过多。请等待 $TIME$ 秒后重试。",
-            "placeholders": {
-                "time": {
-                    "content": "$1",
-                    "example": "30"
-                }
+    "passwordManagementHeader": {
+        "message": "密码管理"
+    },
+    "enterPasswordPlaceholder": {
+        "message": "输入密码"
+    },
+    "confirmPasswordPlaceholder": {
+        "message": "确认密码"
+    },
+    "setPasswordButton": {
+        "message": "设置密码"
+    },
+    "deletePasswordButton": {
+        "message": "删除密码"
+    },
+    "enterPasswordToAccessLabel": {
+        "message": "输入密码以访问："
+    },
+    "submitButton": {
+        "message": "提交"
+    },
+    "tooManyAttempts": {
+        "message": "尝试次数过多。请等待 $TIME$ 秒后重试。",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "30"
             }
-        },
-        "incorrectPassword": {
-            "message": "密码不正确。剩余 $ATTEMPTS$ 次尝试机会。",
-            "placeholders": {
-                "attempts": {
-                    "content": "$1",
-                    "example": "5"
-                }
+        }
+    },
+    "incorrectPassword": {
+        "message": "密码不正确。剩余 $ATTEMPTS$ 次尝试机会。",
+        "placeholders": {
+            "attempts": {
+                "content": "$1",
+                "example": "5"
             }
         }
     },
     "passwordMismatchAlert": {
         "message": "密码不匹配。请确保两个密码相同。"
-    }    
+    },
+    "pageTitle": {
+        "message": "指导手册 - 防御分心"
+    },
+    "headerTitle": {
+        "message": "防御分心：指导手册"
+    },
+    "introTitle": {
+        "message": "介绍"
+    },
+    "introText1": {
+        "message": "嗨！在互联网上很容易分心和拖延。这个扩展程序允许你根据你不想看到的关键词来屏蔽网页。"
+    },
+    "introText2": {
+        "message": "有成千上万的视频游戏可以玩，新闻故事可以阅读，视频可以观看等等。而且通常，这就是我们在项目截止日期或考试还远时所做的。有时，强迫自己去做需要做的事情可能有点困难。"
+    },
+    "introText3": {
+        "message": "而且到处都是干扰！即使你使用StayFocusd或Cold Turkey或FocusMe来屏蔽一些网站的URL，你也不能屏蔽所有内容。例如，即使有ChatGPT，如果你真的不想学习或工作，你也可以谈论新闻或视频游戏。"
+    },
+    "introText4": {
+        "message": "有了这个扩展，你可以根据网站文本中的单词和短语来屏蔽网站。"
+    },
+    "howToUseTitle": {
+        "message": "如何使用扩展程序"
+    },
+    "createGroupTitle": {
+        "message": "第一步：创建一个组"
+    },
+    "createGroupText1": {
+        "message": "你可以按“添加组”按钮或输入组名并按Enter键或添加组按钮。你可以创建多个组。"
+    },
+    "createGroupText2": {
+        "message": "你将看到组面板。"
+    },
+    "websitesTitle": {
+        "message": "网站"
+    },
+    "websitesText": {
+        "message": "你可以通过按网站行左侧的“编辑”按钮开始添加网站。此字段负责扩展程序将屏蔽关键词的网站。在这里，你必须输入网站URL，例如'google.com'。你可以输入多个网站，每个新行是一个新网站。只需按Enter键。准备好后，按绿色的“保存”按钮。或者你可以取消。"
+    },
+    "keywordsTitle": {
+        "message": "关键词"
+    },
+    "keywordsText1": {
+        "message": "要添加新关键词或进行任何更改，请按“编辑”。你在此组中输入的关键词将在你输入的网站上进行扫描。"
+    },
+    "keywordFormatsIntroduction": {
+        "message": "关键词有3种格式："
+    },
+    "keywordFormat1Title": {
+        "message": "第一种格式："
+    },
+    "keywordFormat1Text": {
+        "message": "只需输入关键词。它可以是一个单词或一个短语。如果关键词包含逗号'，'，你必须在它前面使用转义字符'\\'。一旦检测到关键词，网站将被屏蔽。你可以输入任意多的关键词，只需按enter键。每个新行是一个新关键词。"
+    },
+    "keywordFormat1_2": {
+        "message": "例如：'video games'或'news'。"
+    },
+    "keywordFormat2Title": {
+        "message": "第二种格式："
+    },
+    "keywordFormat2Text": {
+        "message": "输入关键词，后跟一个数字值。你在一个组中输入的每个网站必须达到1000的分数。网站从0开始，基于关键词的数字值，值增加。一旦网站达到1000分，它将被屏蔽。"
+    },
+    "keywordFormat2_2": {
+        "message": "例如：'news, 50'"
+    },
+    "keywordFormat2_3": {
+        "message": "你在一个组中输入的每个网站必须达到1000的分数。网站从0开始，基于关键词的数字值，值增加。一旦网站达到1000分，它将被屏蔽。"
+    },
+    "keywordFormat3Title": {
+        "message": "第三种格式："
+    },
+    "keywordFormat3Text": {
+        "message": "输入关键词，后跟乘号或加号（*或+），然后是一个数字值。在这种情况下，页面的分数将根据找到的关键词的数字值进行乘法运算。"
+    },
+    "keywordFormat3_2": {
+        "message": "例如：'news, *, 10'"
+    },
+    "keywordFormat3_3": {
+        "message": "在这种情况下，页面的分数将根据找到的关键词的数字值进行乘法运算。"
+    },
+    "timerCountTitle": {
+        "message": "计时器数量"
+    },
+    "timerCountText": {
+        "message": "页面被屏蔽后，你可以选择按下“激活计时器”按钮。之后，你将有时间在页面上执行一些操作，然后它将再次被屏蔽。在计时器数量字段中，你可以决定一天中要有多少计时器。"
+    },
+    "timerDurationTitle": {
+        "message": "计时器持续时间（秒）"
+    },
+    "timerDurationText": {
+        "message": "在此字段中，你决定每个计时器的秒数。"
+    },
+    "lockedSchedulesTitle": {
+        "message": "锁定时间表"
+    },
+    "lockedSchedulesNote": {
+        "message": "! 锁定的时间表在时间过去之前不能解锁（除非你卸载扩展程序）!"
+    },
+    "lockedSchedulesText1": {
+        "message": "你可以通过在时间表名称字段中创建时间表名称并按Enter键或添加时间表按钮来添加新的锁定时间表。"
+    },
+    "lockedSchedulesText2": {
+        "message": "要修改时间表的设置，请按“编辑”。通过按天按钮，你可以在那一天启用时间表（按钮变绿），或禁用它。通过修改开始时间和结束时间字段，你设置时间表可以激活的时间。每天必须有1小时的非活动时间窗口，以便你可以在那个时间解除时间表。非活动/活动按钮切换时间表。如果当前天被启用（绿色）并且按钮显示“活动”且也是绿色，并且当前时间在开始和结束时间之间，时间表将被锁定和激活。"
+    },
+    "lockedSchedulesText3": {
+        "message": "删除按钮移除锁定的时间表。组和白名单网站也是如此。"
+    },
+    "lockedSchedulesText4": {
+        "message": "在锁定时间表期间适用几项限制："
+    },
+    "lockedScheduleRestriction1": {
+        "message": "你不能更改组名。"
+    },
+    "lockedScheduleRestriction2": {
+        "message": "你不能更改或移除组中现有的网站。"
+    },
+    "lockedScheduleRestriction3": {
+        "message": "你不能更改或移除现有关键词及其值。"
+    },
+    "lockedScheduleRestriction4": {
+        "message": "你只能为乘法设置关键词值：从1到1000。对于加法：从0到1000。"
+    },
+    "lockedScheduleRestriction5": {
+        "message": "计时器数量不能增加。"
+    },
+    "lockedScheduleRestriction6": {
+        "message": "计时器持续时间不能增加。"
+    },
+    "lockedScheduleRestriction7": {
+        "message": "不能删除活动中的时间表。"
+    },
+    "lockedScheduleRestriction8": {
+        "message": "你不能取消选择天数，使时间表非活动，或更改活动时间表的开始或结束时间。"
+    },
+    "lockedScheduleRestriction9": {
+        "message": "你不能添加白名单网站。"
+    },
+    "lockedScheduleRestriction10": {
+        "message": "你不能设置或删除扩展程序的密码。"
+    },
+    "whitelistWebsitesTitle": {
+        "message": "白名单网站"
+    },
+    "whitelistWebsitesText": {
+        "message": "允许你输入白名单网站，这意味着关键词扫描不会在这些网站上执行，因此它们不会被屏蔽。目前，我们没有能力使用通配符(*)来一次性包含很多网站（例如*.io，所有带有'.io'的网站将被屏蔽），所以这个功能不是很有用，但它存在。"
+    },
+    "passwordManagementTitle": {
+        "message": "密码管理"
+    },
+    "passwordManagementText": {
+        "message": "允许你为扩展程序页面设置密码。任何打开扩展程序页面的人都需要输入正确的密码才能获得访问权限。用于防止他人意外（或故意）加紧设置。"
+    },
+    "contactFeedbackTitle": {
+        "message": "联系和反馈"
+    },
+    "feedbackText1": {
+        "message": "如果你想分享任何反馈或遇到问题，请访问扩展程序的GitHub页面："
+    },
+    "githubLink": {
+        "message": "GitHub - 防御分心"
+    },
+    "feedbackText2": {
+        "message": "在那里，导航到'问题'标签并点击绿色按钮'新问题'。填写标题和描述，然后按“提交新问题”。"
+    },
+    "thanks": {
+        "message": "谢谢。"
+    },
+    "instructionGuideLink": {
+        "message": "指导手册"
+    }
 }

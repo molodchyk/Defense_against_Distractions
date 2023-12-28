@@ -250,5 +250,176 @@
     },
     "passwordMismatchAlert": {
         "message": "Passwörter stimmen nicht überein. Bitte stellen Sie sicher, dass beide Passwörter identisch sind."
-    }    
+    },
+    "pageTitle": {
+        "message": "Anleitung - Verteidigung gegen Ablenkungen"
+    },
+    "headerTitle": {
+        "message": "Verteidigung gegen Ablenkungen: Anleitung"
+    },
+    "introTitle": {
+        "message": "Einführung"
+    },
+    "introText1": {
+        "message": "Hallo! Es ist so einfach, sich im Internet ablenken zu lassen und zu prokrastinieren. Diese Erweiterung ermöglicht es Ihnen, Webseiten anhand von Schlüsselwörtern, die Sie nicht sehen möchten, zu blockieren."
+    },
+    "introText2": {
+        "message": "Es gibt Tausende von Videospielen zu spielen, Nachrichten zu lesen, Videos anzuschauen und so weiter. Und oft ist das, was wir tun, wenn Projektfristen oder Prüfungen noch weit entfernt sind. Manchmal kann es etwas schwer sein, sich selbst dazu zu zwingen, das zu tun, was man tun muss."
+    },
+    "introText3": {
+        "message": "Und Ablenkungen gibt es überall! Selbst wenn Sie StayFocusd, Cold Turkey oder FocusMe verwenden, um einige Websites anhand ihrer URLs zu blockieren, können Sie nicht alles blockieren. Zum Beispiel könnten Sie selbst mit ChatGPT über Nachrichten oder Videospiele sprechen, wenn Sie wirklich keine Lust haben zu studieren oder zu arbeiten."
+    },
+    "introText4": {
+        "message": "Mit dieser Erweiterung können Sie Webseiten basierend auf Wörtern und Phrasen in ihrem Text blockieren."
+    },
+    "howToUseTitle": {
+        "message": "Wie man die Erweiterung benutzt"
+    },
+    "createGroupTitle": {
+        "message": "Erster Schritt: Erstellen einer Gruppe"
+    },
+    "createGroupText1": {
+        "message": "Sie können den Button 'Gruppe hinzufügen' drücken oder den Gruppennamen eingeben und Enter oder den Button 'Gruppe hinzufügen' drücken. Sie können mehrere Gruppen erstellen."
+    },
+    "createGroupText2": {
+        "message": "Sie werden das Gruppenpanel sehen."
+    },
+    "websitesTitle": {
+        "message": "Webseiten"
+    },
+    "websitesText": {
+        "message": "Sie können mit dem Hinzufügen von Webseiten beginnen, indem Sie den 'Bearbeiten'-Button links von der Zeile Webseiten drücken. Dieses Feld ist verantwortlich für die Webseiten, auf denen die Erweiterung Schlüsselwörter blockieren wird. Hier müssen Sie die URLs der Webseiten eingeben, zum Beispiel 'google.com'. Sie können mehrere Webseiten eingeben, jede neue Zeile ist eine neue Webseite. Drücken Sie einfach Enter. Wenn Sie fertig sind, drücken Sie den grünen 'Speichern'-Button. Oder Sie können Abbrechen."
+    },
+    "keywordsTitle": {
+        "message": "Schlüsselwörter"
+    },
+    "keywordsText1": {
+        "message": "Um neue Schlüsselwörter hinzuzufügen oder Änderungen vorzunehmen, drücken Sie 'Bearbeiten'. Die hier eingegebenen Schlüsselwörter werden auf den Webseiten, die Sie für diese Gruppe eingegeben haben, gescannt."
+    },
+    "keywordFormatsIntroduction": {
+        "message": "Es gibt 3 Formate für die Schlüsselwörter:"
+    },
+    "keywordFormat1Title": {
+        "message": "Erstes Format:"
+    },
+    "keywordFormat1Text": {
+        "message": "Geben Sie einfach die Schlüsselwörter ein. Es kann ein Wort oder eine Phrase sein. Wenn das Schlüsselwort ein Komma ',' enthält, müssen Sie ein Escape-Zeichen '\\' davor setzen. Die Webseite wird blockiert, sobald das Schlüsselwort erkannt wird. Sie können so viele Schlüsselwörter eingeben, wie Sie möchten, drücken Sie einfach Enter. Jede neue Zeile ist ein neues Schlüsselwort."
+    },
+    "keywordFormat1_2": {
+        "message": "Beispiel: 'Videospiele' oder 'Nachrichten'."
+    },
+    "keywordFormat2Title": {
+        "message": "Zweites Format:"
+    },
+    "keywordFormat2Text": {
+        "message": "Geben Sie das Schlüsselwort ein, gefolgt von einem numerischen Wert. Jede Webseite, die Sie in einer Gruppe eingetragen haben, muss eine Punktzahl von 1000 erreichen. Die Webseite beginnt mit einem Wert von 0, und basierend auf dem numerischen Wert des Schlüsselworts erhöht sich der Wert. Sobald die Webseite eine Punktzahl von 1000 erreicht, wird sie blockiert."
+    },
+    "keywordFormat2_2": {
+        "message": "Beispiel: 'Nachrichten, 50'"
+    },
+    "keywordFormat2_3": {
+        "message": "Jede Webseite, die Sie in einer Gruppe eingetragen haben, muss eine Punktzahl von 1000 erreichen. Die Seite beginnt mit einem Wert von 0, und basierend auf dem numerischen Wert des Schlüsselworts erhöht sich der Wert. Sobald die Webseite eine Punktzahl von 1000 erreicht, wird sie blockiert."
+    },
+    "keywordFormat3Title": {
+        "message": "Drittes Format:"
+    },
+    "keywordFormat3Text": {
+        "message": "Geben Sie das Schlüsselwort ein, gefolgt von einem Multiplikations- oder Additionszeichen (* oder +), dann einem numerischen Wert. In diesem Szenario wird die Punktzahl der Seite basierend auf dem numerischen Wert des gefundenen Schlüsselworts multipliziert."
+    },
+    "keywordFormat3_2": {
+        "message": "Beispiel: 'Nachrichten, *, 10'"
+    },
+    "keywordFormat3_3": {
+        "message": "In diesem Szenario wird die Punktzahl der Seite basierend auf dem numerischen Wert des gefundenen Schlüsselworts multipliziert."
+    },
+    "timerCountTitle": {
+        "message": "Timer-Anzahl"
+    },
+    "timerCountText": {
+        "message": "Nachdem die Seite blockiert wurde, haben Sie die Möglichkeit, den 'Timer aktivieren'-Button zu drücken. Danach haben Sie Zeit, einige Aktionen auf der Seite durchzuführen, bevor sie wieder blockiert wird. Im Feld Timer-Anzahl können Sie entscheiden, wie viele Timer Sie während des Tages haben möchten."
+    },
+    "timerDurationTitle": {
+        "message": "Timerdauer (Sekunden)"
+    },
+    "timerDurationText": {
+        "message": "In diesem Feld entscheiden Sie, wie viele Sekunden jeder Timer haben wird."
+    },
+    "lockedSchedulesTitle": {
+        "message": "Gesperrte Zeitpläne"
+    },
+    "lockedSchedulesNote": {
+        "message": "! Ein gesperrter Zeitplan kann nicht entsperrt werden, bis die Zeit verstrichen ist (es sei denn, Sie deinstallieren die Erweiterung) !"
+    },
+    "lockedSchedulesText1": {
+        "message": "Sie können einen neuen gesperrten Zeitplan hinzufügen, indem Sie den Namen des Zeitplans im Feld 'Name des Zeitplans' erstellen und Enter drücken oder den 'Zeitplan hinzufügen'-Button drücken."
+    },
+    "lockedSchedulesText2": {
+        "message": "Um die Einstellungen Ihres Zeitplans zu ändern, drücken Sie 'Bearbeiten'. Durch Drücken der Tagesknöpfe aktivieren Sie den Zeitplan an diesem Tag (Knopf wird grün) oder deaktivieren ihn für diesen Tag. Durch Ändern der Felder 'Startzeit' und 'Endzeit' legen Sie die Zeiten fest, zu denen der Zeitplan aktiv sein kann. Jeder Tag muss ein einstündiges inaktives Zeitfenster haben, damit Sie den Zeitplan während dieser Zeit deaktivieren können. Der Inaktiv/Aktiv-Knopf schaltet den Zeitplan um. Der Zeitplan ist gesperrt und aktiv, wenn der aktuelle Tag aktiviert (grün) ist und der Knopf 'Aktiv/Inaktiv' 'Aktiv' anzeigt und ebenfalls grün ist, und wenn die aktuelle Zeit zwischen Start- und Endzeit liegt."
+    },
+    "lockedSchedulesText3": {
+        "message": "Der 'Löschen'-Button entfernt den gesperrten Zeitplan. Das Gleiche gilt für Gruppen und Whitelist-Webseiten."
+    },
+    "lockedSchedulesText4": {
+        "message": "Während des gesperrten Zeitplans gelten mehrere Einschränkungen:"
+    },
+    "lockedScheduleRestriction1": {
+        "message": "Sie können keine Gruppennamen ändern."
+    },
+    "lockedScheduleRestriction2": {
+        "message": "Sie können keine bestehenden Websites in Gruppen ändern oder entfernen."
+    },
+    "lockedScheduleRestriction3": {
+        "message": "Sie können keine bestehenden Schlüsselwörter und deren Werte ändern oder entfernen."
+    },
+    "lockedScheduleRestriction4": {
+        "message": "Sie können nur Werte für Schlüsselwörter für die Multiplikation setzen: von 1 bis 1000. Für Addition: von 0 bis 1000."
+    },
+    "lockedScheduleRestriction5": {
+        "message": "Die Anzahl der Timer kann nicht erhöht werden."
+    },
+    "lockedScheduleRestriction6": {
+        "message": "Die Timerdauer kann nicht erhöht werden."
+    },
+    "lockedScheduleRestriction7": {
+        "message": "Aktive Zeitpläne können nicht gelöscht werden."
+    },
+    "lockedScheduleRestriction8": {
+        "message": "Sie können keine Tage abwählen, den Zeitplan nicht inaktiv setzen oder die Start- und Endzeiten für aktive Zeitpläne ändern."
+    },
+    "lockedScheduleRestriction9": {
+        "message": "Sie können keine Websites zur Whitelist hinzufügen."
+    },
+    "lockedScheduleRestriction10": {
+        "message": "Sie können kein Passwort für die Erweiterung setzen oder löschen."
+    },
+    "whitelistWebsitesTitle": {
+        "message": "Whitelist-Webseiten"
+    },
+    "whitelistWebsitesText": {
+        "message": "Ermöglicht es Ihnen, Whitelist-Webseiten einzugeben, was bedeutet, dass die Schlüsselwortsuche auf diesen Webseiten nicht durchgeführt wird und sie daher nicht blockiert werden. Derzeit haben wir nicht die Möglichkeit, ein Platzhalterzeichen (*) zu verwenden, um viele Webseiten in einem Eintrag einzuschließen (wie *.io, wo alle Webseiten mit '.io' blockiert würden), daher ist diese Funktion nicht sehr nützlich, existiert aber."
+    },
+    "passwordManagementTitle": {
+        "message": "Passwortverwaltung"
+    },
+    "passwordManagementText": {
+        "message": "Ermöglicht Ihnen, ein Passwort für die Erweiterungsseite einzurichten. Jeder, der die Erweiterungsseite öffnet, muss das korrekte Passwort eingeben, um Zugang zu erhalten. Nützlich, um zu verhindern, dass andere die Einstellungen versehentlich (oder absichtlich) verschärfen."
+    },
+    "contactFeedbackTitle": {
+        "message": "Kontakt und Feedback"
+    },
+    "feedbackText1": {
+        "message": "Wenn Sie Feedback teilen möchten oder ein Problem haben, besuchen Sie bitte die GitHub-Seite der Erweiterung:"
+    },
+    "githubLink": {
+        "message": "GitHub - Defense Against Distractions"
+    },
+    "feedbackText2": {
+        "message": "Dort navigieren Sie zur Registerkarte 'Probleme' und klicken auf die grüne Schaltfläche 'Neues Problem'. Füllen Sie den Titel und die Beschreibung aus und drücken Sie 'Neues Problem einreichen'."
+    },
+    "thanks": {
+        "message": "Danke."
+    },
+    "instructionGuideLink": {
+        "message": "Anleitung"
+    }
 }

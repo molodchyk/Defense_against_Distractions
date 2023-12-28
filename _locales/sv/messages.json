@@ -250,5 +250,176 @@
     },
     "passwordMismatchAlert": {
         "message": "Lösenorden matchar inte. Se till att båda lösenorden är identiska."
-    }    
+    },
+    "pageTitle": {
+        "message": "Instruktionsguide - Försvar Mot Avledning"
+    },
+    "headerTitle": {
+        "message": "Försvar Mot Avledning: Instruktionsguide"
+    },
+    "introTitle": {
+        "message": "Introduktion"
+    },
+    "introText1": {
+        "message": "Hej! Det är så lätt att bli distraherad på internet och att skjuta upp saker. Detta tillägg låter dig blockera webbsidor baserat på nyckelord som du inte vill se."
+    },
+    "introText2": {
+        "message": "Det finns tusentals videospel att spela, nyheter att läsa, videor att titta på, och så vidare. Och ofta är detta vad vi gör när projektdeadlines eller tentor fortfarande är långt borta. Ibland kan det vara lite svårt att tvinga sig själv att göra det man behöver göra."
+    },
+    "introText3": {
+        "message": "Och distraktioner finns överallt! Även om du använder StayFocusd, Cold Turkey eller FocusMe för att blockera vissa webbplatser med deras URL:er, kan du inte blockera allt. Till exempel, även med ChatGPT, kan du prata om nyheter eller videospel om du verkligen inte känner för att studera eller arbeta."
+    },
+    "introText4": {
+        "message": "Med detta tillägg kan du blockera webbplatser baserat på ord och fraser i deras text."
+    },
+    "howToUseTitle": {
+        "message": "Hur man Använder Tillägget"
+    },
+    "createGroupTitle": {
+        "message": "Första Steget: Skapa en Grupp"
+    },
+    "createGroupText1": {
+        "message": "Du kan trycka på 'Lägg till Grupp'-knappen eller skriva in gruppnamnet och trycka Enter eller på 'Lägg till Grupp'-knappen. Du kan skapa flera grupper."
+    },
+    "createGroupText2": {
+        "message": "Du kommer att se gruppens panel."
+    },
+    "websitesTitle": {
+        "message": "Webbplatser"
+    },
+    "websitesText": {
+        "message": "Du kan börja lägga till webbplatser genom att trycka på 'Redigera'-knappen till vänster om webbplatsraden. Detta fält ansvarar för webbplatser där tillägget kommer att blockera nyckelord. Här måste du ange webbplatsers URL:er, till exempel 'google.com'. Du kan mata in flera webbplatser, varje ny rad är en ny webbplats. Tryck bara Enter. När du är klar, tryck på den gröna 'Spara'-knappen. Eller du kan avbryta."
+    },
+    "keywordsTitle": {
+        "message": "Nyckelord"
+    },
+    "keywordsText1": {
+        "message": "För att lägga till nya nyckelord eller göra några ändringar, tryck på 'Redigera'. De nyckelord du anger här kommer att skannas på de webbplatser du angav för denna grupp."
+    },
+    "keywordFormatsIntroduction": {
+        "message": "Det finns 3 format för nyckelorden:"
+    },
+    "keywordFormat1Title": {
+        "message": "Första Formatet:"
+    },
+    "keywordFormat1Text": {
+        "message": "Skriv bara in nyckelorden. Det kan vara ett ord eller en fras. Om nyckelordet innehåller ett kommatecken ',', måste du använda ett escape-tecken '\\' före det. Webbplatsen kommer att blockeras så snart nyckelordet upptäcks. Du kan mata in så många nyckelord som du vill, tryck bara enter. Varje ny rad är ett nytt nyckelord."
+    },
+    "keywordFormat1_2": {
+        "message": "Exempel: 'videospel' eller 'nyheter'."
+    },
+    "keywordFormat2Title": {
+        "message": "Andra Formatet:"
+    },
+    "keywordFormat2Text": {
+        "message": "Ange nyckelordet, följt av ett numeriskt värde. Varje webbplats du angav i en grupp måste nå en poäng på 1000. Webbplatsen börjar med ett värde av 0, och baserat på det numeriska värdet av nyckelordet, ökar värdet. När webbplatsen når en poäng på 1000, kommer den att blockeras."
+    },
+    "keywordFormat2_2": {
+        "message": "Exempel: 'nyheter, 50'"
+    },
+    "keywordFormat2_3": {
+        "message": "Varje webbplats du angav i en grupp måste nå en poäng på 1000. Webbplatsen börjar med ett värde av 0, och baserat på det numeriska värdet av nyckelordet, ökar värdet. När webbplatsen når en poäng på 1000, kommer den att blockeras."
+    },
+    "keywordFormat3Title": {
+        "message": "Tredje Formatet:"
+    },
+    "keywordFormat3Text": {
+        "message": "Ange nyckelordet, följt av ett multiplikations- eller additionstecken (* eller +), sedan ett numeriskt värde. I detta scenario multipliceras poängen för sidan baserat på det numeriska värdet av det hittade nyckelordet."
+    },
+    "keywordFormat3_2": {
+        "message": "Exempel: 'nyheter, *, 10'"
+    },
+    "keywordFormat3_3": {
+        "message": "I detta scenario multipliceras poängen för sidan baserat på det numeriska värdet av det hittade nyckelordet."
+    },
+    "timerCountTitle": {
+        "message": "Timerantal"
+    },
+    "timerCountText": {
+        "message": "Efter att sidan är blockerad, kommer du att ha möjlighet att trycka på 'Aktivera Timer'-knappen. Därefter kommer du att ha tid att utföra vissa åtgärder på sidan innan den blockeras igen. I fältet Timerantal kan du bestämma hur många timers du vill ha under dagen."
+    },
+    "timerDurationTitle": {
+        "message": "Timers varaktighet (sekunder)"
+    },
+    "timerDurationText": {
+        "message": "I detta fält bestämmer du hur många sekunder varje timer ska vara."
+    },
+    "lockedSchedulesTitle": {
+        "message": "Låsta Scheman"
+    },
+    "lockedSchedulesNote": {
+        "message": "! Ett låst schema kan inte låsas upp förrän tiden går ut (om du inte avinstallerar tillägget) !"
+    },
+    "lockedSchedulesText1": {
+        "message": "Du kan lägga till ett nytt låst schema genom att skapa schemanamnet i fältet Schemanamn och trycka Enter eller på 'Lägg till Schema'-knappen."
+    },
+    "lockedSchedulesText2": {
+        "message": "För att modifiera inställningarna för ditt schema, tryck på 'Redigera'. Genom att trycka på dagknapparna, antingen aktiverar du schemat den dagen (knappen blir grön), eller inaktiverar det för den dagen. Genom att ändra fälten Starttid och Sluttid, ställer du in tiderna som schemat kan vara aktivt på. Varje dag måste ha ett 1-timmes inaktivt tidsfönster så att du kan avaktivera schemat under den tiden. Knappen Aktiv/Inaktiv växlar schemat. Schemat kommer att vara låst och aktivt om den aktuella dagen är aktiverad (grön) och knappen visar 'Aktiv' och är också grön, och om den nuvarande tiden är mellan start- och sluttiderna."
+    },
+    "lockedSchedulesText3": {
+        "message": "Radera-knappen tar bort det låsta schemat. Detsamma gäller för grupper och webbplatser på vitlistan."
+    },
+    "lockedSchedulesText4": {
+        "message": "Flera restriktioner gäller under det låsta schemat:"
+    },
+    "lockedScheduleRestriction1": {
+        "message": "Du kan inte ändra gruppnamn."
+    },
+    "lockedScheduleRestriction2": {
+        "message": "Du kan inte ändra eller ta bort befintliga webbplatser i grupper."
+    },
+    "lockedScheduleRestriction3": {
+        "message": "Du kan inte ändra eller ta bort befintliga nyckelord och deras värden."
+    },
+    "lockedScheduleRestriction4": {
+        "message": "Du kan bara ställa in nyckelordsvärden för multiplikation: från 1 till 1000. För addition: från 0 till 1000."
+    },
+    "lockedScheduleRestriction5": {
+        "message": "Timerantalet kan inte ökas."
+    },
+    "lockedScheduleRestriction6": {
+        "message": "Timerns varaktighet kan inte ökas."
+    },
+    "lockedScheduleRestriction7": {
+        "message": "Aktiva scheman kan inte raderas."
+    },
+    "lockedScheduleRestriction8": {
+        "message": "Du kan inte avmarkera dagar, göra schemat inaktivt, eller ändra start- och sluttider för aktiva scheman."
+    },
+    "lockedScheduleRestriction9": {
+        "message": "Du kan inte lägga till webbplatser på vitlistan."
+    },
+    "lockedScheduleRestriction10": {
+        "message": "Du kan inte ställa in eller radera lösenordet för tillägget."
+    },
+    "whitelistWebsitesTitle": {
+        "message": "Vitlista Webbplatser"
+    },
+    "whitelistWebsitesText": {
+        "message": "Gör det möjligt för dig att lägga till webbplatser på vitlistan, vilket innebär att nyckelordssökningen inte kommer att utföras på dessa webbplatser, och de kommer därför inte att blockeras. För närvarande har vi inte möjligheten att använda en jokertecken (*) för att inkludera många webbplatser i en post (som *.io, där alla webbplatser med '.io' skulle blockeras), så denna funktion är inte särskilt användbar, men den finns."
+    },
+    "passwordManagementTitle": {
+        "message": "Lösenordshantering"
+    },
+    "passwordManagementText": {
+        "message": "Gör det möjligt för dig att ställa in ett lösenord för tilläggssidan. Den som öppnar tilläggssidan kommer att behöva ange rätt lösenord för att få tillgång. Användbart för att förhindra att andra oavsiktligt (eller avsiktligt) skärper inställningarna."
+    },
+    "contactFeedbackTitle": {
+        "message": "Kontakt och Feedback"
+    },
+    "feedbackText1": {
+        "message": "Om du vill dela med dig av feedback eller om du har ett problem, vänligen besök tilläggets GitHub-sida:"
+    },
+    "githubLink": {
+        "message": "GitHub - Försvar Mot Distraheringar"
+    },
+    "feedbackText2": {
+        "message": "Där, navigera till fliken 'Problem' och klicka på den gröna knappen 'Nytt Problem'. Fyll i titeln och beskrivningen och tryck på 'Skicka nytt problem'."
+    },
+    "thanks": {
+        "message": "Tack."
+    },
+    "instructionGuideLink": {
+        "message": "Instruktionsguide"
+    }
 }

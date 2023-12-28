@@ -250,5 +250,176 @@
     },
     "passwordMismatchAlert": {
         "message": "A jelszavak nem egyeznek meg. Kérjük, győződjön meg róla, hogy mindkét jelszó ugyanaz."
-    }    
+    },
+    "pageTitle": {
+        "message": "Útmutató - Védekezés a Figyelemelterelések Ellen"
+    },
+    "headerTitle": {
+        "message": "Védekezés a Figyelemelterelések Ellen: Útmutató"
+    },
+    "introTitle": {
+        "message": "Bevezetés"
+    },
+    "introText1": {
+        "message": "Szia! Olyan könnyű elkalandozni az interneten és halogatni. Ez a bővítmény lehetővé teszi, hogy weboldalakat blokkolj kulcsszavak alapján, amelyeket nem szeretnél látni."
+    },
+    "introText2": {
+        "message": "Több ezer videojáték van játszani, hírt olvasni, videókat nézni, és így tovább. És gyakran ez az, amit csinálunk, amikor a projekt határideje vagy a vizsgák még messze vannak. Néha nehéz lehet rávenni magadat arra, hogy azt csináld, amit kell."
+    },
+    "introText3": {
+        "message": "És a figyelemelterelések mindenhol ott vannak! Még ha használsz is olyan alkalmazásokat, mint a StayFocusd vagy a Cold Turkey vagy a FocusMe, hogy blokkold egyes weboldalakat az URL-jük alapján, nem tudsz mindent blokkolni. Például még a ChatGPT-vel is beszélhetsz a hírekről vagy videojátékokról, ha igazán nem szeretnél tanulni vagy dolgozni."
+    },
+    "introText4": {
+        "message": "Ezzel a bővítménnyel blokkolhatod a weboldalakat a szövegeikben szereplő szavak és kifejezések alapján."
+    },
+    "howToUseTitle": {
+        "message": "Hogyan Használható a Bővítmény"
+    },
+    "createGroupTitle": {
+        "message": "Első Lépés: Csoport Létrehozása"
+    },
+    "createGroupText1": {
+        "message": "Megnyomhatod az 'Add Group' gombot, vagy beírhatod a csoport nevét, majd megnyomhatod az Enter vagy az Add Group gombot. Több csoportot is létrehozhatsz."
+    },
+    "createGroupText2": {
+        "message": "Látni fogod a csoport panelt."
+    },
+    "websitesTitle": {
+        "message": "Weboldalak"
+    },
+    "websitesText": {
+        "message": "Weboldalak hozzáadásához kezdheted a 'Szerkeszt' gomb megnyomásával a Weboldalak sor bal oldalán. Ez a mező felelős azért a weboldalakért, ahol a bővítmény blokkolni fogja a kulcsszavakat. Itt kell megadnod a weboldalak URL-jeit, például: 'google.com'. Több weboldalt is megadhatsz, minden új sor egy új weboldal. Csak nyomd meg az Enter gombot. Amikor kész vagy, nyomd meg a zöld 'Mentés' gombot. Vagy megszakíthatod a műveletet."
+    },
+    "keywordsTitle": {
+        "message": "Kulcsszavak"
+    },
+    "keywordsText1": {
+        "message": "Új kulcsszavak hozzáadásához vagy változtatások esetén nyomd meg a 'Szerkeszt' gombot. A kulcsszavak, amiket itt megadsz, azokat fogja a bővítmény ellenőrizni a megadott weboldalakon ebben a csoportban."
+    },
+    "keywordFormatsIntroduction": {
+        "message": "A kulcsszavaknak három formátuma van:"
+    },
+    "keywordFormat1Title": {
+        "message": "Első Formátum:"
+    },
+    "keywordFormat1Text": {
+        "message": "Csak írd be a kulcsszavakat. Lehet egy szó vagy kifejezés. Ha a kulcsszó tartalmaz vesszőt ',', akkor használj escape karaktert '\\' előtte. Az oldal blokkolásra kerül, amint a kulcsszó észlelhető. Annyi kulcsszót adhatsz meg, amennyit csak akarsz, csak nyomd meg az enter gombot. Minden új sor egy új kulcsszó."
+    },
+    "keywordFormat1_2": {
+        "message": "Példa: 'videojátékok' vagy 'hírek'."
+    },
+    "keywordFormat2Title": {
+        "message": "Második Formátum:"
+    },
+    "keywordFormat2Text": {
+        "message": "Írd be a kulcsszót, azt követően egy számértéket. Minden, egy csoportban megadott weboldalnak el kell érnie a 1000-es pontszámot. Az oldal 0 értékről indul, és a kulcsszó numerikus értékének megfelelően növekszik az érték. Amint az oldal eléri a 1000-es pontszámot, blokkolásra kerül."
+    },
+    "keywordFormat2_2": {
+        "message": "Példa: 'hírek, 50'"
+    },
+    "keywordFormat2_3": {
+        "message": "Minden, egy csoportban megadott weboldalnak el kell érnie a 1000-es pontszámot. Az oldal 0 értékről indul, és a kulcsszó numerikus értékének megfelelően növekszik az érték. Amint az oldal eléri a 1000-es pontszámot, blokkolásra kerül."
+    },
+    "keywordFormat3Title": {
+        "message": "Harmadik Formátum:"
+    },
+    "keywordFormat3Text": {
+        "message": "Írd be a kulcsszót, azt követően egy szorzás vagy összeadás jelet (* vagy +), majd egy számértéket. Ebben az esetben az oldal pontszáma a megtalált kulcsszó numerikus értéke alapján szorzódik."
+    },
+    "keywordFormat3_2": {
+        "message": "Példa: 'hírek, *, 10'"
+    },
+    "keywordFormat3_3": {
+        "message": "Ebben az esetben az oldal pontszáma a megtalált kulcsszó numerikus értéke alapján szorzódik."
+    },
+    "timerCountTitle": {
+        "message": "Időzítők Száma"
+    },
+    "timerCountText": {
+        "message": "Miután az oldal blokkolásra került, lehetőséged lesz megnyomni az 'Időzítő Aktiválása' gombot. Ezután lesz időd néhány tevékenységet végezni az oldalon, mielőtt újra blokkolásra kerül. Az Időzítők Száma mezőben dönthetsz arról, hány időzítőt szeretnél a nap folyamán."
+    },
+    "timerDurationTitle": {
+        "message": "Időzítő Időtartama (másodpercek)"
+    },
+    "timerDurationText": {
+        "message": "Ebben a mezőben dönthetsz arról, hogy az egyes időzítők hány másodpercig tartanak."
+    },
+    "lockedSchedulesTitle": {
+        "message": "Zárolt Időzítések"
+    },
+    "lockedSchedulesNote": {
+        "message": "! Egy zárolt ütemtervet nem lehet feloldani, amíg az idő le nem jár (kivéve, ha eltávolítja a bővítményt) !"
+    },
+    "lockedSchedulesText1": {
+        "message": "Új zárolt ütemterv hozzáadásához hozzon létre egy nevet az Ütemterv Neve mezőben, majd nyomja meg az Enter gombot vagy az Ütemterv Hozzáadása gombot."
+    },
+    "lockedSchedulesText2": {
+        "message": "Az ütemterv beállításainak módosításához nyomja meg a 'Szerkeszt' gombot. A napok gombjainak megnyomásával vagy aktiválja az ütemtervet az adott napon (a gomb zöldre vált), vagy kikapcsolja azt a napot. A Kezdési Idő és Befejezési Idő mezők módosításával állíthatja be, hogy mikor lehet aktív az ütemterv. Minden napnak kell lennie egy 1 órás inaktív idősávnak, hogy ebben az időben kikapcsolhassa az ütemtervet. Az Aktív/Inaktív gomb váltja az ütemtervet. Az ütemterv zárolva és aktív lesz, ha az aktuális nap engedélyezve van (zöld), és az Aktív/Inaktív gomb 'Aktív' állapotot mutat és szintén zöld, valamint ha az aktuális idő a kezdő és befejező idő között van."
+    },
+    "lockedSchedulesText3": {
+        "message": "A Törlés gomb eltávolítja a zárolt ütemtervet. Ugyanez vonatkozik a csoportokra és a fehérlistára került weboldalakra is."
+    },
+    "lockedSchedulesText4": {
+        "message": "Több korlátozás is érvényes a zárolt ütemterv alatt:"
+    },
+    "lockedScheduleRestriction1": {
+        "message": "Nem változtathatja meg a csoportneveket."
+    },
+    "lockedScheduleRestriction2": {
+        "message": "Nem módosíthatja vagy távolíthatja el a meglévő weboldalakat a csoportokban."
+    },
+    "lockedScheduleRestriction3": {
+        "message": "Nem módosíthatja vagy távolíthatja el a meglévő kulcsszavakat és értékeiket."
+    },
+    "lockedScheduleRestriction4": {
+        "message": "Csak a kulcsszavak értékeit állíthatja be szorzás esetén: 1-től 1000-ig. Összeadás esetén: 0-tól 1000-ig."
+    },
+    "lockedScheduleRestriction5": {
+        "message": "Az időzítők számát nem lehet növelni."
+    },
+    "lockedScheduleRestriction6": {
+        "message": "Az időzítő időtartamát nem lehet növelni."
+    },
+    "lockedScheduleRestriction7": {
+        "message": "Aktív ütemterveket nem lehet törölni."
+    },
+    "lockedScheduleRestriction8": {
+        "message": "Nem törölheti a napokat, nem teheti inaktívvá az ütemtervet, vagy nem változtathatja meg az aktív ütemtervek kezdő és befejező időpontjait."
+    },
+    "lockedScheduleRestriction9": {
+        "message": "Nem adhat hozzá weboldalakat a fehér listához."
+    },
+    "lockedScheduleRestriction10": {
+        "message": "Nem állíthat be vagy törölhet el jelszót a bővítményhez."
+    },
+    "whitelistWebsitesTitle": {
+        "message": "Fehérlista Weboldalak"
+    },
+    "whitelistWebsitesText": {
+        "message": "Lehetőséget ad arra, hogy fehérlistára tegye a weboldalakat, ami azt jelenti, hogy ezeken a weboldalakon nem kerül sor a kulcsszavak ellenőrzésére, így azok nem lesznek blokkolva. Jelenleg nem áll módunkban használni a helyettesítő karaktert (*) a sok weboldal egyetlen bejegyzésben való belefoglalásához (mint például a *.io, ahol minden '.io'-val végződő weboldal blokkolva lenne), így ez a funkció nem túl hasznos, de létezik."
+    },
+    "passwordManagementTitle": {
+        "message": "Jelszókezelés"
+    },
+    "passwordManagementText": {
+        "message": "Lehetőséget biztosít arra, hogy jelszót állítson be a bővítmény oldalához. Bárki, aki megnyitja a bővítmény oldalát, be kell, hogy írja a helyes jelszót a hozzáféréshez. Hasznos annak megakadályozására, hogy mások véletlenül (vagy szándékosan) szigorítsák a beállításokat."
+    },
+    "contactFeedbackTitle": {
+        "message": "Kapcsolat és Visszajelzés"
+    },
+    "feedbackText1": {
+        "message": "Ha bármilyen visszajelzést szeretne megosztani, vagy problémája van, kérjük, látogasson el a bővítmény GitHub oldalára:"
+    },
+    "githubLink": {
+        "message": "GitHub - A Zavarások Ellen"
+    },
+    "feedbackText2": {
+        "message": "Ott navigáljon az 'Issues' (Problémák) fülre, és kattintson a zöld 'New Issue' (Új Probléma) gombra. Töltse ki a címet és a leírást, majd nyomja meg a 'Submit new issue' (Új probléma beküldése) gombot."
+    },
+    "thanks": {
+        "message": "Köszönjük."
+    },
+    "instructionGuideLink": {
+        "message": "Használati Útmutató"
+    }
 }

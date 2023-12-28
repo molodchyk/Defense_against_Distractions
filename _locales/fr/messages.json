@@ -250,5 +250,176 @@
     },
     "passwordMismatchAlert": {
         "message": "Les mots de passe ne correspondent pas. Veuillez vous assurer que les deux mots de passe sont identiques."
-    }    
+    },    
+    "pageTitle": {
+        "message": "Guide d'instructions - Défense contre les distractions"
+    },
+    "headerTitle": {
+        "message": "Défense contre les distractions : Guide d'instructions"
+    },
+    "introTitle": {
+        "message": "Introduction"
+    },
+    "introText1": {
+        "message": "Salut ! Il est si facile de se laisser distraire sur Internet et de procrastiner. Cette extension vous permet de bloquer des pages Web en fonction des mots-clés que vous ne souhaitez pas voir."
+    },
+    "introText2": {
+        "message": "Il y a des milliers de jeux vidéo à jouer, d'histoires d'actualité à lire, de vidéos à regarder, etc. Et souvent, c'est ce que nous faisons lorsque les délais de projets ou les examens sont encore loin. Parfois, il peut être un peu difficile de se forcer à faire ce que l'on doit faire."
+    },
+    "introText3": {
+        "message": "Et les distractions sont partout ! Même si vous utilisez StayFocusd, Cold Turkey ou FocusMe pour bloquer certains sites Web par leurs URL, vous ne pouvez pas tout bloquer. Par exemple, même avec ChatGPT, vous pourriez parler de l'actualité ou de jeux vidéo si vous n'avez vraiment pas envie d'étudier ou de travailler."
+    },
+    "introText4": {
+        "message": "Avec cette extension, vous pouvez bloquer des sites Web en fonction des mots et phrases dans leur texte."
+    },
+    "howToUseTitle": {
+        "message": "Comment utiliser l'extension"
+    },
+    "createGroupTitle": {
+        "message": "Première étape : Créer un groupe"
+    },
+    "createGroupText1": {
+        "message": "Vous pouvez appuyer sur le bouton 'Ajouter un groupe' ou saisir le nom du groupe et appuyer sur Entrée ou sur le bouton Ajouter un groupe. Vous pouvez créer plusieurs groupes."
+    },
+    "createGroupText2": {
+        "message": "Vous verrez le panneau du groupe."
+    },
+    "websitesTitle": {
+        "message": "Sites Web"
+    },
+    "websitesText": {
+        "message": "Vous pouvez commencer à ajouter des sites Web en appuyant sur le bouton 'Modifier' à gauche de la ligne Sites Web. Ce champ est responsable des sites Web où l'extension bloquera les mots-clés. Ici, vous devez saisir les URL des sites Web, par exemple, 'google.com'. Vous pouvez saisir plusieurs sites Web, chaque nouvelle ligne est un nouveau site Web. Appuyez simplement sur Entrée. Lorsque vous êtes prêt, appuyez sur le bouton vert 'Enregistrer'. Ou vous pouvez Annuler."
+    },
+    "keywordsTitle": {
+        "message": "Mots-clés"
+    },
+    "keywordsText1": {
+        "message": "Pour ajouter de nouveaux mots-clés ou apporter des modifications, appuyez sur 'Modifier'. Les mots-clés que vous entrez ici seront analysés sur les sites Web que vous avez entrés pour ce groupe."
+    },
+    "keywordFormatsIntroduction": {
+        "message": "Il existe 3 formats pour les mots-clés :"
+    },
+    "keywordFormat1Title": {
+        "message": "Premier format :"
+    },
+    "keywordFormat1Text": {
+        "message": "Entrez simplement les mots-clés. Cela peut être un mot ou une phrase. Si le mot-clé contient une virgule ',', vous devez utiliser un caractère d'échappement '\\' avant. Le site Web sera bloqué dès que le mot-clé sera détecté. Vous pouvez entrer autant de mots-clés que vous le souhaitez, appuyez simplement sur entrer. Chaque nouvelle ligne est un nouveau mot-clé."
+    },
+    "keywordFormat1_2": {
+        "message": "Exemple : 'jeux vidéo' ou 'actualités'."
+    },
+    "keywordFormat2Title": {
+        "message": "Deuxième format :"
+    },
+    "keywordFormat2Text": {
+        "message": "Entrez le mot-clé, suivi d'une valeur numérique. Chaque site Web que vous avez entré dans un groupe doit atteindre un score de 1000. Le site commence avec une valeur de 0, et en fonction de la valeur numérique du mot-clé, la valeur augmente. Une fois que le site atteint un score de 1000, il sera bloqué."
+    },
+    "keywordFormat2_2": {
+        "message": "Exemple : 'actualités, 50'"
+    },
+    "keywordFormat2_3": {
+        "message": "Chaque site Web que vous avez entré dans un groupe doit atteindre un score de 1000. Le site commence avec une valeur de 0, et en fonction de la valeur numérique du mot-clé, la valeur augmente. Une fois que le site atteint un score de 1000, il sera bloqué."
+    },
+    "keywordFormat3Title": {
+        "message": "Troisième format :"
+    },
+    "keywordFormat3Text": {
+        "message": "Entrez le mot-clé, suivi d'un signe de multiplication ou d'addition (* ou +), puis d'une valeur numérique. Dans ce scénario, le score de la page est multiplié en fonction de la valeur numérique du mot-clé trouvé."
+    },
+    "keywordFormat3_2": {
+        "message": "Exemple : 'actualités, *, 10'"
+    },
+    "keywordFormat3_3": {
+        "message": "Dans ce scénario, le score de la page est multiplié en fonction de la valeur numérique du mot-clé trouvé."
+    },
+    "timerCountTitle": {
+        "message": "Compte à rebours"
+    },
+    "timerCountText": {
+        "message": "Après que la page soit bloquée, vous aurez la possibilité d'appuyer sur le bouton 'Activer le minuteur'. Après cela, vous aurez du temps pour effectuer certaines actions sur la page avant qu'elle ne soit à nouveau bloquée. Dans le champ Compte à rebours, vous pouvez décider combien de minuteurs vous souhaitez avoir pendant la journée."
+    },
+    "timerDurationTitle": {
+        "message": "Durée du minuteur (secondes)"
+    },
+    "timerDurationText": {
+        "message": "Dans ce champ, vous décidez combien de secondes chaque minuteur aura."
+    },
+    "lockedSchedulesTitle": {
+        "message": "Programmes verrouillés"
+    },
+    "lockedSchedulesNote": {
+        "message": "! Un programme verrouillé ne peut pas être déverrouillé jusqu'à ce que le temps passe (à moins que vous ne désinstalliez l'extension) !"
+    },
+    "lockedSchedulesText1": {
+        "message": "Vous pouvez ajouter un nouveau programme verrouillé en créant le nom du programme dans le champ Nom du programme et en appuyant sur Entrée ou sur le bouton Ajouter un programme."
+    },
+    "lockedSchedulesText2": {
+        "message": "Pour modifier les paramètres de votre programme, appuyez sur 'Modifier'. En appuyant sur les boutons des jours, vous activez le programme ce jour-là (le bouton devient vert), ou vous le désactivez pour ce jour. En modifiant les champs Heure de début et Heure de fin, vous définissez les moments où le programme peut être actif. Chaque jour doit avoir une fenêtre de temps inactive d'au moins une heure pour que vous puissiez désactiver le programme pendant ce temps. Le bouton Inactif/Actif bascule le programme. Le programme sera verrouillé et actif si le jour actuel est activé (vert) et le bouton montre 'Actif' et est également vert, et si l'heure actuelle est entre les heures de début et de fin."
+    },
+    "lockedSchedulesText3": {
+        "message": "Le bouton Supprimer enlève le programme verrouillé. Il en va de même pour les groupes et les sites Web de la liste blanche."
+    },
+    "lockedSchedulesText4": {
+        "message": "Plusieurs restrictions s'appliquent pendant le programme verrouillé :"
+    },
+    "lockedScheduleRestriction1": {
+        "message": "Vous ne pouvez pas changer les noms des groupes."
+    },
+    "lockedScheduleRestriction2": {
+        "message": "Vous ne pouvez pas changer ou supprimer les sites Web existants dans les groupes."
+    },
+    "lockedScheduleRestriction3": {
+        "message": "Vous ne pouvez pas changer ou supprimer les mots-clés existants et leurs valeurs."
+    },
+    "lockedScheduleRestriction4": {
+        "message": "Vous pouvez uniquement définir les valeurs des mots-clés pour la multiplication : de 1 à 1000. Pour l'addition : de 0 à 1000."
+    },
+    "lockedScheduleRestriction5": {
+        "message": "Le nombre de minuteurs ne peut pas être augmenté."
+    },
+    "lockedScheduleRestriction6": {
+        "message": "La durée du minuteur ne peut pas être augmentée."
+    },
+    "lockedScheduleRestriction7": {
+        "message": "Les programmes actifs ne peuvent pas être supprimés."
+    },
+    "lockedScheduleRestriction8": {
+        "message": "Vous ne pouvez pas désélectionner des jours, rendre le programme inactif, ou changer les heures de début ou de fin pour les programmes actifs."
+    },
+    "lockedScheduleRestriction9": {
+        "message": "Vous ne pouvez pas ajouter de sites web à la liste blanche."
+    },
+    "lockedScheduleRestriction10": {
+        "message": "Vous ne pouvez pas définir ou supprimer le mot de passe de l'extension."
+    },
+    "whitelistWebsitesTitle": {
+        "message": "Sites en liste blanche"
+    },
+    "whitelistWebsitesText": {
+        "message": "Vous permet d'entrer des sites web en liste blanche, ce qui signifie que la recherche de mots-clés ne sera pas effectuée sur ces sites, et donc ils ne seront pas bloqués. Actuellement, nous n'avons pas la capacité d'utiliser un joker (*) pour inclure de nombreux sites dans une seule entrée (comme *.io, où tous les sites avec '.io' seraient bloqués), donc cette fonctionnalité n'est pas très utile, mais elle existe."
+    },
+    "passwordManagementTitle": {
+        "message": "Gestion des mots de passe"
+    },
+    "passwordManagementText": {
+        "message": "Vous permet de définir un mot de passe pour la page de l'extension. Toute personne qui ouvre la page de l'extension devra entrer le bon mot de passe pour y accéder. Utile pour empêcher les autres de resserrer les paramètres accidentellement (ou intentionnellement)."
+    },
+    "contactFeedbackTitle": {
+        "message": "Contact et retour d'information"
+    },
+    "feedbackText1": {
+        "message": "Si vous souhaitez partager des commentaires ou si vous rencontrez un problème, veuillez visiter la page GitHub de l'extension :"
+    },
+    "githubLink": {
+        "message": "GitHub - Défense contre les distractions"
+    },
+    "feedbackText2": {
+        "message": "Là, naviguez jusqu'à l'onglet 'Problèmes' et cliquez sur le bouton vert 'Nouveau Problème'. Remplissez le titre et la description et appuyez sur 'Soumettre un nouveau problème'."
+    },
+    "thanks": {
+        "message": "Merci."
+    },
+    "instructionGuideLink": {
+        "message": "Guide d'instruction"
+    }
 }

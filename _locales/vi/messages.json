@@ -250,5 +250,176 @@
     },
     "passwordMismatchAlert": {
         "message": "Mật khẩu không khớp. Vui lòng đảm bảo rằng cả hai mật khẩu giống nhau."
-    }    
+    },
+    "pageTitle": {
+        "message": "Hướng Dẫn Sử Dụng - Phòng Chống Sao Lãng"
+    },
+    "headerTitle": {
+        "message": "Phòng Chống Sao Lãng: Hướng Dẫn Sử Dụng"
+    },
+    "introTitle": {
+        "message": "Giới Thiệu"
+    },
+    "introText1": {
+        "message": "Chào bạn! Rất dễ để bị phân tâm trên internet và trì hoãn công việc. Tiện ích mở rộng này cho phép bạn chặn các trang web dựa trên từ khóa mà bạn không muốn thấy."
+    },
+    "introText2": {
+        "message": "Có hàng ngàn trò chơi video để chơi, tin tức để đọc, video để xem, v.v. Và thường thì đó là những gì chúng ta làm khi hạn chót dự án hoặc kỳ thi vẫn còn xa. Đôi khi, việc tự ép mình làm những điều cần làm có thể khá khó khăn."
+    },
+    "introText3": {
+        "message": "Và sự phân tâm ở khắp mọi nơi! Ngay cả khi bạn sử dụng StayFocusd hoặc Cold Turkey hoặc FocusMe để chặn một số trang web bằng URL của chúng, bạn không thể chặn tất cả. Ví dụ, ngay cả với ChatGPT, bạn cũng có thể nói về tin tức hoặc trò chơi video nếu bạn thực sự không muốn học hoặc làm việc."
+    },
+    "introText4": {
+        "message": "Với tiện ích mở rộng này, bạn có thể chặn các trang web dựa trên từ và cụm từ trong văn bản của chúng."
+    },
+    "howToUseTitle": {
+        "message": "Cách Sử Dụng Tiện Ích Mở Rộng"
+    },
+    "createGroupTitle": {
+        "message": "Bước Đầu Tiên: Tạo Nhóm"
+    },
+    "createGroupText1": {
+        "message": "Bạn có thể nhấn nút 'Thêm Nhóm' hoặc nhập tên nhóm và nhấn Enter hoặc nút Thêm Nhóm. Bạn có thể tạo nhiều nhóm."
+    },
+    "createGroupText2": {
+        "message": "Bạn sẽ thấy bảng điều khiển nhóm."
+    },
+    "websitesTitle": {
+        "message": "Trang Web"
+    },
+    "websitesText": {
+        "message": "Bạn có thể bắt đầu thêm trang web bằng cách nhấn nút 'Chỉnh Sửa' ở bên trái dòng Trang Web. Trường này chịu trách nhiệm về các trang web mà tiện ích mở rộng sẽ chặn từ khóa. Tại đây bạn phải nhập URL của trang web, ví dụ: 'google.com'. Bạn có thể nhập nhiều trang web, mỗi dòng mới là một trang web mới. Chỉ cần nhấn Enter. Khi bạn đã sẵn sàng, nhấn nút 'Lưu' màu xanh lá. Hoặc bạn có thể Hủy."
+    },
+    "keywordsTitle": {
+        "message": "Từ Khóa"
+    },
+    "keywordsText1": {
+        "message": "Để thêm từ khóa mới hoặc thay đổi bất cứ điều gì, nhấn 'Chỉnh Sửa'. Các từ khóa bạn nhập vào đây sẽ được quét trên các trang web bạn đã nhập cho nhóm này."
+    },
+    "keywordFormatsIntroduction": {
+        "message": "Có 3 định dạng cho từ khóa:"
+    },
+    "keywordFormat1Title": {
+        "message": "Định Dạng Đầu Tiên:"
+    },
+    "keywordFormat1Text": {
+        "message": "Chỉ cần nhập từ khóa. Nó có thể là một từ hoặc cụm từ. Nếu từ khóa chứa dấu phẩy ',', bạn phải sử dụng ký tự thoát '\\' trước nó. Trang web sẽ bị chặn ngay khi phát hiện từ khóa. Bạn có thể nhập bao nhiêu từ khóa tùy ý, chỉ cần nhấn enter. Mỗi dòng mới là một từ khóa mới."
+    },
+    "keywordFormat1_2": {
+        "message": "Ví dụ: 'trò chơi video' hoặc 'tin tức'."
+    },
+    "keywordFormat2Title": {
+        "message": "Định Dạng Thứ Hai:"
+    },
+    "keywordFormat2Text": {
+        "message": "Nhập từ khóa, theo sau là một giá trị số. Mỗi trang web bạn nhập vào một nhóm phải đạt đến điểm số 1000. Trang web bắt đầu với giá trị 0, và dựa trên giá trị số của từ khóa, giá trị này sẽ tăng lên. Một khi trang web đạt đến điểm số 1000, nó sẽ bị chặn."
+    },
+    "keywordFormat2_2": {
+        "message": "Ví dụ: 'tin tức, 50'"
+    },
+    "keywordFormat2_3": {
+        "message": "Mỗi trang web bạn nhập vào một nhóm phải đạt đến điểm số 1000. Trang web bắt đầu với giá trị 0, và dựa trên giá trị số của từ khóa, giá trị này sẽ tăng lên. Một khi trang web đạt đến điểm số 1000, nó sẽ bị chặn."
+    },
+    "keywordFormat3Title": {
+        "message": "Định Dạng Thứ Ba:"
+    },
+    "keywordFormat3Text": {
+        "message": "Nhập từ khóa, theo sau là dấu nhân hoặc cộng (* hoặc +), sau đó là một giá trị số. Trong kịch bản này, điểm số cho trang sẽ được nhân dựa trên giá trị số của từ khóa tìm thấy."
+    },
+    "keywordFormat3_2": {
+        "message": "Ví dụ: 'tin tức, *, 10'"
+    },
+    "keywordFormat3_3": {
+        "message": "Trong kịch bản này, điểm số cho trang sẽ được nhân dựa trên giá trị số của từ khóa tìm thấy."
+    },
+    "timerCountTitle": {
+        "message": "Số Lần Hẹn Giờ"
+    },
+    "timerCountText": {
+        "message": "Sau khi trang bị chặn, bạn sẽ có tùy chọn nhấn nút 'Kích Hoạt Hẹn Giờ'. Sau đó, bạn sẽ có thời gian để thực hiện một số hành động trên trang trước khi nó bị chặn lại. Trong trường Số Lần Hẹn Giờ, bạn có thể quyết định bạn muốn có bao nhiêu lần hẹn giờ trong ngày."
+    },
+    "timerDurationTitle": {
+        "message": "Thời Lượng Hẹn Giờ (giây)"
+    },
+    "timerDurationText": {
+        "message": "Trong trường này, bạn quyết định số giây cho mỗi lần hẹn giờ."
+    },
+    "lockedSchedulesTitle": {
+        "message": "Lịch Trình Đã Khóa"
+    },
+    "lockedSchedulesNote": {
+        "message": "! Lịch trình đã khóa không thể mở khóa cho đến khi thời gian qua đi (trừ khi bạn gỡ cài đặt tiện ích mở rộng) !"
+    },
+    "lockedSchedulesText1": {
+        "message": "Bạn có thể thêm lịch trình đã khóa mới bằng cách tạo tên lịch trình trong trường Tên Lịch Trình và nhấn Enter hoặc nút Thêm Lịch Trình."
+    },
+    "lockedSchedulesText2": {
+        "message": "Để chỉnh sửa cài đặt của lịch trình, nhấn 'Chỉnh Sửa'. Khi nhấn vào các nút ngày, bạn sẽ kích hoạt lịch trình cho ngày đó (nút chuyển sang màu xanh lá) hoặc vô hiệu hóa nó cho ngày đó. Bằng cách chỉnh sửa trường Thời Gian Bắt Đầu và Thời Gian Kết Thúc, bạn sẽ thiết lập thời gian hoạt động của lịch trình. Mỗi ngày phải có ít nhất một giờ không hoạt động để bạn có thể vô hiệu hóa lịch trình trong thời gian đó. Nút Hoạt Động/Không Hoạt Động sẽ chuyển đổi trạng thái của lịch trình. Lịch trình sẽ được khóa và hoạt động nếu ngày hiện tại được kích hoạt (xanh lá) và nút cho thấy 'Hoạt Động' và cũng là màu xanh lá, và nếu thời gian hiện tại nằm trong khoảng giữa thời gian bắt đầu và kết thúc."
+    },
+    "lockedSchedulesText3": {
+        "message": "Nút Xóa sẽ loại bỏ lịch trình đã khóa. Điều này cũng áp dụng cho các nhóm và trang web trong danh sách trắng."
+    },
+    "lockedSchedulesText4": {
+        "message": "Một số hạn chế áp dụng trong lịch trình đã khóa:"
+    },
+    "lockedScheduleRestriction1": {
+        "message": "Bạn không thể thay đổi tên nhóm."
+    },
+    "lockedScheduleRestriction2": {
+        "message": "Bạn không thể thay đổi hoặc loại bỏ các trang web hiện có trong nhóm."
+    },
+    "lockedScheduleRestriction3": {
+        "message": "Bạn không thể thay đổi hoặc loại bỏ các từ khóa hiện có và giá trị của chúng."
+    },
+    "lockedScheduleRestriction4": {
+        "message": "Bạn chỉ có thể thiết lập giá trị từ khóa cho phép nhân: từ 1 đến 1000. Cho phép cộng: từ 0 đến 1000."
+    },
+    "lockedScheduleRestriction5": {
+        "message": "Số lần hẹn giờ không thể tăng lên."
+    },
+    "lockedScheduleRestriction6": {
+        "message": "Thời lượng hẹn giờ không thể tăng lên."
+    },
+    "lockedScheduleRestriction7": {
+        "message": "Không thể xóa lịch trình đang hoạt động."
+    },
+    "lockedScheduleRestriction8": {
+        "message": "Bạn không thể bỏ chọn các ngày, làm cho lịch trình không hoạt động, hoặc thay đổi thời gian bắt đầu hoặc kết thúc cho các lịch trình đang hoạt động."
+    },
+    "lockedScheduleRestriction9": {
+        "message": "Bạn không thể thêm trang web vào danh sách trắng."
+    },
+    "lockedScheduleRestriction10": {
+        "message": "Bạn không thể thiết lập hoặc xóa mật khẩu cho tiện ích mở rộng."
+    },
+    "whitelistWebsitesTitle": {
+        "message": "Danh Sách Trắng Trang Web"
+    },
+    "whitelistWebsitesText": {
+        "message": "Cho phép bạn nhập các trang web vào danh sách trắng, có nghĩa là việc quét từ khóa sẽ không được thực hiện trên những trang web này, và do đó chúng sẽ không bị chặn. Hiện tại, chúng tôi không có khả năng sử dụng ký tự đại diện (*) để bao gồm nhiều trang web trong một mục nhập (như *.io, nơi tất cả các trang web có '.io' sẽ bị chặn), vì vậy tính năng này không thực sự hữu ích, nhưng nó vẫn tồn tại."
+    },
+    "passwordManagementTitle": {
+        "message": "Quản Lý Mật Khẩu"
+    },
+    "passwordManagementText": {
+        "message": "Cho phép bạn thiết lập một mật khẩu cho trang của tiện ích mở rộng. Bất kỳ ai mở trang tiện ích mở rộng sẽ cần nhập mật khẩu đúng để truy cập. Hữu ích để ngăn chặn người khác vô tình (hoặc cố ý) làm chặt chẽ các cài đặt."
+    },
+    "contactFeedbackTitle": {
+        "message": "Liên Hệ và Phản Hồi"
+    },
+    "feedbackText1": {
+        "message": "Nếu bạn muốn chia sẻ bất kỳ phản hồi nào hoặc nếu bạn gặp vấn đề, vui lòng truy cập trang GitHub của tiện ích mở rộng:"
+    },
+    "githubLink": {
+        "message": "GitHub - Phòng Chống Sao Lãng"
+    },
+    "feedbackText2": {
+        "message": "Ở đó, điều hướng đến tab 'Vấn Đề' và nhấn nút xanh 'Vấn Đề Mới'. Điền tiêu đề và mô tả và nhấn 'Gửi vấn đề mới'."
+    },
+    "thanks": {
+        "message": "Cảm ơn."
+    },
+    "instructionGuideLink": {
+        "message": "Hướng Dẫn Sử Dụng"
+    }
 }
