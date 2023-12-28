@@ -421,5 +421,8 @@
     },
     "instructionGuideLink": {
         "message": "Kullanım Kılavuzu"
+    },
+    "description": {
+        "message": "Web sitelerini sayfalarında görünen metne göre engellemenize olanak tanır."
     }
 }

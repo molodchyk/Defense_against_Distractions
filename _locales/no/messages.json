@@ -421,5 +421,8 @@
     },
     "instructionGuideLink": {
         "message": "Instruksjonsveiledning"
+    },
+    "description": {
+        "message": "Gir deg mulighet til å blokkere nettsteder basert på teksten som vises på sidene deres."
     }
 }

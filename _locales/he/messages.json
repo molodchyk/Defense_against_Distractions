@@ -421,7 +421,8 @@
     },
     "instructionGuideLink": {
         "message": "מדריך הוראות"
+    },
+    "description": {
+        "message": "מאפשר לך לחסום אתרי אינטרנט על פי הטקסט שמופיע בדפיהם."
     }
-
-
 }

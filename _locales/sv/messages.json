@@ -421,5 +421,8 @@
     },
     "instructionGuideLink": {
         "message": "Instruktionsguide"
+    },
+    "description": {
+        "message": "Gör det möjligt att blockera webbplatser baserat på texten som visas på deras sidor."
     }
 }

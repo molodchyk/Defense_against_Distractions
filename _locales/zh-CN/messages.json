@@ -421,5 +421,8 @@
     },
     "instructionGuideLink": {
         "message": "指导手册"
+    },
+    "description": {
+        "message": "允许您根据网页上出现的文本来阻止网站。"
     }
 }

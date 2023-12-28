@@ -421,5 +421,8 @@
     },
     "instructionGuideLink": {
         "message": "Hướng Dẫn Sử Dụng"
+    },
+    "description": {
+        "message": "Cho phép bạn chặn các trang web dựa trên văn bản xuất hiện trên trang của họ."
     }
 }

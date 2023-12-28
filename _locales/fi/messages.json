@@ -421,6 +421,8 @@
     },
     "instructionGuideLink": {
         "message": "Ohjeopas"
+    },
+    "description": {
+        "message": "Mahdollistaa verkkosivustojen estämisen niiden sivuilla esiintyvän tekstin perusteella."
     }
-
 }

@@ -421,5 +421,8 @@
     },
     "instructionGuideLink": {
         "message": "指導手冊"
+    },
+    "description": {
+        "message": "允許您根據網頁上出現的文本來封鎖網站。"
     }
 }

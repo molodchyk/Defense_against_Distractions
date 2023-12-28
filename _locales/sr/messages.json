@@ -421,5 +421,8 @@
     },
     "instructionGuideLink": {
         "message": "Uputstvo za Korišćenje"
+    },
+    "description": {
+        "message": "Omogućava vam da blokirate veb sajtove na osnovu teksta koji se pojavljuje na njihovim stranicama."
     }
 }

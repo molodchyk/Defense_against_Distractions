@@ -421,5 +421,8 @@
     },
     "instructionGuideLink": {
         "message": "Guía de Instrucciones"
+    },
+    "description": {
+        "message": "Te permite bloquear sitios web basados en el texto que aparece en sus páginas."
     }
 }

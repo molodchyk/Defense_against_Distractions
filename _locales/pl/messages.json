@@ -421,5 +421,8 @@
     },
     "instructionGuideLink": {
         "message": "Przewodnik Instruktażowy"
+    },
+    "description": {
+        "message": "Pozwala blokować strony internetowe na podstawie tekstu, który pojawia się na ich stronach."
     }
 }

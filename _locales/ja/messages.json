@@ -421,5 +421,8 @@
     },
     "instructionGuideLink": {
         "message": "指導ガイド"
+    },
+    "description": {
+        "message": "そのページに表示されるテキストに基づいてウェブサイトをブロックすることができます。"
     }
 }

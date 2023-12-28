@@ -1,6 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Defense against Distractions ",
+  "description": "Allows you to block websites based on the text that appears on their pages.",
   "version": "1.0",
   "default_locale": "en",
   "permissions": [
