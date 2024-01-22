@@ -424,5 +424,8 @@
     },
     "description": {
         "message": "Umožňuje blokovat webové stránky na základě textu, který se na jejich stránkách objevuje."
+    },
+    "dailyLimitReached": {
+        "message": "Denní limit dosažen"
     }
 }

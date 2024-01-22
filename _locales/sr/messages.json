@@ -424,5 +424,8 @@
     },
     "description": {
         "message": "Omogućava vam da blokirate veb sajtove na osnovu teksta koji se pojavljuje na njihovim stranicama."
+    },
+    "dailyLimitReached": {
+        "message": "Дневни лимит је достигнут"
     }
 }

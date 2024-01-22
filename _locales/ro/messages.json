@@ -424,5 +424,8 @@
     },
     "description": {
         "message": "Vă permite să blocați site-uri web pe baza textului care apare pe paginile lor."
+    },
+    "dailyLimitReached": {
+        "message": "Limita zilnică atinsă"
     }
 }

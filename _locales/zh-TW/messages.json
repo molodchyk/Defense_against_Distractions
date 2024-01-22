@@ -424,5 +424,8 @@
     },
     "description": {
         "message": "允許您根據網頁上出現的文本來封鎖網站。"
+    },
+    "dailyLimitReached": {
+        "message": "已達每日限額"
     }
 }

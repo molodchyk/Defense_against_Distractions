@@ -424,5 +424,8 @@
     },
     "description": {
         "message": "Gör det möjligt att blockera webbplatser baserat på texten som visas på deras sidor."
+    },
+    "dailyLimitReached": {
+        "message": "Daglig gräns nådd"
     }
 }

@@ -135,14 +135,14 @@ function blockPage(keyword = "Unknown", contextText = "N/A") {
             window.blockDiv.style.display = 'flex';
             window.isTimerActive = false;
 
-            timerButton.textContent = "Activate Timer";
+            timerButton.textContent = chrome.i18n.getMessage("activateTimerButton");
+            
             timerButton.disabled = false;
           }, currentGroup.timer.duration * 1000);
 
-          timerButton.textContent = `Timer activated for ${currentGroup.timer.duration} seconds`;
           timerButton.disabled = true;
         } else {
-          timerButton.textContent = "Daily limit reached";
+          timerButton.textContent = chrome.i18n.getMessage("dailyLimitReached");
           timerButton.disabled = true;
         }
       }

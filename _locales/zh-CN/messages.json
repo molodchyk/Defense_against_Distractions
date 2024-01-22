@@ -424,5 +424,8 @@
     },
     "description": {
         "message": "允许您根据网页上出现的文本来阻止网站。"
+    },
+    "dailyLimitReached": {
+        "message": "已达到每日限额"
     }
 }

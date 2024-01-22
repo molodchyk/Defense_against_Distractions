@@ -424,5 +424,8 @@
     },
     "description": {
         "message": "Lehetővé teszi a weboldalak blokkolását az oldalaikon megjelenő szöveg alapján."
+    },
+    "dailyLimitReached": {
+        "message": "Napi limit elérve"
     }
 }

@@ -424,5 +424,8 @@
     },
     "description": {
         "message": "Memungkinkan Anda untuk memblokir situs web berdasarkan teks yang muncul di halaman mereka."
+    },
+    "dailyLimitReached": {
+        "message": "Batas harian tercapai"
     }
 }

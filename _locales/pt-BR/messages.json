@@ -424,5 +424,8 @@
     },
     "description": {
         "message": "Permite bloquear sites com base no texto que aparece em suas páginas."
+    },
+    "dailyLimitReached": {
+        "message": "Limite diário atingido"
     }
 }

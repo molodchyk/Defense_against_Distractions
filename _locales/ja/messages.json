@@ -424,5 +424,8 @@
     },
     "description": {
         "message": "そのページに表示されるテキストに基づいてウェブサイトをブロックすることができます。"
+    },
+    "dailyLimitReached": {
+        "message": "1日の制限に達しました"
     }
 }

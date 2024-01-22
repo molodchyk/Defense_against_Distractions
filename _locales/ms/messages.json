@@ -424,5 +424,8 @@
     },
     "description": {
         "message": "Membolehkan anda menyekat laman web berdasarkan teks yang muncul di halaman mereka."
+    },
+    "dailyLimitReached": {
+        "message": "Had harian dicapai"
     }
 }

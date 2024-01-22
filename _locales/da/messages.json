@@ -424,5 +424,8 @@
     },
     "description": {
         "message": "Giver dig mulighed for at blokere websteder baseret på teksten, der vises på deres sider."
+    },
+    "dailyLimitReached": {
+        "message": "Daglig grænse nået"
     }
 }

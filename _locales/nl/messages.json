@@ -424,5 +424,8 @@
     },
     "description": {
         "message": "Hiermee kunt u websites blokkeren op basis van de tekst die op hun pagina's verschijnt."
+    },
+    "dailyLimitReached": {
+        "message": "Dagelijkse limiet bereikt"
     }
 }

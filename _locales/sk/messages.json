@@ -251,8 +251,6 @@
     "passwordMismatchAlert": {
         "message": "Heslá sa nezhodujú. Uistite sa, že obe heslá sú rovnaké."
     },
-
-
     "pageTitle": {
         "message": "Návod na Použitie - Obrana Proti Rozptýleniu"
     },
@@ -426,5 +424,8 @@
     },
     "description": {
         "message": "Umožňuje blokovať webové stránky na základe textu, ktorý sa na nich zobrazuje."
+    },
+    "dailyLimitReached": {
+        "message": "Dosiahnutý denný limit"
     }
 }
