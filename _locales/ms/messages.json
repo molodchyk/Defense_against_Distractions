@@ -427,5 +427,11 @@
     },
     "dailyLimitReached": {
         "message": "Had harian dicapai"
+    },
+    "exportButton": {
+        "message": "Eksport"
+    },
+    "importButton": {
+        "message": "Import"
     }
 }

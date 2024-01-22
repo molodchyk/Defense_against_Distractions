@@ -427,5 +427,11 @@
     },
     "dailyLimitReached": {
         "message": "ถึงขีดจำกัดรายวันแล้ว"
+    },
+    "exportButton": {
+        "message": "ส่งออก"
+    },
+    "importButton": {
+        "message": "นำเข้า"
     }
 }

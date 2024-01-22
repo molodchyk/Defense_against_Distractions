@@ -427,5 +427,11 @@
     },
     "dailyLimitReached": {
         "message": "Päivittäinen raja saavutettu"
+    },
+    "exportButton": {
+        "message": "Vie"
+    },
+    "importButton": {
+        "message": "Tuo"
     }
 }

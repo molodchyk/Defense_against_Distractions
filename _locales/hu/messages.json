@@ -427,5 +427,11 @@
     },
     "dailyLimitReached": {
         "message": "Napi limit elérve"
+    },
+    "exportButton": {
+        "message": "Exportálás"
+    },
+    "importButton": {
+        "message": "Importálás"
     }
 }

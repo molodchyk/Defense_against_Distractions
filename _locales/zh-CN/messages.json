@@ -427,5 +427,11 @@
     },
     "dailyLimitReached": {
         "message": "已达到每日限额"
+    },
+    "exportButton": {
+        "message": "导出"
+    },
+    "importButton": {
+        "message": "导入"
     }
 }

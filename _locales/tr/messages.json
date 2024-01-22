@@ -427,5 +427,11 @@
     },
     "dailyLimitReached": {
         "message": "Günlük limit ulaşıldı"
+    },
+    "exportButton": {
+        "message": "Dışa Aktar"
+    },
+    "importButton": {
+        "message": "İçe Aktar"
     }
 }

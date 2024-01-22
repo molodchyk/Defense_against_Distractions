@@ -427,5 +427,11 @@
     },
     "dailyLimitReached": {
         "message": "Đã đạt giới hạn hàng ngày"
+    },
+    "exportButton": {
+        "message": "Xuất khẩu"
+    },
+    "importButton": {
+        "message": "Nhập khẩu"
     }
 }

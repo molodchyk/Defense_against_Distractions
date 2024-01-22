@@ -1,6 +1,8 @@
 /*
  * Defense Against Distractions Extension
  *
+ * file: uiFunctions.js
+ * 
  * This file is part of the Defense Against Distractions Extension.
  *
  * Defense Against Distractions Extension is free software: you can redistribute it and/or modify
@@ -131,18 +133,27 @@ function createButton(textKey, onClick, className) {
   return button;
 }
 
-
 export function checkScheduleStatus() {
   chrome.storage.sync.get('schedules', ({ schedules }) => {
-    if (!isCurrentTimeInAnySchedule(schedules)) { //line 114
+    const isInActiveSchedule = isCurrentTimeInAnySchedule(schedules);
+    const importButton = document.getElementById('importButton');
+    if (importButton) {
+      importButton.disabled = isInActiveSchedule;
+    }
+
+    if (!isInActiveSchedule) {
       enableUIElements();
       updateButtonStates();
     }
   });
 }
 
-// Set an interval for checking the schedule status
-setInterval(checkScheduleStatus, 15000); // Checks every 15 seconds
+// Initialize and set the interval for checking the schedule status
+document.addEventListener('DOMContentLoaded', function() {
+  checkScheduleStatus(); // Initial check
+  setInterval(checkScheduleStatus, 15000); // Recheck every 15 seconds
+});
+
 
 export function enableUIElements() {
   const buttonsToEnable = document.querySelectorAll('button:disabled:not(.save-button):not(.password-management-button):not(.password-set-button)');

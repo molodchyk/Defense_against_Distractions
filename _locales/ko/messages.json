@@ -427,5 +427,11 @@
     },
     "dailyLimitReached": {
         "message": "일일 한도 도달"
+    },
+    "exportButton": {
+        "message": "내보내기"
+    },
+    "importButton": {
+        "message": "가져오기"
     }
 }

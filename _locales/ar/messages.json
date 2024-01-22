@@ -427,5 +427,11 @@
     },
     "dailyLimitReached": {
         "message": "تم الوصول إلى الحد اليومي"
+    },
+    "exportButton": {
+        "message": "تصدير"
+    },
+    "importButton": {
+        "message": "استيراد"
     }
 }

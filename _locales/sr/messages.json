@@ -427,5 +427,11 @@
     },
     "dailyLimitReached": {
         "message": "Дневни лимит је достигнут"
+    },
+    "exportButton": {
+        "message": "Извоз"
+    },
+    "importButton": {
+        "message": "Увоз"
     }
 }

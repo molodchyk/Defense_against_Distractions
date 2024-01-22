@@ -1,6 +1,8 @@
 /*
  * Defense Against Distractions Extension
  *
+ * file: background.js
+ * 
  * This file is part of the Defense Against Distractions Extension.
  *
  * Defense Against Distractions Extension is free software: you can redistribute it and/or modify

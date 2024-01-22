@@ -427,5 +427,11 @@
     },
     "dailyLimitReached": {
         "message": "Denní limit dosažen"
+    },
+    "exportButton": {
+        "message": "Export"
+    },
+    "importButton": {
+        "message": "Import"
     }
 }

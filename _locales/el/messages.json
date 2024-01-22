@@ -427,5 +427,11 @@
     },
     "dailyLimitReached": {
         "message": "Επιτεύχθηκε το ημερήσιο όριο"
+    },
+    "exportButton": {
+        "message": "Εξαγωγή"
+    },
+    "importButton": {
+        "message": "Εισαγωγή"
     }
 }

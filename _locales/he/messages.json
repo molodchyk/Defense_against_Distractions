@@ -427,5 +427,11 @@
     },
     "dailyLimitReached": {
         "message": "הגעת למגבל היומי"
+    },
+    "exportButton": {
+        "message": "ייצוא"
+    },
+    "importButton": {
+        "message": "ייבוא"
     }
 }

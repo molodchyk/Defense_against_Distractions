@@ -1,6 +1,8 @@
 /*
  * Defense Against Distractions Extension
  *
+ * file: content.js
+ *
  * This file is part of the Defense Against Distractions Extension.
  *
  * Defense Against Distractions Extension is free software: you can redistribute it and/or modify
@@ -97,6 +99,13 @@ function blockPage(keyword = "Unknown", contextText = "N/A") {
       );
 
       if (currentGroup && currentGroup.timer) {
+
+        // Check if the timer needs to be reset
+        const today = new Date().toDateString();
+        if (currentGroup.timer.lastReset !== today) {
+          currentGroup.timer.usedToday = 0;
+          currentGroup.timer.lastReset = today;
+        }
         
         let timersLeft = currentGroup.timer.count - currentGroup.timer.usedToday;
 

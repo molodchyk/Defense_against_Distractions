@@ -427,5 +427,11 @@
     },
     "dailyLimitReached": {
         "message": "Dosiahnutý denný limit"
+    },
+    "exportButton": {
+        "message": "Exportovať"
+    },
+    "importButton": {
+        "message": "Importovať"
     }
 }

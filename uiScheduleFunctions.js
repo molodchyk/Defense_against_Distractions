@@ -1,6 +1,8 @@
 /*
  * Defense Against Distractions Extension
  *
+ * file: uiScheduleFunctions.js
+ * 
  * This file is part of the Defense Against Distractions Extension.
  *
  * Defense Against Distractions Extension is free software: you can redistribute it and/or modify
@@ -37,7 +39,8 @@ import {
 } from './whitelistManagement.js';
 
 import { 
-  updateGroupsUI
+  updateGroupsUI,
+  checkScheduleStatus
 } from './uiFunctions.js';
 
 import { 
@@ -139,6 +142,7 @@ function saveSchedule(scheduleState) {
         updateSchedulesUI(schedules, scheduleStates);
         scheduleState.toggleEditing(); // Toggle off editing mode
         toggleFieldEditability(index, false);
+        checkScheduleStatus();
         console.log('Schedules saved to storage:', schedules);
 
         // Fetch and update the whitelist UI

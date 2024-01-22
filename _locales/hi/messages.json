@@ -427,5 +427,11 @@
     },
     "dailyLimitReached": {
         "message": "दैनिक सीमा पहुँच गई"
+    },
+    "exportButton": {
+        "message": "निर्यात"
+    },
+    "importButton": {
+        "message": "आयात"
     }
 }

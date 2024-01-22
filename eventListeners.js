@@ -1,6 +1,8 @@
 /*
  * Defense Against Distractions Extension
  *
+ * file: eventListeners.js
+ * 
  * This file is part of the Defense Against Distractions Extension.
  *
  * Defense Against Distractions Extension is free software: you can redistribute it and/or modify
@@ -29,8 +31,7 @@ import {
 } from './groupManagementFunctions.js';
 
 import { 
-  checkScheduleStatus,
-  enableUIElements
+  checkScheduleStatus
 } from './uiFunctions.js';
 
 // Event listener for adding group on Enter key press
@@ -65,6 +66,9 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelector('#passwordForm button[type="submit"]').textContent = chrome.i18n.getMessage("submitButton");
   document.getElementById('instructionGuideLink').textContent = chrome.i18n.getMessage("instructionGuideLink");
 
+  document.getElementById('exportButton').textContent = chrome.i18n.getMessage("exportButton");
+    document.getElementById('importButton').textContent = chrome.i18n.getMessage("importButton");
+
   chrome.storage.sync.get('websiteGroups', ({ websiteGroups = [] }) => {
     updateGroupsUI(websiteGroups);
   });
@@ -82,4 +86,47 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize checking schedule status
   checkScheduleStatus();
+});
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  const exportButton = document.getElementById('exportButton');
+  const importButton = document.getElementById('importButton');
+  const fileInput = document.getElementById('fileInput');
+
+  exportButton.addEventListener('click', function() {
+    chrome.storage.sync.get(null, function(items) {
+        const result = JSON.stringify(items);
+        const url = 'data:text/json;charset=utf-8,' + encodeURIComponent(result);
+
+        // Generate a date string for the filename
+        const date = new Date();
+        const dateString = date.toISOString().split('T')[0]; // Format: YYYY-MM-DD
+        const filename = `DaD-extension-data-${dateString}.json`;
+
+        chrome.downloads.download({ url, filename: filename });
+    });
+  });
+
+  fileInput.addEventListener('change', function(event) {
+      const file = event.target.files[0];
+      if (file) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+              const contents = JSON.parse(e.target.result);
+              chrome.storage.sync.set(contents, function() {
+                  // Reload the DOM after the import is finished
+                  window.location.reload();
+              });
+          };
+          reader.readAsText(file);
+      }
+  });
+
+  importButton.addEventListener('click', function() {
+      fileInput.click(); // Trigger file input
+  });
 });

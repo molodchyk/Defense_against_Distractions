@@ -427,5 +427,11 @@
     },
     "dailyLimitReached": {
         "message": "1日の制限に達しました"
+    },
+    "exportButton": {
+        "message": "エクスポート"
+    },
+    "importButton": {
+        "message": "インポート"
     }
 }

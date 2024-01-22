@@ -828,3 +828,67 @@ form {
     background-color: #a9a9a9; /* Keep the same color on hover in disabled state */
     color: #666666;
 }
+
+/* Add this to your CSS file */
+#exportImportButtons {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+}
+
+
+
+/* Styling for Export and Import Buttons */
+#exportImportButtons {
+    display: flex;
+    justify-content: space-around;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    padding: 10px;
+    background-color: #2c3e50;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#exportButton, #importButton {
+    padding: 10px 15px;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#exportButton {
+    background-color: #27ae60;
+}
+
+#importButton {
+    background-color: #2980b9;
+}
+
+#exportButton:hover {
+    background-color: #2ecc71;
+}
+
+#importButton:hover {
+    background-color: #3498db;
+}
+
+#exportButton:disabled, #importButton:disabled {
+    background-color: #7f8c8d;
+    cursor: default;
+}
+
+/* Optional: Add icons to buttons */
+#exportButton:before {
+    content: url('path_to_export_icon');
+    margin-right: 5px;
+}
+
+#importButton:before {
+    content: url('path_to_import_icon');
+    margin-right: 5px;
+}

@@ -427,5 +427,11 @@
     },
     "dailyLimitReached": {
         "message": "Tageslimit erreicht"
+    },
+    "exportButton": {
+        "message": "Exportieren"
+    },
+    "importButton": {
+        "message": "Importieren"
     }
 }
