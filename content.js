@@ -48,8 +48,8 @@ function blockPage(keyword = "Unknown", contextText = "N/A") {
   blockDiv.style.left = '0';
   blockDiv.style.width = '100vw';
   blockDiv.style.height = '100vh';
-  blockDiv.style.backgroundColor = '#333333'; // Dark background
-  blockDiv.style.color = '#ffffff'; // Light text
+  blockDiv.style.backgroundColor = '#333333';
+  blockDiv.style.color = '#ffffff';
   blockDiv.style.display = 'flex';
   blockDiv.style.flexDirection = 'column';
   blockDiv.style.justifyContent = 'center';
@@ -68,9 +68,8 @@ function blockPage(keyword = "Unknown", contextText = "N/A") {
   contentDiv.style.maxWidth = '600px';
   contentDiv.style.margin = '0 auto';
   contentDiv.style.padding = '30px';
-  contentDiv.style.backgroundColor = '#4c4c4c'; // Darker shade for inner div
+  contentDiv.style.backgroundColor = '#4c4c4c';
   contentDiv.style.borderRadius = '8px';
-    // <p><strong>${chrome.i18n.getMessage("context")}:</strong> "${contextText}"</p> put down for a while the idea with context showing up: doesn't work for some reason
 
   contentDiv.innerHTML = `
     <h2 style="color: #ff4444;">${chrome.i18n.getMessage("contentBlockedTitle")}</h2>
@@ -211,22 +210,67 @@ if (typeof window.processedNodes === 'undefined') {
 function scanTextNodes(element, calculateScore) {
   if (window.pageBlocked || window.isTimerActive) return;
 
+  var val_to_be_subtracted = 0;
   const scanAndProcessText = (text, node) => {
     if (window.processedNodes.has(node)) return;
-    window.processedNodes.add(node);
 
-    window.parsedKeywords.forEach(({ keyword, operation, value }) => {
-      const regex = new RegExp(keyword, 'gi');
-      const matches = text.match(regex);
 
-      if (matches && matches.length > 0) {
-        matches.forEach(match => {
-          const contextText = extractContext(text, keyword);
-          calculateScore(operation, value, keyword, contextText);
-        });
+    console.log(`preliminary scan: ${text}`);
+    window.parsedKeywords.forEach(keywordObj => {
+      if (keywordObj) {
+        const { keyword, operation, value } = keywordObj;
+        const regex = new RegExp(keyword, 'gi');
+        const matches = text.match(regex);
+
+        if (matches && matches.length > 0) {
+          matches.forEach(match => {
+            const contextText = extractContext(text, keyword);
+            calculateScore(operation, value, keyword, contextText);
+            val_to_be_subtracted = val_to_be_subtracted + value;
+          });
+        }
       }
     });
+    
+    // Initial scan of the text node
+    processTextNode(text, node);
+
   };
+
+  const processTextNode = (text, node) => {
+    // Set a delay to check for any changes in the text node
+    setTimeout(() => {
+      if (node.textContent.trim() !== text) {
+        // Re-process the text node if the content has changed
+        processTextNode(node.textContent.trim(), node);
+      }
+      else {
+        window.processedNodes.add(node);
+        console.log(`Scanning text node: ${text}`);
+        window.parsedKeywords.forEach(keywordObj => {
+          if (keywordObj) {
+            const { keyword, operation, value } = keywordObj;
+            const regex = new RegExp(keyword, 'gi');
+            const matches = text.match(regex);
+  
+            if (matches && matches.length > 0) {
+              matches.forEach(match => {
+                const contextText = extractContext(text, keyword);
+                console.log('value to be subtracted', val_to_be_subtracted);
+                console.log('minus', value - val_to_be_subtracted);
+                if (value - val_to_be_subtracted > 0)
+                {
+                  calculateScore(operation, value, keyword, contextText);
+                  val_to_be_subtracted = val_to_be_subtracted - value;
+                }
+              });
+            }
+          }
+        });
+      }
+    }, 1000); // Adjust the delay as needed
+  };
+  
 
   const recursiveScan = (node) => {
     if (node.nodeType === Node.TEXT_NODE) {
