@@ -32,8 +32,23 @@ if (typeof window.blockDiv === 'undefined') {
   window.blockDiv = null;
 }
 
-function blockPage(keyword = "Unknown", contextText = "N/A") {
+if (typeof window.pageBlocked === 'undefined') {
+  window.pageBlocked = false;
+  console.log('page unblocked now');
+  chrome.runtime.sendMessage({ action: 'toggleImageBlocking', shouldBlock: false }, (response) => {
+  console.log(response.status);
+  });
+}
+
+function blockPage(keyword = "Unknown") {
   if (window.pageBlocked || window.isTimerActive) return;
+
+
+
+  console.log('page blocked now');
+  chrome.runtime.sendMessage({ action: 'toggleImageBlocking', shouldBlock: true }, (response) => {
+    console.log(response.status);
+  });
 
   window.originalStyles = Array.from(document.body.children).map(child => child.style.display);
 
@@ -82,7 +97,7 @@ function blockPage(keyword = "Unknown", contextText = "N/A") {
   blockDiv.appendChild(contentDiv);
   document.body.appendChild(blockDiv);
 
-  pauseNewMedia();
+
   const pauseInterval = setInterval(pauseNewMedia, 500);
   setTimeout(() => {
     clearInterval(pauseInterval);
@@ -110,6 +125,11 @@ function blockPage(keyword = "Unknown", contextText = "N/A") {
 
         if (timersLeft > 0) {
           window.pageBlocked = false;
+          console.log('page unblocked now');
+          chrome.runtime.sendMessage({ action: 'toggleImageBlocking', shouldBlock: false }, (response) => {
+            console.log(response.status);
+          });
+          
           window.pageScore = 0;
 
           window.blockDiv.style.display = 'none';
@@ -169,9 +189,6 @@ function blockPage(keyword = "Unknown", contextText = "N/A") {
   window.pageBlocked = true;
 }
 
-if (typeof window.pageBlocked === 'undefined') {
-  window.pageBlocked = false;
-}
 
 function pauseNewMedia() {
   if (window.pageBlocked || window.isTimerActive) return;
@@ -215,7 +232,6 @@ function scanTextNodes(element, calculateScore) {
     if (window.processedNodes.has(node)) return;
 
 
-    console.log(`preliminary scan: ${text}`);
     window.parsedKeywords.forEach(keywordObj => {
       if (keywordObj) {
         const { keyword, operation, value } = keywordObj;
@@ -246,7 +262,6 @@ function scanTextNodes(element, calculateScore) {
       }
       else {
         window.processedNodes.add(node);
-        console.log(`Scanning text node: ${text}`);
         window.parsedKeywords.forEach(keywordObj => {
           if (keywordObj) {
             const { keyword, operation, value } = keywordObj;
@@ -256,8 +271,6 @@ function scanTextNodes(element, calculateScore) {
             if (matches && matches.length > 0) {
               matches.forEach(match => {
                 const contextText = extractContext(text, keyword);
-                console.log('value to be subtracted', val_to_be_subtracted);
-                console.log('minus', value - val_to_be_subtracted);
                 if (value - val_to_be_subtracted > 0)
                 {
                   calculateScore(operation, value, keyword, contextText);
@@ -371,10 +384,10 @@ function calculateScore(operation, value, keyword, contextText) {
   } else if (operation === '+') {
       window.pageScore += value;
   }
-  console.log(`window.pageScore: ${window.pageScore}. Keyword: ${keyword}`)
+  // console.log(`window.pageScore: ${window.pageScore}. Keyword: ${keyword}`)
   updateBadgeScore();
   if (window.pageScore >= 1000 && !window.pageBlocked) {
-      blockPage(keyword, contextText);
+      blockPage(keyword);
   }
 }
 

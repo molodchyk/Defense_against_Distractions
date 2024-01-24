@@ -1,13 +1,15 @@
 {
   "manifest_version": 3,
-  "name": "Defense against Distractions ",
+  "name": "Defense against Distractions",
   "description": "__MSG_description__",
   "version": "1.0",
   "default_locale": "en",
   "permissions": [
     "storage", 
     "alarms",
-    "downloads"
+    "downloads",
+    "scripting",
+    "declarativeNetRequest"
   ],
   "action": {
     "default_icon": {
@@ -18,8 +20,7 @@
   },
   "options_page": "options.html",
   "background": {
-    "service_worker": "background.js",
-    "type": "module"
+    "service_worker": "background.js"
   },
   "content_scripts": [
     {
@@ -31,5 +32,14 @@
     "16": "icon-16.png",
     "64": "icon-64.png",
     "128": "icon-128.png"
+  },
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "ruleset_1",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
   }
 }
