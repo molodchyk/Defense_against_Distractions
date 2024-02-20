@@ -34,10 +34,6 @@ if (typeof window.blockDiv === 'undefined') {
 
 if (typeof window.pageBlocked === 'undefined') {
   window.pageBlocked = false;
-  console.log('page unblocked now');
-  chrome.runtime.sendMessage({ action: 'toggleImageBlocking', shouldBlock: false }, (response) => {
-  console.log(response.status);
-  });
 }
 
 function blockPage(keyword = "Unknown") {
@@ -125,11 +121,6 @@ function blockPage(keyword = "Unknown") {
 
         if (timersLeft > 0) {
           window.pageBlocked = false;
-          console.log('page unblocked now');
-          chrome.runtime.sendMessage({ action: 'toggleImageBlocking', shouldBlock: false }, (response) => {
-            console.log(response.status);
-          });
-          
           window.pageScore = 0;
 
           window.blockDiv.style.display = 'none';
@@ -384,7 +375,7 @@ function calculateScore(operation, value, keyword, contextText) {
   } else if (operation === '+') {
       window.pageScore += value;
   }
-  // console.log(`window.pageScore: ${window.pageScore}. Keyword: ${keyword}`)
+  console.log(`window.pageScore: ${window.pageScore}. Keyword: ${keyword}`)
   updateBadgeScore();
   if (window.pageScore >= 1000 && !window.pageBlocked) {
       blockPage(keyword);
