@@ -52,8 +52,8 @@ export function updateGroupsUI(websiteGroups) {
       createGroupField(li, 'keywordsLabel', group.keywords.join('\n'), `keywords-${index}`, true, index);
 
       // Timer settings
-      createGroupField(li, 'timerCountLabel', group.timer ? group.timer.count.toString() : '0', `timerCount-${index}`, true, index);
-      createGroupField(li, 'timerDurationLabel', group.timer ? group.timer.duration.toString() : '20', `timerDuration-${index}`, true, index);
+      // createGroupField(li, 'timerCountLabel', group.timer ? group.timer.count.toString() : '0', `timerCount-${index}`, true, index);
+      // createGroupField(li, 'timerDurationLabel', group.timer ? group.timer.duration.toString() : '20', `timerDuration-${index}`, true, index);
 
 
       // Delete button

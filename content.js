@@ -86,99 +86,29 @@ function blockPage(keyword = "Unknown") {
     <h2 style="color: #ff4444;">${chrome.i18n.getMessage("contentBlockedTitle")}</h2>
     <p>${chrome.i18n.getMessage("contentBlockedMessage")}</p>
     <p><strong>${chrome.i18n.getMessage("keywordDetected")}:</strong> ${keyword}</p>
-    <button id="goBackButton" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px;">${chrome.i18n.getMessage("goBackButton")}</button>
-    <button id="timerButton" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px;">${chrome.i18n.getMessage("activateTimerButton")}</button>
+    <div id="countdown" style="font-size: 48px; margin-top: 20px;">4</div>
   `;
 
   blockDiv.appendChild(contentDiv);
   document.body.appendChild(blockDiv);
 
+  // New code for countdown
+  let countdown = 4;
+  const countdownElement = document.getElementById('countdown');
+  const interval = setInterval(() => {
+    countdown -= 1;
+    countdownElement.textContent = countdown.toString();
+    if (countdown <= 0) {
+      clearInterval(interval);
+      // Instead of window.close(), redirect to a custom blocked message or about:blank
+      window.location.href = 'about:blank'; // or 'chrome-extension://your_extension_id/blocked.html'
+    }
+  }, 1000);
 
-  const pauseInterval = setInterval(pauseNewMedia, 500);
-  setTimeout(() => {
-    clearInterval(pauseInterval);
-  }, 5000);
-
-  document.getElementById('timerButton').addEventListener('click', function() {
-    chrome.storage.sync.get("websiteGroups", ({ websiteGroups }) => {
-      const currentUrl = window.location.href;
-      const normalizedUrl = normalizeURL(currentUrl);
-
-      const currentGroup = websiteGroups.find(group =>
-        group.websites.some(website => normalizedUrl.includes(normalizeURL(website)))
-      );
-
-      if (currentGroup && currentGroup.timer) {
-
-        // Check if the timer needs to be reset
-        const today = new Date().toDateString();
-        if (currentGroup.timer.lastReset !== today) {
-          currentGroup.timer.usedToday = 0;
-          currentGroup.timer.lastReset = today;
-        }
-        
-        let timersLeft = currentGroup.timer.count - currentGroup.timer.usedToday;
-
-        if (timersLeft > 0) {
-          window.pageBlocked = false;
-          window.pageScore = 0;
-
-          window.blockDiv.style.display = 'none';
-
-          Array.from(document.body.children).forEach((child, index) => {
-            child.style.display = window.originalStyles[index];
-          });
-          document.documentElement.style.overflow = window.originalOverflow;
-          Array.from(document.body.children).forEach((child, index) => {
-            child.style.display = window.originalStyles[index];
-          });
-
-          currentGroup.timer.usedToday++;
-          chrome.storage.sync.set({ websiteGroups });
-
-          window.isTimerActive = true;
-
-          let timerDuration = currentGroup.timer.duration;
-          let timerInterval = setInterval(() => {
-            updateBadgeScore(timerDuration);
-            timerDuration--;
-
-            if (timerDuration < 0) {
-              clearInterval(timerInterval);
-              window.isTimerActive = false;
-              updateBadgeScore();
-            }
-          }, 1000);
-
-          setTimeout(() => {
-            window.blockDiv.style.display = 'flex';
-            window.isTimerActive = false;
-
-            timerButton.textContent = chrome.i18n.getMessage("activateTimerButton");
-            
-            timerButton.disabled = false;
-          }, currentGroup.timer.duration * 1000);
-
-          timerButton.disabled = true;
-        } else {
-          timerButton.textContent = chrome.i18n.getMessage("dailyLimitReached");
-          timerButton.disabled = true;
-        }
-      }
-    });
-  });
-
-
-  document.getElementById('goBackButton').addEventListener('click', function(event) {
-      event.stopPropagation();
-      window.history.back();
-  });
-
-  window.addEventListener('popstate', function() {
-      window.location.reload();
-  });
   window.pageBlocked = true;
 }
+
+
 
 
 function pauseNewMedia() {
@@ -292,25 +222,27 @@ function scanTextNodes(element, calculateScore) {
   recursiveScan(element);
 }
 
-function getGroupKeywords(websiteGroups, currentSite, callback) {
-  if (window.pageBlocked || window.isTimerActive) return;
+function getGroupKeywords(websiteGroups, currentSite) {
+  if (window.pageBlocked || window.isTimerActive) return [];
   const normalizedCurrentSite = currentSite.replace(/^www\./, '').toLowerCase();
+  let allKeywords = [];
 
-  for (let group of websiteGroups) {
+  websiteGroups.forEach(group => {
     const normalizedGroupWebsites = group.websites.map(site => site.replace(/^www\./, '').toLowerCase());
     if (normalizedGroupWebsites.some(site => normalizedCurrentSite.includes(site))) {
-      if (callback) callback(group);  // Pass the matching group to the callback
-      return group.keywords;
+      // Accumulate keywords from all matching groups
+      allKeywords = allKeywords.concat(group.keywords);
     }
-  }
-  return [];
+  });
+
+  return allKeywords;
 }
 
 function normalizeURL(site) {
   return site.replace(/^(?:https?:\/\/)?(?:www\.)?/, '').toLowerCase();
 }
 
-function performSiteCheck(){
+function performSiteCheck() {
   if (window.pageBlocked || window.isTimerActive) return;
   chrome.storage.sync.get(["whitelistedSites", "websiteGroups"], ({ whitelistedSites, websiteGroups }) => {
     const fullUrl = window.location.href;
@@ -319,16 +251,14 @@ function performSiteCheck(){
     const isWhitelisted = whitelistedSites.some(whitelistedUrl => normalizedUrl.includes(whitelistedUrl));
     if (isWhitelisted) return;
 
-    let matchingGroup = null;
-    const keywords = getGroupKeywords(websiteGroups, normalizedUrl, (group) => { matchingGroup = group; });
+    // Get keywords from all matching groups
+    const keywords = getGroupKeywords(websiteGroups, normalizedUrl);
 
-    keywords.map(kw => {
-      const parts = kw.split(/(?<!\\),/); // Split by unescaped commas
-      return parts[0].trim().replace(/\\,/g, ','); // Replace escaped commas with actual commas
-    });
     if (keywords.length > 0) {
-      scanForKeywords(keywords);
-      observeMutations(keywords);
+      window.parsedKeywords = keywords.map(parseKeyword); // Parse keywords for all matching groups
+      const rootElement = document.querySelector('body');
+      scanTextNodes(rootElement, calculateScore);
+      observeMutations(keywords || []);
     }
   });
 }
@@ -391,6 +321,10 @@ function scanForKeywords(keywords) {
 
 function observeMutations(keywords) {
   if (window.pageBlocked || window.isTimerActive) return;
+  
+  // Ensure keywords is always an array
+  keywords = Array.isArray(keywords) ? keywords : [];
+  
   const observer = new MutationObserver(mutations => {
     mutations.forEach(mutation => {
       mutation.addedNodes.forEach(node => {
