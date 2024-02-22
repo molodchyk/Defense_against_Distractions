@@ -19,7 +19,7 @@
  * along with Defense Against Distractions Extension. If not, see <http://www.gnu.org/licenses/>.
  *
  * Author: Oleksandr Molodchyk
- * Copyright (C) 2023 Oleksandr Molodchyk
+ * Copyright (C) 2023-2024 Oleksandr Molodchyk
  */
 
 import { adjustTextareaHeight,  adjustTextareaWidth, addEnterFunctionalityToField} from './utilityFunctions.js';
@@ -65,17 +65,6 @@ export function removeGroup(index) {
     websiteGroups.splice(index, 1);
     chrome.storage.sync.set({ websiteGroups }, () => updateGroupsUI(websiteGroups));
   });
-}
-
-// Helper function to check if existing entries have been removed or inappropriately modified
-function hasArrayChanged(originalArray, newArray) {
-  // Check if any original entry has been modified or removed
-  for (let i = 0; i < originalArray.length; i++) {
-    if (newArray.length <= i || originalArray[i] !== newArray[i]) {
-      return true; // Original entry is modified or removed
-    }
-  }
-  return false; // No modifications or removals detected
 }
 
 // Normalize URL by removing 'http://', 'https://', and 'www.'
@@ -130,19 +119,10 @@ export function updateGroupField(index) {
     const keywordsField = document.getElementById(`keywords-${index}`);
 
     const newGroupName = groupNameField.value.trim();
-    // const newKeywords = keywordsField.value.split('\n').map(keyword => keyword.trim()).filter(keyword => keyword !== '');
 
     const newWebsites = websitesField.value.split('\n')
     .map(site => normalizeURL(site.trim()))
     .filter(site => site !== '');
-
-    // Retrieve the original timer values
-    const originalTimerCount = group.timer ? group.timer.count : 0;
-    const originalTimerDuration = group.timer ? group.timer.duration : 20;
-
-    // Extract the new timer values from the UI
-    const newTimerCount = parseInt(document.getElementById(`timerCount-${index}`).value, 10) || 0;
-    const newTimerDuration = parseInt(document.getElementById(`timerDuration-${index}`).value, 10) || 20;
 
     const isLockedSchedule = isCurrentTimeInAnySchedule(schedules);
 
@@ -171,34 +151,31 @@ export function updateGroupField(index) {
         return; // Prevent the group name change
       }
       // Log current field values
+      console.log("locked schedule active: ", isLockedSchedule);
       console.log("Current Websites:", group.websites);
       console.log("New Websites:", newWebsites);
       console.log("Current Keywords:", group.keywords);
       console.log("New Keywords:", newKeywords);
 
-      if (originalTimerCount < newTimerCount || originalTimerDuration < newTimerDuration) {
-        alert(chrome.i18n.getMessage("cannotIncreaseTimerActiveSchedule"));
-        return; // Prevent saving
-      }
+      // new function that will check if the sign for keywords was changed, or whether the values were lowered.
+      // Work through every keyword from the current websites, and try to find it on the newWebsites. 
+      // check if it exists in the new one
+      // check if the sign if there is a sign is the same
+      // check if the value if there was value is the same or higher
+      // if not, put console log and alert:   console.log("change cannot be saved");    alert(chrome.i18n.getMessage("invalidEditOnWebsitesOrKeywords")); and return
 
-      // Check for removal or inappropriate modification in websites and keywords
-      if (hasArrayChanged(group.websites, newWebsites) || hasArrayChanged(group.keywords, newKeywords)) {
-        console.log("change cannot be saved");
+      // Check for changes in keywords that are not allowed during locked schedules
+      if (!areKeywordChangesValid(originalKeywords, newKeywords, isLockedSchedule)) {  //line 168
+        console.log("Change cannot be saved due to invalid edits on websites or keywords.");
         alert(chrome.i18n.getMessage("invalidEditOnWebsitesOrKeywords"));
-        return; // Prevent saving
+        return; // Stop the update if keyword changes are invalid
       }
     }
-
     
     // Update group properties
     group.groupName = newGroupName;
     group.websites = newWebsites;
     group.keywords = newKeywords;
-    group.timer = {
-      count: newTimerCount,
-      duration: newTimerDuration,
-      usedToday: group.timer ? group.timer.usedToday : 0
-    };
 
     chrome.storage.sync.set({ websiteGroups }, () => {
       updateGroupsUI(websiteGroups);
@@ -206,6 +183,144 @@ export function updateGroupField(index) {
 
   });
 }
+
+
+
+
+
+
+
+
+
+
+/**
+ * Validates changes in keywords against original keywords to ensure compliance with rules.
+ * This includes ensuring no keywords are deleted, and that signs or numeric values are not improperly changed.
+ * It allows for the increase of numeric values in keywords and permits changing from "keyword, value"
+ * or "keyword, sign, value" to just "keyword", but prohibits changing from "keyword" to "keyword, value"
+ * or "keyword, sign, value". Specifically, it also allows changing format from "keyword, +, value" to
+ * "keyword, value".
+ * 
+ * 
+ * 
+ * *! means that the test did not pass, otherwise test passed
+ * test1: Allow adding new keywords
+ * test2: Allow increasing keywords value if the format is "keyword, sign, value" or "keyword, value"
+ * test3: allow adding new keyword between other keywords
+ * test3.5: allow changing keywords places
+ * test4: allow changing format from "keyword, +, value" to "keyword, value"
+ * test 4.1: allow changing format from "keyword, +, value" to "keyword"
+ * test4.2: allow changing format from "keyword, *, value" to "keyword"
+ * test 4.5: allow changing format from "keyword, value" to "keyword"
+ * test5: prohibit decreasing the value for keywords
+ * test6: prohibit changing the format from "keyword" to "keyword, sign, value" or "keyword, value"
+ * test7: prohibit changing format from "keyword, *, value" to "keyword, +, value" or "keyword, value"
+ * test8: prohibit changing format "keyword, value" to "keyword, *, value"
+ * test9: prohibit changing format "keyword, +, value" to "keyword, *, value"
+ * test10: prohibit removing keywords
+ * test11: prohibit changing keywords
+ * 
+ ** ALL TESTS PASSED
+ * 
+ * @param {Array<string>} originalKeywords - The original list of keywords.
+ * @param {Array<string>} newKeywords - The new list of keywords proposed for update.
+ * @returns {boolean} - True if all changes are valid, false otherwise.
+ */
+function areKeywordChangesValid(originalKeywords, newKeywords) {
+  // Convert newKeywords list into a map for easier lookup
+  const newKeywordMap = newKeywords.reduce((map, keywordStr) => {
+    const [keyword] = parseKeyword(keywordStr);
+    map[keyword] = keywordStr;
+    return map;
+  }, {});
+
+  for (const originalKeywordStr of originalKeywords) {
+    const [originalKeyword, originalSign, originalValue] = parseKeyword(originalKeywordStr);
+    const newKeywordStr = newKeywordMap[originalKeyword];
+
+    // Check if the original keyword exists in the new list
+    if (!newKeywordStr) {
+      console.log(`Keyword '${originalKeyword}' was removed or not found in the new list.`);
+      return false; // Original keyword was removed or not found
+    }
+
+    const [newKeyword, newSign, newValue] = parseKeyword(newKeywordStr);
+
+    // Allow changing from "keyword, +, value" to "keyword, value"
+    if (originalSign === '+' && newSign === null && originalValue === newValue) {
+      continue; // This specific change is allowed
+    }
+
+    // Prohibit changing from "keyword, value" to "keyword, *, value"
+    if (originalSign === null && originalValue !== null && newSign === '*' && newValue !== null) {
+      console.log(`Changing format from '${originalKeyword}, value' to '${originalKeyword}, *, value' is not allowed.`);
+      return false;
+    }
+
+    // Allow changing from "keyword, value" or "keyword, sign, value" to "keyword"
+    if ((originalSign !== null || originalValue !== null) && newIsSimple(newSign, newValue)) {
+      continue; // This change is allowed
+    }
+
+    // Prohibit changing from "keyword" to "keyword, value" or "keyword, sign, value"
+    if (originalIsSimple(originalSign, originalValue) && (newSign !== null || newValue !== null)) {
+      console.log(`Changing from 'keyword' to 'keyword, value' or 'keyword, sign, value' is not allowed for '${originalKeyword}'.`);
+      return false; // This type of format change is not allowed
+    }
+
+    // Check for sign changes (if applicable)
+    if (originalSign && newSign !== originalSign && !(originalSign === '+' && newSign === null)) {
+      console.log(`Sign change detected for '${originalKeyword}' from '${originalSign}' to '${newSign}'.`);
+      return false; // Sign change is not allowed, except for the allowed case above
+    }
+
+    // Check for invalid value changes
+    if (originalValue !== null && newValue !== null && newValue < originalValue) {
+      console.log(`Value decrease detected for '${originalKeyword}' from ${originalValue} to ${newValue}.`);
+      return false; // Decreasing value is not allowed
+    }
+  }
+
+  return true;
+}
+
+// Helper functions to check if keyword format is simple
+function originalIsSimple(sign, value) {
+  return sign === null && value === null;
+}
+
+function newIsSimple(sign, value) {
+  return sign === null && value === null;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * Parses a keyword string to extract the keyword, sign, and numeric value if present.
+ * @param {string} keyword - The keyword string to parse.
+ * @returns {Array} - An array containing the keyword, sign, and numeric value (if any).
+ */
+function parseKeyword(keyword) {
+  const parts = keyword.split(/(?<!\\),/).map(part => part.trim().replace(/\\,/g, ','));
+  const word = parts[0];
+  const sign = parts.length === 3 ? parts[1] : null;
+  const value = parts.length >= 2 ? parseFloat(parts[parts.length - 1]) : null;
+  return [word, sign, value];
+}
+
+
 
 
 /**

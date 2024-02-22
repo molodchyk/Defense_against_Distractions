@@ -19,7 +19,7 @@
  * along with Defense Against Distractions Extension. If not, see <http://www.gnu.org/licenses/>.
  *
  * Author: Oleksandr Molodchyk
- * Copyright (C) 2023 Oleksandr Molodchyk
+ * Copyright (C) 2023-2024 Oleksandr Molodchyk
  */
 
 import { adjustTextareaHeight,  adjustTextareaWidth, addEnterFunctionalityToField} from './utilityFunctions.js';
@@ -50,11 +50,6 @@ export function updateGroupsUI(websiteGroups) {
 
       // Keywords
       createGroupField(li, 'keywordsLabel', group.keywords.join('\n'), `keywords-${index}`, true, index);
-
-      // Timer settings
-      // createGroupField(li, 'timerCountLabel', group.timer ? group.timer.count.toString() : '0', `timerCount-${index}`, true, index);
-      // createGroupField(li, 'timerDurationLabel', group.timer ? group.timer.duration.toString() : '20', `timerDuration-${index}`, true, index);
-
 
       // Delete button
       const deleteButton = createButton('Delete', () => removeGroup(index), 'delete-button');

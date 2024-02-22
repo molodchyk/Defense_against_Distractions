@@ -19,7 +19,7 @@
  * along with Defense Against Distractions Extension. If not, see <http://www.gnu.org/licenses/>.
  *
  * Author: Oleksandr Molodchyk
- * Copyright (C) 2023 Oleksandr Molodchyk
+ * Copyright (C) 2023-2024 Oleksandr Molodchyk
  */
 
 // Function to localize content based on ID
