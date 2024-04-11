@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title id="pageTitle">Instruction Guide - Defense Against Distractions</title>
+    <link rel="stylesheet" href="css/instructionStyle.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <!-- <h1>Defense Against Distractions: Instruction Guide</h1> -->
+            <h1 id="headerTitle">Defense Against Distractions: Instruction Guide</h1>
+        </header>
+
+        <section class="introduction">
+            <h2 id="introTitle">Introduction</h2>
+            <p id="introText1">Hi! It's so easy to distract yourself on the internet and to procrastinate. This extension allows you to choose to block the website page based on the keywords you don't want to see appearing.</p>
+            <p id="introText2">There are thousands of video games to play, news stories to read, video content to consume and so on. And often times this is what we do when the project deadline or exams are still far away. It's sometimes a bit hard to force yourself into doing what you need to do.</p>
+            <p id="introText3">And distractions are everywhere! Even if you use StayFocusd or Cold Turkey or FocusMe to block some websites by their URLs, you can't block everything. For example, even with ChatGPT, you could talk about the news or video games if you really don't feel like studying/doing some work.</p>
+            <p id="introText4">With this extension, you can block the websites based on words and phrases on their text.</p>
+        </section>
+
+        <section class="how-to-use">
+            <h2 id="howToUseTitle">How to Use the Extension</h2>
+
+            <div class="step">
+                <h3 id="createGroupTitle">First Step: Create a Group</h3>
+                <p id="createGroupText1">You can press the "Add Group" button or input the group name and press the Enter or Add Group button. You can create many groups.</p>
+                <p id="createGroupText2">You will see the group panel.</p>
+            </div>
+
+            <div class="step">
+                <h3 id="websitesTitle">Websites</h3>
+                <p id="websitesText">You can start adding websites by pressing the "Edit" button to the left of the Websites line. This field is responsible for websites that the extension will block the keywords on. Here you have to input the website URLs, for example: "google.com". You can input multiple websites, each new line is a new website. Just press Enter. After you are ready, press the green button "Save". Or you can Cancel.</p>
+            </div>
+
+            <div class="step">
+                <h3 id="keywordsTitle">Keywords</h3>
+                <p id="keywordsText1">To add new keywords or change anything here, press "Edit". The keywords that you enter here will be scanned for on the websites that you entered for this group.</p>
+                <p id="keywordFormatsIntroduction">There are 3 formats for the keywords:</p>
+                <ul>
+                    <li>
+                        <!-- <p id="keywordFormat1"><strong>First Format:</strong> Just enter the keywords. It can be a word or a phrase. If the keyword contains a comma ",", you have to use an escape character "\" before it. The website will be blocked as soon as the keyword is detected. You can input as many keywords as you want, just press enter. Each new line is a new keyword.</p> -->
+                        <p>
+                            <strong id="keywordFormat1Title">First Format:</strong> 
+                            <span id="keywordFormat1Text">Just enter the keywords. It can be a word or a phrase. If the keyword contains a comma ",", you have to use an escape character "\" before it. The website will be blocked as soon as the keyword is detected. You can input as many keywords as you want, just press enter. Each new line is a new keyword.</span>
+                        </p>
+                        <p id="keywordFormat1_2">Examples: "video games", "news"</p>
+                    </li>
+                    <li>
+                        <!-- <p id="keywordFormat2"><strong>Second Format:</strong> Enter the keyword, followed by a numeric value.</p> -->
+                        <p>
+                            <strong id="keywordFormat2Title">Second Format:</strong> 
+                            <span id="keywordFormat2Text">Enter the keyword, followed by a numeric value. Each website you entered in a group has a score of 1000 to reach. The website starts with a value of 0, and based on the numeric value of the keyword, the value will increase. As soon as the website reaches the score of 1000, it will be blocked.</span>
+                        </p>
+                        <p id="keywordFormat2_2">Example: "news, 50"</p>
+                        <p id="keywordFormat2_3">Each website you entered in a group has a score of 1000 to reach. The website starts with a value of 0, and based on the numeric value of the keyword, the value will increase. As soon as the website reaches the score of 1000, it will be blocked.</p>
+                    </li>
+                    <li>
+                        <!-- <p id="keywordFormat3"><strong>Third Format:</strong> Enter the keyword, followed by a multiplication or addition sign (* or +), followed by a numeric value.</p> -->
+                        <p>
+                            <strong id="keywordFormat3Title">Third Format:</strong> 
+                            <span id="keywordFormat3Text">Enter the keyword, followed by a multiplication or addition sign (* or +), followed by a numeric value. In this scenario, the score for the page is multiplied based on the numeric value of the found keyword.</span>
+                        </p>
+                        <p id="keywordFormat3_2">Example: "news, *, 10"</p>
+                        <p id="keywordFormat3_3">In this scenario, the score for the page is multiplied based on the numeric value of the found keyword.</p>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- <div class="step">
+                <h3 id="timerCountTitle">Timer Count</h3>
+                <p id="timerCountText">After the page is blocked, you will have the option to press “Activate Timer” button. After that, you will have time to perform some actions on the page before it is blocked again. In Timer Count field, you can decide how many timers you want to have during the day.</p>
+            </div>
+
+            <div class="step">
+                <h3 id="timerDurationTitle">Timer Duration (seconds)</h3>
+                <p id="timerDurationText">In this field, you decide how many seconds each timer will have.</p>
+            </div>
+        </section> -->
+
+        <section class="locked-schedules">
+            <h2 id="lockedSchedulesTitle">Locked Schedules</h2>
+            <p id="lockedSchedulesNote" class="important-note">! A locked schedule cannot be unlocked until the time passes (unless you uninstall the extension) !</p>
+            <p id="lockedSchedulesText1">You can add a new locked schedule by creating the schedule Name in the Schedule Name field and pressing enter or pressing the Add Schedule button, or by pressing the Add Schedule button.</p>
+            <p id="lockedSchedulesText2">To modify the settings for your schedule, press “Edit”. By pressing the day buttons, you either enable the schedule on that day (button turns green), or you disable it for that day. By modifying the Start Time and End Time fields, you set the times the schedule could be active on. Each day has to have a 1-hour inactive time window so that you can deactivate the schedule during that time. The Inactive/Active button toggles the schedule. The schedule will be locked and active if the current day is enabled (green) and the button Active/Inactive shows “Active” and is also green. And, if the current time is between start and end times.</p>
+            <p id="lockedSchedulesText3">The Delete button deletes the locked schedule. The same applies to groups and whitelisted websites.</p>
+            <p id="lockedSchedulesText4">During the locked schedule, several restrictions apply:</p>
+            <ol>
+                <li id="lockedScheduleRestriction1">Can't change group names.</li>
+                <li id="lockedScheduleRestriction2">Can't change or remove existing websites in groups.</li>
+                <li id="lockedScheduleRestriction3">Can't change or remove existing keywords and their values.</li>
+                <li id="lockedScheduleRestriction4">Can only set keyword values for multiplication: from 1 to 1000. For addition: from 0 to 1000.</li>
+                <li id="lockedScheduleRestriction5">Timer count cannot be increased.</li>
+                <li id="lockedScheduleRestriction6">Timer duration cannot be increased.</li>
+                <li id="lockedScheduleRestriction7">Active schedules cannot be deleted.</li>
+                <li id="lockedScheduleRestriction8">You can't deselect days, make the schedule inactive, make start time earlier or end time later for active schedules.</li>
+                <li id="lockedScheduleRestriction9">You cannot add whitelisted websites.</li>
+                <li id="lockedScheduleRestriction10">You cannot set or delete the password for the extension.</li>
+            </ol>
+        </section>
+
+        <section class="whitelist-websites">
+            <h2 id="whitelistWebsitesTitle">Whitelist Websites</h2>
+            <p id="whitelistWebsitesText">Allows you to enter whitelisted websites, meaning, that on those websites the keyword scan will not be performed and thus the websites will not be blocked. As we right now do not have the ability to use a wildcard (*) to include a lot of websites in one entry (like *.io, where all websites that have “.io” would have been blocked), this feature is not really useful but it exists.</p>
+        </section>
+
+        <section class="password-management">
+            <h2 id="passwordManagementTitle">Password Management</h2>
+            <p id="passwordManagementText">Allows you to set up a password for the extension page. Anyone who opens the extension page will have to submit a correct password to go in. Useful for preventing others from accidentally (or not) making the settings stricter.</p>
+        </section>
+
+
+        <section class="feedback">
+            <h2 id="contactFeedbackTitle">Contact and Feedback</h2>
+            <p id="feedbackText1">If you want to share any feedback or if you face an issue, please visit the extension’s GitHub page:</p>
+            <a href="https://github.com/molodchyk/Defense_against_Distractions" target="_blank" id="githubLink">GitHub - Defense Against Distractions</a>
+            <p id="feedbackText2">There, navigate to the “Issues” tab and click the green button “New Issue”. Fill in the title and description and press “Submit new issue”.</p>
+            <p id="thanks">Thanks.</p>
+        </section>
+        <script src="js/localization.js"></script>
+    </div>
+</body>
+</html>
+
