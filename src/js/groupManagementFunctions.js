@@ -26,44 +26,113 @@ import { adjustTextareaHeight,  adjustTextareaWidth, addEnterFunctionalityToFiel
 import { updateGroupsUI } from './uiFunctions.js';
 import { isCurrentTimeInAnySchedule } from './utilityFunctions.js';
 
-export function addGroup() {
-  let groupName = document.getElementById('groupNameInput').value.trim();
 
-  chrome.storage.sync.get('websiteGroups', ({ websiteGroups = [] }) => {
-    // Generate a group name if empty
-    if (!groupName) {
-      const existingNames = new Set(websiteGroups.map(group => group.groupName.toLowerCase()));
-      let groupNumber = 1;
-      while (existingNames.has(chrome.i18n.getMessage("unnamedGroupPrefix").toLowerCase() + groupNumber)) {
-          groupNumber++;
-      }
-      groupName = chrome.i18n.getMessage("unnamedGroupPrefix") + groupNumber;
-    }
 
-    // Check if a group with this name already exists
-    if (websiteGroups.some(group => group.groupName.toLowerCase() === groupName.toLowerCase())) {
-      alert(chrome.i18n.getMessage("groupNameExists"));
+export function migrateToNewGroupStorage() {
+  chrome.storage.sync.get('websiteGroups', async ({ websiteGroups }) => {
+    if (!websiteGroups) {
+      console.log('No existing groups to migrate.');
       return;
     }
 
-    // Add new group
-    websiteGroups.push({ groupName, websites: [], keywords: [] });
-    chrome.storage.sync.set({ websiteGroups }, () => {
-      updateGroupsUI(websiteGroups);
-      document.getElementById('groupNameInput').value = ''; // Clear input field
+    // Handling group migrations synchronously to ensure unique IDs
+    for (const group of websiteGroups) {
+      await new Promise((resolve, reject) => {
+        generateGroupId(async groupId => {
+          const newGroupData = { ...group, id: groupId };
+          await chrome.storage.sync.set({ [groupId]: newGroupData }, () => {
+            if (chrome.runtime.lastError) {
+              console.error('Failed to migrate group:', chrome.runtime.lastError);
+              reject(chrome.runtime.lastError);
+            } else {
+              console.log(`Group ${group.groupName} migrated to ID ${groupId}.`);
+              resolve();
+            }
+          });
+        });
+      });
+    }
+    
+    console.log('All groups migrated successfully.');
+    // Optionally remove old storage format data
+    chrome.storage.sync.remove('websiteGroups', () => {
+      console.log('Old group data format removed.');
+      updateGroupsUI(); // Update UI to reflect new storage format
     });
   });
 }
 
-export function removeGroup(index) {
-  chrome.storage.sync.get(['websiteGroups', 'schedules'], ({ websiteGroups, schedules }) => {
+
+export function generateGroupId(callback) {
+  chrome.storage.sync.get({ groupCounter: 0 }, (items) => {
+    let newCounter = items.groupCounter + 1;
+    try {
+      chrome.storage.sync.set({ groupCounter: newCounter }, () => {
+        callback(`group_${newCounter}`);
+      });
+    } catch (error) {
+      console.error('Error setting groupCounter:', error);
+      if (error.message.includes('QUOTA_BYTES_PER_ITEM')) {
+        alert('Storage quota exceeded. Try removing some groups or reducing data size.');
+      } else {
+        alert('Failed to generate group ID: ' + error.message);
+      }
+    }
+  });
+}
+
+export function addGroup() {
+  let groupNameInput = document.getElementById('groupNameInput');
+  let groupName = groupNameInput.value.trim();
+
+  chrome.storage.sync.get(null, (items) => {
+    const allGroups = Object.entries(items).filter(([key, _]) => key.startsWith('group_')).map(([_, value]) => value);
+    if (!groupName) {
+      // Generate a group name if empty
+      const existingNames = new Set(allGroups.map(group => group.groupName.toLowerCase()));
+      let groupNumber = 1;
+      while (existingNames.has(`${chrome.i18n.getMessage("unnamedGroupPrefix").toLowerCase()} ${groupNumber}`)) {
+        groupNumber++;
+      }
+      groupName = `${chrome.i18n.getMessage("unnamedGroupPrefix")} ${groupNumber}`;
+    } else if (allGroups.some(group => group.groupName.toLowerCase() === groupName.toLowerCase())) {
+      alert(chrome.i18n.getMessage("groupNameExists"));
+      return;
+    }
+
+    generateGroupId((groupId) => {
+      const newGroup = { id: groupId, groupName, websites: [], keywords: [] };
+      try {
+        chrome.storage.sync.set({ [groupId]: newGroup }, () => {
+          console.log(`Group ${groupName} added with ID ${groupId}.`);
+          updateGroupsUI(); // Implement this function to update your UI accordingly
+          groupNameInput.value = ''; // Clear input field
+        });
+      } catch (error) {
+        if (error && error.message.includes('QUOTA_BYTES_PER_ITEM')) {
+          alert('Error: Data size too large. Try reducing the amount of data or split into smaller items.');
+        } else {
+          console.error('Error adding new group:', error);
+          alert('Failed to add group: ' + error.message);
+        }
+      }
+    });
+  });
+}
+
+export function removeGroup(groupId) {
+  // First, check if any restrictions apply before removing the group.
+  chrome.storage.sync.get('schedules', ({ schedules }) => {
     if (isCurrentTimeInAnySchedule(schedules)) {
       alert(chrome.i18n.getMessage("cannotDeleteGroupActiveSchedule"));
       return;
     }
 
-    websiteGroups.splice(index, 1);
-    chrome.storage.sync.set({ websiteGroups }, () => updateGroupsUI(websiteGroups));
+    // Proceed with deletion if no schedules prevent it.
+    chrome.storage.sync.remove(groupId, () => {
+      console.log(`Group ${groupId} removed.`);
+      updateGroupsUI(); // Refresh the UI to reflect the removal.
+    });
   });
 }
 
@@ -110,72 +179,86 @@ export function toggleFieldEdit(fieldId, index) {
   }
 }
 
-export function updateGroupField(index) {
-  chrome.storage.sync.get(['websiteGroups', 'schedules'], ({ websiteGroups, schedules }) => {
-    const group = websiteGroups[index];
+export function getSizeOfObject(object) {
+  const stringifiedData = JSON.stringify(object);
+  return new TextEncoder().encode(stringifiedData).length;
+}
 
-    const groupNameField = document.getElementById(`name-${index}`);
-    const websitesField = document.getElementById(`websites-${index}`);
-    const keywordsField = document.getElementById(`keywords-${index}`);
+export function updateGroupField(groupId) {
+  // The unique key for the group's data
+  const groupKey = `${groupId}`;
+  console.log("groupKey: ", groupKey);
 
+  chrome.storage.sync.get([groupKey, 'schedules'], (data) => {
+    const group = data[groupKey];
+    if (!group) {
+      console.log(`Group with ID ${groupId} not found.`);
+      return; // Exit if the group wasn't found
+    }
+
+    const schedules = data.schedules || [];
+
+    // Elements identified by group-specific IDs
+    const groupNameField = document.getElementById(`name-${groupId}`);
+    const websitesField = document.getElementById(`websites-${groupId}`);
+    const keywordsField = document.getElementById(`keywords-${groupId}`);
+
+    // Updated group data
     const newGroupName = groupNameField.value.trim();
-
     const newWebsites = websitesField.value.split('\n')
-    .map(site => normalizeURL(site.trim()))
-    .filter(site => site !== '');
+                          .map(site => normalizeURL(site.trim()))
+                          .filter(site => site !== '');
+    const newKeywords = keywordsField.value.split('\n')
+                          .map(keyword => keyword.trim())
+                          .filter(keyword => keyword !== '');
 
     const isLockedSchedule = isCurrentTimeInAnySchedule(schedules);
 
-    const originalKeywords = group.keywords;
-    const newKeywords = keywordsField.value.split('\n')
-    .map(keyword => keyword.trim())
-    .filter(keyword => keyword !== '');
-
-
     // Validate only new or modified keywords
+    let isValid = true; // Assume all entries are valid initially
     for (let keywordEntry of newKeywords) {
-      const isNewOrModified = !originalKeywords.includes(keywordEntry);
-      if (isNewOrModified && !validateKeywordEntry(keywordEntry, isLockedSchedule)) {
-        console.log("Invalid keyword entry: " + keywordEntry);
-        console.log("Current Keywords:", group.keywords);
-        console.log("New Keywords:", newKeywords);
-        alert(chrome.i18n.getMessage("invalidKeywordEntry") + keywordEntry);
-        return; // Prevent saving the group data
+      if (!validateKeywordEntry(keywordEntry, isLockedSchedule)) {
+        alert(`Invalid keyword entry: ${keywordEntry}`);
+        isValid = false; // Mark as invalid
+        break; // Exit loop on first invalid entry
       }
     }
 
-    if (isCurrentTimeInAnySchedule(schedules)) {
-      // If the group name is different and the schedule is active, restrict the change
-      if (group.groupName.toLowerCase() !== newGroupName.toLowerCase()) {
-        alert(chrome.i18n.getMessage("cannotChangeGroupNameActiveSchedule"));
-        return; // Prevent the group name change
-      }
-      // Log current field values
-      console.log("locked schedule active: ", isLockedSchedule);
-      console.log("Current Websites:", group.websites);
-      console.log("New Websites:", newWebsites);
-      console.log("Current Keywords:", group.keywords);
-      console.log("New Keywords:", newKeywords);
+    if (!isValid) return; // Stop if any keyword entries are invalid
 
-      // Check for changes in keywords that are not allowed during locked schedules
-      if (!areKeywordChangesValid(originalKeywords, newKeywords, isLockedSchedule)) {  //line 168
-        console.log("Change cannot be saved due to invalid edits on websites or keywords.");
-        alert(chrome.i18n.getMessage("invalidEditOnWebsitesOrKeywords"));
-        return; // Stop the update if keyword changes are invalid
-      }
+    if (isCurrentTimeInAnySchedule(schedules) && group.groupName.toLowerCase() !== newGroupName.toLowerCase()) {
+      alert(chrome.i18n.getMessage("cannotChangeGroupNameActiveSchedule"));
+      return; // Prevent the group name change if a schedule is active
     }
-    
-    // Update group properties
-    group.groupName = newGroupName;
-    group.websites = newWebsites;
-    group.keywords = newKeywords;
 
-    chrome.storage.sync.set({ websiteGroups }, () => {
-      updateGroupsUI(websiteGroups);
+    // Apply updates to group
+    const updatedGroup = {
+      ...group,
+      groupName: newGroupName,
+      websites: newWebsites,
+      keywords: newKeywords
+    };
+
+    const estimatedNewDataSize = getSizeOfObject(updatedGroup);
+
+    chrome.storage.sync.getBytesInUse(null, function(bytesInUse) {
+      if (bytesInUse + estimatedNewDataSize > chrome.storage.sync.QUOTA_BYTES) {
+        alert('Cannot save the data: Storage quota would be exceeded.');
+        return;
+      }
+
+      chrome.storage.sync.set({ [groupKey]: updatedGroup }, function() {
+        if (chrome.runtime.lastError) {
+          alert(`Failed to update group: ${chrome.runtime.lastError.message}`);
+        } else {
+          console.log(`Group ${groupId} updated.`);
+          updateGroupsUI();
+        }
+      });
     });
-
   });
 }
+
 
 function areKeywordChangesValid(originalKeywords, newKeywords) {
   // Convert newKeywords list into a map for easier lookup

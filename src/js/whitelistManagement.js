@@ -24,6 +24,8 @@
 
 import { isCurrentTimeInAnySchedule } from './utilityFunctions.js';
 
+import { getSizeOfObject } from './groupManagementFunctions.js';
+
 // Function to update the UI for whitelisted sites
 export function updateWhitelistUI(whitelistedSites) {
   const list = document.getElementById('whitelist');
@@ -61,42 +63,51 @@ function normalizeURL(site) {
 }
 
 function addWhitelistSite() {
-  console.log("Attempting to add site to whitelist"); // Log when function is called
+  console.log("Attempting to add site to whitelist");
   const input = document.getElementById('whitelistInput');
   let site = input.value.trim();
   if (!site) {
-    console.log("No site entered"); // Log if input is empty
-    return;
+      console.log("No site entered");
+      return;
   }
 
-  chrome.storage.sync.get('schedules', (result) => {
-    const schedules = result.schedules || [];
-    if (isCurrentTimeInAnySchedule(schedules)) {
-      console.log("Cannot add site to whitelist during active schedule");
-      alert(chrome.i18n.getMessage("lockedScheduleErrorMessage"));
-      return;
-    }
+  site = normalizeURL(site);
+  console.log(`Normalized site: ${site}`);
 
-    // Normalize the site URL before adding it to the list
-    site = normalizeURL(site);
-    console.log(`Normalized site: ${site}`); // Log normalized site
+  chrome.storage.sync.get(['whitelistedSites', 'schedules'], (result) => {
+      const schedules = result.schedules || [];
+      if (isCurrentTimeInAnySchedule(schedules)) {
+          console.log("Cannot add site to whitelist during active schedule");
+          alert(chrome.i18n.getMessage("lockedScheduleErrorMessage"));
+          return;
+      }
 
-    chrome.storage.sync.get('whitelistedSites', (result) => {
       let whitelistedSites = result.whitelistedSites || [];
       if (!whitelistedSites.includes(site)) {
-        const updatedSites = [...whitelistedSites, site];
-        chrome.storage.sync.set({ whitelistedSites: updatedSites }, () => {
-          console.log(`Added site: ${site}`); // Log site addition
-          updateWhitelistUI(updatedSites);
-          input.value = '';
-        });
-      } else {
-        console.log("Site already in whitelist"); // Log if site is already in list
-        alert(chrome.i18n.getMessage("whitelistExistsMessage"));
-      }
-    });
-  });
+          const updatedSites = [...whitelistedSites, site];
+          const estimatedNewDataSize = getSizeOfObject(updatedSites);
 
+          chrome.storage.sync.getBytesInUse(null, function(bytesInUse) {
+              if (bytesInUse + estimatedNewDataSize > chrome.storage.sync.QUOTA_BYTES) {
+                  alert('Cannot add the site: Storage quota would be exceeded.');
+                  return;
+              }
+
+              chrome.storage.sync.set({ whitelistedSites: updatedSites }, () => {
+                  if (chrome.runtime.lastError) {
+                      alert(`Failed to add site to whitelist: ${chrome.runtime.lastError.message}`);
+                  } else {
+                      console.log(`Added site: ${site}`);
+                      updateWhitelistUI(updatedSites);
+                      input.value = '';
+                  }
+              });
+          });
+      } else {
+          console.log("Site already in whitelist");
+          alert(chrome.i18n.getMessage("whitelistExistsMessage"));
+      }
+  });
 }
 
 function removeWhitelistSite(index) {

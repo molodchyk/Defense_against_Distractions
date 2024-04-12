@@ -172,12 +172,9 @@ async function setPassword(password) {
             ["encrypt", "decrypt"]
         );
 
-
         const exportedKey = await crypto.subtle.exportKey("raw", key);
 
         const keyBase64 = bufferToBase64(exportedKey);
-
-
 
         chrome.storage.local.set({ key: keyBase64 }, async function() {
             if (chrome.runtime.lastError) {
@@ -192,7 +189,7 @@ async function setPassword(password) {
             // Store the encrypted password in chrome.storage.sync
             chrome.storage.sync.set({ password: encryptedPasswordBase64 }, function() {
                 if (chrome.runtime.lastError) {
-                    console.error("Error storing the password:", chrome.runtime.lastError);
+                    alert("Error storing the password");
                 } else {
                     updateButtonStates(); // Update UI state
                 }

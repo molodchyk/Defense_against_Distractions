@@ -882,14 +882,3 @@ form {
     cursor: default;
 }
 
-/* Optional: Add icons to buttons */
-#exportButton:before {
-    content: url('path_to_export_icon');
-    margin-right: 5px;
-}
-
-#importButton:before {
-    content: url('path_to_import_icon');
-    margin-right: 5px;
-}
-

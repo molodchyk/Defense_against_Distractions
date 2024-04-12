@@ -23,48 +23,55 @@
  */
 
 import { adjustTextareaHeight,  adjustTextareaWidth, addEnterFunctionalityToField} from './utilityFunctions.js';
-import { toggleFieldEdit, updateGroupField, removeGroup } from './groupManagementFunctions.js';
+import { toggleFieldEdit, updateGroupField, removeGroup, migrateToNewGroupStorage } from './groupManagementFunctions.js';
 
 import { isCurrentTimeInAnySchedule } from './utilityFunctions.js';
 import { updateButtonStates } from './passwordManager.js';
 
-// Function to update the UI for groups
-export function updateGroupsUI(websiteGroups) {
+export function updateGroupsUI() {
   const list = document.getElementById('groupList');
   list.innerHTML = '';
 
-  // Fetch schedules for checking active schedule times
-  chrome.storage.sync.get('schedules', (result) => {
-    const schedules = result.schedules || [];
+  // Fetch all items from chrome.storage.sync
+  chrome.storage.sync.get(null, (items) => {
+    const schedules = items.schedules || [];
     const isInSchedule = isCurrentTimeInAnySchedule(schedules);
 
-    websiteGroups.forEach((group, index) => {
-      const li = document.createElement('li');
-      li.className = 'group-item';
+    // Filter out and process only group items
+    Object.entries(items).forEach(([key, value]) => {
+      if (key.startsWith('group_')) {
+        const group = value;
 
-      // Group Name
-      createGroupField(li, 'groupNameLabel', group.groupName, `name-${index}`, true, index);
+        const li = document.createElement('li');
+        li.className = 'group-item';
 
-      // Websites
-      createGroupField(li, 'websitesLabel', group.websites.join('\n'), `websites-${index}`, true, index);
+        // Group Name
+        createGroupField(li, 'groupNameLabel', group.groupName, `name-${group.id}`, true, group.id);
 
-      // Keywords
-      createGroupField(li, 'keywordsLabel', group.keywords.join('\n'), `keywords-${index}`, true, index);
+        // Websites
+        createGroupField(li, 'websitesLabel', group.websites.join('\n'), `websites-${group.id}`, true, group.id);
 
-      // Delete button
-      const deleteButton = createButton('Delete', () => removeGroup(index), 'delete-button');
-      li.appendChild(deleteButton);
+        // Keywords
+        createGroupField(li, 'keywordsLabel', group.keywords.join('\n'), `keywords-${group.id}`, true, group.id);
 
-      // Disable delete button and any edit functionalities if in schedule
-      if (isInSchedule) {
-        deleteButton.disabled = true;
+        // Delete button - passing the group's unique ID for deletion
+        const deleteButton = createButton('Delete', () => removeGroup(group.id), 'delete-button');
+        li.appendChild(deleteButton);
+
+        // Disable delete button and any edit functionalities if in schedule
+        if (isInSchedule) {
+          deleteButton.disabled = true;
+        }
+
+        list.appendChild(li);
       }
-
-      list.appendChild(li);
-      document.querySelectorAll('.group-item textarea').forEach(adjustTextareaHeight);
     });
+
+    // After appending all items to the list, adjust their textareas' height
+    document.querySelectorAll('.group-item textarea').forEach(adjustTextareaHeight);
   });
 }
+
 
 
 function createGroupField(container, labelKey, value, id, isReadOnly, index) {
@@ -146,6 +153,7 @@ export function checkScheduleStatus() {
 // Initialize and set the interval for checking the schedule status
 document.addEventListener('DOMContentLoaded', function() {
   checkScheduleStatus(); // Initial check
+  migrateToNewGroupStorage();
   setInterval(checkScheduleStatus, 15000); // Recheck every 15 seconds
 });
 
