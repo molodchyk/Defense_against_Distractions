@@ -38,15 +38,20 @@ if (typeof window.pageBlocked === 'undefined') {
 
 function blockPage() {
   if (window.pageBlocked) return;
-  
-  console.log('Page blocked now');
 
-  // Redirect to the blocked page
+  console.log('Page blocking initiated. Current URL:', window.location.href);
   const extensionPageUrl = chrome.runtime.getURL('src/blocked.html');
   window.location.href = extensionPageUrl;
-
   window.pageBlocked = true;
+  console.log('Redirecting to block page.');
 }
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('DOM fully loaded. URL:', window.location.href);
+  performSiteCheck();
+});
+
 
 function extractContext(text, keyword, maxWords = 15, maxLength = 100) {
   if (window.pageBlocked) return;
@@ -170,23 +175,38 @@ function normalizeURL(site) {
 
 function performSiteCheck() {
   if (window.pageBlocked) return;
-  chrome.storage.sync.get(["whitelistedSites", "websiteGroups"], ({ whitelistedSites, websiteGroups }) => {
+
+  console.log('Starting site check. Current URL:', window.location.href);
+
+  // Retrieve all keys from storage
+  chrome.storage.sync.get(null, (items) => {
     const fullUrl = window.location.href;
     const normalizedUrl = normalizeURL(fullUrl);
+    let allKeywords = [];
 
+    // Check if current site is whitelisted
+    const whitelistedSites = items.whitelistedSites || [];
     const isWhitelisted = whitelistedSites.some(whitelistedUrl => normalizedUrl.includes(whitelistedUrl));
     if (isWhitelisted) return;
 
-    // Get keywords from all matching groups
-    const keywords = getGroupKeywords(websiteGroups, normalizedUrl);
+    // Iterate over all groups to collect keywords
+    Object.values(items).forEach(group => {
+      if (group.id && group.websites) {
+        const normalizedGroupWebsites = group.websites.map(site => normalizeURL(site));
+        if (normalizedGroupWebsites.some(site => normalizedUrl.includes(site))) {
+          allKeywords = allKeywords.concat(group.keywords);
+        }
+      }
+    });
 
-    if (keywords.length > 0) {
-      window.parsedKeywords = keywords.map(parseKeyword); // Parse keywords for all matching groups
+    if (allKeywords.length > 0) {
+      window.parsedKeywords = allKeywords.map(parseKeyword); // Parse keywords for all matching groups
       const rootElement = document.querySelector('body');
       scanTextNodes(rootElement, calculateScore);
-      observeMutations(keywords || []);
+      observeMutations(allKeywords || []);
     }
   });
+  console.log('Site check completed. Keywords parsed:', window.parsedKeywords.length);
 }
 performSiteCheck();
 
@@ -246,8 +266,6 @@ function scanForKeywords(keywords) {
 }
 
 function observeMutations(keywords) {
-  if (window.pageBlocked) return;
-  
   // Ensure keywords is always an array
   keywords = Array.isArray(keywords) ? keywords : [];
   
@@ -273,4 +291,32 @@ function updateBadgeScore(timerRemaining = null) {
   }
   chrome.runtime.sendMessage({ action: 'updateBadge', score: badgeText });
 }
+
+window.onpageshow = function(event) {
+  if (event.persisted) {
+    // Resetting states
+    window.pageBlocked = false;
+    window.pageScore = 0;
+    window.processedNodes.clear();  // Ensure text nodes are reprocessed
+    window.parsedKeywords = [];     // Reset parsed keywords
+
+    console.log('Popstate event: Resetting all states and re-evaluating the page.');
+
+    // Fully reinitialize the site check to imitate a fresh page load
+    document.addEventListener('DOMContentLoaded', function() {
+      performSiteCheck();
+    });
+    
+    // Manually trigger DOMContentLoaded if necessary
+    var readyStateCheckInterval = setInterval(function() {
+      if (document.readyState === "complete") {
+        clearInterval(readyStateCheckInterval);
+        performSiteCheck();
+      }
+    }, 10);
+  }
+};
+
+
+
 

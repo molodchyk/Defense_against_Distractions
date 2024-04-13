@@ -104,18 +104,30 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   fileInput.addEventListener('change', function(event) {
-      const file = event.target.files[0];
-      if (file) {
-          const reader = new FileReader();
-          reader.onload = function(e) {
-              const contents = JSON.parse(e.target.result);
-              chrome.storage.sync.set(contents, function() {
-                  // Reload the DOM after the import is finished
-                  window.location.reload();
-              });
-          };
-          reader.readAsText(file);
-      }
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const contents = JSON.parse(e.target.result);
+        
+        // Clear the storage before setting new contents
+        chrome.storage.sync.clear(function() {
+          if (chrome.runtime.lastError) {
+            console.error('Failed to clear storage:', chrome.runtime.lastError);
+          } else {
+            chrome.storage.sync.set(contents, function() {
+              if (chrome.runtime.lastError) {
+                console.error('Failed to set new storage data:', chrome.runtime.lastError);
+              } else {
+                // Reload the DOM after the import is finished
+                window.location.reload();
+              }
+            });
+          }
+        });
+      };
+      reader.readAsText(file);
+    }
   });
 
   importButton.addEventListener('click', function() {
