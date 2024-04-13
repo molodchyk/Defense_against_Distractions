@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Defense against Distractions",
   "description": "__MSG_description__",
-  "version": "1.4",
+  "version": "1.41",
   "default_locale": "en",
   "permissions": [
     "storage", 

@@ -208,6 +208,7 @@ export function updateGroupField(groupId) {
     const newWebsites = websitesField.value.split('\n')
                           .map(site => normalizeURL(site.trim()))
                           .filter(site => site !== '');
+    const originalKeywords = group.keywords;
     const newKeywords = keywordsField.value.split('\n')
                           .map(keyword => keyword.trim())
                           .filter(keyword => keyword !== '');
@@ -217,7 +218,8 @@ export function updateGroupField(groupId) {
     // Validate only new or modified keywords
     let isValid = true; // Assume all entries are valid initially
     for (let keywordEntry of newKeywords) {
-      if (!validateKeywordEntry(keywordEntry, isLockedSchedule)) {
+      const isNewOrModified = !originalKeywords.includes(keywordEntry);
+      if (isNewOrModified && !validateKeywordEntry(keywordEntry, isLockedSchedule)) {
         alert(`Invalid keyword entry: ${keywordEntry}`);
         isValid = false; // Mark as invalid
         break; // Exit loop on first invalid entry
@@ -226,9 +228,19 @@ export function updateGroupField(groupId) {
 
     if (!isValid) return; // Stop if any keyword entries are invalid
 
-    if (isCurrentTimeInAnySchedule(schedules) && group.groupName.toLowerCase() !== newGroupName.toLowerCase()) {
-      alert(chrome.i18n.getMessage("cannotChangeGroupNameActiveSchedule"));
-      return; // Prevent the group name change if a schedule is active
+    if (isLockedSchedule) {
+      if (group.groupName.toLowerCase() !== newGroupName.toLowerCase()) {
+        alert(chrome.i18n.getMessage("cannotChangeGroupNameActiveSchedule"));
+        return; // Prevent the group name change if a schedule is active
+      }
+      if (!areKeywordChangesValid(originalKeywords, newKeywords, isLockedSchedule)) {
+        alert(chrome.i18n.getMessage("invalidEditOnWebsitesOrKeywords"));
+        return; // Stop the update if keyword changes are invalid
+      }
+      if (!areWebsiteChangesValid(group.websites, newWebsites)) {
+        alert(chrome.i18n.getMessage("invalidEditOnWebsitesOrKeywords"));
+        return; // Stop the update if website changes are invalid
+      }
     }
 
     // Apply updates to group
@@ -259,6 +271,14 @@ export function updateGroupField(groupId) {
   });
 }
 
+function areWebsiteChangesValid(originalWebsites, newWebsites) {
+  const newSet = new Set(newWebsites);
+  if (newSet.size !== newWebsites.length) {
+    console.log("Duplicate website entries detected.");
+    return false; // There are duplicate entries in the new websites list
+  }
+  return originalWebsites.every(website => newWebsites.includes(website));
+}
 
 function areKeywordChangesValid(originalKeywords, newKeywords) {
   // Convert newKeywords list into a map for easier lookup
