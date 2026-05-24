@@ -1,40 +1,7 @@
-/*
- * Defense Against Distractions Extension
- *
- * file: content.js
- *
- * This file is part of the Defense Against Distractions Extension.
- *
- * Defense Against Distractions Extension is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Defense Against Distractions Extension is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Defense Against Distractions Extension. If not, see <http://www.gnu.org/licenses/>.
- *
- * Author: Oleksandr Molodchyk
- * Copyright (C) 2023-2024 Oleksandr Molodchyk
- */
+// SPDX-License-Identifier: GPL-3.0-only
+// Copyright (C) 2023-2026 Oleksandr Molodchyk
 
-if (typeof window.pageScore === 'undefined') {
-  window.pageScore = 0;
-}
-if (typeof window.parsedKeywords === 'undefined') {
-  window.parsedKeywords = [];
-}
-if (typeof window.blockDiv === 'undefined') {
-  window.blockDiv = null;
-}
-
-if (typeof window.pageBlocked === 'undefined') {
-  window.pageBlocked = false;
-}
+window.DAD.initializePageState();
 
 function blockPage() {
   if (window.pageBlocked) return;
@@ -72,10 +39,6 @@ function extractContext(text, keyword, maxWords = 15, maxLength = 100) {
   return '';
 }
 
-if (typeof window.processedNodes === 'undefined') {
-  window.processedNodes = new Set();
-}
-
 function scanTextNodes(element, calculateScore) {
   if (window.pageBlocked) return;
 
@@ -87,7 +50,7 @@ function scanTextNodes(element, calculateScore) {
     window.parsedKeywords.forEach(keywordObj => {
       if (keywordObj) {
         const { keyword, operation, value } = keywordObj;
-        const regex = new RegExp(keyword, 'gi');
+        const regex = window.DAD.createKeywordRegex(keyword);
         const matches = text.match(regex);
 
         if (matches && matches.length > 0) {
@@ -117,7 +80,7 @@ function scanTextNodes(element, calculateScore) {
         window.parsedKeywords.forEach(keywordObj => {
           if (keywordObj) {
             const { keyword, operation, value } = keywordObj;
-            const regex = new RegExp(keyword, 'gi');
+            const regex = window.DAD.createKeywordRegex(keyword);
             const matches = text.match(regex);
   
             if (matches && matches.length > 0) {
@@ -169,10 +132,6 @@ function getGroupKeywords(websiteGroups, currentSite) {
   return allKeywords;
 }
 
-function normalizeURL(site) {
-  return site.replace(/^(?:https?:\/\/)?(?:www\.)?/, '').toLowerCase();
-}
-
 function performSiteCheck() {
   if (window.pageBlocked) return;
 
@@ -181,7 +140,7 @@ function performSiteCheck() {
   // Retrieve all keys from storage
   chrome.storage.sync.get(null, (items) => {
     const fullUrl = window.location.href;
-    const normalizedUrl = normalizeURL(fullUrl);
+    const normalizedUrl = window.DAD.normalizeUrl(fullUrl);
     let allKeywords = [];
 
     // Check if current site is whitelisted
@@ -192,7 +151,7 @@ function performSiteCheck() {
     // Iterate over all groups to collect keywords
     Object.values(items).forEach(group => {
       if (group.id && group.websites) {
-        const normalizedGroupWebsites = group.websites.map(site => normalizeURL(site));
+        const normalizedGroupWebsites = group.websites.map(site => window.DAD.normalizeUrl(site));
         if (normalizedGroupWebsites.some(site => normalizedUrl.includes(site))) {
           allKeywords = allKeywords.concat(group.keywords);
         }
@@ -200,8 +159,11 @@ function performSiteCheck() {
     });
 
     if (allKeywords.length > 0) {
-      window.parsedKeywords = allKeywords.map(parseKeyword); // Parse keywords for all matching groups
+      window.parsedKeywords = allKeywords.map(window.DAD.parseKeyword); // Parse keywords for all matching groups
       const rootElement = document.querySelector('body');
+      if (!rootElement) {
+        return;
+      }
       scanTextNodes(rootElement, calculateScore);
       observeMutations(allKeywords || []);
     }
@@ -216,33 +178,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     sendResponse({status: "Site check performed"});
   }
 });
-
-function parseKeyword(keywordStr) {
-  if (window.pageBlocked) return;
-  let keyword = '';
-  let operation = '+';
-  let value = 1000;
-  if (!keywordStr) { return {keyword, operation, value}; }
-
-  const parts = keywordStr.split(/(?<!\\),/);
-
-  keyword = parts[0].trim().replace(/\\,/g, ',');
-
-  if (parts.length > 1) {
-    const secondPart = parts[1].trim();
-    if (isNaN(secondPart)) {
-      operation = (secondPart === '+' || secondPart === '*') ? secondPart : '+';
-    } else {
-      value = parseFloat(secondPart);
-    }
-  }
-
-  if (parts.length > 2 && !isNaN(parts[2].trim())) {
-    value = parseFloat(parts[2].trim());
-  }
-
-  return { keyword, operation, value };
-}
 
 function calculateScore(operation, value, keyword, contextText) {
   if (window.pageBlocked) return;
@@ -261,7 +196,10 @@ function calculateScore(operation, value, keyword, contextText) {
 function scanForKeywords(keywords) {
   if (window.pageBlocked) return;
   const rootElement = document.querySelector('body');
-  window.parsedKeywords = keywords.map(parseKeyword);
+  if (!rootElement) {
+    return;
+  }
+  window.parsedKeywords = keywords.map(window.DAD.parseKeyword);
   scanTextNodes(rootElement, calculateScore);
 }
 
@@ -269,17 +207,23 @@ function observeMutations(keywords) {
   // Ensure keywords is always an array
   keywords = Array.isArray(keywords) ? keywords : [];
   
-  const observer = new MutationObserver(mutations => {
+  window.DAD.disconnectKeywordObserver();
+
+  if (!document.body) {
+    return;
+  }
+
+  window.keywordObserver = new MutationObserver(mutations => {
     mutations.forEach(mutation => {
       mutation.addedNodes.forEach(node => {
-        window.parsedKeywords = keywords.map(parseKeyword);
+        window.parsedKeywords = keywords.map(window.DAD.parseKeyword);
         scanTextNodes(node, calculateScore);
       });
     });
   });
 
   const config = { childList: true, subtree: true };
-  observer.observe(document.body, config);
+  window.keywordObserver.observe(document.body, config);
 }
 
 function updateBadgeScore(timerRemaining = null) {
@@ -294,11 +238,7 @@ function updateBadgeScore(timerRemaining = null) {
 
 window.onpageshow = function(event) {
   if (event.persisted) {
-    // Resetting states
-    window.pageBlocked = false;
-    window.pageScore = 0;
-    window.processedNodes.clear();  // Ensure text nodes are reprocessed
-    window.parsedKeywords = [];     // Reset parsed keywords
+    window.DAD.resetPageState();
 
     console.log('Popstate event: Resetting all states and re-evaluating the page.');
 

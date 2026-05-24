@@ -1,30 +1,10 @@
-/*
- * Defense Against Distractions Extension
- *
- * file: whitelistManagement.js
- * 
- * This file is part of the Defense Against Distractions Extension.
- *
- * Defense Against Distractions Extension is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Defense Against Distractions Extension is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Defense Against Distractions Extension. If not, see <http://www.gnu.org/licenses/>.
- *
- * Author: Oleksandr Molodchyk
- * Copyright (C) 2023-2024 Oleksandr Molodchyk
- */
+// SPDX-License-Identifier: GPL-3.0-only
+// Copyright (C) 2023-2026 Oleksandr Molodchyk
 
 import { isCurrentTimeInAnySchedule } from './utilityFunctions.js';
 
 import { getSizeOfObject } from './groupManagementFunctions.js';
+import { normalizeUrl } from './shared/url.js';
 
 // Function to update the UI for whitelisted sites
 export function updateWhitelistUI(whitelistedSites) {
@@ -57,11 +37,6 @@ export function updateWhitelistUI(whitelistedSites) {
 }
 
 
-function normalizeURL(site) {
-  // Remove 'http://', 'https://', and 'www.' from the URL for normalization
-  return site.replace(/^(?:https?:\/\/)?(?:www\.)?/, '').toLowerCase();
-}
-
 function addWhitelistSite() {
   console.log("Attempting to add site to whitelist");
   const input = document.getElementById('whitelistInput');
@@ -71,7 +46,7 @@ function addWhitelistSite() {
       return;
   }
 
-  site = normalizeURL(site);
+  site = normalizeUrl(site);
   console.log(`Normalized site: ${site}`);
 
   chrome.storage.sync.get(['whitelistedSites', 'schedules'], (result) => {

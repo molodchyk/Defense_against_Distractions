@@ -1,33 +1,10 @@
-/*
- * Defense Against Distractions Extension
- *
- * file: uiScheduleFunctions.js
- * 
- * This file is part of the Defense Against Distractions Extension.
- *
- * Defense Against Distractions Extension is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Defense Against Distractions Extension is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Defense Against Distractions Extension. If not, see <http://www.gnu.org/licenses/>.
- *
- * Author: Oleksandr Molodchyk
- * Copyright (C) 2023-2024 Oleksandr Molodchyk
- */
+// SPDX-License-Identifier: GPL-3.0-only
+// Copyright (C) 2023-2026 Oleksandr Molodchyk
 
 import {
   toggleScheduleEdit,
   removeSchedule,
-  toggleFieldEditability,
-  hasMinimumUnlockedTime,
-  doSchedulesOverlap
+  toggleFieldEditability
 } from './schedule.js';
 
 import {
@@ -46,6 +23,12 @@ import {
 import { 
   isCurrentTimeInAnySchedule
 } from './utilityFunctions.js';
+import { timeStringToMinutes } from './shared/scheduleTime.js';
+import {
+  doSchedulesOverlap,
+  hasMinimumUnlockedTime,
+  isScheduleMoreStrict
+} from './shared/scheduleRules.js';
 import { updateButtonStates } from './passwordManager.js';
 
 
@@ -66,12 +49,6 @@ function createScheduleField(container, labelKey, value, id, isReadOnly) {
   fieldDiv.appendChild(inputElement);
 
   container.appendChild(fieldDiv);
-}
-
-// Helper function to convert time string to minutes since midnight
-function timeStringToMinutes(timeStr) {
-  const [hours, minutes] = timeStr.split(':').map(Number);
-  return hours * 60 + minutes;
 }
 
 function saveSchedule(scheduleState) {
@@ -168,43 +145,6 @@ function updateAddWhitelistButtonState() {
       const addWhitelistButton = document.getElementById('addWhitelistButton');
       addWhitelistButton.disabled = isLocked;
   });
-}
-
-function isScheduleMoreStrict(original, temp) {
-  // Log current day and time
-  const now = new Date();
-  console.log(`Current day: ${now.toLocaleDateString()}, Time: ${now.toLocaleTimeString()}`);
-
-  // Check for day of week relaxation
-  if (!original.days.every(day => temp.days.includes(day))) {
-    console.log(`Original days: ${original.days}, Temp days: ${temp.days}`);
-    return false;
-  }
-
-  // Check for time relaxation
-  if (isTimeLater(original.startTime, temp.startTime) ||
-      isTimeEarlier(original.endTime, temp.endTime)) {
-    console.log(`Original start time: ${original.startTime}, Temp start time: ${temp.startTime}`);
-    console.log(`Original end time: ${original.endTime}, Temp end time: ${temp.endTime}`);
-    return false;
-  }
-
-  // Check for active to inactive
-  if (original.isActive && !temp.isActive) {
-    console.log(`Original active state: ${original.isActive}, Temp active state: ${temp.isActive}`);
-    return false;
-  }
-
-  return true;
-}
-
-
-function isTimeLater(time1, time2) {
-  return timeStringToMinutes(time1) < timeStringToMinutes(time2);
-}
-
-function isTimeEarlier(time1, time2) {
-  return timeStringToMinutes(time1) > timeStringToMinutes(time2);
 }
 
 function createDayButtons(selectedDays, scheduleState) {

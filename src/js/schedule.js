@@ -1,26 +1,5 @@
-/*
- * Defense Against Distractions Extension
- *
- * file: schedule.js
- *
- * This file is part of the Defense Against Distractions Extension.
- *
- * Defense Against Distractions Extension is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Defense Against Distractions Extension is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Defense Against Distractions Extension. If not, see <http://www.gnu.org/licenses/>.
- *
- * Author: Oleksandr Molodchyk
- * Copyright (C) 2023-2024 Oleksandr Molodchyk
- */
+// SPDX-License-Identifier: GPL-3.0-only
+// Copyright (C) 2023-2026 Oleksandr Molodchyk
 
 import {
   refreshScheduleItemUIWithTempState,
@@ -34,6 +13,10 @@ import {
 import {
   isCurrentTimeInAnySchedule
 } from './utilityFunctions.js';
+export {
+  doSchedulesOverlap,
+  hasMinimumUnlockedTime
+} from './shared/scheduleRules.js';
 
 document.addEventListener('DOMContentLoaded', function() {
   const scheduleNameInput = document.getElementById('scheduleNameInput');
@@ -369,80 +352,5 @@ function addSchedule() {
       });
     });
   });
-}
-
-export function hasMinimumUnlockedTime(schedules, minimumUnlockedTime = 60) {
-  const minutesInDay = 1440;
-
-  function timeToMinutes(time) {
-    const [hours, minutes] = time.split(':').map(Number);
-    return hours * 60 + minutes;
-  }
-
-  const dailySchedules = {};
-  schedules.forEach(schedule => {
-    if (schedule.isActive) {
-      schedule.days.forEach(day => {
-        if (!dailySchedules[day]) {
-          dailySchedules[day] = [];
-        }
-        dailySchedules[day].push({
-          start: timeToMinutes(schedule.startTime),
-          end: timeToMinutes(schedule.endTime)
-        });
-      });
-    }
-  });
-
-  for (const day in dailySchedules) {
-    let totalLockedTime = 0;
-    dailySchedules[day].forEach(timeBlock => {
-      totalLockedTime += timeBlock.end - timeBlock.start;
-    });
-
-    if (minutesInDay - totalLockedTime < minimumUnlockedTime) {
-      return false;
-    }
-  }
-  return true;
-}
-
-
-export function doSchedulesOverlap(schedules) {
-  function timeToMinutes(time) {
-      const [hours, minutes] = time.split(':').map(Number);
-      return hours * 60 + minutes;
-  }
-
-  const dayTimeRanges = {};
-
-  schedules.forEach(schedule => {
-      schedule.days.forEach(day => {
-          if (!dayTimeRanges[day]) {
-              dayTimeRanges[day] = [];
-          }
-          dayTimeRanges[day].push({
-              start: timeToMinutes(schedule.startTime),
-              end: timeToMinutes(schedule.endTime)
-          });
-      });
-  });
-
-  function rangesOverlap(range1, range2) {
-      return range1.start < range2.end && range1.end > range2.start;
-  }
-
-  for (const day in dayTimeRanges) {
-      const ranges = dayTimeRanges[day];
-      for (let i = 0; i < ranges.length; i++) {
-          for (let j = i + 1; j < ranges.length; j++) {
-              if (rangesOverlap(ranges[i], ranges[j])) {
-                  return true;
-              }
-          }
-      }
-  }
-
-  return false;
 }
 

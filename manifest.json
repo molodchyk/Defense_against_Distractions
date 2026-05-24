@@ -18,12 +18,18 @@
   },
   "options_page": "src/options.html",
   "background": {
-    "service_worker": "src/js/background.js"
+    "service_worker": "src/js/background.js",
+    "type": "module"
   },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["src/js/content.js"]
+      "js": [
+        "src/js/content/state.js",
+        "src/js/content/url.js",
+        "src/js/content/keywords.js",
+        "src/js/content.js"
+      ]
     }
   ],
   "web_accessible_resources": [

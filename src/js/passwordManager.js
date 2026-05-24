@@ -1,180 +1,22 @@
-/*
- * Defense Against Distractions Extension
- *
- * file: passwordManager.js
- * 
- * This file is part of the Defense Against Distractions Extension.
- *
- * Defense Against Distractions Extension is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Defense Against Distractions Extension is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Defense Against Distractions Extension. If not, see <http://www.gnu.org/licenses/>.
- *
- * Author: Oleksandr Molodchyk
- * Copyright (C) 2023-2024 Oleksandr Molodchyk
- */
+// SPDX-License-Identifier: GPL-3.0-only
+// Copyright (C) 2023-2026 Oleksandr Molodchyk
 
 import { isCurrentTimeInAnySchedule } from './utilityFunctions.js';
+import {
+    decryptPassword,
+    encryptPassword,
+    exportKeyToBase64,
+    generatePasswordKey,
+    importPasswordKey
+} from './options/passwordCrypto.js';
 
 const MAX_ATTEMPTS = 5;
 const LOCKOUT_INTERVAL = 30 * 1000; // 30 seconds
 
-async function encryptPassword(password, key) {
-    
-    // Generate IV
-    const iv = crypto.getRandomValues(new Uint8Array(12));
-
-    const encoded = new TextEncoder().encode(password);
-    const encrypted = await crypto.subtle.encrypt(
-        {
-            name: "AES-GCM",
-            iv: iv
-        },
-        key,
-        encoded
-    );
-
-    // Combine IV and encrypted data
-    let combined = new Uint8Array(iv.length + encrypted.byteLength);
-    combined.set(iv);
-    combined.set(new Uint8Array(encrypted), iv.length);
-
-    return combined;
-}
-
-
-
-async function generateKey() {
-    return await crypto.subtle.generateKey(
-        {
-            name: "AES-GCM",
-            length: 256,
-        },
-        true,
-        ["encrypt", "decrypt"]
-    );
-}
-
-function bufferToBase64(buffer) {
-    var binary = '';
-    var bytes = new Uint8Array(buffer);
-    var len = bytes.byteLength;
-    for (var i = 0; i < len; i++) {
-        binary += String.fromCharCode(bytes[i]);
-    }
-    return window.btoa(binary);
-}
-
-function base64ToBuffer(base64) {
-    if (typeof base64 !== 'string') {
-        console.error('base64ToBuffer expects a string, got:', base64);
-        return null;
-    }
-    try {
-        var binaryString = window.atob(base64);
-        var len = binaryString.length;
-        var bytes = new Uint8Array(len);
-        for (var i = 0; i < len; i++) {
-            bytes[i] = binaryString.charCodeAt(i);
-        }
-        return bytes.buffer;
-    } catch (e) {
-        console.error('Failed to decode Base64 string:', e);
-        return null; // Return null to indicate a failure
-    }
-}
-
-
-
-async function decryptPassword(combinedBase64, key) {
-
-    // Convert Base64 to ArrayBuffer and extract IV and encrypted data
-    const combined = base64ToBuffer(combinedBase64);
-    if (!combined) {
-        console.error('Decryption error: Invalid Base64 encoding.');
-        return null; 
-    }
-
-    const iv = combined.slice(0, 12);
-    const encryptedData = combined.slice(12);
-
-    try {
-        const decrypted = await crypto.subtle.decrypt(
-            {
-                name: "AES-GCM",
-                iv: iv
-            },
-            key,
-            encryptedData
-        );
-        const decoded = new TextDecoder().decode(decrypted);
-        return decoded;
-    } catch (decryptError) {
-        return null;
-    }
-}
-
-
-
-
-
-async function encryptData(data, key) {
-    // Generate a random IV for each encryption
-    const iv = crypto.getRandomValues(new Uint8Array(12));
-
-    // Encrypt data
-    const encoded = new TextEncoder().encode(data);
-    const encryptedData = await crypto.subtle.encrypt(
-        { name: "AES-GCM", iv: iv },
-        key,
-        encoded
-    );
-
-    // Combine the IV with the encrypted data
-    const combined = new Uint8Array(iv.length + encryptedData.byteLength);
-    combined.set(iv, 0);
-    combined.set(new Uint8Array(encryptedData), iv.length);
-
-    return combined;
-}
-
-async function decryptData(combined, key) {
-    // Extract the IV and encrypted data
-    const iv = combined.slice(0, 12);
-    const encryptedData = combined.slice(12);
-
-    // Decrypt data
-    const decryptedData = await crypto.subtle.decrypt(
-        { name: "AES-GCM", iv: iv },
-        key,
-        encryptedData
-    );
-
-    return new TextDecoder().decode(decryptedData);
-}
-
 async function setPassword(password) {
     try {
-        const key = await crypto.subtle.generateKey(
-            {
-                name: "AES-GCM",
-                length: 256,
-            },
-            true,
-            ["encrypt", "decrypt"]
-        );
-
-        const exportedKey = await crypto.subtle.exportKey("raw", key);
-
-        const keyBase64 = bufferToBase64(exportedKey);
+        const key = await generatePasswordKey();
+        const keyBase64 = await exportKeyToBase64(key);
 
         chrome.storage.local.set({ key: keyBase64 }, async function() {
             if (chrome.runtime.lastError) {
@@ -183,8 +25,7 @@ async function setPassword(password) {
             }
 
             // Encrypt the password
-            const encryptedPassword = await encryptPassword(password, key);
-            const encryptedPasswordBase64 = bufferToBase64(encryptedPassword);
+            const encryptedPasswordBase64 = await encryptPassword(password, key);
 
             // Store the encrypted password in chrome.storage.sync
             chrome.storage.sync.set({ password: encryptedPasswordBase64 }, function() {
@@ -258,17 +99,11 @@ async function verifyPassword(inputPassword, callback) {
                 return;
             }
 
-            const keyBase64 = data.key;
-            const keyBuffer = base64ToBuffer(keyBase64);
-
-            // Import the key from the buffer
-            const key = await crypto.subtle.importKey(
-                "raw",
-                keyBuffer,
-                { name: "AES-GCM", length: 256 },
-                true,
-                ["decrypt"]
-            );
+            const key = await importPasswordKey(data.key);
+            if (!key) {
+                callback(false);
+                return;
+            }
 
             // Retrieve the stored encrypted password
             chrome.storage.sync.get('password', async function(data) {

@@ -1,30 +1,11 @@
-/*
- * Defense Against Distractions Extension
- *
- * file: groupManagementFunctions.js
- * 
- * This file is part of the Defense Against Distractions Extension.
- *
- * Defense Against Distractions Extension is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Defense Against Distractions Extension is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Defense Against Distractions Extension. If not, see <http://www.gnu.org/licenses/>.
- *
- * Author: Oleksandr Molodchyk
- * Copyright (C) 2023-2024 Oleksandr Molodchyk
- */
+// SPDX-License-Identifier: GPL-3.0-only
+// Copyright (C) 2023-2026 Oleksandr Molodchyk
 
 import { adjustTextareaHeight,  adjustTextareaWidth, addEnterFunctionalityToField} from './utilityFunctions.js';
 import { updateGroupsUI } from './uiFunctions.js';
 import { isCurrentTimeInAnySchedule } from './utilityFunctions.js';
+import { parseKeywordForEditing, splitKeywordEntry } from './shared/keywords.js';
+import { stripUrlPrefix } from './shared/url.js';
 
 
 
@@ -136,11 +117,6 @@ export function removeGroup(groupId) {
   });
 }
 
-// Normalize URL by removing 'http://', 'https://', and 'www.'
-function normalizeURL(url) {
-  return url.replace(/^(?:https?:\/\/)?(?:www\.)?/, '');
-}
-
 export function toggleFieldEdit(fieldId, index) {
   const field = document.getElementById(fieldId);
   const editButton = field.nextElementSibling;
@@ -206,7 +182,7 @@ export function updateGroupField(groupId) {
     // Updated group data
     const newGroupName = groupNameField.value.trim();
     const newWebsites = websitesField.value.split('\n')
-                          .map(site => normalizeURL(site.trim()))
+                          .map(site => stripUrlPrefix(site.trim()))
                           .filter(site => site !== '');
     const originalKeywords = group.keywords;
     const newKeywords = keywordsField.value.split('\n')
@@ -353,11 +329,7 @@ function newIsSimple(sign, value) {
  * @returns {Array} - An array containing the keyword, sign, and numeric value (if any).
  */
 function parseKeyword(keyword) {
-  const parts = keyword.split(/(?<!\\),/).map(part => part.trim().replace(/\\,/g, ','));
-  const word = parts[0];
-  const sign = parts.length === 3 ? parts[1] : null;
-  const value = parts.length >= 2 ? parseFloat(parts[parts.length - 1]) : null;
-  return [word, sign, value];
+  return parseKeywordForEditing(keyword);
 }
 
 /**
@@ -370,7 +342,7 @@ function parseKeyword(keyword) {
 function validateKeywordEntry(entry, isLockedSchedule) {
 
   console.log("Original entry:", entry);
-  const components = entry.split(/(?<!\\),/).map(comp => comp.trim().replace(/\\,/g, ','));
+  const components = splitKeywordEntry(entry);
 
   // Check for number of components
   if (components.length === 0 || components.length > 3) {
