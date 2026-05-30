@@ -2,25 +2,22 @@
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
 import { 
-  updateGroupsUI 
+  initializeScheduleStatusPolling,
+  updateGroupsUI
 } from './uiFunctions.js';
 
 import { 
-  addGroup
+  addGroup,
+  migrateToNewGroupStorage
 } from './groupManagementFunctions.js';
 
-import { 
-  checkScheduleStatus
-} from './uiFunctions.js';
 import { localizeOptionsPage } from './options/localization.js';
 import { initializeStorageTransfer } from './options/storageTransfer.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   localizeOptionsPage();
-
-  chrome.storage.sync.get('websiteGroups', ({ websiteGroups = [] }) => {
-    updateGroupsUI(websiteGroups);
-  });
+  migrateToNewGroupStorage();
+  updateGroupsUI();
 
   document.getElementById('addGroupButton').addEventListener('click', addGroup);
   document.getElementById('groupNameInput').addEventListener('keypress', (event) => {
@@ -30,8 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Initialize checking schedule status
-  checkScheduleStatus();
+  initializeScheduleStatusPolling();
   initializeStorageTransfer();
 });
-

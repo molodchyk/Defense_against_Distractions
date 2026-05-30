@@ -1,6 +1,11 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
+const BLOCK_SCORE_THRESHOLD = 1000;
+const DEFAULT_CONTEXT_WORDS = 15;
+const DEFAULT_CONTEXT_LENGTH = 100;
+const SITE_CHECK_MESSAGE = 'performSiteCheck';
+
 window.DAD.initializePageState();
 
 function blockPage() {
@@ -13,14 +18,7 @@ function blockPage() {
   console.log('Redirecting to block page.');
 }
 
-
-document.addEventListener('DOMContentLoaded', function() {
-  console.log('DOM fully loaded. URL:', window.location.href);
-  performSiteCheck();
-});
-
-
-function extractContext(text, keyword, maxWords = 15, maxLength = 100) {
+function extractContext(text, keyword, maxWords = DEFAULT_CONTEXT_WORDS, maxLength = DEFAULT_CONTEXT_LENGTH) {
   if (window.pageBlocked) return;
   const words = text.split(/\s+/);
   const keywordIndex = words.findIndex(w => w.toLowerCase().includes(keyword.toLowerCase()));
@@ -116,22 +114,6 @@ function scanTextNodes(element, calculateScore) {
   recursiveScan(element);
 }
 
-function getGroupKeywords(websiteGroups, currentSite) {
-  if (window.pageBlocked) return;
-  const normalizedCurrentSite = currentSite.replace(/^www\./, '').toLowerCase();
-  let allKeywords = [];
-
-  websiteGroups.forEach(group => {
-    const normalizedGroupWebsites = group.websites.map(site => site.replace(/^www\./, '').toLowerCase());
-    if (normalizedGroupWebsites.some(site => normalizedCurrentSite.includes(site))) {
-      // Accumulate keywords from all matching groups
-      allKeywords = allKeywords.concat(group.keywords);
-    }
-  });
-
-  return allKeywords;
-}
-
 function performSiteCheck() {
   if (window.pageBlocked) return;
 
@@ -170,12 +152,25 @@ function performSiteCheck() {
   });
   console.log('Site check completed. Keywords parsed:', window.parsedKeywords.length);
 }
-performSiteCheck();
+
+function initializeContentScript() {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('DOM fully loaded. URL:', window.location.href);
+      performSiteCheck();
+    }, { once: true });
+    return;
+  }
+
+  performSiteCheck();
+}
+
+initializeContentScript();
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  if (message.action === "performSiteCheck") {
+  if (message.action === SITE_CHECK_MESSAGE) {
     performSiteCheck();
-    sendResponse({status: "Site check performed"});
+    sendResponse({ status: 'Site check performed' });
   }
 });
 
@@ -188,19 +183,9 @@ function calculateScore(operation, value, keyword, contextText) {
   }
   console.log(`Window.pageScore: ${window.pageScore}. Keyword: ${keyword}`)
   updateBadgeScore();
-  if (window.pageScore >= 1000 && !window.pageBlocked) {
-      blockPage(keyword);
+  if (window.pageScore >= BLOCK_SCORE_THRESHOLD && !window.pageBlocked) {
+      blockPage();
   }
-}
-
-function scanForKeywords(keywords) {
-  if (window.pageBlocked) return;
-  const rootElement = document.querySelector('body');
-  if (!rootElement) {
-    return;
-  }
-  window.parsedKeywords = keywords.map(window.DAD.parseKeyword);
-  scanTextNodes(rootElement, calculateScore);
 }
 
 function observeMutations(keywords) {

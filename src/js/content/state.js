@@ -11,9 +11,6 @@
     if (typeof global.parsedKeywords === 'undefined') {
       global.parsedKeywords = [];
     }
-    if (typeof global.blockDiv === 'undefined') {
-      global.blockDiv = null;
-    }
     if (typeof global.pageBlocked === 'undefined') {
       global.pageBlocked = false;
     }

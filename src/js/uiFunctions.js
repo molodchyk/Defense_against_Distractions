@@ -2,7 +2,7 @@
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
 import { adjustTextareaHeight,  adjustTextareaWidth, addEnterFunctionalityToField} from './utilityFunctions.js';
-import { toggleFieldEdit, updateGroupField, removeGroup, migrateToNewGroupStorage } from './groupManagementFunctions.js';
+import { toggleFieldEdit, updateGroupField, removeGroup } from './groupManagementFunctions.js';
 
 import { isCurrentTimeInAnySchedule } from './utilityFunctions.js';
 import { updateButtonStates } from './passwordManager.js';
@@ -129,13 +129,10 @@ export function checkScheduleStatus() {
   });
 }
 
-// Initialize and set the interval for checking the schedule status
-document.addEventListener('DOMContentLoaded', function() {
-  checkScheduleStatus(); // Initial check
-  migrateToNewGroupStorage();
-  setInterval(checkScheduleStatus, 15000); // Recheck every 15 seconds
-});
-
+export function initializeScheduleStatusPolling() {
+  checkScheduleStatus();
+  setInterval(checkScheduleStatus, 15000);
+}
 
 export function enableUIElements() {
   const buttonsToEnable = document.querySelectorAll('button:disabled:not(.save-button):not(.password-management-button):not(.password-set-button)');
