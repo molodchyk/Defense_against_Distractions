@@ -3,6 +3,7 @@
 
 const LOCALIZED_TEXT = {
   title: 'optionsTitle',
+  appTitle: 'optionsTitle',
   groupsHeading: 'groupsHeading',
   whitelistHeading: 'whitelistHeading',
   schedulesHeading: 'schedulesHeading',

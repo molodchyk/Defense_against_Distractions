@@ -6,5 +6,5 @@ export function normalizeUrl(value) {
 }
 
 export function stripUrlPrefix(value) {
-  return value.replace(/^(?:https?:\/\/)?(?:www\.)?/, '');
+  return value.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '');
 }

@@ -182,7 +182,7 @@ async function updateAttemptData(attempts) {
 // Utility functions
 function showPasswordOverlay() {
     // Code to show password overlay
-    document.getElementById('passwordOverlay').style.display = 'block';
+    document.getElementById('passwordOverlay').style.display = 'flex';
 }
 
 function hidePasswordOverlay() {

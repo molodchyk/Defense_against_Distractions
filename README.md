@@ -43,6 +43,13 @@ Each scheduled day must keep at least one hour unlocked.
 
 The extension uses Manifest V3 and does not require a build step.
 
+## Packaging
+
+Run `npm run package` to generate release archives in `dist/`:
+
+- `Defense_against_Distractions-vX.Y.Z-extension.zip` contains only the runtime extension files for loading or store upload.
+- `Defense_against_Distractions-vX.Y.Z-source.zip` contains the source tree, tests, docs, scripts, screenshots, and promotional assets.
+
 ## Project Structure
 
 - `_locales/` contains translated extension messages.
@@ -53,7 +60,9 @@ The extension uses Manifest V3 and does not require a build step.
 - `src/js/content.js` scans pages and triggers blocking.
 - `src/js/shared/` contains shared parsing, URL, storage, and schedule helpers.
 - `src/css/` contains extension styles.
-- `src/img/` contains icons and screenshots.
+- `src/assets/icons/` contains extension icons referenced by the manifest.
+- `src/assets/promo/` contains Chrome Web Store promotional images.
+- `src/assets/screenshots/` contains Chrome Web Store screenshots.
 
 ## Contributing
 

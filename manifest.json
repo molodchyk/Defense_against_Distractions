@@ -11,9 +11,9 @@
   ],
   "action": {
     "default_icon": {
-      "16": "src/img/icons/icon-16.png",
-      "64": "src/img/icons/icon-64.png",
-      "128": "src/img/icons/icon-128.png"
+      "16": "src/assets/icons/extension-icon-16.png",
+      "64": "src/assets/icons/extension-icon-64.png",
+      "128": "src/assets/icons/extension-icon-128.png"
     }
   },
   "options_page": "src/options.html",
@@ -39,9 +39,9 @@
     }
   ],
   "icons": {
-    "16": "src/img/icons/icon-16.png",
-    "64": "src/img/icons/icon-64.png",
-    "128": "src/img/icons/icon-128.png"
+    "16": "src/assets/icons/extension-icon-16.png",
+    "64": "src/assets/icons/extension-icon-64.png",
+    "128": "src/assets/icons/extension-icon-128.png"
   }
 }
 
