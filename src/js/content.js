@@ -11,11 +11,9 @@ window.DAD.initializePageState();
 function blockPage() {
   if (window.pageBlocked) return;
 
-  console.log('Page blocking initiated. Current URL:', window.location.href);
   const extensionPageUrl = chrome.runtime.getURL('src/blocked.html');
   window.location.href = extensionPageUrl;
   window.pageBlocked = true;
-  console.log('Redirecting to block page.');
 }
 
 function extractContext(text, keyword, maxWords = DEFAULT_CONTEXT_WORDS, maxLength = DEFAULT_CONTEXT_LENGTH) {
@@ -117,8 +115,6 @@ function scanTextNodes(element, calculateScore) {
 function performSiteCheck() {
   if (window.pageBlocked) return;
 
-  console.log('Starting site check. Current URL:', window.location.href);
-
   // Retrieve all keys from storage
   chrome.storage.sync.get(null, (items) => {
     const fullUrl = window.location.href;
@@ -150,13 +146,11 @@ function performSiteCheck() {
       observeMutations(allKeywords || []);
     }
   });
-  console.log('Site check completed. Keywords parsed:', window.parsedKeywords.length);
 }
 
 function initializeContentScript() {
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
-      console.log('DOM fully loaded. URL:', window.location.href);
       performSiteCheck();
     }, { once: true });
     return;
@@ -181,7 +175,6 @@ function calculateScore(operation, value, keyword, contextText) {
   } else if (operation === '+') {
       window.pageScore += value;
   }
-  console.log(`Window.pageScore: ${window.pageScore}. Keyword: ${keyword}`)
   updateBadgeScore();
   if (window.pageScore >= BLOCK_SCORE_THRESHOLD && !window.pageBlocked) {
       blockPage();
@@ -224,8 +217,6 @@ function updateBadgeScore(timerRemaining = null) {
 window.onpageshow = function(event) {
   if (event.persisted) {
     window.DAD.resetPageState();
-
-    console.log('Popstate event: Resetting all states and re-evaluating the page.');
 
     // Fully reinitialize the site check to imitate a fresh page load
     document.addEventListener('DOMContentLoaded', function() {

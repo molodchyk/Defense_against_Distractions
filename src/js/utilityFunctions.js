@@ -35,9 +35,7 @@ export function addEnterFunctionalityToField(field) {
   }
 
   field.addEventListener('keypress', function(event) {
-    console.log('Keypress detected:', event.key);
     if (event.key === 'Enter' && !field.readOnly) {
-      console.log('Enter key pressed in editable field');
       event.preventDefault();
       event.stopPropagation(); // Prevent event propagation
       const cursorPosition = field.selectionStart;

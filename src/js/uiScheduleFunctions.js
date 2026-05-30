@@ -31,6 +31,7 @@ import {
 } from './shared/scheduleRules.js';
 import { updateButtonStates } from './passwordManager.js';
 import { createLocalizedButton } from './options/dom.js';
+import { debugLog } from './shared/logger.js';
 
 
 
@@ -53,7 +54,6 @@ function createScheduleField(container, labelKey, value, id, isReadOnly) {
 }
 
 function saveSchedule(scheduleState) {
-  console.log('saveSchedule called for scheduleState:', scheduleState);
   if (!scheduleState) {
     console.error('scheduleState is not defined');
     return;
@@ -86,13 +86,13 @@ function saveSchedule(scheduleState) {
       );
 
       if (doSchedulesOverlap(combinedSchedules)) {
-        console.log("Schedules cannot overlap.");
+        debugLog("Schedules cannot overlap.");
         alert(chrome.i18n.getMessage("schedulesOverlapError"));
         return; // Prevent saving
       }
 
       if (!hasMinimumUnlockedTime(combinedSchedules)) {
-        console.log("Each day must have at least 1 hour of unlocked time.");
+        debugLog("Each day must have at least 1 hour of unlocked time.");
         alert(chrome.i18n.getMessage("minimumUnlockedTimeError"));
         return; // Prevent saving
       }
@@ -106,7 +106,7 @@ function saveSchedule(scheduleState) {
 
       // Apply the strictness check only if the current schedule is active and has days selected
       if (isCurrentScheduleActiveAndSetForWeek && isAnyScheduleActive && !isScheduleMoreStrict(originalSchedule, tempSchedule)) {
-        console.log('Cannot relax the schedule constraints.');
+        debugLog('Cannot relax the schedule constraints.');
         alert(chrome.i18n.getMessage("cannotRelaxConstraints"));
         return; // Prevent saving
       }
@@ -121,7 +121,7 @@ function saveSchedule(scheduleState) {
         scheduleState.toggleEditing(); // Toggle off editing mode
         toggleFieldEditability(index, false);
         checkScheduleStatus();
-        console.log('Schedules saved to storage:', schedules);
+        debugLog('Schedules saved to storage:', schedules);
 
         // Fetch and update the whitelist UI
         chrome.storage.sync.get('whitelistedSites', ({ whitelistedSites = [] }) => {
@@ -136,7 +136,6 @@ function saveSchedule(scheduleState) {
         updateButtonStates();
     });
     }
-    console.log('Fetched schedules for saving:', schedules);
   });
 }
 
@@ -178,13 +177,11 @@ function createDayButtons(selectedDays, scheduleState) {
             alert(chrome.i18n.getMessage("cannotDeselectDaysError"));
           } else {
             this.classList.toggle('selected');
-            console.log(`Day button [${this.getAttribute('data-day')}] clicked. Selected:`, this.classList.contains('selected'));
 
             // Update the tempState using data-day attribute
             const updatedSelectedDays = Array.from(document.querySelectorAll(`#dayButtons-${index} .day-button.selected`))
                                             .map(selectedButton => selectedButton.getAttribute('data-day'));
             scheduleState.updateTempState({ days: updatedSelectedDays });
-            console.log(`Button classList: ${this.classList}, isSelected: ${this.classList.contains('selected')}`);
           }
         });
       }
@@ -198,7 +195,6 @@ function createDayButtons(selectedDays, scheduleState) {
 
 
 function createActiveToggleButton(isActive, scheduleState) {
-  // console.log('Creating active toggle for schedule', scheduleState.index);
   if (!scheduleState) {
     console.error('scheduleState is not defined');
     return;
@@ -213,7 +209,6 @@ function createActiveToggleButton(isActive, scheduleState) {
   activeButton.id = `active-toggle-${scheduleState.index}`;
 
   activeButton.addEventListener('click', function() {
-    console.log('Active toggle clicked for schedule', scheduleState.index);
     if (scheduleState.isEditing) {
       chrome.storage.sync.get('schedules', ({ schedules }) => {
         const isAnyScheduleActive = isCurrentTimeInAnySchedule(schedules);
@@ -227,12 +222,11 @@ function createActiveToggleButton(isActive, scheduleState) {
           // Update the temporary state in scheduleState
           scheduleState.updateTempState({ isActive: newIsActive });
         } else {
-          console.log('Cannot toggle active state under current conditions.');
+          debugLog('Cannot toggle active state under current conditions.');
           alert(chrome.i18n.getMessage("cannotToggleActiveState"));
         }
       });
     }
-    console.log(`is editing for schedule ${scheduleState.index}: ${scheduleState.isEditing}`);
   });
 
   return activeButton;
@@ -241,7 +235,7 @@ function createActiveToggleButton(isActive, scheduleState) {
 
 function createButton(text, onClick, className, index) {
   if (typeof index !== 'number') {
-    console.log(`Index is not a number, it's: ${index}`);
+    debugLog(`Index is not a number, it's: ${index}`);
   }
 
   return createLocalizedButton(text, onClick, className, {
@@ -266,12 +260,10 @@ export function createSaveButton(index) {
 }
 
 export function updateSchedulesUI(schedules, scheduleStates) {
-  // console.log('updateSchedulesUI called with schedules:', schedules, 'and scheduleStates:', scheduleStates);
   const scheduleList = document.getElementById('scheduleList');
   scheduleList.innerHTML = ''; // Clear the list
 
   schedules.forEach((schedule, index) => {
-    // console.log('Processing schedule at index', index);
     const scheduleState = scheduleStates[index]; // Get the corresponding ScheduleState instance
     if (!scheduleState) {
       console.error(`No schedule state found for index ${index}`);
@@ -343,32 +335,24 @@ function createDeleteButton(index, schedule, allSchedules) {
 
 // Refreshes the UI for a single schedule item with temporary state
 export function refreshScheduleItemUIWithTempState(index, tempSchedule) {
-  console.log('Refreshing UI for schedule', index, 'with temp state:', tempSchedule);
-  console.log('Refreshing UI with tempSchedule:', tempSchedule);
-
   const scheduleNameField = document.getElementById(`schedule-name-${index}`);
-  console.log('Updating schedule name field:', scheduleNameField.id, 'New value:', tempSchedule.name);
   scheduleNameField.value = tempSchedule.name;
 
   const startTimeField = document.getElementById(`schedule-startTime-${index}`);
-  console.log('Updating start time field:', startTimeField.id, 'New value:', tempSchedule.startTime);
   startTimeField.value = tempSchedule.startTime;
 
   const endTimeField = document.getElementById(`schedule-endTime-${index}`);
-  console.log('Updating end time field:', endTimeField.id, 'New value:', tempSchedule.endTime);
   endTimeField.value = tempSchedule.endTime;
 
   const dayButtons = document.querySelectorAll(`#dayButtons-${index} .day-button`);
   dayButtons.forEach(button => {
     const isSelected = tempSchedule.days.includes(button.getAttribute('data-day'));
-    console.log('Updating day button:', button.id, 'Selected:', isSelected);
     button.classList.toggle('selected', isSelected);
   });
 
   const activeToggle = document.getElementById(`active-toggle-${index}`);
   if (activeToggle) {
     const isActive = tempSchedule.isActive;
-    console.log('Updating active toggle:', activeToggle.id, 'Active:', isActive);
     activeToggle.textContent = isActive ? chrome.i18n.getMessage("activeLabel") : chrome.i18n.getMessage("inactiveLabel");
     activeToggle.classList.toggle('active', isActive);
   }

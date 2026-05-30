@@ -19,6 +19,7 @@ import {
   getNextUnnamedScheduleName,
   normalizeScheduleTimeInput
 } from './shared/scheduleForm.js';
+import { debugLog } from './shared/logger.js';
 export {
   doSchedulesOverlap,
   hasMinimumUnlockedTime
@@ -56,7 +57,6 @@ export function toggleFieldEditability(index, isEditable) {
 }
 
 export function toggleScheduleEdit(scheduleState) {
-  console.log('toggleScheduleEdit called with scheduleState:', scheduleState);
   if (!scheduleState) {
     console.error('scheduleState is not defined');
     return;
@@ -68,20 +68,17 @@ export function toggleScheduleEdit(scheduleState) {
 
   const scheduleNameField = document.getElementById(`schedule-name-${index}`);
   scheduleNameField.addEventListener('change', function() {
-    console.log('Schedule name changed:', this.value);
     scheduleState.updateTempState({ name: this.value });
   });
 
   const startTimeField = document.getElementById(`schedule-startTime-${index}`);
   startTimeField.addEventListener('change', function() {
-    console.log('Start time changed:', this.value);
     const formattedTime = formatScheduleTime(this.value);
     scheduleState.updateTempState({ startTime: formattedTime });
   });
 
   const endTimeField = document.getElementById(`schedule-endTime-${index}`);
   endTimeField.addEventListener('change', function() {
-    console.log('End time changed:', this.value);
     const formattedTime = formatScheduleTime(this.value);
     scheduleState.updateTempState({ endTime: formattedTime });
   });
@@ -99,13 +96,11 @@ export function toggleScheduleEdit(scheduleState) {
   dayButtons.forEach(button => {
     button.addEventListener('click', function() {
       if (isCurrentlyEditing) {
-        console.log(`Day button ${button.textContent} clicked for schedule ${index}`);
         this.classList.toggle('selected');
 
         const updatedSelectedDays = Array.from(document.querySelectorAll(`#dayButtons-${index} .day-button.selected`))
                   .map(selectedButton => selectedButton.getAttribute('data-day'));
         scheduleState.updateTempState({ days: updatedSelectedDays });
-        console.log('Updated selected days array:', updatedSelectedDays);
       }
     });
   });
@@ -115,11 +110,9 @@ export function toggleScheduleEdit(scheduleState) {
     activeToggle.removeEventListener('click', activeToggleClickHandler);
 
     function activeToggleClickHandler() {
-      console.log(`Before click: Active toggle classList for schedule ${index}:`, activeToggle.classList.toString());
       this.classList.toggle('active');
       const isActive = this.classList.contains('active');
       scheduleState.updateTempState({ isActive: isActive });
-      console.log('After click: Active state updated:', isActive, 'classList:', activeToggle.classList.toString());
     }
 
     activeToggle.addEventListener('click', activeToggleClickHandler);
@@ -127,26 +120,6 @@ export function toggleScheduleEdit(scheduleState) {
 
   const editButtonId = `edit-button-schedule-${index}`;
   const saveButtonId = `save-button-schedule-${index}`;
-
-  if (isCurrentlyEditing) {
-    console.log(`Editing schedule ${index}`);
-    // Log the field values
-    [scheduleNameField, startTimeField, endTimeField].forEach(field => {
-      if (field) console.log(`${field.id}: ${field.value}`);
-    });
-
-    if (activeToggle) {
-      console.log(`Active: ${activeToggle.classList.contains('active')}`);
-    }
-
-    let selectedDays = [];
-    dayButtons.forEach(button => {
-      if (button.classList.contains('selected')) {
-        selectedDays.push(button.getAttribute('data-day'));
-      }
-    });
-    console.log(`Selected Days: ${selectedDays.join(', ')}`);
-  }
 
   const editButton = document.getElementById(editButtonId);
   const saveButton = document.getElementById(saveButtonId);
@@ -158,7 +131,6 @@ export function toggleScheduleEdit(scheduleState) {
 
   editButton.textContent = isCurrentlyEditing ? 
     chrome.i18n.getMessage("cancelLabel") : chrome.i18n.getMessage("editButtonLabel");
-  console.log('isCurrentlyEditing:', isCurrentlyEditing);
   saveButton.disabled = !isCurrentlyEditing;
 
   [scheduleNameField, startTimeField, endTimeField].forEach(field => {
@@ -176,7 +148,6 @@ export function toggleScheduleEdit(scheduleState) {
 
 
   if (activeToggle) {
-    console.log('Entering edit mode for schedule', index);
     activeToggle.onclick = isCurrentlyEditing ? () => {
       activeToggle.classList.toggle('active');
       scheduleState.updateTempState({ isActive: activeToggle.classList.contains('active') });
@@ -186,16 +157,12 @@ export function toggleScheduleEdit(scheduleState) {
   }
 
   if (!isCurrentlyEditing && editButton.textContent === chrome.i18n.getMessage("editButtonLabel")) {
-    console.log('Exiting edit mode for schedule', index);
     chrome.storage.sync.get('schedules', ({ schedules = [] }) => {
       const scheduleStates = schedules.map((schedule, index) => new ScheduleState(index, schedule));
-      console.log('Calling updateSchedulesUI before exiting edit mode', scheduleStates);
       updateSchedulesUI(schedules, scheduleStates);
-      console.log('updateSchedulesUI called');
     });
-    console.log(`Edit canceled, reverted to original state for schedule ${index}`);
   }
-  console.log(`Toggled edit mode for schedule ${index}: ${isCurrentlyEditing}`);
+  debugLog(`Toggled edit mode for schedule ${index}: ${isCurrentlyEditing}`);
 }
 
 function handleTimeInput(inputElement, event) {
@@ -207,7 +174,6 @@ function handleTimeInput(inputElement, event) {
 }
 
 export function removeSchedule(index) {
-  console.log('removeSchedule called for index:', index);
   chrome.storage.sync.get('schedules', ({ schedules }) => {
     if (isCurrentTimeInAnySchedule([schedules[index]])) {
       alert(chrome.i18n.getMessage("cannotDeleteActiveSchedule"));
@@ -219,13 +185,12 @@ export function removeSchedule(index) {
       // After updating the schedules in storage, recreate the scheduleStates
       const scheduleStates = schedules.map((schedule, index) => new ScheduleState(index, schedule));
       updateSchedulesUI(schedules, scheduleStates);
-      console.log('Schedules after removal:', schedules);
+      debugLog('Schedule removed', index);
     });
   });
 }
 
 export function updateSchedule(scheduleState) {
-  console.log('updateSchedule called with scheduleState:', scheduleState);
   if (!scheduleState) {
     console.error('scheduleState is not defined');
     return;
@@ -247,7 +212,6 @@ export function updateSchedule(scheduleState) {
       isActive = true;
     }
 
-    console.log('Updating tempState of schedule', index);
     scheduleState.updateTempState({
       name: nameField.value,
       days: selectedDays,
@@ -255,22 +219,12 @@ export function updateSchedule(scheduleState) {
       endTime: endTimeField.value,
       isActive: isActive
     });
-    console.log('updateSchedule: ', scheduleState);
-    console.log('Updating schedule with state:', {
-      name: nameField.value,
-      days: selectedDays,
-      startTime: startTimeField.value,
-      endTime: endTimeField.value,
-      isActive: isActive
-    });
     refreshScheduleItemUIWithTempState(index, scheduleState.tempState);
-    console.log('Fetched schedules for update:', schedules);
   });
 }
 
 
 function addSchedule() {
-  console.log('addSchedule called');
   let scheduleName = document.getElementById('scheduleNameInput').value.trim();
 
   chrome.storage.sync.get('schedules', ({ schedules = [] }) => {
@@ -286,7 +240,7 @@ function addSchedule() {
     const newSchedule = createDefaultSchedule(scheduleName);
 
     schedules.push(newSchedule);
-    console.log('Adding new schedule to storage:', newSchedule);
+    debugLog('Adding new schedule to storage:', newSchedule);
 
     const newScheduleState = new ScheduleState(schedules.length - 1, newSchedule);
 

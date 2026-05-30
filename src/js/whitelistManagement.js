@@ -5,6 +5,7 @@ import { isCurrentTimeInAnySchedule } from './utilityFunctions.js';
 
 import { getSizeOfObject } from './groupManagementFunctions.js';
 import { normalizeUrl } from './shared/url.js';
+import { debugLog } from './shared/logger.js';
 
 // Function to update the UI for whitelisted sites
 export function updateWhitelistUI(whitelistedSites) {
@@ -38,21 +39,19 @@ export function updateWhitelistUI(whitelistedSites) {
 
 
 function addWhitelistSite() {
-  console.log("Attempting to add site to whitelist");
   const input = document.getElementById('whitelistInput');
   let site = input.value.trim();
   if (!site) {
-      console.log("No site entered");
+      debugLog("No site entered");
       return;
   }
 
   site = normalizeUrl(site);
-  console.log(`Normalized site: ${site}`);
+  debugLog(`Normalized site: ${site}`);
 
   chrome.storage.sync.get(['whitelistedSites', 'schedules'], (result) => {
       const schedules = result.schedules || [];
       if (isCurrentTimeInAnySchedule(schedules)) {
-          console.log("Cannot add site to whitelist during active schedule");
           alert(chrome.i18n.getMessage("lockedScheduleErrorMessage"));
           return;
       }
@@ -72,14 +71,13 @@ function addWhitelistSite() {
                   if (chrome.runtime.lastError) {
                       alert(`Failed to add site to whitelist: ${chrome.runtime.lastError.message}`);
                   } else {
-                      console.log(`Added site: ${site}`);
+                      debugLog(`Added site: ${site}`);
                       updateWhitelistUI(updatedSites);
                       input.value = '';
                   }
               });
           });
       } else {
-          console.log("Site already in whitelist");
           alert(chrome.i18n.getMessage("whitelistExistsMessage"));
       }
   });

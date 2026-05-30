@@ -12,13 +12,14 @@ import {
   validateKeywordEntry
 } from './shared/groupRules.js';
 import { stripUrlPrefix } from './shared/url.js';
+import { debugLog } from './shared/logger.js';
 
 
 
 export function migrateToNewGroupStorage() {
   chrome.storage.sync.get('websiteGroups', async ({ websiteGroups }) => {
     if (!websiteGroups) {
-      console.log('No existing groups to migrate.');
+      debugLog('No existing groups to migrate.');
       return;
     }
 
@@ -32,7 +33,7 @@ export function migrateToNewGroupStorage() {
               console.error('Failed to migrate group:', chrome.runtime.lastError);
               reject(chrome.runtime.lastError);
             } else {
-              console.log(`Group ${group.groupName} migrated to ID ${groupId}.`);
+              debugLog(`Group ${group.groupName} migrated to ID ${groupId}.`);
               resolve();
             }
           });
@@ -40,10 +41,10 @@ export function migrateToNewGroupStorage() {
       });
     }
     
-    console.log('All groups migrated successfully.');
+    debugLog('All groups migrated successfully.');
     // Optionally remove old storage format data
     chrome.storage.sync.remove('websiteGroups', () => {
-      console.log('Old group data format removed.');
+      debugLog('Old group data format removed.');
       updateGroupsUI(); // Update UI to reflect new storage format
     });
   });
@@ -85,7 +86,7 @@ export function addGroup() {
       const newGroup = { id: groupId, groupName, websites: [], keywords: [] };
       try {
         chrome.storage.sync.set({ [groupId]: newGroup }, () => {
-          console.log(`Group ${groupName} added with ID ${groupId}.`);
+          debugLog(`Group ${groupName} added with ID ${groupId}.`);
           updateGroupsUI(); // Implement this function to update your UI accordingly
           groupNameInput.value = ''; // Clear input field
         });
@@ -111,7 +112,7 @@ export function removeGroup(groupId) {
 
     // Proceed with deletion if no schedules prevent it.
     chrome.storage.sync.remove(groupId, () => {
-      console.log(`Group ${groupId} removed.`);
+      debugLog(`Group ${groupId} removed.`);
       updateGroupsUI(); // Refresh the UI to reflect the removal.
     });
   });
@@ -126,7 +127,6 @@ export function toggleFieldEdit(fieldId, index) {
   const fieldName = fieldId.split('-')[0];
 
   if (isReadOnly) {
-    console.log(`Clicked button Edit, editing field: ${fieldName}, Current Text: '${field.value}'`);
     field.readOnly = false;
     field.style.height = 'auto';
     editButton.textContent = chrome.i18n.getMessage("cancelLabel");
@@ -142,7 +142,6 @@ export function toggleFieldEdit(fieldId, index) {
       addEnterFunctionalityToField(field);
     }
   } else {
-    console.log(`Edit canceled for field: ${fieldName}, Original Text: '${field.getAttribute('data-initial-value')}'`);
     field.readOnly = true;
     field.value = field.getAttribute('data-initial-value'); // Restore original value
     editButton.textContent = chrome.i18n.getMessage("editLabel");
@@ -163,12 +162,11 @@ export function getSizeOfObject(object) {
 export function updateGroupField(groupId) {
   // The unique key for the group's data
   const groupKey = `${groupId}`;
-  console.log("groupKey: ", groupKey);
 
   chrome.storage.sync.get([groupKey, 'schedules'], (data) => {
     const group = data[groupKey];
     if (!group) {
-      console.log(`Group with ID ${groupId} not found.`);
+      debugLog(`Group with ID ${groupId} not found.`);
       return; // Exit if the group wasn't found
     }
 
@@ -239,7 +237,7 @@ export function updateGroupField(groupId) {
         if (chrome.runtime.lastError) {
           alert(`Failed to update group: ${chrome.runtime.lastError.message}`);
         } else {
-          console.log(`Group ${groupId} updated.`);
+          debugLog(`Group ${groupId} updated.`);
           updateGroupsUI();
         }
       });
