@@ -6,6 +6,7 @@ import { toggleFieldEdit, updateGroupField, removeGroup } from './groupManagemen
 
 import { isCurrentTimeInAnySchedule } from './utilityFunctions.js';
 import { updateButtonStates } from './passwordManager.js';
+import { createLocalizedButton } from './options/dom.js';
 
 export function updateGroupsUI() {
   const list = document.getElementById('groupList');
@@ -97,21 +98,7 @@ function createGroupField(container, labelKey, value, id, isReadOnly, index) {
 }
 
 function createButton(textKey, onClick, className) {
-  const button = document.createElement('button');
-  button.textContent = chrome.i18n.getMessage(textKey);
-  // button.addEventListener('click', onClick);
-  button.addEventListener('click', function(event) {
-    event.preventDefault(); // Prevent the default action
-    onClick(); // Call the original click handler function
-  });
-  button.className = className;
-
-  // Assign additional class for group save buttons
-  if (className === 'save-button-group') {
-    button.classList.add('save-button-group');
-  }
-
-  return button;
+  return createLocalizedButton(textKey, onClick, className);
 }
 
 export function checkScheduleStatus() {

@@ -30,6 +30,7 @@ import {
   isScheduleMoreStrict
 } from './shared/scheduleRules.js';
 import { updateButtonStates } from './passwordManager.js';
+import { createLocalizedButton } from './options/dom.js';
 
 
 
@@ -239,24 +240,14 @@ function createActiveToggleButton(isActive, scheduleState) {
 
 
 function createButton(text, onClick, className, index) {
-  const button = document.createElement('button');
-  button.type = 'button';
-  button.textContent = chrome.i18n.getMessage(text);
-  button.addEventListener('click', function(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    onClick();
-  });
-  button.className = className;
-
-  if (typeof index === 'number') {
-    button.id = `${className}-${index}`;
-    // console.log(`Created button with ID: ${button.id}`);
-  } else {
+  if (typeof index !== 'number') {
     console.log(`Index is not a number, it's: ${index}`);
   }
 
-  return button;
+  return createLocalizedButton(text, onClick, className, {
+    id: typeof index === 'number' ? `${className}-${index}` : undefined,
+    stopPropagation: true
+  });
 }
 
 
