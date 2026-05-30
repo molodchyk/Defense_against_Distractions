@@ -6,15 +6,19 @@ import { isCurrentTimeInAnySchedule } from './utilityFunctions.js';
 import { getSizeOfObject } from './groupManagementFunctions.js';
 import { normalizeUrl } from './shared/url.js';
 import { debugLog } from './shared/logger.js';
+import {
+  getBytesInUseSync,
+  getSync,
+  setSync
+} from './shared/chromeStorage.js';
 
 // Function to update the UI for whitelisted sites
-export function updateWhitelistUI(whitelistedSites) {
+export async function updateWhitelistUI(whitelistedSites) {
   const list = document.getElementById('whitelist');
   list.innerHTML = '';
 
-  // Fetch schedules for checking active schedule times
-  chrome.storage.sync.get('schedules', (result) => {
-    const schedules = result.schedules || [];
+  try {
+    const { schedules = [] } = await getSync('schedules');
     const isInSchedule = isCurrentTimeInAnySchedule(schedules);
 
     whitelistedSites.forEach((site, index) => {
@@ -34,11 +38,13 @@ export function updateWhitelistUI(whitelistedSites) {
       li.appendChild(deleteButton);
       list.appendChild(li);
     });
-  });
+  } catch (error) {
+    console.error('Failed to load schedules for whitelist UI:', error);
+  }
 }
 
 
-function addWhitelistSite() {
+async function addWhitelistSite() {
   const input = document.getElementById('whitelistInput');
   let site = input.value.trim();
   if (!site) {
@@ -49,44 +55,42 @@ function addWhitelistSite() {
   site = normalizeUrl(site);
   debugLog(`Normalized site: ${site}`);
 
-  chrome.storage.sync.get(['whitelistedSites', 'schedules'], (result) => {
-      const schedules = result.schedules || [];
-      if (isCurrentTimeInAnySchedule(schedules)) {
-          alert(chrome.i18n.getMessage("lockedScheduleErrorMessage"));
-          return;
-      }
+  try {
+    const { whitelistedSites = [], schedules = [] } = await getSync(['whitelistedSites', 'schedules']);
 
-      let whitelistedSites = result.whitelistedSites || [];
-      if (!whitelistedSites.includes(site)) {
-          const updatedSites = [...whitelistedSites, site];
-          const estimatedNewDataSize = getSizeOfObject(updatedSites);
+    if (isCurrentTimeInAnySchedule(schedules)) {
+      alert(chrome.i18n.getMessage("lockedScheduleErrorMessage"));
+      return;
+    }
 
-          chrome.storage.sync.getBytesInUse(null, function(bytesInUse) {
-              if (bytesInUse + estimatedNewDataSize > chrome.storage.sync.QUOTA_BYTES) {
-                  alert('Cannot add the site: Storage quota would be exceeded.');
-                  return;
-              }
+    if (whitelistedSites.includes(site)) {
+      alert(chrome.i18n.getMessage("whitelistExistsMessage"));
+      return;
+    }
 
-              chrome.storage.sync.set({ whitelistedSites: updatedSites }, () => {
-                  if (chrome.runtime.lastError) {
-                      alert(`Failed to add site to whitelist: ${chrome.runtime.lastError.message}`);
-                  } else {
-                      debugLog(`Added site: ${site}`);
-                      updateWhitelistUI(updatedSites);
-                      input.value = '';
-                  }
-              });
-          });
-      } else {
-          alert(chrome.i18n.getMessage("whitelistExistsMessage"));
-      }
-  });
+    const updatedSites = [...whitelistedSites, site];
+    const estimatedNewDataSize = getSizeOfObject(updatedSites);
+    const bytesInUse = await getBytesInUseSync();
+
+    if (bytesInUse + estimatedNewDataSize > chrome.storage.sync.QUOTA_BYTES) {
+      alert('Cannot add the site: Storage quota would be exceeded.');
+      return;
+    }
+
+    await setSync({ whitelistedSites: updatedSites });
+    debugLog(`Added site: ${site}`);
+    updateWhitelistUI(updatedSites);
+    input.value = '';
+  } catch (error) {
+    console.error('Failed to add site to whitelist:', error);
+    alert(`Failed to add site to whitelist: ${error.message}`);
+  }
 }
 
-function removeWhitelistSite(index) {
+async function removeWhitelistSite(index) {
   // Fetch both whitelistedSites and schedules
-  chrome.storage.sync.get(['whitelistedSites', 'schedules'], (result) => {
-    const { whitelistedSites, schedules } = result;
+  try {
+    const { whitelistedSites = [], schedules = [] } = await getSync(['whitelistedSites', 'schedules']);
 
     if (isCurrentTimeInAnySchedule(schedules)) {
       alert(chrome.i18n.getMessage("deleteWhitelistError"));
@@ -94,34 +98,44 @@ function removeWhitelistSite(index) {
     }
 
     whitelistedSites.splice(index, 1);
-    chrome.storage.sync.set({ whitelistedSites }, () => updateWhitelistUI(whitelistedSites));
-  });
+    await setSync({ whitelistedSites });
+    updateWhitelistUI(whitelistedSites);
+  } catch (error) {
+    console.error('Failed to remove site from whitelist:', error);
+    alert(`Failed to remove site from whitelist: ${error.message}`);
+  }
 }
 
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
 
   const whitelistInput = document.getElementById('whitelistInput');
   const addWhitelistButton = document.getElementById('addWhitelistButton'); // Initialize before first use
 
-  chrome.storage.sync.get('whitelistedSites', ({ whitelistedSites = [] }) => {
-      updateWhitelistUI(whitelistedSites);
-  });
+  try {
+    const { whitelistedSites = [] } = await getSync('whitelistedSites');
+    await updateWhitelistUI(whitelistedSites);
+  } catch (error) {
+    console.error('Failed to load whitelisted sites:', error);
+  }
 
-  chrome.storage.sync.get('schedules', ({ schedules }) => {
-      const isLocked = isCurrentTimeInAnySchedule(schedules);
-      addWhitelistButton.disabled = isLocked; // Disable the button if in a locked schedule
+  try {
+    const { schedules } = await getSync('schedules');
+    const isLocked = isCurrentTimeInAnySchedule(schedules);
+    addWhitelistButton.disabled = isLocked; // Disable the button if in a locked schedule
 
-      addWhitelistButton.addEventListener('click', addWhitelistSite);
+    addWhitelistButton.addEventListener('click', addWhitelistSite);
 
-      whitelistInput.addEventListener('keypress', (event) => {
-          if (event.key === 'Enter') {
-              if (!isLocked) {
-                  addWhitelistSite();
-              }
-              event.preventDefault(); // Prevent default action regardless of schedule state
-          }
-      });
-  });
+    whitelistInput.addEventListener('keypress', (event) => {
+      if (event.key === 'Enter') {
+        if (!isLocked) {
+          addWhitelistSite();
+        }
+        event.preventDefault(); // Prevent default action regardless of schedule state
+      }
+    });
+  } catch (error) {
+    console.error('Failed to initialize whitelist controls:', error);
+  }
 });
 

@@ -27,6 +27,19 @@ export function setSync(items) {
   });
 }
 
+export function removeSync(keys) {
+  return new Promise((resolve, reject) => {
+    chrome.storage.sync.remove(keys, () => {
+      if (chrome.runtime.lastError) {
+        reject(chrome.runtime.lastError);
+        return;
+      }
+
+      resolve();
+    });
+  });
+}
+
 export function clearSync() {
   return new Promise((resolve, reject) => {
     chrome.storage.sync.clear(() => {
@@ -36,6 +49,19 @@ export function clearSync() {
       }
 
       resolve();
+    });
+  });
+}
+
+export function getBytesInUseSync(keys = null) {
+  return new Promise((resolve, reject) => {
+    chrome.storage.sync.getBytesInUse(keys, bytesInUse => {
+      if (chrome.runtime.lastError) {
+        reject(chrome.runtime.lastError);
+        return;
+      }
+
+      resolve(bytesInUse);
     });
   });
 }
