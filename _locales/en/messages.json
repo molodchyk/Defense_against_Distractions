@@ -433,5 +433,17 @@
     },
     "importButton": {
         "message": "Import"
+    },
+    "themeModeLabel": {
+        "message": "UI Mode"
+    },
+    "themeModeSystemOption": {
+        "message": "System"
+    },
+    "themeModeDarkOption": {
+        "message": "Dark"
+    },
+    "themeModeLightOption": {
+        "message": "Light"
     }
 }

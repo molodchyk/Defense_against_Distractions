@@ -13,9 +13,11 @@ import {
 
 import { localizeOptionsPage } from './options/localization.js';
 import { initializeStorageTransfer } from './options/storageTransfer.js';
+import { initializeThemeModeControl } from './options/theme.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   localizeOptionsPage();
+  initializeThemeModeControl();
   migrateToNewGroupStorage();
   updateGroupsUI();
 

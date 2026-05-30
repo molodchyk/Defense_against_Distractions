@@ -1,5 +1,5 @@
 :root {
-    color-scheme: dark;
+    color-scheme: light dark;
     --bg: #111318;
     --surface: #1a1e26;
     --surface-raised: #222833;
@@ -19,7 +19,50 @@
     --disabled-bg: #3d4450;
     --disabled-text: #8b93a2;
     --shadow: 0 18px 50px rgba(0, 0, 0, 0.24);
+    --page-wash: linear-gradient(180deg, rgba(61, 139, 253, 0.12), rgba(17, 19, 24, 0) 280px);
+    --panel-bg: rgba(26, 30, 38, 0.94);
+    --action-bar-bg: rgba(26, 30, 38, 0.96);
+    --overlay-bg: rgba(8, 10, 14, 0.82);
+    --link-hover-bg: #2a3140;
+    --neutral-hover: #69758a;
+    --day-hover: #303848;
+    --placeholder: #7e8798;
     --radius: 8px;
+}
+
+[data-theme="dark"] {
+    color-scheme: dark;
+}
+
+[data-theme="light"] {
+    color-scheme: light;
+    --bg: #f5f7fb;
+    --surface: #ffffff;
+    --surface-raised: #eef2f7;
+    --field: #ffffff;
+    --field-readonly: #eef2f7;
+    --border: #cfd6e2;
+    --border-strong: #9aa7bb;
+    --text: #17202e;
+    --muted: #526173;
+    --primary: #2463d6;
+    --primary-hover: #1e50aa;
+    --success: #237a4b;
+    --success-hover: #1c653e;
+    --danger: #c73535;
+    --danger-hover: #9f2929;
+    --neutral: #68758a;
+    --disabled-bg: #d8dee8;
+    --disabled-text: #7a8494;
+    --shadow: 0 18px 40px rgba(25, 37, 59, 0.12);
+    --page-wash: linear-gradient(180deg, rgba(36, 99, 214, 0.12), rgba(245, 247, 251, 0) 260px);
+    --panel-bg: rgba(255, 255, 255, 0.96);
+    --action-bar-bg: rgba(255, 255, 255, 0.98);
+    --overlay-bg: rgba(23, 32, 46, 0.38);
+    --link-hover-bg: #e3e9f3;
+    --neutral-hover: #536075;
+    --day-hover: #e3e9f3;
+    --placeholder: #7a8494;
 }
 
 * {
@@ -36,16 +79,15 @@ body {
     min-height: 100%;
     margin: 0;
     padding: 24px;
-    background:
-        linear-gradient(180deg, rgba(61, 139, 253, 0.12), rgba(17, 19, 24, 0) 280px),
-        var(--bg);
+    background: var(--page-wash), var(--bg);
     color: var(--text);
     font: 14px/1.5 Arial, sans-serif;
 }
 
 button,
 input,
-textarea {
+textarea,
+select {
     font: inherit;
 }
 
@@ -87,7 +129,8 @@ button:disabled:hover {
 }
 
 input,
-textarea {
+textarea,
+select {
     width: 100%;
     min-height: 38px;
     border: 1px solid var(--border);
@@ -106,7 +149,7 @@ textarea {
 }
 
 input::placeholder {
-    color: #7e8798;
+    color: var(--placeholder);
 }
 
 input[readonly],
@@ -170,7 +213,7 @@ h2 {
 .panel {
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    background: rgba(26, 30, 38, 0.94);
+    background: var(--panel-bg);
     box-shadow: var(--shadow);
     padding: 20px;
 }
@@ -181,6 +224,9 @@ h2 {
 
 .instruction-link {
     flex: 0 0 auto;
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
 }
 
 .instruction-link a {
@@ -199,7 +245,23 @@ h2 {
 .instruction-link a:hover,
 .instruction-link a:focus {
     border-color: var(--border-strong);
-    background: #2a3140;
+    background: var(--link-hover-bg);
+}
+
+.theme-mode-control {
+    display: grid;
+    gap: 4px;
+    min-width: 136px;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.theme-mode-control select {
+    cursor: pointer;
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 700;
 }
 
 .input-group {
@@ -296,7 +358,7 @@ h2 {
 
 .edit-button:hover,
 .edit-button-schedule:hover {
-    background: #69758a;
+    background: var(--neutral-hover);
 }
 
 .save-button,
@@ -347,7 +409,7 @@ h2 {
 }
 
 .day-button:hover {
-    background: #303848;
+    background: var(--day-hover);
 }
 
 .day-button.selected,
@@ -367,7 +429,7 @@ h2 {
 }
 
 .active-toggle:hover {
-    background: #69758a;
+    background: var(--neutral-hover);
 }
 
 .schedule-item .controls-container {
@@ -407,7 +469,7 @@ h2 {
     align-items: center;
     justify-content: center;
     padding: 24px;
-    background: rgba(8, 10, 14, 0.82);
+    background: var(--overlay-bg);
 }
 
 .centered-form-wrapper {
@@ -443,7 +505,7 @@ h2 {
     padding: 8px;
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    background: rgba(26, 30, 38, 0.96);
+    background: var(--action-bar-bg);
     box-shadow: var(--shadow);
 }
 

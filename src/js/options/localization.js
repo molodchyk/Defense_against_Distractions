@@ -14,7 +14,11 @@ const LOCALIZED_TEXT = {
   instructionGuideLink: 'instructionGuideLink',
   exportButton: 'exportButton',
   importButton: 'importButton',
-  addGroupButton: 'addGroupButtonText'
+  addGroupButton: 'addGroupButtonText',
+  themeModeLabel: 'themeModeLabel',
+  themeModeSystemOption: 'themeModeSystemOption',
+  themeModeDarkOption: 'themeModeDarkOption',
+  themeModeLightOption: 'themeModeLightOption'
 };
 
 const LOCALIZED_PLACEHOLDERS = {
@@ -26,33 +30,44 @@ const LOCALIZED_PLACEHOLDERS = {
   passwordInput: 'enterPasswordPlaceholder'
 };
 
+const FALLBACK_MESSAGES = {
+  themeModeLabel: 'UI Mode',
+  themeModeSystemOption: 'System',
+  themeModeDarkOption: 'Dark',
+  themeModeLightOption: 'Light'
+};
+
+function getMessage(messageKey) {
+  return chrome.i18n.getMessage(messageKey) || FALLBACK_MESSAGES[messageKey] || '';
+}
+
 export function localizeOptionsPage() {
   Object.entries(LOCALIZED_TEXT).forEach(([id, messageKey]) => {
     const element = document.getElementById(id);
     if (element) {
-      element.textContent = chrome.i18n.getMessage(messageKey);
+      element.textContent = getMessage(messageKey);
     }
   });
 
   Object.entries(LOCALIZED_PLACEHOLDERS).forEach(([id, messageKey]) => {
     const element = document.getElementById(id);
     if (element) {
-      element.placeholder = chrome.i18n.getMessage(messageKey);
+      element.placeholder = getMessage(messageKey);
     }
   });
 
   const passwordHeading = document.querySelector('h2[data-i18n="passwordManagementHeader"]');
   if (passwordHeading) {
-    passwordHeading.textContent = chrome.i18n.getMessage('passwordManagementHeader');
+    passwordHeading.textContent = getMessage('passwordManagementHeader');
   }
 
   const passwordOverlayLabel = document.querySelector('label[data-i18n="enterPasswordToAccessLabel"]');
   if (passwordOverlayLabel) {
-    passwordOverlayLabel.textContent = chrome.i18n.getMessage('enterPasswordToAccessLabel');
+    passwordOverlayLabel.textContent = getMessage('enterPasswordToAccessLabel');
   }
 
   const passwordSubmitButton = document.querySelector('#passwordForm button[type="submit"]');
   if (passwordSubmitButton) {
-    passwordSubmitButton.textContent = chrome.i18n.getMessage('submitButton');
+    passwordSubmitButton.textContent = getMessage('submitButton');
   }
 }

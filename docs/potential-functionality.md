@@ -9,14 +9,12 @@ This document collects product and implementation ideas for future versions of D
 - website for sharing DaD configs and upvotes molodchyk.com
 - usage stats feature DaD
 - make be able to see what triggered the block in DaD
-- create white / dark / system mode for DaD
 - create automatic script feature in DaD (automatically click on something)
 - block elements in DaD
 - detect video elements with DaD aud Audio
 - customize blocked page DaD
 - show video count image audio emoji on popup DaD
 - dadwin pomodoro feature (Defense against distractions windows)
-- DaD Patreon & buymeacoffee pages on GitHub
 - create send feedback DaD button
 - create a windows application for DaD
 - DaD block ChatGPT upvote, downvote, share, copy, report buttons under each message
@@ -57,7 +55,6 @@ This document collects product and implementation ideas for future versions of D
 ## User Interface
 
 - Create a tabbed interface for DaD.
-- Add white, dark, and system theme modes.
 - Let users choose the interface language, with an option to follow the system language.
 - Customize the blocked page.
 - Add a "send feedback" button.
@@ -68,7 +65,6 @@ This document collects product and implementation ideas for future versions of D
 - Create a Windows application for DaD.
 - Create DadWin, a Windows-focused Defense against Distractions app.
 - Add a DadWin Pomodoro feature.
-- Create Patreon and Buy Me a Coffee pages and link them from GitHub.
 
 ## Open Questions
 

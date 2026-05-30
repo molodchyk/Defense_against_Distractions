@@ -35,6 +35,10 @@ import {
   getStoredGroups,
   validateKeywordEntry
 } from '../src/js/shared/groupRules.js';
+import {
+  normalizeThemeMode,
+  resolveThemeMode
+} from '../src/js/shared/theme.js';
 
 describe('keyword parsing', () => {
   it('splits keyword entries on unescaped commas', () => {
@@ -284,5 +288,21 @@ describe('group rules', () => {
     assert.equal(validateKeywordEntry('news, 50', true), true);
     assert.equal(validateKeywordEntry('news, -50', true), false);
     assert.equal(validateKeywordEntry('news, *, 1', true), false);
+  });
+});
+
+describe('theme helpers', () => {
+  it('defaults unknown theme modes to system', () => {
+    assert.equal(normalizeThemeMode('sepia'), 'system');
+  });
+
+  it('resolves system mode from the current color preference', () => {
+    assert.equal(resolveThemeMode('system', true), 'dark');
+    assert.equal(resolveThemeMode('system', false), 'light');
+  });
+
+  it('keeps explicit theme modes regardless of system preference', () => {
+    assert.equal(resolveThemeMode('dark', false), 'dark');
+    assert.equal(resolveThemeMode('light', true), 'light');
   });
 });

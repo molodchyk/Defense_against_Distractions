@@ -10,14 +10,33 @@
             height: 100%;
             overflow: hidden;
         }
+        :root {
+            color-scheme: light dark;
+            --blocked-bg: #333333;
+            --blocked-surface: #4c4c4c;
+            --blocked-text: #ffffff;
+            --blocked-heading: #ff4444;
+            --blocked-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        [data-theme="dark"] {
+            color-scheme: dark;
+        }
+        [data-theme="light"] {
+            color-scheme: light;
+            --blocked-bg: #f5f7fb;
+            --blocked-surface: #ffffff;
+            --blocked-text: #17202e;
+            --blocked-heading: #c73535;
+            --blocked-shadow: 0 18px 40px rgba(25, 37, 59, 0.12);
+        }
         #blockDiv {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            background-color: #333333;
-            color: #ffffff;
+            background-color: var(--blocked-bg);
+            color: var(--blocked-text);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -27,18 +46,18 @@
             box-sizing: border-box;
             font-size: 20px;
             font-family: Arial, sans-serif;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--blocked-shadow);
             z-index: 2147483647;
         }
         #contentDiv {
             max-width: 600px;
             margin: 0 auto;
             padding: 30px;
-            background-color: #4c4c4c;
+            background-color: var(--blocked-surface);
             border-radius: 8px;
         }
         h1 {
-            color: #ff4444;
+            color: var(--blocked-heading);
         }
         #countdown {
             font-size: 48px;

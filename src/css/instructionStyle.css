@@ -1,6 +1,38 @@
+:root {
+    color-scheme: light dark;
+    --bg: #1e1e1e;
+    --surface: #292929;
+    --border: #333333;
+    --text: #ffffff;
+    --heading: #4caf50;
+    --subheading: #ff9800;
+    --link: #81d4fa;
+    --link-hover: #9ad1f9;
+    --note: #ffcc00;
+    --note-bg: #262626;
+}
+
+[data-theme="dark"] {
+    color-scheme: dark;
+}
+
+[data-theme="light"] {
+    color-scheme: light;
+    --bg: #f5f7fb;
+    --surface: #ffffff;
+    --border: #d8dee8;
+    --text: #17202e;
+    --heading: #237a4b;
+    --subheading: #b35c00;
+    --link: #2463d6;
+    --link-hover: #1e50aa;
+    --note: #8a6400;
+    --note-bg: #fff6d9;
+}
+
 body {
-    background-color: #1e1e1e; /* Dark background */
-    color: #ffffff; /* Light text color */
+    background-color: var(--bg);
+    color: var(--text);
     font-family: Arial, sans-serif; /* Font choice */
 }
 
@@ -12,7 +44,7 @@ body {
 }
 
 header {
-    border-bottom: 2px solid #333333; /* Subtle separation for header */
+    border-bottom: 2px solid var(--border); /* Subtle separation for header */
     padding-bottom: 10px;
     margin-bottom: 20px;
 }
@@ -24,13 +56,13 @@ h1 {
 }
 
 h2 {
-    color: #4caf50; /* Green color for headings */
+    color: var(--heading);
     margin-top: 30px;
     font-size: 1.5em; /* Slightly larger font size for section titles */
 }
 
 h3 {
-    color: #ff9800; /* Orange color for subheadings */
+    color: var(--subheading);
     margin-top: 20px;
 }
 
@@ -44,17 +76,17 @@ ul {
 }
 
 a {
-    color: #81d4fa; /* Light blue for links */
+    color: var(--link);
     transition: color 0.3s ease; /* Smooth color transition for hover */
 }
 
 a:hover {
     text-decoration: underline;
-    color: #9ad1f9; /* Slightly lighter color on hover */
+    color: var(--link-hover);
 }
 
 .step {
-    background-color: #292929; /* Slightly different background for steps */
+    background-color: var(--surface);
     padding: 15px;
     border-radius: 8px;
     margin-top: 15px;
@@ -92,25 +124,25 @@ ol {
 
 /* Styling for important notes */
 .important-note {
-    color: #ffcc00; /* A standout color for important notes */
+    color: var(--note);
     font-weight: bold;
     margin-top: 10px;
     margin-bottom: 10px;
     padding: 10px;
-    border-left: 3px solid #ffcc00; /* A colored bar for emphasis */
-    background-color: #262626; /* Slightly different background for emphasis */
+    border-left: 3px solid var(--note);
+    background-color: var(--note-bg);
 }
 
 /* Enhancing link visibility */
 a {
-    color: #81d4fa;
+    color: var(--link);
     text-decoration: none; /* Removes underline from links */
-    border-bottom: 1px dotted #81d4fa; /* Adds an underline effect on hover */
+    border-bottom: 1px dotted var(--link);
     transition: border-bottom 0.3s ease;
 }
 
 a:hover {
-    border-bottom: 1px solid #9ad1f9; /* Solid underline on hover */
+    border-bottom: 1px solid var(--link-hover);
 }
 
 /* Responsive adjustments for lists */

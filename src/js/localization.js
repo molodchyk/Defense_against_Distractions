@@ -1,6 +1,37 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
+import { getSync } from './shared/chromeStorage.js';
+import {
+    DEFAULT_THEME_MODE,
+    THEME_STORAGE_KEY,
+    normalizeThemeMode,
+    resolveThemeMode
+} from './shared/theme.js';
+
+const THEME_QUERY = '(prefers-color-scheme: dark)';
+
+function applyThemeMode(mode) {
+    const resolvedThemeMode = resolveThemeMode(mode, window.matchMedia(THEME_QUERY).matches);
+    document.documentElement.dataset.theme = resolvedThemeMode;
+    document.documentElement.dataset.themeMode = normalizeThemeMode(mode);
+}
+
+async function initializeThemeMode() {
+    try {
+        const result = await getSync({ [THEME_STORAGE_KEY]: DEFAULT_THEME_MODE });
+        const themeMode = normalizeThemeMode(result[THEME_STORAGE_KEY]);
+        applyThemeMode(themeMode);
+
+        window.matchMedia(THEME_QUERY).addEventListener('change', () => {
+            applyThemeMode(themeMode);
+        });
+    } catch (error) {
+        console.error('Failed to load UI theme mode:', error);
+        applyThemeMode(DEFAULT_THEME_MODE);
+    }
+}
+
 // Function to localize content based on ID
 function localizeContent() {
     const ids = [
@@ -31,5 +62,7 @@ function localizeContent() {
 }
 
 // Execute the localization function when the document is loaded
-document.addEventListener('DOMContentLoaded', localizeContent);
-
+document.addEventListener('DOMContentLoaded', () => {
+    initializeThemeMode();
+    localizeContent();
+});
