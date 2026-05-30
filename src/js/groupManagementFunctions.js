@@ -4,7 +4,13 @@
 import { adjustTextareaHeight,  adjustTextareaWidth, addEnterFunctionalityToField} from './utilityFunctions.js';
 import { updateGroupsUI } from './uiFunctions.js';
 import { isCurrentTimeInAnySchedule } from './utilityFunctions.js';
-import { parseKeywordForEditing, splitKeywordEntry } from './shared/keywords.js';
+import {
+  areKeywordChangesValid,
+  areWebsiteChangesValid,
+  getNextUnnamedGroupName,
+  getStoredGroups,
+  validateKeywordEntry
+} from './shared/groupRules.js';
 import { stripUrlPrefix } from './shared/url.js';
 
 
@@ -67,15 +73,9 @@ export function addGroup() {
   let groupName = groupNameInput.value.trim();
 
   chrome.storage.sync.get(null, (items) => {
-    const allGroups = Object.entries(items).filter(([key, _]) => key.startsWith('group_')).map(([_, value]) => value);
+    const allGroups = getStoredGroups(items);
     if (!groupName) {
-      // Generate a group name if empty
-      const existingNames = new Set(allGroups.map(group => group.groupName.toLowerCase()));
-      let groupNumber = 1;
-      while (existingNames.has(`${chrome.i18n.getMessage("unnamedGroupPrefix").toLowerCase()} ${groupNumber}`)) {
-        groupNumber++;
-      }
-      groupName = `${chrome.i18n.getMessage("unnamedGroupPrefix")} ${groupNumber}`;
+      groupName = getNextUnnamedGroupName(allGroups, chrome.i18n.getMessage("unnamedGroupPrefix"));
     } else if (allGroups.some(group => group.groupName.toLowerCase() === groupName.toLowerCase())) {
       alert(chrome.i18n.getMessage("groupNameExists"));
       return;
@@ -209,7 +209,7 @@ export function updateGroupField(groupId) {
         alert(chrome.i18n.getMessage("cannotChangeGroupNameActiveSchedule"));
         return; // Prevent the group name change if a schedule is active
       }
-      if (!areKeywordChangesValid(originalKeywords, newKeywords, isLockedSchedule)) {
+      if (!areKeywordChangesValid(originalKeywords, newKeywords)) {
         alert(chrome.i18n.getMessage("invalidEditOnWebsitesOrKeywords"));
         return; // Stop the update if keyword changes are invalid
       }
@@ -245,139 +245,5 @@ export function updateGroupField(groupId) {
       });
     });
   });
-}
-
-function areWebsiteChangesValid(originalWebsites, newWebsites) {
-  const newSet = new Set(newWebsites);
-  if (newSet.size !== newWebsites.length) {
-    console.log("Duplicate website entries detected.");
-    return false; // There are duplicate entries in the new websites list
-  }
-  return originalWebsites.every(website => newWebsites.includes(website));
-}
-
-function areKeywordChangesValid(originalKeywords, newKeywords) {
-  // Convert newKeywords list into a map for easier lookup
-  const newKeywordMap = newKeywords.reduce((map, keywordStr) => {
-    const [keyword] = parseKeyword(keywordStr);
-    map[keyword] = keywordStr;
-    return map;
-  }, {});
-
-  for (const originalKeywordStr of originalKeywords) {
-    const [originalKeyword, originalSign, originalValue] = parseKeyword(originalKeywordStr);
-    const newKeywordStr = newKeywordMap[originalKeyword];
-
-    // Check if the original keyword exists in the new list
-    if (!newKeywordStr) {
-      console.log(`Keyword '${originalKeyword}' was removed or not found in the new list.`);
-      return false; // Original keyword was removed or not found
-    }
-
-    const [newKeyword, sign, newValue] = parseKeyword(newKeywordStr);
-
-    // Allow changing from "keyword, +, value" to "keyword, value"
-    if (originalSign === '+' && sign === null && originalValue === newValue) {
-      continue; // This specific change is allowed
-    }
-
-    // Prohibit changing from "keyword, value" to "keyword, *, value"
-    if (originalSign === null && originalValue !== null && sign === '*' && newValue !== null) {
-      console.log(`Changing format from '${originalKeyword}, value' to '${originalKeyword}, *, value' is not allowed.`);
-      return false;
-    }
-
-    // Allow changing from "keyword, value" or "keyword, sign, value" to "keyword"
-    if ((originalSign !== null || originalValue !== null) && newIsSimple(sign, newValue)) {
-      continue; // This change is allowed
-    }
-
-    // Prohibit changing from "keyword" to "keyword, value" or "keyword, sign, value"
-    if (originalIsSimple(originalSign, originalValue) && (sign !== null || newValue !== null)) {
-      console.log(`Changing from 'keyword' to 'keyword, value' or 'keyword, sign, value' is not allowed for '${originalKeyword}'.`);
-      return false; // This type of format change is not allowed
-    }
-
-    // Check for sign changes (if applicable)
-    if (originalSign && sign !== originalSign && !(originalSign === '+' && sign === null)) {
-      console.log(`Sign change detected for '${originalKeyword}' from '${originalSign}' to '${sign}'.`);
-      return false; // Sign change is not allowed, except for the allowed case above
-    }
-
-    // Check for invalid value changes
-    if (originalValue !== null && newValue !== null && newValue < originalValue) {
-      console.log(`Value decrease detected for '${originalKeyword}' from ${originalValue} to ${newValue}.`);
-      return false; // Decreasing value is not allowed
-    }
-  }
-
-  return true;
-}
-
-// Helper functions to check if keyword format is simple
-function originalIsSimple(sign, value) {
-  return sign === null && value === null;
-}
-
-function newIsSimple(sign, value) {
-  return sign === null && value === null;
-}
-
-/**
- * Parses a keyword string to extract the keyword, sign, and numeric value if present.
- * @param {string} keyword - The keyword string to parse.
- * @returns {Array} - An array containing the keyword, sign, and numeric value (if any).
- */
-function parseKeyword(keyword) {
-  return parseKeywordForEditing(keyword);
-}
-
-/**
- * Validates a keyword entry based on specified rules.
- * @param {string} entry - The keyword entry line from the input field.
- * @param {boolean} isLockedSchedule - Indicates if the locked schedule is active.
- * @returns {boolean} - True if the keyword entry is valid, false otherwise.
- */
-
-function validateKeywordEntry(entry, isLockedSchedule) {
-
-  console.log("Original entry:", entry);
-  const components = splitKeywordEntry(entry);
-
-  // Check for number of components
-  if (components.length === 0 || components.length > 3) {
-    console.log("Invalid due to incorrect number of components");
-    return false;
-  }
-
-  // If there's only one component, it's a valid keyword
-  if (components.length === 1) {
-    return true;
-  }
-
-  // Extract sign and numeric value for further validation
-  const sign = components.length === 3 ? components[1] : '+';
-  const numericValue = parseFloat(components[components.length - 1]);
-
-  if (sign !== '+' && sign !== '*') {
-    console.log("Invalid due to incorrect sign");
-    return false;
-  }
-
-  if (isNaN(numericValue)) {
-    console.log("Invalid due to non-numeric value");
-    return false;
-  }
-
-  if (isLockedSchedule) {
-    if (sign === '+' && (numericValue <= 0 || numericValue > 1000)) return false;
-    if (sign === '*' && (numericValue <= 1 || numericValue > 1000)) return false;
-  } else {
-    // Allow -1000 for addition when not in a locked schedule
-    if (sign === '+' && (numericValue < -1000 || numericValue > 1000 || numericValue == 0)) return false;
-    if (sign === '*' && (numericValue <= 0 || numericValue > 1000 || numericValue == 1)) return false;
-  }
-
-  return true;
 }
 
