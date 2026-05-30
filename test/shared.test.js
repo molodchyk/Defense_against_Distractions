@@ -23,6 +23,12 @@ import {
   isScheduleMoreStrict
 } from '../src/js/shared/scheduleRules.js';
 import {
+  createDefaultSchedule,
+  formatScheduleTime,
+  getNextUnnamedScheduleName,
+  normalizeScheduleTimeInput
+} from '../src/js/shared/scheduleForm.js';
+import {
   areKeywordChangesValid,
   areWebsiteChangesValid,
   getNextUnnamedGroupName,
@@ -181,6 +187,45 @@ describe('schedule rules', () => {
     };
 
     assert.equal(isScheduleMoreStrict(original, next), false);
+  });
+});
+
+describe('schedule form helpers', () => {
+  it('formats hour-only schedule times', () => {
+    assert.equal(formatScheduleTime('8'), '08:00');
+  });
+
+  it('pads schedule time parts', () => {
+    assert.equal(formatScheduleTime('8:5'), '08:05');
+  });
+
+  it('normalizes typed schedule time values', () => {
+    assert.equal(normalizeScheduleTimeInput('25:99', '', '9'), '23:59');
+    assert.equal(normalizeScheduleTimeInput('8:', '', ':'), '8:');
+  });
+
+  it('normalizes backspace after a colon', () => {
+    assert.equal(normalizeScheduleTimeInput('12:', '12:', null), '1');
+  });
+
+  it('generates the next available unnamed schedule name', () => {
+    const schedules = [
+      { name: 'Schedule 1' },
+      { name: 'Schedule 2' },
+      { name: 'Focus' }
+    ];
+
+    assert.equal(getNextUnnamedScheduleName(schedules, 'Schedule '), 'Schedule 3');
+  });
+
+  it('creates the default schedule shape', () => {
+    assert.deepEqual(createDefaultSchedule('Focus'), {
+      name: 'Focus',
+      days: [],
+      startTime: '00:00',
+      endTime: '23:59',
+      isActive: false
+    });
   });
 });
 
