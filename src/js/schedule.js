@@ -67,56 +67,9 @@ export function toggleScheduleEdit(scheduleState) {
   const isCurrentlyEditing = scheduleState.isEditing;
 
   const scheduleNameField = document.getElementById(`schedule-name-${index}`);
-  scheduleNameField.addEventListener('change', function() {
-    scheduleState.updateTempState({ name: this.value });
-  });
-
   const startTimeField = document.getElementById(`schedule-startTime-${index}`);
-  startTimeField.addEventListener('change', function() {
-    const formattedTime = formatScheduleTime(this.value);
-    scheduleState.updateTempState({ startTime: formattedTime });
-  });
-
   const endTimeField = document.getElementById(`schedule-endTime-${index}`);
-  endTimeField.addEventListener('change', function() {
-    const formattedTime = formatScheduleTime(this.value);
-    scheduleState.updateTempState({ endTime: formattedTime });
-  });
-
-  startTimeField.addEventListener('input', function(event) {
-    handleTimeInput(this, event);
-  });
-
-  endTimeField.addEventListener('input', function(event) {
-      handleTimeInput(this, event);
-  });
-
-
-  const dayButtons = document.querySelectorAll(`#dayButtons-${index} .day-button`);
-  dayButtons.forEach(button => {
-    button.addEventListener('click', function() {
-      if (isCurrentlyEditing) {
-        this.classList.toggle('selected');
-
-        const updatedSelectedDays = Array.from(document.querySelectorAll(`#dayButtons-${index} .day-button.selected`))
-                  .map(selectedButton => selectedButton.getAttribute('data-day'));
-        scheduleState.updateTempState({ days: updatedSelectedDays });
-      }
-    });
-  });
-
-  const activeToggle = document.querySelector(`#active-toggle-${index}`);
-  if (activeToggle) {
-    activeToggle.removeEventListener('click', activeToggleClickHandler);
-
-    function activeToggleClickHandler() {
-      this.classList.toggle('active');
-      const isActive = this.classList.contains('active');
-      scheduleState.updateTempState({ isActive: isActive });
-    }
-
-    activeToggle.addEventListener('click', activeToggleClickHandler);
-  }
+  bindScheduleFieldListeners(scheduleState, scheduleNameField, startTimeField, endTimeField);
 
   const editButtonId = `edit-button-schedule-${index}`;
   const saveButtonId = `save-button-schedule-${index}`;
@@ -137,25 +90,6 @@ export function toggleScheduleEdit(scheduleState) {
     if (field) field.readOnly = !isCurrentlyEditing;
   });
 
-  dayButtons.forEach(button => {
-    button.onclick = isCurrentlyEditing ? () => {
-      button.classList.toggle('selected');
-      const updatedSelectedDays = Array.from(document.querySelectorAll(`#dayButtons-${index} .day-button.selected`))
-      .map(selectedButton => selectedButton.getAttribute('data-day')); // Use data-day attribute
-      scheduleState.updateTempState({ days: updatedSelectedDays });
-    } : null;
-  });
-
-
-  if (activeToggle) {
-    activeToggle.onclick = isCurrentlyEditing ? () => {
-      activeToggle.classList.toggle('active');
-      scheduleState.updateTempState({ isActive: activeToggle.classList.contains('active') });
-      activeToggle.textContent = activeToggle.classList.contains('active') ? 
-        chrome.i18n.getMessage("activeLabel") : chrome.i18n.getMessage("inactiveLabel");
-    } : null;
-  }
-
   if (!isCurrentlyEditing && editButton.textContent === chrome.i18n.getMessage("editButtonLabel")) {
     chrome.storage.sync.get('schedules', ({ schedules = [] }) => {
       const scheduleStates = schedules.map((schedule, index) => new ScheduleState(index, schedule));
@@ -163,6 +97,33 @@ export function toggleScheduleEdit(scheduleState) {
     });
   }
   debugLog(`Toggled edit mode for schedule ${index}: ${isCurrentlyEditing}`);
+}
+
+function bindScheduleFieldListeners(scheduleState, scheduleNameField, startTimeField, endTimeField) {
+  if (scheduleNameField && !scheduleNameField.dataset.scheduleChangeBound) {
+    scheduleNameField.addEventListener('change', function() {
+      scheduleState.updateTempState({ name: this.value });
+    });
+    scheduleNameField.dataset.scheduleChangeBound = 'true';
+  }
+
+  [startTimeField, endTimeField].forEach(field => {
+    if (!field || field.dataset.scheduleTimeBound) {
+      return;
+    }
+
+    field.addEventListener('change', function() {
+      const formattedTime = formatScheduleTime(this.value);
+      const fieldName = this.id.includes('startTime') ? 'startTime' : 'endTime';
+      scheduleState.updateTempState({ [fieldName]: formattedTime });
+    });
+
+    field.addEventListener('input', function(event) {
+      handleTimeInput(this, event);
+    });
+
+    field.dataset.scheduleTimeBound = 'true';
+  });
 }
 
 function handleTimeInput(inputElement, event) {
