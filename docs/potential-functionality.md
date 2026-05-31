@@ -4,7 +4,7 @@ This document collects product and implementation ideas for future versions of D
 
 ## Original Wording
 
-- update DaD to block a person on GMail
+- update DaD to reliably prevent sending emails to blocked Gmail recipients
 - create block UI feature in DaD
 - website for sharing DaD configs and upvotes molodchyk.com
 - usage stats feature DaD
@@ -27,7 +27,9 @@ This document collects product and implementation ideas for future versions of D
 
 ## Blocking Capabilities
 
-- Block a specific person or sender in Gmail.
+- Prevent sending Gmail messages to blocked recipients, such as a configured email address or contact name.
+- Make this recipient blocking reliable even when Gmail shows an unsaved-changes navigation warning, because normal page blocking can be interrupted by that prompt.
+- Treat recipient blocking as a broader interaction-blocking capability, not as sender filtering or inbox hiding.
 - Add a block UI feature inside DaD, so users can create blocking rules directly from the interface.
 - Block page elements, not only whole pages.
 - Detect and block video elements.
