@@ -8,19 +8,46 @@ It is separate from keyword blocking and locked schedules. It is not meant to be
 
 1. Open the website that contains the UI element.
 2. Click the Defense Against Distractions toolbar icon.
-3. Choose the matching controls.
+3. Choose the initial matching controls.
 4. Click `Pick UI Element`.
 5. Hover the page element and click it to preview the rule. DaD temporarily hides every element the rule would hide.
-6. Use the on-page picker panel to change preview mode, strategy, score, ancestor depth, or label matching while the preview is active.
-7. Review or adjust the saved rule in the options page under `Blocked UI`.
+6. Use the on-page picker panel to tune the rule while the preview is active.
+7. Click `Save rule` to save and close the picker, or hold `Shift` and click `Save rule and continue` to save and keep picking.
+8. Review or adjust saved rules in the options page under `Blocked UI`.
 
 Press `Esc` while picking to cancel. Canceling or choosing again restores the temporary preview.
 
 New rules apply to the current host by default, such as `chatgpt.com`, instead of one exact page path. This keeps repeated UI cleanup working when a site changes from one conversation, document, or item page to another.
 
-Use picker `Mode` when a target only appears after interaction. `Pick element` makes clicks select elements. `Click page` lets clicks pass through to the website so you can open menus, expand controls, or reveal nested UI. Hover the `Mode` control and scroll to switch between the two modes.
+## Picker Panel
 
-Hold `Shift` while saving to turn `Save rule` into `Save rule and continue`. This saves the current rule and keeps the picker open for the next element.
+The picker panel appears on the page and can be dragged by its header.
+
+It shows the currently selected element, the preview count, and the controls that affect the candidate rule. Changing these controls updates the preview immediately.
+
+`Choose again` clears the current temporary preview and lets you select a different element.
+
+`Cancel` closes the picker and restores any temporary preview.
+
+`Save rule` saves the current rule and closes the picker.
+
+Hold `Shift` to change `Save rule` into `Save rule and continue`. This saves the current rule, clears the temporary preview, and keeps the picker open for the next element.
+
+## Picker Mode
+
+`Pick element` makes page clicks select elements for preview.
+
+`Click page` lets clicks pass through to the website. Use it when a target only appears after interaction, such as after opening a menu, expanding a panel, or revealing nested UI.
+
+Hover the `Mode` control and scroll to switch between `Pick element` and `Click page`. This avoids using a normal click to change modes while the picker is intercepting clicks.
+
+## Preview Mode
+
+`Hide matched` shows the page as it would look after saving the rule.
+
+`Outline matched` keeps matched elements visible and draws a contour around them. Use it when hiding would make it hard to inspect what the rule is catching.
+
+The preview count updates when the page adds or removes matching elements.
 
 ## Match Strategy
 
@@ -53,12 +80,6 @@ If a rule hides similar buttons in unrelated page areas, increase ancestor depth
 `Ignore label` avoids relying on labels. Use it when labels are unstable, translated, personalized, or different across repeated elements.
 
 `Require label` only matches elements with overlapping label information. Use it when labels are stable and you need extra precision.
-
-## Preview Mode
-
-`Hide matched` shows the page as it would look after saving the rule.
-
-`Outline matched` keeps the matched elements visible and draws a contour around them. Use it when hiding would make it hard to inspect what the rule is catching.
 
 ## Rule Details
 
