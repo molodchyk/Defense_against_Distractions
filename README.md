@@ -12,6 +12,7 @@ Instead of only blocking entire domains, you can define groups of websites and k
 - Use locked schedules to make focus rules harder to relax during chosen time windows.
 - Whitelist websites that should never be scanned.
 - Protect the options page with a password.
+- Hide distracting UI elements with a popup-based element picker. See [UI Element Blocking](docs/ui-element-blocking.md).
 - Export and import extension settings.
 - Localized UI through Chrome extension locales.
 
