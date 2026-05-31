@@ -14,8 +14,10 @@ function getActiveTab() {
 }
 
 async function startElementPicker() {
-  const mode = document.getElementById('matchModeSelect').value;
-  const depth = document.getElementById('matchDepthSelect').value;
+  const strategy = document.getElementById('matchStrategySelect').value;
+  const minScore = Number.parseInt(document.getElementById('minimumScoreInput').value, 10);
+  const ancestorDepth = Number.parseInt(document.getElementById('ancestorDepthInput').value, 10);
+  const labelMatch = document.getElementById('labelMatchSelect').value;
   const activeTab = await getActiveTab();
 
   if (!activeTab?.id) {
@@ -25,8 +27,10 @@ async function startElementPicker() {
 
   chrome.tabs.sendMessage(activeTab.id, {
     action: 'startElementPicker',
-    mode,
-    depth
+    strategy,
+    minScore,
+    ancestorDepth,
+    labelMatch
   }, response => {
     if (chrome.runtime.lastError) {
       setStatus('Reload this page, then try picking again.');

@@ -12,17 +12,24 @@
             <h1>Quick Actions</h1>
         </header>
 
-        <label for="matchModeSelect">Element match</label>
-        <select id="matchModeSelect">
-            <option value="similar">Similar elements</option>
+        <label for="matchStrategySelect">Match strategy</label>
+        <select id="matchStrategySelect">
+            <option value="samePosition">Same position in repeated UI</option>
+            <option value="similar">Similar structure</option>
             <option value="exact">Closest match</option>
         </select>
 
-        <label for="matchDepthSelect">Match depth</label>
-        <select id="matchDepthSelect">
-            <option value="strict">Strict</option>
-            <option value="balanced">Balanced</option>
-            <option value="broad">Broad</option>
+        <label for="minimumScoreInput">Minimum score</label>
+        <input id="minimumScoreInput" type="number" min="6" max="24" value="12">
+
+        <label for="ancestorDepthInput">Ancestor depth</label>
+        <input id="ancestorDepthInput" type="number" min="0" max="6" value="2">
+
+        <label for="labelMatchSelect">Label match</label>
+        <select id="labelMatchSelect">
+            <option value="prefer">Prefer label</option>
+            <option value="ignore">Ignore label</option>
+            <option value="require">Require label</option>
         </select>
 
         <button id="pickElementButton">Pick UI Element</button>

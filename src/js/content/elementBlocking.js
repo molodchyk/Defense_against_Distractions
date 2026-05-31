@@ -10,11 +10,8 @@
   const PICKER_ATTRIBUTE = 'data-dad-element-picker-active';
   const ELEMENT_RULE_VERSION = 1;
   const ELEMENT_RULES_STORAGE_KEY = 'elementBlockRules';
-  const MATCH_THRESHOLDS = {
-    broad: 7,
-    balanced: 9,
-    strict: 11
-  };
+  const DEFAULT_MIN_SCORE = 12;
+  const DEFAULT_ANCESTOR_DEPTH = 2;
 
   let highlightedElement = null;
   let elementRuleObserver = null;
@@ -51,6 +48,22 @@
       .slice(0, 8);
   }
 
+  function getLabelTokens(element) {
+    const labelText = [
+      element.getAttribute('aria-label'),
+      element.getAttribute('title'),
+      element.getAttribute('alt'),
+      element.textContent
+    ].filter(Boolean).join(' ');
+
+    return labelText
+      .toLowerCase()
+      .split(/[^\p{L}\p{N}_-]+/u)
+      .map(token => token.trim())
+      .filter(token => token.length >= 2)
+      .slice(0, 12);
+  }
+
   function getChildSignature(element) {
     return Array.from(element.children || [])
       .slice(0, 8)
@@ -81,6 +94,18 @@
       .indexOf(element);
   }
 
+  function getPositionPath(element) {
+    const path = [];
+    let current = element;
+
+    while (current && path.length < 6 && current !== document.body && current !== document.documentElement) {
+      path.push(`${current.tagName.toLowerCase()}:${getTagIndex(current)}`);
+      current = current.parentElement;
+    }
+
+    return path;
+  }
+
   function createFingerprint(element) {
     return {
       tag: element.tagName.toLowerCase(),
@@ -92,6 +117,8 @@
       childSignature: getChildSignature(element),
       ancestorSignature: getAncestorSignature(element),
       classTokens: getStableClassTokens(element),
+      labelTokens: getLabelTokens(element),
+      positionPath: getPositionPath(element),
       tagIndex: getTagIndex(element)
     };
   }
@@ -127,7 +154,29 @@
     return second.filter(token => firstSet.has(token)).length;
   }
 
-  function scoreElementMatch(element, fingerprint, mode) {
+  function hasAncestorPrefixMatch(candidateAncestors, ruleAncestors, depth) {
+    if (!depth) return true;
+
+    for (let index = 0; index < depth; index++) {
+      if (!ruleAncestors[index]) return true;
+      if (candidateAncestors[index] !== ruleAncestors[index]) return false;
+    }
+
+    return true;
+  }
+
+  function hasPositionPathMatch(candidatePath, rulePath, depth) {
+    const pathDepth = Math.max(1, Math.min(depth + 1, rulePath.length));
+
+    for (let index = 0; index < pathDepth; index++) {
+      if (candidatePath[index] !== rulePath[index]) return false;
+    }
+
+    return true;
+  }
+
+  function scoreElementMatch(element, rule) {
+    const { fingerprint } = rule;
     const candidate = createFingerprint(element);
     let score = 0;
 
@@ -139,21 +188,27 @@
     if (candidate.parentTag === fingerprint.parentTag) score += 2;
     if (fingerprint.parentRole && candidate.parentRole === fingerprint.parentRole) score += 2;
     if (candidate.childCount === fingerprint.childCount) score += 1;
-    if (mode === 'exact' && candidate.tagIndex === fingerprint.tagIndex) score += 2;
+    if (candidate.tagIndex === fingerprint.tagIndex) score += 3;
 
     const childOverlap = tokenOverlap(candidate.childSignature, fingerprint.childSignature);
     const ancestorOverlap = tokenOverlap(candidate.ancestorSignature, fingerprint.ancestorSignature);
     const classOverlap = tokenOverlap(candidate.classTokens, fingerprint.classTokens);
+    const labelOverlap = tokenOverlap(candidate.labelTokens, fingerprint.labelTokens);
 
     score += Math.min(3, childOverlap);
     score += Math.min(3, ancestorOverlap);
     score += Math.min(3, classOverlap);
+    if ((rule.labelMatch || 'prefer') !== 'ignore') {
+      score += Math.min(4, labelOverlap * 2);
+    }
 
     return score;
   }
 
-  function getMatchThreshold(rule) {
-    return MATCH_THRESHOLDS[rule.depth || 'strict'] || MATCH_THRESHOLDS.strict;
+  function normalizeNumber(value, fallback, min, max) {
+    const numericValue = Number.parseInt(value, 10);
+    if (Number.isNaN(numericValue)) return fallback;
+    return Math.min(max, Math.max(min, numericValue));
   }
 
   function matchesElementRule(element, rule) {
@@ -161,17 +216,30 @@
       return false;
     }
 
-    const score = scoreElementMatch(element, rule.fingerprint, rule.mode || 'similar');
+    const candidate = createFingerprint(element);
+    const strategy = rule.strategy || rule.mode || 'samePosition';
+    const ancestorDepth = normalizeNumber(rule.ancestorDepth, DEFAULT_ANCESTOR_DEPTH, 0, 6);
+    const minScore = normalizeNumber(rule.minScore, DEFAULT_MIN_SCORE, 6, 24);
+    const labelOverlap = tokenOverlap(candidate.labelTokens, rule.fingerprint.labelTokens);
 
-    if ((rule.depth || 'strict') === 'strict') {
-      const candidate = createFingerprint(element);
-      const requiredChildOverlap = Math.min(2, rule.fingerprint.childSignature.length);
-      const requiredAncestorOverlap = Math.min(2, rule.fingerprint.ancestorSignature.length);
-      if (tokenOverlap(candidate.childSignature, rule.fingerprint.childSignature) < requiredChildOverlap) return false;
-      if (tokenOverlap(candidate.ancestorSignature, rule.fingerprint.ancestorSignature) < requiredAncestorOverlap) return false;
+    if (!hasAncestorPrefixMatch(candidate.ancestorSignature, rule.fingerprint.ancestorSignature, ancestorDepth)) {
+      return false;
     }
 
-    return score >= getMatchThreshold(rule);
+    if (strategy === 'samePosition' && !hasPositionPathMatch(candidate.positionPath, rule.fingerprint.positionPath || [], 1)) {
+      return false;
+    }
+
+    if (strategy === 'exact') {
+      if (!hasPositionPathMatch(candidate.positionPath, rule.fingerprint.positionPath || [], ancestorDepth)) return false;
+      if (candidate.parentTag !== rule.fingerprint.parentTag) return false;
+    }
+
+    if ((rule.labelMatch || 'prefer') === 'require' && rule.fingerprint.labelTokens.length > 0 && labelOverlap === 0) {
+      return false;
+    }
+
+    return scoreElementMatch(element, rule) >= minScore;
   }
 
   function hideElement(element) {
@@ -310,8 +378,10 @@
       id: `element_rule_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
       version: ELEMENT_RULE_VERSION,
       enabled: true,
-      mode: options.mode || 'similar',
-      depth: options.depth || 'strict',
+      strategy: options.strategy || 'samePosition',
+      minScore: normalizeNumber(options.minScore, DEFAULT_MIN_SCORE, 6, 24),
+      ancestorDepth: normalizeNumber(options.ancestorDepth, DEFAULT_ANCESTOR_DEPTH, 0, 6),
+      labelMatch: options.labelMatch || 'prefer',
       name: options.name || createRuleName(element),
       urlPattern: options.urlPattern || getUrlPattern(),
       createdAt: new Date().toISOString(),
@@ -332,7 +402,12 @@
     global.DAD.applyElementBlockRules();
   }
 
-  global.DAD.startElementPicker = function({ mode = 'similar', depth = 'strict' } = {}) {
+  global.DAD.startElementPicker = function({
+    strategy = 'samePosition',
+    minScore = DEFAULT_MIN_SCORE,
+    ancestorDepth = DEFAULT_ANCESTOR_DEPTH,
+    labelMatch = 'prefer'
+  } = {}) {
     stopPicker();
     ensurePickerStyle();
     setPickerStatus('DaD element picker: hover an element, click to block it, or press Esc to cancel.');
@@ -351,7 +426,12 @@
       event.preventDefault();
       event.stopImmediatePropagation();
 
-      const rule = global.DAD.createElementBlockRule(pickTarget, { mode, depth });
+      const rule = global.DAD.createElementBlockRule(pickTarget, {
+        strategy,
+        minScore,
+        ancestorDepth,
+        labelMatch
+      });
       const updatedRules = await saveElementRule(rule);
       applyElementRules(updatedRules);
       observeElementRules(updatedRules);

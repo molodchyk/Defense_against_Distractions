@@ -383,8 +383,10 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
   if (message.action === 'startElementPicker') {
     window.DAD.startElementPicker({
-      mode: message.mode || 'similar',
-      depth: message.depth || 'strict'
+      strategy: message.strategy || 'samePosition',
+      minScore: message.minScore,
+      ancestorDepth: message.ancestorDepth,
+      labelMatch: message.labelMatch || 'prefer'
     });
     sendResponse({ status: 'Element picker started' });
   }

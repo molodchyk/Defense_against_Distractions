@@ -349,6 +349,44 @@ h2 {
     overflow-wrap: anywhere;
 }
 
+.element-rule-item {
+    grid-template-areas:
+        "title delete"
+        "controls controls";
+}
+
+.element-rule-title {
+    grid-area: title;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    font-weight: 700;
+}
+
+.element-rule-item .delete-button {
+    grid-area: delete;
+}
+
+.element-rule-controls {
+    grid-area: controls;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(120px, 1fr));
+    gap: 8px;
+}
+
+.element-rule-control {
+    display: grid;
+    gap: 4px;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.element-rule-control select,
+.element-rule-control input {
+    min-height: 34px;
+    font-size: 13px;
+}
+
 .element-rule-empty {
     color: var(--muted);
 }
@@ -552,7 +590,8 @@ h2 {
 
     .input-group,
     .group-item div,
-    .schedule-item div {
+    .schedule-item div,
+    .element-rule-controls {
         grid-template-columns: 1fr;
     }
 

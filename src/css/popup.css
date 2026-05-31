@@ -56,13 +56,15 @@ label {
 }
 
 select,
+input,
 button {
     min-height: 38px;
     border-radius: 6px;
     font: inherit;
 }
 
-select {
+select,
+input {
     width: 100%;
     border: 1px solid var(--border);
     background: var(--field);
