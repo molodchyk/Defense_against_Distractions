@@ -568,6 +568,22 @@
         color: var(--dad-picker-muted);
         cursor: not-allowed;
       }
+
+      #${PICKER_PANEL_ID} .dad-picker-stepper {
+        display: grid;
+        grid-template-columns: 32px minmax(0, 1fr) 32px;
+        gap: 4px;
+      }
+
+      #${PICKER_PANEL_ID} .dad-picker-stepper button {
+        min-height: 32px;
+        padding: 0;
+        background: var(--dad-picker-neutral);
+      }
+
+      #${PICKER_PANEL_ID} .dad-picker-stepper button:hover {
+        background: var(--dad-picker-primary);
+      }
     `;
     document.documentElement.appendChild(style);
   }
@@ -657,15 +673,32 @@
   }
 
   function createPickerNumberInput(value, min, max, onChange) {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'dad-picker-stepper';
     const input = document.createElement('input');
     input.type = 'number';
     input.min = String(min);
     input.max = String(max);
     input.value = String(value);
-    input.addEventListener('change', () => {
-      onChange(normalizeNumber(input.value, value, min, max));
-    });
-    return input;
+
+    const setValue = nextValue => {
+      const normalizedValue = normalizeNumber(nextValue, Number.parseInt(input.value, 10) || value, min, max);
+      input.value = String(normalizedValue);
+      onChange(normalizedValue);
+    };
+
+    const decrementButton = createPickerButton('-', () => {
+      setValue(Number.parseInt(input.value, 10) - 1);
+    }, true);
+    const incrementButton = createPickerButton('+', () => {
+      setValue(Number.parseInt(input.value, 10) + 1);
+    }, true);
+
+    input.addEventListener('change', () => setValue(input.value));
+    wrapper.appendChild(decrementButton);
+    wrapper.appendChild(input);
+    wrapper.appendChild(incrementButton);
+    return wrapper;
   }
 
   function createPickerControl(labelText, control) {
