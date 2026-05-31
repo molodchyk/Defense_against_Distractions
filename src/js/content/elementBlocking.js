@@ -29,6 +29,7 @@
   const DEFAULT_ANCESTOR_DEPTH = 2;
   const DEFAULT_PREVIEW_MODE = 'hide';
   const DEFAULT_PICKER_ACTION_MODE = 'pick';
+  const DEFAULT_TARGET_LEVEL = 0;
   const THEME_STORAGE_KEY = 'uiThemeMode';
   const DEFAULT_THEME_MODE = 'system';
 
@@ -168,6 +169,19 @@
     }
 
     return element;
+  }
+
+  function getRuleTargetElement(element, targetLevel) {
+    const level = normalizeNumber(targetLevel, DEFAULT_TARGET_LEVEL, 0, 3);
+    let current = element;
+
+    for (let index = 0; index < level; index++) {
+      const parent = current?.parentElement;
+      if (!isPickableElement(parent)) break;
+      current = parent;
+    }
+
+    return current;
   }
 
   function isPickerPanelEvent(event) {
@@ -789,6 +803,15 @@
       ], controls.previewMode, value => onControlsChange({ previewMode: value }))
     ));
     controlGrid.appendChild(createPickerControl(
+      'Target',
+      createPickerWheelToggle([
+        ['0', 'Clicked element'],
+        ['1', 'Parent'],
+        ['2', 'Grandparent'],
+        ['3', 'Great-grandparent']
+      ], String(controls.targetLevel), value => onControlsChange({ targetLevel: Number.parseInt(value, 10) }))
+    ));
+    controlGrid.appendChild(createPickerControl(
       'Strategy',
       createPickerSelect([
         ['samePosition', 'Same position'],
@@ -953,7 +976,8 @@
       ancestorDepth: normalizeNumber(ancestorDepth, DEFAULT_ANCESTOR_DEPTH, 0, 6),
       labelMatch,
       previewMode: DEFAULT_PREVIEW_MODE,
-      actionMode: DEFAULT_PICKER_ACTION_MODE
+      actionMode: DEFAULT_PICKER_ACTION_MODE,
+      targetLevel: DEFAULT_TARGET_LEVEL
     };
     let pickerPanel = null;
 
@@ -972,7 +996,7 @@
     const buildPreviewRule = () => {
       if (!selectedElement) return null;
 
-      return global.DAD.createElementBlockRule(selectedElement, pickerControls);
+      return global.DAD.createElementBlockRule(getRuleTargetElement(selectedElement, pickerControls.targetLevel), pickerControls);
     };
 
     const updatePreview = () => {
@@ -981,7 +1005,7 @@
       previewRule = buildPreviewRule();
       const matchCount = previewElementRule(previewRule, pickerControls.previewMode);
       const verb = pickerControls.previewMode === 'outline' ? 'outlining' : 'hiding';
-      pickerPanel.setSelection(selectedElement);
+      pickerPanel.setSelection(getRuleTargetElement(selectedElement, pickerControls.targetLevel));
       pickerPanel.setMessage(`Preview is ${verb} ${matchCount} ${matchCount === 1 ? 'element' : 'elements'}. Adjust settings, save, choose again, or cancel.`);
     };
 

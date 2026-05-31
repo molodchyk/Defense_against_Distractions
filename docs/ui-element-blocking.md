@@ -25,6 +25,8 @@ The picker panel appears on the page and can be dragged by its header.
 
 It shows the currently selected element, the preview count, and the controls that affect the candidate rule. Changing these controls updates the preview immediately.
 
+`Target` controls what the rule is built from. `Clicked element` uses the exact element you selected. `Parent`, `Grandparent`, and `Great-grandparent` move the rule upward through the page structure so you can try broader UI regions when one picked control is too narrow.
+
 `Choose again` clears the current temporary preview and lets you select a different element.
 
 `Cancel` closes the picker and restores any temporary preview.
