@@ -10,7 +10,8 @@ function formatRule(rule) {
   const name = rule.name || 'UI element';
   const pattern = rule.urlPattern || 'current site';
   const mode = rule.mode || 'similar';
-  return `${name} · ${pattern} · ${mode}`;
+  const depth = rule.depth || 'strict';
+  return `${name} · ${pattern} · ${mode} · ${depth}`;
 }
 
 async function removeRule(ruleId) {
@@ -52,5 +53,15 @@ export async function renderElementRules() {
     item.appendChild(ruleText);
     item.appendChild(deleteButton);
     list.appendChild(item);
+  });
+}
+
+export function initializeElementRulesSync() {
+  chrome.storage.onChanged.addListener((changes, areaName) => {
+    if (areaName === 'sync' && changes[ELEMENT_RULES_STORAGE_KEY]) {
+      renderElementRules().catch(error => {
+        console.error('Failed to sync element blocking rules:', error);
+      });
+    }
   });
 }

@@ -15,6 +15,7 @@ function getActiveTab() {
 
 async function startElementPicker() {
   const mode = document.getElementById('matchModeSelect').value;
+  const depth = document.getElementById('matchDepthSelect').value;
   const activeTab = await getActiveTab();
 
   if (!activeTab?.id) {
@@ -24,7 +25,8 @@ async function startElementPicker() {
 
   chrome.tabs.sendMessage(activeTab.id, {
     action: 'startElementPicker',
-    mode
+    mode,
+    depth
   }, response => {
     if (chrome.runtime.lastError) {
       setStatus('Reload this page, then try picking again.');

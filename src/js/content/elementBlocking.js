@@ -10,7 +10,11 @@
   const PICKER_ATTRIBUTE = 'data-dad-element-picker-active';
   const ELEMENT_RULE_VERSION = 1;
   const ELEMENT_RULES_STORAGE_KEY = 'elementBlockRules';
-  const MATCH_THRESHOLD = 6;
+  const MATCH_THRESHOLDS = {
+    broad: 7,
+    balanced: 9,
+    strict: 11
+  };
 
   let highlightedElement = null;
   let elementRuleObserver = null;
@@ -82,6 +86,7 @@
       tag: element.tagName.toLowerCase(),
       role: getImplicitRole(element),
       inputType: normalizeToken(element.getAttribute('type')),
+      childCount: element.children.length,
       parentTag: element.parentElement?.tagName.toLowerCase() || '',
       parentRole: element.parentElement ? getImplicitRole(element.parentElement) : '',
       childSignature: getChildSignature(element),
@@ -131,15 +136,24 @@
 
     if (fingerprint.role && candidate.role === fingerprint.role) score += 2;
     if (fingerprint.inputType && candidate.inputType === fingerprint.inputType) score += 2;
-    if (candidate.parentTag === fingerprint.parentTag) score += 1;
-    if (fingerprint.parentRole && candidate.parentRole === fingerprint.parentRole) score += 1;
+    if (candidate.parentTag === fingerprint.parentTag) score += 2;
+    if (fingerprint.parentRole && candidate.parentRole === fingerprint.parentRole) score += 2;
+    if (candidate.childCount === fingerprint.childCount) score += 1;
     if (mode === 'exact' && candidate.tagIndex === fingerprint.tagIndex) score += 2;
 
-    score += Math.min(2, tokenOverlap(candidate.childSignature, fingerprint.childSignature));
-    score += Math.min(2, tokenOverlap(candidate.ancestorSignature, fingerprint.ancestorSignature));
-    score += Math.min(2, tokenOverlap(candidate.classTokens, fingerprint.classTokens));
+    const childOverlap = tokenOverlap(candidate.childSignature, fingerprint.childSignature);
+    const ancestorOverlap = tokenOverlap(candidate.ancestorSignature, fingerprint.ancestorSignature);
+    const classOverlap = tokenOverlap(candidate.classTokens, fingerprint.classTokens);
+
+    score += Math.min(3, childOverlap);
+    score += Math.min(3, ancestorOverlap);
+    score += Math.min(3, classOverlap);
 
     return score;
+  }
+
+  function getMatchThreshold(rule) {
+    return MATCH_THRESHOLDS[rule.depth || 'strict'] || MATCH_THRESHOLDS.strict;
   }
 
   function matchesElementRule(element, rule) {
@@ -147,7 +161,17 @@
       return false;
     }
 
-    return scoreElementMatch(element, rule.fingerprint, rule.mode || 'similar') >= MATCH_THRESHOLD;
+    const score = scoreElementMatch(element, rule.fingerprint, rule.mode || 'similar');
+
+    if ((rule.depth || 'strict') === 'strict') {
+      const candidate = createFingerprint(element);
+      const requiredChildOverlap = Math.min(2, rule.fingerprint.childSignature.length);
+      const requiredAncestorOverlap = Math.min(2, rule.fingerprint.ancestorSignature.length);
+      if (tokenOverlap(candidate.childSignature, rule.fingerprint.childSignature) < requiredChildOverlap) return false;
+      if (tokenOverlap(candidate.ancestorSignature, rule.fingerprint.ancestorSignature) < requiredAncestorOverlap) return false;
+    }
+
+    return score >= getMatchThreshold(rule);
   }
 
   function hideElement(element) {
@@ -287,6 +311,7 @@
       version: ELEMENT_RULE_VERSION,
       enabled: true,
       mode: options.mode || 'similar',
+      depth: options.depth || 'strict',
       name: options.name || createRuleName(element),
       urlPattern: options.urlPattern || getUrlPattern(),
       createdAt: new Date().toISOString(),
@@ -307,7 +332,7 @@
     global.DAD.applyElementBlockRules();
   }
 
-  global.DAD.startElementPicker = function({ mode = 'similar' } = {}) {
+  global.DAD.startElementPicker = function({ mode = 'similar', depth = 'strict' } = {}) {
     stopPicker();
     ensurePickerStyle();
     setPickerStatus('DaD element picker: hover an element, click to block it, or press Esc to cancel.');
@@ -326,7 +351,7 @@
       event.preventDefault();
       event.stopImmediatePropagation();
 
-      const rule = global.DAD.createElementBlockRule(pickTarget, { mode });
+      const rule = global.DAD.createElementBlockRule(pickTarget, { mode, depth });
       const updatedRules = await saveElementRule(rule);
       applyElementRules(updatedRules);
       observeElementRules(updatedRules);
