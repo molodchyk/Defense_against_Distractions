@@ -20,6 +20,12 @@
     if (typeof global.keywordObserver === 'undefined') {
       global.keywordObserver = null;
     }
+    if (typeof global.blockedPageRenderInterval === 'undefined') {
+      global.blockedPageRenderInterval = null;
+    }
+    if (typeof global.blockedPageEventGuardsInstalled === 'undefined') {
+      global.blockedPageEventGuardsInstalled = false;
+    }
   };
 
   global.DAD.resetPageState = function() {
@@ -28,12 +34,30 @@
     global.processedNodes.clear();
     global.parsedKeywords = [];
     global.DAD.disconnectKeywordObserver();
+    global.DAD.removeBlockedPageOverlay();
   };
 
   global.DAD.disconnectKeywordObserver = function() {
     if (global.keywordObserver) {
       global.keywordObserver.disconnect();
       global.keywordObserver = null;
+    }
+  };
+
+  global.DAD.removeBlockedPageOverlay = function() {
+    const overlay = global.document.getElementById('dad-block-overlay');
+    if (overlay) {
+      overlay.remove();
+    }
+
+    global.document.documentElement.style.overflow = '';
+    if (global.document.body) {
+      global.document.body.style.overflow = '';
+    }
+
+    if (global.blockedPageRenderInterval) {
+      global.clearInterval(global.blockedPageRenderInterval);
+      global.blockedPageRenderInterval = null;
     }
   };
 })(window);
