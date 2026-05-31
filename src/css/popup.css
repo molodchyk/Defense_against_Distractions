@@ -1,5 +1,4 @@
 :root {
-    color-scheme: dark;
     --bg: #111318;
     --surface: #1a1e26;
     --field: #151922;
@@ -11,6 +10,25 @@
     --neutral: #596477;
     --neutral-hover: #69758a;
     --danger: #d64545;
+}
+
+[data-theme="dark"] {
+    color-scheme: dark;
+}
+
+[data-theme="light"] {
+    color-scheme: light;
+    --bg: #f5f7fb;
+    --surface: #ffffff;
+    --field: #ffffff;
+    --border: #cfd6e2;
+    --text: #17202e;
+    --muted: #526173;
+    --primary: #2463d6;
+    --primary-hover: #1e50aa;
+    --neutral: #68758a;
+    --neutral-hover: #536075;
+    --danger: #c73535;
 }
 
 * {

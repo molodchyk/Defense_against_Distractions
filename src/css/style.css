@@ -352,7 +352,9 @@ h2 {
 .element-rule-item {
     grid-template-areas:
         "title delete"
-        "controls controls";
+        "summary summary"
+        "controls controls"
+        "diagnostics domain";
 }
 
 .element-rule-title {
@@ -362,14 +364,32 @@ h2 {
     font-weight: 700;
 }
 
+.element-rule-summary {
+    grid-area: summary;
+    min-width: 0;
+    color: var(--muted);
+    overflow-wrap: anywhere;
+    font-size: 12px;
+}
+
 .element-rule-item .delete-button {
     grid-area: delete;
+}
+
+.element-rule-item .secondary-button {
+    grid-area: domain;
+    justify-self: end;
+    background: var(--neutral);
+}
+
+.element-rule-item .secondary-button:hover {
+    background: var(--neutral-hover);
 }
 
 .element-rule-controls {
     grid-area: controls;
     display: grid;
-    grid-template-columns: repeat(4, minmax(120px, 1fr));
+    grid-template-columns: repeat(3, minmax(140px, 1fr));
     gap: 8px;
 }
 
@@ -385,6 +405,36 @@ h2 {
 .element-rule-control input {
     min-height: 34px;
     font-size: 13px;
+}
+
+.element-rule-diagnostics {
+    grid-area: diagnostics;
+    min-width: 0;
+    color: var(--muted);
+}
+
+.element-rule-diagnostics summary {
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.element-rule-diagnostics-body {
+    display: grid;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.element-rule-meta-row {
+    display: grid;
+    grid-template-columns: 120px minmax(0, 1fr);
+    gap: 8px;
+    align-items: start;
+}
+
+.element-rule-meta-row code {
+    color: var(--text);
+    overflow-wrap: anywhere;
+    white-space: normal;
 }
 
 .element-rule-empty {
@@ -592,6 +642,26 @@ h2 {
     .group-item div,
     .schedule-item div,
     .element-rule-controls {
+        grid-template-columns: 1fr;
+    }
+
+    .element-rule-item {
+        grid-template-areas:
+            "title"
+            "summary"
+            "controls"
+            "diagnostics"
+            "domain"
+            "delete";
+        grid-template-columns: 1fr;
+    }
+
+    .element-rule-item .delete-button,
+    .element-rule-item .secondary-button {
+        justify-self: stretch;
+    }
+
+    .element-rule-meta-row {
         grid-template-columns: 1fr;
     }
 

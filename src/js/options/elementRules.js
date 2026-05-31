@@ -16,6 +16,20 @@ const LABEL_MATCHES = [
   ['ignore', 'Ignore label'],
   ['require', 'Require label']
 ];
+const FINGERPRINT_FIELDS = [
+  ['tag', 'Tag'],
+  ['role', 'Role'],
+  ['inputType', 'Input type'],
+  ['parentTag', 'Parent tag'],
+  ['parentRole', 'Parent role'],
+  ['childCount', 'Child count'],
+  ['tagIndex', 'Tag index'],
+  ['positionPath', 'Position path'],
+  ['ancestorSignature', 'Ancestors'],
+  ['childSignature', 'Children'],
+  ['classTokens', 'Class tokens'],
+  ['labelTokens', 'Label tokens']
+];
 
 async function getRules() {
   const result = await getSync({ [ELEMENT_RULES_STORAGE_KEY]: [] });
@@ -65,6 +79,16 @@ function createNumberInput(value, min, max, onChange) {
   return input;
 }
 
+function createTextInput(value, onChange) {
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.value = value || '';
+  input.addEventListener('change', () => {
+    onChange(input.value.trim());
+  });
+  return input;
+}
+
 function createControl(labelText, control) {
   const wrapper = document.createElement('label');
   wrapper.className = 'element-rule-control';
@@ -77,16 +101,119 @@ function createControl(labelText, control) {
   return wrapper;
 }
 
+function createButton(text, onClick, className) {
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.textContent = text;
+  if (className) {
+    button.className = className;
+  }
+  button.addEventListener('click', event => {
+    event.preventDefault();
+    onClick();
+  });
+  return button;
+}
+
+function formatList(value) {
+  if (Array.isArray(value)) {
+    return value.length > 0 ? value.join(' / ') : 'none';
+  }
+
+  if (value === undefined || value === null || value === '') {
+    return 'none';
+  }
+
+  return String(value);
+}
+
+function formatDate(value) {
+  if (!value) return 'unknown';
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return value;
+  return date.toLocaleString();
+}
+
+function createMetaLine(label, value) {
+  const row = document.createElement('div');
+  row.className = 'element-rule-meta-row';
+
+  const key = document.createElement('span');
+  key.textContent = label;
+
+  const content = document.createElement('code');
+  content.textContent = formatList(value);
+
+  row.appendChild(key);
+  row.appendChild(content);
+  return row;
+}
+
+function getDomainPattern(pattern) {
+  return (pattern || '').split('/')[0].trim();
+}
+
+function createDiagnostics(rule) {
+  const details = document.createElement('details');
+  details.className = 'element-rule-diagnostics';
+
+  const summary = document.createElement('summary');
+  summary.textContent = 'Diagnostics';
+  details.appendChild(summary);
+
+  const body = document.createElement('div');
+  body.className = 'element-rule-diagnostics-body';
+  body.appendChild(createMetaLine('Rule ID', rule.id || 'unknown'));
+  body.appendChild(createMetaLine('Created', formatDate(rule.createdAt)));
+  body.appendChild(createMetaLine('URL scope', rule.urlScope || 'pattern'));
+  body.appendChild(createMetaLine('URL pattern', rule.urlPattern || 'current site'));
+
+  FINGERPRINT_FIELDS.forEach(([key, label]) => {
+    body.appendChild(createMetaLine(label, rule.fingerprint?.[key]));
+  });
+
+  details.appendChild(body);
+  return details;
+}
+
 function createRuleItem(rule) {
   const item = document.createElement('li');
   item.className = 'element-rule-item';
 
   const title = document.createElement('div');
   title.className = 'element-rule-title';
-  title.textContent = `${rule.name || 'UI element'} · ${rule.urlPattern || 'current site'}`;
+  title.textContent = rule.name || 'UI element';
+
+  const summary = document.createElement('div');
+  summary.className = 'element-rule-summary';
+  summary.textContent = [
+    rule.urlPattern || 'current site',
+    rule.strategy || rule.mode || 'samePosition',
+    `score ${rule.minScore || 12}`,
+    `depth ${rule.ancestorDepth ?? 2}`,
+    rule.labelMatch || 'prefer'
+  ].join(' · ');
 
   const controls = document.createElement('div');
   controls.className = 'element-rule-controls';
+
+  controls.appendChild(createControl(
+    'Name',
+    createTextInput(rule.name || '', value => {
+      updateRule(rule.id, { name: value || 'UI element' }).catch(error => {
+        console.error('Failed to update UI rule name:', error);
+      });
+    })
+  ));
+
+  controls.appendChild(createControl(
+    'URL pattern',
+    createTextInput(rule.urlPattern || '', value => {
+      updateRule(rule.id, { urlPattern: value, urlScope: 'pattern' }).catch(error => {
+        console.error('Failed to update UI rule URL pattern:', error);
+      });
+    })
+  ));
 
   controls.appendChild(createControl(
     'Strategy',
@@ -124,6 +251,15 @@ function createRuleItem(rule) {
     })
   ));
 
+  const domainButton = createButton('Use domain', () => {
+    const domainPattern = getDomainPattern(rule.urlPattern);
+    if (!domainPattern) return;
+
+    updateRule(rule.id, { urlPattern: domainPattern, urlScope: 'host' }).catch(error => {
+      console.error('Failed to update UI rule domain scope:', error);
+    });
+  }, 'secondary-button');
+
   const deleteButton = createLocalizedButton('Delete', () => {
     removeRule(rule.id).catch(error => {
       console.error('Failed to remove element blocking rule:', error);
@@ -131,7 +267,10 @@ function createRuleItem(rule) {
   }, 'delete-button');
 
   item.appendChild(title);
+  item.appendChild(summary);
   item.appendChild(controls);
+  item.appendChild(createDiagnostics(rule));
+  item.appendChild(domainButton);
   item.appendChild(deleteButton);
   return item;
 }

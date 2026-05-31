@@ -5,8 +5,12 @@
   global.DAD = global.DAD || {};
 
   const PICKER_STYLE_ID = 'dad-element-picker-style';
-  const PICKER_STATUS_ID = 'dad-element-picker-status';
+  const PICKER_PANEL_ID = 'dad-element-picker-panel';
   const BLOCKED_ATTRIBUTE = 'data-dad-element-blocked';
+  const ORIGINAL_DISPLAY_ATTRIBUTE = 'data-dad-original-display';
+  const ORIGINAL_DISPLAY_PRIORITY_ATTRIBUTE = 'data-dad-original-display-priority';
+  const ORIGINAL_DISABLED_ATTRIBUTE = 'data-dad-original-disabled';
+  const ORIGINAL_ARIA_HIDDEN_ATTRIBUTE = 'data-dad-original-aria-hidden';
   const PICKER_ATTRIBUTE = 'data-dad-element-picker-active';
   const ELEMENT_RULE_VERSION = 1;
   const ELEMENT_RULES_STORAGE_KEY = 'elementBlockRules';
@@ -124,19 +128,21 @@
   }
 
   function getUrlPattern() {
-    return normalizeToken(`${location.hostname}${location.pathname}`.replace(/\/$/, '')) || normalizeToken(location.hostname);
+    return normalizeToken(location.hostname);
   }
 
   function createRuleName(element) {
     const role = getImplicitRole(element);
     const tag = element.tagName.toLowerCase();
-    return role ? `${role} ${tag}` : tag;
+    const label = getLabelTokens(element).slice(0, 3).join(' ');
+    const baseName = role && role !== tag ? `${role} ${tag}` : tag;
+    return label ? `${baseName}: ${label}` : baseName;
   }
 
   function isPickableElement(element) {
     if (!element || element.nodeType !== Node.ELEMENT_NODE) return false;
     if (element === document.documentElement || element === document.body) return false;
-    if (element.closest(`#${PICKER_STATUS_ID}, #dad-block-overlay`)) return false;
+    if (element.closest(`#${PICKER_PANEL_ID}, #dad-block-overlay`)) return false;
     return true;
   }
 
@@ -243,6 +249,16 @@
   }
 
   function hideElement(element) {
+    if (!element.hasAttribute(BLOCKED_ATTRIBUTE)) {
+      element.setAttribute(ORIGINAL_DISPLAY_ATTRIBUTE, element.style.getPropertyValue('display'));
+      element.setAttribute(ORIGINAL_DISPLAY_PRIORITY_ATTRIBUTE, element.style.getPropertyPriority('display'));
+      element.setAttribute(ORIGINAL_ARIA_HIDDEN_ATTRIBUTE, element.getAttribute('aria-hidden') || '');
+
+      if ('disabled' in element) {
+        element.setAttribute(ORIGINAL_DISABLED_ATTRIBUTE, element.disabled ? 'true' : 'false');
+      }
+    }
+
     element.setAttribute(BLOCKED_ATTRIBUTE, 'true');
     element.setAttribute('aria-hidden', 'true');
     element.style.setProperty('display', 'none', 'important');
@@ -250,6 +266,40 @@
     if ('disabled' in element) {
       element.disabled = true;
     }
+  }
+
+  function restoreElement(element) {
+    const originalDisplay = element.getAttribute(ORIGINAL_DISPLAY_ATTRIBUTE) || '';
+    const originalDisplayPriority = element.getAttribute(ORIGINAL_DISPLAY_PRIORITY_ATTRIBUTE) || '';
+    const originalAriaHidden = element.getAttribute(ORIGINAL_ARIA_HIDDEN_ATTRIBUTE) || '';
+    const originalDisabled = element.getAttribute(ORIGINAL_DISABLED_ATTRIBUTE);
+
+    element.removeAttribute(BLOCKED_ATTRIBUTE);
+
+    if (originalDisplay) {
+      element.style.setProperty('display', originalDisplay, originalDisplayPriority);
+    } else {
+      element.style.removeProperty('display');
+    }
+
+    if (originalAriaHidden) {
+      element.setAttribute('aria-hidden', originalAriaHidden);
+    } else {
+      element.removeAttribute('aria-hidden');
+    }
+
+    if ('disabled' in element && originalDisabled !== null) {
+      element.disabled = originalDisabled === 'true';
+    }
+
+    element.removeAttribute(ORIGINAL_DISPLAY_ATTRIBUTE);
+    element.removeAttribute(ORIGINAL_DISPLAY_PRIORITY_ATTRIBUTE);
+    element.removeAttribute(ORIGINAL_DISABLED_ATTRIBUTE);
+    element.removeAttribute(ORIGINAL_ARIA_HIDDEN_ATTRIBUTE);
+  }
+
+  function resetElementBlocks() {
+    document.querySelectorAll(`[${BLOCKED_ATTRIBUTE}="true"]`).forEach(restoreElement);
   }
 
   function ruleAppliesToCurrentUrl(rule) {
@@ -304,31 +354,150 @@
         cursor: crosshair !important;
       }
 
-      #${PICKER_STATUS_ID} {
+      #${PICKER_PANEL_ID} {
         position: fixed;
-        left: 16px;
+        right: 16px;
         bottom: 16px;
         z-index: 2147483647;
-        max-width: min(420px, calc(100vw - 32px));
-        padding: 10px 12px;
+        width: min(420px, calc(100vw - 32px));
         border-radius: 8px;
         background: #111318;
         color: #eef2f7;
         box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
         font: 14px/1.4 Arial, sans-serif;
+        overflow: hidden;
+      }
+
+      #${PICKER_PANEL_ID} button {
+        min-height: 32px;
+        border: 1px solid transparent;
+        border-radius: 6px;
+        padding: 6px 10px;
+        background: #3d8bfd;
+        color: #ffffff;
+        cursor: pointer;
+        font: 700 13px/1.2 Arial, sans-serif;
+      }
+
+      #${PICKER_PANEL_ID} button[data-dad-secondary="true"] {
+        background: #343b49;
+      }
+
+      #${PICKER_PANEL_ID} button:disabled {
+        background: #596477;
+        color: #a8b0bf;
+        cursor: not-allowed;
       }
     `;
     document.documentElement.appendChild(style);
   }
 
-  function setPickerStatus(text) {
-    let status = document.getElementById(PICKER_STATUS_ID);
-    if (!status) {
-      status = document.createElement('div');
-      status.id = PICKER_STATUS_ID;
-      document.documentElement.appendChild(status);
+  function describeElement(element) {
+    if (!element) return 'No element selected';
+
+    const fingerprint = createFingerprint(element);
+    const parts = [fingerprint.role, fingerprint.tag]
+      .filter(Boolean)
+      .filter((part, index, list) => list.indexOf(part) === index);
+    const label = fingerprint.labelTokens.slice(0, 5).join(' ');
+
+    return label ? `${parts.join(' ')} · ${label}` : parts.join(' ');
+  }
+
+  function createPickerButton(text, onClick, isSecondary = false) {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.textContent = text;
+    if (isSecondary) {
+      button.dataset.dadSecondary = 'true';
     }
-    status.textContent = text;
+    button.addEventListener('click', event => {
+      event.preventDefault();
+      event.stopPropagation();
+      onClick();
+    });
+    return button;
+  }
+
+  function makePickerPanelDraggable(panel, handle) {
+    let pointerOffsetX = 0;
+    let pointerOffsetY = 0;
+
+    const onPointerMove = event => {
+      const nextLeft = Math.max(8, Math.min(window.innerWidth - panel.offsetWidth - 8, event.clientX - pointerOffsetX));
+      const nextTop = Math.max(8, Math.min(window.innerHeight - panel.offsetHeight - 8, event.clientY - pointerOffsetY));
+
+      panel.style.left = `${nextLeft}px`;
+      panel.style.top = `${nextTop}px`;
+      panel.style.right = 'auto';
+      panel.style.bottom = 'auto';
+    };
+
+    const onPointerUp = () => {
+      window.removeEventListener('pointermove', onPointerMove, true);
+      window.removeEventListener('pointerup', onPointerUp, true);
+    };
+
+    handle.addEventListener('pointerdown', event => {
+      if (event.button !== 0) return;
+      const rect = panel.getBoundingClientRect();
+      pointerOffsetX = event.clientX - rect.left;
+      pointerOffsetY = event.clientY - rect.top;
+      window.addEventListener('pointermove', onPointerMove, true);
+      window.addEventListener('pointerup', onPointerUp, true);
+    });
+  }
+
+  function createPickerPanel({ onSave, onChooseAgain, onCancel }) {
+    document.getElementById(PICKER_PANEL_ID)?.remove();
+
+    const panel = document.createElement('section');
+    panel.id = PICKER_PANEL_ID;
+
+    const handle = document.createElement('div');
+    handle.style.cssText = 'display:grid;gap:2px;padding:12px 12px 8px;cursor:move;border-bottom:1px solid #343b49;';
+
+    const title = document.createElement('strong');
+    title.textContent = 'DaD UI picker';
+
+    const message = document.createElement('span');
+    message.style.cssText = 'color:#a8b0bf;font-size:12px;';
+    message.textContent = 'Hover an element, click to preview the rule, then save or choose again.';
+
+    handle.appendChild(title);
+    handle.appendChild(message);
+
+    const selectedText = document.createElement('div');
+    selectedText.style.cssText = 'padding:10px 12px;color:#eef2f7;overflow-wrap:anywhere;';
+    selectedText.textContent = 'No element selected';
+
+    const actions = document.createElement('div');
+    actions.style.cssText = 'display:flex;gap:8px;justify-content:flex-end;padding:0 12px 12px;flex-wrap:wrap;';
+
+    const saveButton = createPickerButton('Save rule', onSave);
+    saveButton.disabled = true;
+    actions.appendChild(createPickerButton('Choose again', onChooseAgain, true));
+    actions.appendChild(createPickerButton('Cancel', onCancel, true));
+    actions.appendChild(saveButton);
+
+    panel.appendChild(handle);
+    panel.appendChild(selectedText);
+    panel.appendChild(actions);
+    document.documentElement.appendChild(panel);
+    makePickerPanelDraggable(panel, handle);
+
+    return {
+      setSelection(element) {
+        selectedText.textContent = describeElement(element);
+        saveButton.disabled = !element;
+      },
+      setMessage(text) {
+        message.textContent = text;
+      },
+      remove() {
+        panel.remove();
+      }
+    };
   }
 
   function clearHighlight() {
@@ -384,6 +553,7 @@
       labelMatch: options.labelMatch || 'prefer',
       name: options.name || createRuleName(element),
       urlPattern: options.urlPattern || getUrlPattern(),
+      urlScope: options.urlScope || 'host',
       createdAt: new Date().toISOString(),
       fingerprint: createFingerprint(element)
     };
@@ -395,6 +565,15 @@
       observeElementRules(rules);
     });
   };
+
+  chrome.storage.onChanged.addListener((changes, areaName) => {
+    if (areaName !== 'sync' || !changes[ELEMENT_RULES_STORAGE_KEY]) return;
+
+    const rules = changes[ELEMENT_RULES_STORAGE_KEY].newValue || [];
+    resetElementBlocks();
+    applyElementRules(rules);
+    observeElementRules(rules);
+  });
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', global.DAD.applyElementBlockRules, { once: true });
@@ -410,9 +589,11 @@
   } = {}) {
     stopPicker();
     ensurePickerStyle();
-    setPickerStatus('DaD element picker: hover an element, click to block it, or press Esc to cancel.');
+    let selectedElement = null;
+    let pickerPanel = null;
 
     const onMouseOver = event => {
+      if (selectedElement) return;
       const pickTarget = getPickTarget(event.target);
       if (!isPickableElement(pickTarget)) return;
       clearHighlight();
@@ -426,7 +607,18 @@
       event.preventDefault();
       event.stopImmediatePropagation();
 
-      const rule = global.DAD.createElementBlockRule(pickTarget, {
+      selectedElement = pickTarget;
+      clearHighlight();
+      highlightedElement = selectedElement;
+      highlightedElement.setAttribute(PICKER_ATTRIBUTE, 'true');
+      pickerPanel.setSelection(selectedElement);
+      pickerPanel.setMessage('Preview selected. Save it, choose another element, or cancel.');
+    };
+
+    const saveSelection = async () => {
+      if (!selectedElement) return;
+
+      const rule = global.DAD.createElementBlockRule(selectedElement, {
         strategy,
         minScore,
         ancestorDepth,
@@ -435,8 +627,15 @@
       const updatedRules = await saveElementRule(rule);
       applyElementRules(updatedRules);
       observeElementRules(updatedRules);
-      setPickerStatus('Element blocking rule saved.');
-      window.setTimeout(stopPicker, 900);
+      pickerPanel.setMessage('Element blocking rule saved.');
+      window.setTimeout(stopPicker, 500);
+    };
+
+    const chooseAgain = () => {
+      selectedElement = null;
+      clearHighlight();
+      pickerPanel.setSelection(null);
+      pickerPanel.setMessage('Hover an element and click to preview the rule.');
     };
 
     const onKeyDown = event => {
@@ -449,13 +648,23 @@
     window.addEventListener('mouseover', onMouseOver, true);
     window.addEventListener('click', onClick, true);
     window.addEventListener('keydown', onKeyDown, true);
+    pickerPanel = createPickerPanel({
+      onSave: () => {
+        saveSelection().catch(error => {
+          console.error('Failed to save element blocking rule:', error);
+          pickerPanel.setMessage('Could not save this rule. Try again.');
+        });
+      },
+      onChooseAgain: chooseAgain,
+      onCancel: stopPicker
+    });
 
     pickerCleanup = () => {
       window.removeEventListener('mouseover', onMouseOver, true);
       window.removeEventListener('click', onClick, true);
       window.removeEventListener('keydown', onKeyDown, true);
       clearHighlight();
-      document.getElementById(PICKER_STATUS_ID)?.remove();
+      pickerPanel?.remove();
     };
   };
 })(window);

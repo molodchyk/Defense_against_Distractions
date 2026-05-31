@@ -10,10 +10,13 @@ It is separate from keyword blocking and locked schedules. It is not meant to be
 2. Click the Defense Against Distractions toolbar icon.
 3. Choose the matching controls.
 4. Click `Pick UI Element`.
-5. Hover the page element and click it.
-6. Review or adjust the saved rule in the options page under `Blocked UI`.
+5. Hover the page element and click it to preview the selection.
+6. Use the on-page picker panel to save the rule, choose again, or cancel.
+7. Review or adjust the saved rule in the options page under `Blocked UI`.
 
 Press `Esc` while picking to cancel.
+
+New rules apply to the current host by default, such as `chatgpt.com`, instead of one exact page path. This keeps repeated UI cleanup working when a site changes from one conversation, document, or item page to another.
 
 ## Match Strategy
 
@@ -47,8 +50,16 @@ If a rule hides similar buttons in unrelated page areas, increase ancestor depth
 
 `Require label` only matches elements with overlapping label information. Use it when labels are stable and you need extra precision.
 
+## Rule Details
+
+`Name` is only for you. Rename rules to describe the intent, for example `ChatGPT response feedback buttons`.
+
+`URL pattern` controls where the rule is active. A host-only pattern like `chatgpt.com` applies across that site. A longer path pattern applies more narrowly. Use `Use domain` to reduce a long path to its host.
+
+`Diagnostics` shows the stored fingerprint: tag, role, parent structure, position path, labels, class tokens, and related details. Use this before deleting or editing a rule so you can see what the rule was created from.
+
 ## Why It Can Be Imperfect
 
 Websites often use generated classes, changing labels, nested SVG icons, and repeated generic buttons. DaD stores a structural fingerprint instead of a single CSS selector, but no automatic fingerprint can always know your intent.
 
-When a rule is too broad or too narrow, adjust strategy, minimum score, ancestor depth, and label match in `Blocked UI`.
+When a rule is too broad or too narrow, adjust strategy, minimum score, ancestor depth, label match, and URL pattern in `Blocked UI`.
