@@ -23,6 +23,9 @@
     if (typeof global.blockedPageRenderInterval === 'undefined') {
       global.blockedPageRenderInterval = null;
     }
+    if (typeof global.blockedPageMediaInterval === 'undefined') {
+      global.blockedPageMediaInterval = null;
+    }
     if (typeof global.blockedPageEventGuardsInstalled === 'undefined') {
       global.blockedPageEventGuardsInstalled = false;
     }
@@ -58,6 +61,11 @@
     if (global.blockedPageRenderInterval) {
       global.clearInterval(global.blockedPageRenderInterval);
       global.blockedPageRenderInterval = null;
+    }
+
+    if (global.blockedPageMediaInterval) {
+      global.clearInterval(global.blockedPageMediaInterval);
+      global.blockedPageMediaInterval = null;
     }
   };
 })(window);

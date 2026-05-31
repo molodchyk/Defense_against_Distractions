@@ -4,9 +4,32 @@
 import { initializeDefaultSettings } from './background/defaults.js';
 import { initializeScheduleMonitor } from './background/scheduleMonitor.js';
 
+const extensionMutedTabs = new Map();
+
 chrome.action.onClicked.addListener(() => {
   chrome.tabs.create({ url: chrome.runtime.getURL('src/options.html') });
 });
+
+function muteBlockedTab(tabId) {
+  chrome.tabs.get(tabId, tab => {
+    if (chrome.runtime.lastError || !tab) {
+      return;
+    }
+
+    extensionMutedTabs.set(tabId, Boolean(tab.mutedInfo?.muted));
+    chrome.tabs.update(tabId, { muted: true });
+  });
+}
+
+function restoreTabMuteState(tabId) {
+  if (!extensionMutedTabs.has(tabId)) {
+    return;
+  }
+
+  const wasMuted = extensionMutedTabs.get(tabId);
+  extensionMutedTabs.delete(tabId);
+  chrome.tabs.update(tabId, { muted: wasMuted });
+}
 
 chrome.runtime.onMessage.addListener((message, sender) => {
   if (message.action === 'updateBadge') {
@@ -17,6 +40,23 @@ chrome.runtime.onMessage.addListener((message, sender) => {
 
     chrome.action.setBadgeText({ text: String(message.score), tabId });
   }
+
+  if (message.action === 'muteBlockedTab') {
+    const tabId = sender.tab?.id;
+    if (tabId !== undefined) {
+      muteBlockedTab(tabId);
+    }
+  }
+});
+
+chrome.tabs.onUpdated.addListener((tabId, changeInfo) => {
+  if (changeInfo.status === 'loading') {
+    restoreTabMuteState(tabId);
+  }
+});
+
+chrome.tabs.onRemoved.addListener(tabId => {
+  extensionMutedTabs.delete(tabId);
 });
 
 initializeDefaultSettings();

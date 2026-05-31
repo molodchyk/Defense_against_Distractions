@@ -7,6 +7,7 @@ const DEFAULT_CONTEXT_LENGTH = 100;
 const SITE_CHECK_MESSAGE = 'performSiteCheck';
 const BLOCK_OVERLAY_ID = 'dad-block-overlay';
 const BLOCK_EVENT_OPTIONS = { capture: true, passive: false };
+const MEDIA_SUSPEND_INTERVAL_MS = 500;
 
 window.DAD.initializePageState();
 
@@ -153,11 +154,76 @@ function keepBlockedPageRendered() {
   }, 500);
 }
 
+function sendRuntimeMessage(message) {
+  try {
+    chrome.runtime.sendMessage(message);
+  } catch (error) {
+    console.error('Failed to send runtime message:', error);
+  }
+}
+
+function suspendMediaElement(mediaElement) {
+  try {
+    mediaElement.pause();
+  } catch (error) {
+    console.error('Failed to pause media element:', error);
+  }
+
+  mediaElement.muted = true;
+  mediaElement.defaultMuted = true;
+  mediaElement.volume = 0;
+  mediaElement.autoplay = false;
+  mediaElement.removeAttribute('autoplay');
+
+  if (mediaElement.srcObject) {
+    mediaElement.srcObject = null;
+  }
+
+  mediaElement.removeAttribute('src');
+  mediaElement.querySelectorAll('source').forEach(source => {
+    source.removeAttribute('src');
+    source.removeAttribute('srcset');
+  });
+
+  try {
+    mediaElement.load();
+  } catch (error) {
+    console.error('Failed to reset media element:', error);
+  }
+}
+
+function suspendEmbeddedFrame(frameElement) {
+  frameElement.removeAttribute('src');
+  frameElement.removeAttribute('srcdoc');
+  frameElement.setAttribute('sandbox', '');
+}
+
+function suspendPageMedia() {
+  document.querySelectorAll('audio, video').forEach(suspendMediaElement);
+  document.querySelectorAll('iframe, embed, object').forEach(suspendEmbeddedFrame);
+}
+
+function keepPageMediaSuspended() {
+  suspendPageMedia();
+
+  if (window.blockedPageMediaInterval) {
+    return;
+  }
+
+  window.blockedPageMediaInterval = window.setInterval(() => {
+    if (window.pageBlocked) {
+      suspendPageMedia();
+    }
+  }, MEDIA_SUSPEND_INTERVAL_MS);
+}
+
 function blockPage() {
   if (window.pageBlocked) return;
 
   window.pageBlocked = true;
   window.DAD.disconnectKeywordObserver();
+  sendRuntimeMessage({ action: 'muteBlockedTab' });
+  keepPageMediaSuspended();
   installBlockedPageEventGuards();
   keepBlockedPageRendered();
 }
