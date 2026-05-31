@@ -495,6 +495,7 @@
         --dad-picker-primary: #3d8bfd;
         --dad-picker-neutral: #343b49;
         --dad-picker-disabled: #596477;
+        color-scheme: dark;
       }
 
       #${PICKER_PANEL_ID}[data-theme="light"] {
@@ -507,6 +508,7 @@
         --dad-picker-primary: #2463d6;
         --dad-picker-neutral: #68758a;
         --dad-picker-disabled: #d8dee8;
+        color-scheme: light;
       }
 
       [${PICKER_ATTRIBUTE}="true"] {
@@ -551,9 +553,9 @@
 
       #${PICKER_PANEL_ID} input[type="number"]::-webkit-inner-spin-button,
       #${PICKER_PANEL_ID} input[type="number"]::-webkit-outer-spin-button {
-        opacity: 1 !important;
         -webkit-appearance: auto !important;
         appearance: auto !important;
+        background: transparent !important;
       }
 
       #${PICKER_PANEL_ID} button {
