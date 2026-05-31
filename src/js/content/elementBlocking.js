@@ -170,6 +170,10 @@
     return element;
   }
 
+  function isPickerPanelEvent(event) {
+    return Boolean(event.target?.closest?.(`#${PICKER_PANEL_ID}`));
+  }
+
   function tokenOverlap(first = [], second = []) {
     const firstSet = new Set(first);
     return second.filter(token => firstSet.has(token)).length;
@@ -696,6 +700,9 @@
 
     const panel = document.createElement('section');
     panel.id = PICKER_PANEL_ID;
+    panel.addEventListener('click', event => event.stopPropagation(), true);
+    panel.addEventListener('mousedown', event => event.stopPropagation(), true);
+    panel.addEventListener('pointerdown', event => event.stopPropagation(), true);
     syncPickerTheme(panel);
 
     const handle = document.createElement('div');
@@ -940,6 +947,8 @@
     };
 
     const onMouseOver = event => {
+      if (isPickerPanelEvent(event)) return;
+
       if (pickerControls.actionMode === 'click') {
         clearHighlight();
         return;
@@ -954,6 +963,8 @@
     };
 
     const onClick = async event => {
+      if (isPickerPanelEvent(event)) return;
+
       if (pickerControls.actionMode === 'click') {
         return;
       }
