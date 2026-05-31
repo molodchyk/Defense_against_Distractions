@@ -19,6 +19,8 @@ Press `Esc` while picking to cancel. Canceling or choosing again restores the te
 
 New rules apply to the current host by default, such as `chatgpt.com`, instead of one exact page path. This keeps repeated UI cleanup working when a site changes from one conversation, document, or item page to another.
 
+DaD stores UI element rules as separate sync storage entries instead of one large rule list. This avoids Chrome's per-item sync storage limit as the number of UI rules grows.
+
 ## Picker Panel
 
 The picker panel appears on the page and can be dragged by its header.

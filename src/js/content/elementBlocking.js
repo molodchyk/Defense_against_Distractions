@@ -25,6 +25,8 @@
   const PICKER_ATTRIBUTE = 'data-dad-element-picker-active';
   const ELEMENT_RULE_VERSION = 1;
   const ELEMENT_RULES_STORAGE_KEY = 'elementBlockRules';
+  const ELEMENT_RULE_IDS_STORAGE_KEY = 'elementBlockRuleIds';
+  const ELEMENT_RULE_ITEM_PREFIX = 'elementBlockRule.';
   const DEFAULT_MIN_SCORE = 12;
   const DEFAULT_ANCESTOR_DEPTH = 2;
   const DEFAULT_PREVIEW_MODE = 'hide';
@@ -39,6 +41,19 @@
 
   function normalizeToken(value) {
     return String(value || '').trim().toLowerCase();
+  }
+
+  function getElementRuleStorageKey(ruleId) {
+    return `${ELEMENT_RULE_ITEM_PREFIX}${ruleId}`;
+  }
+
+  function dedupeRules(rules) {
+    const seenIds = new Set();
+    return (rules || []).filter(rule => {
+      if (!rule?.id || seenIds.has(rule.id)) return false;
+      seenIds.add(rule.id);
+      return true;
+    });
   }
 
   function getImplicitRole(element) {
@@ -884,22 +899,67 @@
   }
 
   function loadElementRules(callback) {
-    chrome.storage.sync.get({ [ELEMENT_RULES_STORAGE_KEY]: [] }, result => {
-      callback(result[ELEMENT_RULES_STORAGE_KEY] || []);
+    chrome.storage.sync.get({ [ELEMENT_RULES_STORAGE_KEY]: [], [ELEMENT_RULE_IDS_STORAGE_KEY]: [] }, result => {
+      if (chrome.runtime.lastError) {
+        console.error('Failed to load element blocking rules:', chrome.runtime.lastError);
+        callback([]);
+        return;
+      }
+
+      const legacyRules = Array.isArray(result[ELEMENT_RULES_STORAGE_KEY]) ? result[ELEMENT_RULES_STORAGE_KEY] : [];
+      const ruleIds = Array.isArray(result[ELEMENT_RULE_IDS_STORAGE_KEY]) ? result[ELEMENT_RULE_IDS_STORAGE_KEY] : [];
+      const ruleKeys = ruleIds.map(getElementRuleStorageKey);
+
+      if (ruleKeys.length === 0) {
+        const rules = dedupeRules(legacyRules);
+        if (rules.length > 0) {
+          persistElementRules(rules).catch(error => {
+            console.error('Failed to migrate element blocking rules:', error);
+          });
+        }
+        callback(rules);
+        return;
+      }
+
+      chrome.storage.sync.get(ruleKeys, ruleItems => {
+        if (chrome.runtime.lastError) {
+          console.error('Failed to load indexed element blocking rules:', chrome.runtime.lastError);
+          callback(dedupeRules(legacyRules));
+          return;
+        }
+
+        const indexedRules = ruleIds.map(ruleId => ruleItems[getElementRuleStorageKey(ruleId)]).filter(Boolean);
+        const rules = dedupeRules([...indexedRules, ...legacyRules]);
+
+        if (legacyRules.length > 0) {
+          persistElementRules(rules).catch(error => {
+            console.error('Failed to migrate legacy element blocking rules:', error);
+          });
+        }
+
+        callback(rules);
+      });
     });
   }
 
-  function saveElementRule(rule) {
+  function persistElementRules(rules) {
     return new Promise((resolve, reject) => {
-      chrome.storage.sync.get({ [ELEMENT_RULES_STORAGE_KEY]: [] }, result => {
+      const nextRules = dedupeRules(rules);
+      const items = {
+        [ELEMENT_RULE_IDS_STORAGE_KEY]: nextRules.map(rule => rule.id)
+      };
+
+      nextRules.forEach(rule => {
+        items[getElementRuleStorageKey(rule.id)] = rule;
+      });
+
+      chrome.storage.sync.set(items, () => {
         if (chrome.runtime.lastError) {
           reject(chrome.runtime.lastError);
           return;
         }
 
-        const nextRules = [...(result[ELEMENT_RULES_STORAGE_KEY] || []), rule];
-
-        chrome.storage.sync.set({ [ELEMENT_RULES_STORAGE_KEY]: nextRules }, () => {
+        chrome.storage.sync.remove(ELEMENT_RULES_STORAGE_KEY, () => {
           if (chrome.runtime.lastError) {
             reject(chrome.runtime.lastError);
             return;
@@ -907,6 +967,19 @@
 
           resolve(nextRules);
         });
+      });
+    });
+  }
+
+  function saveElementRule(rule) {
+    return new Promise((resolve, reject) => {
+      loadElementRules(rules => {
+        const nextRules = dedupeRules([...rules, rule]);
+        persistElementRules(nextRules)
+          .then(() => {
+            resolve(nextRules);
+          })
+          .catch(reject);
       });
     });
   }
@@ -943,12 +1016,19 @@
       }
     }
 
-    if (areaName !== 'sync' || !changes[ELEMENT_RULES_STORAGE_KEY]) return;
+    const hasElementRuleChange = Boolean(
+      changes[ELEMENT_RULES_STORAGE_KEY]
+        || changes[ELEMENT_RULE_IDS_STORAGE_KEY]
+        || Object.keys(changes).some(key => key.startsWith(ELEMENT_RULE_ITEM_PREFIX))
+    );
 
-    const rules = changes[ELEMENT_RULES_STORAGE_KEY].newValue || [];
-    resetElementBlocks();
-    applyElementRules(rules);
-    observeElementRules(rules);
+    if (areaName !== 'sync' || !hasElementRuleChange) return;
+
+    loadElementRules(rules => {
+      resetElementBlocks();
+      applyElementRules(rules);
+      observeElementRules(rules);
+    });
   });
 
   if (document.readyState === 'loading') {

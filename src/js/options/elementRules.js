@@ -1,10 +1,12 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
-import { getSync, setSync } from '../shared/chromeStorage.js';
+import { getSync, removeSync, setSync } from '../shared/chromeStorage.js';
 import { createLocalizedButton } from './dom.js';
 
 const ELEMENT_RULES_STORAGE_KEY = 'elementBlockRules';
+const ELEMENT_RULE_IDS_STORAGE_KEY = 'elementBlockRuleIds';
+const ELEMENT_RULE_ITEM_PREFIX = 'elementBlockRule.';
 
 const STRATEGIES = [
   ['samePosition', 'Same position'],
@@ -31,13 +33,63 @@ const FINGERPRINT_FIELDS = [
   ['labelTokens', 'Label tokens']
 ];
 
+function getElementRuleStorageKey(ruleId) {
+  return `${ELEMENT_RULE_ITEM_PREFIX}${ruleId}`;
+}
+
+function dedupeRules(rules) {
+  const seenIds = new Set();
+  return (rules || []).filter(rule => {
+    if (!rule?.id || seenIds.has(rule.id)) return false;
+    seenIds.add(rule.id);
+    return true;
+  });
+}
+
 async function getRules() {
-  const result = await getSync({ [ELEMENT_RULES_STORAGE_KEY]: [] });
-  return result[ELEMENT_RULES_STORAGE_KEY] || [];
+  const result = await getSync({ [ELEMENT_RULES_STORAGE_KEY]: [], [ELEMENT_RULE_IDS_STORAGE_KEY]: [] });
+  const legacyRules = Array.isArray(result[ELEMENT_RULES_STORAGE_KEY]) ? result[ELEMENT_RULES_STORAGE_KEY] : [];
+  const ruleIds = Array.isArray(result[ELEMENT_RULE_IDS_STORAGE_KEY]) ? result[ELEMENT_RULE_IDS_STORAGE_KEY] : [];
+
+  if (ruleIds.length === 0) {
+    const rules = dedupeRules(legacyRules);
+    if (rules.length > 0) {
+      await saveRules(rules);
+    }
+    return rules;
+  }
+
+  const ruleKeys = ruleIds.map(getElementRuleStorageKey);
+  const ruleItems = await getSync(ruleKeys);
+  const indexedRules = ruleIds.map(ruleId => ruleItems[getElementRuleStorageKey(ruleId)]).filter(Boolean);
+  const rules = dedupeRules([...indexedRules, ...legacyRules]);
+
+  if (legacyRules.length > 0) {
+    await saveRules(rules);
+  }
+
+  return rules;
 }
 
 async function saveRules(rules) {
-  await setSync({ [ELEMENT_RULES_STORAGE_KEY]: rules });
+  const current = await getSync({ [ELEMENT_RULE_IDS_STORAGE_KEY]: [] });
+  const previousIds = Array.isArray(current[ELEMENT_RULE_IDS_STORAGE_KEY]) ? current[ELEMENT_RULE_IDS_STORAGE_KEY] : [];
+  const nextRules = dedupeRules(rules);
+  const nextIds = nextRules.map(rule => rule.id);
+  const items = {
+    [ELEMENT_RULE_IDS_STORAGE_KEY]: nextIds
+  };
+
+  nextRules.forEach(rule => {
+    items[getElementRuleStorageKey(rule.id)] = rule;
+  });
+
+  await setSync(items);
+
+  const removedKeys = previousIds
+    .filter(ruleId => !nextIds.includes(ruleId))
+    .map(getElementRuleStorageKey);
+  await removeSync([ELEMENT_RULES_STORAGE_KEY, ...removedKeys]);
 }
 
 async function updateRule(ruleId, patch) {
@@ -299,7 +351,13 @@ export async function renderElementRules() {
 
 export function initializeElementRulesSync() {
   chrome.storage.onChanged.addListener((changes, areaName) => {
-    if (areaName === 'sync' && changes[ELEMENT_RULES_STORAGE_KEY]) {
+    const hasElementRuleChange = Boolean(
+      changes[ELEMENT_RULES_STORAGE_KEY]
+        || changes[ELEMENT_RULE_IDS_STORAGE_KEY]
+        || Object.keys(changes).some(key => key.startsWith(ELEMENT_RULE_ITEM_PREFIX))
+    );
+
+    if (areaName === 'sync' && hasElementRuleChange) {
       renderElementRules().catch(error => {
         console.error('Failed to sync element blocking rules:', error);
       });
