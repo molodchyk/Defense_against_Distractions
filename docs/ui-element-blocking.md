@@ -10,11 +10,11 @@ It is separate from keyword blocking and locked schedules. It is not meant to be
 2. Click the Defense Against Distractions toolbar icon.
 3. Choose the matching controls.
 4. Click `Pick UI Element`.
-5. Hover the page element and click it to preview the selection.
+5. Hover the page element and click it to preview the rule. DaD temporarily hides every element the rule would hide.
 6. Use the on-page picker panel to save the rule, choose again, or cancel.
 7. Review or adjust the saved rule in the options page under `Blocked UI`.
 
-Press `Esc` while picking to cancel.
+Press `Esc` while picking to cancel. Canceling or choosing again restores the temporary preview.
 
 New rules apply to the current host by default, such as `chatgpt.com`, instead of one exact page path. This keeps repeated UI cleanup working when a site changes from one conversation, document, or item page to another.
 

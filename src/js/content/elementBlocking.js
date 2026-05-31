@@ -11,6 +11,11 @@
   const ORIGINAL_DISPLAY_PRIORITY_ATTRIBUTE = 'data-dad-original-display-priority';
   const ORIGINAL_DISABLED_ATTRIBUTE = 'data-dad-original-disabled';
   const ORIGINAL_ARIA_HIDDEN_ATTRIBUTE = 'data-dad-original-aria-hidden';
+  const PREVIEW_ATTRIBUTE = 'data-dad-element-block-preview';
+  const PREVIEW_DISPLAY_ATTRIBUTE = 'data-dad-preview-display';
+  const PREVIEW_DISPLAY_PRIORITY_ATTRIBUTE = 'data-dad-preview-display-priority';
+  const PREVIEW_DISABLED_ATTRIBUTE = 'data-dad-preview-disabled';
+  const PREVIEW_ARIA_HIDDEN_ATTRIBUTE = 'data-dad-preview-aria-hidden';
   const PICKER_ATTRIBUTE = 'data-dad-element-picker-active';
   const ELEMENT_RULE_VERSION = 1;
   const ELEMENT_RULES_STORAGE_KEY = 'elementBlockRules';
@@ -302,6 +307,78 @@
     document.querySelectorAll(`[${BLOCKED_ATTRIBUTE}="true"]`).forEach(restoreElement);
   }
 
+  function hidePreviewElement(element) {
+    if (element.hasAttribute(PREVIEW_ATTRIBUTE)) return;
+
+    element.setAttribute(PREVIEW_DISPLAY_ATTRIBUTE, element.style.getPropertyValue('display'));
+    element.setAttribute(PREVIEW_DISPLAY_PRIORITY_ATTRIBUTE, element.style.getPropertyPriority('display'));
+    element.setAttribute(PREVIEW_ARIA_HIDDEN_ATTRIBUTE, element.getAttribute('aria-hidden') || '');
+
+    if ('disabled' in element) {
+      element.setAttribute(PREVIEW_DISABLED_ATTRIBUTE, element.disabled ? 'true' : 'false');
+    }
+
+    element.setAttribute(PREVIEW_ATTRIBUTE, 'true');
+    element.setAttribute('aria-hidden', 'true');
+    element.style.setProperty('display', 'none', 'important');
+
+    if ('disabled' in element) {
+      element.disabled = true;
+    }
+  }
+
+  function restorePreviewElement(element) {
+    const originalDisplay = element.getAttribute(PREVIEW_DISPLAY_ATTRIBUTE) || '';
+    const originalDisplayPriority = element.getAttribute(PREVIEW_DISPLAY_PRIORITY_ATTRIBUTE) || '';
+    const originalAriaHidden = element.getAttribute(PREVIEW_ARIA_HIDDEN_ATTRIBUTE) || '';
+    const originalDisabled = element.getAttribute(PREVIEW_DISABLED_ATTRIBUTE);
+
+    element.removeAttribute(PREVIEW_ATTRIBUTE);
+
+    if (originalDisplay) {
+      element.style.setProperty('display', originalDisplay, originalDisplayPriority);
+    } else {
+      element.style.removeProperty('display');
+    }
+
+    if (originalAriaHidden) {
+      element.setAttribute('aria-hidden', originalAriaHidden);
+    } else {
+      element.removeAttribute('aria-hidden');
+    }
+
+    if ('disabled' in element && originalDisabled !== null) {
+      element.disabled = originalDisabled === 'true';
+    }
+
+    element.removeAttribute(PREVIEW_DISPLAY_ATTRIBUTE);
+    element.removeAttribute(PREVIEW_DISPLAY_PRIORITY_ATTRIBUTE);
+    element.removeAttribute(PREVIEW_DISABLED_ATTRIBUTE);
+    element.removeAttribute(PREVIEW_ARIA_HIDDEN_ATTRIBUTE);
+  }
+
+  function clearPreviewBlocks() {
+    document.querySelectorAll(`[${PREVIEW_ATTRIBUTE}="true"]`).forEach(restorePreviewElement);
+  }
+
+  function previewElementRule(rule) {
+    clearPreviewBlocks();
+
+    if (!document.body) return 0;
+
+    let hiddenCount = 0;
+    document.body.querySelectorAll('*').forEach(element => {
+      if (element.hasAttribute(BLOCKED_ATTRIBUTE)) return;
+
+      if (matchesElementRule(element, rule)) {
+        hidePreviewElement(element);
+        hiddenCount += 1;
+      }
+    });
+
+    return hiddenCount;
+  }
+
   function ruleAppliesToCurrentUrl(rule) {
     const normalizedUrl = global.DAD.normalizeUrl(location.href);
     const rulePattern = normalizeToken(rule.urlPattern);
@@ -590,6 +667,7 @@
     stopPicker();
     ensurePickerStyle();
     let selectedElement = null;
+    let previewRule = null;
     let pickerPanel = null;
 
     const onMouseOver = event => {
@@ -607,24 +685,25 @@
       event.preventDefault();
       event.stopImmediatePropagation();
 
+      clearPreviewBlocks();
       selectedElement = pickTarget;
       clearHighlight();
-      highlightedElement = selectedElement;
-      highlightedElement.setAttribute(PICKER_ATTRIBUTE, 'true');
-      pickerPanel.setSelection(selectedElement);
-      pickerPanel.setMessage('Preview selected. Save it, choose another element, or cancel.');
-    };
-
-    const saveSelection = async () => {
-      if (!selectedElement) return;
-
-      const rule = global.DAD.createElementBlockRule(selectedElement, {
+      previewRule = global.DAD.createElementBlockRule(selectedElement, {
         strategy,
         minScore,
         ancestorDepth,
         labelMatch
       });
-      const updatedRules = await saveElementRule(rule);
+      const hiddenCount = previewElementRule(previewRule);
+      pickerPanel.setSelection(selectedElement);
+      pickerPanel.setMessage(`Preview is hiding ${hiddenCount} ${hiddenCount === 1 ? 'element' : 'elements'}. Save it, choose another element, or cancel.`);
+    };
+
+    const saveSelection = async () => {
+      if (!previewRule) return;
+
+      clearPreviewBlocks();
+      const updatedRules = await saveElementRule(previewRule);
       applyElementRules(updatedRules);
       observeElementRules(updatedRules);
       pickerPanel.setMessage('Element blocking rule saved.');
@@ -632,7 +711,9 @@
     };
 
     const chooseAgain = () => {
+      clearPreviewBlocks();
       selectedElement = null;
+      previewRule = null;
       clearHighlight();
       pickerPanel.setSelection(null);
       pickerPanel.setMessage('Hover an element and click to preview the rule.');
@@ -663,6 +744,7 @@
       window.removeEventListener('mouseover', onMouseOver, true);
       window.removeEventListener('click', onClick, true);
       window.removeEventListener('keydown', onKeyDown, true);
+      clearPreviewBlocks();
       clearHighlight();
       pickerPanel?.remove();
     };
