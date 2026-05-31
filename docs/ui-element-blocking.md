@@ -18,6 +18,8 @@ Press `Esc` while picking to cancel. Canceling or choosing again restores the te
 
 New rules apply to the current host by default, such as `chatgpt.com`, instead of one exact page path. This keeps repeated UI cleanup working when a site changes from one conversation, document, or item page to another.
 
+Use picker `Mode` when a target only appears after interaction. `Pick element` makes clicks select elements. `Click page` lets clicks pass through to the website so you can open menus, expand controls, or reveal nested UI, then switch back to `Pick element`.
+
 ## Match Strategy
 
 `Same position in repeated UI` is the default. Use it for rows or cards where the same controls repeat, such as copy / like / dislike buttons under each item. It tries to hide the selected position in each repeated row without hiding neighboring buttons.

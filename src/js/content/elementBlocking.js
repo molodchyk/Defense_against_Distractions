@@ -28,6 +28,7 @@
   const DEFAULT_MIN_SCORE = 12;
   const DEFAULT_ANCESTOR_DEPTH = 2;
   const DEFAULT_PREVIEW_MODE = 'hide';
+  const DEFAULT_PICKER_ACTION_MODE = 'pick';
   const THEME_STORAGE_KEY = 'uiThemeMode';
   const DEFAULT_THEME_MODE = 'system';
 
@@ -718,6 +719,13 @@
     controlGrid.style.cssText = 'display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:10px 12px 0;';
 
     controlGrid.appendChild(createPickerControl(
+      'Mode',
+      createPickerSelect([
+        ['pick', 'Pick element'],
+        ['click', 'Click page']
+      ], controls.actionMode, value => onControlsChange({ actionMode: value }))
+    ));
+    controlGrid.appendChild(createPickerControl(
       'Preview',
       createPickerSelect([
         ['hide', 'Hide matched'],
@@ -884,7 +892,8 @@
       minScore: normalizeNumber(minScore, DEFAULT_MIN_SCORE, 6, 24),
       ancestorDepth: normalizeNumber(ancestorDepth, DEFAULT_ANCESTOR_DEPTH, 0, 6),
       labelMatch,
-      previewMode: DEFAULT_PREVIEW_MODE
+      previewMode: DEFAULT_PREVIEW_MODE,
+      actionMode: DEFAULT_PICKER_ACTION_MODE
     };
     let pickerPanel = null;
 
@@ -931,6 +940,11 @@
     };
 
     const onMouseOver = event => {
+      if (pickerControls.actionMode === 'click') {
+        clearHighlight();
+        return;
+      }
+
       if (selectedElement) return;
       const pickTarget = getPickTarget(event.target);
       if (!isPickableElement(pickTarget)) return;
@@ -940,6 +954,10 @@
     };
 
     const onClick = async event => {
+      if (pickerControls.actionMode === 'click') {
+        return;
+      }
+
       const pickTarget = getPickTarget(event.target);
       if (!isPickableElement(pickTarget)) return;
       event.preventDefault();
@@ -987,6 +1005,11 @@
       controls: pickerControls,
       onControlsChange: patch => {
         Object.assign(pickerControls, patch);
+        if (patch.actionMode === 'click') {
+          clearHighlight();
+          pickerPanel.setMessage('Click page mode is active. Use the page normally, then switch back to pick an element.');
+          return;
+        }
         updatePreview();
       },
       onSave: () => {
