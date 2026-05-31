@@ -538,6 +538,7 @@
 
       #${PICKER_PANEL_ID} select,
       #${PICKER_PANEL_ID} input {
+        appearance: auto !important;
         min-height: 32px;
         width: 100%;
         border: 1px solid var(--dad-picker-border);
@@ -546,6 +547,13 @@
         color: var(--dad-picker-text);
         padding: 6px 8px;
         font: 13px/1.3 Arial, sans-serif;
+      }
+
+      #${PICKER_PANEL_ID} input[type="number"]::-webkit-inner-spin-button,
+      #${PICKER_PANEL_ID} input[type="number"]::-webkit-outer-spin-button {
+        opacity: 1 !important;
+        -webkit-appearance: auto !important;
+        appearance: auto !important;
       }
 
       #${PICKER_PANEL_ID} button {
