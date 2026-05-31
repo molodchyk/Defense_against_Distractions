@@ -6,7 +6,6 @@ This document collects product and implementation ideas for future versions of D
 
 This section preserves the original phrasing of ideas before they are clarified or grouped below.
 
-- update DaD to block a person on GMail
 - create block UI feature in DaD
 - website for sharing DaD configs and upvotes molodchyk.com
 - usage stats feature DaD
