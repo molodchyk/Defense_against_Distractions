@@ -837,6 +837,9 @@
       setMessage(text) {
         message.textContent = text;
       },
+      setSaveContinuation(isContinuing) {
+        saveButton.textContent = isContinuing ? 'Save rule and continue' : 'Save rule';
+      },
       remove() {
         panel.remove();
       }
@@ -943,6 +946,7 @@
     let previewRule = null;
     let previewObserver = null;
     let previewUpdateTimer = null;
+    let shouldContinueAfterSave = false;
     const pickerControls = {
       strategy,
       minScore: normalizeNumber(minScore, DEFAULT_MIN_SCORE, 6, 24),
@@ -1033,10 +1037,22 @@
     const saveSelection = async () => {
       if (!previewRule) return;
 
+      const continuePicking = shouldContinueAfterSave;
       clearPreviewBlocks();
       const updatedRules = await saveElementRule(previewRule);
       applyElementRules(updatedRules);
       observeElementRules(updatedRules);
+
+      if (continuePicking) {
+        selectedElement = null;
+        previewRule = null;
+        disconnectPreviewObserver();
+        clearHighlight();
+        pickerPanel.setSelection(null);
+        pickerPanel.setMessage('Element blocking rule saved. Pick another element.');
+        return;
+      }
+
       pickerPanel.setMessage('Element blocking rule saved.');
       window.setTimeout(stopPicker, 500);
     };
@@ -1052,15 +1068,28 @@
     };
 
     const onKeyDown = event => {
+      if (event.key === 'Shift') {
+        shouldContinueAfterSave = true;
+        pickerPanel?.setSaveContinuation(true);
+      }
+
       if (event.key === 'Escape') {
         event.preventDefault();
         stopPicker();
       }
     };
 
+    const onKeyUp = event => {
+      if (event.key === 'Shift') {
+        shouldContinueAfterSave = false;
+        pickerPanel?.setSaveContinuation(false);
+      }
+    };
+
     window.addEventListener('mouseover', onMouseOver, true);
     window.addEventListener('click', onClick, true);
     window.addEventListener('keydown', onKeyDown, true);
+    window.addEventListener('keyup', onKeyUp, true);
     pickerPanel = createPickerPanel({
       controls: pickerControls,
       onControlsChange: patch => {
@@ -1086,6 +1115,7 @@
       window.removeEventListener('mouseover', onMouseOver, true);
       window.removeEventListener('click', onClick, true);
       window.removeEventListener('keydown', onKeyDown, true);
+      window.removeEventListener('keyup', onKeyUp, true);
       disconnectPreviewObserver();
       clearPreviewBlocks();
       clearHighlight();
