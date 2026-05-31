@@ -31,12 +31,14 @@ This section preserves the original phrasing of ideas before they are clarified 
 - Make blocking resilient against leave-page, unsaved-changes, and similar browser or site warnings that can interrupt navigation away from a blocked page.
 - Ensure DaD continues enforcing the block after a warning is accepted, cancelled, repeated, or triggered by an in-progress edit.
 - Treat warning resilience as a general blocking-engine requirement, not as website-specific logic.
-- Add a block UI feature inside DaD, so users can create blocking rules directly from the interface.
-- Block page elements, not only whole pages.
+- Add a UI element blocking feature with an element picker, likely started from the extension popup or options page.
+- Let users pick page controls or regions to hide or disable, then save those element-blocking rules into DaD groups so schedules/plans can enable them.
+- Make element-blocking rules resistant to label, id, aria-label, and class-name churn by using structural fingerprints instead of a single brittle selector.
+- Make rules generalize across repeated modules, such as identical action buttons repeated under every response or repeated sidebar items across a site.
+- Support both one-off blocked elements and pattern-based blocking for the same kind of element wherever it appears on matching pages.
 - Detect and block video elements.
 - Detect and block audio elements.
 - Add automatic script actions, such as automatically clicking, hiding, or dismissing something on a page.
-- Block ChatGPT message action buttons, including upvote, downvote, share, copy, and report buttons under each message.
 
 ## Block Feedback and Visibility
 
