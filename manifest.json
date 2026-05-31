@@ -7,9 +7,11 @@
   "permissions": [
     "storage", 
     "alarms",
-    "downloads"
+    "downloads",
+    "activeTab"
   ],
   "action": {
+    "default_popup": "src/popup.html",
     "default_icon": {
       "16": "src/assets/icons/extension-icon-16.png",
       "64": "src/assets/icons/extension-icon-64.png",
@@ -29,6 +31,7 @@
         "src/js/content/state.js",
         "src/js/content/url.js",
         "src/js/content/keywords.js",
+        "src/js/content/elementBlocking.js",
         "src/js/content.js"
       ]
     }

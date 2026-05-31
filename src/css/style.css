@@ -328,6 +328,31 @@ h2 {
     align-items: start;
 }
 
+.element-rule-list {
+    display: grid;
+    gap: 8px;
+}
+
+.element-rule-list li {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 10px;
+    align-items: center;
+    min-height: 40px;
+    padding: 8px 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--surface);
+}
+
+.element-rule-list span {
+    overflow-wrap: anywhere;
+}
+
+.element-rule-empty {
+    color: var(--muted);
+}
+
 .group-item label,
 .schedule-item label {
     min-height: 38px;

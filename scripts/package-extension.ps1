@@ -66,6 +66,7 @@ $runtimeFiles = @(
   "src\blocked.html",
   "src\instructions.html",
   "src\options.html",
+  "src\popup.html",
   "src\css",
   "src\js",
   "src\assets\icons",

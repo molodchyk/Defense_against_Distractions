@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Defense against Distractions</title>
+    <link rel="stylesheet" href="css/popup.css">
+    <meta charset="UTF-8">
+</head>
+<body>
+    <main class="popup-shell">
+        <header>
+            <p>Defense against Distractions</p>
+            <h1>Quick Actions</h1>
+        </header>
+
+        <label for="matchModeSelect">Element match</label>
+        <select id="matchModeSelect">
+            <option value="similar">Similar elements</option>
+            <option value="exact">Closest match</option>
+        </select>
+
+        <button id="pickElementButton">Pick UI Element</button>
+        <button id="openOptionsButton" class="secondary-button">Open Options</button>
+        <p id="statusText" role="status"></p>
+    </main>
+
+    <script src="js/popup.js" type="module"></script>
+</body>
+</html>

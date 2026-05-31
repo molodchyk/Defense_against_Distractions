@@ -18,7 +18,8 @@ const LOCALIZED_TEXT = {
   themeModeLabel: 'themeModeLabel',
   themeModeSystemOption: 'themeModeSystemOption',
   themeModeDarkOption: 'themeModeDarkOption',
-  themeModeLightOption: 'themeModeLightOption'
+  themeModeLightOption: 'themeModeLightOption',
+  elementRulesHeading: 'elementRulesLabel'
 };
 
 const LOCALIZED_PLACEHOLDERS = {

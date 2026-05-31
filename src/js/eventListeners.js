@@ -12,6 +12,7 @@ import {
 } from './groupManagementFunctions.js';
 
 import { localizeOptionsPage } from './options/localization.js';
+import { renderElementRules } from './options/elementRules.js';
 import { initializeStorageTransfer } from './options/storageTransfer.js';
 import { initializeThemeModeControl } from './options/theme.js';
 
@@ -20,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initializeThemeModeControl();
   migrateToNewGroupStorage();
   updateGroupsUI();
+  renderElementRules();
 
   document.getElementById('addGroupButton').addEventListener('click', addGroup);
   document.getElementById('groupNameInput').addEventListener('keypress', (event) => {

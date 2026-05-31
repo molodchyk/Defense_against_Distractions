@@ -342,11 +342,13 @@ function performSiteCheck() {
     Object.values(items).forEach(group => {
       if (group.id && group.websites) {
         const normalizedGroupWebsites = group.websites.map(site => window.DAD.normalizeUrl(site));
-        if (normalizedGroupWebsites.some(site => normalizedUrl.includes(site))) {
+        const hasMatchingWebsite = normalizedGroupWebsites.some(site => normalizedUrl.includes(site));
+        if (hasMatchingWebsite) {
           allKeywords = allKeywords.concat(group.keywords);
         }
       }
     });
+    window.DAD.applyElementBlockRules();
 
     if (allKeywords.length > 0) {
       window.parsedKeywords = allKeywords.map(window.DAD.parseKeyword); // Parse keywords for all matching groups
@@ -377,6 +379,13 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === SITE_CHECK_MESSAGE) {
     performSiteCheck();
     sendResponse({ status: 'Site check performed' });
+  }
+
+  if (message.action === 'startElementPicker') {
+    window.DAD.startElementPicker({
+      mode: message.mode || 'similar'
+    });
+    sendResponse({ status: 'Element picker started' });
   }
 });
 

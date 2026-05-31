@@ -445,5 +445,11 @@
     },
     "themeModeLightOption": {
         "message": "Light"
+    },
+    "elementRulesLabel": {
+        "message": "Blocked UI"
+    },
+    "noElementRulesLabel": {
+        "message": "No blocked UI elements"
     }
 }

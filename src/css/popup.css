@@ -1,0 +1,98 @@
+:root {
+    color-scheme: dark;
+    --bg: #111318;
+    --surface: #1a1e26;
+    --field: #151922;
+    --border: #343b49;
+    --text: #eef2f7;
+    --muted: #a8b0bf;
+    --primary: #3d8bfd;
+    --primary-hover: #2f74d3;
+    --neutral: #596477;
+    --neutral-hover: #69758a;
+    --danger: #d64545;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    width: 320px;
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 14px/1.5 Arial, sans-serif;
+}
+
+.popup-shell {
+    display: grid;
+    gap: 10px;
+    padding: 16px;
+}
+
+header {
+    display: grid;
+    gap: 2px;
+}
+
+header p,
+#statusText {
+    margin: 0;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+h1 {
+    margin: 0 0 4px;
+    font-size: 20px;
+    line-height: 1.2;
+}
+
+label {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+select,
+button {
+    min-height: 38px;
+    border-radius: 6px;
+    font: inherit;
+}
+
+select {
+    width: 100%;
+    border: 1px solid var(--border);
+    background: var(--field);
+    color: var(--text);
+    padding: 8px 10px;
+}
+
+button {
+    border: 1px solid transparent;
+    background: var(--primary);
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: 700;
+    padding: 8px 12px;
+}
+
+button:hover {
+    background: var(--primary-hover);
+}
+
+button:disabled {
+    background: var(--neutral);
+    color: var(--muted);
+    cursor: not-allowed;
+}
+
+.secondary-button {
+    background: var(--neutral);
+}
+
+.secondary-button:hover {
+    background: var(--neutral-hover);
+}
