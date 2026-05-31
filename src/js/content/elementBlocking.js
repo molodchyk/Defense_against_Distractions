@@ -584,6 +584,23 @@
         cursor: not-allowed;
       }
 
+      #${PICKER_PANEL_ID} .dad-picker-wheel-toggle {
+        min-height: 32px;
+        width: 100%;
+        border: 1px solid var(--dad-picker-border);
+        border-radius: 6px;
+        background: var(--dad-picker-field);
+        color: var(--dad-picker-text);
+        cursor: ns-resize;
+        padding: 6px 8px;
+        font: 13px/1.3 Arial, sans-serif;
+      }
+
+      #${PICKER_PANEL_ID} .dad-picker-wheel-toggle:focus-visible {
+        outline: 2px solid var(--dad-picker-primary);
+        outline-offset: 2px;
+      }
+
     `;
     document.documentElement.appendChild(style);
   }
@@ -686,6 +703,41 @@
     return input;
   }
 
+  function createPickerWheelToggle(options, selectedValue, onChange) {
+    const control = document.createElement('div');
+    control.className = 'dad-picker-wheel-toggle';
+    control.role = 'button';
+    control.tabIndex = 0;
+
+    const updateText = value => {
+      const option = options.find(([optionValue]) => optionValue === value) || options[0];
+      control.dataset.value = option[0];
+      control.textContent = option[1];
+    };
+
+    const step = direction => {
+      const currentIndex = Math.max(0, options.findIndex(([value]) => value === control.dataset.value));
+      const nextIndex = (currentIndex + direction + options.length) % options.length;
+      const [nextValue] = options[nextIndex];
+      updateText(nextValue);
+      onChange(nextValue);
+    };
+
+    control.addEventListener('wheel', event => {
+      event.preventDefault();
+      event.stopPropagation();
+      step(event.deltaY >= 0 ? 1 : -1);
+    }, { passive: false });
+    control.addEventListener('keydown', event => {
+      if (!['ArrowUp', 'ArrowDown'].includes(event.key)) return;
+      event.preventDefault();
+      step(event.key === 'ArrowDown' ? 1 : -1);
+    });
+
+    updateText(selectedValue);
+    return control;
+  }
+
   function createPickerControl(labelText, control) {
     const label = document.createElement('label');
     const text = document.createElement('span');
@@ -700,9 +752,6 @@
 
     const panel = document.createElement('section');
     panel.id = PICKER_PANEL_ID;
-    panel.addEventListener('click', event => event.stopPropagation(), true);
-    panel.addEventListener('mousedown', event => event.stopPropagation(), true);
-    panel.addEventListener('pointerdown', event => event.stopPropagation(), true);
     syncPickerTheme(panel);
 
     const handle = document.createElement('div');
@@ -727,7 +776,7 @@
 
     controlGrid.appendChild(createPickerControl(
       'Mode',
-      createPickerSelect([
+      createPickerWheelToggle([
         ['pick', 'Pick element'],
         ['click', 'Click page']
       ], controls.actionMode, value => onControlsChange({ actionMode: value }))
@@ -1018,7 +1067,7 @@
         Object.assign(pickerControls, patch);
         if (patch.actionMode === 'click') {
           clearHighlight();
-          pickerPanel.setMessage('Click page mode is active. Use the page normally, then switch back to pick an element.');
+          pickerPanel.setMessage('Click page mode is active. Use the page normally, then hover Mode and scroll back to pick an element.');
           return;
         }
         updatePreview();

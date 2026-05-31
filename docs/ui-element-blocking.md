@@ -18,7 +18,7 @@ Press `Esc` while picking to cancel. Canceling or choosing again restores the te
 
 New rules apply to the current host by default, such as `chatgpt.com`, instead of one exact page path. This keeps repeated UI cleanup working when a site changes from one conversation, document, or item page to another.
 
-Use picker `Mode` when a target only appears after interaction. `Pick element` makes clicks select elements. `Click page` lets clicks pass through to the website so you can open menus, expand controls, or reveal nested UI, then switch back to `Pick element`.
+Use picker `Mode` when a target only appears after interaction. `Pick element` makes clicks select elements. `Click page` lets clicks pass through to the website so you can open menus, expand controls, or reveal nested UI. Hover the `Mode` control and scroll to switch between the two modes.
 
 ## Match Strategy
 
