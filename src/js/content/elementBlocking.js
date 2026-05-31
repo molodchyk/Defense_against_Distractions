@@ -783,7 +783,7 @@
     ));
     controlGrid.appendChild(createPickerControl(
       'Preview',
-      createPickerSelect([
+      createPickerWheelToggle([
         ['hide', 'Hide matched'],
         ['outline', 'Outline matched']
       ], controls.previewMode, value => onControlsChange({ previewMode: value }))
@@ -1099,7 +1099,11 @@
           pickerPanel.setMessage('Click page mode is active. Use the page normally, then hover Mode and scroll back to pick an element.');
           return;
         }
-        updatePreview();
+        if (selectedElement) {
+          updatePreview();
+          return;
+        }
+        pickerPanel.setMessage('Hover an element and click it to preview the rule.');
       },
       onSave: () => {
         saveSelection().catch(error => {

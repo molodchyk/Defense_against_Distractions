@@ -47,6 +47,8 @@ Hover the `Mode` control and scroll to switch between `Pick element` and `Click 
 
 `Outline matched` keeps matched elements visible and draws a contour around them. Use it when hiding would make it hard to inspect what the rule is catching.
 
+Hover the `Preview` control and scroll to switch between `Hide matched` and `Outline matched`.
+
 The preview count updates when the page adds or removes matching elements.
 
 ## Match Strategy
