@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
-import { getSync, removeSync, setSync } from '../shared/chromeStorage.js';
+import { getBytesInUseSync, getSync, removeSync, setSync } from '../shared/chromeStorage.js';
 import { createLocalizedButton } from './dom.js';
 
 const ELEMENT_RULES_STORAGE_KEY = 'elementBlockRules';
@@ -35,6 +35,14 @@ const FINGERPRINT_FIELDS = [
 
 function getElementRuleStorageKey(ruleId) {
   return `${ELEMENT_RULE_ITEM_PREFIX}${ruleId}`;
+}
+
+function formatBytes(bytes) {
+  if (bytes >= 1024) {
+    return `${(bytes / 1024).toFixed(1)} KB`;
+  }
+
+  return `${bytes} B`;
 }
 
 function dedupeRules(rules) {
@@ -102,6 +110,27 @@ async function updateRule(ruleId, patch) {
 async function removeRule(ruleId) {
   const rules = await getRules();
   await saveRules(rules.filter(rule => rule.id !== ruleId));
+}
+
+async function renderStorageUsage(rules) {
+  const storageUsage = document.getElementById('elementRuleStorageUsage');
+  if (!storageUsage) return;
+
+  const ruleKeys = [
+    ELEMENT_RULE_IDS_STORAGE_KEY,
+    ...rules.map(rule => getElementRuleStorageKey(rule.id))
+  ];
+  const [ruleBytes, totalBytes] = await Promise.all([
+    getBytesInUseSync(ruleKeys),
+    getBytesInUseSync(null)
+  ]);
+  const quotaBytes = chrome.storage.sync.QUOTA_BYTES || 102400;
+
+  storageUsage.textContent = [
+    `${rules.length} UI ${rules.length === 1 ? 'rule' : 'rules'}`,
+    `UI rules ${formatBytes(ruleBytes)}`,
+    `Sync ${formatBytes(totalBytes)} / ${formatBytes(quotaBytes)}`
+  ].join(' · ');
 }
 
 function createSelect(options, selectedValue, onChange) {
@@ -335,6 +364,9 @@ export async function renderElementRules() {
 
   const rules = await getRules();
   list.innerHTML = '';
+  renderStorageUsage(rules).catch(error => {
+    console.error('Failed to render element rule storage usage:', error);
+  });
 
   if (rules.length === 0) {
     const emptyItem = document.createElement('li');

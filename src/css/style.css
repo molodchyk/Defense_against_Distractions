@@ -333,6 +333,12 @@ h2 {
     gap: 8px;
 }
 
+.element-rule-storage-usage {
+    margin: -4px 0 12px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
 .element-rule-list li {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
