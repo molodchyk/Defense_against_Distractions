@@ -11,7 +11,7 @@ It is separate from keyword blocking and locked schedules. It is not meant to be
 3. Choose the matching controls.
 4. Click `Pick UI Element`.
 5. Hover the page element and click it to preview the rule. DaD temporarily hides every element the rule would hide.
-6. Use the on-page picker panel to save the rule, choose again, or cancel.
+6. Use the on-page picker panel to change preview mode, strategy, score, ancestor depth, or label matching while the preview is active.
 7. Review or adjust the saved rule in the options page under `Blocked UI`.
 
 Press `Esc` while picking to cancel. Canceling or choosing again restores the temporary preview.
@@ -49,6 +49,12 @@ If a rule hides similar buttons in unrelated page areas, increase ancestor depth
 `Ignore label` avoids relying on labels. Use it when labels are unstable, translated, personalized, or different across repeated elements.
 
 `Require label` only matches elements with overlapping label information. Use it when labels are stable and you need extra precision.
+
+## Preview Mode
+
+`Hide matched` shows the page as it would look after saving the rule.
+
+`Outline matched` keeps the matched elements visible and draws a contour around them. Use it when hiding would make it hard to inspect what the rule is catching.
 
 ## Rule Details
 

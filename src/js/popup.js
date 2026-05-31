@@ -77,6 +77,11 @@ async function startElementPicker() {
   });
 }
 
+function openOptions() {
+  chrome.runtime.openOptionsPage();
+  window.close();
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   loadTheme();
   redirectExtensionTabsToOptions();
@@ -94,8 +99,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   document.getElementById('pickElementButton').addEventListener('click', startElementPicker);
-  document.getElementById('openOptionsButton').addEventListener('click', () => {
-    chrome.runtime.openOptionsPage();
-    window.close();
-  });
+  document.getElementById('headerOptionsButton').addEventListener('click', openOptions);
+  document.getElementById('openOptionsButton').addEventListener('click', openOptions);
 });

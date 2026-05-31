@@ -54,6 +54,13 @@ header {
     gap: 2px;
 }
 
+.popup-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
 header p,
 #statusText {
     margin: 0;
@@ -107,6 +114,19 @@ button:disabled {
     background: var(--neutral);
     color: var(--muted);
     cursor: not-allowed;
+}
+
+.header-options-button {
+    min-height: 28px;
+    border-color: var(--border);
+    background: var(--surface);
+    color: var(--text);
+    padding: 4px 8px;
+    font-size: 12px;
+}
+
+.header-options-button:hover {
+    background: var(--neutral);
 }
 
 .secondary-button {

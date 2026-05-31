@@ -16,11 +16,20 @@
   const PREVIEW_DISPLAY_PRIORITY_ATTRIBUTE = 'data-dad-preview-display-priority';
   const PREVIEW_DISABLED_ATTRIBUTE = 'data-dad-preview-disabled';
   const PREVIEW_ARIA_HIDDEN_ATTRIBUTE = 'data-dad-preview-aria-hidden';
+  const PREVIEW_OUTLINE_ATTRIBUTE = 'data-dad-preview-outline';
+  const PREVIEW_OUTLINE_PRIORITY_ATTRIBUTE = 'data-dad-preview-outline-priority';
+  const PREVIEW_OUTLINE_OFFSET_ATTRIBUTE = 'data-dad-preview-outline-offset';
+  const PREVIEW_OUTLINE_OFFSET_PRIORITY_ATTRIBUTE = 'data-dad-preview-outline-offset-priority';
+  const PREVIEW_BOX_SHADOW_ATTRIBUTE = 'data-dad-preview-box-shadow';
+  const PREVIEW_BOX_SHADOW_PRIORITY_ATTRIBUTE = 'data-dad-preview-box-shadow-priority';
   const PICKER_ATTRIBUTE = 'data-dad-element-picker-active';
   const ELEMENT_RULE_VERSION = 1;
   const ELEMENT_RULES_STORAGE_KEY = 'elementBlockRules';
   const DEFAULT_MIN_SCORE = 12;
   const DEFAULT_ANCESTOR_DEPTH = 2;
+  const DEFAULT_PREVIEW_MODE = 'hide';
+  const THEME_STORAGE_KEY = 'uiThemeMode';
+  const DEFAULT_THEME_MODE = 'system';
 
   let highlightedElement = null;
   let elementRuleObserver = null;
@@ -307,18 +316,28 @@
     document.querySelectorAll(`[${BLOCKED_ATTRIBUTE}="true"]`).forEach(restoreElement);
   }
 
-  function hidePreviewElement(element) {
+  function rememberPreviewStyle(element) {
     if (element.hasAttribute(PREVIEW_ATTRIBUTE)) return;
 
     element.setAttribute(PREVIEW_DISPLAY_ATTRIBUTE, element.style.getPropertyValue('display'));
     element.setAttribute(PREVIEW_DISPLAY_PRIORITY_ATTRIBUTE, element.style.getPropertyPriority('display'));
     element.setAttribute(PREVIEW_ARIA_HIDDEN_ATTRIBUTE, element.getAttribute('aria-hidden') || '');
+    element.setAttribute(PREVIEW_OUTLINE_ATTRIBUTE, element.style.getPropertyValue('outline'));
+    element.setAttribute(PREVIEW_OUTLINE_PRIORITY_ATTRIBUTE, element.style.getPropertyPriority('outline'));
+    element.setAttribute(PREVIEW_OUTLINE_OFFSET_ATTRIBUTE, element.style.getPropertyValue('outline-offset'));
+    element.setAttribute(PREVIEW_OUTLINE_OFFSET_PRIORITY_ATTRIBUTE, element.style.getPropertyPriority('outline-offset'));
+    element.setAttribute(PREVIEW_BOX_SHADOW_ATTRIBUTE, element.style.getPropertyValue('box-shadow'));
+    element.setAttribute(PREVIEW_BOX_SHADOW_PRIORITY_ATTRIBUTE, element.style.getPropertyPriority('box-shadow'));
 
     if ('disabled' in element) {
       element.setAttribute(PREVIEW_DISABLED_ATTRIBUTE, element.disabled ? 'true' : 'false');
     }
 
     element.setAttribute(PREVIEW_ATTRIBUTE, 'true');
+  }
+
+  function hidePreviewElement(element) {
+    rememberPreviewStyle(element);
     element.setAttribute('aria-hidden', 'true');
     element.style.setProperty('display', 'none', 'important');
 
@@ -327,11 +346,24 @@
     }
   }
 
+  function outlinePreviewElement(element) {
+    rememberPreviewStyle(element);
+    element.style.setProperty('outline', '3px solid #ffbf47', 'important');
+    element.style.setProperty('outline-offset', '3px', 'important');
+    element.style.setProperty('box-shadow', '0 0 0 2px rgba(0, 0, 0, 0.35)', 'important');
+  }
+
   function restorePreviewElement(element) {
     const originalDisplay = element.getAttribute(PREVIEW_DISPLAY_ATTRIBUTE) || '';
     const originalDisplayPriority = element.getAttribute(PREVIEW_DISPLAY_PRIORITY_ATTRIBUTE) || '';
     const originalAriaHidden = element.getAttribute(PREVIEW_ARIA_HIDDEN_ATTRIBUTE) || '';
     const originalDisabled = element.getAttribute(PREVIEW_DISABLED_ATTRIBUTE);
+    const originalOutline = element.getAttribute(PREVIEW_OUTLINE_ATTRIBUTE) || '';
+    const originalOutlinePriority = element.getAttribute(PREVIEW_OUTLINE_PRIORITY_ATTRIBUTE) || '';
+    const originalOutlineOffset = element.getAttribute(PREVIEW_OUTLINE_OFFSET_ATTRIBUTE) || '';
+    const originalOutlineOffsetPriority = element.getAttribute(PREVIEW_OUTLINE_OFFSET_PRIORITY_ATTRIBUTE) || '';
+    const originalBoxShadow = element.getAttribute(PREVIEW_BOX_SHADOW_ATTRIBUTE) || '';
+    const originalBoxShadowPriority = element.getAttribute(PREVIEW_BOX_SHADOW_PRIORITY_ATTRIBUTE) || '';
 
     element.removeAttribute(PREVIEW_ATTRIBUTE);
 
@@ -351,17 +383,41 @@
       element.disabled = originalDisabled === 'true';
     }
 
+    if (originalOutline) {
+      element.style.setProperty('outline', originalOutline, originalOutlinePriority);
+    } else {
+      element.style.removeProperty('outline');
+    }
+
+    if (originalOutlineOffset) {
+      element.style.setProperty('outline-offset', originalOutlineOffset, originalOutlineOffsetPriority);
+    } else {
+      element.style.removeProperty('outline-offset');
+    }
+
+    if (originalBoxShadow) {
+      element.style.setProperty('box-shadow', originalBoxShadow, originalBoxShadowPriority);
+    } else {
+      element.style.removeProperty('box-shadow');
+    }
+
     element.removeAttribute(PREVIEW_DISPLAY_ATTRIBUTE);
     element.removeAttribute(PREVIEW_DISPLAY_PRIORITY_ATTRIBUTE);
     element.removeAttribute(PREVIEW_DISABLED_ATTRIBUTE);
     element.removeAttribute(PREVIEW_ARIA_HIDDEN_ATTRIBUTE);
+    element.removeAttribute(PREVIEW_OUTLINE_ATTRIBUTE);
+    element.removeAttribute(PREVIEW_OUTLINE_PRIORITY_ATTRIBUTE);
+    element.removeAttribute(PREVIEW_OUTLINE_OFFSET_ATTRIBUTE);
+    element.removeAttribute(PREVIEW_OUTLINE_OFFSET_PRIORITY_ATTRIBUTE);
+    element.removeAttribute(PREVIEW_BOX_SHADOW_ATTRIBUTE);
+    element.removeAttribute(PREVIEW_BOX_SHADOW_PRIORITY_ATTRIBUTE);
   }
 
   function clearPreviewBlocks() {
     document.querySelectorAll(`[${PREVIEW_ATTRIBUTE}="true"]`).forEach(restorePreviewElement);
   }
 
-  function previewElementRule(rule) {
+  function previewElementRule(rule, previewMode = DEFAULT_PREVIEW_MODE) {
     clearPreviewBlocks();
 
     if (!document.body) return 0;
@@ -371,7 +427,11 @@
       if (element.hasAttribute(BLOCKED_ATTRIBUTE)) return;
 
       if (matchesElementRule(element, rule)) {
-        hidePreviewElement(element);
+        if (previewMode === 'outline') {
+          outlinePreviewElement(element);
+        } else {
+          hidePreviewElement(element);
+        }
         hiddenCount += 1;
       }
     });
@@ -425,6 +485,30 @@
     const style = document.createElement('style');
     style.id = PICKER_STYLE_ID;
     style.textContent = `
+      #${PICKER_PANEL_ID} {
+        --dad-picker-bg: #111318;
+        --dad-picker-surface: #1a1e26;
+        --dad-picker-field: #151922;
+        --dad-picker-border: #343b49;
+        --dad-picker-text: #eef2f7;
+        --dad-picker-muted: #a8b0bf;
+        --dad-picker-primary: #3d8bfd;
+        --dad-picker-neutral: #343b49;
+        --dad-picker-disabled: #596477;
+      }
+
+      #${PICKER_PANEL_ID}[data-theme="light"] {
+        --dad-picker-bg: #ffffff;
+        --dad-picker-surface: #f5f7fb;
+        --dad-picker-field: #ffffff;
+        --dad-picker-border: #cfd6e2;
+        --dad-picker-text: #17202e;
+        --dad-picker-muted: #526173;
+        --dad-picker-primary: #2463d6;
+        --dad-picker-neutral: #68758a;
+        --dad-picker-disabled: #d8dee8;
+      }
+
       [${PICKER_ATTRIBUTE}="true"] {
         outline: 3px solid #3d8bfd !important;
         outline-offset: 3px !important;
@@ -438,11 +522,30 @@
         z-index: 2147483647;
         width: min(420px, calc(100vw - 32px));
         border-radius: 8px;
-        background: #111318;
-        color: #eef2f7;
+        background: var(--dad-picker-bg);
+        color: var(--dad-picker-text);
         box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
         font: 14px/1.4 Arial, sans-serif;
         overflow: hidden;
+      }
+
+      #${PICKER_PANEL_ID} label {
+        display: grid;
+        gap: 4px;
+        color: var(--dad-picker-muted);
+        font: 700 12px/1.3 Arial, sans-serif;
+      }
+
+      #${PICKER_PANEL_ID} select,
+      #${PICKER_PANEL_ID} input {
+        min-height: 32px;
+        width: 100%;
+        border: 1px solid var(--dad-picker-border);
+        border-radius: 6px;
+        background: var(--dad-picker-field);
+        color: var(--dad-picker-text);
+        padding: 6px 8px;
+        font: 13px/1.3 Arial, sans-serif;
       }
 
       #${PICKER_PANEL_ID} button {
@@ -450,19 +553,19 @@
         border: 1px solid transparent;
         border-radius: 6px;
         padding: 6px 10px;
-        background: #3d8bfd;
+        background: var(--dad-picker-primary);
         color: #ffffff;
         cursor: pointer;
         font: 700 13px/1.2 Arial, sans-serif;
       }
 
       #${PICKER_PANEL_ID} button[data-dad-secondary="true"] {
-        background: #343b49;
+        background: var(--dad-picker-neutral);
       }
 
       #${PICKER_PANEL_ID} button:disabled {
-        background: #596477;
-        color: #a8b0bf;
+        background: var(--dad-picker-disabled);
+        color: var(--dad-picker-muted);
         cursor: not-allowed;
       }
     `;
@@ -525,28 +628,113 @@
     });
   }
 
-  function createPickerPanel({ onSave, onChooseAgain, onCancel }) {
+  function resolveThemeMode(mode) {
+    if (mode === 'dark' || mode === 'light') return mode;
+    return global.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+
+  function applyPickerTheme(panel, mode) {
+    panel.dataset.theme = resolveThemeMode(mode || DEFAULT_THEME_MODE);
+  }
+
+  function syncPickerTheme(panel) {
+    chrome.storage.sync.get({ [THEME_STORAGE_KEY]: DEFAULT_THEME_MODE }, result => {
+      applyPickerTheme(panel, result[THEME_STORAGE_KEY]);
+    });
+  }
+
+  function createPickerSelect(options, selectedValue, onChange) {
+    const select = document.createElement('select');
+    options.forEach(([value, label]) => {
+      const option = document.createElement('option');
+      option.value = value;
+      option.textContent = label;
+      select.appendChild(option);
+    });
+    select.value = selectedValue;
+    select.addEventListener('change', () => onChange(select.value));
+    return select;
+  }
+
+  function createPickerNumberInput(value, min, max, onChange) {
+    const input = document.createElement('input');
+    input.type = 'number';
+    input.min = String(min);
+    input.max = String(max);
+    input.value = String(value);
+    input.addEventListener('change', () => {
+      onChange(normalizeNumber(input.value, value, min, max));
+    });
+    return input;
+  }
+
+  function createPickerControl(labelText, control) {
+    const label = document.createElement('label');
+    const text = document.createElement('span');
+    text.textContent = labelText;
+    label.appendChild(text);
+    label.appendChild(control);
+    return label;
+  }
+
+  function createPickerPanel({ controls, onControlsChange, onSave, onChooseAgain, onCancel }) {
     document.getElementById(PICKER_PANEL_ID)?.remove();
 
     const panel = document.createElement('section');
     panel.id = PICKER_PANEL_ID;
+    syncPickerTheme(panel);
 
     const handle = document.createElement('div');
-    handle.style.cssText = 'display:grid;gap:2px;padding:12px 12px 8px;cursor:move;border-bottom:1px solid #343b49;';
+    handle.style.cssText = 'display:grid;gap:2px;padding:12px 12px 8px;cursor:move;border-bottom:1px solid var(--dad-picker-border);';
 
     const title = document.createElement('strong');
     title.textContent = 'DaD UI picker';
 
     const message = document.createElement('span');
-    message.style.cssText = 'color:#a8b0bf;font-size:12px;';
+    message.style.cssText = 'color:var(--dad-picker-muted);font-size:12px;';
     message.textContent = 'Hover an element, click to preview the rule, then save or choose again.';
 
     handle.appendChild(title);
     handle.appendChild(message);
 
     const selectedText = document.createElement('div');
-    selectedText.style.cssText = 'padding:10px 12px;color:#eef2f7;overflow-wrap:anywhere;';
+    selectedText.style.cssText = 'padding:10px 12px 0;color:var(--dad-picker-text);overflow-wrap:anywhere;';
     selectedText.textContent = 'No element selected';
+
+    const controlGrid = document.createElement('div');
+    controlGrid.style.cssText = 'display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:10px 12px 0;';
+
+    controlGrid.appendChild(createPickerControl(
+      'Preview',
+      createPickerSelect([
+        ['hide', 'Hide matched'],
+        ['outline', 'Outline matched']
+      ], controls.previewMode, value => onControlsChange({ previewMode: value }))
+    ));
+    controlGrid.appendChild(createPickerControl(
+      'Strategy',
+      createPickerSelect([
+        ['samePosition', 'Same position'],
+        ['similar', 'Similar'],
+        ['exact', 'Closest']
+      ], controls.strategy, value => onControlsChange({ strategy: value }))
+    ));
+    controlGrid.appendChild(createPickerControl(
+      'Minimum score',
+      createPickerNumberInput(controls.minScore, 6, 24, value => onControlsChange({ minScore: value }))
+    ));
+    controlGrid.appendChild(createPickerControl(
+      'Ancestor depth',
+      createPickerNumberInput(controls.ancestorDepth, 0, 6, value => onControlsChange({ ancestorDepth: value }))
+    ));
+    controlGrid.appendChild(createPickerControl(
+      'Label match',
+      createPickerSelect([
+        ['prefer', 'Prefer label'],
+        ['ignore', 'Ignore label'],
+        ['require', 'Require label']
+      ], controls.labelMatch, value => onControlsChange({ labelMatch: value }))
+    ));
 
     const actions = document.createElement('div');
     actions.style.cssText = 'display:flex;gap:8px;justify-content:flex-end;padding:0 12px 12px;flex-wrap:wrap;';
@@ -559,6 +747,7 @@
 
     panel.appendChild(handle);
     panel.appendChild(selectedText);
+    panel.appendChild(controlGrid);
     panel.appendChild(actions);
     document.documentElement.appendChild(panel);
     makePickerPanelDraggable(panel, handle);
@@ -644,6 +833,13 @@
   };
 
   chrome.storage.onChanged.addListener((changes, areaName) => {
+    if (areaName === 'sync' && changes[THEME_STORAGE_KEY]) {
+      const pickerPanel = document.getElementById(PICKER_PANEL_ID);
+      if (pickerPanel) {
+        applyPickerTheme(pickerPanel, changes[THEME_STORAGE_KEY].newValue);
+      }
+    }
+
     if (areaName !== 'sync' || !changes[ELEMENT_RULES_STORAGE_KEY]) return;
 
     const rules = changes[ELEMENT_RULES_STORAGE_KEY].newValue || [];
@@ -668,7 +864,58 @@
     ensurePickerStyle();
     let selectedElement = null;
     let previewRule = null;
+    let previewObserver = null;
+    let previewUpdateTimer = null;
+    const pickerControls = {
+      strategy,
+      minScore: normalizeNumber(minScore, DEFAULT_MIN_SCORE, 6, 24),
+      ancestorDepth: normalizeNumber(ancestorDepth, DEFAULT_ANCESTOR_DEPTH, 0, 6),
+      labelMatch,
+      previewMode: DEFAULT_PREVIEW_MODE
+    };
     let pickerPanel = null;
+
+    const disconnectPreviewObserver = () => {
+      if (previewObserver) {
+        previewObserver.disconnect();
+        previewObserver = null;
+      }
+
+      if (previewUpdateTimer) {
+        global.clearTimeout(previewUpdateTimer);
+        previewUpdateTimer = null;
+      }
+    };
+
+    const buildPreviewRule = () => {
+      if (!selectedElement) return null;
+
+      return global.DAD.createElementBlockRule(selectedElement, pickerControls);
+    };
+
+    const updatePreview = () => {
+      if (!selectedElement || !pickerPanel) return;
+
+      previewRule = buildPreviewRule();
+      const matchCount = previewElementRule(previewRule, pickerControls.previewMode);
+      const verb = pickerControls.previewMode === 'outline' ? 'outlining' : 'hiding';
+      pickerPanel.setSelection(selectedElement);
+      pickerPanel.setMessage(`Preview is ${verb} ${matchCount} ${matchCount === 1 ? 'element' : 'elements'}. Adjust settings, save, choose again, or cancel.`);
+    };
+
+    const schedulePreviewUpdate = () => {
+      if (!selectedElement) return;
+      global.clearTimeout(previewUpdateTimer);
+      previewUpdateTimer = global.setTimeout(updatePreview, 120);
+    };
+
+    const observePreviewChanges = () => {
+      disconnectPreviewObserver();
+      if (!document.body) return;
+
+      previewObserver = new MutationObserver(schedulePreviewUpdate);
+      previewObserver.observe(document.body, { childList: true, subtree: true });
+    };
 
     const onMouseOver = event => {
       if (selectedElement) return;
@@ -688,15 +935,8 @@
       clearPreviewBlocks();
       selectedElement = pickTarget;
       clearHighlight();
-      previewRule = global.DAD.createElementBlockRule(selectedElement, {
-        strategy,
-        minScore,
-        ancestorDepth,
-        labelMatch
-      });
-      const hiddenCount = previewElementRule(previewRule);
-      pickerPanel.setSelection(selectedElement);
-      pickerPanel.setMessage(`Preview is hiding ${hiddenCount} ${hiddenCount === 1 ? 'element' : 'elements'}. Save it, choose another element, or cancel.`);
+      updatePreview();
+      observePreviewChanges();
     };
 
     const saveSelection = async () => {
@@ -711,6 +951,7 @@
     };
 
     const chooseAgain = () => {
+      disconnectPreviewObserver();
       clearPreviewBlocks();
       selectedElement = null;
       previewRule = null;
@@ -730,6 +971,11 @@
     window.addEventListener('click', onClick, true);
     window.addEventListener('keydown', onKeyDown, true);
     pickerPanel = createPickerPanel({
+      controls: pickerControls,
+      onControlsChange: patch => {
+        Object.assign(pickerControls, patch);
+        updatePreview();
+      },
       onSave: () => {
         saveSelection().catch(error => {
           console.error('Failed to save element blocking rule:', error);
@@ -744,6 +990,7 @@
       window.removeEventListener('mouseover', onMouseOver, true);
       window.removeEventListener('click', onClick, true);
       window.removeEventListener('keydown', onKeyDown, true);
+      disconnectPreviewObserver();
       clearPreviewBlocks();
       clearHighlight();
       pickerPanel?.remove();
