@@ -39,6 +39,9 @@ import {
   normalizeThemeMode,
   resolveThemeMode
 } from '../src/js/shared/theme.js';
+import {
+  collectPageSignals
+} from '../src/js/shared/pageSignals.js';
 
 describe('keyword parsing', () => {
   it('splits keyword entries on unescaped commas', () => {
@@ -304,5 +307,79 @@ describe('theme helpers', () => {
   it('keeps explicit theme modes regardless of system preference', () => {
     assert.equal(resolveThemeMode('dark', false), 'dark');
     assert.equal(resolveThemeMode('light', true), 'light');
+  });
+});
+
+describe('page signal helpers', () => {
+  function createFakeRoot(counts, text = '') {
+    return {
+      location: {
+        href: 'https://example.com/feed',
+        hostname: 'example.com'
+      },
+      body: {
+        innerText: text
+      },
+      querySelectorAll(selector) {
+        return Array.from({ length: counts[selector] || 0 });
+      }
+    };
+  }
+
+  it('collects page media, interaction, and structure counts', () => {
+    const root = createFakeRoot({
+      'a[href]': 8,
+      'img, picture, svg': 3,
+      video: 2,
+      audio: 1,
+      'img[src*=".gif" i], source[src*=".gif" i]': 1,
+      'button, [role="button"]': 5,
+      'input, textarea, select, [contenteditable="true"]': 2,
+      form: 1,
+      iframe: 4,
+      '[role="feed"], [aria-label*="feed" i], [class*="feed" i]': 1,
+      '*': 40
+    }, 'hello world 🎯');
+    const signals = collectPageSignals(root);
+
+    assert.match(signals.collectedAt, /^\d{4}-\d{2}-\d{2}T/);
+    assert.deepEqual({
+      ...signals,
+      collectedAt: 'timestamp'
+    }, {
+      url: 'https://example.com/feed',
+      hostname: 'example.com',
+      collectedAt: 'timestamp',
+      text: {
+        sampleLength: 14,
+        wordCount: 2,
+        emojiCount: 1
+      },
+      media: {
+        imageCount: 3,
+        videoCount: 2,
+        audioCount: 1,
+        gifCount: 1,
+        iframeCount: 4
+      },
+      interaction: {
+        linkCount: 8,
+        buttonCount: 5,
+        inputCount: 2,
+        formCount: 1
+      },
+      structure: {
+        elementCount: 40,
+        feedCount: 1
+      }
+    });
+  });
+
+  it('limits text samples before counting text signals', () => {
+    const root = createFakeRoot({}, 'one two three four');
+    const signals = collectPageSignals(root, { textSampleLimit: 7 });
+
+    assert.equal(signals.text.sampleLength, 7);
+    assert.equal(signals.text.wordCount, 2);
   });
 });

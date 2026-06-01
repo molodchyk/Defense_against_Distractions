@@ -2,6 +2,8 @@
 
 This document collects product and implementation ideas for future versions of Defense against Distractions (DaD). Items are grouped by theme, but this is not yet a prioritized roadmap.
 
+See [DaD Protection Model](protection-model.md) for the product model that connects signals, risk scoring, interventions, plans, and locked protection.
+
 ## Original Wording
 
 This section preserves the original phrasing of ideas before they are clarified or grouped below.
@@ -25,6 +27,23 @@ This section preserves the original phrasing of ideas before they are clarified 
 - DaD reduce max score to 100?
 - modularize DaD
 - DaD make tabbed interface
+- sync across all devices feature
+- consult research on unhealthy internet usage and mechanisms of it, potential interventions, dopaminergic lock in, failure points, signs, and context (text, audio, algorithms, video) that is most triggering of this. Context: software to defend / prevent it proactively)
+- detect / predict when the user lies / most destructive and when the user is truthful /most constructive and when we can trust them to change the configuration / problematic usage detection and combating it
+- the doc with research questions and questions on what research is needed and what behavior is likely / doc with research
+- instead of only blocking, be able to perform different actions - remove some UI element, click or fill in something stop audio / video from playing
+- time ( in seconds) as an additor / multiplyer of the score ? websites such as xnxx / nhentai should trigger most likely immediately (research what gives off their dopaminergic quality / what we could use;  persistant score change?
+- collect crucial data to improve the product
+- opt out - 2 € monthly plan (premium)
+- 30 € - lifetime
+- mental state score
+- amount of tabs open
+- listen to input -- scroll, scroll speed, amount of media presented and changed through, clicks and typing, longevity of sessions, machine learning on text and text recognition
+- amount of links on the website to contribute to the score
+- pomodoro timer in DaD: track how long is chrome open, research way to count time away, let user set work time / rest time / how often is bigger rest and amount of time for it, have the timer on the blocked page and let that page go back without headache once the timer is up
+- schedule UI like in Cold Turkey. + workdays + all days checkboxes. Schedule for different plans. Plan - combine groups. Enable / disable a plan feature
+- feature to collect usage data + also for feedback to know what works and what doesn't work
+- local usage stats, detect and save text, amount of UI elements, amount of video / audo / GIFs
 
 ## Blocking Capabilities
 
@@ -48,6 +67,7 @@ This section preserves the original phrasing of ideas before they are clarified 
 - Create a website for sharing DaD configurations and voting on them, likely on `molodchyk.com`.
 - Add upvotes for shared DaD configurations.
 - Support importable/shared community rulesets.
+- Sync DaD settings and configuration across all user devices.
 - Investigate machine learning based on blocked keywords.
 - Consider whether DaD should save learned or suggested keywords.
 - Consider reducing the maximum score threshold to 100.
