@@ -21,11 +21,15 @@ New rules apply to the current host by default, such as `chatgpt.com`, instead o
 
 DaD stores UI element rules as separate sync storage entries instead of one large rule list. This avoids Chrome's per-item sync storage limit as the number of UI rules grows.
 
+UI rules keep a sync storage reserve for locked schedules. Locked schedules are mission-critical, so DaD blocks new or larger UI cleanup rules before they can consume the space reserved for schedule data. If a schedule save still hits sync quota, DaD removes non-critical UI element rules and retries the schedule save. Deleting or shrinking UI rules is still allowed when storage is tight.
+
 ## Picker Panel
 
 The picker panel appears on the page and can be dragged by its header.
 
 It shows the currently selected element, the preview count, and the controls that affect the candidate rule. Changing these controls updates the preview immediately.
+
+The picker uses the pointer position, not only the browser click target. That helps with small standalone text such as footers, hints, disclaimers, or inline labels that may not behave like regular clickable elements.
 
 `Target` controls what the rule is built from. `Clicked element` uses the exact element you selected. `Parent`, `Grandparent`, and `Great-grandparent` move the rule upward through the page structure so you can try broader UI regions when one picked control is too narrow.
 

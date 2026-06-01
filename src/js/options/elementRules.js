@@ -7,6 +7,8 @@ import { createLocalizedButton } from './dom.js';
 const ELEMENT_RULES_STORAGE_KEY = 'elementBlockRules';
 const ELEMENT_RULE_IDS_STORAGE_KEY = 'elementBlockRuleIds';
 const ELEMENT_RULE_ITEM_PREFIX = 'elementBlockRule.';
+const SYNC_QUOTA_BYTES_FALLBACK = 102400;
+const PROTECTED_SYNC_RESERVE_BYTES = 20480;
 
 const STRATEGIES = [
   ['samePosition', 'Same position'],
@@ -54,6 +56,26 @@ function dedupeRules(rules) {
   });
 }
 
+function estimateSyncItemBytes(items) {
+  return Object.entries(items).reduce((totalBytes, [key, value]) => {
+    return totalBytes + key.length + String(JSON.stringify(value) || '').length;
+  }, 0);
+}
+
+async function ensureElementRuleStorageBudget(items, replacingKeys) {
+  const quotaBytes = chrome.storage.sync.QUOTA_BYTES || SYNC_QUOTA_BYTES_FALLBACK;
+  const protectedLimit = quotaBytes - PROTECTED_SYNC_RESERVE_BYTES;
+  const [totalBytes, replacingBytes] = await Promise.all([
+    getBytesInUseSync(null),
+    getBytesInUseSync(replacingKeys)
+  ]);
+  const projectedBytes = totalBytes - replacingBytes + estimateSyncItemBytes(items);
+
+  if (projectedBytes > protectedLimit && projectedBytes > totalBytes) {
+    throw new Error('Cannot save this UI rule: sync storage reserve for locked schedules would be exceeded.');
+  }
+}
+
 async function getRules() {
   const result = await getSync({ [ELEMENT_RULES_STORAGE_KEY]: [], [ELEMENT_RULE_IDS_STORAGE_KEY]: [] });
   const legacyRules = Array.isArray(result[ELEMENT_RULES_STORAGE_KEY]) ? result[ELEMENT_RULES_STORAGE_KEY] : [];
@@ -92,11 +114,18 @@ async function saveRules(rules) {
     items[getElementRuleStorageKey(rule.id)] = rule;
   });
 
-  await setSync(items);
-
   const removedKeys = previousIds
     .filter(ruleId => !nextIds.includes(ruleId))
     .map(getElementRuleStorageKey);
+  const replacingKeys = [
+    ELEMENT_RULES_STORAGE_KEY,
+    ELEMENT_RULE_IDS_STORAGE_KEY,
+    ...previousIds.map(getElementRuleStorageKey),
+    ...nextIds.map(getElementRuleStorageKey)
+  ];
+
+  await ensureElementRuleStorageBudget(items, replacingKeys);
+  await setSync(items);
   await removeSync([ELEMENT_RULES_STORAGE_KEY, ...removedKeys]);
 }
 
@@ -125,11 +154,15 @@ async function renderStorageUsage(rules) {
     getBytesInUseSync(null)
   ]);
   const quotaBytes = chrome.storage.sync.QUOTA_BYTES || 102400;
+  const protectedLimit = quotaBytes - PROTECTED_SYNC_RESERVE_BYTES;
+  const reserveLabel = `Locked schedule reserve ${formatBytes(PROTECTED_SYNC_RESERVE_BYTES)}`;
+  const reserveStatus = totalBytes > protectedLimit ? `${reserveLabel} low` : reserveLabel;
 
   storageUsage.textContent = [
     `${rules.length} UI ${rules.length === 1 ? 'rule' : 'rules'}`,
     `UI rules ${formatBytes(ruleBytes)}`,
-    `Sync ${formatBytes(totalBytes)} / ${formatBytes(quotaBytes)}`
+    `Sync ${formatBytes(totalBytes)} / ${formatBytes(quotaBytes)}`,
+    reserveStatus
   ].join(' · ');
 }
 

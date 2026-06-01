@@ -34,6 +34,8 @@
   const DEFAULT_TARGET_LEVEL = 0;
   const THEME_STORAGE_KEY = 'uiThemeMode';
   const DEFAULT_THEME_MODE = 'system';
+  const SYNC_QUOTA_BYTES_FALLBACK = 102400;
+  const PROTECTED_SYNC_RESERVE_BYTES = 20480;
 
   let highlightedElement = null;
   let elementRuleObserver = null;
@@ -54,6 +56,12 @@
       seenIds.add(rule.id);
       return true;
     });
+  }
+
+  function estimateSyncItemBytes(items) {
+    return Object.entries(items).reduce((totalBytes, [key, value]) => {
+      return totalBytes + key.length + String(JSON.stringify(value) || '').length;
+    }, 0);
   }
 
   function getImplicitRole(element) {
@@ -178,12 +186,72 @@
   }
 
   function getPickTarget(element) {
+    if (!isPickableElement(element)) return null;
+
     const interactiveTarget = element.closest('button, a, input, textarea, select, [role]');
     if (isPickableElement(interactiveTarget)) {
       return interactiveTarget;
     }
 
     return element;
+  }
+
+  function getTextRangeFromPoint(clientX, clientY) {
+    if (document.caretRangeFromPoint) {
+      return document.caretRangeFromPoint(clientX, clientY);
+    }
+
+    if (document.caretPositionFromPoint) {
+      const position = document.caretPositionFromPoint(clientX, clientY);
+      if (!position) return null;
+
+      const range = document.createRange();
+      range.setStart(position.offsetNode, position.offset);
+      range.collapse(true);
+      return range;
+    }
+
+    return null;
+  }
+
+  function isPointInsideRect(clientX, clientY, rect, tolerance = 2) {
+    return clientX >= rect.left - tolerance
+      && clientX <= rect.right + tolerance
+      && clientY >= rect.top - tolerance
+      && clientY <= rect.bottom + tolerance;
+  }
+
+  function getTextContainerFromPoint(clientX, clientY) {
+    const caretRange = getTextRangeFromPoint(clientX, clientY);
+    const textNode = caretRange?.startContainer;
+
+    if (!textNode || textNode.nodeType !== Node.TEXT_NODE || !textNode.nodeValue.trim()) {
+      return null;
+    }
+
+    const parentElement = textNode.parentElement;
+    if (!isPickableElement(parentElement)) return null;
+
+    const textRange = document.createRange();
+    textRange.selectNodeContents(textNode);
+    const isInsideText = Array.from(textRange.getClientRects()).some(rect => {
+      return isPointInsideRect(clientX, clientY, rect);
+    });
+    textRange.detach?.();
+
+    return isInsideText ? parentElement : null;
+  }
+
+  function getPickTargetFromPoint(clientX, clientY, fallbackElement) {
+    const pointElement = document.elementFromPoint(clientX, clientY);
+    const baseElement = pointElement || fallbackElement;
+    const textContainer = getTextContainerFromPoint(clientX, clientY);
+
+    if (textContainer && !textContainer.closest('button, a, input, textarea, select, [role]')) {
+      return textContainer;
+    }
+
+    return getPickTarget(baseElement);
   }
 
   function getRuleTargetElement(element, targetLevel) {
@@ -953,19 +1021,44 @@
         items[getElementRuleStorageKey(rule.id)] = rule;
       });
 
-      chrome.storage.sync.set(items, () => {
+      const replacingKeys = [ELEMENT_RULES_STORAGE_KEY, ...Object.keys(items)];
+      const quotaBytes = chrome.storage.sync.QUOTA_BYTES || SYNC_QUOTA_BYTES_FALLBACK;
+      const protectedLimit = quotaBytes - PROTECTED_SYNC_RESERVE_BYTES;
+
+      chrome.storage.sync.getBytesInUse(null, totalBytes => {
         if (chrome.runtime.lastError) {
           reject(chrome.runtime.lastError);
           return;
         }
 
-        chrome.storage.sync.remove(ELEMENT_RULES_STORAGE_KEY, () => {
+        chrome.storage.sync.getBytesInUse(replacingKeys, replacingBytes => {
           if (chrome.runtime.lastError) {
             reject(chrome.runtime.lastError);
             return;
           }
 
-          resolve(nextRules);
+          const projectedBytes = totalBytes - replacingBytes + estimateSyncItemBytes(items);
+
+          if (projectedBytes > protectedLimit && projectedBytes > totalBytes) {
+            reject(new Error('Cannot save this UI rule: sync storage reserve for locked schedules would be exceeded.'));
+            return;
+          }
+
+          chrome.storage.sync.set(items, () => {
+            if (chrome.runtime.lastError) {
+              reject(chrome.runtime.lastError);
+              return;
+            }
+
+            chrome.storage.sync.remove(ELEMENT_RULES_STORAGE_KEY, () => {
+              if (chrome.runtime.lastError) {
+                reject(chrome.runtime.lastError);
+                return;
+              }
+
+              resolve(nextRules);
+            });
+          });
         });
       });
     });
@@ -1103,7 +1196,7 @@
       previewObserver.observe(document.body, { childList: true, subtree: true });
     };
 
-    const onMouseOver = event => {
+    const onMouseMove = event => {
       if (isPickerPanelEvent(event)) return;
 
       if (pickerControls.actionMode === 'click') {
@@ -1112,8 +1205,9 @@
       }
 
       if (selectedElement) return;
-      const pickTarget = getPickTarget(event.target);
+      const pickTarget = getPickTargetFromPoint(event.clientX, event.clientY, event.target);
       if (!isPickableElement(pickTarget)) return;
+      if (highlightedElement === pickTarget) return;
       clearHighlight();
       highlightedElement = pickTarget;
       highlightedElement.setAttribute(PICKER_ATTRIBUTE, 'true');
@@ -1126,7 +1220,7 @@
         return;
       }
 
-      const pickTarget = getPickTarget(event.target);
+      const pickTarget = getPickTargetFromPoint(event.clientX, event.clientY, event.target);
       if (!isPickableElement(pickTarget)) return;
       event.preventDefault();
       event.stopImmediatePropagation();
@@ -1190,7 +1284,7 @@
       }
     };
 
-    window.addEventListener('mouseover', onMouseOver, true);
+    window.addEventListener('mousemove', onMouseMove, true);
     window.addEventListener('click', onClick, true);
     window.addEventListener('keydown', onKeyDown, true);
     window.addEventListener('keyup', onKeyUp, true);
@@ -1212,7 +1306,7 @@
       onSave: () => {
         saveSelection().catch(error => {
           console.error('Failed to save element blocking rule:', error);
-          pickerPanel.setMessage('Could not save this rule. Try again.');
+          pickerPanel.setMessage(error?.message || 'Could not save this rule. Try again.');
         });
       },
       onChooseAgain: chooseAgain,
@@ -1220,7 +1314,7 @@
     });
 
     pickerCleanup = () => {
-      window.removeEventListener('mouseover', onMouseOver, true);
+      window.removeEventListener('mousemove', onMouseMove, true);
       window.removeEventListener('click', onClick, true);
       window.removeEventListener('keydown', onKeyDown, true);
       window.removeEventListener('keyup', onKeyUp, true);

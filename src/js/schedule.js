@@ -19,6 +19,7 @@ import {
   getNextUnnamedScheduleName,
   normalizeScheduleTimeInput
 } from './shared/scheduleForm.js';
+import { saveSchedulesWithPriority } from './shared/criticalScheduleStorage.js';
 import { debugLog } from './shared/logger.js';
 export {
   doSchedulesOverlap,
@@ -142,11 +143,14 @@ export function removeSchedule(index) {
     }
 
     schedules.splice(index, 1);
-    chrome.storage.sync.set({ schedules }, () => {
+    saveSchedulesWithPriority(schedules).then(() => {
       // After updating the schedules in storage, recreate the scheduleStates
       const scheduleStates = schedules.map((schedule, index) => new ScheduleState(index, schedule));
       updateSchedulesUI(schedules, scheduleStates);
       debugLog('Schedule removed', index);
+    }).catch(error => {
+      console.error('Failed to remove schedule:', error);
+      alert('Could not save the schedule change.');
     });
   });
 }
@@ -206,12 +210,15 @@ function addSchedule() {
     const newScheduleState = new ScheduleState(schedules.length - 1, newSchedule);
 
     // Save the updated schedules to Chrome storage
-    chrome.storage.sync.set({ schedules }, () => {
+    saveSchedulesWithPriority(schedules).then(() => {
       chrome.storage.sync.get('schedules', ({ schedules = [] }) => {
         const scheduleStates = schedules.map((schedule, index) => new ScheduleState(index, schedule));
         updateSchedulesUI(schedules, scheduleStates);
         document.getElementById('scheduleNameInput').value = '';
       });
+    }).catch(error => {
+      console.error('Failed to add schedule:', error);
+      alert('Could not save the schedule.');
     });
   });
 }

@@ -29,6 +29,7 @@ import {
   hasMinimumUnlockedTime,
   isScheduleMoreStrict
 } from './shared/scheduleRules.js';
+import { saveSchedulesWithPriority } from './shared/criticalScheduleStorage.js';
 import { updateButtonStates } from './passwordManager.js';
 import { createLocalizedButton } from './options/dom.js';
 import { debugLog } from './shared/logger.js';
@@ -113,7 +114,7 @@ function saveSchedule(scheduleState) {
 
       // Update the schedule in storage with the temporary state
       schedules[index] = { ...schedules[index], ...scheduleState.tempState };
-      chrome.storage.sync.set({ schedules }, () => {
+      saveSchedulesWithPriority(schedules).then(() => {
 
         updateAddWhitelistButtonState();
         const scheduleStates = schedules.map((schedule, idx) => new ScheduleState(idx, schedule));
@@ -134,7 +135,10 @@ function saveSchedule(scheduleState) {
         });
 
         updateButtonStates();
-    });
+      }).catch(error => {
+        console.error('Failed to save schedules:', error);
+        alert('Could not save the schedule.');
+      });
     }
   });
 }
