@@ -10,6 +10,7 @@
     DEFAULT_CONTEXT_LENGTH
   } = contentBlocking.constants;
   const { blockPage } = contentBlocking.blocker;
+  const MAX_TRIGGER_HISTORY = 20;
 
   function extractContext(text, keyword, maxWords = DEFAULT_CONTEXT_WORDS, maxLength = DEFAULT_CONTEXT_LENGTH) {
     if (global.pageBlocked) return;
@@ -108,6 +109,27 @@
     chrome.runtime.sendMessage({ action: 'updateBadge', score: badgeText });
   }
 
+  function recordScoreTrigger(operation, value, keyword, contextText, scoreAfter) {
+    const diagnostics = global.blockDiagnostics || {
+      triggers: [],
+      blockedAt: null,
+      finalScore: 0
+    };
+
+    diagnostics.triggers.push({
+      keyword,
+      operation,
+      value,
+      contextText: contextText || '',
+      scoreAfter,
+      matchedAt: new Date().toISOString()
+    });
+
+    diagnostics.triggers = diagnostics.triggers.slice(-MAX_TRIGGER_HISTORY);
+    diagnostics.finalScore = scoreAfter;
+    global.blockDiagnostics = diagnostics;
+  }
+
   function calculateScore(operation, value, keyword, contextText) {
     if (global.pageBlocked) return;
     if (operation === '*') {
@@ -115,8 +137,10 @@
     } else if (operation === '+') {
       global.pageScore += value;
     }
+    recordScoreTrigger(operation, value, keyword, contextText, global.pageScore);
     updateBadgeScore();
     if (global.pageScore >= BLOCK_SCORE_THRESHOLD && !global.pageBlocked) {
+      global.blockDiagnostics.blockedAt = new Date().toISOString();
       blockPage();
     }
   }
@@ -147,6 +171,7 @@
     calculateScore,
     extractContext,
     observeMutations,
+    recordScoreTrigger,
     scanTextNodes,
     updateBadgeScore
   };

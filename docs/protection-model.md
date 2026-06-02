@@ -189,3 +189,5 @@ The collector summarizes:
 - Total element count and feed-like regions.
 
 This gives later features a common source for diagnostics, risk scoring, usage stats, and research-informed tuning.
+
+The second implementation slice is local trigger diagnostics for page blocking. DaD records recent keyword score contributions in page-local state and shows the latest trigger on the blocked overlay. This does not send data anywhere and does not change the blocking threshold.

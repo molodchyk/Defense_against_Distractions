@@ -29,6 +29,13 @@
     if (typeof global.blockedPageEventGuardsInstalled === 'undefined') {
       global.blockedPageEventGuardsInstalled = false;
     }
+    if (typeof global.blockDiagnostics === 'undefined') {
+      global.blockDiagnostics = {
+        triggers: [],
+        blockedAt: null,
+        finalScore: 0
+      };
+    }
   };
 
   global.DAD.resetPageState = function() {
@@ -36,6 +43,11 @@
     global.pageScore = 0;
     global.processedNodes.clear();
     global.parsedKeywords = [];
+    global.blockDiagnostics = {
+      triggers: [],
+      blockedAt: null,
+      finalScore: 0
+    };
     global.DAD.disconnectKeywordObserver();
     global.DAD.removeBlockedPageOverlay();
   };

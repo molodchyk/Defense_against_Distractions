@@ -43,7 +43,7 @@ Main page blocking is also split into ordered content-script modules:
 - `contentBlockingSiteCheck.js`: storage lookup, whitelist checks, matching website groups, and starting scans.
 - `content.js`: bootstrap, runtime message handling, and BFCache/pageshow reinitialization.
 
-Future blocking diagnostics should start near `contentBlockingKeywords.js` and `contentBlockingSiteCheck.js`, because those modules know which keyword or group caused risk to rise. Future intervention work should start near `contentBlockingBlocker.js` and `contentBlockingMedia.js`.
+Blocking diagnostics start in `contentBlockingKeywords.js`, where score contributions are recorded into local page state. `contentBlockingOverlay.js` can render a concise reason on the blocked overlay. Future diagnostic expansion should stay near `contentBlockingKeywords.js` and `contentBlockingSiteCheck.js`, because those modules know which keyword or group caused risk to rise. Future intervention work should start near `contentBlockingBlocker.js` and `contentBlockingMedia.js`.
 
 ## Future Protection Model
 

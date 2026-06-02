@@ -29,6 +29,7 @@
       'contentBlockedMessage',
       'This page contains restricted content and has been blocked for your protection.'
     );
+    const diagnostics = getBlockedPageDiagnostics();
 
     shadowRoot.innerHTML = `
       <style>
@@ -72,19 +73,77 @@
         p {
           margin: 0;
         }
+
+        .diagnostics {
+          margin-top: 18px;
+          padding-top: 14px;
+          border-top: 1px solid rgba(255, 255, 255, 0.22);
+          color: #f2f5f8;
+          font-size: 15px;
+          line-height: 1.45;
+          text-align: left;
+        }
+
+        .diagnostics strong {
+          color: #ffffff;
+        }
+
+        .context {
+          margin-top: 8px;
+          color: #d7e0e7;
+          overflow-wrap: anywhere;
+        }
       </style>
       <div class="block-screen">
         <div class="content">
           <h1></h1>
           <p></p>
+          <div class="diagnostics" hidden>
+            <div><strong>Triggered by:</strong> <span class="trigger"></span></div>
+            <div><strong>Score:</strong> <span class="score"></span></div>
+            <div class="context"></div>
+          </div>
         </div>
       </div>
     `;
 
     shadowRoot.querySelector('h1').textContent = title;
     shadowRoot.querySelector('p').textContent = message;
+    renderBlockedPageDiagnostics(shadowRoot, diagnostics);
 
     return overlay;
+  }
+
+  function getBlockedPageDiagnostics() {
+    const diagnostics = global.blockDiagnostics;
+    const triggers = Array.isArray(diagnostics?.triggers) ? diagnostics.triggers : [];
+    const latestTrigger = triggers.at(-1);
+
+    if (!latestTrigger) {
+      return null;
+    }
+
+    return {
+      keyword: latestTrigger.keyword,
+      operation: latestTrigger.operation,
+      value: latestTrigger.value,
+      contextText: latestTrigger.contextText,
+      finalScore: diagnostics.finalScore || global.pageScore || latestTrigger.scoreAfter
+    };
+  }
+
+  function renderBlockedPageDiagnostics(shadowRoot, diagnostics) {
+    if (!diagnostics) return;
+
+    const wrapper = shadowRoot.querySelector('.diagnostics');
+    const trigger = shadowRoot.querySelector('.trigger');
+    const score = shadowRoot.querySelector('.score');
+    const context = shadowRoot.querySelector('.context');
+
+    wrapper.hidden = false;
+    trigger.textContent = diagnostics.keyword || 'unknown';
+    score.textContent = `${Math.round(diagnostics.finalScore)} (${diagnostics.operation}${diagnostics.value})`;
+    context.textContent = diagnostics.contextText ? `Context: ${diagnostics.contextText}` : '';
   }
 
   function suppressBlockedPageEvent(event) {
