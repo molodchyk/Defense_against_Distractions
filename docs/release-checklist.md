@@ -21,16 +21,31 @@ Use this checklist before publishing a new extension release.
 
 - Load the extension zip or unpacked project in a Chromium-based browser.
 - Open the options page from the extension action.
+- Confirm the popup opens, matches the selected UI mode, and opens options from the compact top-right control.
+- Switch UI mode between light, dark, and system; confirm popup, options, blocked page, and UI picker follow it.
 - Add, edit, save, and delete a group.
 - Add websites and keywords to a group.
 - Add, edit, save, and delete a locked schedule.
 - Confirm active locked schedules disable restricted controls.
+- Confirm locked schedules preserve mission-critical protection while storage-heavy UI blocked rules still save or fail gracefully.
 - Add and delete a whitelisted website.
 - Set and delete an options-page password.
 - Confirm the password overlay appears when a password is set.
 - Visit a configured site and confirm matching keywords trigger blocking.
+- Confirm the blocked overlay stops or mutes page media and shows selectable diagnostic text.
 - Confirm whitelisted sites are not blocked.
+- Use a static page and a dynamic page to confirm page blocking still renders an overlay after navigation or reload warnings.
+- Use the UI element picker to hide one repeated control, outline matched controls, adjust match settings, save a rule, and delete it from options.
+- Confirm UI element rules sync live between popup/content picker/options without reloading the options page.
 - Test export and import.
+
+## Regression Targets
+
+- Google custom search pages with a blocked keyword should show the block overlay, not only freeze the page.
+- Gmail compose recipient blocking should remain resilient after reload/leave-page warnings and should not become Gmail-specific logic.
+- ChatGPT repeated controls should be hideable without hiding unrelated message text or whole panels unless the chosen target/ancestor settings say so.
+- The blocked overlay text should be selectable for copying diagnostics.
+- The generated extension zip must not include screenshots, promotional images, store listing text, docs, tests, or scripts.
 
 ## Store Assets
 

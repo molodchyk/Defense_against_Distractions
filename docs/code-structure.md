@@ -51,6 +51,8 @@ The emerging product model lives in `docs/protection-model.md`.
 
 The plan-based structure that should guide options-page and storage work lives in `docs/plans-architecture.md`.
 
+Release-hardening expectations live in `docs/release-readiness.md`.
+
 New protection features should avoid becoming one large content script again. Prefer dedicated modules for:
 
 - Signals.

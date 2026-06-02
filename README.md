@@ -51,7 +51,7 @@ Run `npm run package` to generate release archives in `dist/`:
 - `Defense_against_Distractions-vX.Y.Z-extension.zip` contains only the runtime extension files for loading or store upload.
 - `Defense_against_Distractions-vX.Y.Z-source.zip` contains the source tree, tests, docs, scripts, screenshots, and promotional assets.
 
-Run `npm run verify:release` after packaging to check that generated archives match the expected release shape.
+Run `npm run verify:release` after packaging to check that generated archives match the expected release shape. See [Release Readiness](docs/release-readiness.md) for the full automated and manual release gates.
 
 The `dist/` directory is generated output and is not the source of truth. If a file in `dist/source/` looks stale, rerun `npm run package` instead of editing the generated copy directly.
 
@@ -75,7 +75,7 @@ Store-facing assets live together:
 - `src/store-assets/screenshots/` contains Chrome Web Store screenshots.
 - `src/store-assets/store-listing/` contains plain text Chrome Web Store listing copy.
 
-Architecture notes live in `docs/`. The current future-facing product model is documented in [Protection Model](docs/protection-model.md), and the planned user-facing plan structure is documented in [Plans Architecture](docs/plans-architecture.md).
+Architecture and release notes live in `docs/`. The current future-facing product model is documented in [Protection Model](docs/protection-model.md), the planned user-facing plan structure is documented in [Plans Architecture](docs/plans-architecture.md), and release gates are documented in [Release Readiness](docs/release-readiness.md).
 
 ## Contributing
 

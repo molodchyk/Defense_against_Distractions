@@ -9,6 +9,8 @@ $manifestPath = Join-Path $projectRoot "manifest.json"
 $manifest = Get-Content -LiteralPath $manifestPath -Raw | ConvertFrom-Json
 $version = $manifest.version
 $releaseName = "Defense_against_Distractions-v$version"
+$packagePath = Join-Path $projectRoot "package.json"
+$packageJson = Get-Content -LiteralPath $packagePath -Raw | ConvertFrom-Json
 
 $distPath = Join-Path $projectRoot $OutputDirectory
 $extensionZipPath = Join-Path $distPath "$releaseName-extension.zip"
@@ -97,13 +99,47 @@ function Assert-ZipExcludesPrefix {
   Assert-Condition ($matches.Count -eq 0) "$ArchiveName should not contain $Prefix"
 }
 
+function Assert-ProjectFileExists {
+  param([string]$RelativePath)
+
+  $absolutePath = Join-Path $projectRoot $RelativePath
+  Assert-Condition (Test-Path -LiteralPath $absolutePath) "Project file does not exist: $RelativePath"
+}
+
+function Normalize-ZipPath {
+  param([string]$RelativePath)
+
+  return $RelativePath.Replace("\", "/")
+}
+
+Assert-Condition ($packageJson.version -eq $manifest.version) "package.json version does not match manifest.json version"
+
 $manifestIconPaths = @()
 $manifest.icons.PSObject.Properties | ForEach-Object { $manifestIconPaths += $_.Value }
 $manifest.action.default_icon.PSObject.Properties | ForEach-Object { $manifestIconPaths += $_.Value }
 
 foreach ($relativePath in ($manifestIconPaths | Select-Object -Unique)) {
-  $absolutePath = Join-Path $projectRoot $relativePath
-  Assert-Condition (Test-Path -LiteralPath $absolutePath) "Manifest icon path does not exist: $relativePath"
+  Assert-ProjectFileExists -RelativePath $relativePath
+}
+
+Assert-ProjectFileExists -RelativePath $manifest.action.default_popup
+Assert-ProjectFileExists -RelativePath $manifest.options_page
+Assert-ProjectFileExists -RelativePath $manifest.background.service_worker
+
+$manifestScriptPaths = @()
+foreach ($contentScript in $manifest.content_scripts) {
+  foreach ($scriptPath in $contentScript.js) {
+    $manifestScriptPaths += $scriptPath
+    Assert-ProjectFileExists -RelativePath $scriptPath
+  }
+}
+
+$webAccessibleResourcePaths = @()
+foreach ($resourceGroup in $manifest.web_accessible_resources) {
+  foreach ($resourcePath in $resourceGroup.resources) {
+    $webAccessibleResourcePaths += $resourcePath
+    Assert-ProjectFileExists -RelativePath $resourcePath
+  }
 }
 
 $extensionEntries = Get-ZipEntries -ZipPath $extensionZipPath
@@ -130,6 +166,10 @@ foreach ($prefix in @("_locales/", "src/css/", "src/js/")) {
   Assert-ZipContainsPrefix -Entries $extensionEntries -Prefix $prefix -ArchiveName "Extension archive"
 }
 
+foreach ($entry in (($manifestScriptPaths + $webAccessibleResourcePaths) | Select-Object -Unique)) {
+  Assert-ZipContains -Entries $extensionEntries -EntryName (Normalize-ZipPath -RelativePath $entry) -ArchiveName "Extension archive"
+}
+
 $forbiddenExtensionPrefixes = @(
   "docs/",
   "test/",
@@ -146,7 +186,11 @@ foreach ($prefix in $forbiddenExtensionPrefixes) {
 Assert-Condition (!($extensionEntries -contains "src/store-assets/icons/extension-icon-source.svg")) "Extension archive should not contain the source SVG icon"
 
 $requiredSourceEntries = @(
+  "ABOUT.md",
   "CHANGELOG.md",
+  "LICENSE.txt",
+  "manifest.json",
+  "package.json",
   "README.md",
   "scripts/package-extension.ps1",
   "scripts/verify-release.ps1",
@@ -169,6 +213,12 @@ Assert-Condition ($rootChangelog -eq $sourceChangelog) "Source archive CHANGELOG
 $storeListingPath = Join-Path $projectRoot "src\store-assets\store-listing\en.txt"
 $storeListing = Get-Content -LiteralPath $storeListingPath -Raw
 Assert-Condition ($storeListing -notmatch "[#*\[\]]") "Store listing should stay plain text, not Markdown-formatted text"
+
+$defaultLocale = $manifest.default_locale
+$defaultLocalePath = Join-Path $projectRoot "_locales\$defaultLocale\messages.json"
+Assert-Condition (Test-Path -LiteralPath $defaultLocalePath) "Default locale messages file is missing: _locales/$defaultLocale/messages.json"
+$defaultMessages = Get-Content -LiteralPath $defaultLocalePath -Raw | ConvertFrom-Json
+Assert-Condition ($null -ne $defaultMessages.description.message) "Default locale is missing description.message"
 
 Write-Output "Release verification passed for $releaseName"
 exit 0
