@@ -47,6 +47,22 @@ chrome.runtime.onMessage.addListener((message, sender) => {
       muteBlockedTab(tabId);
     }
   }
+
+  if (message.action === 'blockTopFrame') {
+    const tabId = sender.tab?.id;
+    if (tabId === undefined) {
+      return;
+    }
+
+    chrome.tabs.sendMessage(tabId, {
+      action: 'forceBlockPage',
+      diagnostics: message.diagnostics || null
+    }, { frameId: 0 }, () => {
+      if (chrome.runtime.lastError) {
+        console.error('Failed to request top-frame block:', chrome.runtime.lastError);
+      }
+    });
+  }
 });
 
 chrome.tabs.onUpdated.addListener((tabId, changeInfo) => {

@@ -35,6 +35,14 @@
       });
       sendResponse({ status: 'Element picker started' });
     }
+
+    if (message.action === 'forceBlockPage') {
+      global.DAD.ContentBlocking.blocker.blockPage({
+        fromTopFrameRequest: true,
+        diagnostics: message.diagnostics
+      });
+      sendResponse({ status: 'Top frame blocked' });
+    }
   });
 
   global.onpageshow = function(event) {

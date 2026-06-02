@@ -18,8 +18,35 @@
     }
   }
 
-  function blockPage() {
+  function isTopFrame() {
+    try {
+      return global.top === global.self;
+    } catch (error) {
+      return false;
+    }
+  }
+
+  function getBlockDiagnosticsSnapshot() {
+    return global.blockDiagnostics ? JSON.parse(JSON.stringify(global.blockDiagnostics)) : null;
+  }
+
+  function requestTopFrameBlock() {
+    sendRuntimeMessage({
+      action: 'blockTopFrame',
+      diagnostics: getBlockDiagnosticsSnapshot()
+    });
+  }
+
+  function blockPage(options = {}) {
     if (global.pageBlocked) return;
+
+    if (!options.fromTopFrameRequest && !isTopFrame()) {
+      requestTopFrameBlock();
+    }
+
+    if (options.diagnostics) {
+      global.blockDiagnostics = options.diagnostics;
+    }
 
     global.pageBlocked = true;
     global.DAD.disconnectKeywordObserver();
@@ -31,6 +58,7 @@
 
   contentBlocking.blocker = {
     blockPage,
+    requestTopFrameBlock,
     sendRuntimeMessage
   };
 })(window);
