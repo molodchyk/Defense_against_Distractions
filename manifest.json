@@ -14,6 +14,8 @@
     "default_popup": "src/popup.html",
     "default_icon": {
       "16": "src/assets/icons/extension-icon-16.png",
+      "32": "src/assets/icons/extension-icon-32.png",
+      "48": "src/assets/icons/extension-icon-48.png",
       "64": "src/assets/icons/extension-icon-64.png",
       "128": "src/assets/icons/extension-icon-128.png"
     }
@@ -55,6 +57,8 @@
   ],
   "icons": {
     "16": "src/assets/icons/extension-icon-16.png",
+    "32": "src/assets/icons/extension-icon-32.png",
+    "48": "src/assets/icons/extension-icon-48.png",
     "64": "src/assets/icons/extension-icon-64.png",
     "128": "src/assets/icons/extension-icon-128.png"
   }
