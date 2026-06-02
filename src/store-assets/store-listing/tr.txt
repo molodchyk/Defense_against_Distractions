@@ -1,0 +1,25 @@
+Defense Against Distractions, basit web sitesi engellemenin yeterli olmadığı durumlarda odaklanmanıza yardımcı olur.
+
+Çoğu odak eklentisi tüm web sitelerini engeller. Bu faydalıdır, ancak internet bundan daha karmaşıktır. Aynı site bir anda yararlı, başka bir anda dikkat dağıtıcı olabilir. Bir arama sayfası, sohbet aracı, forum, video sitesi veya AI asistanı gerçek çalışmayı destekleyebilir, ama aynı zamanda haberler, oyunlar, drama, videolar ve diğer dikkat tuzaklarına açılan bir kapı da olabilir.
+
+Defense Against Distractions size daha hassas kontrol sağlar.
+
+Yalnızca URL’ye göre engellemek yerine, sayfalarda görünen kelime ve ifadelere göre engelleyebilirsiniz. Web sitesi grupları oluşturun, anahtar kelimeler veya ifadeler ekleyin, puanlar atayın ve dikkat dağıtma skoru belirlediğiniz eşiği geçtiğinde eklentinin sayfayı engellemesine izin verin.
+
+Bunu çalışma oturumlarını, iş bloklarını, sınav hazırlığını, araştırma zamanını veya tarayıcının yararlı kalmasını ama bir sapmaya dönüşmemesini istediğiniz her durumda kullanabilirsiniz.
+
+Ana özellikler:
+
+Sayfaları anahtar kelimeler, ifadeler ve ağırlıklı skorlarla engelleyin.
+Farklı odak kurallarını web sitesi ve anahtar kelime grupları halinde düzenleyin.
+Kilitli programlar, whitelist, parola koruması, dışa/içe aktarma, UI modları ve UI öğesi gizleme ile kurulumu pratik tutun.
+
+Sürüm 1.5 yenilikleri:
+
+Açık, koyu ve sistem UI modları.
+Dikkat dağıtan sayfa kontrollerini gizlemek için popup tabanlı UI öğesi seçici.
+Medya durdurma veya sessize alma ve seçilebilir tanılama içeren geliştirilmiş engelleme overlay’i.
+Güncellenmiş store assets, paketleme, release checks ve proje yapısı.
+
+Defense Against Distractions açık kaynaklıdır:
+https://github.com/molodchyk/Defense_against_Distractions

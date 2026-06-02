@@ -1,47 +1,25 @@
-Defense Against Distractions helps you protect your attention when ordinary website blocking is not enough.
+Defense Against Distractions helps you stay focused when simple website blocking is not enough.
 
-It is very easy to distract yourself on the internet and procrastinate. There are thousands of video games to play, news stories to read, videos to watch, chats to continue, and feeds to refresh. Often this is exactly what we do when a project deadline or exam still feels far away.
+Most focus extensions block whole websites. That is useful, but the internet is messier than that. The same website can be helpful in one moment and distracting in another. A search page, chat tool, forum, video site, or AI assistant can support real work, but it can also become a doorway into news, games, drama, videos, and other attention traps.
 
-Many focus tools block websites by URL. That helps, but it cannot cover everything. A useful website can still become distracting depending on what you are doing there. For example, even on ChatGPT you could talk about news, video games, drama, or anything else when you do not feel like studying or working.
+Defense Against Distractions gives you more precise control.
 
-With this extension, you can block pages based on words and phrases that appear in their text. You create groups of websites and keywords. When a page reaches the configured distraction score, the extension blocks it.
+Instead of only blocking by URL, you can block pages based on the words and phrases that appear on them. Create groups of websites, add keywords or phrases, assign scores, and let the extension block the page when the distraction score crosses your configured threshold.
 
-Current features:
+You can use it to protect study sessions, work blocks, exam preparation, research time, or any situation where you want the browser to stay useful without becoming a detour.
 
-Block pages based on keywords, phrases, and weighted keyword scores.
-Organize websites and keywords into separate groups.
-Apply multiple groups to the same website.
-Use locked schedules to make focus rules harder to weaken during chosen time windows.
-Whitelist websites that should never be scanned.
-Protect the options page with a password.
-Hide distracting UI elements with a popup-based element picker.
-Export and import extension settings.
-Use light, dark, or system UI mode.
+Main features:
+
+Block pages by keywords, phrases, and weighted scores.
+Organize different focus rules into website and keyword groups.
+Use locked schedules, whitelists, password protection, export/import, UI modes, and UI element hiding to keep the setup practical.
+
+What is new in version 1.5:
+
+Light, dark, and system UI modes.
+Popup-based UI element picker for hiding distracting page controls.
+Improved blocked-page overlay with media stopping or muting and selectable diagnostics.
+Updated store assets, packaging, release checks, and project structure.
 
 Defense Against Distractions is open source:
-https://github.com/molodchyk/Defense_against_Distractions.
-
-Changelog
-
-Version 1.1:
-
--added export/import functionality
--added missing translations
--bug fix: ChatGPT's stream of text is now properly detected
-
-Version 1.2:
-
--websites from multiple groups can be applied to a single URL
--the page closes automatically after being blocked, timers were removed
-
-Version 1.3:
-
--keywords values can be increased during locked schedules
--keywords can be shuffled during locked schedules
--bug fix: keywords can be added again
-
-Version 1.4.1:
-
--increased storage for the website groups
--improved error handling regarding storage
--bug fix: redirection works as intended
+https://github.com/molodchyk/Defense_against_Distractions

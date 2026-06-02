@@ -36,7 +36,7 @@ function Get-ZipEntries {
 
   $zip = [System.IO.Compression.ZipFile]::OpenRead($ZipPath)
   try {
-    return @($zip.Entries | ForEach-Object { $_.FullName })
+    return @($zip.Entries | ForEach-Object { $_.FullName.Replace("\", "/") })
   }
   finally {
     $zip.Dispose()
@@ -232,9 +232,16 @@ $rootChangelog = Get-Content -LiteralPath (Join-Path $projectRoot "CHANGELOG.md"
 $sourceChangelog = Get-ZipTextEntry -ZipPath $sourceZipPath -EntryName "CHANGELOG.md"
 Assert-Condition ($rootChangelog -eq $sourceChangelog) "Source archive CHANGELOG.md does not match the root CHANGELOG.md"
 
-$storeListingPath = Join-Path $projectRoot "src\store-assets\store-listing\en.txt"
-$storeListing = Get-Content -LiteralPath $storeListingPath -Raw
-Assert-Condition ($storeListing -notmatch "[#*\[\]]") "Store listing should stay plain text, not Markdown-formatted text"
+$storeListingRoot = Join-Path $projectRoot "src\store-assets\store-listing"
+$localeDirectories = Get-ChildItem -LiteralPath (Join-Path $projectRoot "_locales") -Directory
+foreach ($localeDirectory in $localeDirectories) {
+  $localeListingPath = Join-Path $storeListingRoot "$($localeDirectory.Name).txt"
+  Assert-Condition (Test-Path -LiteralPath $localeListingPath) "Missing store listing for locale: $($localeDirectory.Name)"
+
+  $storeListing = Get-Content -LiteralPath $localeListingPath -Raw
+  Assert-Condition ($storeListing -notmatch "[#*\[\]]") "Store listing should stay plain text, not Markdown-formatted text: $($localeDirectory.Name).txt"
+  Assert-Condition ($storeListing -match "https://github.com/molodchyk/Defense_against_Distractions") "Store listing is missing project URL: $($localeDirectory.Name).txt"
+}
 
 foreach ($screenshotPath in Get-ChildItem -LiteralPath (Join-Path $projectRoot "src\store-assets\screenshots") -Filter "*.png") {
   $relativeScreenshotPath = "src/store-assets/screenshots/$($screenshotPath.Name)"

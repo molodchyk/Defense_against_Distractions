@@ -1,0 +1,25 @@
+Defense Against Distractions giúp bạn giữ tập trung khi việc chặn website đơn giản là chưa đủ.
+
+Hầu hết tiện ích tập trung chặn toàn bộ website. Điều đó hữu ích, nhưng internet phức tạp hơn vậy. Cùng một website có thể hữu ích ở một thời điểm và gây xao nhãng ở thời điểm khác. Trang tìm kiếm, công cụ chat, diễn đàn, trang video hoặc trợ lý AI có thể hỗ trợ công việc thật sự, nhưng cũng có thể trở thành lối vào tin tức, game, drama, video và các bẫy chú ý khác.
+
+Defense Against Distractions cho bạn quyền kiểm soát chính xác hơn.
+
+Thay vì chỉ chặn theo URL, bạn có thể chặn trang dựa trên các từ và cụm từ xuất hiện trên đó. Tạo nhóm website, thêm từ khóa hoặc cụm từ, gán điểm, và để tiện ích chặn trang khi điểm xao nhãng vượt qua ngưỡng bạn đã đặt.
+
+Bạn có thể dùng nó để bảo vệ phiên học, khối thời gian làm việc, ôn thi, thời gian nghiên cứu hoặc bất kỳ tình huống nào bạn muốn trình duyệt vẫn hữu ích mà không trở thành đường vòng.
+
+Tính năng chính:
+
+Chặn trang theo từ khóa, cụm từ và điểm có trọng số.
+Tổ chức các quy tắc tập trung khác nhau thành nhóm website và từ khóa.
+Sử dụng lịch khóa, whitelist, bảo vệ bằng mật khẩu, export/import, chế độ UI và ẩn phần tử UI để giữ cấu hình thực tế.
+
+Điểm mới trong phiên bản 1.5:
+
+Chế độ UI sáng, tối và theo hệ thống.
+Bộ chọn phần tử UI từ popup để ẩn các điều khiển gây xao nhãng trên trang.
+Overlay chặn trang được cải thiện với dừng hoặc tắt tiếng media và chẩn đoán có thể chọn.
+Store assets, đóng gói, kiểm tra phát hành và cấu trúc dự án được cập nhật.
+
+Defense Against Distractions là mã nguồn mở:
+https://github.com/molodchyk/Defense_against_Distractions

@@ -1,0 +1,25 @@
+Defense Against Distractions te ajută să rămâi concentrat atunci când blocarea simplă a site-urilor nu este suficientă.
+
+Majoritatea extensiilor de focus blochează site-uri întregi. Este util, dar internetul este mai complicat. Același site poate fi util într-un moment și distractiv în altul. O pagină de căutare, un instrument de chat, un forum, un site video sau un asistent AI pot susține munca reală, dar pot deveni și o poartă către știri, jocuri, dramă, videoclipuri și alte capcane ale atenției.
+
+Defense Against Distractions îți oferă control mai precis.
+
+În loc să blochezi doar după URL, poți bloca pagini pe baza cuvintelor și expresiilor care apar pe ele. Creează grupuri de site-uri, adaugă cuvinte-cheie sau expresii, atribuie scoruri și lasă extensia să blocheze pagina când scorul de distragere trece pragul configurat.
+
+O poți folosi pentru sesiuni de studiu, blocuri de lucru, pregătire pentru examene, timp de cercetare sau orice situație în care vrei ca browserul să rămână util fără să devină o abatere.
+
+Funcții principale:
+
+Blochează pagini după cuvinte-cheie, expresii și scoruri ponderate.
+Organizează reguli diferite de focus în grupuri de site-uri și cuvinte-cheie.
+Folosește programe blocate, whitelists, protecție cu parolă, export/import, moduri UI și ascunderea elementelor UI pentru a păstra configurarea practică.
+
+Ce este nou în versiunea 1.5:
+
+Moduri UI luminos, întunecat și sistem.
+Selector de elemente UI din popup pentru ascunderea controalelor de pagină care distrag.
+Overlay de blocare îmbunătățit cu oprirea sau dezactivarea sunetului media și diagnostice selectabile.
+Store assets, împachetare, verificări de release și structură de proiect actualizate.
+
+Defense Against Distractions este open source:
+https://github.com/molodchyk/Defense_against_Distractions

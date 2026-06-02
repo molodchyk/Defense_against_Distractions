@@ -1,0 +1,25 @@
+Defense Against Distractions auttaa pysymään keskittyneenä, kun pelkkä verkkosivujen estäminen ei riitä.
+
+Useimmat keskittymistä tukevat laajennukset estävät kokonaisia sivustoja. Se on hyödyllistä, mutta internet on monimutkaisempi. Sama sivusto voi olla yhdessä hetkessä hyödyllinen ja toisessa häiritsevä. Hakusivu, chat-työkalu, foorumi, videosivusto tai tekoälyavustaja voi tukea oikeaa työtä, mutta siitä voi myös tulla portti uutisiin, peleihin, draamaan, videoihin ja muihin huomion ansoihin.
+
+Defense Against Distractions antaa tarkemman hallinnan.
+
+Sen sijaan että estäisit vain URL-osoitteen perusteella, voit estää sivuja niillä esiintyvien sanojen ja lauseiden mukaan. Luo verkkosivustoryhmiä, lisää avainsanoja tai lauseita, määritä pisteitä ja anna laajennuksen estää sivu, kun häiriöpisteet ylittävät määrittämäsi rajan.
+
+Voit käyttää sitä opiskeluun, työjaksoihin, tentteihin valmistautumiseen, tutkimusaikaan tai mihin tahansa tilanteeseen, jossa haluat selaimen pysyvän hyödyllisenä ilman että siitä tulee harhapolku.
+
+Pääominaisuudet:
+
+Estä sivuja avainsanojen, lauseiden ja painotettujen pisteiden perusteella.
+Järjestä eri keskittymissäännöt verkkosivusto- ja avainsanaryhmiin.
+Käytä lukittuja aikatauluja, sallittujen listoja, salasanasuojausta, vientiä/tuontia, käyttöliittymätiloja ja UI-elementtien piilotusta, jotta asetukset pysyvät käytännöllisinä.
+
+Uutta versiossa 1.5:
+
+Vaalea, tumma ja järjestelmän mukainen käyttöliittymätila.
+Popup-pohjainen UI-elementtien valitsin häiritsevien sivukontrollien piilottamiseen.
+Parannettu esto-overlay, joka pysäyttää tai mykistää median ja tarjoaa valittavat diagnostiikkatiedot.
+Päivitetyt store assets, paketointi, julkaisun tarkistukset ja projektirakenne.
+
+Defense Against Distractions on avointa lähdekoodia:
+https://github.com/molodchyk/Defense_against_Distractions

@@ -1,0 +1,25 @@
+Defense Against Distractions vám pomáha zostať sústredení, keď jednoduché blokovanie webov nestačí.
+
+Väčšina rozšírení na sústredenie blokuje celé weby. Je to užitočné, ale internet je zložitejší. Ten istý web môže byť v jednej chvíli užitočný a v druhej rušivý. Vyhľadávacia stránka, chatovací nástroj, fórum, video web alebo AI asistent môžu podporovať skutočnú prácu, ale môžu sa stať aj bránou k správam, hrám, dráme, videám a ďalším pasciam pozornosti.
+
+Defense Against Distractions vám dáva presnejšiu kontrolu.
+
+Namiesto blokovania iba podľa URL môžete blokovať stránky podľa slov a fráz, ktoré sa na nich objavujú. Vytvorte skupiny webov, pridajte kľúčové slová alebo frázy, priraďte skóre a nechajte rozšírenie zablokovať stránku, keď skóre rozptýlenia prekročí nastavený prah.
+
+Môžete ho použiť na ochranu štúdia, pracovných blokov, prípravy na skúšky, výskumného času alebo akejkoľvek situácie, keď chcete, aby prehliadač zostal užitočný bez toho, aby sa stal obchádzkou.
+
+Hlavné funkcie:
+
+Blokovanie stránok podľa kľúčových slov, fráz a vážených skóre.
+Organizovanie rôznych pravidiel sústredenia do skupín webov a kľúčových slov.
+Používanie uzamknutých plánov, whitelistov, ochrany heslom, exportu/importu, režimov UI a skrývania prvkov UI, aby nastavenie zostalo praktické.
+
+Novinky vo verzii 1.5:
+
+Svetlý, tmavý a systémový režim UI.
+Popupový výber prvkov UI na skrytie rušivých ovládacích prvkov stránky.
+Vylepšený blokovací overlay so zastavením alebo stlmením médií a označiteľnou diagnostikou.
+Aktualizované store assets, balenie, kontroly vydania a štruktúra projektu.
+
+Defense Against Distractions je open source:
+https://github.com/molodchyk/Defense_against_Distractions

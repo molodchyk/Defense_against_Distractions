@@ -1,0 +1,25 @@
+Defense Against Distractions membantu anda kekal fokus apabila sekatan laman web biasa tidak mencukupi.
+
+Kebanyakan sambungan fokus menyekat keseluruhan laman web. Itu berguna, tetapi internet lebih rumit daripada itu. Laman yang sama boleh membantu pada satu masa dan mengganggu pada masa lain. Halaman carian, alat chat, forum, laman video atau pembantu AI boleh menyokong kerja sebenar, tetapi juga boleh menjadi pintu kepada berita, permainan, drama, video dan perangkap perhatian lain.
+
+Defense Against Distractions memberi anda kawalan yang lebih tepat.
+
+Daripada hanya menyekat berdasarkan URL, anda boleh menyekat halaman berdasarkan perkataan dan frasa yang muncul padanya. Cipta kumpulan laman web, tambah kata kunci atau frasa, berikan skor, dan biarkan sambungan menyekat halaman apabila skor gangguan melepasi ambang yang ditetapkan.
+
+Anda boleh menggunakannya untuk melindungi sesi belajar, blok kerja, persediaan peperiksaan, masa penyelidikan atau apa-apa situasi di mana anda mahu pelayar kekal berguna tanpa menjadi lencongan.
+
+Ciri utama:
+
+Sekat halaman berdasarkan kata kunci, frasa dan skor berwajaran.
+Susun peraturan fokus yang berbeza ke dalam kumpulan laman web dan kata kunci.
+Gunakan jadual berkunci, whitelist, perlindungan kata laluan, eksport/import, mod UI dan penyembunyian elemen UI supaya tetapan kekal praktikal.
+
+Apa yang baharu dalam versi 1.5:
+
+Mod UI terang, gelap dan sistem.
+Pemilih elemen UI berasaskan popup untuk menyembunyikan kawalan halaman yang mengganggu.
+Overlay halaman disekat yang dipertingkat dengan hentian atau senyapan media dan diagnostik boleh dipilih.
+Store assets, pembungkusan, semakan keluaran dan struktur projek dikemas kini.
+
+Defense Against Distractions ialah sumber terbuka:
+https://github.com/molodchyk/Defense_against_Distractions

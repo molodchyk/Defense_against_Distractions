@@ -1,0 +1,25 @@
+Defense Against Distractions helpt je gefocust te blijven wanneer eenvoudig websites blokkeren niet genoeg is.
+
+De meeste focus-extensies blokkeren hele websites. Dat is nuttig, maar het internet is rommeliger dan dat. Dezelfde website kan op het ene moment nuttig zijn en op een ander moment afleiden. Een zoekpagina, chattool, forum, videosite of AI-assistent kan echt werk ondersteunen, maar kan ook een ingang worden naar nieuws, games, drama, video’s en andere aandachtvallen.
+
+Defense Against Distractions geeft je nauwkeurigere controle.
+
+In plaats van alleen op URL te blokkeren, kun je pagina’s blokkeren op basis van de woorden en zinnen die erop verschijnen. Maak groepen van websites, voeg trefwoorden of zinnen toe, geef scores en laat de extensie de pagina blokkeren wanneer de afleidingsscore je ingestelde drempel overschrijdt.
+
+Je kunt het gebruiken om studiesessies, werkblokken, examenvoorbereiding, onderzoekstijd of elke situatie te beschermen waarin je wilt dat de browser nuttig blijft zonder een omweg te worden.
+
+Belangrijkste functies:
+
+Blokkeer pagina’s op trefwoorden, zinnen en gewogen scores.
+Organiseer verschillende focusregels in website- en trefwoordgroepen.
+Gebruik vergrendelde schema’s, whitelists, wachtwoordbeveiliging, export/import, UI-modi en het verbergen van UI-elementen om de setup praktisch te houden.
+
+Nieuw in versie 1.5:
+
+Lichte, donkere en systeem UI-modus.
+Popup-gebaseerde UI-elementkiezer om afleidende paginabediening te verbergen.
+Verbeterde blokkeer-overlay met stoppen of dempen van media en selecteerbare diagnostiek.
+Bijgewerkte store assets, packaging, release checks en projectstructuur.
+
+Defense Against Distractions is open source:
+https://github.com/molodchyk/Defense_against_Distractions

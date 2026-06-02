@@ -1,0 +1,25 @@
+Defense Against Distractions pomaga zachować skupienie, gdy proste blokowanie stron internetowych nie wystarcza.
+
+Większość rozszerzeń do skupienia blokuje całe witryny. To przydatne, ale internet jest bardziej złożony. Ta sama strona może w jednej chwili pomagać, a w innej rozpraszać. Strona wyszukiwania, narzędzie czatu, forum, serwis wideo lub asystent AI mogą wspierać prawdziwą pracę, ale mogą też stać się wejściem do wiadomości, gier, dram, filmów i innych pułapek uwagi.
+
+Defense Against Distractions daje bardziej precyzyjną kontrolę.
+
+Zamiast blokować tylko według URL, możesz blokować strony na podstawie słów i fraz, które się na nich pojawiają. Twórz grupy stron, dodawaj słowa kluczowe lub frazy, przypisuj im wyniki i pozwól rozszerzeniu zablokować stronę, gdy wynik rozproszenia przekroczy ustawiony próg.
+
+Możesz używać go do ochrony sesji nauki, bloków pracy, przygotowania do egzaminów, czasu badawczego lub każdej sytuacji, w której przeglądarka ma pozostać użyteczna bez stawania się objazdem.
+
+Główne funkcje:
+
+Blokowanie stron według słów kluczowych, fraz i ważonych wyników.
+Organizowanie różnych zasad skupienia w grupy stron i słów kluczowych.
+Używanie zablokowanych harmonogramów, whitelist, ochrony hasłem, eksportu/importu, trybów UI i ukrywania elementów UI, aby konfiguracja była praktyczna.
+
+Nowości w wersji 1.5:
+
+Jasny, ciemny i systemowy tryb UI.
+Popupowy wybór elementów UI do ukrywania rozpraszających kontrolek strony.
+Ulepszona nakładka blokowania z zatrzymywaniem lub wyciszaniem multimediów i zaznaczalną diagnostyką.
+Zaktualizowane store assets, pakowanie, kontrole wydania i struktura projektu.
+
+Defense Against Distractions jest open source:
+https://github.com/molodchyk/Defense_against_Distractions

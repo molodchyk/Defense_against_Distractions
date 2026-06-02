@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
-export const RELEASE_BACKUP_NOTICE_VERSION = '1.4.1';
+export const RELEASE_BACKUP_NOTICE_VERSION = '1.5.0';
 export const RELEASE_BACKUP_NOTICE_SEEN_KEY = `releaseBackupNoticeSeen.${RELEASE_BACKUP_NOTICE_VERSION}`;
 export const RELEASE_BACKUP_NOTICE_ELIGIBLE_KEY = `releaseBackupNoticeEligible.${RELEASE_BACKUP_NOTICE_VERSION}`;
 

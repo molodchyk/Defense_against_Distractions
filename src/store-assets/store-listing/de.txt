@@ -1,0 +1,25 @@
+Defense Against Distractions hilft dir, fokussiert zu bleiben, wenn einfaches Website-Blocking nicht ausreicht.
+
+Die meisten Fokus-Erweiterungen blockieren ganze Websites. Das ist hilfreich, aber das Internet ist komplizierter. Dieselbe Website kann in einem Moment nützlich und im nächsten ablenkend sein. Eine Suchseite, ein Chat-Tool, ein Forum, eine Videoseite oder ein KI-Assistent kann echte Arbeit unterstützen, aber auch zum Einstieg in Nachrichten, Spiele, Drama, Videos und andere Aufmerksamkeitsfallen werden.
+
+Defense Against Distractions gibt dir präzisere Kontrolle.
+
+Statt nur nach URL zu blockieren, kannst du Seiten anhand der Wörter und Phrasen blockieren, die auf ihnen erscheinen. Erstelle Gruppen von Websites, füge Schlüsselwörter oder Phrasen hinzu, vergebe Punkte und lasse die Erweiterung die Seite blockieren, sobald der Ablenkungsscore deinen festgelegten Grenzwert überschreitet.
+
+Du kannst es für Lerneinheiten, Arbeitsblöcke, Prüfungsvorbereitung, Recherchezeit oder jede Situation nutzen, in der der Browser nützlich bleiben soll, ohne zum Umweg zu werden.
+
+Hauptfunktionen:
+
+Seiten nach Schlüsselwörtern, Phrasen und gewichteten Scores blockieren.
+Verschiedene Fokusregeln in Website- und Schlüsselwortgruppen organisieren.
+Gesperrte Zeitpläne, Whitelists, Passwortschutz, Export/Import, UI-Modi und das Ausblenden von UI-Elementen nutzen, damit die Einrichtung praktisch bleibt.
+
+Neu in Version 1.5:
+
+Heller, dunkler und systembasierter UI-Modus.
+Popup-basierter UI-Element-Picker zum Ausblenden ablenkender Seitensteuerungen.
+Verbesserte Blockier-Overlay mit Stoppen oder Stummschalten von Medien und auswählbarer Diagnose.
+Aktualisierte Store-Assets, Paketierung, Release-Prüfungen und Projektstruktur.
+
+Defense Against Distractions ist Open Source:
+https://github.com/molodchyk/Defense_against_Distractions

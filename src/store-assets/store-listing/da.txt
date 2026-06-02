@@ -1,0 +1,25 @@
+Defense Against Distractions hjælper dig med at holde fokus, når simpel hjemmesideblokering ikke er nok.
+
+De fleste fokusudvidelser blokerer hele websites. Det er nyttigt, men internettet er mere rodet end det. Det samme website kan være hjælpsomt i ét øjeblik og distraherende i et andet. En søgeside, et chatværktøj, et forum, et videosite eller en AI-assistent kan støtte rigtigt arbejde, men kan også blive en vej ind i nyheder, spil, drama, videoer og andre opmærksomhedsfælder.
+
+Defense Against Distractions giver dig mere præcis kontrol.
+
+I stedet for kun at blokere efter URL kan du blokere sider ud fra de ord og sætninger, der vises på dem. Opret grupper af websites, tilføj nøgleord eller sætninger, tildel scorer, og lad udvidelsen blokere siden, når distraktionsscoren passerer din valgte grænse.
+
+Du kan bruge den til at beskytte studieperioder, arbejdsblokke, eksamensforberedelse, researchtid eller enhver situation, hvor browseren skal forblive nyttig uden at blive en omvej.
+
+Hovedfunktioner:
+
+Bloker sider efter nøgleord, sætninger og vægtede scorer.
+Organiser forskellige fokusregler i website- og nøgleordsgrupper.
+Brug låste tidsplaner, whitelists, adgangskodebeskyttelse, eksport/import, UI-tilstande og skjulning af UI-elementer for at holde opsætningen praktisk.
+
+Nyt i version 1.5:
+
+Lys, mørk og systembaseret UI-tilstand.
+Popup-baseret UI-elementvælger til at skjule distraherende sidekontroller.
+Forbedret blokeringslag med stop eller dæmpning af medier og markerbar diagnostik.
+Opdaterede store assets, pakning, release checks og projektstruktur.
+
+Defense Against Distractions er open source:
+https://github.com/molodchyk/Defense_against_Distractions

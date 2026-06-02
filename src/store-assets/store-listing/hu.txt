@@ -1,0 +1,25 @@
+A Defense Against Distractions segít fókuszban maradni, amikor az egyszerű webhelyblokkolás már nem elég.
+
+A legtöbb fókuszáló bővítmény teljes webhelyeket blokkol. Ez hasznos, de az internet ennél bonyolultabb. Ugyanaz a webhely az egyik pillanatban hasznos, a másikban zavaró lehet. Egy keresőoldal, csevegőeszköz, fórum, videóoldal vagy AI-asszisztens támogathatja a valódi munkát, de átjáróvá is válhat hírekhez, játékokhoz, drámához, videókhoz és más figyelemcsapdákhoz.
+
+A Defense Against Distractions pontosabb irányítást ad.
+
+Nemcsak URL alapján blokkolhatsz, hanem a lapokon megjelenő szavak és kifejezések alapján is. Hozz létre webhelygyűjteményeket, adj hozzá kulcsszavakat vagy kifejezéseket, rendelj hozzájuk pontszámokat, és a bővítmény blokkolja az oldalt, amikor a zavarási pontszám átlépi a beállított küszöböt.
+
+Használhatod tanuláshoz, munkablokkokhoz, vizsgafelkészüléshez, kutatási időhöz vagy bármilyen helyzethez, amikor azt szeretnéd, hogy a böngésző hasznos maradjon, ne pedig kerülőút legyen.
+
+Fő funkciók:
+
+Oldalak blokkolása kulcsszavak, kifejezések és súlyozott pontszámok alapján.
+Különböző fókuszszabályok rendezése webhely- és kulcsszócsoportokba.
+Zárolt ütemezések, whitelistek, jelszóvédelem, export/import, UI módok és UI elemek elrejtése a praktikus beállításért.
+
+Újdonságok az 1.5-ös verzióban:
+
+Világos, sötét és rendszer szerinti UI mód.
+Popup-alapú UI elemválasztó a zavaró oldalelemek elrejtéséhez.
+Javított blokkoló overlay média leállításával vagy némításával és kijelölhető diagnosztikával.
+Frissített store assets, csomagolás, kiadási ellenőrzések és projektstruktúra.
+
+A Defense Against Distractions nyílt forráskódú:
+https://github.com/molodchyk/Defense_against_Distractions

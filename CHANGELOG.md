@@ -1,5 +1,14 @@
 Changelog
 
+Version 1.5.0:
+
+- added light, dark, and system UI modes
+- added a popup-based UI element picker for hiding distracting page controls
+- improved blocked-page behavior with overlay blocking, media muting, selectable diagnostics, and UI mode syncing
+- added one-time backup notice for existing users before larger future changes
+- refreshed store assets, release packaging, and release verification checks
+- reorganized project assets and documentation for release readiness
+
 Version 1.4:
 
 - increased storage for the website groups

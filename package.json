@@ -1,11 +1,11 @@
 {
   "name": "defense-against-distractions",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "private": true,
   "type": "module",
   "scripts": {
-    "package": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/package-extension.ps1",
-    "verify:release": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/verify-release.ps1",
+    "package": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/package-extension.ps1",
+    "verify:release": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/verify-release.ps1",
     "test": "node --test test/*.test.js"
   }
 }

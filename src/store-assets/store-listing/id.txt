@@ -1,0 +1,25 @@
+Defense Against Distractions membantu Anda tetap fokus saat pemblokiran situs web sederhana tidak cukup.
+
+Sebagian besar ekstensi fokus memblokir seluruh situs web. Itu berguna, tetapi internet lebih rumit dari itu. Situs yang sama bisa membantu pada satu waktu dan mengganggu pada waktu lain. Halaman pencarian, alat chat, forum, situs video, atau asisten AI bisa mendukung pekerjaan nyata, tetapi juga bisa menjadi pintu menuju berita, game, drama, video, dan jebakan perhatian lainnya.
+
+Defense Against Distractions memberi Anda kontrol yang lebih tepat.
+
+Alih-alih hanya memblokir berdasarkan URL, Anda dapat memblokir halaman berdasarkan kata dan frasa yang muncul di dalamnya. Buat grup situs web, tambahkan kata kunci atau frasa, tetapkan skor, dan biarkan ekstensi memblokir halaman ketika skor distraksi melewati ambang yang Anda atur.
+
+Anda dapat menggunakannya untuk melindungi sesi belajar, blok kerja, persiapan ujian, waktu riset, atau situasi apa pun ketika Anda ingin browser tetap berguna tanpa menjadi jalan memutar.
+
+Fitur utama:
+
+Blokir halaman berdasarkan kata kunci, frasa, dan skor berbobot.
+Atur berbagai aturan fokus ke dalam grup situs web dan kata kunci.
+Gunakan jadwal terkunci, whitelist, perlindungan kata sandi, ekspor/impor, mode UI, dan penyembunyian elemen UI agar pengaturan tetap praktis.
+
+Yang baru di versi 1.5:
+
+Mode UI terang, gelap, dan sistem.
+Pemilih elemen UI berbasis popup untuk menyembunyikan kontrol halaman yang mengganggu.
+Overlay halaman terblokir yang ditingkatkan dengan penghentian atau pembisuan media dan diagnostik yang dapat dipilih.
+Store assets, packaging, release checks, dan struktur proyek yang diperbarui.
+
+Defense Against Distractions bersifat open source:
+https://github.com/molodchyk/Defense_against_Distractions

@@ -1,0 +1,25 @@
+Defense Against Distractions ajuda você a manter o foco quando o bloqueio simples de sites não é suficiente.
+
+A maioria das extensões de foco bloqueia sites inteiros. Isso ajuda, mas a internet é mais complexa. O mesmo site pode ser útil em um momento e distração em outro. Uma página de busca, ferramenta de chat, fórum, site de vídeos ou assistente de IA pode apoiar trabalho real, mas também pode virar uma porta para notícias, jogos, drama, vídeos e outras armadilhas de atenção.
+
+Defense Against Distractions oferece controle mais preciso.
+
+Em vez de bloquear apenas por URL, você pode bloquear páginas com base nas palavras e frases que aparecem nelas. Crie grupos de sites, adicione palavras-chave ou frases, atribua pontuações e deixe a extensão bloquear a página quando a pontuação de distração ultrapassar o limite configurado.
+
+Você pode usá-la para proteger sessões de estudo, blocos de trabalho, preparação para provas, tempo de pesquisa ou qualquer situação em que queira que o navegador continue útil sem virar um desvio.
+
+Principais recursos:
+
+Bloqueie páginas por palavras-chave, frases e pontuações ponderadas.
+Organize diferentes regras de foco em grupos de sites e palavras-chave.
+Use horários bloqueados, whitelists, proteção por senha, exportação/importação, modos de UI e ocultação de elementos de UI para manter a configuração prática.
+
+Novidades da versão 1.5:
+
+Modos de UI claro, escuro e do sistema.
+Seletor de elementos de UI baseado no popup para ocultar controles de página que distraem.
+Overlay de bloqueio aprimorado com parada ou silenciamento de mídia e diagnósticos selecionáveis.
+Store assets, empacotamento, verificações de lançamento e estrutura do projeto atualizados.
+
+Defense Against Distractions é open source:
+https://github.com/molodchyk/Defense_against_Distractions

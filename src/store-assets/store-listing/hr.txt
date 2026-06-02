@@ -1,0 +1,25 @@
+Defense Against Distractions pomaže vam ostati usredotočeni kada jednostavno blokiranje web stranica nije dovoljno.
+
+Većina proširenja za fokus blokira cijele web stranice. To je korisno, ali internet je složeniji. Ista stranica može u jednom trenutku biti korisna, a u drugom ometajuća. Stranica za pretraživanje, chat alat, forum, video stranica ili AI asistent mogu podržati stvaran rad, ali mogu postati i ulaz u vijesti, igre, dramu, videozapise i druge zamke za pažnju.
+
+Defense Against Distractions daje vam precizniju kontrolu.
+
+Umjesto blokiranja samo po URL-u, možete blokirati stranice prema riječima i frazama koje se na njima pojavljuju. Stvorite grupe web stranica, dodajte ključne riječi ili fraze, dodijelite im bodove i dopustite proširenju da blokira stranicu kada rezultat ometanja prijeđe zadani prag.
+
+Možete ga koristiti za zaštitu učenja, radnih blokova, pripreme za ispite, vremena za istraživanje ili bilo koje situacije u kojoj želite da preglednik ostane koristan bez pretvaranja u zaobilaznicu.
+
+Glavne značajke:
+
+Blokiranje stranica prema ključnim riječima, frazama i ponderiranim rezultatima.
+Organiziranje različitih pravila fokusa u grupe web stranica i ključnih riječi.
+Korištenje zaključanih rasporeda, whitelistova, zaštite lozinkom, izvoza/uvoza, UI načina i skrivanja UI elemenata kako bi postavke ostale praktične.
+
+Novo u verziji 1.5:
+
+Svijetli, tamni i sistemski UI način.
+Popup UI element picker za skrivanje ometajućih kontrola na stranici.
+Poboljšani blokirajući overlay sa zaustavljanjem ili stišavanjem medija i označivom dijagnostikom.
+Ažurirani store assets, pakiranje, provjere izdanja i struktura projekta.
+
+Defense Against Distractions je otvorenog koda:
+https://github.com/molodchyk/Defense_against_Distractions
