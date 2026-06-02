@@ -9,9 +9,11 @@
       <stop offset="1" stop-color="#b9d8ea"/>
     </linearGradient>
   </defs>
-  <path fill="url(#shield)" d="M64 8 106 23v34c0 31-17 55-42 65-25-10-42-34-42-65V23L64 8Z"/>
-  <path fill="none" stroke="#e7f2f9" stroke-opacity=".55" stroke-width="5" d="M64 15 98 27v29c0 25-13 45-34 55-21-10-34-30-34-55V27l34-12Z"/>
-  <circle cx="64" cy="58" r="25" fill="none" stroke="url(#ring)" stroke-width="10"/>
-  <circle cx="64" cy="58" r="12" fill="#d8edf8"/>
-  <path fill="none" stroke="#ffbf47" stroke-linecap="round" stroke-width="12" d="M88 34 46 92"/>
+  <g transform="translate(64 64) scale(.9) translate(-64 -64)">
+    <path fill="url(#shield)" d="M64 8 106 23v34c0 31-17 55-42 65-25-10-42-34-42-65V23L64 8Z"/>
+    <path fill="none" stroke="#e7f2f9" stroke-opacity=".55" stroke-width="5" d="M64 15 98 27v29c0 25-13 45-34 55-21-10-34-30-34-55V27l34-12Z"/>
+    <circle cx="64" cy="58" r="25" fill="none" stroke="url(#ring)" stroke-width="10"/>
+    <circle cx="64" cy="58" r="12" fill="#d8edf8"/>
+    <path fill="none" stroke="#ffbf47" stroke-linecap="round" stroke-width="12" d="M88 34 46 92"/>
+  </g>
 </svg>
