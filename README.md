@@ -61,9 +61,10 @@ Run `npm run package` to generate release archives in `dist/`:
 - `src/js/content.js` scans pages and triggers blocking.
 - `src/js/shared/` contains shared parsing, URL, storage, and schedule helpers.
 - `src/css/` contains extension styles.
-- `src/assets/icons/` contains extension icons referenced by the manifest.
-- `src/assets/promo/` contains Chrome Web Store promotional images.
-- `src/assets/screenshots/` contains Chrome Web Store screenshots.
+- `src/store-assets/icons/` contains extension icons referenced by the manifest.
+- `src/store-assets/promo/` contains Chrome Web Store promotional images.
+- `src/store-assets/screenshots/` contains Chrome Web Store screenshots.
+- `src/store-assets/store-listing/` contains plain text Chrome Web Store listing copy.
 
 ## Contributing
 

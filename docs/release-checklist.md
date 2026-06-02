@@ -13,8 +13,8 @@ Use this checklist before publishing a new extension release.
 ## Extension Package
 
 - Inspect the extension zip contents.
-- Confirm it includes `manifest.json`, `_locales/`, `src/blocked.html`, `src/instructions.html`, `src/options.html`, `src/css/`, `src/js/`, and `src/assets/icons/`.
-- Confirm it excludes docs, tests, scripts, screenshots, promotional images, source-only files, and `src/img`.
+- Confirm it includes `manifest.json`, `_locales/`, `src/blocked.html`, `src/instructions.html`, `src/options.html`, `src/css/`, `src/js/`, and `src/store-assets/icons/`.
+- Confirm it excludes docs, tests, scripts, screenshots, promotional images, store listing text, source-only files, and `src/img`.
 
 ## Manual QA
 
@@ -33,10 +33,10 @@ Use this checklist before publishing a new extension release.
 
 ## Store Assets
 
-- Use the English store listing from `docs/store-listing/en.md`.
-- Use screenshots from `src/assets/screenshots/`.
-- Use promotional images from `src/assets/promo/`.
-- Use extension icons from `src/assets/icons/`.
+- Use the English store listing from `src/store-assets/store-listing/en.txt`.
+- Use screenshots from `src/store-assets/screenshots/`.
+- Use promotional images from `src/store-assets/promo/`.
+- Use extension icons from `src/store-assets/icons/`.
 
 ## Publish
 

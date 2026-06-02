@@ -69,7 +69,11 @@ $runtimeFiles = @(
   "src\popup.html",
   "src\css",
   "src\js",
-  "src\assets\icons",
+  "src\store-assets\icons\extension-icon-16.png",
+  "src\store-assets\icons\extension-icon-32.png",
+  "src\store-assets\icons\extension-icon-48.png",
+  "src\store-assets\icons\extension-icon-64.png",
+  "src\store-assets\icons\extension-icon-128.png",
   "_locales"
 )
 
