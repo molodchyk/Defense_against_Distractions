@@ -128,6 +128,14 @@
       return;
     }
 
+    const eventPath = typeof event.composedPath === 'function' ? event.composedPath() : [];
+    const isOverlayEvent = eventPath.some(target => {
+      return target?.id === BLOCK_OVERLAY_ID;
+    });
+    if (isOverlayEvent) {
+      return;
+    }
+
     event.preventDefault();
     event.stopImmediatePropagation();
   }
