@@ -44,6 +44,9 @@ This section preserves the original phrasing of ideas before they are clarified 
 - schedule UI like in Cold Turkey. + workdays + all days checkboxes. Schedule for different plans. Plan - combine groups. Enable / disable a plan feature
 - feature to collect usage data + also for feedback to know what works and what doesn't work
 - local usage stats, detect and save text, amount of UI elements, amount of video / audo / GIFs
+- be able to choose extension's UI language- either system or from a list of available languages
+- DaD plans to have allowed websites and UI blocked elements. Ability to transfer blocked UI elements from and to plans, blocked UI section to remain without plans, but those entries should be able to be toggled active / inactive meaning - enabled / disabled, and to be transferrable to plans. Plans to be expandable with a button, and by default to be compact, showing basic info such as the name of the plan, enabled / disabled, and some other. Schedules section to transfer completely to plans and reimagined (UI-wise)
+- passwords, UI toggle, Anleitung, all of this to be transferred to settings section. Likely in a left sidebar section "Settings" and the default one be like either Plans or Block be called
 
 ## Blocking Capabilities
 

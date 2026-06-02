@@ -31,6 +31,20 @@ The public content-script API remains:
 
 Future work should keep new UI blocking behavior inside the narrowest module that owns it. For example, selector or diagnostic changes belong near fingerprint/matcher code, while preview display changes belong in `elementBlockingDom.js`.
 
+## Page Blocking
+
+Main page blocking is also split into ordered content-script modules:
+
+- `contentBlockingConstants.js`: score thresholds, message names, overlay IDs, event options, and timing constants.
+- `contentBlockingOverlay.js`: blocked-page overlay rendering and blocked-page event guards.
+- `contentBlockingMedia.js`: audio, video, iframe, embed, and object suspension.
+- `contentBlockingBlocker.js`: the central `blockPage` action and runtime tab-mute messaging.
+- `contentBlockingKeywords.js`: keyword context extraction, text-node scanning, score updates, badge updates, and mutation observation.
+- `contentBlockingSiteCheck.js`: storage lookup, whitelist checks, matching website groups, and starting scans.
+- `content.js`: bootstrap, runtime message handling, and BFCache/pageshow reinitialization.
+
+Future blocking diagnostics should start near `contentBlockingKeywords.js` and `contentBlockingSiteCheck.js`, because those modules know which keyword or group caused risk to rise. Future intervention work should start near `contentBlockingBlocker.js` and `contentBlockingMedia.js`.
+
 ## Future Protection Model
 
 The emerging product model lives in `docs/protection-model.md`.

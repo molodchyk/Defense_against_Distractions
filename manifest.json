@@ -37,6 +37,12 @@
         "src/js/content/elementBlockingStorage.js",
         "src/js/content/elementBlockingDom.js",
         "src/js/content/elementBlocking.js",
+        "src/js/content/contentBlockingConstants.js",
+        "src/js/content/contentBlockingOverlay.js",
+        "src/js/content/contentBlockingMedia.js",
+        "src/js/content/contentBlockingBlocker.js",
+        "src/js/content/contentBlockingKeywords.js",
+        "src/js/content/contentBlockingSiteCheck.js",
         "src/js/content.js"
       ]
     }
