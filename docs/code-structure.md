@@ -49,6 +49,8 @@ Blocking diagnostics start in `contentBlockingKeywords.js`, where score contribu
 
 The emerging product model lives in `docs/protection-model.md`.
 
+The plan-based structure that should guide options-page and storage work lives in `docs/plans-architecture.md`.
+
 New protection features should avoid becoming one large content script again. Prefer dedicated modules for:
 
 - Signals.

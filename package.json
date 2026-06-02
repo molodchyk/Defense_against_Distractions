@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "package": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/package-extension.ps1",
+    "verify:release": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/verify-release.ps1",
     "test": "node --test test/*.test.js"
   }
 }

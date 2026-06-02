@@ -51,6 +51,10 @@ Run `npm run package` to generate release archives in `dist/`:
 - `Defense_against_Distractions-vX.Y.Z-extension.zip` contains only the runtime extension files for loading or store upload.
 - `Defense_against_Distractions-vX.Y.Z-source.zip` contains the source tree, tests, docs, scripts, screenshots, and promotional assets.
 
+Run `npm run verify:release` after packaging to check that generated archives match the expected release shape.
+
+The `dist/` directory is generated output and is not the source of truth. If a file in `dist/source/` looks stale, rerun `npm run package` instead of editing the generated copy directly.
+
 ## Project Structure
 
 - `_locales/` contains translated extension messages.
@@ -61,10 +65,17 @@ Run `npm run package` to generate release archives in `dist/`:
 - `src/js/content.js` scans pages and triggers blocking.
 - `src/js/shared/` contains shared parsing, URL, storage, and schedule helpers.
 - `src/css/` contains extension styles.
+
+Runtime extension files are the files that must ship inside the extension ZIP. Source-only project files such as docs, tests, scripts, screenshots, promotional images, and store listing text are kept in the repository and source ZIP, but are intentionally excluded from the runtime extension package.
+
+Store-facing assets live together:
+
 - `src/store-assets/icons/` contains extension icons referenced by the manifest.
 - `src/store-assets/promo/` contains Chrome Web Store promotional images.
 - `src/store-assets/screenshots/` contains Chrome Web Store screenshots.
 - `src/store-assets/store-listing/` contains plain text Chrome Web Store listing copy.
+
+Architecture notes live in `docs/`. The current future-facing product model is documented in [Protection Model](docs/protection-model.md), and the planned user-facing plan structure is documented in [Plans Architecture](docs/plans-architecture.md).
 
 ## Contributing
 
