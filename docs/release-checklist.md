@@ -33,6 +33,7 @@ Use this checklist before publishing a new extension release.
 
 ## Store Assets
 
+- Use the English store listing from `docs/store-listing/en.md`.
 - Use screenshots from `src/assets/screenshots/`.
 - Use promotional images from `src/assets/promo/`.
 - Use extension icons from `src/assets/icons/`.

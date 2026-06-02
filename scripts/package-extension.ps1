@@ -77,6 +77,7 @@ $sourceFiles = @(
   ".gitignore",
   "ABOUT.md",
   "CHANGELOG.md",
+  "docs",
   "LICENSE.txt",
   "README.md",
   "manifest.json",
