@@ -106,11 +106,33 @@ function Assert-ProjectFileExists {
   Assert-Condition (Test-Path -LiteralPath $absolutePath) "Project file does not exist: $RelativePath"
 }
 
+function Assert-ImageDimensions {
+  param(
+    [string]$RelativePath,
+    [int]$ExpectedWidth,
+    [int]$ExpectedHeight
+  )
+
+  $absolutePath = Join-Path $projectRoot $RelativePath
+  Assert-Condition (Test-Path -LiteralPath $absolutePath) "Store image does not exist: $RelativePath"
+
+  $image = [System.Drawing.Image]::FromFile($absolutePath)
+  try {
+    Assert-Condition ($image.Width -eq $ExpectedWidth -and $image.Height -eq $ExpectedHeight) `
+      "Store image has wrong dimensions: $RelativePath is $($image.Width)x$($image.Height), expected ${ExpectedWidth}x${ExpectedHeight}"
+  }
+  finally {
+    $image.Dispose()
+  }
+}
+
 function Normalize-ZipPath {
   param([string]$RelativePath)
 
   return $RelativePath.Replace("\", "/")
 }
+
+Add-Type -AssemblyName System.Drawing
 
 Assert-Condition ($packageJson.version -eq $manifest.version) "package.json version does not match manifest.json version"
 
@@ -213,6 +235,17 @@ Assert-Condition ($rootChangelog -eq $sourceChangelog) "Source archive CHANGELOG
 $storeListingPath = Join-Path $projectRoot "src\store-assets\store-listing\en.txt"
 $storeListing = Get-Content -LiteralPath $storeListingPath -Raw
 Assert-Condition ($storeListing -notmatch "[#*\[\]]") "Store listing should stay plain text, not Markdown-formatted text"
+
+foreach ($screenshotPath in Get-ChildItem -LiteralPath (Join-Path $projectRoot "src\store-assets\screenshots") -Filter "*.png") {
+  $relativeScreenshotPath = "src/store-assets/screenshots/$($screenshotPath.Name)"
+  Assert-ImageDimensions -RelativePath $relativeScreenshotPath -ExpectedWidth 1280 -ExpectedHeight 800
+}
+
+$screenshotCount = @(Get-ChildItem -LiteralPath (Join-Path $projectRoot "src\store-assets\screenshots") -Filter "*.png").Count
+Assert-Condition ($screenshotCount -eq 5) "Store screenshots folder should contain exactly 5 PNG screenshots"
+
+Assert-ImageDimensions -RelativePath "src/store-assets/promo/small-promo-440x280.png" -ExpectedWidth 440 -ExpectedHeight 280
+Assert-ImageDimensions -RelativePath "src/store-assets/promo/marquee-promo-1400x560.png" -ExpectedWidth 1400 -ExpectedHeight 560
 
 $defaultLocale = $manifest.default_locale
 $defaultLocalePath = Join-Path $projectRoot "_locales\$defaultLocale\messages.json"

@@ -53,6 +53,7 @@ Use this checklist before publishing a new extension release.
 
 - Use the English store listing from `src/store-assets/store-listing/en.txt`.
 - Use screenshots from `src/store-assets/screenshots/`.
+- Confirm screenshots do not expose personal accounts, private conversations, real rules, real domains, or other user-specific configuration.
 - Use promotional images from `src/store-assets/promo/`.
 - Use extension icons from `src/store-assets/icons/`.
 
