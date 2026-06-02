@@ -24,9 +24,9 @@
     global.pageBlocked = true;
     global.DAD.disconnectKeywordObserver();
     sendRuntimeMessage({ action: 'muteBlockedTab' });
+    keepBlockedPageRendered();
     keepPageMediaSuspended();
     installBlockedPageEventGuards();
-    keepBlockedPageRendered();
   }
 
   contentBlocking.blocker = {

@@ -114,10 +114,47 @@
     return overlay;
   }
 
+  function createFallbackBlockedOverlay() {
+    const overlay = document.createElement('div');
+    overlay.id = BLOCK_OVERLAY_ID;
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-modal', 'true');
+    overlay.style.cssText = [
+      'position:fixed',
+      'inset:0',
+      'z-index:2147483647',
+      'display:flex',
+      'align-items:center',
+      'justify-content:center',
+      'padding:20px',
+      'box-sizing:border-box',
+      'background:#333333',
+      'color:#ffffff',
+      'font:20px/1.5 Arial,sans-serif',
+      'text-align:center',
+      'pointer-events:auto'
+    ].join(';');
+
+    const content = document.createElement('div');
+    content.style.cssText = [
+      'box-sizing:border-box',
+      'width:min(600px,100%)',
+      'padding:30px',
+      'border-radius:8px',
+      'background:#4c4c4c'
+    ].join(';');
+    content.textContent = getLocalizedMessage(
+      'contentBlockedMessage',
+      'This page contains restricted content and has been blocked for your protection.'
+    );
+    overlay.appendChild(content);
+    return overlay;
+  }
+
   function getBlockedPageDiagnostics() {
     const diagnostics = global.blockDiagnostics;
     const triggers = Array.isArray(diagnostics?.triggers) ? diagnostics.triggers : [];
-    const latestTrigger = triggers.at(-1);
+    const latestTrigger = triggers[triggers.length - 1];
 
     if (!latestTrigger) {
       return null;
@@ -139,6 +176,7 @@
     const trigger = shadowRoot.querySelector('.trigger');
     const score = shadowRoot.querySelector('.score');
     const context = shadowRoot.querySelector('.context');
+    if (!wrapper || !trigger || !score || !context) return;
 
     wrapper.hidden = false;
     trigger.textContent = diagnostics.keyword || 'unknown';
@@ -187,7 +225,12 @@
 
     let overlay = document.getElementById(BLOCK_OVERLAY_ID);
     if (!overlay) {
-      overlay = createBlockedOverlay();
+      try {
+        overlay = createBlockedOverlay();
+      } catch (error) {
+        console.error('Failed to create blocked overlay with diagnostics:', error);
+        overlay = createFallbackBlockedOverlay();
+      }
       document.documentElement.appendChild(overlay);
     }
 
