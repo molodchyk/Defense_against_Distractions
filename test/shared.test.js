@@ -42,6 +42,9 @@ import {
 import {
   collectPageSignals
 } from '../src/js/shared/pageSignals.js';
+import {
+  hasExistingConfiguration
+} from '../src/js/shared/releaseBackupNotice.js';
 
 describe('keyword parsing', () => {
   it('splits keyword entries on unescaped commas', () => {
@@ -381,5 +384,20 @@ describe('page signal helpers', () => {
 
     assert.equal(signals.text.sampleLength, 7);
     assert.equal(signals.text.wordCount, 2);
+  });
+});
+
+describe('release backup notice helpers', () => {
+  it('does not target fresh default configuration', () => {
+    assert.equal(hasExistingConfiguration({}), false);
+    assert.equal(hasExistingConfiguration({ whitelistedSites: ['example.com'] }), false);
+  });
+
+  it('targets existing user configuration', () => {
+    assert.equal(hasExistingConfiguration({ group_1: { groupName: 'Focus' } }), true);
+    assert.equal(hasExistingConfiguration({ schedules: [{ name: 'Work' }] }), true);
+    assert.equal(hasExistingConfiguration({ whitelistedSites: ['example.com', 'school.edu'] }), true);
+    assert.equal(hasExistingConfiguration({ 'elementBlockRule.abc': { name: 'button' } }), true);
+    assert.equal(hasExistingConfiguration({ password: 'encrypted' }), true);
   });
 });

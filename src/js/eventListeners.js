@@ -13,6 +13,7 @@ import {
 
 import { localizeOptionsPage } from './options/localization.js';
 import { initializeElementRulesSync, renderElementRules } from './options/elementRules.js';
+import { initializeReleaseBackupNotice } from './options/releaseNotice.js';
 import { initializeStorageTransfer } from './options/storageTransfer.js';
 import { initializeThemeModeControl } from './options/theme.js';
 
@@ -34,4 +35,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initializeScheduleStatusPolling();
   initializeStorageTransfer();
+  initializeReleaseBackupNotice();
 });

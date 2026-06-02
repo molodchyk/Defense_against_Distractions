@@ -635,6 +635,60 @@ h2 {
     background: var(--overlay-bg);
 }
 
+.release-notice-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2147483646;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: var(--overlay-bg);
+}
+
+.release-notice-dialog {
+    width: min(520px, 100%);
+    display: grid;
+    gap: 14px;
+    padding: 22px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface-raised);
+    box-shadow: var(--shadow);
+}
+
+.release-notice-dialog h2 {
+    margin: 0;
+}
+
+.release-notice-dialog p {
+    margin: 0;
+    color: var(--muted);
+}
+
+.release-notice-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.release-notice-primary {
+    background: var(--primary);
+}
+
+.release-notice-primary:hover {
+    background: var(--primary-hover);
+}
+
+.release-notice-secondary {
+    background: var(--neutral);
+}
+
+.release-notice-secondary:hover {
+    background: var(--neutral-hover);
+}
+
 .centered-form-wrapper {
     width: min(360px, 100%);
 }
@@ -744,5 +798,10 @@ h2 {
 
     #exportImportButtons button {
         flex: 1 1 0;
+    }
+
+    .release-notice-actions {
+        display: grid;
+        grid-template-columns: 1fr;
     }
 }

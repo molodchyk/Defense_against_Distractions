@@ -21,6 +21,8 @@ Use this checklist before publishing a new extension release.
 
 - Load the extension zip or unpacked project in a Chromium-based browser.
 - Open the options page from the extension action.
+- With an existing pre-update configuration, confirm the one-time backup notice appears, exports settings, and does not appear again after export or dismissal.
+- With a fresh/default install, confirm the backup notice does not appear.
 - Confirm the popup opens, matches the selected UI mode, and opens options from the compact top-right control.
 - Switch UI mode between light, dark, and system; confirm popup, options, blocked page, and UI picker follow it.
 - Add, edit, save, and delete a group.

@@ -35,6 +35,8 @@ Before release, verify:
 - UI picker can temporarily allow page clicks without breaking its draggable panel.
 - Options page updates stored UI blocked rules without requiring reload.
 - Export and import work after the new storage and UI-rule changes.
+- Existing users who were updated into this release see the one-time configuration backup notice on the options page.
+- Fresh/default installs do not see the configuration backup notice, and dismissed/exported notices do not repeat.
 
 ## Release Bias
 

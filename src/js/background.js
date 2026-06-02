@@ -2,6 +2,7 @@
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
 import { initializeDefaultSettings } from './background/defaults.js';
+import { initializeReleaseBackupNoticeEligibility } from './background/releaseNotice.js';
 import { initializeScheduleMonitor } from './background/scheduleMonitor.js';
 
 const extensionMutedTabs = new Map();
@@ -76,5 +77,6 @@ chrome.tabs.onRemoved.addListener(tabId => {
 });
 
 initializeDefaultSettings();
+initializeReleaseBackupNoticeEligibility();
 initializeScheduleMonitor();
 

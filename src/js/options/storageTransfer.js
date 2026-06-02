@@ -13,17 +13,28 @@ export function initializeStorageTransfer() {
   importButton.addEventListener('click', () => fileInput.click());
 }
 
-function exportSettings() {
-  getSync(null).then(items => {
+export async function exportSettings() {
+  try {
+    const items = await getSync(null);
     const result = JSON.stringify(items);
     const url = `data:text/json;charset=utf-8,${encodeURIComponent(result)}`;
     const dateString = new Date().toISOString().split('T')[0];
     const filename = `DaD-extension-data-${dateString}.json`;
 
-    chrome.downloads.download({ url, filename });
-  }).catch(error => {
+    await new Promise((resolve, reject) => {
+      chrome.downloads.download({ url, filename }, downloadId => {
+        if (chrome.runtime.lastError) {
+          reject(chrome.runtime.lastError);
+          return;
+        }
+
+        resolve(downloadId);
+      });
+    });
+  } catch (error) {
     console.error('Failed to export settings:', error);
-  });
+    throw error;
+  }
 }
 
 function importSettings(event) {
