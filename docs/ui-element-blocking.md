@@ -57,6 +57,8 @@ Hover the `Mode` control and scroll to switch between `Pick element` and `Click 
 
 Hover the `Preview` control and scroll to switch between `Hide matched` and `Outline matched`.
 
+Outline preview draws independent golden geometry boxes instead of relying only on the website element's own CSS outline. This makes broad containers, clipped regions, text fields, and nested UI easier to inspect.
+
 The preview count updates when the page adds or removes matching elements.
 
 ## Match Strategy

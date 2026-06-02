@@ -627,6 +627,7 @@
 
     window.addEventListener('mousemove', onMouseMove, true);
     window.addEventListener('click', onClick, true);
+    window.addEventListener('scroll', schedulePreviewUpdate, true);
     window.addEventListener('keydown', onKeyDown, true);
     window.addEventListener('keyup', onKeyUp, true);
     pickerPanel = createPickerPanel({
@@ -657,6 +658,7 @@
     pickerCleanup = () => {
       window.removeEventListener('mousemove', onMouseMove, true);
       window.removeEventListener('click', onClick, true);
+      window.removeEventListener('scroll', schedulePreviewUpdate, true);
       window.removeEventListener('keydown', onKeyDown, true);
       window.removeEventListener('keyup', onKeyUp, true);
       disconnectPreviewObserver();

@@ -21,6 +21,7 @@
     PREVIEW_OUTLINE_OFFSET_PRIORITY_ATTRIBUTE,
     PREVIEW_BOX_SHADOW_ATTRIBUTE,
     PREVIEW_BOX_SHADOW_PRIORITY_ATTRIBUTE,
+    PREVIEW_OUTLINE_CONTAINER_ID,
     DEFAULT_PREVIEW_MODE
   } = elementBlocking.constants;
   const { normalizeToken } = elementBlocking.fingerprint;
@@ -113,10 +114,7 @@
   }
 
   function outlinePreviewElement(element) {
-    rememberPreviewStyle(element);
-    element.style.setProperty('outline', '3px solid #ffbf47', 'important');
-    element.style.setProperty('outline-offset', '3px', 'important');
-    element.style.setProperty('box-shadow', '0 0 0 2px rgba(0, 0, 0, 0.35)', 'important');
+    drawOutlinePreview(element);
   }
 
   function restorePreviewElement(element) {
@@ -181,6 +179,78 @@
 
   function clearPreviewBlocks() {
     document.querySelectorAll(`[${PREVIEW_ATTRIBUTE}="true"]`).forEach(restorePreviewElement);
+    clearOutlinePreviews();
+  }
+
+  function clearOutlinePreviews() {
+    document.getElementById(PREVIEW_OUTLINE_CONTAINER_ID)?.remove();
+  }
+
+  function ensureOutlineContainer() {
+    const existingContainer = document.getElementById(PREVIEW_OUTLINE_CONTAINER_ID);
+    if (existingContainer) return existingContainer;
+
+    const container = document.createElement('div');
+    container.id = PREVIEW_OUTLINE_CONTAINER_ID;
+    container.setAttribute('aria-hidden', 'true');
+    container.style.cssText = [
+      'position:fixed',
+      'inset:0',
+      'z-index:2147483646',
+      'pointer-events:none',
+      'contain:strict'
+    ].join(';');
+    document.documentElement.appendChild(container);
+    return container;
+  }
+
+  function getVisibleRect(rect) {
+    const left = Math.max(0, rect.left);
+    const top = Math.max(0, rect.top);
+    const right = Math.min(global.innerWidth, rect.right);
+    const bottom = Math.min(global.innerHeight, rect.bottom);
+    const width = right - left;
+    const height = bottom - top;
+
+    if (width < 2 || height < 2) return null;
+    return { left, top, width, height };
+  }
+
+  function getElementPreviewRects(element) {
+    const rects = Array.from(element.getClientRects ? element.getClientRects() : []);
+    const visibleRects = rects
+      .map(getVisibleRect)
+      .filter(Boolean);
+
+    if (visibleRects.length > 0) {
+      return visibleRects.slice(0, 8);
+    }
+
+    const boundingRect = element.getBoundingClientRect?.();
+    const visibleBoundingRect = boundingRect ? getVisibleRect(boundingRect) : null;
+    return visibleBoundingRect ? [visibleBoundingRect] : [];
+  }
+
+  function drawOutlinePreview(element) {
+    const container = ensureOutlineContainer();
+    const rects = getElementPreviewRects(element);
+
+    rects.forEach(rect => {
+      const outline = document.createElement('div');
+      outline.style.cssText = [
+        'position:fixed',
+        `left:${rect.left}px`,
+        `top:${rect.top}px`,
+        `width:${rect.width}px`,
+        `height:${rect.height}px`,
+        'border:3px solid #ffbf47',
+        'box-shadow:0 0 0 2px rgba(0, 0, 0, 0.55), inset 0 0 0 1px rgba(0, 0, 0, 0.35)',
+        'border-radius:2px',
+        'box-sizing:border-box',
+        'pointer-events:none'
+      ].join(';');
+      container.appendChild(outline);
+    });
   }
 
   function previewElementRule(rule, previewMode = DEFAULT_PREVIEW_MODE) {

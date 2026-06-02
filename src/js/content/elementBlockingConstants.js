@@ -24,6 +24,7 @@
     PREVIEW_OUTLINE_OFFSET_PRIORITY_ATTRIBUTE: 'data-dad-preview-outline-offset-priority',
     PREVIEW_BOX_SHADOW_ATTRIBUTE: 'data-dad-preview-box-shadow',
     PREVIEW_BOX_SHADOW_PRIORITY_ATTRIBUTE: 'data-dad-preview-box-shadow-priority',
+    PREVIEW_OUTLINE_CONTAINER_ID: 'dad-element-block-preview-outlines',
     PICKER_ATTRIBUTE: 'data-dad-element-picker-active',
     ELEMENT_RULE_VERSION: 1,
     ELEMENT_RULES_STORAGE_KEY: 'elementBlockRules',
