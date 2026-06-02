@@ -1,8 +1,9 @@
 :root {
-    --bg: #111318;
-    --surface: #1a1e26;
-    --field: #151922;
-    --border: #343b49;
+    --bg: #101216;
+    --surface: #171b22;
+    --field: #111620;
+    --border: #323b4b;
+    --border-strong: #4b586d;
     --text: #eef2f7;
     --muted: #a8b0bf;
     --primary: #3d8bfd;
@@ -36,7 +37,7 @@
 }
 
 body {
-    width: 320px;
+    width: 336px;
     margin: 0;
     background: var(--bg);
     color: var(--text);
@@ -45,8 +46,8 @@ body {
 
 .popup-shell {
     display: grid;
-    gap: 10px;
-    padding: 16px;
+    gap: 9px;
+    padding: 16px 18px;
 }
 
 header {
@@ -69,7 +70,7 @@ header p,
 }
 
 h1 {
-    margin: 0 0 4px;
+    margin: 0 0 6px;
     font-size: 20px;
     line-height: 1.2;
 }
@@ -106,6 +107,11 @@ button {
     padding: 8px 12px;
 }
 
+#pickElementButton,
+#openOptionsButton {
+    margin-top: 4px;
+}
+
 button:hover {
     background: var(--primary-hover);
 }
@@ -118,7 +124,7 @@ button:disabled {
 
 .header-options-button {
     min-height: 28px;
-    border-color: var(--border);
+    border-color: var(--border-strong);
     background: var(--surface);
     color: var(--text);
     padding: 4px 8px;

@@ -1,12 +1,12 @@
 :root {
     color-scheme: light dark;
-    --bg: #111318;
-    --surface: #1a1e26;
-    --surface-raised: #222833;
-    --field: #151922;
-    --field-readonly: #11151c;
-    --border: #343b49;
-    --border-strong: #465166;
+    --bg: #101216;
+    --surface: #171b22;
+    --surface-raised: #202630;
+    --field: #111620;
+    --field-readonly: #151a22;
+    --border: #323b4b;
+    --border-strong: #4b586d;
     --text: #eef2f7;
     --muted: #a8b0bf;
     --primary: #3d8bfd;
@@ -18,10 +18,10 @@
     --neutral: #596477;
     --disabled-bg: #3d4450;
     --disabled-text: #8b93a2;
-    --shadow: 0 18px 50px rgba(0, 0, 0, 0.24);
-    --page-wash: linear-gradient(180deg, rgba(61, 139, 253, 0.12), rgba(17, 19, 24, 0) 280px);
-    --panel-bg: rgba(26, 30, 38, 0.94);
-    --action-bar-bg: rgba(26, 30, 38, 0.96);
+    --shadow: 0 14px 34px rgba(0, 0, 0, 0.18);
+    --page-wash: linear-gradient(180deg, rgba(61, 139, 253, 0.08), rgba(16, 18, 22, 0) 260px);
+    --panel-bg: rgba(23, 27, 34, 0.96);
+    --action-bar-bg: rgba(23, 27, 34, 0.98);
     --overlay-bg: rgba(8, 10, 14, 0.82);
     --link-hover-bg: #2a3140;
     --neutral-hover: #69758a;
@@ -78,7 +78,7 @@ body {
     min-width: 360px;
     min-height: 100%;
     margin: 0;
-    padding: 24px;
+    padding: 20px 24px 28px;
     background: var(--page-wash), var(--bg);
     color: var(--text);
     font: 14px/1.5 Arial, sans-serif;
@@ -192,7 +192,7 @@ ul {
 
 h1 {
     margin: 0;
-    font-size: clamp(28px, 4vw, 42px);
+    font-size: clamp(28px, 4vw, 40px);
     line-height: 1.05;
     letter-spacing: 0;
 }
@@ -215,7 +215,7 @@ h2 {
     border-radius: var(--radius);
     background: var(--panel-bg);
     box-shadow: var(--shadow);
-    padding: 20px;
+    padding: 18px;
 }
 
 .panel-compact {
@@ -309,7 +309,7 @@ h2 {
 #scheduleList li {
     flex-direction: column;
     align-items: stretch;
-    padding: 16px;
+    padding: 16px 18px;
 }
 
 #whitelist li {
@@ -323,14 +323,46 @@ h2 {
 .group-item div,
 .schedule-item div {
     display: grid;
-    grid-template-columns: 150px minmax(0, 1fr) auto auto;
+    grid-template-columns: 160px minmax(0, 1fr) auto auto;
     gap: 10px;
     align-items: start;
 }
 
+.group-item {
+    padding-right: 152px !important;
+}
+
+.group-item > .delete-button {
+    position: absolute;
+    top: 16px;
+    right: 18px;
+    min-width: 112px;
+}
+
+.group-item textarea {
+    min-height: 42px;
+}
+
+.group-item div:last-of-type textarea {
+    min-height: 96px;
+}
+
+.schedule-item {
+    padding-right: 152px !important;
+}
+
+.schedule-item > .delete-button,
+.schedule-item .controls-container .delete-button {
+    min-width: 112px;
+}
+
+.schedule-item .controls-container {
+    margin-left: 160px;
+}
+
 .element-rule-list {
     display: grid;
-    gap: 8px;
+    gap: 10px;
 }
 
 .element-rule-storage-usage {
@@ -342,10 +374,10 @@ h2 {
 .element-rule-list li {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
-    gap: 10px;
+    gap: 10px 14px;
     align-items: center;
     min-height: 40px;
-    padding: 8px 10px;
+    padding: 14px;
     border: 1px solid var(--border);
     border-radius: 6px;
     background: var(--surface);
@@ -361,6 +393,7 @@ h2 {
         "summary summary"
         "controls controls"
         "diagnostics domain";
+    align-items: start;
 }
 
 .element-rule-title {
@@ -380,6 +413,7 @@ h2 {
 
 .element-rule-item .delete-button {
     grid-area: delete;
+    min-width: 112px;
 }
 
 .element-rule-item .secondary-button {
@@ -395,8 +429,9 @@ h2 {
 .element-rule-controls {
     grid-area: controls;
     display: grid;
-    grid-template-columns: repeat(3, minmax(140px, 1fr));
-    gap: 8px;
+    grid-template-columns: minmax(84px, 0.36fr) repeat(2, minmax(180px, 1fr));
+    gap: 10px;
+    padding-top: 2px;
 }
 
 .element-rule-control {
@@ -414,9 +449,12 @@ h2 {
 }
 
 .element-rule-control input[type="checkbox"] {
-    width: auto;
+    width: 18px;
+    height: 18px;
     min-height: 0;
+    margin: 6px 0 0;
     justify-self: start;
+    accent-color: var(--primary);
 }
 
 .element-rule-diagnostics {
@@ -634,6 +672,10 @@ h2 {
     box-shadow: var(--shadow);
 }
 
+.action-bar button {
+    min-width: 112px;
+}
+
 @media (max-width: 760px) {
     body {
         padding: 16px 14px 24px;
@@ -655,6 +697,20 @@ h2 {
     .schedule-item div,
     .element-rule-controls {
         grid-template-columns: 1fr;
+    }
+
+    .group-item,
+    .schedule-item {
+        padding-right: 16px !important;
+    }
+
+    .group-item > .delete-button {
+        position: static;
+        width: 100%;
+    }
+
+    .schedule-item .controls-container {
+        margin-left: 0;
     }
 
     .element-rule-item {

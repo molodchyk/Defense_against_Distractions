@@ -29,11 +29,12 @@
     const content = document.createElement('div');
     content.style.cssText = [
       'box-sizing:border-box',
-      'width:min(600px,100%)',
-      'padding:30px',
+      'width:min(620px,100%)',
+      'padding:30px 34px',
+      'border:1px solid #323b4b',
       'border-radius:8px',
-      'background:#4c4c4c',
-      'box-shadow:0 4px 8px rgba(0,0,0,.1)'
+      'background:#171b22',
+      'box-shadow:0 18px 44px rgba(0,0,0,.28)'
     ].join(';');
 
     const heading = document.createElement('h1');
@@ -41,7 +42,7 @@
     heading.textContent = title;
 
     const paragraph = document.createElement('p');
-    paragraph.style.cssText = 'margin:0';
+    paragraph.style.cssText = 'margin:0;color:#c3cad6;font:18px/1.45 Arial,sans-serif';
     paragraph.textContent = message;
 
     content.appendChild(heading);
@@ -62,9 +63,9 @@
       'justify-content:center',
       'padding:20px',
       'box-sizing:border-box',
-      'background:#333333',
+      'background:#101216',
       'color:#ffffff',
-      'font:20px/1.5 Arial,sans-serif',
+      'font:16px/1.5 Arial,sans-serif',
       'text-align:center',
       'pointer-events:auto'
     ].join(';');
@@ -76,8 +77,8 @@
     wrapper.style.cssText = [
       'margin-top:18px',
       'padding-top:14px',
-      'border-top:1px solid rgba(255,255,255,.22)',
-      'color:#f2f5f8',
+      'border-top:1px solid #323b4b',
+      'color:#d7e0e7',
       'font:15px/1.45 Arial,sans-serif',
       'text-align:left'
     ].join(';');
