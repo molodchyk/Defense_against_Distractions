@@ -413,6 +413,12 @@ h2 {
     font-size: 13px;
 }
 
+.element-rule-control input[type="checkbox"] {
+    width: auto;
+    min-height: 0;
+    justify-self: start;
+}
+
 .element-rule-diagnostics {
     grid-area: diagnostics;
     min-width: 0;

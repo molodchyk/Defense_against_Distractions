@@ -355,6 +355,7 @@
       'Strategy',
       createPickerSelect([
         ['samePosition', 'Same position'],
+        ['sameText', 'Same text/label'],
         ['similar', 'Similar'],
         ['exact', 'Closest']
       ], controls.strategy, value => onControlsChange({ strategy: value }))

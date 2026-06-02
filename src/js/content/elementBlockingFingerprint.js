@@ -62,6 +62,20 @@
       .slice(0, 12);
   }
 
+  function getDirectText(element) {
+    return Array.from(element.childNodes || [])
+      .filter(node => node.nodeType === Node.TEXT_NODE)
+      .map(node => node.nodeValue)
+      .join(' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  function hasMeaningfulDirectText(element) {
+    const text = getDirectText(element);
+    return text.length >= 2 && text.length <= 180;
+  }
+
   function getChildSignature(element) {
     return Array.from(element.children || [])
       .slice(0, 8)
@@ -116,6 +130,12 @@
       ancestorSignature: getAncestorSignature(element),
       classTokens: getStableClassTokens(element),
       labelTokens: getLabelTokens(element),
+      directTextTokens: getDirectText(element)
+        .toLowerCase()
+        .split(/[^\p{L}\p{N}_-]+/u)
+        .map(token => token.trim())
+        .filter(token => token.length >= 2)
+        .slice(0, 12),
       positionPath: getPositionPath(element),
       tagIndex: getTagIndex(element)
     };
@@ -138,6 +158,10 @@
 
   function getPickTarget(element) {
     if (!isPickableElement(element)) return null;
+
+    if (hasMeaningfulDirectText(element)) {
+      return element;
+    }
 
     const interactiveTarget = element.closest('button, a, input, textarea, select, [role]');
     if (isPickableElement(interactiveTarget)) {
@@ -198,7 +222,7 @@
     const baseElement = pointElement || fallbackElement;
     const textContainer = getTextContainerFromPoint(clientX, clientY);
 
-    if (textContainer && !textContainer.closest('button, a, input, textarea, select, [role]')) {
+    if (textContainer) {
       return textContainer;
     }
 
@@ -235,6 +259,7 @@
     normalizeNumber,
     getImplicitRole,
     getLabelTokens,
+    getDirectText,
     createFingerprint,
     createRuleName,
     isPickableElement,

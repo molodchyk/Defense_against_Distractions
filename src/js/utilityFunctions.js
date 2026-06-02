@@ -4,23 +4,7 @@
 export { isCurrentTimeInAnySchedule } from './shared/scheduleTime.js';
 
 export function adjustTextareaWidth(textarea) {
-  const tempSpan = document.createElement('span');
-  document.body.appendChild(tempSpan);
-
-  // Copy font styles to the temporary span
-  const styles = window.getComputedStyle(textarea);
-  tempSpan.style.font = styles.font;
-  tempSpan.style.letterSpacing = styles.letterSpacing;
-  tempSpan.style.whiteSpace = 'pre-wrap';
-  tempSpan.style.visibility = 'hidden';
-
-  tempSpan.textContent = textarea.value || textarea.placeholder;
-
-  // Calculate and set new width
-  const padding = parseInt(styles.paddingLeft) + parseInt(styles.paddingRight);
-  textarea.style.width = (tempSpan.offsetWidth + padding) + 'px';
-
-  document.body.removeChild(tempSpan);
+  textarea.style.width = '100%';
 }
 
 

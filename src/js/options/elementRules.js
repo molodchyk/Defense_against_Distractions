@@ -12,6 +12,7 @@ const PROTECTED_SYNC_RESERVE_BYTES = 20480;
 
 const STRATEGIES = [
   ['samePosition', 'Same position'],
+  ['sameText', 'Same text or label'],
   ['similar', 'Similar structure'],
   ['exact', 'Closest match']
 ];
@@ -32,7 +33,8 @@ const FINGERPRINT_FIELDS = [
   ['ancestorSignature', 'Ancestors'],
   ['childSignature', 'Children'],
   ['classTokens', 'Class tokens'],
-  ['labelTokens', 'Label tokens']
+  ['labelTokens', 'Label tokens'],
+  ['directTextTokens', 'Direct text tokens']
 ];
 
 function getElementRuleStorageKey(ruleId) {
@@ -203,6 +205,16 @@ function createTextInput(value, onChange) {
   return input;
 }
 
+function createCheckbox(checked, onChange) {
+  const input = document.createElement('input');
+  input.type = 'checkbox';
+  input.checked = checked;
+  input.addEventListener('change', () => {
+    onChange(input.checked);
+  });
+  return input;
+}
+
 function createControl(labelText, control) {
   const wrapper = document.createElement('label');
   wrapper.className = 'element-rule-control';
@@ -301,6 +313,7 @@ function createRuleItem(rule) {
   const summary = document.createElement('div');
   summary.className = 'element-rule-summary';
   summary.textContent = [
+    rule.enabled === false ? 'disabled' : 'enabled',
     rule.urlPattern || 'current site',
     rule.strategy || rule.mode || 'samePosition',
     `score ${rule.minScore || 12}`,
@@ -310,6 +323,15 @@ function createRuleItem(rule) {
 
   const controls = document.createElement('div');
   controls.className = 'element-rule-controls';
+
+  controls.appendChild(createControl(
+    'Enabled',
+    createCheckbox(rule.enabled !== false, value => {
+      updateRule(rule.id, { enabled: value }).catch(error => {
+        console.error('Failed to update UI rule enabled state:', error);
+      });
+    })
+  ));
 
   controls.appendChild(createControl(
     'Name',

@@ -13,7 +13,7 @@ It is separate from keyword blocking and locked schedules. It is not meant to be
 5. Hover the page element and click it to preview the rule. DaD temporarily hides every element the rule would hide.
 6. Use the on-page picker panel to tune the rule while the preview is active.
 7. Click `Save rule` to save and close the picker, or hold `Shift` and click `Save rule and continue` to save and keep picking.
-8. Review or adjust saved rules in the options page under `Blocked UI`.
+8. Review, enable, disable, or adjust saved rules in the options page under `Blocked UI`.
 
 Press `Esc` while picking to cancel. Canceling or choosing again restores the temporary preview.
 
@@ -63,6 +63,8 @@ The preview count updates when the page adds or removes matching elements.
 
 `Same position in repeated UI` is the default. Use it for rows or cards where the same controls repeat, such as copy / like / dislike buttons under each item. It tries to hide the selected position in each repeated row without hiding neighboring buttons.
 
+`Same text or label` uses direct visible text and label-like information as the main match. Use it for standalone labels, footer notices, menu items, and navigation entries where the score/depth controls are too blunt and the intended target is the wording itself, such as a `Sent` / `Gesendet` label or a site disclaimer.
+
 `Similar structure` is broader. Use it when the same kind of element appears in several places but not necessarily in the same row position.
 
 `Closest match` is the narrowest. Use it when you only want elements very close to the picked element's exact structure and position.
@@ -95,12 +97,14 @@ If a rule hides similar buttons in unrelated page areas, increase ancestor depth
 
 `Name` is only for you. Rename rules to describe the intent, for example `ChatGPT response feedback buttons`.
 
+`Enabled` controls whether the rule is active. Disable a rule when you want to keep it for later without deleting its diagnostics and tuning.
+
 `URL pattern` controls where the rule is active. A host-only pattern like `chatgpt.com` applies across that site. A longer path pattern applies more narrowly. Use `Use domain` to reduce a long path to its host.
 
-`Diagnostics` shows the stored fingerprint: tag, role, parent structure, position path, labels, class tokens, and related details. Use this before deleting or editing a rule so you can see what the rule was created from.
+`Diagnostics` shows the stored fingerprint: tag, role, parent structure, position path, labels, direct text tokens, class tokens, and related details. Use this before deleting or editing a rule so you can see what the rule was created from.
 
 ## Why It Can Be Imperfect
 
 Websites often use generated classes, changing labels, nested SVG icons, and repeated generic buttons. DaD stores a structural fingerprint instead of a single CSS selector, but no automatic fingerprint can always know your intent.
 
-When a rule is too broad or too narrow, adjust strategy, minimum score, ancestor depth, label match, and URL pattern in `Blocked UI`.
+When a rule is too broad or too narrow, adjust strategy, minimum score, ancestor depth, label match, enabled state, and URL pattern in `Blocked UI`.

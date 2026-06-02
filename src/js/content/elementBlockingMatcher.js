@@ -60,10 +60,12 @@
     const ancestorOverlap = tokenOverlap(candidate.ancestorSignature, fingerprint.ancestorSignature);
     const classOverlap = tokenOverlap(candidate.classTokens, fingerprint.classTokens);
     const labelOverlap = tokenOverlap(candidate.labelTokens, fingerprint.labelTokens);
+    const directTextOverlap = tokenOverlap(candidate.directTextTokens, fingerprint.directTextTokens);
 
     score += Math.min(3, childOverlap);
     score += Math.min(3, ancestorOverlap);
     score += Math.min(3, classOverlap);
+    score += Math.min(6, directTextOverlap * 3);
     if ((rule.labelMatch || 'prefer') !== 'ignore') {
       score += Math.min(4, labelOverlap * 2);
     }
@@ -81,6 +83,12 @@
     const ancestorDepth = normalizeNumber(rule.ancestorDepth, DEFAULT_ANCESTOR_DEPTH, 0, 6);
     const minScore = normalizeNumber(rule.minScore, DEFAULT_MIN_SCORE, 6, 24);
     const labelOverlap = tokenOverlap(candidate.labelTokens, rule.fingerprint.labelTokens);
+
+    if (strategy === 'sameText') {
+      const directTextOverlap = tokenOverlap(candidate.directTextTokens, rule.fingerprint.directTextTokens);
+      const combinedLabelOverlap = labelOverlap + directTextOverlap;
+      return combinedLabelOverlap > 0 && candidate.tag === rule.fingerprint.tag;
+    }
 
     if (!hasAncestorPrefixMatch(candidate.ancestorSignature, rule.fingerprint.ancestorSignature, ancestorDepth)) {
       return false;
