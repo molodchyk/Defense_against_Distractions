@@ -8,6 +8,7 @@ document.getElementById('top').textContent = chrome.i18n.getMessage("contentBloc
 const THEME_STORAGE_KEY = 'uiThemeMode';
 const DEFAULT_THEME_MODE = 'system';
 const THEME_QUERY = '(prefers-color-scheme: dark)';
+let currentThemeMode = DEFAULT_THEME_MODE;
 
 function normalizeThemeMode(mode) {
     return ['system', 'dark', 'light'].includes(mode) ? mode : DEFAULT_THEME_MODE;
@@ -23,10 +24,19 @@ function applyThemeMode(mode) {
 }
 
 chrome.storage.sync.get({ [THEME_STORAGE_KEY]: DEFAULT_THEME_MODE }, result => {
-    const themeMode = normalizeThemeMode(result[THEME_STORAGE_KEY]);
-    applyThemeMode(themeMode);
+    currentThemeMode = normalizeThemeMode(result[THEME_STORAGE_KEY]);
+    applyThemeMode(currentThemeMode);
 
     window.matchMedia(THEME_QUERY).addEventListener('change', () => {
-        applyThemeMode(themeMode);
+        applyThemeMode(currentThemeMode);
     });
+});
+
+chrome.storage.onChanged.addListener((changes, areaName) => {
+    if (areaName !== 'sync' || !changes[THEME_STORAGE_KEY]) {
+        return;
+    }
+
+    currentThemeMode = normalizeThemeMode(changes[THEME_STORAGE_KEY].newValue);
+    applyThemeMode(currentThemeMode);
 });

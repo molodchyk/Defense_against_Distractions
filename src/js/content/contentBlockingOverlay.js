@@ -9,16 +9,78 @@
     BLOCK_EVENT_OPTIONS
   } = contentBlocking.constants;
 
+  const THEME_STORAGE_KEY = 'uiThemeMode';
+  const DEFAULT_THEME_MODE = 'system';
+  const THEME_QUERY = '(prefers-color-scheme: dark)';
+  let blockedOverlayThemeMode = DEFAULT_THEME_MODE;
+  let blockedOverlayThemeListenersInstalled = false;
+
   function getLocalizedMessage(messageKey, fallback) {
     return chrome.i18n.getMessage(messageKey) || fallback;
   }
 
+  function normalizeThemeMode(mode) {
+    return ['system', 'dark', 'light'].includes(mode) ? mode : DEFAULT_THEME_MODE;
+  }
+
+  function resolveThemeMode(mode) {
+    const normalizedMode = normalizeThemeMode(mode);
+    if (normalizedMode === 'system') {
+      return global.matchMedia(THEME_QUERY).matches ? 'dark' : 'light';
+    }
+
+    return normalizedMode;
+  }
+
+  function applyBlockedOverlayTheme(overlay, mode = blockedOverlayThemeMode) {
+    overlay.dataset.theme = resolveThemeMode(mode);
+    overlay.dataset.themeMode = normalizeThemeMode(mode);
+  }
+
+  function applyBlockedOverlayThemeToExisting() {
+    const overlay = document.getElementById(BLOCK_OVERLAY_ID);
+    if (overlay) {
+      applyBlockedOverlayTheme(overlay);
+    }
+  }
+
+  function installBlockedOverlayThemeSync() {
+    if (blockedOverlayThemeListenersInstalled) {
+      return;
+    }
+
+    chrome.storage.sync.get({ [THEME_STORAGE_KEY]: DEFAULT_THEME_MODE }, result => {
+      blockedOverlayThemeMode = normalizeThemeMode(result[THEME_STORAGE_KEY]);
+      applyBlockedOverlayThemeToExisting();
+    });
+
+    chrome.storage.onChanged.addListener((changes, areaName) => {
+      if (areaName !== 'sync' || !changes[THEME_STORAGE_KEY]) {
+        return;
+      }
+
+      blockedOverlayThemeMode = normalizeThemeMode(changes[THEME_STORAGE_KEY].newValue);
+      applyBlockedOverlayThemeToExisting();
+    });
+
+    global.matchMedia(THEME_QUERY).addEventListener('change', () => {
+      if (blockedOverlayThemeMode === 'system') {
+        applyBlockedOverlayThemeToExisting();
+      }
+    });
+
+    blockedOverlayThemeListenersInstalled = true;
+  }
+
   function createBlockedOverlay() {
+    installBlockedOverlayThemeSync();
+
     const overlay = document.createElement('div');
     overlay.id = BLOCK_OVERLAY_ID;
     overlay.setAttribute('role', 'dialog');
     overlay.setAttribute('aria-modal', 'true');
     applyOverlayHostStyle(overlay);
+    applyBlockedOverlayTheme(overlay);
     const title = getLocalizedMessage('contentBlockedTitle', 'Content Blocked');
     const message = getLocalizedMessage(
       'contentBlockedMessage',
@@ -31,18 +93,18 @@
       'box-sizing:border-box',
       'width:min(620px,100%)',
       'padding:30px 34px',
-      'border:1px solid #323b4b',
+      'border:1px solid var(--dad-block-border)',
       'border-radius:8px',
-      'background:#171b22',
-      'box-shadow:0 18px 44px rgba(0,0,0,.28)'
+      'background:var(--dad-block-surface)',
+      'box-shadow:var(--dad-block-shadow)'
     ].join(';');
 
     const heading = document.createElement('h1');
-    heading.style.cssText = 'margin:0 0 16px;color:#ff4444;font:700 32px/1.2 Arial,sans-serif';
+    heading.style.cssText = 'margin:0 0 16px;color:var(--dad-block-heading);font:700 32px/1.2 Arial,sans-serif';
     heading.textContent = title;
 
     const paragraph = document.createElement('p');
-    paragraph.style.cssText = 'margin:0;color:#c3cad6;font:18px/1.45 Arial,sans-serif';
+    paragraph.style.cssText = 'margin:0;color:var(--dad-block-muted);font:18px/1.45 Arial,sans-serif';
     paragraph.textContent = message;
 
     content.appendChild(heading);
@@ -63,12 +125,42 @@
       'justify-content:center',
       'padding:20px',
       'box-sizing:border-box',
-      'background:#101216',
-      'color:#ffffff',
+      'background:var(--dad-block-bg)',
+      'color:var(--dad-block-text)',
       'font:16px/1.5 Arial,sans-serif',
       'text-align:center',
       'pointer-events:auto'
     ].join(';');
+    if (!document.getElementById('dad-block-overlay-theme-style')) {
+      const style = document.createElement('style');
+      style.id = 'dad-block-overlay-theme-style';
+      style.textContent = `
+        #${BLOCK_OVERLAY_ID} {
+          --dad-block-bg: #101216;
+          --dad-block-surface: #171b22;
+          --dad-block-border: #323b4b;
+          --dad-block-text: #ffffff;
+          --dad-block-heading: #ff4444;
+          --dad-block-muted: #c3cad6;
+          --dad-block-diagnostics: #d7e0e7;
+          --dad-block-shadow: 0 18px 44px rgba(0, 0, 0, 0.28);
+          color-scheme: dark;
+        }
+
+        #${BLOCK_OVERLAY_ID}[data-theme="light"] {
+          --dad-block-bg: #f5f7fb;
+          --dad-block-surface: #ffffff;
+          --dad-block-border: #cfd6e2;
+          --dad-block-text: #17202e;
+          --dad-block-heading: #c73535;
+          --dad-block-muted: #526173;
+          --dad-block-diagnostics: #334155;
+          --dad-block-shadow: 0 18px 40px rgba(25, 37, 59, 0.12);
+          color-scheme: light;
+        }
+      `;
+      document.documentElement.appendChild(style);
+    }
     overlay.hidden = false;
   }
 
@@ -77,8 +169,8 @@
     wrapper.style.cssText = [
       'margin-top:18px',
       'padding-top:14px',
-      'border-top:1px solid #323b4b',
-      'color:#d7e0e7',
+      'border-top:1px solid var(--dad-block-border)',
+      'color:var(--dad-block-diagnostics)',
       'font:15px/1.45 Arial,sans-serif',
       'text-align:left'
     ].join(';');
@@ -89,15 +181,15 @@
     }
 
     const trigger = document.createElement('div');
-    trigger.innerHTML = '<strong style="color:#fff">Triggered by:</strong> ';
+    trigger.innerHTML = '<strong style="color:var(--dad-block-text)">Triggered by:</strong> ';
     trigger.appendChild(document.createTextNode(diagnostics.keyword || 'unknown'));
 
     const score = document.createElement('div');
-    score.innerHTML = '<strong style="color:#fff">Score:</strong> ';
+    score.innerHTML = '<strong style="color:var(--dad-block-text)">Score:</strong> ';
     score.appendChild(document.createTextNode(`${Math.round(diagnostics.finalScore)} (${diagnostics.operation}${diagnostics.value})`));
 
     const context = document.createElement('div');
-    context.style.cssText = 'margin-top:8px;color:#d7e0e7;overflow-wrap:anywhere';
+    context.style.cssText = 'margin-top:8px;color:var(--dad-block-diagnostics);overflow-wrap:anywhere';
     context.textContent = diagnostics.contextText ? `Context: ${diagnostics.contextText}` : '';
 
     wrapper.appendChild(trigger);
@@ -171,6 +263,8 @@
       return;
     }
 
+    installBlockedOverlayThemeSync();
+
     let overlay = document.getElementById(BLOCK_OVERLAY_ID);
     if (!overlay) {
       try {
@@ -188,6 +282,7 @@
       document.documentElement.appendChild(overlay);
     } else {
       applyOverlayHostStyle(overlay);
+      applyBlockedOverlayTheme(overlay);
       if (overlay.parentElement !== document.documentElement) {
         document.documentElement.appendChild(overlay);
       }
