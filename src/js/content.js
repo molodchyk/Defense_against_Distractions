@@ -43,6 +43,19 @@
       });
       sendResponse({ status: 'Top frame blocked' });
     }
+
+    if (message.action === 'getBlockDebugState') {
+      const overlay = document.getElementById('dad-block-overlay');
+      sendResponse({
+        pageBlocked: Boolean(global.pageBlocked),
+        pageScore: global.pageScore,
+        hasOverlay: Boolean(overlay),
+        overlayParent: overlay?.parentElement?.tagName || null,
+        readyState: document.readyState,
+        url: global.location.href,
+        isTopFrame: global.top === global.self
+      });
+    }
   });
 
   global.onpageshow = function(event) {

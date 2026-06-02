@@ -18,12 +18,7 @@
     overlay.id = BLOCK_OVERLAY_ID;
     overlay.setAttribute('role', 'dialog');
     overlay.setAttribute('aria-modal', 'true');
-    overlay.style.position = 'fixed';
-    overlay.style.inset = '0';
-    overlay.style.zIndex = '2147483647';
-    overlay.style.pointerEvents = 'auto';
-
-    const shadowRoot = overlay.attachShadow({ mode: 'open' });
+    applyOverlayHostStyle(overlay);
     const title = getLocalizedMessage('contentBlockedTitle', 'Content Blocked');
     const message = getLocalizedMessage(
       'contentBlockedMessage',
@@ -31,94 +26,33 @@
     );
     const diagnostics = getBlockedPageDiagnostics();
 
-    shadowRoot.innerHTML = `
-      <style>
-        :host {
-          all: initial;
-          position: fixed;
-          inset: 0;
-          z-index: 2147483647;
-        }
+    const content = document.createElement('div');
+    content.style.cssText = [
+      'box-sizing:border-box',
+      'width:min(600px,100%)',
+      'padding:30px',
+      'border-radius:8px',
+      'background:#4c4c4c',
+      'box-shadow:0 4px 8px rgba(0,0,0,.1)'
+    ].join(';');
 
-        .block-screen {
-          box-sizing: border-box;
-          width: 100vw;
-          min-height: 100vh;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          padding: 20px;
-          background: #333333;
-          color: #ffffff;
-          font: 20px/1.5 Arial, sans-serif;
-          text-align: center;
-        }
+    const heading = document.createElement('h1');
+    heading.style.cssText = 'margin:0 0 16px;color:#ff4444;font:700 32px/1.2 Arial,sans-serif';
+    heading.textContent = title;
 
-        .content {
-          box-sizing: border-box;
-          width: min(600px, 100%);
-          padding: 30px;
-          border-radius: 8px;
-          background: #4c4c4c;
-          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
+    const paragraph = document.createElement('p');
+    paragraph.style.cssText = 'margin:0';
+    paragraph.textContent = message;
 
-        h1 {
-          margin: 0 0 16px;
-          color: #ff4444;
-          font-size: 32px;
-          line-height: 1.2;
-        }
-
-        p {
-          margin: 0;
-        }
-
-        .diagnostics {
-          margin-top: 18px;
-          padding-top: 14px;
-          border-top: 1px solid rgba(255, 255, 255, 0.22);
-          color: #f2f5f8;
-          font-size: 15px;
-          line-height: 1.45;
-          text-align: left;
-        }
-
-        .diagnostics strong {
-          color: #ffffff;
-        }
-
-        .context {
-          margin-top: 8px;
-          color: #d7e0e7;
-          overflow-wrap: anywhere;
-        }
-      </style>
-      <div class="block-screen">
-        <div class="content">
-          <h1></h1>
-          <p></p>
-          <div class="diagnostics" hidden>
-            <div><strong>Triggered by:</strong> <span class="trigger"></span></div>
-            <div><strong>Score:</strong> <span class="score"></span></div>
-            <div class="context"></div>
-          </div>
-        </div>
-      </div>
-    `;
-
-    shadowRoot.querySelector('h1').textContent = title;
-    shadowRoot.querySelector('p').textContent = message;
-    renderBlockedPageDiagnostics(shadowRoot, diagnostics);
+    content.appendChild(heading);
+    content.appendChild(paragraph);
+    content.appendChild(createDiagnosticsElement(diagnostics));
+    overlay.appendChild(content);
 
     return overlay;
   }
 
-  function createFallbackBlockedOverlay() {
-    const overlay = document.createElement('div');
-    overlay.id = BLOCK_OVERLAY_ID;
-    overlay.setAttribute('role', 'dialog');
-    overlay.setAttribute('aria-modal', 'true');
+  function applyOverlayHostStyle(overlay) {
     overlay.style.cssText = [
       'position:fixed',
       'inset:0',
@@ -134,21 +68,41 @@
       'text-align:center',
       'pointer-events:auto'
     ].join(';');
+    overlay.hidden = false;
+  }
 
-    const content = document.createElement('div');
-    content.style.cssText = [
-      'box-sizing:border-box',
-      'width:min(600px,100%)',
-      'padding:30px',
-      'border-radius:8px',
-      'background:#4c4c4c'
+  function createDiagnosticsElement(diagnostics) {
+    const wrapper = document.createElement('div');
+    wrapper.style.cssText = [
+      'margin-top:18px',
+      'padding-top:14px',
+      'border-top:1px solid rgba(255,255,255,.22)',
+      'color:#f2f5f8',
+      'font:15px/1.45 Arial,sans-serif',
+      'text-align:left'
     ].join(';');
-    content.textContent = getLocalizedMessage(
-      'contentBlockedMessage',
-      'This page contains restricted content and has been blocked for your protection.'
-    );
-    overlay.appendChild(content);
-    return overlay;
+
+    if (!diagnostics) {
+      wrapper.hidden = true;
+      return wrapper;
+    }
+
+    const trigger = document.createElement('div');
+    trigger.innerHTML = '<strong style="color:#fff">Triggered by:</strong> ';
+    trigger.appendChild(document.createTextNode(diagnostics.keyword || 'unknown'));
+
+    const score = document.createElement('div');
+    score.innerHTML = '<strong style="color:#fff">Score:</strong> ';
+    score.appendChild(document.createTextNode(`${Math.round(diagnostics.finalScore)} (${diagnostics.operation}${diagnostics.value})`));
+
+    const context = document.createElement('div');
+    context.style.cssText = 'margin-top:8px;color:#d7e0e7;overflow-wrap:anywhere';
+    context.textContent = diagnostics.contextText ? `Context: ${diagnostics.contextText}` : '';
+
+    wrapper.appendChild(trigger);
+    wrapper.appendChild(score);
+    wrapper.appendChild(context);
+    return wrapper;
   }
 
   function getBlockedPageDiagnostics() {
@@ -167,21 +121,6 @@
       contextText: latestTrigger.contextText,
       finalScore: diagnostics.finalScore || global.pageScore || latestTrigger.scoreAfter
     };
-  }
-
-  function renderBlockedPageDiagnostics(shadowRoot, diagnostics) {
-    if (!diagnostics) return;
-
-    const wrapper = shadowRoot.querySelector('.diagnostics');
-    const trigger = shadowRoot.querySelector('.trigger');
-    const score = shadowRoot.querySelector('.score');
-    const context = shadowRoot.querySelector('.context');
-    if (!wrapper || !trigger || !score || !context) return;
-
-    wrapper.hidden = false;
-    trigger.textContent = diagnostics.keyword || 'unknown';
-    score.textContent = `${Math.round(diagnostics.finalScore)} (${diagnostics.operation}${diagnostics.value})`;
-    context.textContent = diagnostics.contextText ? `Context: ${diagnostics.contextText}` : '';
   }
 
   function suppressBlockedPageEvent(event) {
@@ -229,9 +168,20 @@
         overlay = createBlockedOverlay();
       } catch (error) {
         console.error('Failed to create blocked overlay with diagnostics:', error);
-        overlay = createFallbackBlockedOverlay();
+        overlay = document.createElement('div');
+        overlay.id = BLOCK_OVERLAY_ID;
+        applyOverlayHostStyle(overlay);
+        overlay.textContent = getLocalizedMessage(
+          'contentBlockedMessage',
+          'This page contains restricted content and has been blocked for your protection.'
+        );
       }
       document.documentElement.appendChild(overlay);
+    } else {
+      applyOverlayHostStyle(overlay);
+      if (overlay.parentElement !== document.documentElement) {
+        document.documentElement.appendChild(overlay);
+      }
     }
 
     document.documentElement.style.overflow = 'hidden';
