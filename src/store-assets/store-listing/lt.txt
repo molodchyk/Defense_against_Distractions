@@ -1,0 +1,25 @@
+Defense Against Distractions padeda sutelkti dėmesį, kai neužtenka paprasto svetainės blokavimo.
+
+Dauguma dėmesio plėtinių blokuoja visas svetaines. Tai naudinga, bet internetas yra netvarkingesnis. Ta pati svetainė vienu metu gali būti naudinga, o kitą – atitraukti. Paieškos puslapis, pokalbių įrankis, forumas, vaizdo įrašų svetainė ar AI asistentas gali padėti realiai dirbti, bet taip pat gali tapti vartais į naujienas, žaidimus, dramas, vaizdo įrašus ir kitus dėmesio spąstus.
+
+Defense Against Distractions suteikia tikslesnį valdymą.
+
+Užuot blokavę tik pagal URL, galite blokuoti puslapius pagal juose rodomus žodžius ir frazes. Kurkite svetainių grupes, pridėkite raktinių žodžių ar frazių, priskirkite balus ir leiskite plėtiniui užblokuoti puslapį, kai išsiblaškymo balas peržengia sukonfigūruotą slenkstį.
+
+Galite naudoti ją norėdami apsaugoti studijų sesijas, darbo blokus, pasiruošimą egzaminams, tyrimo laiką ar bet kokią situaciją, kai norite, kad naršyklė išliktų naudinga ir netaptų aplinkeliu.
+
+Pagrindinės savybės:
+
+Blokuokite puslapius pagal raktinius žodžius, frazes ir įvertintus balus.
+Suskirstykite skirtingas fokusavimo taisykles į svetainių ir raktinių žodžių grupes.
+Naudokite užrakintus tvarkaraščius, baltuosius sąrašus, apsaugą slaptažodžiu, eksportavimą / importavimą, vartotojo sąsajos režimus ir vartotojo sąsajos elementų slėpimą, kad sąranka būtų praktiška.
+
+Kas naujo 1.5 versijoje:
+
+Šviesūs, tamsūs ir sistemos vartotojo sąsajos režimai.
+Iššokančiaisiais NS elementų rinkiklis, skirtas paslėpti blaškančius puslapio valdiklius.
+Patobulinta užblokuoto puslapio perdanga su laikmenos sustabdymu arba nutildymu ir pasirenkama diagnostika.
+Atnaujintas parduotuvės turtas, pakuotė, išleidimo patikrinimai ir projekto struktūra.
+
+Defense Against Distractions yra atviro kodo:
+https://github.com/molodchyk/Defense_against_Distractions

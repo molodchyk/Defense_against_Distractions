@@ -1,0 +1,455 @@
+{
+    "deleteButtonLabel": {
+        "message": "Ištrinti"
+    },
+    "whitelistExistsMessage": {
+        "message": "Ši svetainė jau įtraukta į baltąjį sąrašą."
+    },
+    "deleteWhitelistError": {
+        "message": "Vykdant aktyvų tvarkaraštį negalima ištrinti į baltąjį sąrašą įtrauktų svetainių."
+    },
+    "scheduleNameLabel": {
+        "message": "Tvarkaraščio pavadinimas"
+    },
+    "startTimeLabel": {
+        "message": "Pradžios laikas"
+    },
+    "endTimeLabel": {
+        "message": "Pabaigos laikas"
+    },
+    "activeStateLabel": {
+        "message": "Aktyvi būsena"
+    },
+    "editButtonLabel": {
+        "message": "Redaguoti"
+    },
+    "saveButtonLabel": {
+        "message": "Išsaugoti"
+    },
+    "endTimeAfterStartTimeError": {
+        "message": "Pabaigos laikas turi būti po pradžios laiko."
+    },
+    "schedulesOverlapError": {
+        "message": "Tvarkaraščiai negali sutapti."
+    },
+    "minimumUnlockedTimeError": {
+        "message": "Kiekvieną dieną turi būti bent 1 valanda atrakinto laiko."
+    },
+    "Mon": {
+        "message": "Pirm"
+    },
+    "Tue": {
+        "message": "antradienis"
+    },
+    "Wed": {
+        "message": "trečia"
+    },
+    "Thu": {
+        "message": "Ketvirtadienis"
+    },
+    "Fri": {
+        "message": "penk"
+    },
+    "Sat": {
+        "message": "Šešt"
+    },
+    "Sun": {
+        "message": "Saulė"
+    },
+    "Edit": {
+        "message": "Redaguoti"
+    },
+    "Save": {
+        "message": "Išsaugoti"
+    },
+    "Delete": {
+        "message": "Ištrinti"
+    },
+    "groupNameLabel": {
+        "message": "Grupės pavadinimas"
+    },
+    "websitesLabel": {
+        "message": "Interneto svetainės"
+    },
+    "keywordsLabel": {
+        "message": "Raktažodžiai"
+    },
+    "timerCountLabel": {
+        "message": "Laikmačio skaičius"
+    },
+    "timerDurationLabel": {
+        "message": "Laikmačio trukmė (sekundėmis)"
+    },
+    "unnamedSchedulesMaxReached": {
+        "message": "Pasiektas maksimalus neįvardytų tvarkaraščių skaičius."
+    },
+    "scheduleNameExists": {
+        "message": "Tvarkaraštis tokiu pavadinimu jau yra."
+    },
+    "cannotDeleteActiveSchedule": {
+        "message": "Negalima ištrinti aktyvaus tvarkaraščio. Palaukite, kol tvarkaraštis nebus aktyvus."
+    },
+    "optionsTitle": {
+        "message": "Gynybos grupė"
+    },
+    "groupsHeading": {
+        "message": "Grupės"
+    },
+    "whitelistHeading": {
+        "message": "Baltojo sąrašo svetainės"
+    },
+    "schedulesHeading": {
+        "message": "Užrakinti tvarkaraščiai"
+    },
+    "unnamedGroupsMaxReached": {
+        "message": "Pasiektas maksimalus neįvardytų grupių skaičius."
+    },
+    "groupNameExists": {
+        "message": "Grupė tokiu pavadinimu jau yra."
+    },
+    "cannotDeleteGroupActiveSchedule": {
+        "message": "Negalima ištrinti grupių aktyvaus tvarkaraščio metu."
+    },
+    "cannotIncreaseTimerActiveSchedule": {
+        "message": "Laikmačio trukmė ir laikmačių skaičius negali būti padidintas aktyvaus tvarkaraščio metu."
+    },
+    "invalidKeywordValue": {
+        "message": "Netinkama raktinio žodžio vertė. Turi būti nurodytame diapazone."
+    },
+    "cannotChangeGroupNameActiveSchedule": {
+        "message": "Aktyvaus tvarkaraščio metu grupės pavadinimo keisti neleidžiama."
+    },
+    "invalidEditOnWebsitesOrKeywords": {
+        "message": "Svetainės arba raktinių žodžių įrašai buvo redaguoti arba pašalinti, pakeitimų išsaugoti negalima."
+    },
+    "invalidKeywordEntry": {
+        "message": "Neteisingas raktinio žodžio įrašas:"
+    },
+    "addGroupButtonText": {
+        "message": "Pridėti grupę"
+    },
+    "contentBlockedTitle": {
+        "message": "Turinys užblokuotas"
+    },
+    "contentBlockedMessage": {
+        "message": "Šiame puslapyje yra ribojamo turinio ir jis buvo užblokuotas jūsų apsaugai."
+    },
+    "keywordDetected": {
+        "message": "Raktinis žodis aptiktas"
+    },
+    "context": {
+        "message": "Kontekstas"
+    },
+    "goBackButton": {
+        "message": "Grįžti atgal"
+    },
+    "activateTimerButton": {
+        "message": "Suaktyvinkite laikmatį"
+    },
+    "cannotRelaxConstraints": {
+        "message": "Negalima sušvelninti tvarkaraščio apribojimų."
+    },
+    "activeButtonText": {
+        "message": "Aktyvus"
+    },
+    "inactiveButtonText": {
+        "message": "Neaktyvus"
+    },
+    "addScheduleButton": {
+        "message": "Pridėti tvarkaraštį"
+    },
+    "enterWebsiteURLPlaceholder": {
+        "message": "Įveskite svetainės URL"
+    },
+    "addToWhitelistButton": {
+        "message": "Pridėti į baltąjį sąrašą"
+    },
+    "cancelButton": {
+        "message": "Atšaukti"
+    },
+    "groupNamePlaceholder": {
+        "message": "Grupės pavadinimas"
+    },
+    "addScheduleButtonLabel": {
+        "message": "Pridėti tvarkaraštį"
+    },
+    "unnamedSchedulePrefix": {
+        "message": "Tvarkaraštis"
+    },
+    "addToWhitelistButtonLabel": {
+        "message": "Pridėti į baltąjį sąrašą"
+    },
+    "cancelButtonLabel": {
+        "message": "Atšaukti"
+    },
+    "activeLabel": {
+        "message": "Aktyvus"
+    },
+    "inactiveLabel": {
+        "message": "Neaktyvus"
+    },
+    "cancelLabel": {
+        "message": "Atšaukti"
+    },
+    "scheduleNamePlaceholder": {
+        "message": "Tvarkaraščio pavadinimas"
+    },
+    "editLabel": {
+        "message": "Redaguoti"
+    },
+    "unnamedGroupPrefix": {
+        "message": "Grupė"
+    },
+    "lockedScheduleErrorMessage": {
+        "message": "Negalima įtraukti svetainės į baltąjį sąrašą aktyvaus tvarkaraščio metu."
+    },
+    "cannotToggleActiveState": {
+        "message": "Dabartinėmis sąlygomis aktyvios būsenos pakeisti negalima."
+    },
+    "cannotDeselectDaysError": {
+        "message": "Negalima panaikinti šiuo metu galiojančio aktyvaus tvarkaraščio dienų pasirinkimo."
+    },
+    "passwordManagementHeader": {
+        "message": "Slaptažodžių valdymas"
+    },
+    "enterPasswordPlaceholder": {
+        "message": "Įveskite slaptažodį"
+    },
+    "confirmPasswordPlaceholder": {
+        "message": "Patvirtinkite slaptažodį"
+    },
+    "setPasswordButton": {
+        "message": "Nustatyti slaptažodį"
+    },
+    "deletePasswordButton": {
+        "message": "Ištrinti slaptažodį"
+    },
+    "enterPasswordToAccessLabel": {
+        "message": "Įveskite slaptažodį, kad galėtumėte pasiekti:"
+    },
+    "submitButton": {
+        "message": "Pateikti"
+    },
+    "tooManyAttempts": {
+        "message": "Per daug nesėkmingų bandymų. Prieš bandydami dar kartą, palaukite $TIME$ sekundžių.",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "30"
+            }
+        }
+    },
+    "incorrectPassword": {
+        "message": "Neteisingas slaptažodis. Liko $ATTEMPTS$ bandymai.",
+        "placeholders": {
+            "attempts": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
+    },
+    "passwordMismatchAlert": {
+        "message": "Slaptažodžiai nesutampa. Įsitikinkite, kad abu slaptažodžiai yra vienodi."
+    },
+    "pageTitle": {
+        "message": "Instrukcijų vadovas – Defense Against Distractions"
+    },
+    "headerTitle": {
+        "message": "Defense Against Distractions: Instrukcijų vadovas"
+    },
+    "introTitle": {
+        "message": "Įvadas"
+    },
+    "introText1": {
+        "message": "Sveiki! Taip lengva išsiblaškyti internete ir atidėlioti. Šis plėtinys leidžia blokuoti tinklalapius pagal raktinius žodžius, kurių nenorite matyti."
+    },
+    "introText2": {
+        "message": "Galima leisti tūkstančius video games, skaityti naujienas, žiūrėti vaizdo įrašus ir pan. Ir dažnai tai darome, kai projekto terminai ar egzaminai dar toli. Kartais gali būti sunku priversti save daryti tai, ką reikia padaryti."
+    },
+    "introText3": {
+        "message": "Ir blaškymas yra visur! Net jei naudojate StayFocusd, Cold Turkey arba FocusMe, kad blokuotumėte kai kurias svetaines pagal jų URL, negalėsite užblokuoti visko. Pavyzdžiui, net naudodami ChatGPT galite kalbėti apie naujienas arba video games, jei tikrai nenorite mokytis ar dirbti."
+    },
+    "introText4": {
+        "message": "Naudodami šį plėtinį galite blokuoti svetaines pagal jų teksto žodžius ir frazes."
+    },
+    "howToUseTitle": {
+        "message": "Kaip naudoti plėtinį"
+    },
+    "createGroupTitle": {
+        "message": "Pirmas žingsnis: sukurkite grupę"
+    },
+    "createGroupText1": {
+        "message": "Galite paspausti mygtuką „Pridėti grupę“ arba įvesti grupės pavadinimą ir paspausti Enter arba mygtuką Pridėti grupę. Galite sukurti kelias grupes."
+    },
+    "createGroupText2": {
+        "message": "Pamatysite grupės skydelį."
+    },
+    "websitesTitle": {
+        "message": "Interneto svetainės"
+    },
+    "websitesText": {
+        "message": "Galite pradėti pridėti svetainių paspausdami mygtuką „Redaguoti“, esantį kairėje nuo svetainės „Svetainės“ eilutės. Šis laukas yra atsakingas už svetaines, kuriose plėtinys blokuos raktinius žodžius. Čia turite įvesti svetainių URL adresus, pavyzdžiui, „google.com“. Galite įvesti kelias svetaines, kiekviena nauja eilutė yra nauja svetainė. Tiesiog paspauskite Enter. Kai būsite pasiruošę, paspauskite žalią mygtuką „Išsaugoti“. Arba galite atšaukti."
+    },
+    "keywordsTitle": {
+        "message": "Raktažodžiai"
+    },
+    "keywordsText1": {
+        "message": "Norėdami pridėti naujų raktinių žodžių arba atlikti kokius nors pakeitimus, paspauskite „Redaguoti“. Čia įvesti raktiniai žodžiai bus nuskaityti svetainėse, kurias įvedėte šiai grupei."
+    },
+    "keywordFormatsIntroduction": {
+        "message": "Yra 3 raktinių žodžių formatai:"
+    },
+    "keywordFormat1Title": {
+        "message": "Pirmasis formatas:"
+    },
+    "keywordFormat1Text": {
+        "message": "Tiesiog įveskite raktinius žodžius. Tai gali būti žodis arba frazė. Jei raktiniame žodyje yra kablelis „,“, prieš jį turite naudoti pabėgimo simbolį „\\“. Svetainė bus užblokuota, kai tik bus aptiktas raktinis žodis. Galite įvesti tiek raktinių žodžių, kiek norite, tiesiog paspauskite klavišą Enter. Kiekviena nauja eilutė yra naujas raktinis žodis."
+    },
+    "keywordFormat1_2": {
+        "message": "Pavyzdys: „video games“ arba „naujienos“."
+    },
+    "keywordFormat2Title": {
+        "message": "Antrasis formatas:"
+    },
+    "keywordFormat2Text": {
+        "message": "Įveskite raktinį žodį ir skaitinę reikšmę. Kiekviena svetainė, kurią įvedėte į grupę, turi pasiekti 1000 balų. Svetainė prasideda reikšme 0 ir, atsižvelgiant į skaitinę raktinio žodžio reikšmę, reikšmė didėja. Kai svetainė pasieks 1000 balų, ji bus užblokuota."
+    },
+    "keywordFormat2_2": {
+        "message": "Pavyzdys: 'news, 50'"
+    },
+    "keywordFormat2_3": {
+        "message": "Kiekviena svetainė, kurią įvedėte į grupę, turi pasiekti 1000 balų. Svetainė prasideda reikšme 0 ir, atsižvelgiant į skaitinę raktinio žodžio reikšmę, reikšmė didėja. Kai svetainė pasieks 1000 balų, ji bus užblokuota."
+    },
+    "keywordFormat3Title": {
+        "message": "Trečias formatas:"
+    },
+    "keywordFormat3Text": {
+        "message": "Įveskite raktinį žodį, tada daugybos arba sudėties ženklą (* arba +), tada skaitinę reikšmę. Pagal šį scenarijų puslapio balas padauginamas pagal rasto raktinio žodžio skaitinę reikšmę."
+    },
+    "keywordFormat3_2": {
+        "message": "Pavyzdys: 'news, *, 10'"
+    },
+    "keywordFormat3_3": {
+        "message": "Pagal šį scenarijų puslapio balas padauginamas pagal rasto raktinio žodžio skaitinę reikšmę."
+    },
+    "timerCountTitle": {
+        "message": "Laikmačio skaičius"
+    },
+    "timerCountText": {
+        "message": "Kai puslapis bus užblokuotas, turėsite galimybę paspausti mygtuką „Suaktyvinti laikmatį“. Po to turėsite laiko atlikti kai kuriuos veiksmus puslapyje, kol jis vėl bus užblokuotas. Lauke Laikmačio skaičius galite nuspręsti, kiek laikmačių norite turėti per dieną."
+    },
+    "timerDurationTitle": {
+        "message": "Laikmačio trukmė (sekundėmis)"
+    },
+    "timerDurationText": {
+        "message": "Šiame lauke jūs nuspręsite, kiek sekundžių turės kiekvienas laikmatis."
+    },
+    "lockedSchedulesTitle": {
+        "message": "Užrakinti tvarkaraščiai"
+    },
+    "lockedSchedulesNote": {
+        "message": "! Užrakinto tvarkaraščio negalima atrakinti, kol nepraeis laikas (nebent pašalinsite plėtinį)!"
+    },
+    "lockedSchedulesText1": {
+        "message": "Galite pridėti naują užrakintą tvarkaraštį sukūrę tvarkaraščio pavadinimą lauke Tvarkaraščio pavadinimas ir paspausdami Enter arba mygtuką Pridėti tvarkaraštį."
+    },
+    "lockedSchedulesText2": {
+        "message": "Norėdami pakeisti savo tvarkaraščio nustatymus, paspauskite „Redaguoti“. Paspaudę dienos mygtukus, įjungiate tos dienos tvarkaraštį (mygtukas tampa žalias) arba išjungiate tą dieną. Keisdami laukus Pradžios laikas ir Pabaigos laikas nustatote laiką, kada tvarkaraštis gali būti aktyvus. Kiekviena diena turi turėti 1 valandos neaktyvaus laiko langą, kad galėtumėte tuo metu išjungti tvarkaraštį. Mygtukas Neaktyvus / Aktyvus perjungia tvarkaraštį. Tvarkaraštis bus užrakintas ir aktyvus, jei įjungta einamoji diena (žalia spalva), o mygtukas rodo „Active“ ir taip pat yra žalias, o dabartinis laikas yra tarp pradžios ir pabaigos laiko."
+    },
+    "lockedSchedulesText3": {
+        "message": "Mygtukas Ištrinti pašalina užrakintą tvarkaraštį. Tas pats pasakytina apie grupes ir į baltąjį sąrašą įtrauktas svetaines."
+    },
+    "lockedSchedulesText4": {
+        "message": "Užrakinto tvarkaraščio metu taikomi keli apribojimai:"
+    },
+    "lockedScheduleRestriction1": {
+        "message": "Negalite keisti grupių pavadinimų."
+    },
+    "lockedScheduleRestriction2": {
+        "message": "Negalite keisti ar pašalinti esamų svetainių grupėse."
+    },
+    "lockedScheduleRestriction3": {
+        "message": "Negalite pakeisti arba pašalinti esamų raktinių žodžių ir jų verčių."
+    },
+    "lockedScheduleRestriction4": {
+        "message": "Galite nustatyti tik daugybos raktinių žodžių reikšmes: nuo 1 iki 1000. Sudėti: nuo 0 iki 1000."
+    },
+    "lockedScheduleRestriction5": {
+        "message": "Laikmačio skaičius negali būti padidintas."
+    },
+    "lockedScheduleRestriction6": {
+        "message": "Laikmačio trukmė negali būti padidinta."
+    },
+    "lockedScheduleRestriction7": {
+        "message": "Aktyvių tvarkaraščių ištrinti negalima."
+    },
+    "lockedScheduleRestriction8": {
+        "message": "Negalite panaikinti dienų pasirinkimo, padaryti tvarkaraščio neaktyvaus arba pakeisti aktyvių tvarkaraščių pradžios ar pabaigos laiko."
+    },
+    "lockedScheduleRestriction9": {
+        "message": "Negalite pridėti svetainių, įtrauktų į baltąjį sąrašą."
+    },
+    "lockedScheduleRestriction10": {
+        "message": "Negalite nustatyti arba ištrinti plėtinio slaptažodžio."
+    },
+    "whitelistWebsitesTitle": {
+        "message": "Baltojo sąrašo svetainės"
+    },
+    "whitelistWebsitesText": {
+        "message": "Leidžia įvesti į baltąjį sąrašą įtrauktas svetaines, tai reiškia, kad šiose svetainėse raktinių žodžių nuskaitymas nebus atliktas, taigi jos nebus blokuojamos. Šiuo metu neturime galimybės naudoti pakaitos simbolio (*), kad į vieną įrašą įtrauktume daug svetainių (pvz., *.io, kur būtų blokuojamos visos svetainės su '.io'), todėl ši funkcija nėra labai naudinga, bet ji egzistuoja."
+    },
+    "passwordManagementTitle": {
+        "message": "Slaptažodžių valdymas"
+    },
+    "passwordManagementText": {
+        "message": "Leidžia nustatyti plėtinio puslapio slaptažodį. Kiekvienas, atidaręs plėtinio puslapį, turės įvesti teisingą slaptažodį, kad galėtų pasiekti. Naudinga, kad kiti netyčia (arba tyčia) nesugriežtintų nustatymų."
+    },
+    "contactFeedbackTitle": {
+        "message": "Kontaktai ir atsiliepimai"
+    },
+    "feedbackText1": {
+        "message": "Jei norite pasidalyti atsiliepimais arba turite problemų, apsilankykite plėtinio GitHub puslapyje:"
+    },
+    "githubLink": {
+        "message": "GitHub – Defense Against Distractions"
+    },
+    "feedbackText2": {
+        "message": "Ten eikite į skirtuką „Problemos“ ir spustelėkite žalią mygtuką „Nauja problema“. Įveskite pavadinimą ir aprašymą ir paspauskite „Pateikti naują numerį“."
+    },
+    "thanks": {
+        "message": "Ačiū."
+    },
+    "instructionGuideLink": {
+        "message": "Instrukcijų vadovas"
+    },
+    "description": {
+        "message": "Leidžia blokuoti svetaines pagal jų puslapiuose rodomą tekstą."
+    },
+    "dailyLimitReached": {
+        "message": "Pasiektas dienos limitas"
+    },
+    "exportButton": {
+        "message": "Eksportuoti"
+    },
+    "importButton": {
+        "message": "Importuoti"
+    },
+    "themeModeLabel": {
+        "message": "UI režimas"
+    },
+    "themeModeSystemOption": {
+        "message": "Sistema"
+    },
+    "themeModeDarkOption": {
+        "message": "Tamsus"
+    },
+    "themeModeLightOption": {
+        "message": "Šviesa"
+    },
+    "elementRulesLabel": {
+        "message": "Užblokuota vartotojo sąsaja"
+    },
+    "noElementRulesLabel": {
+        "message": "Nėra užblokuotų vartotojo sąsajos elementų"
+    }
+}

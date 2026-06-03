@@ -1,0 +1,455 @@
+{
+    "deleteButtonLabel": {
+        "message": "Suprimeix"
+    },
+    "whitelistExistsMessage": {
+        "message": "Aquest lloc ja està a la llista blanca."
+    },
+    "deleteWhitelistError": {
+        "message": "No es poden suprimir els llocs de la llista blanca durant la programació activa."
+    },
+    "scheduleNameLabel": {
+        "message": "Nom de l'agenda"
+    },
+    "startTimeLabel": {
+        "message": "Hora d'inici"
+    },
+    "endTimeLabel": {
+        "message": "Temps de finalització"
+    },
+    "activeStateLabel": {
+        "message": "Estat actiu"
+    },
+    "editButtonLabel": {
+        "message": "Edita"
+    },
+    "saveButtonLabel": {
+        "message": "Desa"
+    },
+    "endTimeAfterStartTimeError": {
+        "message": "L'hora de finalització ha de ser posterior a l'hora d'inici."
+    },
+    "schedulesOverlapError": {
+        "message": "Els horaris no poden superposar-se."
+    },
+    "minimumUnlockedTimeError": {
+        "message": "Cada dia ha de tenir almenys 1 hora de temps desbloquejat."
+    },
+    "Mon": {
+        "message": "Dl"
+    },
+    "Tue": {
+        "message": "Dt"
+    },
+    "Wed": {
+        "message": "Dc"
+    },
+    "Thu": {
+        "message": "Dj"
+    },
+    "Fri": {
+        "message": "dv"
+    },
+    "Sat": {
+        "message": "ds"
+    },
+    "Sun": {
+        "message": "Sol"
+    },
+    "Edit": {
+        "message": "Edita"
+    },
+    "Save": {
+        "message": "Desa"
+    },
+    "Delete": {
+        "message": "Suprimeix"
+    },
+    "groupNameLabel": {
+        "message": "Nom del grup"
+    },
+    "websitesLabel": {
+        "message": "Llocs web"
+    },
+    "keywordsLabel": {
+        "message": "Paraules clau"
+    },
+    "timerCountLabel": {
+        "message": "Recompte de temporitzadors"
+    },
+    "timerDurationLabel": {
+        "message": "Durada del temporitzador (segons)"
+    },
+    "unnamedSchedulesMaxReached": {
+        "message": "S'ha assolit el nombre màxim d'horaris sense nom."
+    },
+    "scheduleNameExists": {
+        "message": "Ja existeix una programació amb aquest nom."
+    },
+    "cannotDeleteActiveSchedule": {
+        "message": "No es pot suprimir una programació activa. Espereu fins que la programació no estigui activa."
+    },
+    "optionsTitle": {
+        "message": "Panell de Defensa"
+    },
+    "groupsHeading": {
+        "message": "Grups"
+    },
+    "whitelistHeading": {
+        "message": "Llista blanca de llocs web"
+    },
+    "schedulesHeading": {
+        "message": "Horaris bloquejats"
+    },
+    "unnamedGroupsMaxReached": {
+        "message": "S'ha assolit el nombre màxim de grups sense nom."
+    },
+    "groupNameExists": {
+        "message": "Ja existeix un grup amb aquest nom."
+    },
+    "cannotDeleteGroupActiveSchedule": {
+        "message": "No es poden suprimir grups durant la programació activa."
+    },
+    "cannotIncreaseTimerActiveSchedule": {
+        "message": "La durada del temporitzador i la quantitat de temporitzadors no es poden augmentar durant una programació activa."
+    },
+    "invalidKeywordValue": {
+        "message": "El valor de la paraula clau no és vàlid. Ha d'estar dins de l'interval especificat."
+    },
+    "cannotChangeGroupNameActiveSchedule": {
+        "message": "No es permet canviar el nom del grup durant una programació activa."
+    },
+    "invalidEditOnWebsitesOrKeywords": {
+        "message": "Els llocs web o les entrades de paraules clau s'han editat o eliminats, el canvi no es pot desar."
+    },
+    "invalidKeywordEntry": {
+        "message": "Entrada de paraula clau no vàlida:"
+    },
+    "addGroupButtonText": {
+        "message": "Afegeix un grup"
+    },
+    "contentBlockedTitle": {
+        "message": "Contingut bloquejat"
+    },
+    "contentBlockedMessage": {
+        "message": "Aquesta pàgina conté contingut restringit i s'ha bloquejat per a la vostra protecció."
+    },
+    "keywordDetected": {
+        "message": "Paraula clau detectada"
+    },
+    "context": {
+        "message": "Context"
+    },
+    "goBackButton": {
+        "message": "Torna enrere"
+    },
+    "activateTimerButton": {
+        "message": "Activa el temporitzador"
+    },
+    "cannotRelaxConstraints": {
+        "message": "No es poden relaxar les restriccions d'horari."
+    },
+    "activeButtonText": {
+        "message": "Actius"
+    },
+    "inactiveButtonText": {
+        "message": "Inactiu"
+    },
+    "addScheduleButton": {
+        "message": "Afegeix una programació"
+    },
+    "enterWebsiteURLPlaceholder": {
+        "message": "Introduïu l'URL del lloc web"
+    },
+    "addToWhitelistButton": {
+        "message": "Afegeix a la llista blanca"
+    },
+    "cancelButton": {
+        "message": "Cancel·la"
+    },
+    "groupNamePlaceholder": {
+        "message": "Nom del grup"
+    },
+    "addScheduleButtonLabel": {
+        "message": "Afegeix una programació"
+    },
+    "unnamedSchedulePrefix": {
+        "message": "Horari"
+    },
+    "addToWhitelistButtonLabel": {
+        "message": "Afegeix a la llista blanca"
+    },
+    "cancelButtonLabel": {
+        "message": "Cancel·la"
+    },
+    "activeLabel": {
+        "message": "Actius"
+    },
+    "inactiveLabel": {
+        "message": "Inactiu"
+    },
+    "cancelLabel": {
+        "message": "Cancel·la"
+    },
+    "scheduleNamePlaceholder": {
+        "message": "Nom de l'agenda"
+    },
+    "editLabel": {
+        "message": "Edita"
+    },
+    "unnamedGroupPrefix": {
+        "message": "Grup"
+    },
+    "lockedScheduleErrorMessage": {
+        "message": "No es pot afegir el lloc a la llista blanca durant una programació activa."
+    },
+    "cannotToggleActiveState": {
+        "message": "No es pot canviar l'estat actiu en les condicions actuals."
+    },
+    "cannotDeselectDaysError": {
+        "message": "No es pot anul·lar la selecció de dies per a una programació activa que està vigent actualment."
+    },
+    "passwordManagementHeader": {
+        "message": "Gestió de contrasenyes"
+    },
+    "enterPasswordPlaceholder": {
+        "message": "Introduïu la contrasenya"
+    },
+    "confirmPasswordPlaceholder": {
+        "message": "Confirmeu la contrasenya"
+    },
+    "setPasswordButton": {
+        "message": "Estableix la contrasenya"
+    },
+    "deletePasswordButton": {
+        "message": "Esborra la contrasenya"
+    },
+    "enterPasswordToAccessLabel": {
+        "message": "Introduïu la contrasenya per accedir:"
+    },
+    "submitButton": {
+        "message": "Envia"
+    },
+    "tooManyAttempts": {
+        "message": "Massa intents fallits. Espereu $TIME$ segons abans de tornar-ho a provar.",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "30"
+            }
+        }
+    },
+    "incorrectPassword": {
+        "message": "Contrasenya incorrecta. $ATTEMPTS$ queden intents.",
+        "placeholders": {
+            "attempts": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
+    },
+    "passwordMismatchAlert": {
+        "message": "Les contrasenyes no coincideixen. Assegureu-vos que les dues contrasenyes siguin iguals."
+    },
+    "pageTitle": {
+        "message": "Guia d'instruccions - Defensa contra les distraccions"
+    },
+    "headerTitle": {
+        "message": "Defensa contra les distraccions: Guia d'instruccions"
+    },
+    "introTitle": {
+        "message": "Introducció"
+    },
+    "introText1": {
+        "message": "hola! És molt fàcil distreure's a Internet i procrastinar. Aquesta extensió us permet bloquejar pàgines web basades en paraules clau que no voleu veure."
+    },
+    "introText2": {
+        "message": "Hi ha milers de videojocs per jugar, notícies per llegir, vídeos per veure, etc. I sovint, això és el que fem quan els terminis dels projectes o els exàmens encara estan lluny. De vegades, pot ser una mica difícil forçar-se a fer el que cal fer."
+    },
+    "introText3": {
+        "message": "I les distraccions són a tot arreu! Fins i tot si feu servir StayFocusd o Cold Turkey o FocusMe per bloquejar alguns llocs web amb els seus URL, no podeu bloquejar-ho tot. Per exemple, fins i tot amb ChatGPT, pots parlar de notícies o videojocs si realment no tens ganes d'estudiar o de treballar."
+    },
+    "introText4": {
+        "message": "Amb aquesta extensió, podeu bloquejar llocs web en funció de paraules i frases del seu text."
+    },
+    "howToUseTitle": {
+        "message": "Com utilitzar l'extensió"
+    },
+    "createGroupTitle": {
+        "message": "Primer pas: crear un grup"
+    },
+    "createGroupText1": {
+        "message": "Podeu prémer el botó \"Afegeix grup\" o introduir el nom del grup i prémer Intro o el botó Afegeix grup. Podeu crear diversos grups."
+    },
+    "createGroupText2": {
+        "message": "Veureu el panell del grup."
+    },
+    "websitesTitle": {
+        "message": "Llocs web"
+    },
+    "websitesText": {
+        "message": "Podeu començar a afegir llocs web prement el botó \"Edita\" a l'esquerra de la línia de llocs web. Aquest camp és responsable dels llocs web on l'extensió bloquejarà les paraules clau. Aquí heu d'introduir els URL del lloc web, per exemple, \"google.com\". Podeu introduir diversos llocs web, cada línia nova és un lloc web nou. Només has de prémer Enter. Quan estigueu preparat, premeu el botó verd \"Desa\". O pots cancel·lar."
+    },
+    "keywordsTitle": {
+        "message": "Paraules clau"
+    },
+    "keywordsText1": {
+        "message": "Per afegir paraules clau noves o fer canvis, premeu \"Edita\". Les paraules clau que introduïu aquí s'escanejaran als llocs web que heu introduït per a aquest grup."
+    },
+    "keywordFormatsIntroduction": {
+        "message": "Hi ha 3 formats per a les paraules clau:"
+    },
+    "keywordFormat1Title": {
+        "message": "Primer format:"
+    },
+    "keywordFormat1Text": {
+        "message": "Només cal introduir les paraules clau. Pot ser una paraula o una frase. Si la paraula clau conté una coma ',', heu d'utilitzar un caràcter d'escapament '\\' abans. El lloc web es bloquejarà tan bon punt es detecti la paraula clau. Podeu introduir tantes paraules clau com vulgueu, només heu de prémer Intro. Cada línia nova és una paraula clau nova."
+    },
+    "keywordFormat1_2": {
+        "message": "Exemple: \"videojocs\" o \"notícies\"."
+    },
+    "keywordFormat2Title": {
+        "message": "Segon format:"
+    },
+    "keywordFormat2Text": {
+        "message": "Introduïu la paraula clau, seguida d'un valor numèric. Cada lloc web que heu introduït en un grup ha d'arribar a una puntuació de 1000. El lloc web comença amb un valor de 0 i, en funció del valor numèric de la paraula clau, el valor augmenta. Un cop el lloc web arribi a una puntuació de 1000, es bloquejarà."
+    },
+    "keywordFormat2_2": {
+        "message": "Exemple: \"notícies, 50\""
+    },
+    "keywordFormat2_3": {
+        "message": "Cada lloc web que heu introduït en un grup ha d'arribar a una puntuació de 1000. El lloc comença amb un valor de 0 i, en funció del valor numèric de la paraula clau, el valor augmenta. Un cop el lloc web arribi a una puntuació de 1000, es bloquejarà."
+    },
+    "keywordFormat3Title": {
+        "message": "Tercer format:"
+    },
+    "keywordFormat3Text": {
+        "message": "Introduïu la paraula clau, seguida d'un signe de multiplicació o suma (* o +) i després un valor numèric. En aquest escenari, la puntuació de la pàgina es multiplica en funció del valor numèric de la paraula clau trobada."
+    },
+    "keywordFormat3_2": {
+        "message": "Exemple: \"notícies, *, 10\""
+    },
+    "keywordFormat3_3": {
+        "message": "En aquest escenari, la puntuació de la pàgina es multiplica en funció del valor numèric de la paraula clau trobada."
+    },
+    "timerCountTitle": {
+        "message": "Recompte de temporitzadors"
+    },
+    "timerCountText": {
+        "message": "Un cop bloquejada la pàgina, tindreu l'opció de prémer el botó \"Activa el temporitzador\". Després d'això, tindreu temps per realitzar algunes accions a la pàgina abans que es torni a bloquejar. Al camp Recompte de temporitzadors, podeu decidir quants temporitzadors voleu tenir durant el dia."
+    },
+    "timerDurationTitle": {
+        "message": "Durada del temporitzador (segons)"
+    },
+    "timerDurationText": {
+        "message": "En aquest camp, tu decideixes quants segons tindrà cada temporitzador."
+    },
+    "lockedSchedulesTitle": {
+        "message": "Horaris bloquejats"
+    },
+    "lockedSchedulesNote": {
+        "message": "! Una programació bloquejada no es pot desbloquejar fins que passa el temps (tret que desinstal·leu l'extensió)!"
+    },
+    "lockedSchedulesText1": {
+        "message": "Podeu afegir una nova programació bloquejada creant el nom de la programació al camp Nom de la programació i prement Retorn o el botó Afegeix una programació."
+    },
+    "lockedSchedulesText2": {
+        "message": "Per modificar la configuració de la vostra programació, premeu \"Edita\". En prémer els botons del dia, activeu l'horari aquell dia (el botó es torna verd) o el desactiveu per a aquell dia. En modificar els camps Hora d'inici i Hora de finalització, establiu les hores que la programació pot estar activa. Cada dia ha de tenir una finestra de temps inactiu d'1 hora perquè pugueu desactivar l'horari durant aquest temps. El botó Inactiu/Actiu alterna la programació. L'horari estarà bloquejat i actiu si el dia actual està habilitat (verd) i el botó mostra \"Actiu\" i també és verd, i si l'hora actual està entre l'hora d'inici i de finalització."
+    },
+    "lockedSchedulesText3": {
+        "message": "El botó Suprimeix elimina la programació bloquejada. El mateix s'aplica als grups i als llocs web inclosos a la llista blanca."
+    },
+    "lockedSchedulesText4": {
+        "message": "S'apliquen diverses restriccions durant l'horari bloquejat:"
+    },
+    "lockedScheduleRestriction1": {
+        "message": "No podeu canviar els noms dels grups."
+    },
+    "lockedScheduleRestriction2": {
+        "message": "No podeu canviar ni eliminar els llocs web existents en grups."
+    },
+    "lockedScheduleRestriction3": {
+        "message": "No podeu canviar ni eliminar les paraules clau existents i els seus valors."
+    },
+    "lockedScheduleRestriction4": {
+        "message": "Només podeu establir valors de paraules clau per a la multiplicació: d'1 a 1000. Per a la suma: de 0 a 1000."
+    },
+    "lockedScheduleRestriction5": {
+        "message": "El recompte del temporitzador no es pot augmentar."
+    },
+    "lockedScheduleRestriction6": {
+        "message": "La durada del temporitzador no es pot augmentar."
+    },
+    "lockedScheduleRestriction7": {
+        "message": "Els horaris actius no es poden suprimir."
+    },
+    "lockedScheduleRestriction8": {
+        "message": "No podeu anul·lar la selecció de dies, inactivar la programació ni canviar l'hora d'inici o de finalització de les programacions actives."
+    },
+    "lockedScheduleRestriction9": {
+        "message": "No podeu afegir llocs web a la llista blanca."
+    },
+    "lockedScheduleRestriction10": {
+        "message": "No podeu establir ni eliminar la contrasenya de l'extensió."
+    },
+    "whitelistWebsitesTitle": {
+        "message": "Llista blanca de llocs web"
+    },
+    "whitelistWebsitesText": {
+        "message": "Us permet introduir llocs web a la llista blanca, és a dir, que l'exploració de paraules clau no es realitzarà en aquests llocs web i, per tant, no es bloquejaran. Actualment, no tenim la possibilitat d'utilitzar un comodí (*) per incloure molts llocs web en una entrada (com ara *.io, on es bloquejarien tots els llocs web amb '.io'), així que aquesta funció no és molt útil, però existeix."
+    },
+    "passwordManagementTitle": {
+        "message": "Gestió de contrasenyes"
+    },
+    "passwordManagementText": {
+        "message": "Us permet configurar una contrasenya per a la pàgina d'extensió. Qualsevol persona que obriu la pàgina d'extensió haurà d'introduir la contrasenya correcta per accedir-hi. Útil per evitar que altres persones ajustin accidentalment (o intencionadament) la configuració."
+    },
+    "contactFeedbackTitle": {
+        "message": "Contacte i comentaris"
+    },
+    "feedbackText1": {
+        "message": "Si voleu compartir qualsevol comentari o si teniu cap problema, visiteu la pàgina de GitHub de l'extensió:"
+    },
+    "githubLink": {
+        "message": "GitHub - Defensa contra les distraccions"
+    },
+    "feedbackText2": {
+        "message": "Allà, aneu a la pestanya \"Problemes\" i feu clic al botó verd \"Problema nou\". Ompliu el títol i la descripció i premeu \"Envia un número nou\"."
+    },
+    "thanks": {
+        "message": "Gràcies."
+    },
+    "instructionGuideLink": {
+        "message": "Guia d'instruccions"
+    },
+    "description": {
+        "message": "Et permet bloquejar llocs web en funció del text que apareix a les seves pàgines."
+    },
+    "dailyLimitReached": {
+        "message": "S'ha arribat al límit diari"
+    },
+    "exportButton": {
+        "message": "Exporta"
+    },
+    "importButton": {
+        "message": "Importar"
+    },
+    "themeModeLabel": {
+        "message": "Mode d'interfície d'usuari"
+    },
+    "themeModeSystemOption": {
+        "message": "Sistema"
+    },
+    "themeModeDarkOption": {
+        "message": "Fosc"
+    },
+    "themeModeLightOption": {
+        "message": "Llum"
+    },
+    "elementRulesLabel": {
+        "message": "Interfície d'usuari bloquejada"
+    },
+    "noElementRulesLabel": {
+        "message": "No hi ha elements de la interfície d'usuari bloquejats"
+    }
+}

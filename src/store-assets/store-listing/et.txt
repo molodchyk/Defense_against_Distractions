@@ -1,0 +1,27 @@
+Defense Against Distractions aitab teil keskenduda, kui lihtsast veebisaidi blokeerimisest ei piisa.
+
+Enamik fookuslaiendeid blokeerib terveid veebisaite. See on kasulik, kuid Internet on sellest segasem. Sama veebisait võib ühel hetkel olla abiks ja teisel hetkel häirida. Otsinguleht, vestlustööriist, foorum, videosait või AI-assistent võivad toetada reaalset tööd, kuid sellest võib saada ka uks uudiste, mängude, draama, videote ja muude tähelepanulõksude juurde.
+
+Defense Against Distractions annab teile täpsema juhtimise.
+
+Selle asemel, et blokeerida ainult URL-i järgi, saate blokeerida lehed nendel kuvatavate sõnade ja fraaside alusel. Looge veebisaitide rühmi, lisage märksõnu või fraase, määrake hinded ja laske laiendil leht blokeerida, kui tähelepanu hajumise skoor ületab teie seadistatud läve.
+
+Saate seda kasutada õppesessioonide, tööblokkide, eksamiteks valmistumise, uurimistöö aja või mis tahes olukorra kaitsmiseks, kus soovite, et brauser jääks kasulikuks, ilma et see muutuks kõrvalepõikeks.
+
+Peamised omadused:
+
+Lehtede blokeerimine märksõnade, fraaside ja kaalutud skooride järgi.
+Korraldage erinevad fookusreeglid veebisaitide ja märksõnarühmadesse.
+Kasutage lukustatud ajakavasid, valgeid loendeid, paroolikaitset, eksporti/importi, kasutajaliidese režiime ja kasutajaliidese elementide peitmist, et seadistus oleks praktiline.
+
+Mis on uut versioonis 1.5:
+
+Heledad, tumedad ja süsteemi kasutajaliidese režiimid.
+Hüpikaknapõhine kasutajaliidese elementide valija segavate lehe juhtelementide peitmiseks.
+Täiustatud blokeeritud lehe ülekate koos kandja peatamise või vaigistamise ja valitava diagnostikaga.
+Uuendatud kaupluse varad, pakendid, vabastamise kontrollid ja projekti struktuur.
+
+Defense Against Distractions on avatud lähtekoodiga:
+https://github.com/molodchyk/Defense_against_Distractions
+
+

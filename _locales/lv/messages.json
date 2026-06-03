@@ -1,0 +1,455 @@
+{
+    "deleteButtonLabel": {
+        "message": "Dzēst"
+    },
+    "whitelistExistsMessage": {
+        "message": "Šī vietne jau ir baltajā sarakstā."
+    },
+    "deleteWhitelistError": {
+        "message": "Aktīvā grafika laikā nevar izdzēst baltajā sarakstā iekļautās vietnes."
+    },
+    "scheduleNameLabel": {
+        "message": "Grafika nosaukums"
+    },
+    "startTimeLabel": {
+        "message": "Sākuma laiks"
+    },
+    "endTimeLabel": {
+        "message": "Beigu laiks"
+    },
+    "activeStateLabel": {
+        "message": "Aktīvs stāvoklis"
+    },
+    "editButtonLabel": {
+        "message": "Rediģēt"
+    },
+    "saveButtonLabel": {
+        "message": "Saglabāt"
+    },
+    "endTimeAfterStartTimeError": {
+        "message": "Beigu laikam ir jābūt pēc sākuma laika."
+    },
+    "schedulesOverlapError": {
+        "message": "Grafiki nevar pārklāties."
+    },
+    "minimumUnlockedTimeError": {
+        "message": "Katrai dienai ir jābūt vismaz 1 stundai brīvam laikam."
+    },
+    "Mon": {
+        "message": "Pirmd"
+    },
+    "Tue": {
+        "message": "Otr"
+    },
+    "Wed": {
+        "message": "Trešd"
+    },
+    "Thu": {
+        "message": "Ce"
+    },
+    "Fri": {
+        "message": "Piekt"
+    },
+    "Sat": {
+        "message": "sestdien"
+    },
+    "Sun": {
+        "message": "Sv"
+    },
+    "Edit": {
+        "message": "Rediģēt"
+    },
+    "Save": {
+        "message": "Saglabāt"
+    },
+    "Delete": {
+        "message": "Dzēst"
+    },
+    "groupNameLabel": {
+        "message": "Grupas nosaukums"
+    },
+    "websitesLabel": {
+        "message": "Vietnes"
+    },
+    "keywordsLabel": {
+        "message": "Atslēgvārdi"
+    },
+    "timerCountLabel": {
+        "message": "Taimera skaits"
+    },
+    "timerDurationLabel": {
+        "message": "Taimera ilgums (sekundēs)"
+    },
+    "unnamedSchedulesMaxReached": {
+        "message": "Sasniegts maksimālais nenosaukto grafiku skaits."
+    },
+    "scheduleNameExists": {
+        "message": "Grafiks ar šādu nosaukumu jau pastāv."
+    },
+    "cannotDeleteActiveSchedule": {
+        "message": "Nevar izdzēst aktīvo grafiku. Lūdzu, uzgaidiet, līdz grafiks nav aktīvs."
+    },
+    "optionsTitle": {
+        "message": "Aizsardzības panelis"
+    },
+    "groupsHeading": {
+        "message": "Grupas"
+    },
+    "whitelistHeading": {
+        "message": "Baltā saraksta vietnes"
+    },
+    "schedulesHeading": {
+        "message": "Bloķēti grafiki"
+    },
+    "unnamedGroupsMaxReached": {
+        "message": "Sasniegts maksimālais nenosaukto grupu skaits."
+    },
+    "groupNameExists": {
+        "message": "Grupa ar šādu nosaukumu jau pastāv."
+    },
+    "cannotDeleteGroupActiveSchedule": {
+        "message": "Aktīvā grafika laikā nevar izdzēst grupas."
+    },
+    "cannotIncreaseTimerActiveSchedule": {
+        "message": "Taimera ilgumu un taimeru skaitu nevar palielināt aktīva grafika laikā."
+    },
+    "invalidKeywordValue": {
+        "message": "Nederīga atslēgvārda vērtība. Jābūt norādītajā diapazonā."
+    },
+    "cannotChangeGroupNameActiveSchedule": {
+        "message": "Grupas nosaukuma maiņa nav atļauta aktīva grafika laikā."
+    },
+    "invalidEditOnWebsitesOrKeywords": {
+        "message": "Vietņu vai atslēgvārdu ieraksti ir rediģēti vai noņemti, izmaiņas nevar saglabāt."
+    },
+    "invalidKeywordEntry": {
+        "message": "Nederīgs atslēgvārda ieraksts:"
+    },
+    "addGroupButtonText": {
+        "message": "Pievienot grupu"
+    },
+    "contentBlockedTitle": {
+        "message": "Saturs ir bloķēts"
+    },
+    "contentBlockedMessage": {
+        "message": "Šajā lapā ir ierobežots saturs, un tā ir bloķēta jūsu aizsardzības nolūkos."
+    },
+    "keywordDetected": {
+        "message": "Atslēgvārds konstatēts"
+    },
+    "context": {
+        "message": "Konteksts"
+    },
+    "goBackButton": {
+        "message": "Iet atpakaļ"
+    },
+    "activateTimerButton": {
+        "message": "Aktivizējiet Taimeri"
+    },
+    "cannotRelaxConstraints": {
+        "message": "Nevar atvieglot grafika ierobežojumus."
+    },
+    "activeButtonText": {
+        "message": "Aktīvs"
+    },
+    "inactiveButtonText": {
+        "message": "Neaktīvs"
+    },
+    "addScheduleButton": {
+        "message": "Pievienot grafiku"
+    },
+    "enterWebsiteURLPlaceholder": {
+        "message": "Ievadiet vietnes URL"
+    },
+    "addToWhitelistButton": {
+        "message": "Pievienot baltajam sarakstam"
+    },
+    "cancelButton": {
+        "message": "Atcelt"
+    },
+    "groupNamePlaceholder": {
+        "message": "Grupas nosaukums"
+    },
+    "addScheduleButtonLabel": {
+        "message": "Pievienot grafiku"
+    },
+    "unnamedSchedulePrefix": {
+        "message": "Grafiks"
+    },
+    "addToWhitelistButtonLabel": {
+        "message": "Pievienot baltajam sarakstam"
+    },
+    "cancelButtonLabel": {
+        "message": "Atcelt"
+    },
+    "activeLabel": {
+        "message": "Aktīvs"
+    },
+    "inactiveLabel": {
+        "message": "Neaktīvs"
+    },
+    "cancelLabel": {
+        "message": "Atcelt"
+    },
+    "scheduleNamePlaceholder": {
+        "message": "Grafika nosaukums"
+    },
+    "editLabel": {
+        "message": "Rediģēt"
+    },
+    "unnamedGroupPrefix": {
+        "message": "Grupa"
+    },
+    "lockedScheduleErrorMessage": {
+        "message": "Aktīvā grafika laikā vietni nevar pievienot baltajam sarakstam."
+    },
+    "cannotToggleActiveState": {
+        "message": "Pašreizējos apstākļos nevar mainīt aktīvo stāvokli."
+    },
+    "cannotDeselectDaysError": {
+        "message": "Nevar noņemt dienu atlasi aktīvam grafikam, kas pašlaik ir spēkā."
+    },
+    "passwordManagementHeader": {
+        "message": "Paroles pārvaldība"
+    },
+    "enterPasswordPlaceholder": {
+        "message": "Ievadiet paroli"
+    },
+    "confirmPasswordPlaceholder": {
+        "message": "Apstipriniet paroli"
+    },
+    "setPasswordButton": {
+        "message": "Iestatīt paroli"
+    },
+    "deletePasswordButton": {
+        "message": "Dzēst paroli"
+    },
+    "enterPasswordToAccessLabel": {
+        "message": "Ievadiet paroli, lai piekļūtu:"
+    },
+    "submitButton": {
+        "message": "Iesniegt"
+    },
+    "tooManyAttempts": {
+        "message": "Pārāk daudz neveiksmīgu mēģinājumu. Pirms atkārtotas mēģinājuma, lūdzu, uzgaidiet $TIME$ sekundes.",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "30"
+            }
+        }
+    },
+    "incorrectPassword": {
+        "message": "Nepareiza parole. Atlikuši $ATTEMPTS$ mēģinājumi.",
+        "placeholders": {
+            "attempts": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
+    },
+    "passwordMismatchAlert": {
+        "message": "Paroles nesakrīt. Lūdzu, pārliecinieties, vai abas paroles ir vienādas."
+    },
+    "pageTitle": {
+        "message": "Instrukciju rokasgrāmata - Defense Against Distractions"
+    },
+    "headerTitle": {
+        "message": "Defense Against Distractions: Instrukciju rokasgrāmata"
+    },
+    "introTitle": {
+        "message": "Ievads"
+    },
+    "introText1": {
+        "message": "Sveiki! Ir tik viegli novērst uzmanību internetā un vilcināties. Šis paplašinājums ļauj bloķēt tīmekļa lapas, pamatojoties uz atslēgvārdiem, kurus nevēlaties redzēt."
+    },
+    "introText2": {
+        "message": "Var atskaņot tūkstošiem video games, lasīt ziņu stāstus, skatīties videoklipus un tā tālāk. Un bieži vien tas ir tas, ko mēs darām, kad projektu termiņi vai eksāmeni vēl ir tālu. Dažreiz var būt grūti piespiest sevi darīt to, kas jums jādara."
+    },
+    "introText3": {
+        "message": "Un traucējošie faktori ir visur! Pat ja izmantojat StayFocusd, Cold Turkey vai FocusMe, lai bloķētu dažas vietnes pēc to URL, jūs nevarat bloķēt visu. Piemēram, pat ar ChatGPT varat runāt par jaunumiem vai video games, ja tiešām nevēlaties mācīties vai strādāt."
+    },
+    "introText4": {
+        "message": "Izmantojot šo paplašinājumu, varat bloķēt vietnes, pamatojoties uz vārdiem un frāzēm to tekstā."
+    },
+    "howToUseTitle": {
+        "message": "Kā lietot paplašinājumu"
+    },
+    "createGroupTitle": {
+        "message": "Pirmais solis: izveidojiet grupu"
+    },
+    "createGroupText1": {
+        "message": "Varat nospiest pogu \"Pievienot grupu\" vai ievadīt grupas nosaukumu un nospiest taustiņu Enter vai pogu Pievienot grupu. Varat izveidot vairākas grupas."
+    },
+    "createGroupText2": {
+        "message": "Jūs redzēsit grupas paneli."
+    },
+    "websitesTitle": {
+        "message": "Vietnes"
+    },
+    "websitesText": {
+        "message": "Tīmekļa vietņu pievienošanu var sākt, nospiežot pogu Rediģēt pa kreisi no rindiņas Vietnes. Šis lauks ir atbildīgs par vietnēm, kurās paplašinājums bloķēs atslēgvārdus. Šeit jāievada vietņu URL, piemēram, 'google.com'. Varat ievadīt vairākas vietnes, katra jauna rindiņa ir jauna vietne. Vienkārši nospiediet taustiņu Enter. Kad esat gatavs, nospiediet zaļo pogu \"Saglabāt\". Vai arī varat atcelt."
+    },
+    "keywordsTitle": {
+        "message": "Atslēgvārdi"
+    },
+    "keywordsText1": {
+        "message": "Lai pievienotu jaunus atslēgvārdus vai veiktu izmaiņas, nospiediet 'Rediģēt'. Šeit ievadītie atslēgvārdi tiks skenēti vietnēs, kuras ievadījāt šai grupai."
+    },
+    "keywordFormatsIntroduction": {
+        "message": "Ir 3 atslēgvārdu formāti:"
+    },
+    "keywordFormat1Title": {
+        "message": "Pirmais formāts:"
+    },
+    "keywordFormat1Text": {
+        "message": "Vienkārši ievadiet atslēgvārdus. Tas var būt vārds vai frāze. Ja atslēgvārdā ir komats ',', pirms tā ir jāizmanto atsoļa rakstzīme '\\'. Vietne tiks bloķēta, tiklīdz tiks atklāts atslēgvārds. Varat ievadīt tik daudz atslēgvārdu, cik vēlaties, vienkārši nospiediet taustiņu Enter. Katra jauna rindiņa ir jauns atslēgvārds."
+    },
+    "keywordFormat1_2": {
+        "message": "Piemērs: \"video games\" vai \"ziņas\"."
+    },
+    "keywordFormat2Title": {
+        "message": "Otrais formāts:"
+    },
+    "keywordFormat2Text": {
+        "message": "Ievadiet atslēgvārdu, kam seko skaitliska vērtība. Katrai vietnei, kuru ievadījāt grupā, ir jāsasniedz 1000 punktu. Vietne sākas ar vērtību 0, un, pamatojoties uz atslēgvārda skaitlisko vērtību, vērtība palielinās. Kad vietne sasniegs 1000 punktu, tā tiks bloķēta."
+    },
+    "keywordFormat2_2": {
+        "message": "Piemērs: 'news, 50'"
+    },
+    "keywordFormat2_3": {
+        "message": "Katrai vietnei, kuru ievadījāt grupā, ir jāsasniedz 1000 punktu. Vietne sākas ar vērtību 0, un, pamatojoties uz atslēgvārda skaitlisko vērtību, vērtība palielinās. Kad vietne sasniegs 1000 punktu, tā tiks bloķēta."
+    },
+    "keywordFormat3Title": {
+        "message": "Trešais formāts:"
+    },
+    "keywordFormat3Text": {
+        "message": "Ievadiet atslēgvārdu, kam seko reizināšanas vai saskaitīšanas zīme (* vai +), pēc tam skaitlisko vērtību. Šajā scenārijā lapas rezultāts tiek reizināts, pamatojoties uz atrastā atslēgvārda skaitlisko vērtību."
+    },
+    "keywordFormat3_2": {
+        "message": "Piemērs: 'news, *, 10'"
+    },
+    "keywordFormat3_3": {
+        "message": "Šajā scenārijā lapas rezultāts tiek reizināts, pamatojoties uz atrastā atslēgvārda skaitlisko vērtību."
+    },
+    "timerCountTitle": {
+        "message": "Taimera skaits"
+    },
+    "timerCountText": {
+        "message": "Kad lapa ir bloķēta, jums būs iespēja nospiest pogu Aktivizēt taimeri. Pēc tam jums būs laiks veikt dažas darbības lapā, pirms tā atkal tiks bloķēta. Laukā Taimeru skaits varat izlemt, cik taimerus vēlaties izmantot dienas laikā."
+    },
+    "timerDurationTitle": {
+        "message": "Taimera ilgums (sekundēs)"
+    },
+    "timerDurationText": {
+        "message": "Šajā laukā jūs izlemjat, cik sekundes būs katram taimeram."
+    },
+    "lockedSchedulesTitle": {
+        "message": "Bloķēti grafiki"
+    },
+    "lockedSchedulesNote": {
+        "message": "! Bloķētu grafiku nevar atbloķēt, kamēr nav pagājis laiks (ja vien neatinstalējat paplašinājumu)!"
+    },
+    "lockedSchedulesText1": {
+        "message": "Varat pievienot jaunu bloķētu grafiku, izveidojot grafika nosaukumu laukā Grafika nosaukums un nospiežot Enter vai pogu Pievienot grafiku."
+    },
+    "lockedSchedulesText2": {
+        "message": "Lai mainītu grafika iestatījumus, nospiediet 'Rediģēt'. Nospiežot dienas pogas, jūs vai nu iespējojat šīs dienas grafiku (poga kļūst zaļa), vai arī atspējojat to šai dienai. Pārveidojot laukus Sākuma laiks un Beigu laiks, jūs iestatāt laiku, kad grafiks var būt aktīvs. Katrai dienai ir jābūt 1 stunda neaktīvam laika logam, lai jūs varētu deaktivizēt grafiku šajā laikā. Poga Neaktīvs/Aktīvs pārslēdz grafiku. Grafiks tiks bloķēts un aktīvs, ja pašreizējā diena ir iespējota (zaļa) un poga parāda “Aktīvs” un ir arī zaļa, un ja pašreizējais laiks ir starp sākuma un beigu laiku."
+    },
+    "lockedSchedulesText3": {
+        "message": "Poga Dzēst noņem bloķēto grafiku. Tas pats attiecas uz grupām un baltajā sarakstā iekļautajām vietnēm."
+    },
+    "lockedSchedulesText4": {
+        "message": "Slēgtā grafika laikā tiek piemēroti vairāki ierobežojumi:"
+    },
+    "lockedScheduleRestriction1": {
+        "message": "Jūs nevarat mainīt grupu nosaukumus."
+    },
+    "lockedScheduleRestriction2": {
+        "message": "Grupās esošās vietnes nevar mainīt vai noņemt."
+    },
+    "lockedScheduleRestriction3": {
+        "message": "Esošos atslēgvārdus un to vērtības nevar mainīt vai noņemt."
+    },
+    "lockedScheduleRestriction4": {
+        "message": "Reizināšanai varat iestatīt tikai atslēgvārdu vērtības: no 1 līdz 1000. Saskaitīšanai: no 0 līdz 1000."
+    },
+    "lockedScheduleRestriction5": {
+        "message": "Taimera skaitu nevar palielināt."
+    },
+    "lockedScheduleRestriction6": {
+        "message": "Taimera ilgumu nevar palielināt."
+    },
+    "lockedScheduleRestriction7": {
+        "message": "Aktīvos grafikus nevar izdzēst."
+    },
+    "lockedScheduleRestriction8": {
+        "message": "Jūs nevarat atcelt dienu atlasi, padarīt grafiku neaktīvu vai mainīt aktīvo grafiku sākuma vai beigu laiku."
+    },
+    "lockedScheduleRestriction9": {
+        "message": "Baltajā sarakstā iekļautās vietnes nevar pievienot."
+    },
+    "lockedScheduleRestriction10": {
+        "message": "Paplašinājuma paroli nevar iestatīt vai izdzēst."
+    },
+    "whitelistWebsitesTitle": {
+        "message": "Baltā saraksta vietnes"
+    },
+    "whitelistWebsitesText": {
+        "message": "Ļauj ievadīt baltajā sarakstā iekļautās vietnes, kas nozīmē, ka šajās vietnēs netiks veikta atslēgvārdu skenēšana un tādējādi tās netiks bloķētas. Pašlaik mēs nevaram izmantot aizstājējzīmi (*), lai vienā ierakstā iekļautu daudzas vietnes (piemēram, *.io, kur visas vietnes ar “.io” tiktu bloķētas), tāpēc šī funkcija nav īpaši noderīga, taču tā pastāv."
+    },
+    "passwordManagementTitle": {
+        "message": "Paroles pārvaldība"
+    },
+    "passwordManagementText": {
+        "message": "Ļauj iestatīt paroli paplašinājuma lapai. Ikvienam, kurš atver paplašinājuma lapu, būs jāievada pareizā parole, lai piekļūtu. Noderīga, lai neļautu citiem nejauši (vai tīši) pastiprināt iestatījumus."
+    },
+    "contactFeedbackTitle": {
+        "message": "Kontakti un atsauksmes"
+    },
+    "feedbackText1": {
+        "message": "Ja vēlaties sniegt atsauksmes vai jums ir problēmas, lūdzu, apmeklējiet paplašinājuma lapu GitHub:"
+    },
+    "githubLink": {
+        "message": "GitHub — Defense Against Distractions"
+    },
+    "feedbackText2": {
+        "message": "Tur pārejiet uz cilni “Problēmas” un noklikšķiniet uz zaļās pogas “Jauna problēma”. Aizpildiet nosaukumu un aprakstu un nospiediet \"Iesniegt jaunu izdevumu\"."
+    },
+    "thanks": {
+        "message": "Paldies."
+    },
+    "instructionGuideLink": {
+        "message": "Instrukciju rokasgrāmata"
+    },
+    "description": {
+        "message": "Ļauj bloķēt vietnes, pamatojoties uz tekstu, kas parādās to lapās."
+    },
+    "dailyLimitReached": {
+        "message": "Sasniegts dienas limits"
+    },
+    "exportButton": {
+        "message": "Eksportēt"
+    },
+    "importButton": {
+        "message": "Importēt"
+    },
+    "themeModeLabel": {
+        "message": "UI režīms"
+    },
+    "themeModeSystemOption": {
+        "message": "Sistēma"
+    },
+    "themeModeDarkOption": {
+        "message": "Tumšs"
+    },
+    "themeModeLightOption": {
+        "message": "Gaisma"
+    },
+    "elementRulesLabel": {
+        "message": "Bloķēta lietotāja saskarne"
+    },
+    "noElementRulesLabel": {
+        "message": "Nav bloķētu lietotāja interfeisa elementu"
+    }
+}

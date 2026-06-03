@@ -1,0 +1,25 @@
+Tinutulungan ka ng Defense Against Distractions na manatiling nakatutok kapag hindi sapat ang simpleng pag-block sa website.
+
+Bina-block ng karamihan sa mga extension ng focus ang buong website. Iyan ay kapaki-pakinabang, ngunit ang internet ay mas magulo kaysa doon. Ang parehong website ay maaaring makatulong sa isang sandali at nakakagambala sa isa pa. Maaaring suportahan ng page sa paghahanap, tool sa pakikipag-chat, forum, video site, o AI assistant ang totoong trabaho, ngunit maaari rin itong maging pintuan sa mga balita, laro, drama, video, at iba pang mga bitag ng atensyon.
+
+Ang Defense Against Distractions ay nagbibigay sa iyo ng mas tumpak na kontrol.
+
+Sa halip na i-block lamang sa pamamagitan ng URL, maaari mong i-block ang mga pahina batay sa mga salita at pariralang lumalabas sa mga ito. Gumawa ng mga pangkat ng mga website, magdagdag ng mga keyword o parirala, magtalaga ng mga marka, at hayaang i-block ng extension ang page kapag lumampas ang marka ng distraction sa iyong na-configure na threshold.
+
+Magagamit mo ito upang protektahan ang mga sesyon ng pag-aaral, mga bloke sa trabaho, paghahanda sa pagsusulit, oras ng pananaliksik, o anumang sitwasyon kung saan mo gustong manatiling kapaki-pakinabang ang browser nang hindi nagiging detour.
+
+Pangunahing tampok:
+
+I-block ang mga pahina sa pamamagitan ng mga keyword, parirala, at may timbang na marka.
+Ayusin ang iba't ibang panuntunan sa pagtutok sa mga pangkat ng website at keyword.
+Gumamit ng mga naka-lock na iskedyul, mga whitelist, proteksyon ng password, pag-export/pag-import, mga mode ng UI, at pagtatago ng elemento ng UI upang panatilihing praktikal ang setup.
+
+Ano ang bago sa bersyon 1.5:
+
+Light, dark, at system UI modes.
+Tagapili ng elemento ng UI na nakabatay sa popup para sa pagtatago ng mga nakakagambalang kontrol ng page.
+Pinahusay na naka-block na page na overlay na may paghinto o pag-mute ng media at mga mapipiling diagnostic.
+Na-update na mga asset ng tindahan, packaging, mga pagsusuri sa release, at istraktura ng proyekto.
+
+Ang Defense Against Distractions ay open source:
+https://github.com/molodchyk/Defense_against_Distractions

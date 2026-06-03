@@ -1,0 +1,455 @@
+{
+    "deleteButtonLabel": {
+        "message": "Kustuta"
+    },
+    "whitelistExistsMessage": {
+        "message": "See sait on juba lubatud loendis."
+    },
+    "deleteWhitelistError": {
+        "message": "Lubatud loendisse kantud saite ei saa aktiivse ajakava ajal kustutada."
+    },
+    "scheduleNameLabel": {
+        "message": "Ajakava nimi"
+    },
+    "startTimeLabel": {
+        "message": "Algusaeg"
+    },
+    "endTimeLabel": {
+        "message": "Lõpuaeg"
+    },
+    "activeStateLabel": {
+        "message": "Aktiivne olek"
+    },
+    "editButtonLabel": {
+        "message": "Muuda"
+    },
+    "saveButtonLabel": {
+        "message": "Salvesta"
+    },
+    "endTimeAfterStartTimeError": {
+        "message": "Lõpuaeg peab olema pärast algusaega."
+    },
+    "schedulesOverlapError": {
+        "message": "Ajakavad ei tohi kattuda."
+    },
+    "minimumUnlockedTimeError": {
+        "message": "Igal päeval peab olema vähemalt 1 tund vaba aega."
+    },
+    "Mon": {
+        "message": "Esmasp"
+    },
+    "Tue": {
+        "message": "teisip"
+    },
+    "Wed": {
+        "message": "kolmap"
+    },
+    "Thu": {
+        "message": "Neljap"
+    },
+    "Fri": {
+        "message": "P"
+    },
+    "Sat": {
+        "message": "laup"
+    },
+    "Sun": {
+        "message": "Päike"
+    },
+    "Edit": {
+        "message": "Muuda"
+    },
+    "Save": {
+        "message": "Salvesta"
+    },
+    "Delete": {
+        "message": "Kustuta"
+    },
+    "groupNameLabel": {
+        "message": "Grupi nimi"
+    },
+    "websitesLabel": {
+        "message": "Veebisaidid"
+    },
+    "keywordsLabel": {
+        "message": "Märksõnad"
+    },
+    "timerCountLabel": {
+        "message": "Taimeri arv"
+    },
+    "timerDurationLabel": {
+        "message": "Taimeri kestus (sekundites)"
+    },
+    "unnamedSchedulesMaxReached": {
+        "message": "Nimetute ajakavade maksimaalne arv on täis."
+    },
+    "scheduleNameExists": {
+        "message": "Selle nimega ajakava on juba olemas."
+    },
+    "cannotDeleteActiveSchedule": {
+        "message": "Aktiivset ajakava ei saa kustutada. Palun oodake, kuni ajakava ei ole aktiivne."
+    },
+    "optionsTitle": {
+        "message": "Kaitsepaneel"
+    },
+    "groupsHeading": {
+        "message": "Rühmad"
+    },
+    "whitelistHeading": {
+        "message": "Veebisaitide valge nimekiri"
+    },
+    "schedulesHeading": {
+        "message": "Lukustatud ajakavad"
+    },
+    "unnamedGroupsMaxReached": {
+        "message": "Nimetute rühmade maksimaalne arv on täis."
+    },
+    "groupNameExists": {
+        "message": "Selle nimega rühm on juba olemas."
+    },
+    "cannotDeleteGroupActiveSchedule": {
+        "message": "Aktiivse ajakava ajal ei saa gruppe kustutada."
+    },
+    "cannotIncreaseTimerActiveSchedule": {
+        "message": "Taimeri kestust ja taimerite arvu ei saa aktiivse ajakava ajal suurendada."
+    },
+    "invalidKeywordValue": {
+        "message": "Kehtetu märksõna väärtus. Peab olema määratud vahemikus."
+    },
+    "cannotChangeGroupNameActiveSchedule": {
+        "message": "Grupi nime muutmine ei ole aktiivse ajakava ajal lubatud."
+    },
+    "invalidEditOnWebsitesOrKeywords": {
+        "message": "Veebisaite või märksõnade kirjeid on muudetud või eemaldatud, muudatusi ei saa salvestada."
+    },
+    "invalidKeywordEntry": {
+        "message": "Kehtetu märksõna sisestus:"
+    },
+    "addGroupButtonText": {
+        "message": "Lisa rühm"
+    },
+    "contentBlockedTitle": {
+        "message": "Sisu on blokeeritud"
+    },
+    "contentBlockedMessage": {
+        "message": "Sellel lehel on piiratud sisu ja see on teie kaitseks blokeeritud."
+    },
+    "keywordDetected": {
+        "message": "Märksõna tuvastatud"
+    },
+    "context": {
+        "message": "Kontekst"
+    },
+    "goBackButton": {
+        "message": "Mine tagasi"
+    },
+    "activateTimerButton": {
+        "message": "Aktiveerige Taimer"
+    },
+    "cannotRelaxConstraints": {
+        "message": "Ajakava piiranguid ei saa leevendada."
+    },
+    "activeButtonText": {
+        "message": "Aktiivne"
+    },
+    "inactiveButtonText": {
+        "message": "Mitteaktiivne"
+    },
+    "addScheduleButton": {
+        "message": "Lisa ajakava"
+    },
+    "enterWebsiteURLPlaceholder": {
+        "message": "Sisestage veebisaidi URL"
+    },
+    "addToWhitelistButton": {
+        "message": "Lisa valgesse nimekirja"
+    },
+    "cancelButton": {
+        "message": "Tühista"
+    },
+    "groupNamePlaceholder": {
+        "message": "Grupi nimi"
+    },
+    "addScheduleButtonLabel": {
+        "message": "Lisa ajakava"
+    },
+    "unnamedSchedulePrefix": {
+        "message": "Ajakava"
+    },
+    "addToWhitelistButtonLabel": {
+        "message": "Lisa valgesse nimekirja"
+    },
+    "cancelButtonLabel": {
+        "message": "Tühista"
+    },
+    "activeLabel": {
+        "message": "Aktiivne"
+    },
+    "inactiveLabel": {
+        "message": "Mitteaktiivne"
+    },
+    "cancelLabel": {
+        "message": "Tühista"
+    },
+    "scheduleNamePlaceholder": {
+        "message": "Ajakava nimi"
+    },
+    "editLabel": {
+        "message": "Muuda"
+    },
+    "unnamedGroupPrefix": {
+        "message": "Grupp"
+    },
+    "lockedScheduleErrorMessage": {
+        "message": "Aktiivse ajakava ajal ei saa saiti valgesse nimekirja lisada."
+    },
+    "cannotToggleActiveState": {
+        "message": "Aktiivset olekut ei saa praegustes tingimustes muuta."
+    },
+    "cannotDeselectDaysError": {
+        "message": "Praegu kehtiva aktiivse ajakava jaoks ei saa päevade valikut tühistada."
+    },
+    "passwordManagementHeader": {
+        "message": "Paroolihaldus"
+    },
+    "enterPasswordPlaceholder": {
+        "message": "Sisestage parool"
+    },
+    "confirmPasswordPlaceholder": {
+        "message": "Kinnitage parool"
+    },
+    "setPasswordButton": {
+        "message": "Määra parool"
+    },
+    "deletePasswordButton": {
+        "message": "Kustuta parool"
+    },
+    "enterPasswordToAccessLabel": {
+        "message": "Juurdepääsuks sisestage parool:"
+    },
+    "submitButton": {
+        "message": "Esita"
+    },
+    "tooManyAttempts": {
+        "message": "Liiga palju ebaõnnestunud katseid. Enne uuesti proovimist oodake $TIME$ sekundit.",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "30"
+            }
+        }
+    },
+    "incorrectPassword": {
+        "message": "Vale parool. $ATTEMPTS$ katsed on jäänud.",
+        "placeholders": {
+            "attempts": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
+    },
+    "passwordMismatchAlert": {
+        "message": "Paroolid ei ühti. Veenduge, et mõlemad paroolid oleksid samad."
+    },
+    "pageTitle": {
+        "message": "Kasutusjuhend – Defense Against Distractions"
+    },
+    "headerTitle": {
+        "message": "Defense Against Distractions: kasutusjuhend"
+    },
+    "introTitle": {
+        "message": "Sissejuhatus"
+    },
+    "introText1": {
+        "message": "Tere! Internetis on nii lihtne tähelepanu hajuda ja sellega edasi lükata. See laiendus võimaldab teil blokeerida veebilehti märksõnade alusel, mida te ei soovi näha."
+    },
+    "introText2": {
+        "message": "Saate esitada tuhandeid video games-i, lugeda uudiseid, vaadata videoid ja nii edasi. Ja sageli teeme seda siis, kui projekti tähtajad või eksamid on veel kaugel. Mõnikord võib olla raske sundida end tegema seda, mida peate tegema."
+    },
+    "introText3": {
+        "message": "Ja segajad on kõikjal! Isegi kui kasutate StayFocusd või Cold Turkey või FocusMe mõne veebisaidi blokeerimiseks nende URL-ide järgi, ei saa te kõike blokeerida. Näiteks võite isegi ChatGPT-iga rääkida uudistest või video games-ist, kui te tõesti ei taha õppida või tööd teha."
+    },
+    "introText4": {
+        "message": "Selle laienduse abil saate blokeerida veebisaite nende tekstis olevate sõnade ja fraaside põhjal."
+    },
+    "howToUseTitle": {
+        "message": "Kuidas laiendust kasutada"
+    },
+    "createGroupTitle": {
+        "message": "Esimene samm: looge grupp"
+    },
+    "createGroupText1": {
+        "message": "Võite vajutada nuppu \"Lisa rühm\" või sisestada grupi nimi ja vajutada sisestusklahvi või nuppu Lisa rühm. Saate luua mitu rühma."
+    },
+    "createGroupText2": {
+        "message": "Näete rühmapaneeli."
+    },
+    "websitesTitle": {
+        "message": "Veebisaidid"
+    },
+    "websitesText": {
+        "message": "Veebisaitide lisamist saate alustada, vajutades Veebisaitide reast vasakul asuvale nupule \"Muuda\". See väli vastutab veebisaitide eest, kus laiendus blokeerib märksõnu. Siin peate sisestama veebisaidi URL-id, näiteks 'google.com'. Saate sisestada mitu veebisaiti, iga uus rida on uus veebisait. Lihtsalt vajutage sisestusklahvi. Kui olete valmis, vajutage rohelist nuppu \"Salvesta\". Või võite tühistada."
+    },
+    "keywordsTitle": {
+        "message": "Märksõnad"
+    },
+    "keywordsText1": {
+        "message": "Uute märksõnade lisamiseks või muudatuste tegemiseks vajutage 'Muuda'. Siia sisestatud märksõnu skannitakse selle grupi jaoks sisestatud veebisaitidel."
+    },
+    "keywordFormatsIntroduction": {
+        "message": "Märksõnadel on 3 vormingut:"
+    },
+    "keywordFormat1Title": {
+        "message": "Esimene vorming:"
+    },
+    "keywordFormat1Text": {
+        "message": "Lihtsalt sisestage märksõnad. See võib olla sõna või fraas. Kui märksõna sisaldab koma ',', peate selle ees kasutama paomärki '\\'. Veebisait blokeeritakse kohe, kui märksõna tuvastatakse. Saate sisestada nii palju märksõnu kui soovite, vajutage lihtsalt sisestusklahvi. Iga uus rida on uus märksõna."
+    },
+    "keywordFormat1_2": {
+        "message": "Näide: „video games” või „uudised”."
+    },
+    "keywordFormat2Title": {
+        "message": "Teine formaat:"
+    },
+    "keywordFormat2Text": {
+        "message": "Sisestage märksõna ja seejärel numbriline väärtus. Iga gruppi sisestatud veebisait peab jõudma punktini 1000. Veebileht algab väärtusega 0 ja märksõna numbrilise väärtuse alusel väärtus suureneb. Kui veebisait jõuab 1000 punktini, see blokeeritakse."
+    },
+    "keywordFormat2_2": {
+        "message": "Näide: 'news, 50'"
+    },
+    "keywordFormat2_3": {
+        "message": "Iga gruppi sisestatud veebisait peab jõudma punktini 1000. Sait algab väärtusega 0 ja märksõna numbrilise väärtuse alusel väärtus suureneb. Kui veebisait jõuab 1000 punktini, see blokeeritakse."
+    },
+    "keywordFormat3Title": {
+        "message": "Kolmas formaat:"
+    },
+    "keywordFormat3Text": {
+        "message": "Sisestage märksõna, millele järgneb korrutamis- või liitmismärk (* või +), seejärel numbriline väärtus. Selle stsenaariumi korral korrutatakse lehe skoor leitud märksõna numbrilise väärtuse alusel."
+    },
+    "keywordFormat3_2": {
+        "message": "Näide: 'news, *, 10'"
+    },
+    "keywordFormat3_3": {
+        "message": "Selle stsenaariumi korral korrutatakse lehe skoor leitud märksõna numbrilise väärtuse alusel."
+    },
+    "timerCountTitle": {
+        "message": "Taimeri arv"
+    },
+    "timerCountText": {
+        "message": "Kui leht on blokeeritud, on teil võimalus vajutada nuppu \"Aktiveeri taimer\". Pärast seda on teil aega lehel mõned toimingud teha, enne kui see uuesti blokeeritakse. Väljal Timer Count saate otsustada, mitu taimerit soovite päeva jooksul kasutada."
+    },
+    "timerDurationTitle": {
+        "message": "Taimeri kestus (sekundites)"
+    },
+    "timerDurationText": {
+        "message": "Sellel väljal saate otsustada, mitu sekundit igal taimeril on."
+    },
+    "lockedSchedulesTitle": {
+        "message": "Lukustatud ajakavad"
+    },
+    "lockedSchedulesNote": {
+        "message": "! Lukustatud ajakava ei saa avada enne, kui aeg on möödas (kui just laienduse desinstallite)!"
+    },
+    "lockedSchedulesText1": {
+        "message": "Saate lisada uue lukustatud ajakava, luues ajakava nime väljale Ajakava nimi ja vajutades sisestusklahvi või nuppu Lisa ajakava."
+    },
+    "lockedSchedulesText2": {
+        "message": "Ajakava sätete muutmiseks vajutage \"Muuda\". Päevanuppe vajutades lubate selle päeva ajakava (nupp muutub roheliseks) või keelate selle sellel päeval. Väljade Algusaeg ja Lõpuaeg muutmisega saate määrata ajad, millal ajakava võib olla aktiivne. Igal päeval peab olema 1-tunnine passiivne ajaaken, et saaksite ajakava sel ajal välja lülitada. Nupp Passiivne/Aktiivne lülitab ajakava sisse. Ajakava on lukustatud ja aktiivne, kui käesolev päev on lubatud (roheline) ja nupp näitab 'Aktiivne' ja on ka roheline ning kui praegune kellaaeg jääb algus- ja lõpuaja vahele."
+    },
+    "lockedSchedulesText3": {
+        "message": "Nupp Kustuta eemaldab lukustatud ajakava. Sama kehtib rühmade ja lubatud loendisse kantud veebisaitide kohta."
+    },
+    "lockedSchedulesText4": {
+        "message": "Lukustatud ajakava ajal kehtivad mitmed piirangud:"
+    },
+    "lockedScheduleRestriction1": {
+        "message": "Gruppide nimesid muuta ei saa."
+    },
+    "lockedScheduleRestriction2": {
+        "message": "Te ei saa rühmades olemasolevaid veebisaite muuta ega eemaldada."
+    },
+    "lockedScheduleRestriction3": {
+        "message": "Olemasolevaid märksõnu ja nende väärtusi ei saa muuta ega eemaldada."
+    },
+    "lockedScheduleRestriction4": {
+        "message": "Korrutamiseks saate määrata ainult märksõna väärtused: 1 kuni 1000. Liitmiseks: 0 kuni 1000."
+    },
+    "lockedScheduleRestriction5": {
+        "message": "Taimeri loendust ei saa suurendada."
+    },
+    "lockedScheduleRestriction6": {
+        "message": "Taimeri kestust ei saa pikendada."
+    },
+    "lockedScheduleRestriction7": {
+        "message": "Aktiivseid ajakavasid ei saa kustutada."
+    },
+    "lockedScheduleRestriction8": {
+        "message": "Te ei saa tühistada päevade valikut, muuta ajakava passiivseks ega muuta aktiivsete ajakavade algus- või lõppaega."
+    },
+    "lockedScheduleRestriction9": {
+        "message": "Lubatud loendisse lisatud veebisaite ei saa lisada."
+    },
+    "lockedScheduleRestriction10": {
+        "message": "Te ei saa laienduse parooli määrata ega kustutada."
+    },
+    "whitelistWebsitesTitle": {
+        "message": "Veebisaitide valge nimekiri"
+    },
+    "whitelistWebsitesText": {
+        "message": "Võimaldab sisestada valgesse nimekirja kantud veebisaite, mis tähendab, et nendel veebisaitidel märksõnade skannimist ei teostata ja seega ei blokeerita neid. Praegu ei ole meil võimalust kasutada metamärki (*), et lisada ühte kirjesse palju veebisaite (nagu *.io, kus kõik.io-ga veebisaidid oleks blokeeritud), seega pole see funktsioon kuigi kasulik, kuid see on olemas."
+    },
+    "passwordManagementTitle": {
+        "message": "Paroolihaldus"
+    },
+    "passwordManagementText": {
+        "message": "Võimaldab seadistada laienduslehe parooli. Igaüks, kes avab laienduslehe, peab juurdepääsu saamiseks sisestama õige parooli. Kasulik, et takistada teistel kogemata (või tahtlikult) sätteid karmistamast."
+    },
+    "contactFeedbackTitle": {
+        "message": "Kontakt ja tagasiside"
+    },
+    "feedbackText1": {
+        "message": "Kui soovite tagasisidet jagada või teil on probleeme, külastage laienduse lehte GitHub:"
+    },
+    "githubLink": {
+        "message": "GitHub – Defense Against Distractions"
+    },
+    "feedbackText2": {
+        "message": "Liikuge seal vahekaardile \"Probleemid\" ja klõpsake rohelist nuppu \"Uus probleem\". Täitke pealkiri ja kirjeldus ning vajutage \"Esita uus number\"."
+    },
+    "thanks": {
+        "message": "Aitäh."
+    },
+    "instructionGuideLink": {
+        "message": "Kasutusjuhend"
+    },
+    "description": {
+        "message": "Võimaldab blokeerida veebisaite nende lehtedel kuvatava teksti alusel."
+    },
+    "dailyLimitReached": {
+        "message": "Päevalimiit on täis"
+    },
+    "exportButton": {
+        "message": "Ekspordi"
+    },
+    "importButton": {
+        "message": "Import"
+    },
+    "themeModeLabel": {
+        "message": "UI režiim"
+    },
+    "themeModeSystemOption": {
+        "message": "Süsteem"
+    },
+    "themeModeDarkOption": {
+        "message": "Tume"
+    },
+    "themeModeLightOption": {
+        "message": "Valgus"
+    },
+    "elementRulesLabel": {
+        "message": "Blokeeritud kasutajaliides"
+    },
+    "noElementRulesLabel": {
+        "message": "Blokeeritud kasutajaliidese elemente pole"
+    }
+}

@@ -1,0 +1,455 @@
+{
+    "deleteButtonLabel": {
+        "message": "Izbriši"
+    },
+    "whitelistExistsMessage": {
+        "message": "To spletno mesto je že na seznamu dovoljenih."
+    },
+    "deleteWhitelistError": {
+        "message": "Med aktivnim urnikom ni mogoče izbrisati spletnih mest s seznama dovoljenih."
+    },
+    "scheduleNameLabel": {
+        "message": "Ime urnika"
+    },
+    "startTimeLabel": {
+        "message": "Začetni čas"
+    },
+    "endTimeLabel": {
+        "message": "Končni čas"
+    },
+    "activeStateLabel": {
+        "message": "Aktivno stanje"
+    },
+    "editButtonLabel": {
+        "message": "Uredi"
+    },
+    "saveButtonLabel": {
+        "message": "Shrani"
+    },
+    "endTimeAfterStartTimeError": {
+        "message": "Končni čas mora biti po začetnem času."
+    },
+    "schedulesOverlapError": {
+        "message": "Urniki se ne smejo prekrivati."
+    },
+    "minimumUnlockedTimeError": {
+        "message": "Vsak dan mora imeti vsaj 1 uro odklenjenega časa."
+    },
+    "Mon": {
+        "message": "pon"
+    },
+    "Tue": {
+        "message": "tor"
+    },
+    "Wed": {
+        "message": "Sre"
+    },
+    "Thu": {
+        "message": "čet"
+    },
+    "Fri": {
+        "message": "pet"
+    },
+    "Sat": {
+        "message": "sob"
+    },
+    "Sun": {
+        "message": "sonce"
+    },
+    "Edit": {
+        "message": "Uredi"
+    },
+    "Save": {
+        "message": "Shrani"
+    },
+    "Delete": {
+        "message": "Izbriši"
+    },
+    "groupNameLabel": {
+        "message": "Ime skupine"
+    },
+    "websitesLabel": {
+        "message": "Spletne strani"
+    },
+    "keywordsLabel": {
+        "message": "Ključne besede"
+    },
+    "timerCountLabel": {
+        "message": "Števec časovnika"
+    },
+    "timerDurationLabel": {
+        "message": "Trajanje časovnika (sekunde)"
+    },
+    "unnamedSchedulesMaxReached": {
+        "message": "Doseženo je največje število neimenovanih urnikov."
+    },
+    "scheduleNameExists": {
+        "message": "Razpored s tem imenom že obstaja."
+    },
+    "cannotDeleteActiveSchedule": {
+        "message": "Aktivnega urnika ni mogoče izbrisati. Počakajte, da urnik ni aktiven."
+    },
+    "optionsTitle": {
+        "message": "Obrambni odbor"
+    },
+    "groupsHeading": {
+        "message": "Skupine"
+    },
+    "whitelistHeading": {
+        "message": "Spletna mesta na beli listi"
+    },
+    "schedulesHeading": {
+        "message": "Zaklenjeni urniki"
+    },
+    "unnamedGroupsMaxReached": {
+        "message": "Doseženo je največje število neimenovanih skupin."
+    },
+    "groupNameExists": {
+        "message": "Skupina s tem imenom že obstaja."
+    },
+    "cannotDeleteGroupActiveSchedule": {
+        "message": "Med aktivnim urnikom ni mogoče izbrisati skupin."
+    },
+    "cannotIncreaseTimerActiveSchedule": {
+        "message": "Trajanja časovnika in števila časovnikov ni mogoče povečati med aktivnim urnikom."
+    },
+    "invalidKeywordValue": {
+        "message": "Neveljavna vrednost ključne besede. Biti mora znotraj navedenega obsega."
+    },
+    "cannotChangeGroupNameActiveSchedule": {
+        "message": "Spreminjanje imena skupine med aktivnim urnikom ni dovoljeno."
+    },
+    "invalidEditOnWebsitesOrKeywords": {
+        "message": "Spletna mesta ali vnosi ključnih besed so bili urejeni ali odstranjeni, spremembe ni mogoče shraniti."
+    },
+    "invalidKeywordEntry": {
+        "message": "Neveljaven vnos ključne besede:"
+    },
+    "addGroupButtonText": {
+        "message": "Dodaj skupino"
+    },
+    "contentBlockedTitle": {
+        "message": "Vsebina blokirana"
+    },
+    "contentBlockedMessage": {
+        "message": "Ta stran vsebuje omejeno vsebino in je bila zaradi vaše zaščite blokirana."
+    },
+    "keywordDetected": {
+        "message": "Zaznana ključna beseda"
+    },
+    "context": {
+        "message": "Kontekst"
+    },
+    "goBackButton": {
+        "message": "Pojdi nazaj"
+    },
+    "activateTimerButton": {
+        "message": "Aktivirajte časovnik"
+    },
+    "cannotRelaxConstraints": {
+        "message": "Omejitev urnika ni mogoče sprostiti."
+    },
+    "activeButtonText": {
+        "message": "Aktiven"
+    },
+    "inactiveButtonText": {
+        "message": "Neaktiven"
+    },
+    "addScheduleButton": {
+        "message": "Dodaj razpored"
+    },
+    "enterWebsiteURLPlaceholder": {
+        "message": "Vnesite URL spletnega mesta"
+    },
+    "addToWhitelistButton": {
+        "message": "Dodaj na seznam dovoljenih"
+    },
+    "cancelButton": {
+        "message": "Prekliči"
+    },
+    "groupNamePlaceholder": {
+        "message": "Ime skupine"
+    },
+    "addScheduleButtonLabel": {
+        "message": "Dodaj razpored"
+    },
+    "unnamedSchedulePrefix": {
+        "message": "Urnik"
+    },
+    "addToWhitelistButtonLabel": {
+        "message": "Dodaj na seznam dovoljenih"
+    },
+    "cancelButtonLabel": {
+        "message": "Prekliči"
+    },
+    "activeLabel": {
+        "message": "Aktiven"
+    },
+    "inactiveLabel": {
+        "message": "Neaktiven"
+    },
+    "cancelLabel": {
+        "message": "Prekliči"
+    },
+    "scheduleNamePlaceholder": {
+        "message": "Ime urnika"
+    },
+    "editLabel": {
+        "message": "Uredi"
+    },
+    "unnamedGroupPrefix": {
+        "message": "skupina"
+    },
+    "lockedScheduleErrorMessage": {
+        "message": "Spletnega mesta med aktivnim razporedom ni mogoče dodati na seznam dovoljenih."
+    },
+    "cannotToggleActiveState": {
+        "message": "Pod trenutnimi pogoji ni mogoče spremeniti aktivnega stanja."
+    },
+    "cannotDeselectDaysError": {
+        "message": "Ni mogoče preklicati izbire dni za aktivni urnik, ki je trenutno v veljavi."
+    },
+    "passwordManagementHeader": {
+        "message": "Upravljanje gesel"
+    },
+    "enterPasswordPlaceholder": {
+        "message": "Vnesite geslo"
+    },
+    "confirmPasswordPlaceholder": {
+        "message": "Potrdite geslo"
+    },
+    "setPasswordButton": {
+        "message": "Nastavi geslo"
+    },
+    "deletePasswordButton": {
+        "message": "Izbriši geslo"
+    },
+    "enterPasswordToAccessLabel": {
+        "message": "Vnesite geslo za dostop:"
+    },
+    "submitButton": {
+        "message": "Predloži"
+    },
+    "tooManyAttempts": {
+        "message": "Preveč neuspelih poskusov. Pred ponovnim poskusom počakajte $TIME$ sekund.",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "30"
+            }
+        }
+    },
+    "incorrectPassword": {
+        "message": "Napačno geslo. $ATTEMPTS$ preostali poskusi.",
+        "placeholders": {
+            "attempts": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
+    },
+    "passwordMismatchAlert": {
+        "message": "Gesli se ne ujemata. Prepričajte se, da sta obe gesli enaki."
+    },
+    "pageTitle": {
+        "message": "Navodila za uporabo - Defense Against Distractions"
+    },
+    "headerTitle": {
+        "message": "Defense Against Distractions: Navodila za uporabo"
+    },
+    "introTitle": {
+        "message": "Uvod"
+    },
+    "introText1": {
+        "message": "zdravo Na internetu se je tako enostavno zamotiti in odlašati. Ta razširitev vam omogoča blokiranje spletnih strani na podlagi ključnih besed, ki jih ne želite videti."
+    },
+    "introText2": {
+        "message": "Na voljo je na tisoče video games za igranje, novic za branje, videoposnetkov za ogled in tako naprej. In pogosto to počnemo, ko so projektni roki ali izpiti še daleč. Včasih se je težko prisiliti, da naredite tisto, kar morate storiti."
+    },
+    "introText3": {
+        "message": "In motnje so povsod! Tudi če uporabite StayFocusd ali Cold Turkey ali FocusMe za blokiranje nekaterih spletnih mest po njihovih URL-jih, ne morete blokirati vsega. Na primer, tudi z ChatGPT bi se lahko pogovarjali o novicah ali video games, če se vam res ne da študirati ali delati."
+    },
+    "introText4": {
+        "message": "S to razširitvijo lahko blokirate spletna mesta na podlagi besed in besednih zvez v njihovem besedilu."
+    },
+    "howToUseTitle": {
+        "message": "Kako uporabljati razširitev"
+    },
+    "createGroupTitle": {
+        "message": "Prvi korak: ustvarite skupino"
+    },
+    "createGroupText1": {
+        "message": "Lahko pritisnete gumb 'Dodaj skupino' ali vnesete ime skupine in pritisnete Enter ali gumb Dodaj skupino. Ustvarite lahko več skupin."
+    },
+    "createGroupText2": {
+        "message": "Videli boste skupinsko ploščo."
+    },
+    "websitesTitle": {
+        "message": "Spletne strani"
+    },
+    "websitesText": {
+        "message": "Spletna mesta lahko začnete dodajati s pritiskom na gumb 'Uredi' na levi strani vrstice Spletna mesta. To polje je odgovorno za spletna mesta, kjer bo razširitev blokirala ključne besede. Tukaj morate vnesti URL-je spletnih mest, na primer 'google.com'. Vnesete lahko več spletnih mest, vsaka nova vrstica je novo spletno mesto. Samo pritisnite Enter. Ko ste pripravljeni, pritisnite zeleni gumb 'Shrani'. Lahko pa tudi Prekličeš."
+    },
+    "keywordsTitle": {
+        "message": "Ključne besede"
+    },
+    "keywordsText1": {
+        "message": "Če želite dodati nove ključne besede ali narediti kakršne koli spremembe, pritisnite 'Uredi'. Ključne besede, ki jih vnesete tukaj, bodo pregledane na spletnih mestih, ki ste jih vnesli za to skupino."
+    },
+    "keywordFormatsIntroduction": {
+        "message": "Obstajajo 3 oblike za ključne besede:"
+    },
+    "keywordFormat1Title": {
+        "message": "Prva oblika:"
+    },
+    "keywordFormat1Text": {
+        "message": "Samo vnesite ključne besede. Lahko je beseda ali fraza. Če ključna beseda vsebuje vejico ',', morate pred njo uporabiti ubežni znak '\\'. Spletno mesto bo blokirano takoj, ko bo zaznana ključna beseda. Vnesete lahko poljubno število ključnih besed, samo pritisnite enter. Vsaka nova vrstica je nova ključna beseda."
+    },
+    "keywordFormat1_2": {
+        "message": "Primer: 'video games' ali 'novice'."
+    },
+    "keywordFormat2Title": {
+        "message": "Drugi format:"
+    },
+    "keywordFormat2Text": {
+        "message": "Vnesite ključno besedo, ki ji sledi številčna vrednost. Vsako spletno mesto, ki ste ga vnesli v skupino, mora doseči rezultat 1000. Spletno mesto se začne z vrednostjo 0, na podlagi številčne vrednosti ključne besede pa se vrednost povečuje. Ko spletno mesto doseže oceno 1000, bo blokirano."
+    },
+    "keywordFormat2_2": {
+        "message": "Primer: 'news, 50'"
+    },
+    "keywordFormat2_3": {
+        "message": "Vsako spletno mesto, ki ste ga vnesli v skupino, mora doseči rezultat 1000. Stran se začne z vrednostjo 0, na podlagi številčne vrednosti ključne besede pa se vrednost povečuje. Ko spletno mesto doseže oceno 1000, bo blokirano."
+    },
+    "keywordFormat3Title": {
+        "message": "Tretji format:"
+    },
+    "keywordFormat3Text": {
+        "message": "Vnesite ključno besedo, ki ji sledi znak za množenje ali seštevanje (* ali +), nato pa številsko vrednost. V tem scenariju se rezultat za stran pomnoži glede na številčno vrednost najdene ključne besede."
+    },
+    "keywordFormat3_2": {
+        "message": "Primer: 'news, *, 10'"
+    },
+    "keywordFormat3_3": {
+        "message": "V tem scenariju se rezultat za stran pomnoži glede na številčno vrednost najdene ključne besede."
+    },
+    "timerCountTitle": {
+        "message": "Števec časovnika"
+    },
+    "timerCountText": {
+        "message": "Ko je stran blokirana, boste imeli možnost, da pritisnete gumb »Aktiviraj časovnik«. Po tem boste imeli čas, da izvedete nekaj dejanj na strani, preden bo znova blokirana. V polju Timer Count se lahko odločite, koliko časovnikov želite imeti čez dan."
+    },
+    "timerDurationTitle": {
+        "message": "Trajanje časovnika (sekunde)"
+    },
+    "timerDurationText": {
+        "message": "V tem polju se odločite, koliko sekund bo imel posamezen časovnik."
+    },
+    "lockedSchedulesTitle": {
+        "message": "Zaklenjeni urniki"
+    },
+    "lockedSchedulesNote": {
+        "message": "! Zaklenjenega urnika ni mogoče odkleniti, dokler ne mine čas (razen če odstranite razširitev)!"
+    },
+    "lockedSchedulesText1": {
+        "message": "Nov zaklenjen razpored lahko dodate tako, da ustvarite ime razporeda v polju Ime razporeda in pritisnete Enter ali gumb Dodaj razpored."
+    },
+    "lockedSchedulesText2": {
+        "message": "Če želite spremeniti nastavitve urnika, pritisnite 'Uredi'. S pritiskom na gumbe za dan omogočite urnik za ta dan (gumb postane zelen) ali ga onemogočite za ta dan. S spreminjanjem polj Začetni čas in Končni čas nastavite čase, ko je urnik lahko aktiven. Vsak dan mora imeti 1-urno neaktivno časovno okno, da lahko v tem času deaktivirate urnik. Gumb Neaktivno/Aktivno preklopi urnik. Urnik bo zaklenjen in aktiven, če je trenutni dan omogočen (zelen) in gumb prikazuje 'Aktivno' in je prav tako zelen ter če je trenutni čas med začetnim in končnim časom."
+    },
+    "lockedSchedulesText3": {
+        "message": "Gumb Izbriši odstrani zaklenjeni urnik. Enako velja za skupine in spletna mesta na beli listi."
+    },
+    "lockedSchedulesText4": {
+        "message": "Med zaklenjenim urnikom velja več omejitev:"
+    },
+    "lockedScheduleRestriction1": {
+        "message": "Imen skupin ne morete spremeniti."
+    },
+    "lockedScheduleRestriction2": {
+        "message": "Obstoječih spletnih mest v skupinah ne morete spremeniti ali odstraniti."
+    },
+    "lockedScheduleRestriction3": {
+        "message": "Ne morete spremeniti ali odstraniti obstoječih ključnih besed in njihovih vrednosti."
+    },
+    "lockedScheduleRestriction4": {
+        "message": "Vrednosti ključnih besed lahko nastavite le za množenje: od 1 do 1000. Za seštevanje: od 0 do 1000."
+    },
+    "lockedScheduleRestriction5": {
+        "message": "Številca časovnika ni mogoče povečati."
+    },
+    "lockedScheduleRestriction6": {
+        "message": "Trajanja časovnika ni mogoče povečati."
+    },
+    "lockedScheduleRestriction7": {
+        "message": "Aktivnih urnikov ni mogoče izbrisati."
+    },
+    "lockedScheduleRestriction8": {
+        "message": "Ne morete preklicati izbire dni, deaktivirati urnika ali spremeniti začetnega ali končnega časa za aktivne urnike."
+    },
+    "lockedScheduleRestriction9": {
+        "message": "Ne morete dodati spletnih mest na seznam dovoljenih."
+    },
+    "lockedScheduleRestriction10": {
+        "message": "Gesla za razširitev ne morete nastaviti ali izbrisati."
+    },
+    "whitelistWebsitesTitle": {
+        "message": "Spletna mesta na beli listi"
+    },
+    "whitelistWebsitesText": {
+        "message": "Omogoča vnos spletnih mest s seznama dovoljenih, kar pomeni, da na teh spletnih mestih ne bo opravljeno skeniranje ključnih besed in zato ne bodo blokirana. Trenutno nimamo možnosti uporabe nadomestnega znaka (*), da bi vključili veliko spletnih mest v en vnos (na primer *.io, kjer bi bila vsa spletna mesta z ».io« blokirana), zato ta funkcija ni zelo uporabna, vendar obstaja."
+    },
+    "passwordManagementTitle": {
+        "message": "Upravljanje gesel"
+    },
+    "passwordManagementText": {
+        "message": "Omogoča nastavitev gesla za razširitveno stran. Vsakdo, ki odpre stran razširitve, bo moral za dostop vnesti pravilno geslo. Uporabno za preprečevanje drugih, da bi pomotoma (ali namerno) zaostrili nastavitve."
+    },
+    "contactFeedbackTitle": {
+        "message": "Kontakt in povratne informacije"
+    },
+    "feedbackText1": {
+        "message": "Če želite deliti povratne informacije ali če imate težavo, obiščite stran razširitve GitHub:"
+    },
+    "githubLink": {
+        "message": "GitHub - Defense Against Distractions"
+    },
+    "feedbackText2": {
+        "message": "Tam se pomaknite do zavihka »Težave« in kliknite zeleni gumb »Nova številka«. Izpolnite naslov in opis ter pritisnite 'Oddaj novo številko'."
+    },
+    "thanks": {
+        "message": "hvala"
+    },
+    "instructionGuideLink": {
+        "message": "Navodila za uporabo"
+    },
+    "description": {
+        "message": "Omogoča blokiranje spletnih mest na podlagi besedila, ki se pojavi na njihovih straneh."
+    },
+    "dailyLimitReached": {
+        "message": "Dnevna omejitev je dosežena"
+    },
+    "exportButton": {
+        "message": "Izvozi"
+    },
+    "importButton": {
+        "message": "Uvozi"
+    },
+    "themeModeLabel": {
+        "message": "Način uporabniškega vmesnika"
+    },
+    "themeModeSystemOption": {
+        "message": "Sistem"
+    },
+    "themeModeDarkOption": {
+        "message": "Temno"
+    },
+    "themeModeLightOption": {
+        "message": "Svetloba"
+    },
+    "elementRulesLabel": {
+        "message": "Blokiran uporabniški vmesnik"
+    },
+    "noElementRulesLabel": {
+        "message": "Ni blokiranih elementov uporabniškega vmesnika"
+    }
+}

@@ -1,0 +1,455 @@
+{
+    "deleteButtonLabel": {
+        "message": "Tanggalin"
+    },
+    "whitelistExistsMessage": {
+        "message": "Ang site na ito ay nasa whitelist na."
+    },
+    "deleteWhitelistError": {
+        "message": "Hindi matanggal ang mga naka-whitelist na site sa panahon ng aktibong iskedyul."
+    },
+    "scheduleNameLabel": {
+        "message": "Pangalan ng Iskedyul"
+    },
+    "startTimeLabel": {
+        "message": "Oras ng Pagsisimula"
+    },
+    "endTimeLabel": {
+        "message": "Oras ng Pagtatapos"
+    },
+    "activeStateLabel": {
+        "message": "Aktibong Estado"
+    },
+    "editButtonLabel": {
+        "message": "I-edit"
+    },
+    "saveButtonLabel": {
+        "message": "I-save"
+    },
+    "endTimeAfterStartTimeError": {
+        "message": "Ang oras ng pagtatapos ay dapat pagkatapos ng oras ng pagsisimula."
+    },
+    "schedulesOverlapError": {
+        "message": "Ang mga iskedyul ay hindi maaaring mag-overlap."
+    },
+    "minimumUnlockedTimeError": {
+        "message": "Ang bawat araw ay dapat magkaroon ng hindi bababa sa 1 oras ng naka-unlock na oras."
+    },
+    "Mon": {
+        "message": "Mon"
+    },
+    "Tue": {
+        "message": "Tue"
+    },
+    "Wed": {
+        "message": "Wed"
+    },
+    "Thu": {
+        "message": "Huwebes"
+    },
+    "Fri": {
+        "message": "Biyernes"
+    },
+    "Sat": {
+        "message": "Sab"
+    },
+    "Sun": {
+        "message": "Araw"
+    },
+    "Edit": {
+        "message": "I-edit"
+    },
+    "Save": {
+        "message": "I-save"
+    },
+    "Delete": {
+        "message": "Tanggalin"
+    },
+    "groupNameLabel": {
+        "message": "Pangalan ng Grupo"
+    },
+    "websitesLabel": {
+        "message": "Mga website"
+    },
+    "keywordsLabel": {
+        "message": "Mga keyword"
+    },
+    "timerCountLabel": {
+        "message": "Bilang ng Timer"
+    },
+    "timerDurationLabel": {
+        "message": "Tagal ng Timer (segundo)"
+    },
+    "unnamedSchedulesMaxReached": {
+        "message": "Naabot ang maximum na bilang ng mga hindi pinangalanang iskedyul."
+    },
+    "scheduleNameExists": {
+        "message": "Mayroon nang iskedyul na may ganitong pangalan."
+    },
+    "cannotDeleteActiveSchedule": {
+        "message": "Hindi matanggal ang isang aktibong iskedyul. Mangyaring maghintay hanggang sa hindi aktibo ang iskedyul."
+    },
+    "optionsTitle": {
+        "message": "Panel ng Depensa"
+    },
+    "groupsHeading": {
+        "message": "Mga grupo"
+    },
+    "whitelistHeading": {
+        "message": "I-whitelist ang mga Website"
+    },
+    "schedulesHeading": {
+        "message": "Mga Naka-lock na Iskedyul"
+    },
+    "unnamedGroupsMaxReached": {
+        "message": "Naabot ang maximum na bilang ng mga hindi pinangalanang pangkat."
+    },
+    "groupNameExists": {
+        "message": "Umiiral na ang isang pangkat na may ganitong pangalan."
+    },
+    "cannotDeleteGroupActiveSchedule": {
+        "message": "Hindi matanggal ang mga grupo sa panahon ng aktibong iskedyul."
+    },
+    "cannotIncreaseTimerActiveSchedule": {
+        "message": "Ang tagal ng timer at ang dami ng mga timer ay hindi maaaring tumaas sa panahon ng isang aktibong iskedyul."
+    },
+    "invalidKeywordValue": {
+        "message": "Di-wastong halaga ng keyword. Dapat ay nasa loob ng tinukoy na hanay."
+    },
+    "cannotChangeGroupNameActiveSchedule": {
+        "message": "Ang pagpapalit ng pangalan ng grupo ay hindi pinapayagan sa panahon ng isang aktibong iskedyul."
+    },
+    "invalidEditOnWebsitesOrKeywords": {
+        "message": "Na-edit o inalis ang mga entry sa website o Keywords, hindi mai-save ang pagbabago."
+    },
+    "invalidKeywordEntry": {
+        "message": "Di-wastong entry ng keyword:"
+    },
+    "addGroupButtonText": {
+        "message": "Magdagdag ng Grupo"
+    },
+    "contentBlockedTitle": {
+        "message": "Na-block ang Nilalaman"
+    },
+    "contentBlockedMessage": {
+        "message": "Ang pahinang ito ay naglalaman ng pinaghihigpitang nilalaman at na-block para sa iyong proteksyon."
+    },
+    "keywordDetected": {
+        "message": "Natukoy ang Keyword"
+    },
+    "context": {
+        "message": "Konteksto"
+    },
+    "goBackButton": {
+        "message": "Bumalik ka"
+    },
+    "activateTimerButton": {
+        "message": "I-activate ang Timer"
+    },
+    "cannotRelaxConstraints": {
+        "message": "Hindi ma-relax ang mga hadlang sa iskedyul."
+    },
+    "activeButtonText": {
+        "message": "Aktibo"
+    },
+    "inactiveButtonText": {
+        "message": "Hindi aktibo"
+    },
+    "addScheduleButton": {
+        "message": "Magdagdag ng Iskedyul"
+    },
+    "enterWebsiteURLPlaceholder": {
+        "message": "Ilagay ang URL ng website"
+    },
+    "addToWhitelistButton": {
+        "message": "Idagdag sa Whitelist"
+    },
+    "cancelButton": {
+        "message": "Kanselahin"
+    },
+    "groupNamePlaceholder": {
+        "message": "Pangalan ng Grupo"
+    },
+    "addScheduleButtonLabel": {
+        "message": "Magdagdag ng Iskedyul"
+    },
+    "unnamedSchedulePrefix": {
+        "message": "Iskedyul"
+    },
+    "addToWhitelistButtonLabel": {
+        "message": "Idagdag sa Whitelist"
+    },
+    "cancelButtonLabel": {
+        "message": "Kanselahin"
+    },
+    "activeLabel": {
+        "message": "Aktibo"
+    },
+    "inactiveLabel": {
+        "message": "Hindi aktibo"
+    },
+    "cancelLabel": {
+        "message": "Kanselahin"
+    },
+    "scheduleNamePlaceholder": {
+        "message": "Pangalan ng Iskedyul"
+    },
+    "editLabel": {
+        "message": "I-edit"
+    },
+    "unnamedGroupPrefix": {
+        "message": "Grupo"
+    },
+    "lockedScheduleErrorMessage": {
+        "message": "Hindi maidagdag ang site sa whitelist habang may aktibong iskedyul."
+    },
+    "cannotToggleActiveState": {
+        "message": "Hindi mababago ang aktibong estado sa ilalim ng kasalukuyang mga kundisyon."
+    },
+    "cannotDeselectDaysError": {
+        "message": "Hindi maaaring alisin sa pagkakapili ang mga araw para sa isang aktibong iskedyul na kasalukuyang may bisa."
+    },
+    "passwordManagementHeader": {
+        "message": "Pamamahala ng Password"
+    },
+    "enterPasswordPlaceholder": {
+        "message": "Ipasok ang password"
+    },
+    "confirmPasswordPlaceholder": {
+        "message": "Kumpirmahin ang password"
+    },
+    "setPasswordButton": {
+        "message": "Itakda ang Password"
+    },
+    "deletePasswordButton": {
+        "message": "Tanggalin ang Password"
+    },
+    "enterPasswordToAccessLabel": {
+        "message": "Ipasok ang Password upang ma-access:"
+    },
+    "submitButton": {
+        "message": "Isumite"
+    },
+    "tooManyAttempts": {
+        "message": "Napakaraming nabigong pagtatangka. Mangyaring maghintay ng $TIME$ segundo bago subukang muli.",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "30"
+            }
+        }
+    },
+    "incorrectPassword": {
+        "message": "Maling password. $ATTEMPTS$ mga pagsubok na natitira.",
+        "placeholders": {
+            "attempts": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
+    },
+    "passwordMismatchAlert": {
+        "message": "Hindi tugma ang mga password. Pakitiyak na pareho ang dalawang password."
+    },
+    "pageTitle": {
+        "message": "Gabay sa Pagtuturo - Pagtatanggol Laban sa Mga Pagkagambala"
+    },
+    "headerTitle": {
+        "message": "Depensa Laban sa mga Pagkagambala: Gabay sa Pagtuturo"
+    },
+    "introTitle": {
+        "message": "Panimula"
+    },
+    "introText1": {
+        "message": "Hi! Napakadaling magambala sa internet at mag-procrastinate. Binibigyang-daan ka ng extension na ito na harangan ang mga web page batay sa mga keyword na hindi mo gustong makita."
+    },
+    "introText2": {
+        "message": "Mayroong libu-libong video game na laruin, mga balitang babasahin, mga video na papanoorin, at iba pa. At madalas, ito ang ginagawa natin kapag malayo pa ang mga deadline ng proyekto o pagsusulit. Minsan, medyo mahirap pilitin ang iyong sarili na gawin ang kailangan mong gawin."
+    },
+    "introText3": {
+        "message": "At ang mga distraction ay nasa lahat ng dako! Kahit na gumamit ka ng StayFocusd o Cold Turkey o FocusMe para i-block ang ilang website sa pamamagitan ng kanilang mga URL, hindi mo mai-block ang lahat. Halimbawa, kahit na sa ChatGPT, maaari kang makipag-usap tungkol sa mga balita o video game kung talagang ayaw mong mag-aral o magtrabaho."
+    },
+    "introText4": {
+        "message": "Gamit ang extension na ito, maaari mong i-block ang mga website batay sa mga salita at parirala sa kanilang teksto."
+    },
+    "howToUseTitle": {
+        "message": "Paano Gamitin ang Extension"
+    },
+    "createGroupTitle": {
+        "message": "Unang Hakbang: Gumawa ng Grupo"
+    },
+    "createGroupText1": {
+        "message": "Maaari mong pindutin ang pindutang 'Magdagdag ng Grupo' o ipasok ang pangalan ng grupo at pindutin ang Enter o ang pindutang Magdagdag ng Grupo. Maaari kang lumikha ng maraming pangkat."
+    },
+    "createGroupText2": {
+        "message": "Makikita mo ang panel ng grupo."
+    },
+    "websitesTitle": {
+        "message": "Mga website"
+    },
+    "websitesText": {
+        "message": "Maaari kang magsimulang magdagdag ng mga website sa pamamagitan ng pagpindot sa pindutang 'I-edit' sa kaliwa ng linya ng Mga Website. Ang field na ito ay responsable para sa mga website kung saan haharangin ng extension ang mga keyword. Dito kailangan mong mag-input ng mga URL ng website, halimbawa, 'google.com'. Maaari kang mag-input ng maramihang mga website, ang bawat bagong linya ay isang bagong website. Pindutin lang ang Enter. Kapag handa ka na, pindutin ang berdeng 'Save' na buton. O maaari mong Kanselahin."
+    },
+    "keywordsTitle": {
+        "message": "Mga keyword"
+    },
+    "keywordsText1": {
+        "message": "Upang magdagdag ng mga bagong keyword o gumawa ng anumang mga pagbabago, pindutin ang 'I-edit'. Ang mga keyword na iyong ipinasok dito ay mai-scan sa mga website na iyong ipinasok para sa pangkat na ito."
+    },
+    "keywordFormatsIntroduction": {
+        "message": "Mayroong 3 mga format para sa mga keyword:"
+    },
+    "keywordFormat1Title": {
+        "message": "Unang Format:"
+    },
+    "keywordFormat1Text": {
+        "message": "Ipasok lamang ang mga keyword. Maaari itong maging isang salita o isang parirala. Kung ang keyword ay naglalaman ng kuwit na ',', dapat kang gumamit ng escape character na '\\' bago ito. Ang website ay mai-block sa sandaling matukoy ang keyword. Maaari kang magpasok ng maraming keyword hangga't gusto mo, pindutin lamang ang enter. Ang bawat bagong linya ay isang bagong keyword."
+    },
+    "keywordFormat1_2": {
+        "message": "Halimbawa: 'video games' o 'news'."
+    },
+    "keywordFormat2Title": {
+        "message": "Pangalawang Format:"
+    },
+    "keywordFormat2Text": {
+        "message": "Ilagay ang keyword, na sinusundan ng isang numerong halaga. Ang bawat website na iyong ipinasok sa isang pangkat ay dapat umabot ng marka na 1000. Ang website ay nagsisimula sa isang halaga na 0, at batay sa numerong halaga ng keyword, ang halaga ay tumataas. Kapag ang website ay umabot sa score na 1000, ito ay mai-block."
+    },
+    "keywordFormat2_2": {
+        "message": "Halimbawa: 'balita, 50'"
+    },
+    "keywordFormat2_3": {
+        "message": "Ang bawat website na iyong ipinasok sa isang pangkat ay dapat umabot ng marka na 1000. Ang site ay nagsisimula sa isang halaga na 0, at batay sa numerong halaga ng keyword, ang halaga ay tumataas. Kapag ang website ay umabot sa score na 1000, ito ay mai-block."
+    },
+    "keywordFormat3Title": {
+        "message": "Ikatlong Format:"
+    },
+    "keywordFormat3Text": {
+        "message": "Ilagay ang keyword, na sinusundan ng multiplication o addition sign (* o +), pagkatapos ay isang numeric na halaga. Sa sitwasyong ito, ang marka para sa pahina ay pinarami batay sa numeric na halaga ng nahanap na keyword."
+    },
+    "keywordFormat3_2": {
+        "message": "Halimbawa: 'balita, *, 10'"
+    },
+    "keywordFormat3_3": {
+        "message": "Sa sitwasyong ito, ang marka para sa pahina ay pinarami batay sa numeric na halaga ng nahanap na keyword."
+    },
+    "timerCountTitle": {
+        "message": "Bilang ng Timer"
+    },
+    "timerCountText": {
+        "message": "Pagkatapos ma-block ang page, magkakaroon ka ng opsyong pindutin ang 'Activate Timer' na buton. Pagkatapos nito, magkakaroon ka ng oras upang magsagawa ng ilang pagkilos sa page bago ito ma-block muli. Sa field na Bilang ng Timer, maaari kang magpasya kung gaano karaming mga timer ang gusto mong magkaroon sa araw."
+    },
+    "timerDurationTitle": {
+        "message": "Tagal ng Timer (segundo)"
+    },
+    "timerDurationText": {
+        "message": "Sa field na ito, magpapasya ka kung ilang segundo magkakaroon ang bawat timer."
+    },
+    "lockedSchedulesTitle": {
+        "message": "Mga Naka-lock na Iskedyul"
+    },
+    "lockedSchedulesNote": {
+        "message": "! Hindi maa-unlock ang naka-lock na iskedyul hanggang sa lumipas ang oras (maliban kung i-uninstall mo ang extension)!"
+    },
+    "lockedSchedulesText1": {
+        "message": "Maaari kang magdagdag ng bagong naka-lock na iskedyul sa pamamagitan ng paglikha ng pangalan ng iskedyul sa field ng Pangalan ng Iskedyul at pagpindot sa Enter o ang button na Magdagdag ng Iskedyul."
+    },
+    "lockedSchedulesText2": {
+        "message": "Upang baguhin ang mga setting ng iyong iskedyul, pindutin ang 'I-edit'. Sa pamamagitan ng pagpindot sa mga button ng araw, maaari mong i-enable ang iskedyul sa araw na iyon (magiging berde ang button), o i-disable ito para sa araw na iyon. Sa pamamagitan ng pagbabago sa Oras ng Pagsisimula at Oras ng Pagtatapos, itinakda mo ang mga oras na maaaring maging aktibo ang iskedyul. Ang bawat araw ay dapat may 1 oras na inactive time window para ma-deactivate mo ang schedule sa panahong iyon. I-toggle ng Inactive/Active na button ang iskedyul. Ang iskedyul ay mai-lock at magiging aktibo kung ang kasalukuyang araw ay pinagana (berde) at ang pindutan ay nagpapakita ng 'Aktibo' at berde rin, at kung ang kasalukuyang oras ay nasa pagitan ng mga oras ng pagsisimula at pagtatapos."
+    },
+    "lockedSchedulesText3": {
+        "message": "Tinatanggal ng Delete button ang naka-lock na iskedyul. Ang parehong naaangkop sa mga pangkat at naka-whitelist na website."
+    },
+    "lockedSchedulesText4": {
+        "message": "Mayroong ilang mga paghihigpit sa panahon ng naka-lock na iskedyul:"
+    },
+    "lockedScheduleRestriction1": {
+        "message": "Hindi mo maaaring baguhin ang mga pangalan ng grupo."
+    },
+    "lockedScheduleRestriction2": {
+        "message": "Hindi mo maaaring baguhin o alisin ang mga kasalukuyang website sa mga pangkat."
+    },
+    "lockedScheduleRestriction3": {
+        "message": "Hindi mo maaaring baguhin o alisin ang mga umiiral nang keyword at ang kanilang mga halaga."
+    },
+    "lockedScheduleRestriction4": {
+        "message": "Maaari ka lamang magtakda ng mga halaga ng keyword para sa pagpaparami: mula 1 hanggang 1000. Para sa karagdagan: mula 0 hanggang 1000."
+    },
+    "lockedScheduleRestriction5": {
+        "message": "Hindi madaragdagan ang bilang ng timer."
+    },
+    "lockedScheduleRestriction6": {
+        "message": "Ang tagal ng timer ay hindi maaaring tumaas."
+    },
+    "lockedScheduleRestriction7": {
+        "message": "Hindi matatanggal ang mga aktibong iskedyul."
+    },
+    "lockedScheduleRestriction8": {
+        "message": "Hindi mo maaaring alisin sa pagkakapili ang mga araw, gawing hindi aktibo ang iskedyul, o baguhin ang mga oras ng pagsisimula o pagtatapos para sa mga aktibong iskedyul."
+    },
+    "lockedScheduleRestriction9": {
+        "message": "Hindi ka maaaring magdagdag ng mga naka-whitelist na website."
+    },
+    "lockedScheduleRestriction10": {
+        "message": "Hindi mo maaaring itakda o tanggalin ang password para sa extension."
+    },
+    "whitelistWebsitesTitle": {
+        "message": "I-whitelist ang mga Website"
+    },
+    "whitelistWebsitesText": {
+        "message": "Binibigyang-daan kang magpasok ng mga naka-whitelist na website, ibig sabihin ay hindi isasagawa ang pag-scan ng keyword sa mga website na ito, at sa gayon ay hindi sila ma-block. Sa kasalukuyan, wala kaming kakayahang gumamit ng wildcard (*) para magsama ng maraming website sa isang entry (tulad ng *.io, kung saan iba-block ang lahat ng website na may '.io'), kaya hindi masyadong kapaki-pakinabang ang feature na ito, ngunit umiiral ito."
+    },
+    "passwordManagementTitle": {
+        "message": "Pamamahala ng Password"
+    },
+    "passwordManagementText": {
+        "message": "Binibigyang-daan kang mag-set up ng password para sa pahina ng extension. Ang sinumang magbubukas ng pahina ng extension ay kailangang maglagay ng tamang password upang makakuha ng access. Kapaki-pakinabang para sa pagpigil sa iba na hindi sinasadya (o sinasadya) na higpitan ang mga setting."
+    },
+    "contactFeedbackTitle": {
+        "message": "Makipag-ugnayan at Feedback"
+    },
+    "feedbackText1": {
+        "message": "Kung gusto mong magbahagi ng anumang feedback o kung mayroon kang isyu, pakibisita ang GitHub page ng extension:"
+    },
+    "githubLink": {
+        "message": "GitHub - Depensa Laban sa Mga Pagkagambala"
+    },
+    "feedbackText2": {
+        "message": "Doon, mag-navigate sa tab na 'Mga Isyu' at i-click ang berdeng button na 'Bagong Isyu'. Punan ang pamagat at paglalarawan at pindutin ang 'Isumite ang bagong isyu'."
+    },
+    "thanks": {
+        "message": "Salamat."
+    },
+    "instructionGuideLink": {
+        "message": "Gabay sa Pagtuturo"
+    },
+    "description": {
+        "message": "Binibigyang-daan kang i-block ang mga website batay sa text na lumalabas sa kanilang mga pahina."
+    },
+    "dailyLimitReached": {
+        "message": "Naabot na ang pang-araw-araw na limitasyon"
+    },
+    "exportButton": {
+        "message": "I-export"
+    },
+    "importButton": {
+        "message": "Mag-import"
+    },
+    "themeModeLabel": {
+        "message": "UI Mode"
+    },
+    "themeModeSystemOption": {
+        "message": "Sistema"
+    },
+    "themeModeDarkOption": {
+        "message": "Madilim"
+    },
+    "themeModeLightOption": {
+        "message": "Liwanag"
+    },
+    "elementRulesLabel": {
+        "message": "Naka-block na UI"
+    },
+    "noElementRulesLabel": {
+        "message": "Walang naka-block na elemento ng UI"
+    }
+}

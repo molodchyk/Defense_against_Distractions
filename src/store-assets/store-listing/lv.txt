@@ -1,0 +1,25 @@
+Defense Against Distractions palīdz jums koncentrēties, ja ar vienkāršu vietņu bloķēšanu nepietiek.
+
+Lielākā daļa fokusa paplašinājumu bloķē veselas vietnes. Tas ir noderīgi, bet internets ir nekārtīgāks par to. Viena un tā pati vietne var būt noderīga vienā brīdī un novērst uzmanību citā. Meklēšanas lapa, tērzēšanas rīks, forums, video vietne vai AI palīgs var atbalstīt reālu darbu, taču tas var arī kļūt par ieeju ziņās, spēlēs, drāmās, videoklipos un citos uzmanības slazdos.
+
+Defense Against Distractions nodrošina precīzāku kontroli.
+
+Tā vietā, lai bloķētu tikai pēc URL, varat bloķēt lapas, pamatojoties uz tajās redzamajiem vārdiem un frāzēm. Izveidojiet vietņu grupas, pievienojiet atslēgvārdus vai frāzes, piešķiriet punktus un ļaujiet paplašinājumam bloķēt lapu, kad uzmanības novēršanas rādītājs pārsniedz jūsu konfigurēto slieksni.
+
+Varat to izmantot, lai aizsargātu mācību sesijas, darba blokus, gatavošanos eksāmeniem, izpētes laiku vai jebkuru situāciju, kurā vēlaties, lai pārlūkprogramma būtu noderīga, nekļūstot par apvedceļu.
+
+Galvenās iezīmes:
+
+Bloķējiet lapas pēc atslēgvārdiem, frāzēm un svērtajiem rādītājiem.
+Sakārtojiet dažādus fokusa noteikumus vietņu un atslēgvārdu grupās.
+Izmantojiet bloķētus grafikus, baltos sarakstus, paroles aizsardzību, eksportēšanu/importēšanu, lietotāja interfeisa režīmus un lietotāja interfeisa elementu slēpšanu, lai iestatīšana būtu praktiska.
+
+Kas jauns versijā 1.5:
+
+Gaiši, tumši un sistēmas lietotāja interfeisa režīmi.
+Uznirstošais lietotāja interfeisa elementu atlasītājs, lai paslēptu traucējošās lapas vadīklas.
+Uzlabots bloķētu lapu pārklājums ar multivides apturēšanu vai izslēgšanu un atlasāmu diagnostiku.
+Atjaunināti veikala līdzekļi, iepakojums, izlaišanas pārbaudes un projekta struktūra.
+
+Defense Against Distractions ir atvērtais avots:
+https://github.com/molodchyk/Defense_against_Distractions

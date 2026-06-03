@@ -1,0 +1,25 @@
+La defensa contra les distraccions us ajuda a mantenir-vos concentrat quan no n'hi ha prou amb un simple bloqueig de llocs web.
+
+La majoria de les extensions de focus bloquegen llocs web sencers. Això és útil, però Internet és més desordenat que això. El mateix lloc web pot ser útil en un moment i distreure en un altre. Una pàgina de cerca, una eina de xat, un fòrum, un lloc de vídeos o un assistent d'IA poden donar suport al treball real, però també pot esdevenir una porta a notícies, jocs, drama, vídeos i altres trampes d'atenció.
+
+La defensa contra les distraccions us ofereix un control més precís.
+
+En lloc de bloquejar només per URL, podeu bloquejar pàgines en funció de les paraules i frases que hi apareixen. Creeu grups de llocs web, afegiu paraules clau o frases, assigneu puntuacions i deixeu que l'extensió bloquegi la pàgina quan la puntuació de distracció superi el vostre llindar configurat.
+
+Podeu utilitzar-lo per protegir sessions d'estudi, blocs de treball, preparació d'exàmens, temps de recerca o qualsevol situació en què vulgueu que el navegador sigui útil sense convertir-se en un desviament.
+
+Característiques principals:
+
+Bloqueja pàgines per paraules clau, frases i puntuacions ponderades.
+Organitzeu diferents regles d'enfocament en llocs web i grups de paraules clau.
+Utilitzeu horaris bloquejats, llistes blanques, protecció de contrasenya, exportació/importació, modes d'interfície d'usuari i amagat d'elements d'IU per mantenir la configuració pràctica.
+
+Què hi ha de nou a la versió 1.5:
+
+Modes d'interfície d'usuari clar, fosc i del sistema.
+Selector d'elements de la interfície d'usuari basat en finestres emergents per amagar els controls de la pàgina que distreuen.
+S'ha millorat la superposició de pàgines bloquejades amb l'aturada o el silenci dels mitjans i diagnòstics seleccionables.
+S'han actualitzat els actius de la botiga, l'embalatge, les comprovacions de llançament i l'estructura del projecte.
+
+Defense Against Distractions és de codi obert:
+https://github.com/molodchyk/Defense_against_Distractions
