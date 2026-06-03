@@ -1,0 +1,25 @@
+Defence Against Distractions hjálpar þér að halda einbeitingu þegar einföld lokun á vefsíðu er ekki nóg.
+
+Flestar fókusviðbætur loka fyrir heilar vefsíður. Það er gagnlegt, en internetið er sóðalegra en það. Sama vefsíðan getur verið gagnleg á einu augnabliki og truflandi á annarri. Leitarsíða, spjallverkfæri, spjallborð, myndbandssíða eða gervigreind aðstoðarmaður getur stutt raunverulega vinnu, en það getur líka orðið dyr inn í fréttir, leiki, leiklist, myndbönd og aðrar athyglisgildrur.
+
+Defence Against Distractions gefur þér nákvæmari stjórn.
+
+Í stað þess að loka eingöngu með vefslóð geturðu lokað síðum út frá orðum og orðasamböndum sem birtast á þeim. Búðu til hópa af vefsíðum, bættu við leitarorðum eða orðasamböndum, úthlutaðu stigum og láttu viðbótina loka á síðuna þegar truflunarstigið fer yfir stilltan þröskuld þinn.
+
+Þú getur notað það til að vernda námslotur, vinnublokkir, prófundirbúning, rannsóknartíma eða allar aðstæður þar sem þú vilt að vafrinn haldist gagnlegur án þess að verða krókur.
+
+Helstu eiginleikar:
+
+Lokaðu síðum eftir leitarorðum, orðasamböndum og vegnum stigum.
+Skipuleggðu mismunandi áherslureglur í vefsíðu- og leitarorðahópa.
+Notaðu læstar áætlanir, hvítlista, lykilorðsvörn, útflutning/innflutning, notendastillingar og felu notendahluti til að halda uppsetningunni hagnýtri.
+
+Hvað er nýtt í útgáfu 1.5:
+
+Ljós, dökk og kerfisviðmótsstillingar.
+Sprettiglugga-undirstaða UI þáttaval til að fela truflandi síðustýringar.
+Bætt yfirlag á lokuðum síðum með því að stöðva eða þagga miðla og velja greiningu.
+Uppfærðar verslunareignir, umbúðir, losunarathuganir og uppbygging verks.
+
+Defence Against Distractions er opinn uppspretta:
+https://github.com/molodchyk/Defense_against_Distractions

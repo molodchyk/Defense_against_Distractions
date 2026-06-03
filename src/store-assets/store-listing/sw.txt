@@ -1,0 +1,25 @@
+Ulinzi dhidi ya Vikengeushi hukusaidia kukaa umakini wakati kuzuia tovuti kwa urahisi hakutoshi.
+
+Viendelezi vingi vya kuzingatia huzuia tovuti nzima. Hiyo ni muhimu, lakini mtandao ni mbaya zaidi kuliko hiyo. Tovuti hiyo hiyo inaweza kusaidia katika wakati mmoja na kuvuruga katika mwingine. Ukurasa wa utafutaji, zana ya mazungumzo, jukwaa, tovuti ya video, au msaidizi wa AI inaweza kusaidia kazi halisi, lakini inaweza pia kuwa mlango wa habari, michezo, drama, video na mitego mingine ya tahadhari.
+
+Ulinzi Dhidi ya Kukengeushwa hukupa udhibiti sahihi zaidi.
+
+Badala ya kuzuia kwa URL pekee, unaweza kuzuia kurasa kulingana na maneno na vifungu vinavyoonekana kwenye kurasa hizo. Unda vikundi vya tovuti, ongeza maneno au vifungu vya maneno, toa alama, na uruhusu kiendelezi kizuie ukurasa wakati alama ya ovyo inavuka kikomo chako ulichosanidi.
+
+Unaweza kuitumia kulinda vipindi vya masomo, vizuizi vya kazi, maandalizi ya mitihani, muda wa utafiti, au hali yoyote ambapo ungependa kivinjari kikae muhimu bila kukengeuka.
+
+Vipengele kuu:
+
+Zuia kurasa kwa maneno muhimu, misemo na alama zilizopimwa.
+Panga sheria tofauti za kuzingatia katika vikundi vya tovuti na maneno muhimu.
+Tumia ratiba zilizofungwa, orodha zilizoidhinishwa, ulinzi wa nenosiri, kuhamisha/kuagiza, modi za kiolesura na kipengele cha UI kujificha ili kuweka usanidi kuwa wa vitendo.
+
+Ni nini kipya katika toleo la 1.5:
+
+Modi nyepesi, nyeusi na za mfumo wa UI.
+Kiteua kipengee cha kiolesura ibukizi cha kuficha vidhibiti vya ukurasa vinavyosumbua.
+Uwekeleaji wa ukurasa uliozuiwa ulioboreshwa kwa kusimamisha au kunyamazisha midia na uchunguzi unaoweza kuchaguliwa.
+Vipengee vilivyosasishwa vya duka, vifungashio, hundi za matoleo na muundo wa mradi.
+
+Ulinzi dhidi ya usumbufu ni chanzo wazi:
+https://github.com/molodchyk/Defense_against_Distractions

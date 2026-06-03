@@ -1,0 +1,455 @@
+{
+    "deleteButtonLabel": {
+        "message": "Vee uit"
+    },
+    "whitelistExistsMessage": {
+        "message": "Hierdie webwerf is reeds in die witlys."
+    },
+    "deleteWhitelistError": {
+        "message": "Kan nie witlys werwe uitvee tydens aktiewe skedule nie."
+    },
+    "scheduleNameLabel": {
+        "message": "Bylae Naam"
+    },
+    "startTimeLabel": {
+        "message": "Begin Tyd"
+    },
+    "endTimeLabel": {
+        "message": "Eindtyd"
+    },
+    "activeStateLabel": {
+        "message": "Aktiewe staat"
+    },
+    "editButtonLabel": {
+        "message": "Wysig"
+    },
+    "saveButtonLabel": {
+        "message": "Stoor"
+    },
+    "endTimeAfterStartTimeError": {
+        "message": "Eindtyd moet na begintyd wees."
+    },
+    "schedulesOverlapError": {
+        "message": "Skedules kan nie oorvleuel nie."
+    },
+    "minimumUnlockedTimeError": {
+        "message": "Elke dag moet ten minste 1 uur se ontsluittyd hê."
+    },
+    "Mon": {
+        "message": "Ma"
+    },
+    "Tue": {
+        "message": "Di"
+    },
+    "Wed": {
+        "message": "Wo"
+    },
+    "Thu": {
+        "message": "Do"
+    },
+    "Fri": {
+        "message": "Vr"
+    },
+    "Sat": {
+        "message": "Sat"
+    },
+    "Sun": {
+        "message": "Son"
+    },
+    "Edit": {
+        "message": "Wysig"
+    },
+    "Save": {
+        "message": "Stoor"
+    },
+    "Delete": {
+        "message": "Vee uit"
+    },
+    "groupNameLabel": {
+        "message": "Groep Naam"
+    },
+    "websitesLabel": {
+        "message": "Webwerwe"
+    },
+    "keywordsLabel": {
+        "message": "Sleutelwoorde"
+    },
+    "timerCountLabel": {
+        "message": "Timer telling"
+    },
+    "timerDurationLabel": {
+        "message": "Tydsduur van afteller (sekondes)"
+    },
+    "unnamedSchedulesMaxReached": {
+        "message": "Maksimum aantal naamlose skedules bereik."
+    },
+    "scheduleNameExists": {
+        "message": "'n Skedule met hierdie naam bestaan ​​reeds."
+    },
+    "cannotDeleteActiveSchedule": {
+        "message": "Kan nie 'n aktiewe skedule uitvee nie. Wag asseblief totdat die skedule nie aktief is nie."
+    },
+    "optionsTitle": {
+        "message": "Verdedigingspaneel"
+    },
+    "groupsHeading": {
+        "message": "Groepe"
+    },
+    "whitelistHeading": {
+        "message": "Witlys webwerwe"
+    },
+    "schedulesHeading": {
+        "message": "Geslote skedules"
+    },
+    "unnamedGroupsMaxReached": {
+        "message": "Maksimum aantal naamlose groepe bereik."
+    },
+    "groupNameExists": {
+        "message": "'n Groep met hierdie naam bestaan ​​reeds."
+    },
+    "cannotDeleteGroupActiveSchedule": {
+        "message": "Kan nie groepe uitvee tydens aktiewe skedule nie."
+    },
+    "cannotIncreaseTimerActiveSchedule": {
+        "message": "Tydsduur en die hoeveelheid tydtellers kan nie tydens 'n aktiewe skedule verhoog word nie."
+    },
+    "invalidKeywordValue": {
+        "message": "Ongeldige sleutelwoordwaarde. Moet binne die gespesifiseerde reeks wees."
+    },
+    "cannotChangeGroupNameActiveSchedule": {
+        "message": "Die verandering van die groepnaam word nie toegelaat tydens 'n aktiewe skedule nie."
+    },
+    "invalidEditOnWebsitesOrKeywords": {
+        "message": "Webwerwe of sleutelwoorde-inskrywings is geredigeer of verwyder, verandering kan nie gestoor word nie."
+    },
+    "invalidKeywordEntry": {
+        "message": "Ongeldige sleutelwoordinskrywing:"
+    },
+    "addGroupButtonText": {
+        "message": "Voeg groep by"
+    },
+    "contentBlockedTitle": {
+        "message": "Inhoud geblokkeer"
+    },
+    "contentBlockedMessage": {
+        "message": "Hierdie bladsy bevat beperkte inhoud en is vir jou beskerming geblokkeer."
+    },
+    "keywordDetected": {
+        "message": "Sleutelwoord bespeur"
+    },
+    "context": {
+        "message": "Konteks"
+    },
+    "goBackButton": {
+        "message": "Gaan Terug"
+    },
+    "activateTimerButton": {
+        "message": "Aktiveer Timer"
+    },
+    "cannotRelaxConstraints": {
+        "message": "Kan nie die skedule-beperkings verslap nie."
+    },
+    "activeButtonText": {
+        "message": "Aktief"
+    },
+    "inactiveButtonText": {
+        "message": "Onaktief"
+    },
+    "addScheduleButton": {
+        "message": "Voeg skedule by"
+    },
+    "enterWebsiteURLPlaceholder": {
+        "message": "Voer webwerf-URL in"
+    },
+    "addToWhitelistButton": {
+        "message": "Voeg by witlys"
+    },
+    "cancelButton": {
+        "message": "Kanselleer"
+    },
+    "groupNamePlaceholder": {
+        "message": "Groep Naam"
+    },
+    "addScheduleButtonLabel": {
+        "message": "Voeg skedule by"
+    },
+    "unnamedSchedulePrefix": {
+        "message": "Skedule"
+    },
+    "addToWhitelistButtonLabel": {
+        "message": "Voeg by witlys"
+    },
+    "cancelButtonLabel": {
+        "message": "Kanselleer"
+    },
+    "activeLabel": {
+        "message": "Aktief"
+    },
+    "inactiveLabel": {
+        "message": "Onaktief"
+    },
+    "cancelLabel": {
+        "message": "Kanselleer"
+    },
+    "scheduleNamePlaceholder": {
+        "message": "Bylae Naam"
+    },
+    "editLabel": {
+        "message": "Wysig"
+    },
+    "unnamedGroupPrefix": {
+        "message": "Groep"
+    },
+    "lockedScheduleErrorMessage": {
+        "message": "Kan nie werf by witlys voeg tydens 'n aktiewe skedule nie."
+    },
+    "cannotToggleActiveState": {
+        "message": "Kan nie die aktiewe toestand onder die huidige toestande verander nie."
+    },
+    "cannotDeselectDaysError": {
+        "message": "Kan nie dae dekies vir 'n aktiewe skedule wat tans van krag is nie."
+    },
+    "passwordManagementHeader": {
+        "message": "Wagwoordbestuur"
+    },
+    "enterPasswordPlaceholder": {
+        "message": "Voer wagwoord in"
+    },
+    "confirmPasswordPlaceholder": {
+        "message": "Bevestig wagwoord"
+    },
+    "setPasswordButton": {
+        "message": "Stel wagwoord in"
+    },
+    "deletePasswordButton": {
+        "message": "Vee Wagwoord uit"
+    },
+    "enterPasswordToAccessLabel": {
+        "message": "Voer wagwoord in om toegang te verkry:"
+    },
+    "submitButton": {
+        "message": "Dien in"
+    },
+    "tooManyAttempts": {
+        "message": "Te veel mislukte pogings. Wag asseblief $TIME$ sekondes voordat jy weer probeer.",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "30"
+            }
+        }
+    },
+    "incorrectPassword": {
+        "message": "Verkeerde wagwoord. $ATTEMPTS$ pogings oor.",
+        "placeholders": {
+            "attempts": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
+    },
+    "passwordMismatchAlert": {
+        "message": "Wagwoorde stem nie ooreen nie. Maak asseblief seker dat beide wagwoorde dieselfde is."
+    },
+    "pageTitle": {
+        "message": "Instruksiegids - Verdediging teen afleidings"
+    },
+    "headerTitle": {
+        "message": "Verdediging teen afleidings: Instruksiegids"
+    },
+    "introTitle": {
+        "message": "Inleiding"
+    },
+    "introText1": {
+        "message": "Hallo! Dit is so maklik om op die internet afgelei te word en uit te stel. Hierdie uitbreiding laat jou toe om webblaaie te blokkeer op grond van sleutelwoorde wat jy nie wil sien nie."
+    },
+    "introText2": {
+        "message": "Daar is duisende videospeletjies om te speel, nuusberigte om te lees, video's om te kyk, ensovoorts. En dit is dikwels wat ons doen wanneer projeksperdatums of eksamens nog ver is. Soms kan dit 'n bietjie moeilik wees om jouself te dwing om te doen wat jy moet doen."
+    },
+    "introText3": {
+        "message": "En afleidings is oral! Selfs as jy StayFocusd of Cold Turkey of FocusMe gebruik om sommige webwerwe met hul URL's te blokkeer, kan jy nie alles blokkeer nie. Byvoorbeeld, selfs met ChatGPT, kan jy oor nuus of videospeletjies praat as jy regtig nie lus is om te studeer of werk te doen nie."
+    },
+    "introText4": {
+        "message": "Met hierdie uitbreiding kan jy webwerwe blokkeer op grond van woorde en frases in hul teks."
+    },
+    "howToUseTitle": {
+        "message": "Hoe om die uitbreiding te gebruik"
+    },
+    "createGroupTitle": {
+        "message": "Eerste stap: Skep 'n groep"
+    },
+    "createGroupText1": {
+        "message": "Jy kan die 'Voeg groep by'-knoppie druk of die groepnaam invoer en Enter of die Voeg groep by-knoppie druk. Jy kan verskeie groepe skep."
+    },
+    "createGroupText2": {
+        "message": "Jy sal die groeppaneel sien."
+    },
+    "websitesTitle": {
+        "message": "Webwerwe"
+    },
+    "websitesText": {
+        "message": "Jy kan begin om webwerwe by te voeg deur die 'Redigeer'-knoppie aan die linkerkant van die Webwerwe-reël te druk. Hierdie veld is verantwoordelik vir webwerwe waar die uitbreiding sleutelwoorde sal blokkeer. Hier moet jy webwerf-URL's invoer, byvoorbeeld 'google.com'. U kan verskeie webwerwe invoer, elke nuwe reël is 'n nuwe webwerf. Druk net Enter. Wanneer jy gereed is, druk die groen 'Stoor'-knoppie. Of jy kan kanselleer."
+    },
+    "keywordsTitle": {
+        "message": "Sleutelwoorde"
+    },
+    "keywordsText1": {
+        "message": "Om nuwe sleutelwoorde by te voeg of enige veranderinge aan te bring, druk 'Redigeer'. Die sleutelwoorde wat jy hier invoer sal geskandeer word op die webwerwe wat jy vir hierdie groep ingevoer het."
+    },
+    "keywordFormatsIntroduction": {
+        "message": "Daar is 3 formate vir die sleutelwoorde:"
+    },
+    "keywordFormat1Title": {
+        "message": "Eerste formaat:"
+    },
+    "keywordFormat1Text": {
+        "message": "Voer net die sleutelwoorde in. Dit kan 'n woord of 'n frase wees. As die sleutelwoord 'n komma ',' bevat, moet jy 'n ontsnap-karakter '\\' daarvoor gebruik. Die webwerf sal geblokkeer word sodra die sleutelwoord bespeur word. Jy kan soveel sleutelwoorde invoer as wat jy wil, druk net enter. Elke nuwe reël is 'n nuwe sleutelwoord."
+    },
+    "keywordFormat1_2": {
+        "message": "Voorbeeld: 'videospeletjies' of 'nuus'."
+    },
+    "keywordFormat2Title": {
+        "message": "Tweede formaat:"
+    },
+    "keywordFormat2Text": {
+        "message": "Voer die sleutelwoord in, gevolg deur 'n numeriese waarde. Elke webwerf wat jy in 'n groep ingeskryf het, moet 'n telling van 1000 bereik. Die webwerf begin met 'n waarde van 0, en gebaseer op die numeriese waarde van die sleutelwoord, neem die waarde toe. Sodra die webwerf 'n telling van 1000 bereik, sal dit geblokkeer word."
+    },
+    "keywordFormat2_2": {
+        "message": "Voorbeeld: 'nuus, 50'"
+    },
+    "keywordFormat2_3": {
+        "message": "Elke webwerf wat jy in 'n groep ingeskryf het, moet 'n telling van 1000 bereik. Die webwerf begin met 'n waarde van 0, en gebaseer op die numeriese waarde van die sleutelwoord, neem die waarde toe. Sodra die webwerf 'n telling van 1000 bereik, sal dit geblokkeer word."
+    },
+    "keywordFormat3Title": {
+        "message": "Derde formaat:"
+    },
+    "keywordFormat3Text": {
+        "message": "Voer die sleutelwoord in, gevolg deur 'n vermenigvuldigings- of optelteken (* of +), dan 'n numeriese waarde. In hierdie scenario word die telling vir die bladsy vermenigvuldig op grond van die numeriese waarde van die gevind sleutelwoord."
+    },
+    "keywordFormat3_2": {
+        "message": "Voorbeeld: 'nuus, *, 10'"
+    },
+    "keywordFormat3_3": {
+        "message": "In hierdie scenario word die telling vir die bladsy vermenigvuldig op grond van die numeriese waarde van die gevind sleutelwoord."
+    },
+    "timerCountTitle": {
+        "message": "Timer telling"
+    },
+    "timerCountText": {
+        "message": "Nadat die bladsy geblokkeer is, sal jy die opsie hê om die 'Aktiveer Timer'-knoppie te druk. Daarna sal jy tyd hê om 'n paar aksies op die bladsy uit te voer voordat dit weer geblokkeer word. In die Timer Count-veld kan jy besluit hoeveel timers jy gedurende die dag wil hê."
+    },
+    "timerDurationTitle": {
+        "message": "Tydsduur van afteller (sekondes)"
+    },
+    "timerDurationText": {
+        "message": "In hierdie veld besluit jy hoeveel sekondes elke timer sal hê."
+    },
+    "lockedSchedulesTitle": {
+        "message": "Geslote skedules"
+    },
+    "lockedSchedulesNote": {
+        "message": "! 'n Geslote skedule kan nie ontsluit word voordat die tyd verby is nie (tensy jy die uitbreiding deïnstalleer)!"
+    },
+    "lockedSchedulesText1": {
+        "message": "Jy kan 'n nuwe geslote skedule byvoeg deur die skedulenaam in die Skedulenaam-veld te skep en Enter of die Voeg Bylae-knoppie te druk."
+    },
+    "lockedSchedulesText2": {
+        "message": "Om die instellings van jou skedule te verander, druk 'Redigeer'. Deur die dagknoppies te druk, aktiveer jy óf die skedule op daardie dag (knoppie word groen), óf deaktiveer dit vir daardie dag. Deur die Begintyd- en Eindtyd-velde te wysig, stel jy die tye in wat die skedule aktief kan wees. Elke dag moet 'n 1-uur onaktiewe tydvenster hê sodat jy die skedule gedurende daardie tyd kan deaktiveer. Die Onaktief/Aktief-knoppie wissel die skedule. Die skedule sal gesluit en aktief wees as die huidige dag geaktiveer is (groen) en die knoppie wys 'Aktief' en is ook groen, en as die huidige tyd tussen die begin- en eindtye is."
+    },
+    "lockedSchedulesText3": {
+        "message": "Die Delete-knoppie verwyder die geslote skedule. Dieselfde geld vir groepe en webwerwe op die witlys."
+    },
+    "lockedSchedulesText4": {
+        "message": "Verskeie beperkings geld tydens die geslote skedule:"
+    },
+    "lockedScheduleRestriction1": {
+        "message": "Jy kan nie groepname verander nie."
+    },
+    "lockedScheduleRestriction2": {
+        "message": "Jy kan nie bestaande webwerwe in groepe verander of verwyder nie."
+    },
+    "lockedScheduleRestriction3": {
+        "message": "Jy kan nie bestaande sleutelwoorde en hul waardes verander of verwyder nie."
+    },
+    "lockedScheduleRestriction4": {
+        "message": "Jy kan slegs sleutelwoordwaardes vir vermenigvuldiging stel: van 1 tot 1000. Vir optelling: van 0 tot 1000."
+    },
+    "lockedScheduleRestriction5": {
+        "message": "Die timertelling kan nie verhoog word nie."
+    },
+    "lockedScheduleRestriction6": {
+        "message": "Die tydsduur kan nie verleng word nie."
+    },
+    "lockedScheduleRestriction7": {
+        "message": "Aktiewe skedules kan nie uitgevee word nie."
+    },
+    "lockedScheduleRestriction8": {
+        "message": "Jy kan nie dae ontkies, die skedule onaktief maak of die begin- of eindtye vir aktiewe skedules verander nie."
+    },
+    "lockedScheduleRestriction9": {
+        "message": "Jy kan nie witlys-webwerwe byvoeg nie."
+    },
+    "lockedScheduleRestriction10": {
+        "message": "Jy kan nie die wagwoord vir die uitbreiding stel of uitvee nie."
+    },
+    "whitelistWebsitesTitle": {
+        "message": "Witlys webwerwe"
+    },
+    "whitelistWebsitesText": {
+        "message": "Laat jou toe om gewitlys-webwerwe in te voer, wat beteken dat die sleutelwoordskandering nie op hierdie webwerwe uitgevoer sal word nie, en dus sal hulle nie geblokkeer word nie. Tans het ons nie die vermoë om 'n jokerteken (*) te gebruik om baie webwerwe in een inskrywing in te sluit nie (soos *.io, waar alle webwerwe met '.io' geblokkeer sal word), so hierdie kenmerk is nie baie nuttig nie, maar dit bestaan."
+    },
+    "passwordManagementTitle": {
+        "message": "Wagwoordbestuur"
+    },
+    "passwordManagementText": {
+        "message": "Laat jou toe om 'n wagwoord vir die uitbreidingbladsy op te stel. Enigiemand wat die uitbreidingsbladsy oopmaak, sal die korrekte wagwoord moet invoer om toegang te verkry. Nuttig om te verhoed dat ander per ongeluk (of doelbewus) die instellings strenger maak."
+    },
+    "contactFeedbackTitle": {
+        "message": "Kontak en terugvoer"
+    },
+    "feedbackText1": {
+        "message": "As jy enige terugvoer wil deel of as jy 'n probleem het, besoek asseblief die uitbreiding se GitHub-bladsy:"
+    },
+    "githubLink": {
+        "message": "GitHub - Verdediging teen afleidings"
+    },
+    "feedbackText2": {
+        "message": "Gaan daar na die 'Issues'-oortjie en klik op die groen knoppie 'Nuwe uitgawe'. Vul die titel en beskrywing in en druk 'Stuur nuwe uitgawe in'."
+    },
+    "thanks": {
+        "message": "Dankie."
+    },
+    "instructionGuideLink": {
+        "message": "Instruksiegids"
+    },
+    "description": {
+        "message": "Laat jou toe om webwerwe te blokkeer op grond van die teks wat op hul bladsye verskyn."
+    },
+    "dailyLimitReached": {
+        "message": "Daaglikse limiet bereik"
+    },
+    "exportButton": {
+        "message": "Uitvoer"
+    },
+    "importButton": {
+        "message": "Invoer"
+    },
+    "themeModeLabel": {
+        "message": "UI-modus"
+    },
+    "themeModeSystemOption": {
+        "message": "Stelsel"
+    },
+    "themeModeDarkOption": {
+        "message": "Donker"
+    },
+    "themeModeLightOption": {
+        "message": "Lig"
+    },
+    "elementRulesLabel": {
+        "message": "Geblokkeerde UI"
+    },
+    "noElementRulesLabel": {
+        "message": "Geen geblokkeerde UI-elemente nie"
+    }
+}

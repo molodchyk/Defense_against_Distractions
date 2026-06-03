@@ -1,0 +1,25 @@
+Defence Against Distractions help jou om gefokus te bly wanneer eenvoudige webwerfblokkering nie genoeg is nie.
+
+Die meeste fokusuitbreidings blokkeer hele webwerwe. Dit is nuttig, maar die internet is morsiger as dit. Dieselfde webwerf kan op een oomblik nuttig wees en op 'n ander oomblik aflei. 'n Soekbladsy, kletsinstrument, forum, video-werf of KI-assistent kan werklike werk ondersteun, maar dit kan ook 'n deurgang word na nuus, speletjies, drama, video's en ander aandagstrikke.
+
+Verdediging teen afleidings gee jou meer presiese beheer.
+
+In plaas daarvan om slegs deur URL te blokkeer, kan jy bladsye blokkeer op grond van die woorde en frases wat daarop verskyn. Skep groepe webwerwe, voeg sleutelwoorde of frases by, ken tellings toe en laat die uitbreiding die bladsy blokkeer wanneer die afleidingstelling jou gekonfigureerde drempel oorskry.
+
+Jy kan dit gebruik om studiesessies, werkblokke, eksamenvoorbereiding, navorsingstyd of enige situasie te beskerm waar jy wil hê dat die blaaier nuttig moet bly sonder om 'n ompad te word.
+
+Belangrikste kenmerke:
+
+Blokkeer bladsye volgens sleutelwoorde, frases en geweegde tellings.
+Organiseer verskillende fokusreëls in webwerf- en sleutelwoordgroepe.
+Gebruik geslote skedules, witlyste, wagwoordbeskerming, uitvoer/invoer, UI-modusse en UI-element wegsteek om die opstelling prakties te hou.
+
+Wat is nuut in weergawe 1.5:
+
+Lig, donker en stelsel-UI-modusse.
+Opspring-gebaseerde UI-elementkieser om afleidende bladsykontroles weg te steek.
+Verbeterde geblokkeerde bladsy-oorleg met media stop of demp en kiesbare diagnostiek.
+Opgedateerde winkelbates, verpakking, vrystellingstjeks en projekstruktuur.
+
+Defence Against Distractions is oopbron:
+https://github.com/molodchyk/Defense_against_Distractions

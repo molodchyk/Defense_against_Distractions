@@ -1,0 +1,455 @@
+{
+    "deleteButtonLabel": {
+        "message": "Futa"
+    },
+    "whitelistExistsMessage": {
+        "message": "Tovuti hii tayari iko kwenye orodha iliyoidhinishwa."
+    },
+    "deleteWhitelistError": {
+        "message": "Haiwezi kufuta tovuti zilizoidhinishwa wakati wa ratiba inayotumika."
+    },
+    "scheduleNameLabel": {
+        "message": "Jina la Ratiba"
+    },
+    "startTimeLabel": {
+        "message": "Wakati wa Kuanza"
+    },
+    "endTimeLabel": {
+        "message": "Wakati wa Mwisho"
+    },
+    "activeStateLabel": {
+        "message": "Jimbo Amilifu"
+    },
+    "editButtonLabel": {
+        "message": "Hariri"
+    },
+    "saveButtonLabel": {
+        "message": "Hifadhi"
+    },
+    "endTimeAfterStartTimeError": {
+        "message": "Wakati wa mwisho lazima uwe baada ya muda wa kuanza."
+    },
+    "schedulesOverlapError": {
+        "message": "Ratiba haziwezi kuingiliana."
+    },
+    "minimumUnlockedTimeError": {
+        "message": "Kila siku lazima iwe na angalau saa 1 ya muda wa kufunguliwa."
+    },
+    "Mon": {
+        "message": "Mon"
+    },
+    "Tue": {
+        "message": "Jumanne"
+    },
+    "Wed": {
+        "message": "Jumatano"
+    },
+    "Thu": {
+        "message": "Alhamisi"
+    },
+    "Fri": {
+        "message": "Ijumaa"
+    },
+    "Sat": {
+        "message": "Sat"
+    },
+    "Sun": {
+        "message": "Jua"
+    },
+    "Edit": {
+        "message": "Hariri"
+    },
+    "Save": {
+        "message": "Hifadhi"
+    },
+    "Delete": {
+        "message": "Futa"
+    },
+    "groupNameLabel": {
+        "message": "Jina la Kikundi"
+    },
+    "websitesLabel": {
+        "message": "Tovuti"
+    },
+    "keywordsLabel": {
+        "message": "Maneno muhimu"
+    },
+    "timerCountLabel": {
+        "message": "Hesabu ya Kipima saa"
+    },
+    "timerDurationLabel": {
+        "message": "Muda wa Kipima Muda (sekunde)"
+    },
+    "unnamedSchedulesMaxReached": {
+        "message": "Idadi ya juu zaidi ya ratiba ambazo hazijatajwa zimefikiwa."
+    },
+    "scheduleNameExists": {
+        "message": "Ratiba yenye jina hili tayari ipo."
+    },
+    "cannotDeleteActiveSchedule": {
+        "message": "Haiwezi kufuta ratiba inayotumika. Tafadhali subiri hadi ratiba isiwe amilifu."
+    },
+    "optionsTitle": {
+        "message": "Jopo la Ulinzi"
+    },
+    "groupsHeading": {
+        "message": "Vikundi"
+    },
+    "whitelistHeading": {
+        "message": "Tovuti zilizoidhinishwa"
+    },
+    "schedulesHeading": {
+        "message": "Ratiba Zilizofungwa"
+    },
+    "unnamedGroupsMaxReached": {
+        "message": "Idadi ya juu zaidi ya vikundi visivyo na majina imefikiwa."
+    },
+    "groupNameExists": {
+        "message": "Kikundi kilicho na jina hili tayari kipo."
+    },
+    "cannotDeleteGroupActiveSchedule": {
+        "message": "Haiwezi kufuta vikundi wakati wa ratiba inayotumika."
+    },
+    "cannotIncreaseTimerActiveSchedule": {
+        "message": "Muda wa kipima muda na kiasi cha vipima muda hakiwezi kuongezwa wakati wa ratiba inayotumika."
+    },
+    "invalidKeywordValue": {
+        "message": "Thamani ya neno msingi si sahihi. Lazima iwe ndani ya safu maalum."
+    },
+    "cannotChangeGroupNameActiveSchedule": {
+        "message": "Kubadilisha jina la kikundi hakuruhusiwi wakati wa ratiba inayoendelea."
+    },
+    "invalidEditOnWebsitesOrKeywords": {
+        "message": "Wavuti au maingizo ya Manenomsingi yamehaririwa au kuondolewa, mabadiliko hayawezi kuhifadhiwa."
+    },
+    "invalidKeywordEntry": {
+        "message": "Ingizo la nenomsingi lisilo sahihi:"
+    },
+    "addGroupButtonText": {
+        "message": "Ongeza Kikundi"
+    },
+    "contentBlockedTitle": {
+        "message": "Maudhui Yamezuiwa"
+    },
+    "contentBlockedMessage": {
+        "message": "Ukurasa huu una maudhui yaliyowekewa vikwazo na umezuiwa kwa ulinzi wako."
+    },
+    "keywordDetected": {
+        "message": "Neno Muhimu Limegunduliwa"
+    },
+    "context": {
+        "message": "Muktadha"
+    },
+    "goBackButton": {
+        "message": "Rudi Nyuma"
+    },
+    "activateTimerButton": {
+        "message": "Washa Kipima Muda"
+    },
+    "cannotRelaxConstraints": {
+        "message": "Haiwezi kulegeza vikwazo vya ratiba."
+    },
+    "activeButtonText": {
+        "message": "Inayotumika"
+    },
+    "inactiveButtonText": {
+        "message": "Isiyotumika"
+    },
+    "addScheduleButton": {
+        "message": "Ongeza Ratiba"
+    },
+    "enterWebsiteURLPlaceholder": {
+        "message": "Ingiza URL ya tovuti"
+    },
+    "addToWhitelistButton": {
+        "message": "Ongeza kwenye Orodha iliyoidhinishwa"
+    },
+    "cancelButton": {
+        "message": "Ghairi"
+    },
+    "groupNamePlaceholder": {
+        "message": "Jina la Kikundi"
+    },
+    "addScheduleButtonLabel": {
+        "message": "Ongeza Ratiba"
+    },
+    "unnamedSchedulePrefix": {
+        "message": "Ratiba"
+    },
+    "addToWhitelistButtonLabel": {
+        "message": "Ongeza kwenye Orodha iliyoidhinishwa"
+    },
+    "cancelButtonLabel": {
+        "message": "Ghairi"
+    },
+    "activeLabel": {
+        "message": "Inayotumika"
+    },
+    "inactiveLabel": {
+        "message": "Isiyotumika"
+    },
+    "cancelLabel": {
+        "message": "Ghairi"
+    },
+    "scheduleNamePlaceholder": {
+        "message": "Jina la Ratiba"
+    },
+    "editLabel": {
+        "message": "Hariri"
+    },
+    "unnamedGroupPrefix": {
+        "message": "Kikundi"
+    },
+    "lockedScheduleErrorMessage": {
+        "message": "Haiwezi kuongeza tovuti kwenye orodha iliyoidhinishwa wakati wa ratiba inayoendelea."
+    },
+    "cannotToggleActiveState": {
+        "message": "Haiwezi kubadilisha hali amilifu chini ya hali ya sasa."
+    },
+    "cannotDeselectDaysError": {
+        "message": "Haiwezi kutengua siku kwa ratiba inayotumika kwa sasa."
+    },
+    "passwordManagementHeader": {
+        "message": "Usimamizi wa Nenosiri"
+    },
+    "enterPasswordPlaceholder": {
+        "message": "Weka nenosiri"
+    },
+    "confirmPasswordPlaceholder": {
+        "message": "Thibitisha nenosiri"
+    },
+    "setPasswordButton": {
+        "message": "Weka Nenosiri"
+    },
+    "deletePasswordButton": {
+        "message": "Futa Nenosiri"
+    },
+    "enterPasswordToAccessLabel": {
+        "message": "Weka Nenosiri ili Kufikia:"
+    },
+    "submitButton": {
+        "message": "Wasilisha"
+    },
+    "tooManyAttempts": {
+        "message": "Majaribio mengi sana yaliyofeli. Tafadhali subiri $TIME$ sekunde kabla ya kujaribu tena.",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "30"
+            }
+        }
+    },
+    "incorrectPassword": {
+        "message": "Nenosiri si sahihi. Majaribio ya $ATTEMPTS$ yamesalia.",
+        "placeholders": {
+            "attempts": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
+    },
+    "passwordMismatchAlert": {
+        "message": "Manenosiri hayalingani. Tafadhali hakikisha kuwa nywila zote mbili ni sawa."
+    },
+    "pageTitle": {
+        "message": "Mwongozo wa Maelekezo - Ulinzi Dhidi ya Kukengeushwa"
+    },
+    "headerTitle": {
+        "message": "Ulinzi dhidi ya Vikwazo: Mwongozo wa Maagizo"
+    },
+    "introTitle": {
+        "message": "Utangulizi"
+    },
+    "introText1": {
+        "message": "Habari! Ni rahisi sana kukengeushwa kwenye mtandao na kuahirisha mambo. Kiendelezi hiki hukuruhusu kuzuia kurasa za wavuti kulingana na maneno muhimu ambayo hutaki kuona."
+    },
+    "introText2": {
+        "message": "Kuna maelfu ya michezo ya video ya kucheza, habari za kusoma, video za kutazama, na kadhalika. Na mara nyingi, hivi ndivyo tunafanya wakati tarehe za mwisho za mradi au mitihani bado iko mbali. Wakati mwingine, inaweza kuwa ngumu kidogo kujilazimisha kufanya kile unachohitaji kufanya."
+    },
+    "introText3": {
+        "message": "Na vikwazo viko kila mahali! Hata ukitumia StayFocusd au Cold Turkey au FocusMe kuzuia baadhi ya tovuti kwa kutumia URL zao, huwezi kuzuia kila kitu. Kwa mfano, hata kwa ChatGPT, unaweza kuzungumza kuhusu habari au michezo ya video ikiwa hujisikii kabisa kusoma au kufanya kazi."
+    },
+    "introText4": {
+        "message": "Kwa kiendelezi hiki, unaweza kuzuia tovuti kulingana na maneno na misemo katika maandishi yao."
+    },
+    "howToUseTitle": {
+        "message": "Jinsi ya Kutumia Kiendelezi"
+    },
+    "createGroupTitle": {
+        "message": "Hatua ya Kwanza: Unda Kikundi"
+    },
+    "createGroupText1": {
+        "message": "Unaweza kubonyeza kitufe cha 'Ongeza Kikundi' au kuingiza jina la kikundi na ubonyeze Ingiza au kitufe cha Ongeza Kikundi. Unaweza kuunda vikundi vingi."
+    },
+    "createGroupText2": {
+        "message": "Utaona paneli ya kikundi."
+    },
+    "websitesTitle": {
+        "message": "Tovuti"
+    },
+    "websitesText": {
+        "message": "Unaweza kuanza kuongeza tovuti kwa kubofya kitufe cha 'Hariri' kilicho upande wa kushoto wa mstari wa Tovuti. Sehemu hii inawajibika kwa tovuti ambapo kiendelezi kitazuia manenomsingi. Hapa lazima uingize URL za tovuti, kwa mfano, 'google.com'. Unaweza kuingiza tovuti nyingi, kila mstari mpya ni tovuti mpya. Bonyeza tu Enter. Ukiwa tayari, bonyeza kitufe cha kijani 'Hifadhi'. Au unaweza Ghairi."
+    },
+    "keywordsTitle": {
+        "message": "Maneno muhimu"
+    },
+    "keywordsText1": {
+        "message": "Ili kuongeza manenomsingi mapya au kufanya mabadiliko yoyote, bonyeza 'Hariri'. Maneno muhimu utakayoweka hapa yatachanganuliwa kwenye tovuti ulizoweka za kikundi hiki."
+    },
+    "keywordFormatsIntroduction": {
+        "message": "Kuna fomati 3 za maneno muhimu:"
+    },
+    "keywordFormat1Title": {
+        "message": "Muundo wa Kwanza:"
+    },
+    "keywordFormat1Text": {
+        "message": "Ingiza tu maneno muhimu. Inaweza kuwa neno au kifungu cha maneno. Ikiwa neno kuu lina koma ',', lazima utumie herufi ya '\\' kabla yake. Tovuti itazuiwa mara tu neno kuu litakapotambuliwa. Unaweza kuingiza manenomsingi mengi unavyotaka, bonyeza tu kuingia. Kila mstari mpya ni neno kuu jipya."
+    },
+    "keywordFormat1_2": {
+        "message": "Mfano: 'michezo ya video' au 'habari'."
+    },
+    "keywordFormat2Title": {
+        "message": "Muundo wa Pili:"
+    },
+    "keywordFormat2Text": {
+        "message": "Ingiza neno kuu, ikifuatiwa na thamani ya nambari. Kila tovuti uliyoingiza kwenye kikundi lazima ifikie alama 1000. Tovuti huanza na thamani ya 0, na kulingana na thamani ya nambari ya neno kuu, thamani huongezeka. Mara tu tovuti inapofikia alama 1000, itazuiwa."
+    },
+    "keywordFormat2_2": {
+        "message": "Mfano: 'habari, 50'"
+    },
+    "keywordFormat2_3": {
+        "message": "Kila tovuti uliyoingiza kwenye kikundi lazima ifikie alama 1000. Tovuti huanza na thamani ya 0, na kulingana na thamani ya nambari ya neno kuu, thamani huongezeka. Mara tu tovuti inapofikia alama 1000, itazuiwa."
+    },
+    "keywordFormat3Title": {
+        "message": "Umbizo la Tatu:"
+    },
+    "keywordFormat3Text": {
+        "message": "Ingiza neno kuu, likifuatiwa na ishara ya kuzidisha au kuongeza (* au +), kisha thamani ya nambari. Katika hali hii, alama za ukurasa zinazidishwa kulingana na thamani ya nambari ya neno kuu lililopatikana."
+    },
+    "keywordFormat3_2": {
+        "message": "Mfano: 'habari, *, 10'"
+    },
+    "keywordFormat3_3": {
+        "message": "Katika hali hii, alama za ukurasa zinazidishwa kulingana na thamani ya nambari ya neno kuu lililopatikana."
+    },
+    "timerCountTitle": {
+        "message": "Hesabu ya Kipima saa"
+    },
+    "timerCountText": {
+        "message": "Baada ya ukurasa kuzuiwa, utakuwa na chaguo la kubofya kitufe cha 'Amilisha Kipima Muda'. Baada ya hapo, utakuwa na muda wa kufanya baadhi ya vitendo kwenye ukurasa kabla haujazuiwa tena. Katika sehemu ya Hesabu ya Muda, unaweza kuamua ni vipima muda ambavyo ungependa kutumia wakati wa mchana."
+    },
+    "timerDurationTitle": {
+        "message": "Muda wa Kipima Muda (sekunde)"
+    },
+    "timerDurationText": {
+        "message": "Katika uwanja huu, unaamua ni sekunde ngapi kila kipima saa kitakuwa nacho."
+    },
+    "lockedSchedulesTitle": {
+        "message": "Ratiba Zilizofungwa"
+    },
+    "lockedSchedulesNote": {
+        "message": "! Ratiba iliyofungwa haiwezi kufunguliwa hadi muda upite (isipokuwa ukiondoa kiendelezi)!"
+    },
+    "lockedSchedulesText1": {
+        "message": "Unaweza kuongeza ratiba mpya iliyofungwa kwa kuunda jina la ratiba katika sehemu ya Jina la Ratiba na ubonyeze Ingiza au kitufe cha Ongeza Ratiba."
+    },
+    "lockedSchedulesText2": {
+        "message": "Ili kurekebisha mipangilio ya ratiba yako, bonyeza 'Hariri'. Kwa kubonyeza vitufe vya siku, unaweza kuwasha ratiba siku hiyo (kitufe hubadilika kuwa kijani), au uizime kwa siku hiyo. Kwa kurekebisha sehemu za Muda wa Kuanza na Saa za Mwisho, unaweka saa ambazo ratiba inaweza kutumika. Kila siku lazima iwe na kidirisha cha saa 1 cha muda usiotumika ili uweze kulemaza ratiba wakati huo. Kitufe Isiyotumika/Inayotumika hugeuza ratiba. Ratiba itafungwa na kufanya kazi ikiwa siku ya sasa imewashwa (kijani) na kitufe kinaonyesha 'Inayotumika' na pia ni ya kijani, na ikiwa wakati wa sasa ni kati ya saa za kuanza na za mwisho."
+    },
+    "lockedSchedulesText3": {
+        "message": "Kitufe cha Futa huondoa ratiba iliyofungwa. Hali hiyo hiyo inatumika kwa vikundi na tovuti zilizoidhinishwa."
+    },
+    "lockedSchedulesText4": {
+        "message": "Vizuizi kadhaa hutumika wakati wa ratiba iliyofungwa:"
+    },
+    "lockedScheduleRestriction1": {
+        "message": "Huwezi kubadilisha majina ya kikundi."
+    },
+    "lockedScheduleRestriction2": {
+        "message": "Huwezi kubadilisha au kuondoa tovuti zilizopo katika vikundi."
+    },
+    "lockedScheduleRestriction3": {
+        "message": "Huwezi kubadilisha au kuondoa manenomsingi yaliyopo na thamani zake."
+    },
+    "lockedScheduleRestriction4": {
+        "message": "Unaweza tu kuweka thamani za maneno muhimu kwa kuzidisha: kutoka 1 hadi 1000. Kwa nyongeza: kutoka 0 hadi 1000."
+    },
+    "lockedScheduleRestriction5": {
+        "message": "Idadi ya saa haiwezi kuongezwa."
+    },
+    "lockedScheduleRestriction6": {
+        "message": "Muda wa kipima muda hauwezi kuongezwa."
+    },
+    "lockedScheduleRestriction7": {
+        "message": "Ratiba zinazotumika haziwezi kufutwa."
+    },
+    "lockedScheduleRestriction8": {
+        "message": "Huwezi kutengua siku, kufanya ratiba kutotumika, au kubadilisha saa za kuanza au kumalizika kwa ratiba zinazotumika."
+    },
+    "lockedScheduleRestriction9": {
+        "message": "Huwezi kuongeza tovuti zilizoidhinishwa."
+    },
+    "lockedScheduleRestriction10": {
+        "message": "Huwezi kuweka au kufuta nenosiri la kiendelezi."
+    },
+    "whitelistWebsitesTitle": {
+        "message": "Tovuti zilizoidhinishwa"
+    },
+    "whitelistWebsitesText": {
+        "message": "Hukuruhusu kuingiza tovuti zilizoidhinishwa, kumaanisha kuwa uchanganuzi wa nenomsingi hautafanywa kwenye tovuti hizi, na hivyo hautazuiwa. Kwa sasa, hatuna uwezo wa kutumia wildcard (*) kujumuisha tovuti nyingi katika ingizo moja (kama *.io, ambapo tovuti zote zilizo na '.io' zingezuiwa), kwa hivyo kipengele hiki si muhimu sana, lakini kipo."
+    },
+    "passwordManagementTitle": {
+        "message": "Usimamizi wa Nenosiri"
+    },
+    "passwordManagementText": {
+        "message": "Inakuruhusu kusanidi nenosiri kwa ukurasa wa kiendelezi. Mtu yeyote anayefungua ukurasa wa kiendelezi atahitaji kuingiza nenosiri sahihi ili kupata ufikiaji. Inatumika kwa kuzuia wengine kutoka kwa bahati mbaya (au kwa kukusudia) kubana mipangilio."
+    },
+    "contactFeedbackTitle": {
+        "message": "Mawasiliano na Maoni"
+    },
+    "feedbackText1": {
+        "message": "Ikiwa unataka kushiriki maoni yoyote au ikiwa una suala, tafadhali tembelea ukurasa wa GitHub wa kiendelezi:"
+    },
+    "githubLink": {
+        "message": "GitHub - Ulinzi dhidi ya Vikwazo"
+    },
+    "feedbackText2": {
+        "message": "Hapo, nenda kwenye kichupo cha 'Masuala' na ubofye kitufe cha kijani 'Toleo Jipya'. Jaza kichwa na maelezo na ubonyeze 'Wasilisha toleo jipya'."
+    },
+    "thanks": {
+        "message": "Asante."
+    },
+    "instructionGuideLink": {
+        "message": "Mwongozo wa Maagizo"
+    },
+    "description": {
+        "message": "Inakuruhusu kuzuia tovuti kulingana na maandishi yanayoonekana kwenye kurasa zao."
+    },
+    "dailyLimitReached": {
+        "message": "Kikomo cha kila siku kimefikiwa"
+    },
+    "exportButton": {
+        "message": "Hamisha"
+    },
+    "importButton": {
+        "message": "Ingiza"
+    },
+    "themeModeLabel": {
+        "message": "Hali ya UI"
+    },
+    "themeModeSystemOption": {
+        "message": "Mfumo"
+    },
+    "themeModeDarkOption": {
+        "message": "Giza"
+    },
+    "themeModeLightOption": {
+        "message": "Mwanga"
+    },
+    "elementRulesLabel": {
+        "message": "UI imezuiwa"
+    },
+    "noElementRulesLabel": {
+        "message": "Hakuna vipengele vya UI vilivyozuiwa"
+    }
+}
