@@ -47,6 +47,9 @@ This section preserves the original phrasing of ideas before they are clarified 
 - be able to choose extension's UI language- either system or from a list of available languages
 - DaD plans to have allowed websites and UI blocked elements. Ability to transfer blocked UI elements from and to plans, blocked UI section to remain without plans, but those entries should be able to be toggled active / inactive meaning - enabled / disabled, and to be transferrable to plans. Plans to be expandable with a button, and by default to be compact, showing basic info such as the name of the plan, enabled / disabled, and some other. Schedules section to transfer completely to plans and reimagined (UI-wise)
 - passwords, UI toggle, Anleitung, all of this to be transferred to settings section. Likely in a left sidebar section "Settings" and the default one be like either Plans or Block be called
+- DaD algorithm could save keywords it finds on websites and proactively suggest other keywords based on if those appear only on blocked websites, employ machine learning
+- grayscale on websites
+- establish research pipeline
 
 ## Blocking Capabilities
 
