@@ -235,6 +235,8 @@ Assert-Condition ($rootChangelog -eq $sourceChangelog) "Source archive CHANGELOG
 $storeListingRoot = Join-Path $projectRoot "src\store-assets\store-listing"
 $localeDirectories = Get-ChildItem -LiteralPath (Join-Path $projectRoot "_locales") -Directory
 foreach ($localeDirectory in $localeDirectories) {
+  Assert-Condition ($localeDirectory.Name -notmatch "-") "Locale directory must use Chrome underscore locale codes, not hyphens: $($localeDirectory.Name)"
+
   $localeListingPath = Join-Path $storeListingRoot "$($localeDirectory.Name).txt"
   Assert-Condition (Test-Path -LiteralPath $localeListingPath) "Missing store listing for locale: $($localeDirectory.Name)"
 

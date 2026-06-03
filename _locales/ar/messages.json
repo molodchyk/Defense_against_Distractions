@@ -433,5 +433,23 @@
     },
     "importButton": {
         "message": "استيراد"
+    },
+    "themeModeLabel": {
+        "message": "وضع الواجهة"
+    },
+    "themeModeSystemOption": {
+        "message": "النظام"
+    },
+    "themeModeDarkOption": {
+        "message": "داكن"
+    },
+    "themeModeLightOption": {
+        "message": "فاتح"
+    },
+    "elementRulesLabel": {
+        "message": "واجهة محظورة"
+    },
+    "noElementRulesLabel": {
+        "message": "لا توجد عناصر واجهة محظورة"
     }
 }
