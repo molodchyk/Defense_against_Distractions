@@ -1,0 +1,455 @@
+{
+    "deleteButtonLabel": {
+        "message": "Fshije"
+    },
+    "whitelistExistsMessage": {
+        "message": "Ky sajt është tashmë në listën e bardhë."
+    },
+    "deleteWhitelistError": {
+        "message": "Nuk mund të fshihen sajtet në listën e bardhë gjatë orarit aktiv."
+    },
+    "scheduleNameLabel": {
+        "message": "Emri i orarit"
+    },
+    "startTimeLabel": {
+        "message": "Koha e fillimit"
+    },
+    "endTimeLabel": {
+        "message": "Koha e Fundit"
+    },
+    "activeStateLabel": {
+        "message": "Gjendja aktive"
+    },
+    "editButtonLabel": {
+        "message": "Redakto"
+    },
+    "saveButtonLabel": {
+        "message": "Ruaj"
+    },
+    "endTimeAfterStartTimeError": {
+        "message": "Koha e përfundimit duhet të jetë pas orës së fillimit."
+    },
+    "schedulesOverlapError": {
+        "message": "Oraret nuk mund të mbivendosen."
+    },
+    "minimumUnlockedTimeError": {
+        "message": "Çdo ditë duhet të ketë të paktën 1 orë kohë të shkyçur."
+    },
+    "Mon": {
+        "message": "e hënë"
+    },
+    "Tue": {
+        "message": "e martë"
+    },
+    "Wed": {
+        "message": "e mërkurë"
+    },
+    "Thu": {
+        "message": "e enjte"
+    },
+    "Fri": {
+        "message": "e premte"
+    },
+    "Sat": {
+        "message": "Shtu"
+    },
+    "Sun": {
+        "message": "dielli"
+    },
+    "Edit": {
+        "message": "Redakto"
+    },
+    "Save": {
+        "message": "Ruaj"
+    },
+    "Delete": {
+        "message": "Fshije"
+    },
+    "groupNameLabel": {
+        "message": "Emri i grupit"
+    },
+    "websitesLabel": {
+        "message": "Faqet e internetit"
+    },
+    "keywordsLabel": {
+        "message": "Fjalë kyçe"
+    },
+    "timerCountLabel": {
+        "message": "Numërimi i kohëmatësit"
+    },
+    "timerDurationLabel": {
+        "message": "Kohëzgjatja e kohëmatësit (sekonda)"
+    },
+    "unnamedSchedulesMaxReached": {
+        "message": "Është arritur numri maksimal i orareve të paemërtuar."
+    },
+    "scheduleNameExists": {
+        "message": "Ekziston tashmë një orar me këtë emër."
+    },
+    "cannotDeleteActiveSchedule": {
+        "message": "Nuk mund të fshihet një orar aktiv. Ju lutemi prisni derisa orari të mos jetë aktiv."
+    },
+    "optionsTitle": {
+        "message": "Paneli i Mbrojtjes"
+    },
+    "groupsHeading": {
+        "message": "Grupet"
+    },
+    "whitelistHeading": {
+        "message": "Faqet e internetit të listës së bardhë"
+    },
+    "schedulesHeading": {
+        "message": "Oraret e mbyllura"
+    },
+    "unnamedGroupsMaxReached": {
+        "message": "Është arritur numri maksimal i grupeve pa emër."
+    },
+    "groupNameExists": {
+        "message": "Një grup me këtë emër ekziston tashmë."
+    },
+    "cannotDeleteGroupActiveSchedule": {
+        "message": "Grupet nuk mund të fshihen gjatë orarit aktiv."
+    },
+    "cannotIncreaseTimerActiveSchedule": {
+        "message": "Kohëzgjatja e kohëmatësit dhe sasia e kohëmatësve nuk mund të rritet gjatë një orari aktiv."
+    },
+    "invalidKeywordValue": {
+        "message": "Vlera e pavlefshme e fjalës kyçe. Duhet të jetë brenda intervalit të specifikuar."
+    },
+    "cannotChangeGroupNameActiveSchedule": {
+        "message": "Ndryshimi i emrit të grupit nuk lejohet gjatë një orari aktiv."
+    },
+    "invalidEditOnWebsitesOrKeywords": {
+        "message": "Uebsajtet ose hyrjet e Fjalë kyçe janë redaktuar ose hequr, ndryshimi nuk mund të ruhet."
+    },
+    "invalidKeywordEntry": {
+        "message": "Futja e pavlefshme e fjalës kyçe:"
+    },
+    "addGroupButtonText": {
+        "message": "Shto grup"
+    },
+    "contentBlockedTitle": {
+        "message": "Përmbajtja u bllokua"
+    },
+    "contentBlockedMessage": {
+        "message": "Kjo faqe përmban përmbajtje të kufizuar dhe është bllokuar për mbrojtjen tuaj."
+    },
+    "keywordDetected": {
+        "message": "Fjala kyçe u zbulua"
+    },
+    "context": {
+        "message": "Konteksti"
+    },
+    "goBackButton": {
+        "message": "Kthehu prapa"
+    },
+    "activateTimerButton": {
+        "message": "Aktivizo kohëmatësin"
+    },
+    "cannotRelaxConstraints": {
+        "message": "Nuk mund të lehtësohen kufizimet e orarit."
+    },
+    "activeButtonText": {
+        "message": "Aktiv"
+    },
+    "inactiveButtonText": {
+        "message": "Joaktiv"
+    },
+    "addScheduleButton": {
+        "message": "Shto orar"
+    },
+    "enterWebsiteURLPlaceholder": {
+        "message": "Fut URL-në e faqes në internet"
+    },
+    "addToWhitelistButton": {
+        "message": "Shto në listën e bardhë"
+    },
+    "cancelButton": {
+        "message": "Anulo"
+    },
+    "groupNamePlaceholder": {
+        "message": "Emri i grupit"
+    },
+    "addScheduleButtonLabel": {
+        "message": "Shto orar"
+    },
+    "unnamedSchedulePrefix": {
+        "message": "Orari"
+    },
+    "addToWhitelistButtonLabel": {
+        "message": "Shto në listën e bardhë"
+    },
+    "cancelButtonLabel": {
+        "message": "Anulo"
+    },
+    "activeLabel": {
+        "message": "Aktiv"
+    },
+    "inactiveLabel": {
+        "message": "Joaktiv"
+    },
+    "cancelLabel": {
+        "message": "Anulo"
+    },
+    "scheduleNamePlaceholder": {
+        "message": "Emri i orarit"
+    },
+    "editLabel": {
+        "message": "Redakto"
+    },
+    "unnamedGroupPrefix": {
+        "message": "Grupi"
+    },
+    "lockedScheduleErrorMessage": {
+        "message": "Nuk mund të shtohet sajti në listën e bardhë gjatë një orari aktiv."
+    },
+    "cannotToggleActiveState": {
+        "message": "Nuk mund të ndryshojë gjendjen aktive në kushtet aktuale."
+    },
+    "cannotDeselectDaysError": {
+        "message": "Nuk mund të zgjidhen ditët për një orar aktiv që është aktualisht në fuqi."
+    },
+    "passwordManagementHeader": {
+        "message": "Menaxhimi i Fjalëkalimit"
+    },
+    "enterPasswordPlaceholder": {
+        "message": "Fut fjalëkalimin"
+    },
+    "confirmPasswordPlaceholder": {
+        "message": "Konfirmo fjalëkalimin"
+    },
+    "setPasswordButton": {
+        "message": "Vendosni fjalëkalimin"
+    },
+    "deletePasswordButton": {
+        "message": "Fshi fjalëkalimin"
+    },
+    "enterPasswordToAccessLabel": {
+        "message": "Futni fjalëkalimin për të hyrë:"
+    },
+    "submitButton": {
+        "message": "Paraqisni"
+    },
+    "tooManyAttempts": {
+        "message": "Shumë përpjekje të dështuara. Ju lutemi prisni $TIME$ sekonda përpara se të provoni përsëri.",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "30"
+            }
+        }
+    },
+    "incorrectPassword": {
+        "message": "Fjalëkalim i pasaktë. $ATTEMPTS$ tentativa u larguan.",
+        "placeholders": {
+            "attempts": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
+    },
+    "passwordMismatchAlert": {
+        "message": "Fjalëkalimet nuk përputhen. Ju lutemi sigurohuni që të dy fjalëkalimet të jenë të njëjta."
+    },
+    "pageTitle": {
+        "message": "Udhëzues udhëzues - Mbrojtja kundër shpërqendrimeve"
+    },
+    "headerTitle": {
+        "message": "Mbrojtja kundër shpërqendrimeve: Udhëzues udhëzues"
+    },
+    "introTitle": {
+        "message": "Hyrje"
+    },
+    "introText1": {
+        "message": "Përshëndetje! Është kaq e lehtë të shpërqendrohesh në internet dhe të zvarritesh. Kjo shtesë ju lejon të bllokoni faqet e internetit bazuar në fjalë kyçe që nuk dëshironi t'i shihni."
+    },
+    "introText2": {
+        "message": "Ka mijëra videolojëra për të luajtur, lajme për të lexuar, video për të parë etj. Dhe shpesh, kjo është ajo që ne bëjmë kur afatet e projekteve ose provimet janë ende larg. Ndonjëherë, mund të jetë pak e vështirë të detyrosh veten të bësh atë që duhet të bësh."
+    },
+    "introText3": {
+        "message": "Dhe shpërqendrimet janë kudo! Edhe nëse përdorni StayFocusd ose Cold Turkey ose FocusMe për të bllokuar disa faqe interneti sipas URL-ve të tyre, nuk mund të bllokoni gjithçka. Për shembull, edhe me ChatGPT, mund të flisni për lajme ose video lojëra nëse vërtet nuk keni dëshirë të studioni ose të bëni punë."
+    },
+    "introText4": {
+        "message": "Me këtë shtesë, ju mund të bllokoni faqet e internetit bazuar në fjalët dhe frazat në tekstin e tyre."
+    },
+    "howToUseTitle": {
+        "message": "Si të përdorni shtesën"
+    },
+    "createGroupTitle": {
+        "message": "Hapi i parë: Krijoni një grup"
+    },
+    "createGroupText1": {
+        "message": "Mund të shtypni butonin 'Shto grup' ose të futni emrin e grupit dhe të shtypni Enter ose butonin Shto grup. Ju mund të krijoni grupe të shumta."
+    },
+    "createGroupText2": {
+        "message": "Do të shihni panelin e grupit."
+    },
+    "websitesTitle": {
+        "message": "Faqet e internetit"
+    },
+    "websitesText": {
+        "message": "Mund të filloni të shtoni faqe interneti duke shtypur butonin \"Ndrysho\" në të majtë të linjës së faqeve të internetit. Kjo fushë është përgjegjëse për faqet e internetit ku zgjerimi do të bllokojë fjalë kyçe. Këtu duhet të futni URL-të e faqeve të internetit, për shembull, 'google.com'. Mund të futni shumë faqe interneti, çdo linjë e re është një faqe interneti e re. Thjesht shtypni Enter. Kur të jeni gati, shtypni butonin e gjelbër \"Ruaj\". Ose mund të Anuloni."
+    },
+    "keywordsTitle": {
+        "message": "Fjalë kyçe"
+    },
+    "keywordsText1": {
+        "message": "Për të shtuar fjalë kyçe të reja ose për të bërë ndonjë ndryshim, shtypni 'Ndrysho'. Fjalët kyçe që futni këtu do të skanohen në faqet e internetit që keni futur për këtë grup."
+    },
+    "keywordFormatsIntroduction": {
+        "message": "Ekzistojnë 3 formate për fjalët kyçe:"
+    },
+    "keywordFormat1Title": {
+        "message": "Formati i parë:"
+    },
+    "keywordFormat1Text": {
+        "message": "Thjesht futni fjalët kyçe. Mund të jetë një fjalë ose një frazë. Nëse fjala kyçe përmban presje ',', duhet të përdorni një karakter ikje '\\' përpara saj. Faqja e internetit do të bllokohet sapo të zbulohet fjala kyçe. Mund të futni sa më shumë fjalë kyçe që dëshironi, thjesht shtypni enter. Çdo rresht i ri është një fjalë kyçe e re."
+    },
+    "keywordFormat1_2": {
+        "message": "Shembull: 'video lojëra' ose 'lajme'."
+    },
+    "keywordFormat2Title": {
+        "message": "Formati i dytë:"
+    },
+    "keywordFormat2Text": {
+        "message": "Futni fjalën kyçe, e ndjekur nga një vlerë numerike. Çdo faqe interneti që keni futur në një grup duhet të arrijë rezultatin 1000. Faqja e internetit fillon me vlerën 0 dhe në bazë të vlerës numerike të fjalës kyçe, vlera rritet. Pasi faqja e internetit të arrijë rezultatin 1000, ajo do të bllokohet."
+    },
+    "keywordFormat2_2": {
+        "message": "Shembull: 'lajme, 50'"
+    },
+    "keywordFormat2_3": {
+        "message": "Çdo faqe interneti që keni futur në një grup duhet të arrijë rezultatin 1000. Faqja fillon me vlerën 0 dhe në bazë të vlerës numerike të fjalës kyçe, vlera rritet. Pasi faqja e internetit të arrijë rezultatin 1000, ajo do të bllokohet."
+    },
+    "keywordFormat3Title": {
+        "message": "Formati i tretë:"
+    },
+    "keywordFormat3Text": {
+        "message": "Futni fjalën kyçe, e ndjekur nga një shenjë shumëzimi ose shtimi (* ose +), më pas një vlerë numerike. Në këtë skenar, rezultati për faqen shumëzohet bazuar në vlerën numerike të fjalës kyçe të gjetur."
+    },
+    "keywordFormat3_2": {
+        "message": "Shembull: 'lajme, *, 10'"
+    },
+    "keywordFormat3_3": {
+        "message": "Në këtë skenar, rezultati për faqen shumëzohet bazuar në vlerën numerike të fjalës kyçe të gjetur."
+    },
+    "timerCountTitle": {
+        "message": "Numërimi i kohëmatësit"
+    },
+    "timerCountText": {
+        "message": "Pasi faqja të jetë bllokuar, do të keni mundësinë të shtypni butonin \"Aktivizo kohëmatësin\". Pas kësaj, do të keni kohë për të kryer disa veprime në faqe përpara se të bllokohet përsëri. Në fushën Timer Count, mund të vendosni se sa kohëmatës dëshironi të keni gjatë ditës."
+    },
+    "timerDurationTitle": {
+        "message": "Kohëzgjatja e kohëmatësit (sekonda)"
+    },
+    "timerDurationText": {
+        "message": "Në këtë fushë, ju vendosni se sa sekonda do të ketë çdo kohëmatës."
+    },
+    "lockedSchedulesTitle": {
+        "message": "Oraret e mbyllura"
+    },
+    "lockedSchedulesNote": {
+        "message": "! Një orar i kyçur nuk mund të zhbllokohet derisa të kalojë koha (nëse nuk e çinstaloni shtesën)!"
+    },
+    "lockedSchedulesText1": {
+        "message": "Mund të shtoni një orar të ri të kyçur duke krijuar emrin e orarit në fushën Emri i orarit dhe duke shtypur Enter ose butonin Shto orar."
+    },
+    "lockedSchedulesText2": {
+        "message": "Për të modifikuar cilësimet e orarit tuaj, shtypni 'Ndrysho'. Duke shtypur butonat e ditës, ose aktivizoni orarin në atë ditë (butoni bëhet i gjelbër), ose çaktivizoni atë për atë ditë. Duke modifikuar fushat Koha e fillimit dhe Koha e mbarimit, ju vendosni oraret që orari mund të jetë aktiv. Çdo ditë duhet të ketë një dritare kohore joaktive 1-orëshe në mënyrë që të mund ta çaktivizoni orarin gjatë asaj kohe. Butoni Joaktiv/Aktiv ndryshon orarin. Orari do të jetë i kyçur dhe aktiv nëse dita aktuale është e aktivizuar (jeshile) dhe butoni tregon 'Aktiv' dhe është gjithashtu jeshil, dhe nëse ora aktuale është midis kohës së fillimit dhe mbarimit."
+    },
+    "lockedSchedulesText3": {
+        "message": "Butoni Delete heq orarin e kyçur. E njëjta gjë vlen edhe për grupet dhe faqet e internetit në listën e bardhë."
+    },
+    "lockedSchedulesText4": {
+        "message": "Disa kufizime zbatohen gjatë orarit të bllokuar:"
+    },
+    "lockedScheduleRestriction1": {
+        "message": "Ju nuk mund të ndryshoni emrat e grupeve."
+    },
+    "lockedScheduleRestriction2": {
+        "message": "Ju nuk mund të ndryshoni ose hiqni faqet e internetit ekzistuese në grupe."
+    },
+    "lockedScheduleRestriction3": {
+        "message": "Ju nuk mund të ndryshoni ose hiqni fjalë kyçe ekzistuese dhe vlerat e tyre."
+    },
+    "lockedScheduleRestriction4": {
+        "message": "Mund të vendosni vetëm vlerat e fjalëve kyçe për shumëzim: nga 1 në 1000. Për mbledhje: nga 0 në 1000."
+    },
+    "lockedScheduleRestriction5": {
+        "message": "Numri i kohëmatësit nuk mund të rritet."
+    },
+    "lockedScheduleRestriction6": {
+        "message": "Kohëzgjatja e kohëmatësit nuk mund të rritet."
+    },
+    "lockedScheduleRestriction7": {
+        "message": "Oraret aktive nuk mund të fshihen."
+    },
+    "lockedScheduleRestriction8": {
+        "message": "Nuk mund të çaktivizosh ditët, ta bësh orarin joaktiv ose të ndryshosh oraret e fillimit ose të përfundimit për oraret aktive."
+    },
+    "lockedScheduleRestriction9": {
+        "message": "Ju nuk mund të shtoni faqe interneti në listën e bardhë."
+    },
+    "lockedScheduleRestriction10": {
+        "message": "Nuk mund të vendosni ose fshini fjalëkalimin për shtesën."
+    },
+    "whitelistWebsitesTitle": {
+        "message": "Faqet e internetit të listës së bardhë"
+    },
+    "whitelistWebsitesText": {
+        "message": "Ju lejon të futni faqet e internetit në listën e bardhë, që do të thotë se skanimi i fjalëve kyçe nuk do të kryhet në këto faqe interneti dhe kështu ato nuk do të bllokohen. Aktualisht, ne nuk kemi mundësinë të përdorim një karakteristikë të egër (*) për të përfshirë shumë faqe interneti në një hyrje (si *.io, ku të gjitha faqet e internetit me '.io' do të bllokoheshin), kështu që kjo veçori nuk është shumë e dobishme, por ekziston."
+    },
+    "passwordManagementTitle": {
+        "message": "Menaxhimi i Fjalëkalimit"
+    },
+    "passwordManagementText": {
+        "message": "Ju lejon të konfiguroni një fjalëkalim për faqen shtesë. Kushdo që hap faqen shtesë do të duhet të fusë fjalëkalimin e saktë për të fituar akses. I dobishëm për të parandaluar që të tjerët të shtrëngojnë rastësisht (ose qëllimisht) cilësimet."
+    },
+    "contactFeedbackTitle": {
+        "message": "Kontakt dhe komente"
+    },
+    "feedbackText1": {
+        "message": "Nëse dëshironi të ndani ndonjë koment ose nëse keni një problem, ju lutemi vizitoni faqen GitHub të shtesës:"
+    },
+    "githubLink": {
+        "message": "GitHub - Mbrojtja kundër shpërqendrimeve"
+    },
+    "feedbackText2": {
+        "message": "Atje, lundroni në skedën \"Çështje\" dhe klikoni butonin e gjelbër \"Çështje e re\". Plotësoni titullin dhe përshkrimin dhe shtypni 'Dërgo botimin e ri'."
+    },
+    "thanks": {
+        "message": "faleminderit."
+    },
+    "instructionGuideLink": {
+        "message": "Udhëzues udhëzues"
+    },
+    "description": {
+        "message": "Ju lejon të bllokoni faqet e internetit bazuar në tekstin që shfaqet në faqet e tyre."
+    },
+    "dailyLimitReached": {
+        "message": "U arrit kufiri ditor"
+    },
+    "exportButton": {
+        "message": "Eksporto"
+    },
+    "importButton": {
+        "message": "Importi"
+    },
+    "themeModeLabel": {
+        "message": "Modaliteti UI"
+    },
+    "themeModeSystemOption": {
+        "message": "Sistemi"
+    },
+    "themeModeDarkOption": {
+        "message": "E errët"
+    },
+    "themeModeLightOption": {
+        "message": "Drita"
+    },
+    "elementRulesLabel": {
+        "message": "UI i bllokuar"
+    },
+    "noElementRulesLabel": {
+        "message": "Nuk ka elementë të UI të bllokuar"
+    }
+}

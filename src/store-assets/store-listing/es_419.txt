@@ -1,0 +1,25 @@
+Defensa contra las distracciones le ayuda a mantenerse concentrado cuando el simple bloqueo de un sitio web no es suficiente.
+
+La mayoría de las extensiones de enfoque bloquean sitios web completos. Esto es útil, pero Internet es más complicado que eso. El mismo sitio web puede resultar útil en un momento y distraer en otro. Una página de búsqueda, una herramienta de chat, un foro, un sitio de videos o un asistente de inteligencia artificial pueden respaldar el trabajo real, pero también pueden convertirse en una puerta de entrada a noticias, juegos, dramas, videos y otras trampas de atención.
+
+La Defensa contra las distracciones te brinda un control más preciso.
+
+En lugar de bloquear únicamente por URL, puede bloquear páginas según las palabras y frases que aparecen en ellas. Cree grupos de sitios web, agregue palabras clave o frases, asigne puntuaciones y deje que la extensión bloquee la página cuando la puntuación de distracción cruce su umbral configurado.
+
+Puedes usarlo para proteger sesiones de estudio, bloques de trabajo, preparación de exámenes, tiempo de investigación o cualquier situación en la que quieras que el navegador siga siendo útil sin convertirse en un desvío.
+
+Características principales:
+
+Bloquee páginas por palabras clave, frases y puntuaciones ponderadas.
+Organice diferentes reglas de enfoque en sitios web y grupos de palabras clave.
+Utilice programaciones bloqueadas, listas blancas, protección con contraseña, exportación/importación, modos de interfaz de usuario y ocultación de elementos de la interfaz de usuario para que la configuración sea práctica.
+
+Novedades de la versión 1.5:
+
+Modos de interfaz de usuario claro, oscuro y del sistema.
+Selector de elementos de interfaz de usuario basado en ventanas emergentes para ocultar controles de página que distraen.
+Superposición de páginas bloqueadas mejorada con detención o silenciamiento de medios y diagnósticos seleccionables.
+Activos de tienda actualizados, empaques, controles de liberación y estructura del proyecto.
+
+Defensa contra las distracciones es de código abierto:
+https://github.com/molodchyk/Defense_against_Distractions

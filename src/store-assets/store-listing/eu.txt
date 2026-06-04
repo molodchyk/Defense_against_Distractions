@@ -1,0 +1,25 @@
+Distrakzioen aurkako defentsak arreta jartzen laguntzen dizu webguneen blokeo soila nahikoa ez denean.
+
+Foku-luzapen gehienek webgune osoak blokeatzen dituzte. Hori erabilgarria da, baina Internet hori baino nahasiagoa da. Webgune bera lagungarria izan daiteke une batean eta beste batean distraitzen duena. Bilaketa-orri batek, txat-tresnak, foroak, bideo-guneak edo AI-ren laguntzaileak benetako lana onar dezake, baina albiste, joko, drama, bideo eta beste arreta-tranpa batzuetarako ate bihur daiteke.
+
+Distrakzioen aurkako defentsak kontrol zehatzagoa ematen dizu.
+
+URL bidez soilik blokeatu beharrean, orriak blokeatu ditzakezu haietan agertzen diren hitz eta esaldietan oinarrituta. Sortu webgune-taldeak, gehitu gako-hitzak edo esaldiak, esleitu puntuazioak eta utzi luzapenak orria blokeatzen distrazio puntuak konfiguratutako atalasea gainditzen duenean.
+
+Ikasketa saioak, lan-blokeak, azterketak prestatzeko, ikerketa-denbora edo arakatzailea desbideratze bat bihurtu gabe erabilgarria izatea nahi duzun edozein egoera babesteko erabil dezakezu.
+
+Ezaugarri nagusiak:
+
+Blokeatu orriak gako-hitz, esaldi eta puntuazio haztatuen arabera.
+Antolatu foku-arau desberdinak webgune eta gako-taldeetan.
+Erabili blokeatutako ordutegiak, zerrenda zuriak, pasahitz babesa, esportazioa/inportazioa, UI moduak eta UI elementua ezkutatzea konfigurazioa praktikoa izan dadin.
+
+Zer da berria 1.5 bertsioan:
+
+Argia, iluna eta sistemako UI moduak.
+Popup-en oinarritutako interfazearen elementu-hautatzailea, arreta distraitzen duten orrien kontrolak ezkutatzeko.
+Blokeatutako orrialdeen gainjartzea hobetu da multimedia gelditu edo isilarazi eta hauta daitezkeen diagnostikoekin.
+Dendaren aktiboak, ontziratzeak, kaleratze-egiaztapenak eta proiektuaren egitura eguneratuak.
+
+Distrakzioen aurkako defentsa kode irekia da:
+https://github.com/molodchyk/Defense_against_Distractions

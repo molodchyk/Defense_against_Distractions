@@ -1,0 +1,26 @@
+Chalg'itadigan narsalarga qarshi himoya veb-saytni oddiy blokirovka qilish etarli bo'lmaganda diqqatni jamlashga yordam beradi.
+
+Aksariyat fokusli kengaytmalar butun veb-saytlarni bloklaydi. Bu foydali, lekin internet bundan ham chalkashroq. Xuddi shu veb-sayt bir lahzada foydali bo'lishi mumkin va boshqasida chalg'itishi mumkin. Qidiruv sahifasi, chat vositasi, forum, video sayti yoki AI yordamchisi haqiqiy ishni qo'llab-quvvatlashi mumkin, ammo u yangiliklar, o'yinlar, dramalar, videolar va boshqa diqqatni jalb qilish uchun eshik bo'lishi mumkin.
+
+Chalg'itadigan narsalarga qarshi himoya sizga aniqroq nazoratni beradi.
+
+Faqat URL orqali bloklash o'rniga, sahifalarni ulardagi so'zlar va iboralar asosida bloklashingiz mumkin. Veb-saytlar guruhlarini yarating, kalit so'zlar yoki iboralar qo'shing, ballarni belgilang va chalg'ituvchi ball sizning sozlangan chegarangizni kesib o'tganda kengaytma sahifani bloklashiga ruxsat bering.
+
+Siz undan o'quv mashg'ulotlarini, ish bloklarini, imtihonga tayyorgarlikni, tadqiqot vaqtini yoki brauzerning aylanma yo'llarga aylanmasdan foydali bo'lishini istagan har qanday vaziyatni himoya qilish uchun foydalanishingiz mumkin.
+
+Asosiy xususiyatlar:
+
+Kalit so'zlar, iboralar va vaznli ballar bo'yicha sahifalarni bloklang.
+Turli fokus qoidalarini veb-sayt va kalit so'z guruhlariga ajrating.
+Qulflangan jadvallar, oq roʻyxatlar, parolni himoyalash, eksport/import, UI rejimlari va foydalanuvchi interfeysi elementlarini yashirishdan foydalaning.
+
+1.5 versiyasida nima yangilik:
+
+Yorug'lik, qorong'i va tizim interfeysi rejimlari.
+Chalg'ituvchi sahifa boshqaruvlarini yashirish uchun qalqib chiquvchi UI element tanlovi.
+Media to'xtatish yoki ovozni o'chirish va tanlanishi mumkin bo'lgan diagnostika bilan yaxshilangan bloklangan sahifa qoplamasi.
+Yangilangan do'kon aktivlari, qadoqlash, chiqarish tekshiruvlari va loyiha tuzilishi.
+
+Chalg'itishga qarshi himoya ochiq manba:
+https://github.com/molodchyk/Defense_against_Disttractions
+https://github.com/molodchyk/Defense_against_Distractions

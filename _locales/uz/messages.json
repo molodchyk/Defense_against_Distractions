@@ -1,0 +1,455 @@
+{
+    "deleteButtonLabel": {
+        "message": "Oʻchirish"
+    },
+    "whitelistExistsMessage": {
+        "message": "Bu sayt allaqachon oq roʻyxatga kiritilgan."
+    },
+    "deleteWhitelistError": {
+        "message": "Faol jadval vaqtida oq roʻyxatga kiritilgan saytlarni oʻchirib boʻlmaydi."
+    },
+    "scheduleNameLabel": {
+        "message": "Jadval nomi"
+    },
+    "startTimeLabel": {
+        "message": "Boshlanish vaqti"
+    },
+    "endTimeLabel": {
+        "message": "Tugash vaqti"
+    },
+    "activeStateLabel": {
+        "message": "Faol holat"
+    },
+    "editButtonLabel": {
+        "message": "Tahrirlash"
+    },
+    "saveButtonLabel": {
+        "message": "Saqlash"
+    },
+    "endTimeAfterStartTimeError": {
+        "message": "Tugash vaqti boshlanish vaqtidan keyin bo'lishi kerak."
+    },
+    "schedulesOverlapError": {
+        "message": "Jadvallar bir-biriga mos kelmaydi."
+    },
+    "minimumUnlockedTimeError": {
+        "message": "Har kuni kamida 1 soat qulfdan chiqarilgan vaqt bo'lishi kerak."
+    },
+    "Mon": {
+        "message": "dus"
+    },
+    "Tue": {
+        "message": "Seshanba"
+    },
+    "Wed": {
+        "message": "Chorshanba"
+    },
+    "Thu": {
+        "message": "Pays"
+    },
+    "Fri": {
+        "message": "Juma"
+    },
+    "Sat": {
+        "message": "Shanba"
+    },
+    "Sun": {
+        "message": "Quyosh"
+    },
+    "Edit": {
+        "message": "Tahrirlash"
+    },
+    "Save": {
+        "message": "Saqlash"
+    },
+    "Delete": {
+        "message": "Oʻchirish"
+    },
+    "groupNameLabel": {
+        "message": "Guruh nomi"
+    },
+    "websitesLabel": {
+        "message": "Veb-saytlar"
+    },
+    "keywordsLabel": {
+        "message": "Kalit so'zlar"
+    },
+    "timerCountLabel": {
+        "message": "Taymer soni"
+    },
+    "timerDurationLabel": {
+        "message": "Taymer davomiyligi (sekundlar)"
+    },
+    "unnamedSchedulesMaxReached": {
+        "message": "Nomsiz jadvallarning maksimal soniga erishildi."
+    },
+    "scheduleNameExists": {
+        "message": "Bunday nomli jadval allaqachon mavjud."
+    },
+    "cannotDeleteActiveSchedule": {
+        "message": "Faol jadvalni oʻchirib boʻlmadi. Jadval faol bo'lmaguncha kuting."
+    },
+    "optionsTitle": {
+        "message": "Mudofaa paneli"
+    },
+    "groupsHeading": {
+        "message": "Guruhlar"
+    },
+    "whitelistHeading": {
+        "message": "Veb-saytlarni oq ro'yxatga olish"
+    },
+    "schedulesHeading": {
+        "message": "Qulflangan jadvallar"
+    },
+    "unnamedGroupsMaxReached": {
+        "message": "Nomsiz guruhlarning maksimal soniga yetdi."
+    },
+    "groupNameExists": {
+        "message": "Bunday nomli guruh allaqachon mavjud."
+    },
+    "cannotDeleteGroupActiveSchedule": {
+        "message": "Faol jadval vaqtida guruhlarni oʻchirib boʻlmaydi."
+    },
+    "cannotIncreaseTimerActiveSchedule": {
+        "message": "Taymerning davomiyligi va taymerlar miqdorini faol jadval davomida oshirib bo'lmaydi."
+    },
+    "invalidKeywordValue": {
+        "message": "Kalit so‘z qiymati noto‘g‘ri. Belgilangan oraliqda bo'lishi kerak."
+    },
+    "cannotChangeGroupNameActiveSchedule": {
+        "message": "Faol jadval vaqtida guruh nomini o'zgartirishga ruxsat berilmaydi."
+    },
+    "invalidEditOnWebsitesOrKeywords": {
+        "message": "Veb-saytlar yoki Kalit so'zlar yozuvlari tahrirlangan yoki o'chirilgan, o'zgartirishni saqlab bo'lmaydi."
+    },
+    "invalidKeywordEntry": {
+        "message": "Kalit so‘z noto‘g‘ri kiritildi:"
+    },
+    "addGroupButtonText": {
+        "message": "Guruh qo'shish"
+    },
+    "contentBlockedTitle": {
+        "message": "Kontent bloklangan"
+    },
+    "contentBlockedMessage": {
+        "message": "Bu sahifada cheklangan kontent mavjud va sizning himoyangiz uchun bloklangan."
+    },
+    "keywordDetected": {
+        "message": "Kalit so'z aniqlandi"
+    },
+    "context": {
+        "message": "Kontekst"
+    },
+    "goBackButton": {
+        "message": "Ortga qaytish"
+    },
+    "activateTimerButton": {
+        "message": "Taymerni faollashtirish"
+    },
+    "cannotRelaxConstraints": {
+        "message": "Jadvaldagi cheklovlarni yumshatib bo'lmaydi."
+    },
+    "activeButtonText": {
+        "message": "Faol"
+    },
+    "inactiveButtonText": {
+        "message": "Faol emas"
+    },
+    "addScheduleButton": {
+        "message": "Jadval qo'shish"
+    },
+    "enterWebsiteURLPlaceholder": {
+        "message": "Veb-sayt URL manzilini kiriting"
+    },
+    "addToWhitelistButton": {
+        "message": "Oq ro'yxatga qo'shish"
+    },
+    "cancelButton": {
+        "message": "Bekor qilish"
+    },
+    "groupNamePlaceholder": {
+        "message": "Guruh nomi"
+    },
+    "addScheduleButtonLabel": {
+        "message": "Jadval qo'shish"
+    },
+    "unnamedSchedulePrefix": {
+        "message": "Jadval"
+    },
+    "addToWhitelistButtonLabel": {
+        "message": "Oq ro'yxatga qo'shish"
+    },
+    "cancelButtonLabel": {
+        "message": "Bekor qilish"
+    },
+    "activeLabel": {
+        "message": "Faol"
+    },
+    "inactiveLabel": {
+        "message": "Faol emas"
+    },
+    "cancelLabel": {
+        "message": "Bekor qilish"
+    },
+    "scheduleNamePlaceholder": {
+        "message": "Jadval nomi"
+    },
+    "editLabel": {
+        "message": "Tahrirlash"
+    },
+    "unnamedGroupPrefix": {
+        "message": "Guruh"
+    },
+    "lockedScheduleErrorMessage": {
+        "message": "Faol jadval vaqtida saytni oq ro‘yxatga qo‘shib bo‘lmaydi."
+    },
+    "cannotToggleActiveState": {
+        "message": "Joriy sharoitda faol holatni o'zgartirib bo'lmaydi."
+    },
+    "cannotDeselectDaysError": {
+        "message": "Hozirda amaldagi faol jadval uchun kunlarni bekor qilib bo‘lmaydi."
+    },
+    "passwordManagementHeader": {
+        "message": "Parol boshqaruvi"
+    },
+    "enterPasswordPlaceholder": {
+        "message": "Parolni kiriting"
+    },
+    "confirmPasswordPlaceholder": {
+        "message": "Parolni tasdiqlang"
+    },
+    "setPasswordButton": {
+        "message": "Parolni o'rnatish"
+    },
+    "deletePasswordButton": {
+        "message": "Parolni o'chirish"
+    },
+    "enterPasswordToAccessLabel": {
+        "message": "Kirish uchun parolni kiriting:"
+    },
+    "submitButton": {
+        "message": "Yuborish"
+    },
+    "tooManyAttempts": {
+        "message": "Juda ko'p muvaffaqiyatsiz urinishlar. Qayta urinishdan oldin $TIME$ soniya kuting.",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "30"
+            }
+        }
+    },
+    "incorrectPassword": {
+        "message": "Noto'g'ri parol. $ATTEMPTS$ urinishlari qoldi.",
+        "placeholders": {
+            "attempts": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
+    },
+    "passwordMismatchAlert": {
+        "message": "Parollar mos kelmaydi. Ikkala parol ham bir xil ekanligiga ishonch hosil qiling."
+    },
+    "pageTitle": {
+        "message": "Yo'riqnoma - chalg'itadigan narsalarga qarshi himoya"
+    },
+    "headerTitle": {
+        "message": "Chalg'itadigan narsalarga qarshi himoya: Yo'riqnoma"
+    },
+    "introTitle": {
+        "message": "Kirish"
+    },
+    "introText1": {
+        "message": "Salom! Internetda chalg'itish va vaqtni kechiktirish juda oson. Ushbu kengaytma sizga ko'rishni istamaydigan kalit so'zlar asosida veb-sahifalarni bloklash imkonini beradi."
+    },
+    "introText2": {
+        "message": "O'ynash uchun minglab video o'yinlar, o'qish uchun yangiliklar, tomosha qilish uchun videolar va boshqalar mavjud. Va ko'pincha, loyiha muddati yoki imtihonlari hali uzoq bo'lsa, biz shunday qilamiz. Ba'zan, o'zingizni qilishingiz kerak bo'lgan narsani qilishga majburlash biroz qiyin bo'lishi mumkin."
+    },
+    "introText3": {
+        "message": "Va chalg'itadigan narsalar hamma joyda! Ba'zi veb-saytlarni URL manzillari bo'yicha bloklash uchun StayFocusd yoki Cold Turkey yoki FocusMe-dan foydalansangiz ham, hamma narsani bloklay olmaysiz. Misol uchun, hatto ChatGPT bilan ham, agar siz haqiqatan ham o'qish yoki ishlashni xohlamasangiz, yangiliklar yoki video o'yinlar haqida gaplashishingiz mumkin."
+    },
+    "introText4": {
+        "message": "Ushbu kengaytma yordamida siz veb-saytlarni matndagi so'zlar va iboralar asosida bloklashingiz mumkin."
+    },
+    "howToUseTitle": {
+        "message": "Kengaytmadan qanday foydalanish kerak"
+    },
+    "createGroupTitle": {
+        "message": "Birinchi qadam: guruh yarating"
+    },
+    "createGroupText1": {
+        "message": "Siz \"Guruh qo'shish\" tugmasini bosishingiz yoki guruh nomini kiritishingiz va Enter yoki Guruh qo'shish tugmasini bosishingiz mumkin. Siz bir nechta guruhlarni yaratishingiz mumkin."
+    },
+    "createGroupText2": {
+        "message": "Siz guruh panelini ko'rasiz."
+    },
+    "websitesTitle": {
+        "message": "Veb-saytlar"
+    },
+    "websitesText": {
+        "message": "Veb-saytlar qatorining chap tomonidagi “Tahrirlash” tugmasini bosish orqali veb-saytlarni qo‘shishni boshlashingiz mumkin. Ushbu maydon kengaytma kalit so'zlarni bloklaydigan veb-saytlar uchun javobgardir. Bu yerda siz veb-sayt URL manzillarini kiritishingiz kerak, masalan, \"google.com\". Siz bir nechta veb-saytlarni kiritishingiz mumkin, har bir yangi qator yangi veb-saytdir. Shunchaki Enter tugmasini bosing. Tayyor bo'lgach, yashil \"Saqlash\" tugmasini bosing. Yoki bekor qilishingiz mumkin."
+    },
+    "keywordsTitle": {
+        "message": "Kalit so'zlar"
+    },
+    "keywordsText1": {
+        "message": "Yangi kalit soʻzlarni qoʻshish yoki oʻzgartirishlar kiritish uchun “Tahrirlash” tugmasini bosing. Siz kiritgan kalit so'zlar ushbu guruh uchun kiritgan veb-saytlarda tekshiriladi."
+    },
+    "keywordFormatsIntroduction": {
+        "message": "Kalit so'zlar uchun 3 ta format mavjud:"
+    },
+    "keywordFormat1Title": {
+        "message": "Birinchi format:"
+    },
+    "keywordFormat1Text": {
+        "message": "Faqat kalit so'zlarni kiriting. Bu so'z yoki ibora bo'lishi mumkin. Agar kalit so'zda vergul \",\" bo'lsa, undan oldin \"\\\" qochish belgisidan foydalanish kerak. Kalit so'z aniqlanishi bilan veb-sayt bloklanadi. Siz xohlagancha kalit so'zlarni kiritishingiz mumkin, shunchaki enter tugmasini bosing. Har bir yangi qator yangi kalit so'zdir."
+    },
+    "keywordFormat1_2": {
+        "message": "Misol: \"video o'yinlar\" yoki \"yangiliklar\"."
+    },
+    "keywordFormat2Title": {
+        "message": "Ikkinchi format:"
+    },
+    "keywordFormat2Text": {
+        "message": "Kalit so'zni, so'ngra raqamli qiymatni kiriting. Guruhga kirgan har bir veb-sayt 1000 ballga yetishi kerak. Veb-sayt 0 qiymatidan boshlanadi va kalit so'zning raqamli qiymatiga asoslanib, qiymat oshadi. Veb-sayt 1000 ballga erishsa, u bloklanadi."
+    },
+    "keywordFormat2_2": {
+        "message": "Misol: 'yangiliklar, 50'"
+    },
+    "keywordFormat2_3": {
+        "message": "Guruhga kirgan har bir veb-sayt 1000 ballga yetishi kerak. Sayt 0 qiymatidan boshlanadi va kalit so'zning raqamli qiymatiga asoslanib, qiymat oshadi. Veb-sayt 1000 ballga erishsa, u bloklanadi."
+    },
+    "keywordFormat3Title": {
+        "message": "Uchinchi format:"
+    },
+    "keywordFormat3Text": {
+        "message": "Kalit so'zni, keyin ko'paytirish yoki qo'shish belgisini (* yoki +), so'ngra raqamli qiymatni kiriting. Ushbu stsenariyda sahifa uchun ball topilgan kalit so'zning raqamli qiymatiga qarab ko'paytiriladi."
+    },
+    "keywordFormat3_2": {
+        "message": "Misol: 'yangiliklar, *, 10'"
+    },
+    "keywordFormat3_3": {
+        "message": "Ushbu stsenariyda sahifa uchun ball topilgan kalit so'zning raqamli qiymatiga qarab ko'paytiriladi."
+    },
+    "timerCountTitle": {
+        "message": "Taymer soni"
+    },
+    "timerCountText": {
+        "message": "Sahifani bloklagandan so'ng, siz \"Taymerni faollashtirish\" tugmasini bosish imkoniyatiga ega bo'lasiz. Shundan so'ng, siz sahifani qayta bloklashdan oldin ba'zi amallarni bajarishga vaqtingiz bo'ladi. Taymerni hisoblash maydonida siz kun davomida qancha taymerga ega bo'lishni tanlashingiz mumkin."
+    },
+    "timerDurationTitle": {
+        "message": "Taymer davomiyligi (sekundlar)"
+    },
+    "timerDurationText": {
+        "message": "Ushbu maydonda har bir taymer necha soniya bo'lishini o'zingiz hal qilasiz."
+    },
+    "lockedSchedulesTitle": {
+        "message": "Qulflangan jadvallar"
+    },
+    "lockedSchedulesNote": {
+        "message": "! Vaqt o'tmaguncha qulflangan jadvalni qulfdan chiqarib bo'lmaydi (agar siz kengaytmani o'chirib tashlamasangiz)!"
+    },
+    "lockedSchedulesText1": {
+        "message": "Jadval nomi maydonida jadval nomini yaratib, Enter tugmasini yoki Jadvalni qo'shish tugmasini bosib yangi bloklangan jadvalni qo'shishingiz mumkin."
+    },
+    "lockedSchedulesText2": {
+        "message": "Jadvalingiz sozlamalarini o'zgartirish uchun \"Tahrirlash\" tugmasini bosing. Kun tugmalarini bosish orqali siz o'sha kunning jadvalini yoqasiz (tugma yashil rangga aylanadi) yoki uni o'sha kun uchun o'chirasiz. Boshlanish vaqti va tugash vaqti maydonlarini o'zgartirish orqali siz jadval faol bo'lishi mumkin bo'lgan vaqtlarni o'rnatasiz. Har kuni 1 soatlik faol bo'lmagan vaqt oynasi bo'lishi kerak, shuning uchun siz ushbu vaqt ichida jadvalni o'chirib qo'yishingiz mumkin. Faol emas/Faol tugmasi jadvalni almashtiradi. Agar joriy kun yoqilgan bo'lsa (yashil) va tugma \"Faol\" ni ko'rsatsa, shuningdek yashil bo'lsa va joriy vaqt boshlanish va tugash vaqtlari orasida bo'lsa, jadval bloklanadi va faol bo'ladi."
+    },
+    "lockedSchedulesText3": {
+        "message": "O'chirish tugmasi bloklangan jadvalni olib tashlaydi. Xuddi shu narsa guruhlar va oq ro'yxatga kiritilgan veb-saytlar uchun ham amal qiladi."
+    },
+    "lockedSchedulesText4": {
+        "message": "Qulflangan jadval davomida bir nechta cheklovlar qo'llaniladi:"
+    },
+    "lockedScheduleRestriction1": {
+        "message": "Siz guruh nomlarini o'zgartira olmaysiz."
+    },
+    "lockedScheduleRestriction2": {
+        "message": "Guruhlardagi mavjud veb-saytlarni o‘zgartira olmaysiz yoki o‘chira olmaysiz."
+    },
+    "lockedScheduleRestriction3": {
+        "message": "Siz mavjud kalit so'zlarni va ularning qiymatlarini o'zgartira olmaysiz yoki olib tashlay olmaysiz."
+    },
+    "lockedScheduleRestriction4": {
+        "message": "Ko'paytirish uchun faqat kalit so'z qiymatlarini o'rnatishingiz mumkin: 1 dan 1000 gacha. Qo'shimcha uchun: 0 dan 1000 gacha."
+    },
+    "lockedScheduleRestriction5": {
+        "message": "Taymer sonini oshirib bo'lmaydi."
+    },
+    "lockedScheduleRestriction6": {
+        "message": "Taymerning davomiyligini oshirib bo'lmaydi."
+    },
+    "lockedScheduleRestriction7": {
+        "message": "Faol jadvallarni oʻchirib boʻlmaydi."
+    },
+    "lockedScheduleRestriction8": {
+        "message": "Siz kunlarni bekor qila olmaysiz, jadvalni faolsiz qoldira olmaysiz yoki faol jadvallar uchun boshlanish yoki tugash vaqtini o'zgartira olmaysiz."
+    },
+    "lockedScheduleRestriction9": {
+        "message": "Oq ro'yxatga kiritilgan veb-saytlarni qo'sha olmaysiz."
+    },
+    "lockedScheduleRestriction10": {
+        "message": "Kengaytma uchun parolni o'rnatib yoki o'chira olmaysiz."
+    },
+    "whitelistWebsitesTitle": {
+        "message": "Veb-saytlarni oq ro'yxatga olish"
+    },
+    "whitelistWebsitesText": {
+        "message": "Oq ro'yxatga kiritilgan veb-saytlarni kiritish imkonini beradi, ya'ni bu veb-saytlarda kalit so'zlarni skanerlash amalga oshirilmaydi va shuning uchun ular bloklanmaydi. Hozirda bizda ko‘plab veb-saytlarni bitta yozuvga kiritish uchun joker belgidan (*) foydalanish imkoniyati yo‘q (masalan, *.io, bu yerda “.io” bilan barcha veb-saytlar bloklanadi), shuning uchun bu xususiyat unchalik foydali emas, lekin mavjud."
+    },
+    "passwordManagementTitle": {
+        "message": "Parol boshqaruvi"
+    },
+    "passwordManagementText": {
+        "message": "Kengaytma sahifasi uchun parol o'rnatish imkonini beradi. Kengaytma sahifasini ochgan har bir kishi kirish uchun to'g'ri parolni kiritishi kerak bo'ladi. Boshqalar tasodifiy (yoki qasddan) sozlamalarni kuchaytirishining oldini olish uchun foydalidir."
+    },
+    "contactFeedbackTitle": {
+        "message": "Aloqa va fikr-mulohaza"
+    },
+    "feedbackText1": {
+        "message": "Har qanday fikr-mulohazalarni baham ko'rmoqchi bo'lsangiz yoki muammongiz bo'lsa, kengaytmaning GitHub sahifasiga tashrif buyuring:"
+    },
+    "githubLink": {
+        "message": "GitHub - chalg'itadigan narsalarga qarshi himoya"
+    },
+    "feedbackText2": {
+        "message": "U erda \"Muammolar\" yorlig'iga o'ting va \"Yangi muammo\" yashil tugmachasini bosing. Sarlavha va tavsifni to'ldiring va \"Yangi sonni yuborish\" tugmasini bosing."
+    },
+    "thanks": {
+        "message": "rahmat."
+    },
+    "instructionGuideLink": {
+        "message": "Yo'riqnoma"
+    },
+    "description": {
+        "message": "Veb-saytlarni sahifalarida paydo bo'lgan matn asosida bloklash imkonini beradi."
+    },
+    "dailyLimitReached": {
+        "message": "Kunlik limitga yetdi"
+    },
+    "exportButton": {
+        "message": "Eksport"
+    },
+    "importButton": {
+        "message": "Import"
+    },
+    "themeModeLabel": {
+        "message": "UI rejimi"
+    },
+    "themeModeSystemOption": {
+        "message": "Tizim"
+    },
+    "themeModeDarkOption": {
+        "message": "Qorong'i"
+    },
+    "themeModeLightOption": {
+        "message": "Nur"
+    },
+    "elementRulesLabel": {
+        "message": "Bloklangan UI"
+    },
+    "noElementRulesLabel": {
+        "message": "Bloklangan UI elementlari yo‘q"
+    }
+}

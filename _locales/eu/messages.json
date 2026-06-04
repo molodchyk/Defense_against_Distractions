@@ -1,0 +1,455 @@
+{
+    "deleteButtonLabel": {
+        "message": "Ezabatu"
+    },
+    "whitelistExistsMessage": {
+        "message": "Gune hau zerrenda zurian dago dagoeneko."
+    },
+    "deleteWhitelistError": {
+        "message": "Ezin dira zerrenda zuriko guneak ezabatu programazio aktiboan."
+    },
+    "scheduleNameLabel": {
+        "message": "Ordutegiaren izena"
+    },
+    "startTimeLabel": {
+        "message": "Hasiera Ordua"
+    },
+    "endTimeLabel": {
+        "message": "Amaiera Ordua"
+    },
+    "activeStateLabel": {
+        "message": "Egoera Aktiboa"
+    },
+    "editButtonLabel": {
+        "message": "Editatu"
+    },
+    "saveButtonLabel": {
+        "message": "Gorde"
+    },
+    "endTimeAfterStartTimeError": {
+        "message": "Amaiera-orduak hasiera-orduaren ondorengoa izan behar du."
+    },
+    "schedulesOverlapError": {
+        "message": "Ordutegiak ezin dira gainjarri."
+    },
+    "minimumUnlockedTimeError": {
+        "message": "Egun bakoitzak gutxienez ordu 1 izan behar du desblokeatzeko denbora."
+    },
+    "Mon": {
+        "message": "al"
+    },
+    "Tue": {
+        "message": "mar"
+    },
+    "Wed": {
+        "message": "az"
+    },
+    "Thu": {
+        "message": "og"
+    },
+    "Fri": {
+        "message": "or"
+    },
+    "Sat": {
+        "message": "Lar"
+    },
+    "Sun": {
+        "message": "Eguzkia"
+    },
+    "Edit": {
+        "message": "Editatu"
+    },
+    "Save": {
+        "message": "Gorde"
+    },
+    "Delete": {
+        "message": "Ezabatu"
+    },
+    "groupNameLabel": {
+        "message": "Taldearen izena"
+    },
+    "websitesLabel": {
+        "message": "Webguneak"
+    },
+    "keywordsLabel": {
+        "message": "Gako-hitzak"
+    },
+    "timerCountLabel": {
+        "message": "Tenporizadorearen zenbaketa"
+    },
+    "timerDurationLabel": {
+        "message": "Tenporizadorearen iraupena (segundoak)"
+    },
+    "unnamedSchedulesMaxReached": {
+        "message": "Izenik gabeko ordutegien gehienezko kopurura iritsi da."
+    },
+    "scheduleNameExists": {
+        "message": "Dagoeneko badago izen honekin ordutegi bat."
+    },
+    "cannotDeleteActiveSchedule": {
+        "message": "Ezin da ordutegi aktibo bat ezabatu. Mesedez, itxaron programazioa aktibo ez dagoen arte."
+    },
+    "optionsTitle": {
+        "message": "Defentsa Panela"
+    },
+    "groupsHeading": {
+        "message": "Taldeak"
+    },
+    "whitelistHeading": {
+        "message": "Zerrenda zuriko webguneak"
+    },
+    "schedulesHeading": {
+        "message": "Ordutegi blokeatuak"
+    },
+    "unnamedGroupsMaxReached": {
+        "message": "Izenik gabeko taldeen gehienezko kopurura iritsi da."
+    },
+    "groupNameExists": {
+        "message": "Badago izen hau duen talde bat."
+    },
+    "cannotDeleteGroupActiveSchedule": {
+        "message": "Ezin dira taldeak ezabatu programazio aktiboan."
+    },
+    "cannotIncreaseTimerActiveSchedule": {
+        "message": "Tenporizadorearen iraupena eta tenporizadore kopurua ezin dira handitu programazio aktibo batean."
+    },
+    "invalidKeywordValue": {
+        "message": "Gako-hitz-balio baliogabea. Zehaztutako barrutian egon behar du."
+    },
+    "cannotChangeGroupNameActiveSchedule": {
+        "message": "Ez da onartzen taldearen izena aldatzea ordutegi aktibo batean."
+    },
+    "invalidEditOnWebsitesOrKeywords": {
+        "message": "Webguneak edo Keywords sarrerak editatu edo kendu dira, aldaketa ezin da gorde."
+    },
+    "invalidKeywordEntry": {
+        "message": "Gako-hitz-sarrera baliogabea:"
+    },
+    "addGroupButtonText": {
+        "message": "Gehitu taldea"
+    },
+    "contentBlockedTitle": {
+        "message": "Edukia blokeatuta"
+    },
+    "contentBlockedMessage": {
+        "message": "Orrialde honek eduki mugatua dauka eta blokeatu egin da zure babeserako."
+    },
+    "keywordDetected": {
+        "message": "Gako-hitza detektatu da"
+    },
+    "context": {
+        "message": "Testuingurua"
+    },
+    "goBackButton": {
+        "message": "Joan Atzera"
+    },
+    "activateTimerButton": {
+        "message": "Aktibatu tenporizadorea"
+    },
+    "cannotRelaxConstraints": {
+        "message": "Ezin dira ordutegi-murrizketak lasaitu."
+    },
+    "activeButtonText": {
+        "message": "Aktiboa"
+    },
+    "inactiveButtonText": {
+        "message": "Inaktibo"
+    },
+    "addScheduleButton": {
+        "message": "Gehitu ordutegia"
+    },
+    "enterWebsiteURLPlaceholder": {
+        "message": "Sartu webgunearen URLa"
+    },
+    "addToWhitelistButton": {
+        "message": "Gehitu zerrenda zurira"
+    },
+    "cancelButton": {
+        "message": "Utzi"
+    },
+    "groupNamePlaceholder": {
+        "message": "Taldearen izena"
+    },
+    "addScheduleButtonLabel": {
+        "message": "Gehitu ordutegia"
+    },
+    "unnamedSchedulePrefix": {
+        "message": "Ordutegia"
+    },
+    "addToWhitelistButtonLabel": {
+        "message": "Gehitu zerrenda zurira"
+    },
+    "cancelButtonLabel": {
+        "message": "Utzi"
+    },
+    "activeLabel": {
+        "message": "Aktiboa"
+    },
+    "inactiveLabel": {
+        "message": "Inaktibo"
+    },
+    "cancelLabel": {
+        "message": "Utzi"
+    },
+    "scheduleNamePlaceholder": {
+        "message": "Ordutegiaren izena"
+    },
+    "editLabel": {
+        "message": "Editatu"
+    },
+    "unnamedGroupPrefix": {
+        "message": "Taldea"
+    },
+    "lockedScheduleErrorMessage": {
+        "message": "Ezin da webgunea zerrenda zurian gehitu programazio aktibo batean."
+    },
+    "cannotToggleActiveState": {
+        "message": "Ezin da egoera aktiboa aldatu uneko baldintzetan."
+    },
+    "cannotDeselectDaysError": {
+        "message": "Ezin dira hautatu egunak une honetan indarrean dagoen ordutegi aktibo baterako."
+    },
+    "passwordManagementHeader": {
+        "message": "Pasahitzen kudeaketa"
+    },
+    "enterPasswordPlaceholder": {
+        "message": "Sartu pasahitza"
+    },
+    "confirmPasswordPlaceholder": {
+        "message": "Berretsi pasahitza"
+    },
+    "setPasswordButton": {
+        "message": "Ezarri pasahitza"
+    },
+    "deletePasswordButton": {
+        "message": "Ezabatu pasahitza"
+    },
+    "enterPasswordToAccessLabel": {
+        "message": "Sartu pasahitza sartzeko:"
+    },
+    "submitButton": {
+        "message": "Bidali"
+    },
+    "tooManyAttempts": {
+        "message": "Porrot egindako saiakera gehiegi. Mesedez, itxaron $TIME$ segundotan berriro saiatu aurretik.",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "30"
+            }
+        }
+    },
+    "incorrectPassword": {
+        "message": "Pasahitz okerra. $ATTEMPTS$ saiakerak geratzen dira.",
+        "placeholders": {
+            "attempts": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
+    },
+    "passwordMismatchAlert": {
+        "message": "Pasahitzak ez datoz bat. Mesedez, ziurtatu bi pasahitzak berdinak direla."
+    },
+    "pageTitle": {
+        "message": "Argibide Gida - Distrakzioen Aurkako Defentsa"
+    },
+    "headerTitle": {
+        "message": "Distrakzioen Aurkako Defentsa: Argibide Gida"
+    },
+    "introTitle": {
+        "message": "Sarrera"
+    },
+    "introText1": {
+        "message": "Kaixo! Oso erraza da Interneten distraitzea eta atzeratzea. Luzapen honi esker, ikusi nahi ez dituzun gako-hitzetan oinarritutako web-orriak blokeatu ditzakezu."
+    },
+    "introText2": {
+        "message": "Milaka bideo-joko daude jolasteko, albisteak irakurtzeko, bideoak ikusteko, etab. Eta askotan, hori egiten dugu proiektuen epeak edo azterketak oraindik urrun daudenean. Batzuetan, pixka bat zaila izan daiteke zeure burua egin behar duzuna egitera behartzea."
+    },
+    "introText3": {
+        "message": "Eta distrazioak nonahi daude! StayFocusd edo Cold Turkey edo FocusMe erabiltzen badituzu ere webgune batzuk haien URLen bidez blokeatzeko, ezin duzu dena blokeatu. Adibidez, ChatGPT-rekin ere, albisteei edo bideo-jokoei buruz hitz egin dezakezu benetan ikasteko edo lana egiteko gogorik ez baduzu."
+    },
+    "introText4": {
+        "message": "Luzapen honekin, webguneak blokeatu ditzakezu haien testuko hitz eta esaldietan oinarrituta."
+    },
+    "howToUseTitle": {
+        "message": "Luzapena nola erabili"
+    },
+    "createGroupTitle": {
+        "message": "Lehen urratsa: Talde bat sortu"
+    },
+    "createGroupText1": {
+        "message": "'Gehitu taldea' botoia sakatu edo taldearen izena sartu eta Sartu edo Gehitu taldea botoia sakatu. Hainbat talde sor ditzakezu."
+    },
+    "createGroupText2": {
+        "message": "Taldearen panela ikusiko duzu."
+    },
+    "websitesTitle": {
+        "message": "Webguneak"
+    },
+    "websitesText": {
+        "message": "Webguneak gehitzen has zaitezke Webguneak lerroaren ezkerrean dagoen 'Editatu' botoia sakatuta. Eremu hau luzapenak gako-hitzak blokeatuko dituen webguneen arduraduna da. Hemen webgunearen URLak sartu behar dituzu, adibidez, 'google.com'. Hainbat webgune sar ditzakezu, lerro berri bakoitza webgune berri bat da. Sakatu Sartu. Prest zaudenean, sakatu 'Gorde' botoia berdea. Edo bertan behera utzi dezakezu."
+    },
+    "keywordsTitle": {
+        "message": "Gako-hitzak"
+    },
+    "keywordsText1": {
+        "message": "Gako-hitz berriak gehitzeko edo aldaketak egiteko, sakatu 'Editatu'. Hemen sartzen dituzun gako-hitzak talde honetarako sartu dituzun webguneetan eskaneatuko dira."
+    },
+    "keywordFormatsIntroduction": {
+        "message": "Hitz gakoentzako 3 formatu daude:"
+    },
+    "keywordFormat1Title": {
+        "message": "Lehenengo formatua:"
+    },
+    "keywordFormat1Text": {
+        "message": "Sartu gako-hitzak. Hitz bat edo esaldi bat izan daiteke. Gako-hitzak ',' koma badu, '\\' ihes karakterea erabili behar duzu aurretik. Webgunea blokeatu egingo da gako-hitza detektatu bezain laster. Nahi adina gako-hitz sar ditzakezu, sakatu Sartu. Lerro berri bakoitza gako-hitz berri bat da."
+    },
+    "keywordFormat1_2": {
+        "message": "Adibidea: 'bideo-jokoak' edo 'albisteak'."
+    },
+    "keywordFormat2Title": {
+        "message": "Bigarren formatua:"
+    },
+    "keywordFormat2Text": {
+        "message": "Sartu gako-hitza, eta ondoren zenbakizko balio bat. Talde batean sartu duzun webgune bakoitzak 1000 puntura iritsi behar du. Webgunea 0 balio batekin hasten da, eta gako-hitzaren balio numerikoaren arabera, balioa handitzen da. Webgunea 1000 puntura iristen denean, blokeatu egingo da."
+    },
+    "keywordFormat2_2": {
+        "message": "Adibidea: 'albisteak, 50'"
+    },
+    "keywordFormat2_3": {
+        "message": "Talde batean sartu duzun webgune bakoitzak 1000 puntura iritsi behar du. Gunea 0 balio batekin hasten da, eta gako-hitzaren balio numerikoaren arabera, balioa handitzen da. Webgunea 1000 puntura iristen denean, blokeatu egingo da."
+    },
+    "keywordFormat3Title": {
+        "message": "Hirugarren formatua:"
+    },
+    "keywordFormat3Text": {
+        "message": "Sartu gako-hitza, biderketa edo batuketa ikurra (* edo +) eta gero zenbakizko balio bat. Eszenatoki honetan, orriaren puntuazioa biderkatu egiten da aurkitutako gako-gakoaren balio numerikoaren arabera."
+    },
+    "keywordFormat3_2": {
+        "message": "Adibidea: 'albisteak, *, 10'"
+    },
+    "keywordFormat3_3": {
+        "message": "Eszenatoki honetan, orriaren puntuazioa biderkatu egiten da aurkitutako gako-gakoaren balio numerikoaren arabera."
+    },
+    "timerCountTitle": {
+        "message": "Tenporizadorearen zenbaketa"
+    },
+    "timerCountText": {
+        "message": "Orria blokeatu ondoren, 'Aktibatu tenporizadorea' botoia sakatzeko aukera izango duzu. Horren ostean, orrialdean ekintza batzuk egiteko denbora izango duzu berriro blokeatu aurretik. Tenporizadore-zenbaketa eremuan, egunean zehar zenbat tenporizadore izan nahi dituzun erabaki dezakezu."
+    },
+    "timerDurationTitle": {
+        "message": "Tenporizadorearen iraupena (segundoak)"
+    },
+    "timerDurationText": {
+        "message": "Eremu honetan, tenporizadore bakoitzak zenbat segundo izango dituen erabakitzen duzu."
+    },
+    "lockedSchedulesTitle": {
+        "message": "Ordutegi blokeatuak"
+    },
+    "lockedSchedulesNote": {
+        "message": "! Blokeatutako ordutegia ezin da desblokeatu denbora igaro arte (luzapena desinstalatzen ez baduzu)!"
+    },
+    "lockedSchedulesText1": {
+        "message": "Blokeatutako ordutegi berri bat gehi dezakezu Programazioaren izena eremuan ordutegiaren izena sortuz eta Sartu edo Gehitu programazioa botoia sakatuta."
+    },
+    "lockedSchedulesText2": {
+        "message": "Zure ordutegiaren ezarpenak aldatzeko, sakatu 'Editatu'. Eguneko botoiak sakatuta, egun horretako ordutegia gaituko duzu (botoia berde bihurtzen da) edo egun horretarako desgaitu. Hasierako ordua eta Amaiera ordua eremuak aldatuz, programazioa aktibo egon daitekeen orduak ezartzen dituzu. Egun bakoitzak ordubete inaktiboko denbora-leiho bat izan behar du, denbora horretan ordutegia desaktibatu ahal izateko. Inaktibo/Aktibo botoiak ordutegia aldatzen du. Ordutegia blokeatuta eta aktibo egongo da uneko eguna gaituta badago (berdea) eta botoiak 'Aktibo' erakusten badu eta berdea ere bada, eta uneko ordua hasiera eta amaiera orduen artean badago."
+    },
+    "lockedSchedulesText3": {
+        "message": "Ezabatu botoiak blokeatutako ordutegia kentzen du. Gauza bera gertatzen da talde eta zerrenda zuriko webguneetan."
+    },
+    "lockedSchedulesText4": {
+        "message": "Blokeatutako ordutegian hainbat murrizketa aplikatzen dira:"
+    },
+    "lockedScheduleRestriction1": {
+        "message": "Ezin dituzu taldeen izenak aldatu."
+    },
+    "lockedScheduleRestriction2": {
+        "message": "Ezin dituzu taldeetan dauden webguneak aldatu edo kendu."
+    },
+    "lockedScheduleRestriction3": {
+        "message": "Ezin dituzu aldatu edo kendu lehendik dauden gako-hitzak eta haien balioak."
+    },
+    "lockedScheduleRestriction4": {
+        "message": "Biderketarako soilik ezar ditzakezu gako-hitz-balioak: 1etik 1000era. Batuketak egiteko: 0tik 1000era."
+    },
+    "lockedScheduleRestriction5": {
+        "message": "Tenporizadorearen zenbaketa ezin da handitu."
+    },
+    "lockedScheduleRestriction6": {
+        "message": "Tenporizadorearen iraupena ezin da handitu."
+    },
+    "lockedScheduleRestriction7": {
+        "message": "Ordutegi aktiboak ezin dira ezabatu."
+    },
+    "lockedScheduleRestriction8": {
+        "message": "Ezin dituzu egunak desautatu, ordutegia inaktibo jarri edo ordutegi aktiboen hasiera edo amaiera orduak aldatu."
+    },
+    "lockedScheduleRestriction9": {
+        "message": "Ezin dituzu zerrenda zuriko webguneak gehitu."
+    },
+    "lockedScheduleRestriction10": {
+        "message": "Ezin duzu luzapenaren pasahitza ezarri edo ezabatu."
+    },
+    "whitelistWebsitesTitle": {
+        "message": "Zerrenda zuriko webguneak"
+    },
+    "whitelistWebsitesText": {
+        "message": "Zerrenda zuriko webguneetan sartzeko aukera ematen du, hau da, gako-hitz-eskaera ez da webgune horietan egingo, eta, beraz, ez dira blokeatuko. Gaur egun, ez dugu komodin (*) erabiltzeko gaitasunik webgune asko sarrera batean sartzeko (*.io adibidez, non '.io' duten webgune guztiak blokeatuta egongo lirateke), beraz, funtzio hau ez da oso erabilgarria, baina badago."
+    },
+    "passwordManagementTitle": {
+        "message": "Pasahitzen kudeaketa"
+    },
+    "passwordManagementText": {
+        "message": "Luzapen-orrirako pasahitz bat konfiguratzeko aukera ematen dizu. Luzapen orria irekitzen duenak pasahitz zuzena sartu beharko du sarbidea lortzeko. Erabilgarria besteek nahi gabe (edo nahita) ezarpenak estutzea saihesteko."
+    },
+    "contactFeedbackTitle": {
+        "message": "Kontaktua eta Iritzia"
+    },
+    "feedbackText1": {
+        "message": "Iritziren bat partekatu nahi baduzu edo arazoren bat baduzu, bisitatu luzapenaren GitHub orrira:"
+    },
+    "githubLink": {
+        "message": "GitHub - Distrakzioen aurkako defentsa"
+    },
+    "feedbackText2": {
+        "message": "Bertan, joan 'Arazoak' fitxara eta egin klik 'Arazo berria' botoi berdea. Bete izenburua eta deskribapena eta sakatu 'Bidali ale berria'."
+    },
+    "thanks": {
+        "message": "Eskerrik asko."
+    },
+    "instructionGuideLink": {
+        "message": "Argibide Gida"
+    },
+    "description": {
+        "message": "Webguneak blokeatzeko aukera ematen du haien orrialdeetan agertzen den testuaren arabera."
+    },
+    "dailyLimitReached": {
+        "message": "Eguneko mugara iritsi da"
+    },
+    "exportButton": {
+        "message": "Esportatu"
+    },
+    "importButton": {
+        "message": "Inportatu"
+    },
+    "themeModeLabel": {
+        "message": "UI modua"
+    },
+    "themeModeSystemOption": {
+        "message": "Sistema"
+    },
+    "themeModeDarkOption": {
+        "message": "Iluna"
+    },
+    "themeModeLightOption": {
+        "message": "Argia"
+    },
+    "elementRulesLabel": {
+        "message": "Blokeatutako interfazea"
+    },
+    "noElementRulesLabel": {
+        "message": "Ez dago blokeatutako UI elementurik"
+    }
+}

@@ -1,0 +1,26 @@
+Diqqəti yayındırmağa qarşı müdafiə veb saytın sadə bloklanması kifayət etmədikdə diqqətinizi cəmləşdirməyə kömək edir.
+
+Əksər fokus uzantıları bütün veb saytları bloklayır. Bu faydalıdır, amma internet bundan daha qarışıqdır. Eyni veb sayt bir anda faydalı ola bilər, digərində diqqəti yayındıra bilər. Axtarış səhifəsi, söhbət aləti, forum, video saytı və ya süni intellekt köməkçisi real işi dəstəkləyə bilər, eyni zamanda xəbərlərə, oyunlara, dramlara, videolara və digər diqqət tələlərinə qapı ola bilər.
+
+Diqqət yayındıranlara qarşı müdafiə sizə daha dəqiq nəzarət imkanı verir.
+
+Yalnız URL ilə bloklamaq əvəzinə, onlarda görünən söz və ifadələrə əsasən səhifələri bloklaya bilərsiniz. Veb sayt qrupları yaradın, açar sözlər və ya ifadələr əlavə edin, xallar təyin edin və yayındırma balı konfiqurasiya edilmiş həddi keçdikdə genişləndirmənin səhifəni bloklamasına icazə verin.
+
+Siz ondan təhsil sessiyalarını, iş bloklarını, imtahana hazırlığı, tədqiqat vaxtını və ya brauzerin dolamadan faydalı qalmasını istədiyiniz istənilən vəziyyəti qorumaq üçün istifadə edə bilərsiniz.
+
+Əsas xüsusiyyətlər:
+
+Səhifələri açar sözlər, ifadələr və ölçülmüş ballarla bloklayın.
+Veb sayt və açar söz qruplarına fərqli diqqət qaydalarını təşkil edin.
+Quraşdırmanı praktik saxlamaq üçün kilidlənmiş cədvəllər, ağ siyahılar, parol qorunması, ixrac/idxal, UI rejimləri və UI elementinin gizlədilməsindən istifadə edin.
+
+1.5 versiyasında yeniliklər:
+
+İşıq, qaranlıq və sistem UI rejimləri.
+Diqqəti yayındıran səhifə nəzarətlərini gizlətmək üçün pop-up əsaslı UI element seçicisi.
+Medianın dayandırılması və ya səssizləşdirilməsi və seçilə bilən diaqnostika ilə təkmilləşdirilmiş bloklanmış səhifə örtüyü.
+Yenilənmiş mağaza aktivləri, qablaşdırma, buraxılış yoxlamaları və layihə strukturu.
+
+Diqqətin yayındırılmasına qarşı müdafiə açıq mənbədir:
+https://github.com/molodchyk/Defense_against_Disttractions
+https://github.com/molodchyk/Defense_against_Distractions

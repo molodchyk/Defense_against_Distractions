@@ -1,0 +1,455 @@
+{
+    "deleteButtonLabel": {
+        "message": "Sil"
+    },
+    "whitelistExistsMessage": {
+        "message": "Bu sayt artıq ağ siyahıdadır."
+    },
+    "deleteWhitelistError": {
+        "message": "Aktiv cədvəl zamanı ağ siyahıya alınmış saytları silmək mümkün deyil."
+    },
+    "scheduleNameLabel": {
+        "message": "Cədvəlin Adı"
+    },
+    "startTimeLabel": {
+        "message": "Başlama vaxtı"
+    },
+    "endTimeLabel": {
+        "message": "Bitmə vaxtı"
+    },
+    "activeStateLabel": {
+        "message": "Aktiv vəziyyət"
+    },
+    "editButtonLabel": {
+        "message": "Redaktə et"
+    },
+    "saveButtonLabel": {
+        "message": "Saxla"
+    },
+    "endTimeAfterStartTimeError": {
+        "message": "Bitmə vaxtı başlanğıc vaxtından sonra olmalıdır."
+    },
+    "schedulesOverlapError": {
+        "message": "Cədvəllər üst-üstə düşə bilməz."
+    },
+    "minimumUnlockedTimeError": {
+        "message": "Hər gün ən azı 1 saat kiliddən çıxma vaxtı olmalıdır."
+    },
+    "Mon": {
+        "message": "Bazar ertəsi"
+    },
+    "Tue": {
+        "message": "Çərşənbə axşamı"
+    },
+    "Wed": {
+        "message": "Çərşənbə"
+    },
+    "Thu": {
+        "message": "Cr"
+    },
+    "Fri": {
+        "message": "Cümə"
+    },
+    "Sat": {
+        "message": "şənbə"
+    },
+    "Sun": {
+        "message": "Günəş"
+    },
+    "Edit": {
+        "message": "Redaktə et"
+    },
+    "Save": {
+        "message": "Saxla"
+    },
+    "Delete": {
+        "message": "Sil"
+    },
+    "groupNameLabel": {
+        "message": "Qrup Adı"
+    },
+    "websitesLabel": {
+        "message": "Veb saytlar"
+    },
+    "keywordsLabel": {
+        "message": "Açar sözlər"
+    },
+    "timerCountLabel": {
+        "message": "Taymer sayı"
+    },
+    "timerDurationLabel": {
+        "message": "Taymer müddəti (saniyə)"
+    },
+    "unnamedSchedulesMaxReached": {
+        "message": "Adsız cədvəllərin maksimum sayına çatıldı."
+    },
+    "scheduleNameExists": {
+        "message": "Bu adda cədvəl artıq mövcuddur."
+    },
+    "cannotDeleteActiveSchedule": {
+        "message": "Aktiv cədvəli silmək mümkün deyil. Cədvəl aktiv olmayana qədər gözləyin."
+    },
+    "optionsTitle": {
+        "message": "Müdafiə Paneli"
+    },
+    "groupsHeading": {
+        "message": "Qruplar"
+    },
+    "whitelistHeading": {
+        "message": "Ağ siyahı vebsaytları"
+    },
+    "schedulesHeading": {
+        "message": "Bağlı Cədvəllər"
+    },
+    "unnamedGroupsMaxReached": {
+        "message": "Adsız qrupların maksimum sayı çatdı."
+    },
+    "groupNameExists": {
+        "message": "Bu adda qrup artıq mövcuddur."
+    },
+    "cannotDeleteGroupActiveSchedule": {
+        "message": "Aktiv cədvəl zamanı qrupları silmək mümkün deyil."
+    },
+    "cannotIncreaseTimerActiveSchedule": {
+        "message": "Taymer müddəti və taymerlərin miqdarı aktiv cədvəl zamanı artırıla bilməz."
+    },
+    "invalidKeywordValue": {
+        "message": "Yanlış açar söz dəyəri. Müəyyən edilmiş diapazonda olmalıdır."
+    },
+    "cannotChangeGroupNameActiveSchedule": {
+        "message": "Aktiv cədvəl zamanı qrup adının dəyişdirilməsinə icazə verilmir."
+    },
+    "invalidEditOnWebsitesOrKeywords": {
+        "message": "Veb saytlar və ya Açar sözlər qeydləri redaktə edilib və ya silinib, dəyişiklik yadda saxlanıla bilməz."
+    },
+    "invalidKeywordEntry": {
+        "message": "Yanlış açar söz girişi:"
+    },
+    "addGroupButtonText": {
+        "message": "Qrup əlavə edin"
+    },
+    "contentBlockedTitle": {
+        "message": "Məzmun Bloklandı"
+    },
+    "contentBlockedMessage": {
+        "message": "Bu səhifədə məhdudlaşdırılmış məzmun var və sizin müdafiəniz üçün bloklanıb."
+    },
+    "keywordDetected": {
+        "message": "Açar söz aşkarlandı"
+    },
+    "context": {
+        "message": "Kontekst"
+    },
+    "goBackButton": {
+        "message": "Geri qayıt"
+    },
+    "activateTimerButton": {
+        "message": "Taymeri aktivləşdirin"
+    },
+    "cannotRelaxConstraints": {
+        "message": "Cədvəl məhdudiyyətlərini rahatlaşdırmaq mümkün deyil."
+    },
+    "activeButtonText": {
+        "message": "Aktiv"
+    },
+    "inactiveButtonText": {
+        "message": "Qeyri-aktiv"
+    },
+    "addScheduleButton": {
+        "message": "Cədvəl əlavə edin"
+    },
+    "enterWebsiteURLPlaceholder": {
+        "message": "Veb saytın URL-ni daxil edin"
+    },
+    "addToWhitelistButton": {
+        "message": "Ağ siyahıya əlavə edin"
+    },
+    "cancelButton": {
+        "message": "Ləğv et"
+    },
+    "groupNamePlaceholder": {
+        "message": "Qrup Adı"
+    },
+    "addScheduleButtonLabel": {
+        "message": "Cədvəl əlavə edin"
+    },
+    "unnamedSchedulePrefix": {
+        "message": "Cədvəl"
+    },
+    "addToWhitelistButtonLabel": {
+        "message": "Ağ siyahıya əlavə edin"
+    },
+    "cancelButtonLabel": {
+        "message": "Ləğv et"
+    },
+    "activeLabel": {
+        "message": "Aktiv"
+    },
+    "inactiveLabel": {
+        "message": "Qeyri-aktiv"
+    },
+    "cancelLabel": {
+        "message": "Ləğv et"
+    },
+    "scheduleNamePlaceholder": {
+        "message": "Cədvəlin Adı"
+    },
+    "editLabel": {
+        "message": "Redaktə et"
+    },
+    "unnamedGroupPrefix": {
+        "message": "Qrup"
+    },
+    "lockedScheduleErrorMessage": {
+        "message": "Aktiv cədvəl zamanı saytı ağ siyahıya əlavə etmək mümkün deyil."
+    },
+    "cannotToggleActiveState": {
+        "message": "Mövcud şəraitdə aktiv vəziyyəti dəyişdirmək mümkün deyil."
+    },
+    "cannotDeselectDaysError": {
+        "message": "Hazırda qüvvədə olan aktiv cədvəl üçün gün seçimini ləğv etmək mümkün deyil."
+    },
+    "passwordManagementHeader": {
+        "message": "Şifrə İdarəetmə"
+    },
+    "enterPasswordPlaceholder": {
+        "message": "parol daxil edin"
+    },
+    "confirmPasswordPlaceholder": {
+        "message": "Şifrəni təsdiqləyin"
+    },
+    "setPasswordButton": {
+        "message": "Parol təyin edin"
+    },
+    "deletePasswordButton": {
+        "message": "Şifrəni silin"
+    },
+    "enterPasswordToAccessLabel": {
+        "message": "Giriş üçün parol daxil edin:"
+    },
+    "submitButton": {
+        "message": "Təqdim et"
+    },
+    "tooManyAttempts": {
+        "message": "Həddindən artıq uğursuz cəhdlər. Yenidən cəhd etməzdən əvvəl $TIME$ saniyə gözləyin.",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "30"
+            }
+        }
+    },
+    "incorrectPassword": {
+        "message": "Yanlış parol. $ATTEMPTS$ cəhdləri qalıb.",
+        "placeholders": {
+            "attempts": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
+    },
+    "passwordMismatchAlert": {
+        "message": "Parollar uyğun gəlmir. Hər iki parolun eyni olduğundan əmin olun."
+    },
+    "pageTitle": {
+        "message": "Təlimat Bələdçisi - Diqqəti yayındırmağa qarşı müdafiə"
+    },
+    "headerTitle": {
+        "message": "Diqqətin yayındırılmasına qarşı müdafiə: Təlimat Bələdçisi"
+    },
+    "introTitle": {
+        "message": "Giriş"
+    },
+    "introText1": {
+        "message": "salam! İnternetdə diqqətinizi yayındırmaq və işi təxirə salmaq çox asandır. Bu genişləndirmə sizə görmək istəmədiyiniz açar sözlər əsasında veb səhifələri bloklamağa imkan verir."
+    },
+    "introText2": {
+        "message": "Oynamaq üçün minlərlə video oyun, oxumaq üçün xəbərlər, izləmək üçün videolar və s. Çox vaxt layihənin son tarixləri və ya imtahanları hələ çox uzaqda olanda bunu edirik. Bəzən özünüzə lazım olanı etməyə məcbur etmək bir qədər çətin ola bilər."
+    },
+    "introText3": {
+        "message": "Və diqqəti yayındıranlar hər yerdədir! Bəzi vebsaytları URL-lərinə görə bloklamaq üçün StayFocusd və ya Cold Turkey və ya FocusMe istifadə etsəniz belə, hər şeyi bloklaya bilməzsiniz. Məsələn, hətta ChatGPT ilə, həqiqətən oxumaq və ya işləmək istəmirsinizsə, xəbərlər və ya video oyunlar haqqında danışa bilərsiniz."
+    },
+    "introText4": {
+        "message": "Bu genişləndirmə ilə siz mətnlərindəki söz və ifadələrə əsasən vebsaytları bloklaya bilərsiniz."
+    },
+    "howToUseTitle": {
+        "message": "Uzatmadan necə istifadə etməli"
+    },
+    "createGroupTitle": {
+        "message": "İlk addım: Qrup yaradın"
+    },
+    "createGroupText1": {
+        "message": "Siz \"Qrup əlavə et\" düyməsini sıxa və ya qrupun adını daxil edib Enter və ya Qrup əlavə et düyməsini sıxa bilərsiniz. Bir neçə qrup yarada bilərsiniz."
+    },
+    "createGroupText2": {
+        "message": "Qrup panelini görəcəksiniz."
+    },
+    "websitesTitle": {
+        "message": "Veb saytlar"
+    },
+    "websitesText": {
+        "message": "Vebsaytlar xəttinin solunda yerləşən 'Düzəliş et' düyməsini sıxaraq vebsaytları əlavə etməyə başlaya bilərsiniz. Bu sahə genişləndirmənin açar sözləri bloklayacağı vebsaytlar üçün məsuliyyət daşıyır. Burada vebsayt URL-lərini daxil etməlisiniz, məsələn, 'google.com'. Birdən çox veb-sayt daxil edə bilərsiniz, hər yeni sətir yeni veb-saytdır. Sadəcə Enter düyməsini basın. Hazır olduqda, yaşıl \"Saxla\" düyməsini basın. Və ya Ləğv edə bilərsiniz."
+    },
+    "keywordsTitle": {
+        "message": "Açar sözlər"
+    },
+    "keywordsText1": {
+        "message": "Yeni açar sözlər əlavə etmək və ya hər hansı dəyişiklik etmək üçün 'Redaktə et' düyməsini basın. Buraya daxil etdiyiniz açar sözlər bu qrup üçün daxil etdiyiniz vebsaytlarda skan ediləcək."
+    },
+    "keywordFormatsIntroduction": {
+        "message": "Açar sözlər üçün 3 format var:"
+    },
+    "keywordFormat1Title": {
+        "message": "Birinci format:"
+    },
+    "keywordFormat1Text": {
+        "message": "Sadəcə açar sözləri daxil edin. Bu bir söz və ya ifadə ola bilər. Açar sözdə vergül ',' varsa, ondan əvvəl '\\' qaçış simvolundan istifadə etməlisiniz. Açar söz aşkarlanan kimi vebsayt bloklanacaq. İstədiyiniz qədər açar sözlər daxil edə bilərsiniz, sadəcə olaraq enter düyməsini basın. Hər yeni sətir yeni açar sözdür."
+    },
+    "keywordFormat1_2": {
+        "message": "Misal: 'video oyunlar' və ya 'xəbərlər'."
+    },
+    "keywordFormat2Title": {
+        "message": "İkinci format:"
+    },
+    "keywordFormat2Text": {
+        "message": "Açar sözü, ardınca isə rəqəmsal dəyəri daxil edin. Qrupa daxil etdiyiniz hər bir vebsayt 1000-ə çatmalıdır. Veb sayt 0 dəyəri ilə başlayır və açar sözün ədədi dəyərinə əsasən dəyər artır. Veb sayt 1000 bala çatdıqdan sonra bloklanacaq."
+    },
+    "keywordFormat2_2": {
+        "message": "Misal: 'xəbər, 50'"
+    },
+    "keywordFormat2_3": {
+        "message": "Qrupda daxil etdiyiniz hər bir vebsayt 1000-ə çatmalıdır. Sayt 0 dəyəri ilə başlayır və açar sözün ədədi dəyərinə əsasən dəyər artır. Veb sayt 1000 bala çatdıqdan sonra bloklanacaq."
+    },
+    "keywordFormat3Title": {
+        "message": "Üçüncü Format:"
+    },
+    "keywordFormat3Text": {
+        "message": "Açar sözü, ardınca vurma və ya əlavə işarəsini (* və ya +), sonra isə ədədi dəyəri daxil edin. Bu ssenaridə səhifə üçün xal tapılan açar sözün ədədi dəyərinə əsasən vurulur."
+    },
+    "keywordFormat3_2": {
+        "message": "Misal: 'xəbər, *, 10'"
+    },
+    "keywordFormat3_3": {
+        "message": "Bu ssenaridə səhifə üçün xal tapılan açar sözün ədədi dəyərinə əsasən vurulur."
+    },
+    "timerCountTitle": {
+        "message": "Taymer sayı"
+    },
+    "timerCountText": {
+        "message": "Səhifə bloklandıqdan sonra 'Taymeri aktivləşdir' düyməsini sıxmaq seçiminiz olacaq. Bundan sonra, yenidən bloklanmadan əvvəl səhifədə bəzi hərəkətləri yerinə yetirmək üçün vaxtınız olacaq. Timer Count sahəsində siz gün ərzində neçə taymerə sahib olmaq istədiyinizə qərar verə bilərsiniz."
+    },
+    "timerDurationTitle": {
+        "message": "Taymer müddəti (saniyə)"
+    },
+    "timerDurationText": {
+        "message": "Bu sahədə hər taymerin neçə saniyəyə sahib olacağına siz qərar verirsiniz."
+    },
+    "lockedSchedulesTitle": {
+        "message": "Bağlı Cədvəllər"
+    },
+    "lockedSchedulesNote": {
+        "message": "! Vaxt keçənə qədər kilidlənmiş cədvəli açmaq mümkün deyil (əgər siz genişləndirməni silməyincə)!"
+    },
+    "lockedSchedulesText1": {
+        "message": "Siz Cədvəl Adı sahəsində cədvəl adını yaradaraq Enter düyməsini və ya Cədvəl Əlavə et düyməsini sıxmaqla yeni kilidlənmiş cədvəl əlavə edə bilərsiniz."
+    },
+    "lockedSchedulesText2": {
+        "message": "Cədvəlinizin parametrlərini dəyişdirmək üçün \"Düzəliş et\" düyməsini basın. Gün düymələrinə basmaqla siz ya həmin günün cədvəlini aktivləşdirəcəksiniz (düymə yaşıl rəngə çevriləcək), ya da həmin gün üçün onu söndürəcəksiniz. Başlama vaxtı və bitmə vaxtı sahələrini dəyişdirməklə siz cədvəlin aktiv ola biləcəyi vaxtları təyin edirsiniz. Hər günün 1 saatlıq qeyri-aktiv vaxt pəncərəsi olmalıdır ki, siz həmin vaxt ərzində cədvəli deaktiv edə biləsiniz. Qeyri-aktiv/Aktiv düyməsi cədvəli dəyişdirir. Cari gün işə salınıbsa (yaşıl) və düymə \"Aktiv\"i göstərirsə və həmçinin yaşıldırsa və cari vaxt başlanğıc və bitmə vaxtları arasındadırsa, cədvəl kilidlənəcək və aktiv olacaq."
+    },
+    "lockedSchedulesText3": {
+        "message": "Sil düyməsi kilidlənmiş cədvəli silir. Eyni şey qruplara və ağ siyahıya alınmış vebsaytlara da aiddir."
+    },
+    "lockedSchedulesText4": {
+        "message": "Bağlı cədvəl zamanı bir neçə məhdudiyyət tətbiq olunur:"
+    },
+    "lockedScheduleRestriction1": {
+        "message": "Qrup adlarını dəyişə bilməzsiniz."
+    },
+    "lockedScheduleRestriction2": {
+        "message": "Siz qruplardakı mövcud veb-saytları dəyişdirə və ya silə bilməzsiniz."
+    },
+    "lockedScheduleRestriction3": {
+        "message": "Mövcud açar sözləri və onların dəyərlərini dəyişdirə və ya silə bilməzsiniz."
+    },
+    "lockedScheduleRestriction4": {
+        "message": "Siz vurma üçün yalnız açar söz dəyərlərini təyin edə bilərsiniz: 1-dən 1000-ə qədər. Əlavə üçün: 0-dan 1000-ə qədər."
+    },
+    "lockedScheduleRestriction5": {
+        "message": "Taymer sayı artırıla bilməz."
+    },
+    "lockedScheduleRestriction6": {
+        "message": "Taymer müddəti artırıla bilməz."
+    },
+    "lockedScheduleRestriction7": {
+        "message": "Aktiv cədvəllər silinə bilməz."
+    },
+    "lockedScheduleRestriction8": {
+        "message": "Siz gün seçimini ləğv edə, cədvəli qeyri-aktiv edə və ya aktiv cədvəllər üçün başlanğıc və ya bitmə vaxtlarını dəyişə bilməzsiniz."
+    },
+    "lockedScheduleRestriction9": {
+        "message": "Siz ağ siyahıya alınmış veb saytları əlavə edə bilməzsiniz."
+    },
+    "lockedScheduleRestriction10": {
+        "message": "Siz genişləndirmə üçün parol təyin edə və ya silə bilməzsiniz."
+    },
+    "whitelistWebsitesTitle": {
+        "message": "Ağ siyahı vebsaytları"
+    },
+    "whitelistWebsitesText": {
+        "message": "Ağ siyahıya alınmış veb-saytlara daxil olmağa imkan verir, yəni bu veb-saytlarda açar söz skanı aparılmayacaq və beləliklə, onlar bloklanmayacaq. Hal-hazırda, bir girişə çoxlu vebsaytları daxil etmək üçün (*.io, '.io' olan bütün veb-saytların bloklanacağı kimi) joker simvoldan (*) istifadə etmək imkanımız yoxdur, ona görə də bu funksiya çox faydalı deyil, lakin mövcuddur."
+    },
+    "passwordManagementTitle": {
+        "message": "Şifrə İdarəetmə"
+    },
+    "passwordManagementText": {
+        "message": "Uzatma səhifəsi üçün parol təyin etməyə imkan verir. Genişləndirmə səhifəsini açan hər kəs daxil olmaq üçün düzgün parol daxil etməlidir. Başqalarının təsadüfən (və ya qəsdən) parametrləri sərtləşdirməsinin qarşısını almaq üçün faydalıdır."
+    },
+    "contactFeedbackTitle": {
+        "message": "Əlaqə və Əlaqə"
+    },
+    "feedbackText1": {
+        "message": "Hər hansı rəyi bölüşmək istəyirsinizsə və ya probleminiz varsa, lütfən, genişləndirmənin GitHub səhifəsinə daxil olun:"
+    },
+    "githubLink": {
+        "message": "GitHub - Diqqəti yayındırmağa qarşı müdafiə"
+    },
+    "feedbackText2": {
+        "message": "Orada \"Məsələlər\" sekmesine keçin və \"Yeni Məsələ\" yaşıl düyməsinə klikləyin. Başlığı və təsviri doldurun və \"Yeni buraxılış göndər\" düyməsini basın."
+    },
+    "thanks": {
+        "message": "təşəkkürlər."
+    },
+    "instructionGuideLink": {
+        "message": "Təlimat bələdçisi"
+    },
+    "description": {
+        "message": "Səhifələrində görünən mətn əsasında vebsaytları bloklamağa imkan verir."
+    },
+    "dailyLimitReached": {
+        "message": "Gündəlik limitə çatdı"
+    },
+    "exportButton": {
+        "message": "İxrac"
+    },
+    "importButton": {
+        "message": "İdxal"
+    },
+    "themeModeLabel": {
+        "message": "UI rejimi"
+    },
+    "themeModeSystemOption": {
+        "message": "Sistem"
+    },
+    "themeModeDarkOption": {
+        "message": "Qaranlıq"
+    },
+    "themeModeLightOption": {
+        "message": "İşıq"
+    },
+    "elementRulesLabel": {
+        "message": "Bloklanmış UI"
+    },
+    "noElementRulesLabel": {
+        "message": "Bloklanmış UI elementləri yoxdur"
+    }
+}

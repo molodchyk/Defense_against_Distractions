@@ -1,0 +1,455 @@
+{
+    "deleteButtonLabel": {
+        "message": "Borrar"
+    },
+    "whitelistExistsMessage": {
+        "message": "Este sitio ya está en la lista blanca."
+    },
+    "deleteWhitelistError": {
+        "message": "No se pueden eliminar sitios incluidos en la lista blanca durante la programación activa."
+    },
+    "scheduleNameLabel": {
+        "message": "Nombre del horario"
+    },
+    "startTimeLabel": {
+        "message": "Hora de inicio"
+    },
+    "endTimeLabel": {
+        "message": "Hora de finalización"
+    },
+    "activeStateLabel": {
+        "message": "Estado activo"
+    },
+    "editButtonLabel": {
+        "message": "Editar"
+    },
+    "saveButtonLabel": {
+        "message": "Ahorrar"
+    },
+    "endTimeAfterStartTimeError": {
+        "message": "La hora de finalización debe ser posterior a la hora de inicio."
+    },
+    "schedulesOverlapError": {
+        "message": "Los horarios no pueden superponerse."
+    },
+    "minimumUnlockedTimeError": {
+        "message": "Cada día debe tener al menos 1 hora de tiempo desbloqueado."
+    },
+    "Mon": {
+        "message": "Lun"
+    },
+    "Tue": {
+        "message": "Mar"
+    },
+    "Wed": {
+        "message": "Casarse"
+    },
+    "Thu": {
+        "message": "Jue"
+    },
+    "Fri": {
+        "message": "Vie"
+    },
+    "Sat": {
+        "message": "Se sentó"
+    },
+    "Sun": {
+        "message": "Sol"
+    },
+    "Edit": {
+        "message": "Editar"
+    },
+    "Save": {
+        "message": "Ahorrar"
+    },
+    "Delete": {
+        "message": "Borrar"
+    },
+    "groupNameLabel": {
+        "message": "Nombre del grupo"
+    },
+    "websitesLabel": {
+        "message": "Sitios web"
+    },
+    "keywordsLabel": {
+        "message": "Palabras clave"
+    },
+    "timerCountLabel": {
+        "message": "Conteo del temporizador"
+    },
+    "timerDurationLabel": {
+        "message": "Duración del temporizador (segundos)"
+    },
+    "unnamedSchedulesMaxReached": {
+        "message": "Se alcanzó el número máximo de programaciones sin nombre."
+    },
+    "scheduleNameExists": {
+        "message": "Ya existe una programación con este nombre."
+    },
+    "cannotDeleteActiveSchedule": {
+        "message": "No se puede eliminar un horario activo. Espere hasta que el horario no esté activo."
+    },
+    "optionsTitle": {
+        "message": "Panel de defensa"
+    },
+    "groupsHeading": {
+        "message": "Grupos"
+    },
+    "whitelistHeading": {
+        "message": "Sitios web en la lista blanca"
+    },
+    "schedulesHeading": {
+        "message": "Horarios bloqueados"
+    },
+    "unnamedGroupsMaxReached": {
+        "message": "Se alcanzó el número máximo de grupos sin nombre."
+    },
+    "groupNameExists": {
+        "message": "Ya existe un grupo con este nombre."
+    },
+    "cannotDeleteGroupActiveSchedule": {
+        "message": "No se pueden eliminar grupos durante el horario activo."
+    },
+    "cannotIncreaseTimerActiveSchedule": {
+        "message": "La duración del temporizador y la cantidad de temporizadores no se pueden aumentar durante un horario activo."
+    },
+    "invalidKeywordValue": {
+        "message": "Valor de palabra clave no válido. Debe estar dentro del rango especificado."
+    },
+    "cannotChangeGroupNameActiveSchedule": {
+        "message": "No se permite cambiar el nombre del grupo durante un horario activo."
+    },
+    "invalidEditOnWebsitesOrKeywords": {
+        "message": "Los sitios web o las entradas de palabras clave se han editado o eliminado, los cambios no se pueden guardar."
+    },
+    "invalidKeywordEntry": {
+        "message": "Entrada de palabra clave no válida:"
+    },
+    "addGroupButtonText": {
+        "message": "Agregar grupo"
+    },
+    "contentBlockedTitle": {
+        "message": "Contenido bloqueado"
+    },
+    "contentBlockedMessage": {
+        "message": "Esta página tiene contenido restringido y ha sido bloqueada para su protección."
+    },
+    "keywordDetected": {
+        "message": "Palabra clave detectada"
+    },
+    "context": {
+        "message": "Contexto"
+    },
+    "goBackButton": {
+        "message": "Volver"
+    },
+    "activateTimerButton": {
+        "message": "Activar temporizador"
+    },
+    "cannotRelaxConstraints": {
+        "message": "No se pueden relajar las limitaciones del horario."
+    },
+    "activeButtonText": {
+        "message": "Activo"
+    },
+    "inactiveButtonText": {
+        "message": "Inactivo"
+    },
+    "addScheduleButton": {
+        "message": "Agregar horario"
+    },
+    "enterWebsiteURLPlaceholder": {
+        "message": "Ingrese la URL del sitio web"
+    },
+    "addToWhitelistButton": {
+        "message": "Agregar a la lista blanca"
+    },
+    "cancelButton": {
+        "message": "Cancelar"
+    },
+    "groupNamePlaceholder": {
+        "message": "Nombre del grupo"
+    },
+    "addScheduleButtonLabel": {
+        "message": "Agregar horario"
+    },
+    "unnamedSchedulePrefix": {
+        "message": "Cronograma"
+    },
+    "addToWhitelistButtonLabel": {
+        "message": "Agregar a la lista blanca"
+    },
+    "cancelButtonLabel": {
+        "message": "Cancelar"
+    },
+    "activeLabel": {
+        "message": "Activo"
+    },
+    "inactiveLabel": {
+        "message": "Inactivo"
+    },
+    "cancelLabel": {
+        "message": "Cancelar"
+    },
+    "scheduleNamePlaceholder": {
+        "message": "Nombre del horario"
+    },
+    "editLabel": {
+        "message": "Editar"
+    },
+    "unnamedGroupPrefix": {
+        "message": "Grupo"
+    },
+    "lockedScheduleErrorMessage": {
+        "message": "No se puede agregar un sitio a la lista blanca durante una programación activa."
+    },
+    "cannotToggleActiveState": {
+        "message": "No se puede cambiar el estado activo en las condiciones actuales."
+    },
+    "cannotDeselectDaysError": {
+        "message": "No se pueden anular la selección de días para un horario activo que está actualmente vigente."
+    },
+    "passwordManagementHeader": {
+        "message": "Gestión de contraseñas"
+    },
+    "enterPasswordPlaceholder": {
+        "message": "Introduce la contraseña"
+    },
+    "confirmPasswordPlaceholder": {
+        "message": "Confirmar Contraseña"
+    },
+    "setPasswordButton": {
+        "message": "Establecer contraseña"
+    },
+    "deletePasswordButton": {
+        "message": "Eliminar contraseña"
+    },
+    "enterPasswordToAccessLabel": {
+        "message": "Ingrese la Contraseña para Acceder:"
+    },
+    "submitButton": {
+        "message": "Entregar"
+    },
+    "tooManyAttempts": {
+        "message": "Demasiados intentos fallidos. Espere $TIME$ segundos antes de volver a intentarlo.",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "30"
+            }
+        }
+    },
+    "incorrectPassword": {
+        "message": "Contraseña incorrecta. $ATTEMPTS$ intentos restantes.",
+        "placeholders": {
+            "attempts": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
+    },
+    "passwordMismatchAlert": {
+        "message": "Las contraseñas no coinciden. Asegúrese de que ambas contraseñas sean iguales."
+    },
+    "pageTitle": {
+        "message": "Guía de instrucciones: Defensa contra las distracciones"
+    },
+    "headerTitle": {
+        "message": "Defensa contra las distracciones: guía de instrucciones"
+    },
+    "introTitle": {
+        "message": "Introducción"
+    },
+    "introText1": {
+        "message": "¡Hola! Es muy fácil distraerse en Internet y posponer las cosas. Esta extensión le permite bloquear páginas web según palabras clave que no desea ver."
+    },
+    "introText2": {
+        "message": "Hay miles de videojuegos para jugar, noticias para leer, videos para mirar, etc. Y, a menudo, esto es lo que hacemos cuando los plazos de los proyectos o los exámenes aún están lejos. A veces, puede resultar un poco difícil obligarse a hacer lo que debe hacer."
+    },
+    "introText3": {
+        "message": "¡Y las distracciones están por todas partes! Incluso si usas StayFocusd o Cold Turkey o FocusMe para bloquear algunos sitios web por sus URL, no puedes bloquear todo. Por ejemplo, incluso con ChatGPT, puedes hablar sobre noticias o videojuegos si realmente no tienes ganas de estudiar o trabajar."
+    },
+    "introText4": {
+        "message": "Con esta extensión, puedes bloquear sitios web en función de palabras y frases en su texto."
+    },
+    "howToUseTitle": {
+        "message": "Cómo utilizar la extensión"
+    },
+    "createGroupTitle": {
+        "message": "Primer paso: crear un grupo"
+    },
+    "createGroupText1": {
+        "message": "Puede presionar el botón 'Agregar grupo' o ingresar el nombre del grupo y presionar Enter o el botón Agregar grupo. Puedes crear varios grupos."
+    },
+    "createGroupText2": {
+        "message": "Verás el panel del grupo."
+    },
+    "websitesTitle": {
+        "message": "Sitios web"
+    },
+    "websitesText": {
+        "message": "Puede comenzar a agregar sitios web presionando el botón 'Editar' a la izquierda de la línea Sitios web. Este campo es responsable de los sitios web donde la extensión bloqueará palabras clave. Aquí debe ingresar las URL del sitio web, por ejemplo, 'google.com'. Puede ingresar varios sitios web, cada nueva línea es un nuevo sitio web. Simplemente presione Entrar. Cuando esté listo, presione el botón verde 'Guardar'. O puedes Cancelar."
+    },
+    "keywordsTitle": {
+        "message": "Palabras clave"
+    },
+    "keywordsText1": {
+        "message": "Para agregar nuevas palabras clave o realizar cambios, presione 'Editar'. Las palabras clave que ingrese aquí se escanearán en los sitios web que ingresó para este grupo."
+    },
+    "keywordFormatsIntroduction": {
+        "message": "Hay 3 formatos para las palabras clave:"
+    },
+    "keywordFormat1Title": {
+        "message": "Primer formato:"
+    },
+    "keywordFormat1Text": {
+        "message": "Simplemente ingrese las palabras clave. Puede ser una palabra o una frase. Si la palabra clave contiene una coma ',', debe utilizar un carácter de escape '\\' antes. El sitio web se bloqueará tan pronto como se detecte la palabra clave. Puede ingresar tantas palabras clave como desee, simplemente presione Intro. Cada nueva línea es una nueva palabra clave."
+    },
+    "keywordFormat1_2": {
+        "message": "Ejemplo: 'videojuegos' o 'noticias'."
+    },
+    "keywordFormat2Title": {
+        "message": "Segundo formato:"
+    },
+    "keywordFormat2Text": {
+        "message": "Ingrese la palabra clave, seguida de un valor numérico. Cada sitio web que ingresó en un grupo debe alcanzar una puntuación de 1000. El sitio web comienza con un valor de 0 y, según el valor numérico de la palabra clave, el valor aumenta. Una vez que el sitio web alcance una puntuación de 1000, será bloqueado."
+    },
+    "keywordFormat2_2": {
+        "message": "Ejemplo: 'noticias, 50'"
+    },
+    "keywordFormat2_3": {
+        "message": "Cada sitio web que ingresó en un grupo debe alcanzar una puntuación de 1000. El sitio comienza con un valor de 0 y, según el valor numérico de la palabra clave, el valor aumenta. Una vez que el sitio web alcance una puntuación de 1000, será bloqueado."
+    },
+    "keywordFormat3Title": {
+        "message": "Tercer formato:"
+    },
+    "keywordFormat3Text": {
+        "message": "Ingrese la palabra clave, seguida de un signo de multiplicación o suma (* o +), luego un valor numérico. En este escenario, la puntuación de la página se multiplica según el valor numérico de la palabra clave encontrada."
+    },
+    "keywordFormat3_2": {
+        "message": "Ejemplo: 'noticias, *, 10'"
+    },
+    "keywordFormat3_3": {
+        "message": "En este escenario, la puntuación de la página se multiplica según el valor numérico de la palabra clave encontrada."
+    },
+    "timerCountTitle": {
+        "message": "Conteo del temporizador"
+    },
+    "timerCountText": {
+        "message": "Una vez bloqueada la página, tendrás la opción de presionar el botón \"Activar temporizador\". Después de eso, tendrás tiempo de realizar algunas acciones en la página antes de que se bloquee nuevamente. En el campo Conteo de temporizadores, puede decidir cuántos temporizadores desea tener durante el día."
+    },
+    "timerDurationTitle": {
+        "message": "Duración del temporizador (segundos)"
+    },
+    "timerDurationText": {
+        "message": "En este campo decides cuántos segundos tendrá cada temporizador."
+    },
+    "lockedSchedulesTitle": {
+        "message": "Horarios bloqueados"
+    },
+    "lockedSchedulesNote": {
+        "message": "! ¡Un horario bloqueado no se puede desbloquear hasta que pase el tiempo (a menos que desinstales la extensión)!"
+    },
+    "lockedSchedulesText1": {
+        "message": "Puede agregar un nuevo horario bloqueado creando el nombre del horario en el campo Nombre del horario y presionando Enter o el botón Agregar horario."
+    },
+    "lockedSchedulesText2": {
+        "message": "Para modificar la configuración de su horario, presione 'Editar'. Al presionar los botones del día, puede habilitar el horario de ese día (el botón se vuelve verde) o deshabilitarlo para ese día. Al modificar los campos Hora de inicio y Hora de finalización, establece las horas en que la programación puede estar activa. Cada día debe tener una ventana de tiempo inactivo de 1 hora para que puedas desactivar el horario durante ese tiempo. El botón Inactivo/Activo alterna el horario. El horario estará bloqueado y activo si el día actual está habilitado (verde) y el botón muestra 'Activo' y también es verde, y si la hora actual está entre las horas de inicio y finalización."
+    },
+    "lockedSchedulesText3": {
+        "message": "El botón Eliminar elimina el horario bloqueado. Lo mismo se aplica a los grupos y sitios web incluidos en la lista blanca."
+    },
+    "lockedSchedulesText4": {
+        "message": "Se aplican varias restricciones durante el horario cerrado:"
+    },
+    "lockedScheduleRestriction1": {
+        "message": "No puedes cambiar los nombres de los grupos."
+    },
+    "lockedScheduleRestriction2": {
+        "message": "No puede cambiar ni eliminar sitios web existentes en grupos."
+    },
+    "lockedScheduleRestriction3": {
+        "message": "No puede cambiar ni eliminar palabras clave existentes ni sus valores."
+    },
+    "lockedScheduleRestriction4": {
+        "message": "Solo puede establecer valores de palabras clave para la multiplicación: de 1 a 1000. Para la suma: de 0 a 1000."
+    },
+    "lockedScheduleRestriction5": {
+        "message": "El recuento del temporizador no se puede aumentar."
+    },
+    "lockedScheduleRestriction6": {
+        "message": "La duración del temporizador no se puede aumentar."
+    },
+    "lockedScheduleRestriction7": {
+        "message": "Los horarios activos no se pueden eliminar."
+    },
+    "lockedScheduleRestriction8": {
+        "message": "No puede anular la selección de días, desactivar la programación ni cambiar las horas de inicio o finalización de las programaciones activas."
+    },
+    "lockedScheduleRestriction9": {
+        "message": "No puede agregar sitios web incluidos en la lista blanca."
+    },
+    "lockedScheduleRestriction10": {
+        "message": "No puede establecer ni eliminar la contraseña de la extensión."
+    },
+    "whitelistWebsitesTitle": {
+        "message": "Sitios web en la lista blanca"
+    },
+    "whitelistWebsitesText": {
+        "message": "Le permite ingresar a sitios web incluidos en la lista blanca, lo que significa que el análisis de palabras clave no se realizará en estos sitios web y, por lo tanto, no se bloquearán. Actualmente, no tenemos la posibilidad de utilizar un comodín (*) para incluir muchos sitios web en una entrada (como *.io, donde se bloquearían todos los sitios web con '.io'), por lo que esta característica no es muy útil, pero existe."
+    },
+    "passwordManagementTitle": {
+        "message": "Gestión de contraseñas"
+    },
+    "passwordManagementText": {
+        "message": "Le permite configurar una contraseña para la página de extensión. Cualquiera que abra la página de la extensión deberá ingresar la contraseña correcta para obtener acceso. Útil para evitar que otros ajusten accidentalmente (o intencionalmente) los ajustes."
+    },
+    "contactFeedbackTitle": {
+        "message": "Contacto y comentarios"
+    },
+    "feedbackText1": {
+        "message": "Si desea compartir algún comentario o si tiene algún problema, visite la página de GitHub de la extensión:"
+    },
+    "githubLink": {
+        "message": "GitHub - Defensa contra distracciones"
+    },
+    "feedbackText2": {
+        "message": "Allí, navegue hasta la pestaña \"Problemas\" y haga clic en el botón verde \"Nuevo problema\". Complete el título y la descripción y presione 'Enviar nuevo número'."
+    },
+    "thanks": {
+        "message": "Gracias."
+    },
+    "instructionGuideLink": {
+        "message": "Guía de instrucciones"
+    },
+    "description": {
+        "message": "Le permite bloquear sitios web según el texto que aparece en sus páginas."
+    },
+    "dailyLimitReached": {
+        "message": "Límite diario alcanzado"
+    },
+    "exportButton": {
+        "message": "Exportar"
+    },
+    "importButton": {
+        "message": "Importar"
+    },
+    "themeModeLabel": {
+        "message": "Modo de interfaz de usuario"
+    },
+    "themeModeSystemOption": {
+        "message": "Sistema"
+    },
+    "themeModeDarkOption": {
+        "message": "Oscuro"
+    },
+    "themeModeLightOption": {
+        "message": "Luz"
+    },
+    "elementRulesLabel": {
+        "message": "IU bloqueada"
+    },
+    "noElementRulesLabel": {
+        "message": "No hay elementos de interfaz de usuario bloqueados"
+    }
+}

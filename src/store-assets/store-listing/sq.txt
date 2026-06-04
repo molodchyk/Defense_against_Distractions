@@ -1,0 +1,25 @@
+Mbrojtja kundër shpërqendrimeve ju ndihmon të qëndroni të fokusuar kur bllokimi i thjeshtë i faqes në internet nuk mjafton.
+
+Shumica e shtesave të fokusit bllokojnë faqet e internetit të tëra. Kjo është e dobishme, por interneti është më i çrregullt se kaq. E njëjta faqe interneti mund të jetë e dobishme në një moment dhe shpërqendruese në një tjetër. Një faqe kërkimi, vegël bisede, forum, sajt video ose ndihmës i AI mund të mbështesë punën reale, por mund të bëhet gjithashtu një hyrje në lajme, lojëra, drama, video dhe kurthe të tjera të vëmendjes.
+
+Mbrojtja kundër shpërqendrimeve ju jep kontroll më të saktë.
+
+Në vend që të bllokoni vetëm me URL, ju mund të bllokoni faqet bazuar në fjalët dhe frazat që shfaqen në to. Krijoni grupe uebsajtesh, shtoni fjalë kyçe ose fraza, caktoni pikë dhe lëreni shtesën të bllokojë faqen kur rezultati i shpërqendrimit kalon pragun tuaj të konfiguruar.
+
+Mund ta përdorni për të mbrojtur seancat e studimit, blloqet e punës, përgatitjen e provimeve, kohën e kërkimit ose çdo situatë ku dëshironi që shfletuesi të qëndrojë i dobishëm pa u shndërruar në një devijim.
+
+Karakteristikat kryesore:
+
+Blloko faqet sipas fjalëve kyçe, frazave dhe rezultateve të ponderuara.
+Organizoni rregulla të ndryshme fokusimi në uebsajt dhe grupe fjalë kyçe.
+Përdorni oraret e kyçura, listat e bardha, mbrojtjen me fjalëkalim, eksportin/importin, modalitetet e ndërfaqes së përdoruesit dhe fshehjen e elementeve të ndërfaqes së përdoruesit për ta mbajtur konfigurimin praktik.
+
+Çfarë është e re në versionin 1.5:
+
+Modalitetet e UI të lehta, të errëta dhe të sistemit.
+Zgjedhësi i elementeve të ndërfaqes së përdoruesit me bazë kërcyese për fshehjen e kontrolleve të faqes shpërqendruese.
+Mbivendosja e përmirësuar e faqeve të bllokuara me ndalimin ose heshtjen e medias dhe diagnostikimin e përzgjedhshëm.
+Asetet e dyqanit të përditësuar, paketimi, kontrollet e lëshimit dhe struktura e projektit.
+
+Mbrojtja kundër shpërqendrimeve është me burim të hapur:
+https://github.com/molodchyk/Defense_against_Distractions

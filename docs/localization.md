@@ -91,23 +91,9 @@ The Chrome Web Store has been observed showing a 64-language hover list on anoth
 - `ja` - Japanese
 - `ko` - Korean
 
-## Current Missing CWS-Visible Locales
+## CWS-Visible Locale Coverage
 
-As of the latest comparison, DaD is missing these CWS-visible locale folders and matching store listings:
-
-- `az` - Azerbaijani
-- `en_GB` - English (United Kingdom)
-- `en_US` - English (United States)
-- `es_419` - Spanish (Latin America)
-- `eu` - Basque
-- `hy` - Armenian
-- `ka` - Georgian
-- `mk` - Macedonian
-- `ne` - Nepali
-- `pa` - Punjabi
-- `si` - Sinhala
-- `sq` - Albanian
-- `uz` - Uzbek
+DaD currently has locale folders and matching store listing files for every locale in the observed 64-language Chrome Web Store hover list.
 
 ## Extra Prepared Locales
 

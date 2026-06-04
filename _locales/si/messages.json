@@ -1,0 +1,455 @@
+{
+    "deleteButtonLabel": {
+        "message": "මකන්න"
+    },
+    "whitelistExistsMessage": {
+        "message": "මෙම අඩවිය දැනටමත් සුදු ලැයිස්තුවේ ඇත."
+    },
+    "deleteWhitelistError": {
+        "message": "සක්‍රිය කාලසටහන තුළ සුදු ලැයිස්තුගත අඩවි මකා දැමිය නොහැක."
+    },
+    "scheduleNameLabel": {
+        "message": "කාලසටහනේ නම"
+    },
+    "startTimeLabel": {
+        "message": "ආරම්භක වේලාව"
+    },
+    "endTimeLabel": {
+        "message": "අවසන් කාලය"
+    },
+    "activeStateLabel": {
+        "message": "ක්රියාකාරී තත්වය"
+    },
+    "editButtonLabel": {
+        "message": "සංස්කරණය කරන්න"
+    },
+    "saveButtonLabel": {
+        "message": "සුරකින්න"
+    },
+    "endTimeAfterStartTimeError": {
+        "message": "අවසන් කාලය ආරම්භක වේලාවෙන් පසුව විය යුතුය."
+    },
+    "schedulesOverlapError": {
+        "message": "කාලසටහන් අතිච්ඡාදනය විය නොහැක."
+    },
+    "minimumUnlockedTimeError": {
+        "message": "සෑම දිනකම අවම වශයෙන් පැය 1ක අගුලු හැරීමේ කාලයක් තිබිය යුතුය."
+    },
+    "Mon": {
+        "message": "සඳු"
+    },
+    "Tue": {
+        "message": "අඟහරුවාදා"
+    },
+    "Wed": {
+        "message": "බදාදා"
+    },
+    "Thu": {
+        "message": "බ්රහස්පතින්දා"
+    },
+    "Fri": {
+        "message": "සිකු"
+    },
+    "Sat": {
+        "message": "සෙනසුරාදා"
+    },
+    "Sun": {
+        "message": "හිරු"
+    },
+    "Edit": {
+        "message": "සංස්කරණය කරන්න"
+    },
+    "Save": {
+        "message": "සුරකින්න"
+    },
+    "Delete": {
+        "message": "මකන්න"
+    },
+    "groupNameLabel": {
+        "message": "කණ්ඩායමේ නම"
+    },
+    "websitesLabel": {
+        "message": "වෙබ් අඩවි"
+    },
+    "keywordsLabel": {
+        "message": "මූල පද"
+    },
+    "timerCountLabel": {
+        "message": "ටයිමර් ගණන"
+    },
+    "timerDurationLabel": {
+        "message": "ටයිමර් කාල සීමාව (තත්පර)"
+    },
+    "unnamedSchedulesMaxReached": {
+        "message": "නම් නොකළ කාලසටහන් උපරිම සංඛ්‍යාවට ළඟා විය."
+    },
+    "scheduleNameExists": {
+        "message": "මෙම නම සහිත කාලසටහනක් දැනටමත් පවතී."
+    },
+    "cannotDeleteActiveSchedule": {
+        "message": "සක්‍රිය කාලසටහනක් මකා දැමිය නොහැක. කාලසටහන සක්‍රිය නොවන තෙක් කරුණාකර රැඳී සිටින්න."
+    },
+    "optionsTitle": {
+        "message": "ආරක්ෂක මණ්ඩලය"
+    },
+    "groupsHeading": {
+        "message": "කණ්ඩායම්"
+    },
+    "whitelistHeading": {
+        "message": "සුදු ලැයිස්තු වෙබ් අඩවි"
+    },
+    "schedulesHeading": {
+        "message": "අගුලු දැමූ කාලසටහන්"
+    },
+    "unnamedGroupsMaxReached": {
+        "message": "නම් නොකළ කණ්ඩායම් උපරිම සංඛ්‍යාවට ළඟා විය."
+    },
+    "groupNameExists": {
+        "message": "මෙම නම සහිත කණ්ඩායමක් දැනටමත් පවතී."
+    },
+    "cannotDeleteGroupActiveSchedule": {
+        "message": "සක්‍රිය කාලසටහන තුළ කණ්ඩායම් මකා දැමිය නොහැක."
+    },
+    "cannotIncreaseTimerActiveSchedule": {
+        "message": "සක්‍රිය කාලසටහනක් තුළ ටයිමර් කාලසීමාව සහ ටයිමර් ප්‍රමාණය වැඩි කළ නොහැක."
+    },
+    "invalidKeywordValue": {
+        "message": "වලංගු නොවන මූල පද අගය. නිශ්චිත පරාසය තුළ විය යුතුය."
+    },
+    "cannotChangeGroupNameActiveSchedule": {
+        "message": "සක්‍රිය කාලසටහනක් තුළ කණ්ඩායම් නම වෙනස් කිරීමට ඉඩ නොදේ."
+    },
+    "invalidEditOnWebsitesOrKeywords": {
+        "message": "වෙබ් අඩවි හෝ මූල පද ඇතුළත් කිරීම් සංස්කරණය කර හෝ ඉවත් කර ඇත, වෙනස් කිරීම සුරැකිය නොහැක."
+    },
+    "invalidKeywordEntry": {
+        "message": "වලංගු නොවන මූල පද ඇතුළත් කිරීම:"
+    },
+    "addGroupButtonText": {
+        "message": "කණ්ඩායම එකතු කරන්න"
+    },
+    "contentBlockedTitle": {
+        "message": "අන්තර්ගතය අවහිර කර ඇත"
+    },
+    "contentBlockedMessage": {
+        "message": "මෙම පිටුවෙහි සීමා කළ අන්තර්ගතයන් අඩංගු වන අතර ඔබගේ ආරක්ෂාව සඳහා අවහිර කර ඇත."
+    },
+    "keywordDetected": {
+        "message": "මූල පදය අනාවරණය විය"
+    },
+    "context": {
+        "message": "සන්දර්භය"
+    },
+    "goBackButton": {
+        "message": "ආපසු යන්න"
+    },
+    "activateTimerButton": {
+        "message": "ටයිමරය සක්රිය කරන්න"
+    },
+    "cannotRelaxConstraints": {
+        "message": "කාලසටහන් සීමාවන් ලිහිල් කළ නොහැක."
+    },
+    "activeButtonText": {
+        "message": "ක්රියාකාරී"
+    },
+    "inactiveButtonText": {
+        "message": "අක්රියයි"
+    },
+    "addScheduleButton": {
+        "message": "කාලසටහන එකතු කරන්න"
+    },
+    "enterWebsiteURLPlaceholder": {
+        "message": "වෙබ් අඩවියේ URL ඇතුලත් කරන්න"
+    },
+    "addToWhitelistButton": {
+        "message": "සුදු ලැයිස්තුවට එක් කරන්න"
+    },
+    "cancelButton": {
+        "message": "අවලංගු කරන්න"
+    },
+    "groupNamePlaceholder": {
+        "message": "කණ්ඩායමේ නම"
+    },
+    "addScheduleButtonLabel": {
+        "message": "කාලසටහන එකතු කරන්න"
+    },
+    "unnamedSchedulePrefix": {
+        "message": "කාලසටහන"
+    },
+    "addToWhitelistButtonLabel": {
+        "message": "සුදු ලැයිස්තුවට එක් කරන්න"
+    },
+    "cancelButtonLabel": {
+        "message": "අවලංගු කරන්න"
+    },
+    "activeLabel": {
+        "message": "ක්රියාකාරී"
+    },
+    "inactiveLabel": {
+        "message": "අක්රියයි"
+    },
+    "cancelLabel": {
+        "message": "අවලංගු කරන්න"
+    },
+    "scheduleNamePlaceholder": {
+        "message": "කාලසටහනේ නම"
+    },
+    "editLabel": {
+        "message": "සංස්කරණය කරන්න"
+    },
+    "unnamedGroupPrefix": {
+        "message": "කණ්ඩායම"
+    },
+    "lockedScheduleErrorMessage": {
+        "message": "සක්‍රිය කාලසටහනක් තුළ වෙබ් අඩවිය සුදු ලැයිස්තුවට එක් කළ නොහැක."
+    },
+    "cannotToggleActiveState": {
+        "message": "වත්මන් තත්වයන් යටතේ ක්රියාකාරී තත්ත්වය වෙනස් කළ නොහැක."
+    },
+    "cannotDeselectDaysError": {
+        "message": "දැනට ක්‍රියාත්මක වන සක්‍රිය කාලසටහනක් සඳහා දින තේරීම ඉවත් කළ නොහැක."
+    },
+    "passwordManagementHeader": {
+        "message": "මුරපද කළමනාකරණය"
+    },
+    "enterPasswordPlaceholder": {
+        "message": "මුරපදය ඇතුළත් කරන්න"
+    },
+    "confirmPasswordPlaceholder": {
+        "message": "මුරපදය තහවුරු කරන්න"
+    },
+    "setPasswordButton": {
+        "message": "මුරපදය සකසන්න"
+    },
+    "deletePasswordButton": {
+        "message": "මුරපදය මකන්න"
+    },
+    "enterPasswordToAccessLabel": {
+        "message": "ප්රවේශ වීමට මුරපදය ඇතුළත් කරන්න:"
+    },
+    "submitButton": {
+        "message": "ඉදිරිපත් කරන්න"
+    },
+    "tooManyAttempts": {
+        "message": "බොහෝ අසාර්ථක උත්සාහයන්. කරුණාකර නැවත උත්සාහ කිරීමට පෙර $TIME$ තත්පර රැඳී සිටින්න.",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "30"
+            }
+        }
+    },
+    "incorrectPassword": {
+        "message": "වැරදි මුරපදය. $ATTEMPTS$ උත්සාහයන් ඉතිරිව ඇත.",
+        "placeholders": {
+            "attempts": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
+    },
+    "passwordMismatchAlert": {
+        "message": "මුරපද නොගැලපේ. කරුණාකර මුරපද දෙකම සමාන බව සහතික කර ගන්න."
+    },
+    "pageTitle": {
+        "message": "උපදෙස් මාර්ගෝපදේශය - අවධානය වෙනතකට යොමු කිරීමට එරෙහිව ආරක්ෂාව"
+    },
+    "headerTitle": {
+        "message": "අවධානය වෙනතකට යොමු කිරීමට එරෙහිව ආරක්ෂාව: උපදෙස් මාර්ගෝපදේශය"
+    },
+    "introTitle": {
+        "message": "හැඳින්වීම"
+    },
+    "introText1": {
+        "message": "හායි! අන්තර්ජාලයේ අවධානය වෙනතකට යොමු කිරීම සහ කල් දැමීම ඉතා පහසුය. මෙම දිගුව ඔබට දැකීමට අවශ්‍ය නැති මූල පද මත පදනම්ව වෙබ් පිටු අවහිර කිරීමට ඉඩ සලසයි."
+    },
+    "introText2": {
+        "message": "ක්‍රීඩා කිරීමට වීඩියෝ ක්‍රීඩා දහස් ගණනක්, කියවීමට ප්‍රවෘත්ති, නැරඹීමට වීඩියෝ, යනාදිය ඇත. බොහෝ විට, ව්‍යාපෘති කාලසීමාවන් හෝ විභාග තවමත් දුරින් පවතින විට අප කරන්නේ මෙයයි. සමහර විට, ඔබට කළ යුතු දේ කිරීමට ඔබට බල කිරීම තරමක් අපහසු විය හැකිය."
+    },
+    "introText3": {
+        "message": "සහ අවධානය වෙනතකට යොමු කිරීම සෑම තැනකම තිබේ! සමහර වෙබ් අඩවි ඔවුන්ගේ URL මගින් අවහිර කිරීමට ඔබ StayFocusd හෝ Cold Turkey හෝ FocusMe භාවිතා කළත්, ඔබට සියල්ල අවහිර කළ නොහැක. උදාහරණයක් ලෙස, ChatGPT සමඟින් වුවද, ඔබට ඇත්තටම පාඩම් කිරීමට හෝ රැකියාවක් කිරීමට අවශ්‍ය නැති නම් ඔබට ප්‍රවෘත්ති හෝ වීඩියෝ ක්‍රීඩා ගැන කතා කළ හැකිය."
+    },
+    "introText4": {
+        "message": "මෙම දිගුව සමඟ, ඔබට ඔවුන්ගේ පෙළෙහි ඇති වචන සහ වාක්‍ය ඛණ්ඩ මත පදනම්ව වෙබ් අඩවි අවහිර කළ හැක."
+    },
+    "howToUseTitle": {
+        "message": "දිගුව භාවිතා කරන්නේ කෙසේද"
+    },
+    "createGroupTitle": {
+        "message": "පළමු පියවර: කණ්ඩායමක් සාදන්න"
+    },
+    "createGroupText1": {
+        "message": "ඔබට 'Add Group' බොත්තම ඔබන්න හෝ කණ්ඩායම් නම ඇතුළත් කර Enter හෝ Add Group බොත්තම ඔබන්න. ඔබට කණ්ඩායම් කිහිපයක් සෑදිය හැකිය."
+    },
+    "createGroupText2": {
+        "message": "ඔබට කණ්ඩායම් පැනලය පෙනෙනු ඇත."
+    },
+    "websitesTitle": {
+        "message": "වෙබ් අඩවි"
+    },
+    "websitesText": {
+        "message": "වෙබ් අඩවි පේළියේ වම්පස ඇති 'සංස්කරණය' බොත්තම එබීමෙන් ඔබට වෙබ් අඩවි එකතු කිරීම ආරම්භ කළ හැක. දිගුව මූල පද අවහිර කරන වෙබ් අඩවි සඳහා මෙම ක්ෂේත්‍රය වගකිව යුතුය. මෙහිදී ඔබට වෙබ් අඩවි URL ඇතුළත් කළ යුතුය, උදාහරණයක් ලෙස, 'google.com'. ඔබට වෙබ් අඩවි කිහිපයක් ඇතුළත් කළ හැකිය, සෑම නව පේළියක්ම නව වෙබ් අඩවියකි. Enter ඔබන්න. ඔබ සූදානම් වූ විට, හරිත 'සුරකින්න' බොත්තම ඔබන්න. නැත්නම් Cancel කරන්න පුළුවන්."
+    },
+    "keywordsTitle": {
+        "message": "මූල පද"
+    },
+    "keywordsText1": {
+        "message": "නව මූලපද එක් කිරීමට හෝ යම් වෙනසක් කිරීමට, 'Edit' ඔබන්න. ඔබ මෙහි ඇතුළත් කරන මූල පද ඔබ මෙම කණ්ඩායම සඳහා ඇතුළත් කළ වෙබ් අඩවිවල ස්කෑන් කරනු ලැබේ."
+    },
+    "keywordFormatsIntroduction": {
+        "message": "මූල පද සඳහා ආකෘති 3 ක් ඇත:"
+    },
+    "keywordFormat1Title": {
+        "message": "පළමු ආකෘතිය:"
+    },
+    "keywordFormat1Text": {
+        "message": "යන්තම් මූල පද ඇතුලත් කරන්න. එය වචනයක් හෝ වාක්‍ය ඛණ්ඩයක් විය හැකිය. මූල පදයේ ',' කොමාවක් තිබේ නම්, ඔබ එයට පෙර '\\' ගැලවීමේ අක්ෂරයක් භාවිතා කළ යුතුය. මූල පදය අනාවරණය වූ වහාම වෙබ් අඩවිය අවහිර කරනු ලැබේ. ඔබට අවශ්‍ය තරම් Keywords ඇතුලත් කල හැක, enter ඔබන්න. සෑම නව පේළියක්ම නව මූල පදයකි."
+    },
+    "keywordFormat1_2": {
+        "message": "උදාහරණය: 'වීඩියෝ ක්‍රීඩා' හෝ 'ප්‍රවෘත්ති'."
+    },
+    "keywordFormat2Title": {
+        "message": "දෙවන ආකෘතිය:"
+    },
+    "keywordFormat2Text": {
+        "message": "මූල පදය ඇතුළත් කරන්න, ඉන්පසු සංඛ්‍යාත්මක අගයක් ඇතුළත් කරන්න. ඔබ කණ්ඩායමක් තුළ ඇතුළු කළ සෑම වෙබ් අඩවියක්ම ලකුණු 1000කට ළඟා විය යුතුය. වෙබ් අඩවිය ආරම්භ වන්නේ 0 අගයකින් වන අතර, මූල පදයේ සංඛ්‍යාත්මක අගය මත පදනම්ව, අගය වැඩි වේ. වෙබ් අඩවිය ලකුණු 1000කට ළඟා වූ පසු, එය අවහිර කරනු ලැබේ."
+    },
+    "keywordFormat2_2": {
+        "message": "උදාහරණය: 'පුවත්, 50'"
+    },
+    "keywordFormat2_3": {
+        "message": "ඔබ කණ්ඩායමක් තුළ ඇතුළත් කළ සෑම වෙබ් අඩවියක්ම ලකුණු 1000කට ළඟා විය යුතුය. අඩවිය ආරම්භ වන්නේ 0 අගයකින් වන අතර, මූල පදයේ සංඛ්‍යාත්මක අගය මත පදනම්ව, අගය වැඩිවේ. වෙබ් අඩවිය ලකුණු 1000කට ළඟා වූ පසු, එය අවහිර කරනු ලැබේ."
+    },
+    "keywordFormat3Title": {
+        "message": "තුන්වන ආකෘතිය:"
+    },
+    "keywordFormat3Text": {
+        "message": "මූල පදය ඇතුළත් කරන්න, ඉන්පසු ගුණ කිරීමේ හෝ එකතු කිරීමේ ලකුණ (* හෝ +), ඉන්පසු සංඛ්‍යාත්මක අගයක්. මෙම අවස්ථාවෙහිදී, සොයාගත් මූල පදයේ සංඛ්‍යාත්මක අගය මත පදනම්ව පිටුව සඳහා ලකුණු ගුණ කරනු ලැබේ."
+    },
+    "keywordFormat3_2": {
+        "message": "උදාහරණය: 'පුවත්, *, 10'"
+    },
+    "keywordFormat3_3": {
+        "message": "මෙම අවස්ථාවෙහිදී, සොයාගත් මූල පදයේ සංඛ්‍යාත්මක අගය මත පදනම්ව පිටුව සඳහා ලකුණු ගුණ කරනු ලැබේ."
+    },
+    "timerCountTitle": {
+        "message": "ටයිමර් ගණන"
+    },
+    "timerCountText": {
+        "message": "පිටුව අවහිර කළ පසු, ඔබට 'සක්‍රීය ටයිමරය' බොත්තම එබීමේ විකල්පය ඇත. ඊට පසු, පිටුව නැවත අවහිර කිරීමට පෙර එහි ක්‍රියා කිහිපයක් සිදු කිරීමට ඔබට කාලය ලැබෙනු ඇත. ටයිමර් ගණන් කිරීමේ ක්ෂේත්‍රය තුළ, ඔබට දවස තුළ කොපමණ ටයිමර ගණනක් තිබිය යුතුද යන්න තීරණය කළ හැකිය."
+    },
+    "timerDurationTitle": {
+        "message": "ටයිමර් කාල සීමාව (තත්පර)"
+    },
+    "timerDurationText": {
+        "message": "මෙම ක්ෂේත්‍රය තුළ, එක් එක් ටයිමරයට තත්පර කීයක් තිබේදැයි ඔබ තීරණය කරයි."
+    },
+    "lockedSchedulesTitle": {
+        "message": "අගුලු දැමූ කාලසටහන්"
+    },
+    "lockedSchedulesNote": {
+        "message": "! කාලය ගත වන තුරු අගුලු දැමූ කාලසටහනක් අගුළු හැරිය නොහැක (ඔබ දිගුව අස්ථාපනය කරන්නේ නම් මිස)!"
+    },
+    "lockedSchedulesText1": {
+        "message": "උපලේඛන නාම ක්ෂේත්‍රයේ කාලසටහනේ නම සාදා Enter හෝ Add Schedule බොත්තම එබීමෙන් ඔබට නව අගුලු දැමූ කාලසටහනක් එක් කළ හැකිය."
+    },
+    "lockedSchedulesText2": {
+        "message": "ඔබගේ කාලසටහනේ සැකසුම් වෙනස් කිරීමට, 'Edit' ඔබන්න. දින බොත්තම් එබීමෙන්, ඔබ එම දිනයේ කාලසටහන සක්‍රීය කරන්න (බොත්තම කොළ පැහැයට හැරේ), නැතහොත් එම දිනය සඳහා එය අක්‍රිය කරන්න. ආරම්භක වේලාව සහ අවසන් වේලාව යන ක්ෂේත්‍ර වෙනස් කිරීමෙන්, ඔබ කාලසටහන සක්‍රිය විය හැකි වේලාවන් සකසයි. සෑම දිනකම පැය 1ක අක්‍රිය කාල කවුළුවක් තිබිය යුතු අතර එම කාලය තුළ ඔබට කාලසටහන අක්‍රිය කළ හැක. අක්‍රිය/ක්‍රියාකාරී බොත්තම කාලසටහන ටොගල් කරයි. වත්මන් දිනය සක්‍රීය කර ඇත්නම් (කොළ) සහ බොත්තම 'සක්‍රිය' සහ කොළ පැහැති නම් සහ වත්මන් වේලාව ආරම්භක සහ අවසන් වේලාවන් අතර නම් කාලසටහන අගුලු දමා සක්‍රිය වනු ඇත."
+    },
+    "lockedSchedulesText3": {
+        "message": "මකන්න බොත්තම අගුලු දැමූ කාලසටහන ඉවත් කරයි. කණ්ඩායම් සහ සුදු ලැයිස්තුගත වෙබ් අඩවි සඳහා ද එය අදාළ වේ."
+    },
+    "lockedSchedulesText4": {
+        "message": "අගුලු දැමූ කාලසටහන තුළ සීමාවන් කිහිපයක් අදාළ වේ:"
+    },
+    "lockedScheduleRestriction1": {
+        "message": "ඔබට කණ්ඩායම් නම් වෙනස් කළ නොහැක."
+    },
+    "lockedScheduleRestriction2": {
+        "message": "ඔබට කණ්ඩායම් තුළ පවතින වෙබ් අඩවි වෙනස් කිරීමට හෝ ඉවත් කිරීමට නොහැක."
+    },
+    "lockedScheduleRestriction3": {
+        "message": "ඔබට පවතින මූල පද සහ ඒවායේ අගයන් වෙනස් කිරීමට හෝ ඉවත් කිරීමට නොහැක."
+    },
+    "lockedScheduleRestriction4": {
+        "message": "ඔබට ගුණ කිරීම සඳහා මූල පද අගයන් පමණක් සැකසිය හැක: 1 සිට 1000 දක්වා. එකතු කිරීම සඳහා: 0 සිට 1000 දක්වා."
+    },
+    "lockedScheduleRestriction5": {
+        "message": "ටයිමර් ගණන වැඩි කළ නොහැක."
+    },
+    "lockedScheduleRestriction6": {
+        "message": "ටයිමරයේ කාලසීමාව වැඩි කළ නොහැක."
+    },
+    "lockedScheduleRestriction7": {
+        "message": "සක්‍රිය කාලසටහන් මකා දැමිය නොහැක."
+    },
+    "lockedScheduleRestriction8": {
+        "message": "ඔබට දින තේරීම ඉවත් කිරීමට, කාලසටහන අක්‍රිය කිරීමට, හෝ සක්‍රිය කාලසටහන් සඳහා ආරම්භක හෝ අවසන් වේලාවන් වෙනස් කිරීමට නොහැක."
+    },
+    "lockedScheduleRestriction9": {
+        "message": "ඔබට සුදු ලැයිස්තුගත වෙබ් අඩවි එක් කළ නොහැක."
+    },
+    "lockedScheduleRestriction10": {
+        "message": "ඔබට දිගුව සඳහා මුරපදය සැකසීමට හෝ මකා දැමිය නොහැක."
+    },
+    "whitelistWebsitesTitle": {
+        "message": "සුදු ලැයිස්තු වෙබ් අඩවි"
+    },
+    "whitelistWebsitesText": {
+        "message": "සුදු ලැයිස්තුගත කර ඇති වෙබ් අඩවි ඇතුළු කිරීමට ඔබට ඉඩ සලසයි, එනම් මූල පද පරිලෝකනය මෙම වෙබ් අඩවිවල සිදු නොකරනු ඇති අතර එමඟින් ඒවා අවහිර නොකරනු ඇත. දැනට, එක් ප්‍රවේශයකට වෙබ් අඩවි විශාල ප්‍රමාණයක් ඇතුළත් කිරීමට Wildcard (*) භාවිතා කිරීමට අපට හැකියාවක් නොමැත (*.io වැනි, '.io' සහිත සියලුම වෙබ් අඩවි අවහිර කරනු ලැබේ), එබැවින් මෙම විශේෂාංගය එතරම් ප්‍රයෝජනවත් නොවේ, නමුත් එය පවතී."
+    },
+    "passwordManagementTitle": {
+        "message": "මුරපද කළමනාකරණය"
+    },
+    "passwordManagementText": {
+        "message": "දිගු පිටුව සඳහා මුරපදයක් සැකසීමට ඔබට ඉඩ සලසයි. දිගු පිටුව විවෘත කරන ඕනෑම කෙනෙකුට ප්‍රවේශය ලබා ගැනීමට නිවැරදි මුරපදය ඇතුළත් කිරීමට අවශ්‍ය වනු ඇත. අනිත් අය අහම්බෙන් (හෝ හිතාමතාම) සිටුවම් තද කිරීමෙන් වැලැක්වීමට ප්‍රයෝජනවත් වේ."
+    },
+    "contactFeedbackTitle": {
+        "message": "සම්බන්ධතා සහ ප්‍රතිපෝෂණ"
+    },
+    "feedbackText1": {
+        "message": "ඔබට කිසියම් ප්‍රතිපෝෂණයක් බෙදා ගැනීමට අවශ්‍ය නම් හෝ ඔබට ගැටලුවක් ඇත්නම්, කරුණාකර දිගුවේ GitHub පිටුවට පිවිසෙන්න:"
+    },
+    "githubLink": {
+        "message": "GitHub - අවධානය වෙනතකට යොමු කිරීමට එරෙහිව ආරක්ෂාව"
+    },
+    "feedbackText2": {
+        "message": "එහිදී, 'ගැටළු' ටැබය වෙත ගොස් 'නව නිකුතුව' හරිත බොත්තම ක්ලික් කරන්න. මාතෘකාව සහ විස්තරය පුරවා 'නව නිකුතුව ඉදිරිපත් කරන්න' ඔබන්න."
+    },
+    "thanks": {
+        "message": "ස්තුතියි."
+    },
+    "instructionGuideLink": {
+        "message": "උපදෙස් මාර්ගෝපදේශය"
+    },
+    "description": {
+        "message": "ඔවුන්ගේ පිටුවල දිස්වන පාඨ මත පදනම්ව වෙබ් අඩවි අවහිර කිරීමට ඔබට ඉඩ සලසයි."
+    },
+    "dailyLimitReached": {
+        "message": "දෛනික සීමාව ළඟා විය"
+    },
+    "exportButton": {
+        "message": "අපනයනය කරන්න"
+    },
+    "importButton": {
+        "message": "ආනයනය කරන්න"
+    },
+    "themeModeLabel": {
+        "message": "UI මාදිලිය"
+    },
+    "themeModeSystemOption": {
+        "message": "පද්ධතිය"
+    },
+    "themeModeDarkOption": {
+        "message": "අඳුරු"
+    },
+    "themeModeLightOption": {
+        "message": "ආලෝකය"
+    },
+    "elementRulesLabel": {
+        "message": "අවහිර කළ UI"
+    },
+    "noElementRulesLabel": {
+        "message": "අවහිර කළ UI මූලද්‍රව්‍ය නැත"
+    }
+}
