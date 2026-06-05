@@ -55,6 +55,8 @@ Run `npm run verify:release` after packaging to check that generated archives ma
 
 The `dist/` directory is generated output and is not the source of truth. If a file in `dist/source/` looks stale, rerun `npm run package` instead of editing the generated copy directly.
 
+Chrome Web Store API release helpers are documented in [Chrome Web Store API](docs/chrome-web-store-api.md). They use environment variables for OAuth credentials and never store CWS secrets in the repository.
+
 ## Project Structure
 
 - `_locales/` contains translated extension messages.

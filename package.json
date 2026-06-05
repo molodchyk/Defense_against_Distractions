@@ -4,6 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "cws:status": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/chrome-web-store-api.ps1 -Action status",
+    "cws:upload": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/chrome-web-store-api.ps1 -Action upload",
+    "cws:publish": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/chrome-web-store-api.ps1 -Action publish",
     "package": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/package-extension.ps1",
     "verify:release": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/verify-release.ps1",
     "test": "node --test test/*.test.js"

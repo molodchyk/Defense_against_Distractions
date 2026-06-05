@@ -63,4 +63,5 @@ Use this checklist before publishing a new extension release.
 
 - Upload `dist/Defense_against_Distractions-vX.Y.Z-extension.zip` as the extension package.
 - Use `dist/Defense_against_Distractions-vX.Y.Z-source.zip` when a source archive is needed.
+- Optionally use `npm run cws:status`, `npm run cws:upload`, and `npm run cws:publish` after setting the CWS API environment variables documented in `docs/chrome-web-store-api.md`.
 - Tag the release with the same version as `manifest.json`.
