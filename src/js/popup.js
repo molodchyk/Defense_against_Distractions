@@ -35,7 +35,6 @@ import {
 } from './popup/dom.js';
 import {
   formatClock,
-  formatCount,
   formatDuration,
   formatShortDuration,
   getBreakDurationMs,
@@ -45,6 +44,9 @@ import {
   getMessage,
   localizePopup
 } from './popup/i18n.js';
+import {
+  createPageSignalsPanel
+} from './popup/pageSignalsPanel.js';
 
 const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 const MAX_VISITS_IN_POPUP = 4;
@@ -55,10 +57,20 @@ let blockDiagnosticsRefreshInterval = null;
 let cachedPlans = [];
 let latestActiveTab = null;
 let latestBlockDebugState = null;
-let latestPageSignalSnapshot = null;
 let latestPomodoroPayload = null;
 let latestIntentDebugState = null;
 let activePopupPane = 'actions';
+
+const pageSignalsPanel = createPageSignalsPanel({
+  getMessage,
+  getActiveTab,
+  isExtensionPage,
+  sendTabMessage,
+  onActiveTabChange(activeTab) {
+    latestActiveTab = activeTab || null;
+    renderProtectionSummary();
+  }
+});
 
 function setStatus(message) {
   const status = document.getElementById('statusText');
@@ -389,38 +401,6 @@ async function openPomodoroMiniPanel() {
   window.close();
 }
 
-function setPageSignalsUnavailable(message = getMessage('popupUnavailableLabel')) {
-  latestPageSignalSnapshot = null;
-  document.getElementById('pageSignalsStatus').textContent = message;
-  [
-    'pageSignalImageCount',
-    'pageSignalVideoCount',
-    'pageSignalAudioCount',
-    'pageSignalGifCount',
-    'pageSignalEmojiCount',
-    'pageSignalLinkCount'
-  ].forEach(elementId => {
-    document.getElementById(elementId).textContent = '--';
-  });
-}
-
-function renderPageSignals(response) {
-  const signals = response?.signals;
-  if (!signals) {
-    setPageSignalsUnavailable();
-    return;
-  }
-
-  latestPageSignalSnapshot = response;
-  document.getElementById('pageSignalsStatus').textContent = getMessage('popupCurrentTabStatus');
-  document.getElementById('pageSignalImageCount').textContent = formatCount(signals.media?.imageCount);
-  document.getElementById('pageSignalVideoCount').textContent = formatCount(signals.media?.videoCount);
-  document.getElementById('pageSignalAudioCount').textContent = formatCount(signals.media?.audioCount);
-  document.getElementById('pageSignalGifCount').textContent = formatCount(signals.media?.gifCount);
-  document.getElementById('pageSignalEmojiCount').textContent = formatCount(signals.text?.emojiCount);
-  document.getElementById('pageSignalLinkCount').textContent = formatCount(signals.interaction?.linkCount);
-}
-
 function setBlockDiagnosticsUnavailable(message = getMessage('popupUnavailableLabel')) {
   latestBlockDebugState = null;
   const status = document.getElementById('blockDiagnosticsStatus');
@@ -548,19 +528,6 @@ async function refreshBlockDiagnostics() {
   }
 
   renderBlockDiagnostics(debugState);
-}
-
-async function refreshPageSignals() {
-  const activeTab = await getActiveTab();
-  latestActiveTab = activeTab || null;
-  renderProtectionSummary();
-
-  if (!activeTab?.id || isExtensionPage(activeTab.url)) {
-    setPageSignalsUnavailable(getMessage('popupNoPageLabel'));
-    return;
-  }
-
-  renderPageSignals(await sendTabMessage(activeTab.id, { action: 'getPageSignalSnapshot' }));
 }
 
 function renderPomodoroTimeline(payload) {
@@ -771,7 +738,7 @@ async function refreshIntentDiagnostics() {
   const activeTab = await getActiveTab();
   latestActiveTab = activeTab || null;
 
-  await refreshPageSignals();
+  await pageSignalsPanel.refresh();
 
   if (activeTab?.id && !isExtensionPage(activeTab.url)) {
     await sendTabMessage(activeTab.id, { action: 'reportIntentPageSignals' });
@@ -970,7 +937,7 @@ function buildPopupDiagnosticsPayload() {
       }
     },
     block: latestBlockDebugState,
-    pageSignals: latestPageSignalSnapshot,
+    pageSignals: pageSignalsPanel.getSnapshot(),
     pomodoro: getCompactPomodoroDiagnostics(),
     intent: getCompactIntentDiagnostics()
   };
@@ -1035,7 +1002,7 @@ async function initializePopup() {
           renderProtectionSummary();
           renderPomodoroState(latestPomodoroPayload);
           renderBlockDiagnostics(latestBlockDebugState);
-          renderPageSignals(latestPageSignalSnapshot);
+          pageSignalsPanel.render(pageSignalsPanel.getSnapshot());
           renderIntentDiagnostics(latestIntentDebugState);
         })
         .catch(error => {

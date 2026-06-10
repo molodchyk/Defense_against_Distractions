@@ -12,7 +12,7 @@ The detailed modularization target, dependency rules, file-size budgets, and mig
 
 `src/js/options` contains options-page-only UI helpers and page behavior.
 
-`src/js/popup` contains popup-only helper modules. The root `src/js/popup.js` is still the popup entry point, but generic Chrome messaging, DOM helpers, formatting helpers, and popup i18n now live in `src/js/popup/chrome.js`, `src/js/popup/dom.js`, `src/js/popup/format.js`, and `src/js/popup/i18n.js`. Future popup work should move one feature panel at a time out of the entry file.
+`src/js/popup` contains popup-only helper modules. The root `src/js/popup.js` is still the popup entry point, but generic Chrome messaging, DOM helpers, formatting helpers, popup i18n, and the Page Signals panel now live in `src/js/popup/chrome.js`, `src/js/popup/dom.js`, `src/js/popup/format.js`, `src/js/popup/i18n.js`, and `src/js/popup/pageSignalsPanel.js`. Future popup work should move one feature panel at a time out of the entry file.
 
 `src/js/shared` contains ES modules used by option/background code and tests.
 
