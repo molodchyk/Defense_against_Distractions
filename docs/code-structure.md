@@ -23,6 +23,7 @@ Plan behavior is split by runtime:
 - `src/js/shared/plans.js` owns the tested ES-module plan model used by options code.
 - `src/js/options/plans.js` owns the options-page plan UI.
 - `src/js/options/planMessages.js` owns plan-editor fallback text and UI-language message resolution.
+- `src/js/options/planFacts.js` owns compact plan summary/fact-list rendering for plan rows and plan detail headers.
 - `src/js/options/scheduleBoard.js` owns the reusable weekly schedule board used by plan schedules.
 - `src/js/content/plans.js` owns the non-module content-script adapter used by website blocking and UI-rule filtering.
 
