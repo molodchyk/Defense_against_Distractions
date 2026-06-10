@@ -30,14 +30,8 @@ import {
 } from './popup/chrome.js';
 import {
   copyTextToClipboard,
-  createTimelineRow,
   setTextWithTitle
 } from './popup/dom.js';
-import {
-  formatClock,
-  formatDuration,
-  getBreakDurationMs
-} from './popup/format.js';
 import {
   getMessage,
   localizePopup
@@ -51,15 +45,15 @@ import {
 import {
   createIntentDiagnosticsPanel
 } from './popup/intentDiagnosticsPanel.js';
+import {
+  createPomodoroPanel
+} from './popup/pomodoroPanel.js';
 
 const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-const POMODORO_RUNNING_PHASES = new Set(['work', 'shortBreak', 'longBreak']);
-const POMODORO_BREAK_PHASES = new Set(['shortBreak', 'longBreak']);
 let pomodoroRefreshInterval = null;
 let blockDiagnosticsRefreshInterval = null;
 let cachedPlans = [];
 let latestActiveTab = null;
-let latestPomodoroPayload = null;
 let activePopupPane = 'actions';
 
 const pageSignalsPanel = createPageSignalsPanel({
@@ -99,6 +93,21 @@ const intentDiagnosticsPanel = createIntentDiagnosticsPanel({
   },
   onStateChange() {
     renderProtectionSummary();
+  }
+});
+
+const pomodoroPanel = createPomodoroPanel({
+  getMessage,
+  getActiveTab,
+  isExtensionPage,
+  sendRuntimeMessage,
+  sendTabMessage,
+  setStatus,
+  onStateChange() {
+    renderProtectionSummary();
+  },
+  async onAfterCommand() {
+    await refreshBlockDiagnostics();
   }
 });
 
@@ -231,79 +240,6 @@ function getProtectionPageSummary(activeTab = latestActiveTab) {
   };
 }
 
-function getPomodoroSummary(payload = latestPomodoroPayload) {
-  if (payload?.autoStartSuppression?.active) {
-    return {
-      state: 'idle',
-      text: payload.autoStartSuppression.global
-        ? getMessage('popupAutoStartPaused')
-        : getMessage('popupAutoStartDelayed')
-    };
-  }
-
-  const phase = payload?.timerStatus?.phase || payload?.runtime?.phase || 'idle';
-  const phaseLabel = payload?.timerStatus?.phaseLabel || getMessage('popupIdleLabel');
-  const remainingText = payload?.timerStatus?.remainingText || '0:00';
-  const planName = payload?.plan?.name || '';
-
-  if (POMODORO_BREAK_PHASES.has(phase)) {
-    return {
-      state: 'active',
-      text: getMessage('popupPomodoroStateSummary', [phaseLabel, remainingText])
-    };
-  }
-
-  if (phase === 'work') {
-    return {
-      state: 'ready',
-      text: getMessage('popupWorkSummary', [remainingText])
-    };
-  }
-
-  if (phase === 'paused') {
-    return {
-      state: 'idle',
-      text: getMessage('popupPausedSummary', [remainingText])
-    };
-  }
-
-  if (phase === 'completed') {
-    return {
-      state: 'ready',
-      text: getMessage('popupRestSatisfied')
-    };
-  }
-
-  return {
-    state: 'idle',
-    text: planName || getMessage('popupNotRunning')
-  };
-}
-
-function getPomodoroPolicyText(payload = latestPomodoroPayload) {
-  const pomodoro = payload?.plan?.pomodoro || {};
-  const strictText = pomodoro.strictBreaks ? getMessage('popupStrictBreaks') : getMessage('popupAdvisoryBreaks');
-  const startText = pomodoro.autoStart ? getMessage('popupAutoStart') : getMessage('popupManualStart');
-  return `${strictText} - ${startText}`;
-}
-
-function getPomodoroAutoStartSuppressionText(payload = latestPomodoroPayload) {
-  const suppression = payload?.autoStartSuppression;
-  if (!suppression?.active) {
-    return '';
-  }
-
-  if (Number(suppression.remainingMs) > 0) {
-    return getMessage('popupAutoStartDelayedFor', [formatDuration(suppression.remainingMs)]);
-  }
-
-  if (suppression.global) {
-    return getMessage('popupAutoStartPausedUntilStart');
-  }
-
-  return getMessage('popupAutoStartPaused');
-}
-
 function getOverallProtectionState(summaries, activePlans) {
   if (summaries.some(summary => summary.state === 'active')) {
     return {
@@ -328,7 +264,7 @@ function getOverallProtectionState(summaries, activePlans) {
 function renderProtectionSummary() {
   const activePlans = getActivePlans();
   const pageSummary = getProtectionPageSummary();
-  const pomodoroSummary = getPomodoroSummary();
+  const pomodoroSummary = pomodoroPanel.getSummary();
   const intentSummary = intentDiagnosticsPanel.getSummary();
   const overall = getOverallProtectionState([pageSummary, pomodoroSummary, intentSummary], activePlans);
   const badge = document.getElementById('protectionStatusBadge');
@@ -380,119 +316,8 @@ async function startElementPicker() {
   });
 }
 
-async function openPomodoroMiniPanel() {
-  const activeTab = await getActiveTab();
-
-  if (!activeTab?.id || isExtensionPage(activeTab.url)) {
-    setStatus(getMessage('popupOpenPageBeforePicking'));
-    return;
-  }
-
-  const response = await sendTabMessage(activeTab.id, { action: 'showPomodoroMiniPanel' });
-  if (!response || response.status === 'error') {
-    setStatus(response?.reason || getMessage('popupReloadBeforePicking'));
-    return;
-  }
-
-  setStatus(getMessage('popupTimerPanelOpened'));
-  window.close();
-}
-
 function refreshBlockDiagnostics() {
   return blockDiagnosticsPanel.refresh();
-}
-
-function renderPomodoroTimeline(payload) {
-  const list = document.getElementById('pomodoroTimelineList');
-  const runtime = payload?.runtime || {};
-  const status = payload?.timerStatus || {};
-  const activityStatus = payload?.activityStatus || {};
-  const phase = status.phase || runtime.phase || 'idle';
-  const settings = status.settings || {};
-  const upcomingBreakMs = getBreakDurationMs(phase, settings, status.completedWorkSessions || 0);
-  const rawRestCreditMs = Number(status.restCreditMs || 0);
-  const restCreditMs = upcomingBreakMs > 0
-    ? Math.min(rawRestCreditMs, upcomingBreakMs)
-    : rawRestCreditMs;
-  const restStillNeededMs = Math.max(0, upcomingBreakMs - restCreditMs);
-  const historyTotals = payload?.history?.totals || {};
-  const suppressionText = getPomodoroAutoStartSuppressionText(payload);
-  const rows = [];
-
-  if (payload?.protectedScheduleActive) {
-    rows.push(createTimelineRow(
-      getMessage('popupPomodoroProtectedScheduleControls'),
-      getMessage('popupPomodoroProtectedScheduleReason')
-    ));
-  }
-
-  if (phase === 'work') {
-    rows.push(createTimelineRow(getMessage('pomodoroWorkStartedLabel', 'Work started'), formatClock(runtime.phaseStartedAt)));
-    rows.push(createTimelineRow(getMessage('pomodoroNextBreakLabel', 'Next break'), formatClock(runtime.phaseEndsAt)));
-    rows.push(createTimelineRow(getMessage('pomodoroRequiredRestLabel', 'Required rest'), formatDuration(upcomingBreakMs)));
-    rows.push(createTimelineRow(getMessage('pomodoroRestCreditedLabel', 'Rest already credited'), formatDuration(restCreditMs)));
-    rows.push(createTimelineRow(getMessage('pomodoroRestStillNeededLabel', 'Rest still needed'), formatDuration(restStillNeededMs)));
-    if (upcomingBreakMs > 0 && restStillNeededMs <= 0) {
-      rows.push(createTimelineRow(getMessage('pomodoroReturnBehaviorLabel'), getMessage('pomodoroReturnStartsNewWork')));
-    }
-  } else if (phase === 'shortBreak' || phase === 'longBreak') {
-    rows.push(createTimelineRow(getMessage('pomodoroBreakStartedLabel', 'Break started'), formatClock(runtime.phaseStartedAt)));
-    rows.push(createTimelineRow(getMessage('pomodoroBreakEndsLabel', 'Break ends'), formatClock(runtime.phaseEndsAt)));
-    rows.push(createTimelineRow(getMessage('pomodoroRequiredRestLabel', 'Required rest'), formatDuration(upcomingBreakMs)));
-    rows.push(createTimelineRow(getMessage('pomodoroNextWorkLabel', 'Next work'), getMessage('pomodoroNextWorkAfterRestLabel', 'after rest is done')));
-  } else if (phase === 'completed') {
-    rows.push(createTimelineRow(getMessage('pomodoroRestSatisfiedLabel', 'Rest satisfied'), formatClock(runtime.phaseStartedAt || runtime.lastCompletedAt)));
-    rows.push(createTimelineRow(getMessage('pomodoroNextWorkLabel', 'Next work'), getMessage('pomodoroNextWorkOnActivityLabel', 'when activity returns')));
-    rows.push(createTimelineRow(getMessage('pomodoroCompletedBlocksLabel', 'Completed work blocks'), String(status.completedWorkSessions || 0)));
-  } else if (phase === 'paused') {
-    rows.push(createTimelineRow(getMessage('pomodoroPausedAtLabel', 'Paused at'), formatClock(runtime.pausedAt)));
-    rows.push(createTimelineRow(getMessage('pomodoroPausedPhaseLabel', 'Paused phase'), runtime.pausedPhase || '--'));
-    rows.push(createTimelineRow(getMessage('pomodoroRemainingLabel', 'Remaining'), status.remainingText || '--'));
-  } else {
-    rows.push(createTimelineRow(
-      getMessage('pomodoroTimerStateLabel', 'Timer state'),
-      payload?.canStart ? getMessage('pomodoroReadyToStartLabel', 'ready to start') : getMessage('popupNoActivePlan')
-    ));
-    rows.push(createTimelineRow(
-      getMessage('pomodoroConfiguredCycleLabel', 'Configured cycle'),
-      getMessage('popupConfiguredCycle', [Number(settings.workMinutes || 0), Number(settings.shortBreakMinutes || 0)])
-    ));
-  }
-
-  if (activityStatus.stateLabel) {
-    rows.push(createTimelineRow(getMessage('popupActivityStateLabel', 'System state'), formatPomodoroActivityText(activityStatus, false)));
-    rows.push(createTimelineRow(
-      getMessage('popupLastActivityLabel', 'Last activity'),
-      activityStatus.idleForText === 'unknown'
-        ? getMessage('popupUnknownLabel')
-        : getMessage('popupLastActivityAgo', [activityStatus.idleForText])
-    ));
-  }
-
-  if (suppressionText) {
-    rows.push(createTimelineRow(getMessage('popupAutoStartTimelineLabel'), suppressionText));
-  }
-
-  rows.push(createTimelineRow(getMessage('pomodoroHistoryTodayLabel'), [
-    getMessage('pomodoroHistoryWorkSessionsLabel'),
-    String(historyTotals.workSessionsCompleted || 0)
-  ].join(': ')));
-  rows.push(createTimelineRow(getMessage('pomodoroHistoryCreditedRestLabel'), formatDuration(historyTotals.creditedRestMs || 0)));
-  rows.push(createTimelineRow(getMessage('pomodoroHistorySkippedBreaksLabel'), String(historyTotals.skippedBreaks || 0)));
-
-  list.replaceChildren(...rows);
-}
-
-function formatPomodoroActivityText(activityStatus = {}, includeActiveToday = true) {
-  const stateLabel = activityStatus.stateLabel || getMessage('popupActivityUnknownLabel');
-  const isSystemAway = activityStatus.systemState === 'idle' || activityStatus.systemState === 'locked';
-  const stateDuration = activityStatus.systemStateForText || getMessage('popupUnknownLabel');
-  const activeToday = activityStatus.activeTodayText || '0s';
-  const stateText = isSystemAway
-    ? getMessage('popupStateForDuration', [stateLabel, stateDuration])
-    : getMessage('popupStateLastActivity', [stateLabel, activityStatus.idleForText || getMessage('popupUnknownLabel')]);
-
-  return includeActiveToday ? getMessage('popupActivityWithActiveToday', [stateText, activeToday]) : stateText;
 }
 
 function refreshIntentDiagnostics() {
@@ -503,108 +328,21 @@ function clearIntentDiagnostics() {
   return intentDiagnosticsPanel.clear();
 }
 
-function renderPomodoroState(payload) {
-  latestPomodoroPayload = payload || null;
-  const phase = payload?.timerStatus?.phase || 'idle';
-  const phaseLabel = payload?.timerStatus?.phaseLabel || getMessage('popupIdleLabel');
-  const remainingText = payload?.timerStatus?.remainingText || '0:00';
-  const completedWorkSessions = payload?.timerStatus?.completedWorkSessions || 0;
-  const planName = payload?.plan?.name || getMessage('popupNoActivePomodoroPlan');
-  const activityStatus = payload?.activityStatus;
-  const isRunning = POMODORO_RUNNING_PHASES.has(phase);
-  const isPaused = phase === 'paused';
-  const isIdle = phase === 'idle';
-  const isCompleted = phase === 'completed';
-  const canStart = isIdle || isCompleted;
-  const suppressionText = getPomodoroAutoStartSuppressionText(payload);
-  const phaseBadge = document.getElementById('pomodoroPhaseText');
-  const protectedScheduleActive = Boolean(payload?.protectedScheduleActive);
-  const protectedScheduleReason = getMessage('popupPomodoroProtectedScheduleReason');
-
-  phaseBadge.textContent = phaseLabel;
-  phaseBadge.dataset.state = phase;
-  document.getElementById('pomodoroRemainingText').textContent = remainingText;
-  setTextWithTitle('pomodoroPlanText', planName);
-  setTextWithTitle(
-    'pomodoroSessionText',
-    [
-      getMessage('popupWorkSessionsCompleted', [completedWorkSessions]),
-      getPomodoroPolicyText(payload),
-      suppressionText
-    ].filter(Boolean).join(' · ')
-  );
-  setTextWithTitle(
-    'pomodoroActivityText',
-    activityStatus ? formatPomodoroActivityText(activityStatus) : getMessage('popupActivityUnknownLabel')
-  );
-  renderPomodoroTimeline(payload);
-
-  const startButton = document.getElementById('startPomodoroButton');
-  const pauseButton = document.getElementById('pausePomodoroButton');
-  const resumeButton = document.getElementById('resumePomodoroButton');
-  const resetButton = document.getElementById('resetPomodoroButton');
-
-  startButton.disabled = !payload?.canStart || !canStart;
-  pauseButton.disabled = protectedScheduleActive || !isRunning;
-  resumeButton.disabled = !isPaused;
-  resetButton.disabled = protectedScheduleActive || isIdle;
-  pauseButton.title = protectedScheduleActive ? protectedScheduleReason : '';
-  resetButton.title = protectedScheduleActive ? protectedScheduleReason : '';
-  renderProtectionSummary();
+function refreshPomodoroState() {
+  return pomodoroPanel.refresh();
 }
 
-async function refreshPomodoroState() {
-  const payload = await sendRuntimeMessage({ action: 'getPomodoroState' });
-  renderPomodoroState(payload);
-}
-
-async function runPomodoroCommand(action) {
-  const response = await sendRuntimeMessage({ action });
-  if (response?.status === 'error') {
-    setStatus(response.reason || getMessage('popupPomodoroActionFailed'));
-    await refreshPomodoroState();
-    return;
-  }
-
-  if (action === 'resetPomodoro') {
-    const activeTab = await getActiveTab();
-    if (activeTab?.id && !isExtensionPage(activeTab.url)) {
-      await sendTabMessage(activeTab.id, { action: 'clearPomodoroStrictBreakBlock' });
-    }
-  }
-
-  renderPomodoroState(response);
-  await refreshBlockDiagnostics();
+function runPomodoroCommand(action) {
+  return pomodoroPanel.runCommand(action);
 }
 
 function getElementText(elementId) {
   return document.getElementById(elementId)?.textContent || '';
 }
 
-function getCompactPomodoroDiagnostics(payload = latestPomodoroPayload) {
-  if (!payload) {
-    return null;
-  }
-
-  return {
-    runtime: payload.runtime || null,
-    timerStatus: payload.timerStatus || null,
-    plan: payload.plan ? {
-      id: payload.plan.id,
-      name: payload.plan.name,
-      active: payload.plan.active,
-      pomodoro: payload.plan.pomodoro
-    } : null,
-    activityStatus: payload.activityStatus || null,
-    history: payload.history || null,
-    canStart: Boolean(payload.canStart),
-    autoStartSuppression: payload.autoStartSuppression || null
-  };
-}
-
 function buildPopupDiagnosticsPayload() {
   const pageSummary = getProtectionPageSummary();
-  const pomodoroSummary = getPomodoroSummary();
+  const pomodoroSummary = pomodoroPanel.getSummary();
   const intentSummary = intentDiagnosticsPanel.getSummary();
   const activePlans = getActivePlans();
 
@@ -642,7 +380,7 @@ function buildPopupDiagnosticsPayload() {
     },
     block: blockDiagnosticsPanel.getDebugState(),
     pageSignals: pageSignalsPanel.getSnapshot(),
-    pomodoro: getCompactPomodoroDiagnostics(),
+    pomodoro: pomodoroPanel.getCompactDiagnostics(),
     intent: intentDiagnosticsPanel.getCompactDiagnostics()
   };
 }
@@ -704,7 +442,7 @@ async function initializePopup() {
         .then(() => {
           localizePopup();
           renderProtectionSummary();
-          renderPomodoroState(latestPomodoroPayload);
+          pomodoroPanel.render(pomodoroPanel.getPayload());
           blockDiagnosticsPanel.render(blockDiagnosticsPanel.getDebugState());
           pageSignalsPanel.render(pageSignalsPanel.getSnapshot());
           intentDiagnosticsPanel.render(intentDiagnosticsPanel.getDebugState());
@@ -721,7 +459,7 @@ async function initializePopup() {
   document.getElementById('pausePomodoroButton').addEventListener('click', () => runPomodoroCommand('pausePomodoro'));
   document.getElementById('resumePomodoroButton').addEventListener('click', () => runPomodoroCommand('resumePomodoro'));
   document.getElementById('resetPomodoroButton').addEventListener('click', () => runPomodoroCommand('resetPomodoro'));
-  document.getElementById('openPomodoroPanelButton').addEventListener('click', openPomodoroMiniPanel);
+  document.getElementById('openPomodoroPanelButton').addEventListener('click', () => pomodoroPanel.openMiniPanel());
   document.getElementById('refreshBlockDiagnosticsButton').addEventListener('click', refreshBlockDiagnostics);
   document.getElementById('copyDiagnosticsButton').addEventListener('click', copyPopupDiagnostics);
   document.getElementById('refreshIntentButton').addEventListener('click', refreshIntentDiagnostics);
