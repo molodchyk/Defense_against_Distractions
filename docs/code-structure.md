@@ -33,7 +33,10 @@ Plan behavior is split by runtime:
 - `src/js/options/planPomodoroEditor.js` owns plan Pomodoro settings UI, runtime status rendering, runtime command buttons, and active-page polling. `plans.js` still owns persistence and protected-schedule checks through explicit callbacks.
 - `src/js/options/planScheduleEditor.js` owns plan schedule UI, draft and selected-schedule state, schedule graph expansion state, schedule persistence, and schedule validation. `plans.js` supplies the render callback and clears schedule UI state when a plan is deleted.
 - `src/js/options/planScheduleModel.js` owns plan-schedule normalization helpers shared by migration and the schedule editor.
-- `src/js/options/scheduleBoard.js` owns the reusable weekly schedule board used by plan schedules.
+- `src/js/options/scheduleBoard.js` owns the reusable weekly schedule graph and drag/resize interaction used by plan schedules.
+- `src/js/options/scheduleBoardInspector.js` owns the schedule inspector form, day presets, recurrence controls, validation message, and action buttons.
+- `src/js/options/scheduleBoardModel.js` owns pure schedule-board helpers such as schedule cloning, selected-draft resolution, date normalization, recurrence bounds, and draft completeness checks.
+- `src/js/options/scheduleBoardSummary.js` owns the compact saved-time-block summary shown above the schedule graph.
 - `src/js/content/plans.js` owns the non-module content-script adapter used by website blocking and UI-rule filtering.
 
 Legacy standalone groups, schedules, and whitelist entries are migration inputs. The options page first converts old `websiteGroups` arrays into `group_*` records with an awaitable migration, then migrates `group_*` records into plan-owned entries, `schedules` into plan schedules, and `whitelistedSites` into plan allowed sites. The retired standalone editor modules have been removed; future compatibility work should happen in `src/js/options/legacyMigration.js`, `src/js/shared/legacyMigration.js`, and the plan model instead of reintroducing hidden global editors.

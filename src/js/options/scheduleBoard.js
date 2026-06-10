@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
-import { formatScheduleTime } from '../shared/scheduleForm.js';
 import {
   createScheduleRangeFromAnchor,
   getScheduleRange,
@@ -13,24 +12,18 @@ import {
   SCHEDULE_GRID_DAYS,
   SCHEDULE_GRID_HOUR_HEIGHT
 } from '../shared/scheduleGrid.js';
-import { getScheduleActivityCounts, timeStringToMinutes } from '../shared/scheduleTime.js';
-import { formatScheduleActivitySummary } from '../shared/scheduleSummary.js';
+import { createScheduleInspector } from './scheduleBoardInspector.js';
+import {
+  cloneSchedule,
+  cloneSchedules,
+  getSelectedSchedule,
+  getTodayDateString
+} from './scheduleBoardModel.js';
+import { summarizeSchedules } from './scheduleBoardSummary.js';
 
-const WEEKDAY_DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
-const WEEKEND_DAYS = ['Sat', 'Sun'];
 const DRAG_THRESHOLD_PX = 4;
-const MAX_WEEK_INTERVAL = 12;
 
-export function cloneSchedule(schedule = {}) {
-  return {
-    ...schedule,
-    days: Array.isArray(schedule.days) ? [...schedule.days] : []
-  };
-}
-
-export function cloneSchedules(schedules = []) {
-  return schedules.map(cloneSchedule);
-}
+export { cloneSchedule, cloneSchedules, isScheduleDraftComplete } from './scheduleBoardModel.js';
 
 export function createScheduleBoardWorkspace({
   schedules = [],
@@ -63,7 +56,19 @@ export function createScheduleBoardWorkspace({
     workspace.classList.add('schedule-workspace-readonly');
   }
   workspace.appendChild(createScheduleBoard());
-  workspace.appendChild(createScheduleInspector());
+  workspace.appendChild(createScheduleInspector({
+    selectedSchedule,
+    isCreateMode,
+    showScheduleNames,
+    readOnly,
+    message,
+    onDraftChange,
+    onSave,
+    onCancel,
+    onDelete,
+    canDeleteSchedule,
+    canDeselectDay
+  }));
   return workspace;
 
   function createScheduleBoard() {
@@ -77,7 +82,7 @@ export function createScheduleBoardWorkspace({
     title.textContent = getMessage('scheduleWeeklyBoardTitle', 'Weekly schedule');
 
     const summary = document.createElement('p');
-    summary.textContent = summarizeSchedules(normalizedSchedules);
+    summary.textContent = summarizeSchedules(normalizedSchedules, getMessage);
 
     header.appendChild(title);
     header.appendChild(summary);
@@ -402,323 +407,9 @@ export function createScheduleBoardWorkspace({
     }
   }
 
-  function createScheduleInspector() {
-    const inspector = document.createElement('section');
-    inspector.className = 'schedule-inspector';
-
-    if (!selectedSchedule) {
-      const title = document.createElement('h3');
-      title.textContent = isCreateMode
-        ? getMessage('scheduleCreateTitle', 'New time block')
-        : getMessage('scheduleSelectedTitle', 'Selected schedule');
-      const empty = document.createElement('p');
-      empty.className = 'schedule-inspector-empty';
-      empty.textContent = isCreateMode
-        ? getMessage('scheduleCreateInstructionMessage', 'Click and drag on the weekly grid to draft the new time block. It is saved only after you press Save.')
-        : getMessage(
-          'scheduleEmptySelectionMessage',
-          'Click and drag in the weekly grid to create a time block, or select an existing block to edit it.'
-        );
-      inspector.appendChild(title);
-      inspector.appendChild(empty);
-      return inspector;
-    }
-
-    const header = document.createElement('div');
-    header.className = 'schedule-inspector-header';
-
-    const title = document.createElement('h3');
-    title.textContent = getMessage('scheduleSelectedTitle', 'Selected schedule');
-
-    header.appendChild(title);
-    inspector.appendChild(header);
-
-    if (showScheduleNames) {
-      inspector.appendChild(createTextField('scheduleNameLabel', 'Schedule Name', selectedSchedule.name, value => {
-        onDraftChange?.({
-          ...selectedSchedule,
-          name: value
-        });
-      }));
-    }
-
-    inspector.appendChild(createTimeFields(selectedSchedule));
-    inspector.appendChild(createRecurrenceFields(selectedSchedule));
-    inspector.appendChild(createDayPicker(selectedSchedule));
-    const validationMessage = getScheduleValidationMessage(selectedSchedule);
-    if (validationMessage) {
-      const warning = document.createElement('p');
-      warning.className = 'schedule-validation-message';
-      warning.textContent = validationMessage;
-      inspector.appendChild(warning);
-    }
-    inspector.appendChild(createScheduleActions(selectedSchedule));
-    return inspector;
-  }
-
-  function createTextField(labelKey, fallback, value, onChange) {
-    const field = document.createElement('label');
-    field.className = 'schedule-inspector-field';
-
-    const label = document.createElement('span');
-    label.textContent = getMessage(labelKey, fallback);
-
-    const input = document.createElement('input');
-    input.type = 'text';
-    input.value = value || '';
-    input.disabled = readOnly;
-    input.addEventListener('change', () => onChange(input.value.trim()));
-
-    field.appendChild(label);
-    field.appendChild(input);
-    return field;
-  }
-
-  function createTimeFields(schedule) {
-    const grid = document.createElement('div');
-    grid.className = 'schedule-time-fields';
-
-    grid.appendChild(createTimeField('startTimeLabel', 'Start Time', schedule.startTime, value => {
-      onDraftChange?.({
-        ...schedule,
-        startTime: value
-      });
-    }));
-
-    grid.appendChild(createTimeField('endTimeLabel', 'End Time', schedule.endTime, value => {
-      onDraftChange?.({
-        ...schedule,
-        endTime: value
-      });
-    }));
-
-    return grid;
-  }
-
-  function createRecurrenceFields(schedule) {
-    const grid = document.createElement('div');
-    grid.className = 'schedule-time-fields schedule-recurrence-fields';
-
-    const intervalField = document.createElement('label');
-    intervalField.className = 'schedule-inspector-field';
-
-    const intervalLabel = document.createElement('span');
-    intervalLabel.textContent = getMessage('scheduleWeekIntervalLabel', 'Repeat every N weeks');
-
-    const intervalInput = document.createElement('input');
-    intervalInput.type = 'number';
-    intervalInput.min = '1';
-    intervalInput.max = String(MAX_WEEK_INTERVAL);
-    intervalInput.step = '1';
-    intervalInput.value = String(normalizeWeekInterval(schedule.weekInterval));
-    intervalInput.disabled = readOnly;
-    intervalInput.addEventListener('change', () => {
-      onDraftChange?.({
-        ...schedule,
-        weekInterval: normalizeWeekInterval(intervalInput.value),
-        anchorDate: schedule.anchorDate || getTodayDateString()
-      });
-    });
-
-    intervalField.appendChild(intervalLabel);
-    intervalField.appendChild(intervalInput);
-    grid.appendChild(intervalField);
-
-    const anchorField = document.createElement('label');
-    anchorField.className = 'schedule-inspector-field';
-
-    const anchorLabel = document.createElement('span');
-    anchorLabel.textContent = getMessage('scheduleAnchorWeekLabel', 'Starting week');
-
-    const anchorInput = document.createElement('input');
-    anchorInput.type = 'date';
-    anchorInput.value = normalizeDateInput(schedule.anchorDate) || getTodayDateString();
-    anchorInput.disabled = readOnly;
-    anchorInput.addEventListener('change', () => {
-      onDraftChange?.({
-        ...schedule,
-        anchorDate: normalizeDateInput(anchorInput.value) || getTodayDateString()
-      });
-    });
-
-    anchorField.appendChild(anchorLabel);
-    anchorField.appendChild(anchorInput);
-    grid.appendChild(anchorField);
-
-    return grid;
-  }
-
-  function createTimeField(labelKey, fallback, value, onChange) {
-    const field = document.createElement('label');
-    field.className = 'schedule-inspector-field';
-
-    const label = document.createElement('span');
-    label.textContent = getMessage(labelKey, fallback);
-
-    const input = document.createElement('input');
-    input.type = 'time';
-    input.value = formatScheduleTime(value);
-    input.disabled = readOnly;
-    input.addEventListener('change', () => onChange(formatScheduleTime(input.value)));
-
-    field.appendChild(label);
-    field.appendChild(input);
-    return field;
-  }
-
-  function createDayPicker(schedule) {
-    const wrapper = document.createElement('div');
-    wrapper.className = 'schedule-day-picker';
-
-    const label = document.createElement('span');
-    label.className = 'schedule-day-picker-label';
-    label.textContent = getMessage('scheduleDaysLabel', 'Days');
-    wrapper.appendChild(label);
-
-    const dayGrid = document.createElement('div');
-    dayGrid.className = 'schedule-day-picker-grid';
-
-    SCHEDULE_GRID_DAYS.forEach(day => {
-      const button = document.createElement('button');
-      button.type = 'button';
-      button.className = `day-button${schedule.days.includes(day) ? ' selected' : ''}`;
-      button.textContent = getMessage(day, day);
-      button.disabled = readOnly;
-      button.addEventListener('click', () => toggleDraftDay(day, schedule));
-      dayGrid.appendChild(button);
-    });
-
-    wrapper.appendChild(dayGrid);
-
-    const presets = document.createElement('div');
-    presets.className = 'schedule-day-presets';
-    presets.appendChild(createPresetButton(getMessage('scheduleWorkdaysPreset', 'Workdays'), WEEKDAY_DAYS));
-    presets.appendChild(createPresetButton(getMessage('scheduleWeekendPreset', 'Weekend'), WEEKEND_DAYS));
-    presets.appendChild(createPresetButton(getMessage('scheduleEveryDayPreset', 'Every day'), SCHEDULE_GRID_DAYS));
-    presets.appendChild(createPresetButton(getMessage('scheduleClearPreset', 'Clear'), []));
-    wrapper.appendChild(presets);
-
-    return wrapper;
-  }
-
-  function createPresetButton(label, days) {
-    const button = document.createElement('button');
-    button.type = 'button';
-    button.className = 'schedule-preset-button';
-    button.textContent = label;
-    button.disabled = readOnly;
-    button.addEventListener('click', () => {
-      onDraftChange?.({
-        ...selectedSchedule,
-        days: SCHEDULE_GRID_DAYS.filter(day => days.includes(day))
-      });
-    });
-    return button;
-  }
-
-  function toggleDraftDay(day, schedule) {
-    if (readOnly) {
-      return;
-    }
-
-    const isSelected = schedule.days.includes(day);
-    if (isSelected && canDeselectDay && !canDeselectDay(day, schedule)) {
-      return;
-    }
-
-    onDraftChange?.({
-      ...schedule,
-      days: isSelected
-        ? schedule.days.filter(selectedDay => selectedDay !== day)
-        : [...schedule.days, day]
-    });
-  }
-
-  function createScheduleActions(schedule) {
-    const actions = document.createElement('div');
-    actions.className = 'schedule-actions';
-
-    const deleteButton = document.createElement('button');
-    deleteButton.type = 'button';
-    deleteButton.className = 'delete-button schedule-delete-button';
-    appendTrashIcon(deleteButton);
-    const deleteText = document.createElement('span');
-    deleteText.textContent = getMessage('deleteButtonLabel', 'Delete');
-    deleteButton.appendChild(deleteText);
-    deleteButton.disabled = readOnly || (canDeleteSchedule ? !canDeleteSchedule(schedule) : false);
-    deleteButton.addEventListener('click', () => onDelete?.());
-
-    const cancelButton = document.createElement('button');
-    cancelButton.type = 'button';
-    cancelButton.className = 'edit-button-schedule';
-    cancelButton.textContent = getMessage('cancelLabel', 'Cancel');
-    cancelButton.disabled = readOnly;
-    cancelButton.addEventListener('click', () => onCancel?.());
-
-    const saveButton = document.createElement('button');
-    saveButton.type = 'button';
-    saveButton.className = 'save-button-schedule';
-    saveButton.textContent = getMessage('saveButtonLabel', 'Save');
-    saveButton.disabled = readOnly || !isScheduleDraftComplete(schedule);
-    saveButton.addEventListener('click', () => onSave?.());
-
-    actions.appendChild(deleteButton);
-    actions.appendChild(cancelButton);
-    actions.appendChild(saveButton);
-    return actions;
-  }
-
-  function appendTrashIcon(button) {
-    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    svg.setAttribute('viewBox', '0 0 24 24');
-    svg.setAttribute('aria-hidden', 'true');
-    svg.setAttribute('focusable', 'false');
-
-    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-    path.setAttribute('d', 'M3 6h18M8 6V4h8v2m-1 5v6M9 11v6m-1 4h8a2 2 0 0 0 2-2V6H6v13a2 2 0 0 0 2 2Z');
-    svg.appendChild(path);
-    button.appendChild(svg);
-  }
-
-  function summarizeSchedules(currentSchedules) {
-    if (currentSchedules.length === 0) {
-      return getMessage('scheduleNoSchedulesMessage', 'No schedules yet.');
-    }
-
-    const counts = getScheduleActivityCounts(currentSchedules);
-    return formatScheduleActivitySummary(counts, {
-      getMessage,
-      includeSaved: true,
-      includeEnabled: false,
-      includeDisabled: false,
-      includeIncomplete: false,
-      savedSummaryKey: 'scheduleTimeBlocksSummaryPart',
-      savedSummaryFallback: `${counts.saved} time ${counts.saved === 1 ? 'block' : 'blocks'}`,
-      trailingPeriod: true
-    });
-  }
-
   function getMessage(key, fallback, substitutions) {
     return message ? message(key, fallback, substitutions) : fallback;
   }
-
-  function getScheduleValidationMessage(schedule) {
-    if (!Array.isArray(schedule.days) || schedule.days.length === 0) {
-      return getMessage('scheduleNeedsDayError', 'Select at least one day before saving this schedule.');
-    }
-
-    if (!hasValidScheduleTimeRange(schedule)) {
-      return getMessage('endTimeAfterStartTimeError', 'End time must be after start time.');
-    }
-
-    return '';
-  }
-}
-
-export function isScheduleDraftComplete(schedule = {}) {
-  return Array.isArray(schedule.days)
-    && schedule.days.length > 0
-    && hasValidScheduleTimeRange(schedule);
 }
 
 function isCurrentScheduleDay(day) {
@@ -742,45 +433,6 @@ function createCurrentTimeMarker(labelText) {
   return marker;
 }
 
-function normalizeWeekInterval(value) {
-  const interval = Number.parseInt(value, 10);
-  return Number.isFinite(interval) ? Math.min(Math.max(interval, 1), MAX_WEEK_INTERVAL) : 1;
-}
-
-function normalizeDateInput(value) {
-  const text = String(value || '').trim();
-  const match = text.match(/^(\d{4})-(\d{2})-(\d{2})$/);
-  if (!match) {
-    return '';
-  }
-
-  const [, year, month, day] = match;
-  const yearNumber = Number(year);
-  const monthNumber = Number(month);
-  const dayNumber = Number(day);
-  const date = new Date(yearNumber, monthNumber - 1, dayNumber);
-  return !Number.isNaN(date.getTime())
-    && date.getFullYear() === yearNumber
-    && date.getMonth() === monthNumber - 1
-    && date.getDate() === dayNumber
-    ? text
-    : '';
-}
-
-function getTodayDateString() {
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = String(now.getMonth() + 1).padStart(2, '0');
-  const day = String(now.getDate()).padStart(2, '0');
-  return `${year}-${month}-${day}`;
-}
-
-function hasValidScheduleTimeRange(schedule = {}) {
-  const startMinutes = timeStringToMinutes(schedule.startTime);
-  const endMinutes = timeStringToMinutes(schedule.endTime);
-  return Number.isFinite(startMinutes) && Number.isFinite(endMinutes) && endMinutes > startMinutes;
-}
-
 function runOptionalAsync(callback, ...args) {
   if (typeof callback !== 'function') {
     return;
@@ -794,20 +446,4 @@ function runOptionalAsync(callback, ...args) {
   } catch (error) {
     console.error('Schedule board action failed:', error);
   }
-}
-
-function getSelectedSchedule(schedules, selectedIndex, draftSchedule) {
-  if (selectedIndex === null) {
-    return null;
-  }
-
-  if (selectedIndex < 0) {
-    return draftSchedule ? cloneSchedule(draftSchedule) : null;
-  }
-
-  if (selectedIndex >= schedules.length) {
-    return null;
-  }
-
-  return draftSchedule ? cloneSchedule(draftSchedule) : cloneSchedule(schedules[selectedIndex]);
 }
