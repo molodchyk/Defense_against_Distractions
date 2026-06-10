@@ -7,6 +7,8 @@ This document tracks what must be true before publishing the current update.
 Run these from the project root:
 
 - `npm test`
+- `npm run verify:manifest`
+- `npm run audit:file-sizes`
 - `npm run package`
 - `npm run verify:release`
 

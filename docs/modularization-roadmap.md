@@ -250,8 +250,8 @@ Use compatibility wrappers and move one feature surface at a time.
 ### Phase 1: Guardrails
 
 - Add this roadmap.
-- Add a file-size audit script that reports files over the budget.
-- Add a manifest reference check so moved files cannot silently break extension loading.
+- Add a file-size audit script that reports files over the budget. Use `npm run audit:file-sizes` for reporting and `npm run audit:file-sizes:strict` when a hard threshold should fail.
+- Add a manifest reference check so moved files cannot silently break extension loading. Use `npm run verify:manifest`.
 - Split the large test file into feature-owned tests without changing assertions.
 
 ### Phase 2: Popup Split

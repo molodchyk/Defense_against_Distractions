@@ -9,6 +9,9 @@
     "cws:publish": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/chrome-web-store-api.ps1 -Action publish",
     "package": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/package-extension.ps1",
     "verify:release": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/verify-release.ps1",
+    "verify:manifest": "node scripts/check-manifest-references.mjs",
+    "audit:file-sizes": "node scripts/audit-file-sizes.mjs",
+    "audit:file-sizes:strict": "node scripts/audit-file-sizes.mjs --fail",
     "test": "node --test test/*.test.js"
   }
 }
