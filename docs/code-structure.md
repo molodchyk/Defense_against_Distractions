@@ -24,6 +24,8 @@ Plan behavior is split by runtime:
 - `src/js/options/plans.js` owns the options-page plan UI.
 - `src/js/options/planDom.js` owns reusable plan-editor DOM controls, destructive confirmation dialogs, and guarded action dispatch.
 - `src/js/options/planCollections.js` owns small plan-editor collection helpers shared by migration and editing flows.
+- `src/js/options/planEntriesEditor.js` owns plan detail rendering for the plan name, website/keyword entries, allowed sites, and assigned UI cleanup rules. It is UI-only; `plans.js` still owns storage mutation and protected-schedule checks.
+- `src/js/options/planElementRules.js` owns compact UI-rule summaries and storage keys used when plan rows reference global UI cleanup rules.
 - `src/js/options/planMessages.js` owns plan-editor fallback text and UI-language message resolution.
 - `src/js/options/planFacts.js` owns compact plan summary/fact-list rendering for plan rows and plan detail headers.
 - `src/js/options/planMigration.js` owns default-plan creation and one-way migration of legacy standalone groups, schedules, and whitelist entries into plan-owned records.

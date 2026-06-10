@@ -35,17 +35,21 @@ import {
   confirmDestructiveAction,
   createButton,
   createCheckboxInput,
-  createCheckboxRow,
   createIconButton,
   createLabeledCheckbox,
   createLabeledControl,
   createNumberInput,
   createPlanSubsection,
   createSelectInput,
-  createTextNavigationButton,
-  runAction
+  createTextNavigationButton
 } from './planDom.js';
 import { uniqueStrings } from './planCollections.js';
+import { createPlanEntriesEditor } from './planEntriesEditor.js';
+import {
+  ELEMENT_RULE_IDS_STORAGE_KEY,
+  ELEMENT_RULE_ITEM_PREFIX,
+  getElementRuleSummaries
+} from './planElementRules.js';
 import { createPlanFactList } from './planFacts.js';
 import { ensureDefaultPlan } from './planMigration.js';
 import { getMessage, getPlanMessage } from './planMessages.js';
@@ -53,9 +57,6 @@ import {
   normalizePlanScheduleAnchorDate,
   normalizePlanScheduleWeekInterval
 } from './planScheduleModel.js';
-
-const ELEMENT_RULE_IDS_STORAGE_KEY = 'elementBlockRuleIds';
-const ELEMENT_RULE_ITEM_PREFIX = 'elementBlockRule.';
 
 let activePlanView = null;
 const selectedPlanScheduleIndexes = new Map();
@@ -247,7 +248,21 @@ function createPlanPage(plan, plans, elementRules, isLocked) {
   } else if (activePlanView.view === 'intent') {
     page.appendChild(createPlanIntentEditor(plan, isLocked));
   } else {
-    page.appendChild(createPlanEntriesEditor(plan, plans, elementRules, isLocked));
+    page.appendChild(createPlanEntriesEditor({
+      plan,
+      plans,
+      elementRules,
+      isLocked,
+      onRenamePlan: (planId, nextName) => updatePlan(planId, next => ({ ...next, name: nextName })),
+      onAddGroup: addPlanGroup,
+      onUpdateGroup: updatePlanGroup,
+      onDeleteGroup: deletePlanGroup,
+      onAddAllowedSite: addAllowedSite,
+      onDeleteAllowedSite: deleteAllowedSite,
+      onUpdateUiRuleIds: (planId, nextRuleIds) => {
+        updatePlan(planId, next => ({ ...next, uiRuleIds: nextRuleIds }));
+      }
+    }));
   }
 
   return page;
@@ -265,234 +280,6 @@ function createPlanPageTab(view, label) {
 function openPlanView(planId, view) {
   activePlanView = { planId, view };
   renderPlans();
-}
-
-function createPlanNameEditor(plan, plans, isLocked) {
-  const wrapper = document.createElement('label');
-  wrapper.className = 'plan-field';
-
-  const label = document.createElement('span');
-  label.textContent = getPlanMessage('planNamePlaceholder');
-
-  const input = document.createElement('input');
-  input.type = 'text';
-  input.value = plan.name;
-  input.disabled = isLocked;
-
-  const saveButton = createButton(getMessage('saveButtonLabel'), () => {
-    const nextName = input.value.trim() || plan.name;
-    const exists = plans.some(candidate => (
-      candidate.id !== plan.id && candidate.name.toLowerCase() === nextName.toLowerCase()
-    ));
-
-    if (exists) {
-      alert(getPlanMessage('planNameExists'));
-      return;
-    }
-
-    updatePlan(plan.id, next => ({ ...next, name: nextName }));
-  }, 'save-button');
-  saveButton.disabled = isLocked;
-
-  wrapper.appendChild(label);
-  wrapper.appendChild(input);
-  wrapper.appendChild(saveButton);
-  return wrapper;
-}
-
-function createPlanEntriesEditor(plan, plans, elementRules, isLocked) {
-  const details = document.createElement('div');
-  details.className = 'plan-details';
-
-  details.appendChild(createPlanNameEditor(plan, plans, isLocked));
-  details.appendChild(createPlanGroupsEditor(plan, isLocked));
-  details.appendChild(createAllowedSitesEditor(plan, isLocked));
-  details.appendChild(createElementRuleAssignment(plan, elementRules, isLocked));
-
-  if (plan.groups.length === 0) {
-    const warning = document.createElement('p');
-    warning.className = 'plan-warning';
-    warning.textContent = getPlanMessage('planNeedsGroupWarning');
-    details.appendChild(warning);
-  }
-
-  return details;
-}
-
-function createPlanGroupsEditor(plan, isLocked) {
-  const section = createPlanSubsection('planGroupsLabel');
-  const addRow = document.createElement('div');
-  addRow.className = 'plan-entry-add-row';
-
-  const input = document.createElement('input');
-  input.type = 'text';
-  input.placeholder = getPlanMessage('planEntryNamePlaceholder');
-  input.disabled = isLocked;
-
-  const addButton = createButton(getPlanMessage('addPlanEntryButton'), () => {
-    const requestedName = input.value.trim();
-    input.value = '';
-    addPlanGroup(plan.id, requestedName);
-  }, 'secondary-button');
-  addButton.disabled = isLocked;
-
-  addRow.appendChild(input);
-  addRow.appendChild(addButton);
-  section.appendChild(addRow);
-
-  if (plan.groups.length === 0) {
-    const empty = document.createElement('p');
-    empty.className = 'muted-text';
-    empty.textContent = getPlanMessage('noGroupsLabel');
-    section.appendChild(empty);
-    return section;
-  }
-
-  const list = document.createElement('div');
-  list.className = 'plan-entry-list';
-  plan.groups.forEach((group, groupIndex) => {
-    list.appendChild(createPlanGroupItem(plan, group, groupIndex, isLocked));
-  });
-  section.appendChild(list);
-  return section;
-}
-
-function createPlanGroupItem(plan, group, groupIndex, isLocked) {
-  const item = document.createElement('article');
-  item.className = 'plan-entry-item';
-
-  const nameInput = document.createElement('input');
-  nameInput.type = 'text';
-  nameInput.value = group.groupName || '';
-  nameInput.disabled = isLocked;
-
-  const websitesTextarea = document.createElement('textarea');
-  websitesTextarea.value = (group.websites || []).join('\n');
-  websitesTextarea.disabled = isLocked;
-
-  const keywordsTextarea = document.createElement('textarea');
-  keywordsTextarea.value = (group.keywords || []).join('\n');
-  keywordsTextarea.disabled = isLocked;
-
-  item.appendChild(createLabeledControl(getPlanMessage('planEntryNamePlaceholder'), nameInput));
-  item.appendChild(createLabeledControl(getPlanMessage('planEntryWebsitesLabel'), websitesTextarea));
-  item.appendChild(createLabeledControl(getPlanMessage('planEntryKeywordsLabel'), keywordsTextarea));
-
-  const actions = document.createElement('div');
-  actions.className = 'plan-entry-actions';
-
-  const deleteButton = createButton(getPlanMessage('deleteButtonLabel'), () => deletePlanGroup(plan.id, groupIndex), 'delete-button');
-  deleteButton.disabled = isLocked;
-
-  const saveButton = createButton(getPlanMessage('saveButtonLabel'), () => {
-    updatePlanGroup(plan.id, groupIndex, {
-      ...group,
-      groupName: nameInput.value.trim() || group.groupName,
-      websites: parseMultilineValues(websitesTextarea.value).map(normalizeUrl).filter(Boolean),
-      keywords: parseMultilineValues(keywordsTextarea.value)
-    });
-  }, 'save-button');
-  saveButton.disabled = isLocked;
-
-  actions.appendChild(deleteButton);
-  actions.appendChild(saveButton);
-  item.appendChild(actions);
-  return item;
-}
-
-function createAllowedSitesEditor(plan, isLocked) {
-  const section = createPlanSubsection('planAllowedSitesLabel');
-
-  const hint = document.createElement('p');
-  hint.className = 'muted-text';
-  hint.textContent = getPlanMessage('planAllowedSitesHint');
-
-  const addRow = document.createElement('div');
-  addRow.className = 'plan-entry-add-row';
-
-  const input = document.createElement('input');
-  input.type = 'text';
-  input.placeholder = 'example.com';
-  input.disabled = isLocked;
-
-  const submitAllowedSite = () => {
-    const requestedSite = input.value.trim();
-    if (!requestedSite) {
-      return;
-    }
-
-    input.value = '';
-    return addAllowedSite(plan.id, requestedSite);
-  };
-
-  input.addEventListener('keydown', event => {
-    if (event.key === 'Enter') {
-      event.preventDefault();
-      runAction(submitAllowedSite);
-    }
-  });
-
-  const addButton = createButton(getPlanMessage('addAllowedSiteButton'), submitAllowedSite, 'secondary-button');
-  addButton.disabled = isLocked;
-
-  addRow.appendChild(input);
-  addRow.appendChild(addButton);
-
-  section.appendChild(hint);
-  section.appendChild(addRow);
-
-  const list = document.createElement('div');
-  list.className = 'allowed-site-list';
-  plan.allowedSites.forEach((site, siteIndex) => {
-    const item = document.createElement('div');
-    item.className = 'allowed-site-item';
-
-    const label = document.createElement('span');
-    label.textContent = site;
-
-    const deleteButton = createIconButton(getPlanMessage('deleteButtonLabel'), () => {
-      deleteAllowedSite(plan.id, siteIndex);
-    }, 'allowed-site-delete-icon');
-    deleteButton.disabled = isLocked;
-
-    item.appendChild(label);
-    item.appendChild(deleteButton);
-    list.appendChild(item);
-  });
-  section.appendChild(list);
-  return section;
-}
-
-function createElementRuleAssignment(plan, elementRules, isLocked) {
-  const section = createPlanSubsection('planUiRulesLabel');
-  const grid = document.createElement('div');
-  grid.className = 'plan-checkbox-grid';
-
-  if (elementRules.length === 0) {
-    const empty = document.createElement('p');
-    empty.className = 'muted-text';
-    empty.textContent = getMessage('noElementRulesLabel');
-    section.appendChild(empty);
-    return section;
-  }
-
-  elementRules.forEach(rule => {
-    grid.appendChild(createCheckboxRow(
-      rule.name,
-      plan.uiRuleIds.includes(rule.id),
-      checked => {
-        const nextRuleIds = checked
-          ? [...plan.uiRuleIds, rule.id]
-          : plan.uiRuleIds.filter(ruleId => ruleId !== rule.id);
-
-        updatePlan(plan.id, next => ({ ...next, uiRuleIds: nextRuleIds }));
-      },
-      isLocked && plan.uiRuleIds.includes(rule.id)
-    ));
-  });
-
-  section.appendChild(grid);
-  return section;
 }
 
 function createPlanPomodoroEditor(plan, isLocked) {
@@ -1455,28 +1242,4 @@ function isPlanChangeAllowedDuringProtectedSchedule(originalPlan, nextPlan) {
   }
 
   return true;
-}
-
-function parseMultilineValues(value) {
-  return String(value || '')
-    .split(/\r?\n/)
-    .map(item => item.trim())
-    .filter(Boolean);
-}
-
-async function getElementRuleSummaries(items) {
-  const ruleIds = Array.isArray(items[ELEMENT_RULE_IDS_STORAGE_KEY]) ? items[ELEMENT_RULE_IDS_STORAGE_KEY] : [];
-  if (ruleIds.length === 0) {
-    return [];
-  }
-
-  const ruleKeys = ruleIds.map(ruleId => `${ELEMENT_RULE_ITEM_PREFIX}${ruleId}`);
-  const ruleItems = await getSync(ruleKeys);
-  return ruleIds.map(ruleId => {
-    const rule = ruleItems[`${ELEMENT_RULE_ITEM_PREFIX}${ruleId}`];
-    return rule ? {
-      id: ruleId,
-      name: rule.name || rule.urlPattern || ruleId
-    } : null;
-  }).filter(Boolean);
 }
