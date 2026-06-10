@@ -1,0 +1,121 @@
+.field {
+    display: grid;
+    min-width: 0;
+    gap: 5px;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.field span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+select,
+input,
+button {
+    min-height: 38px;
+    border-radius: 6px;
+    font: inherit;
+}
+
+select,
+input {
+    width: 100%;
+    border: 1px solid var(--border);
+    background: var(--field);
+    color: var(--text);
+    padding: 8px 10px;
+}
+
+select:hover,
+input:hover {
+    border-color: var(--border-strong);
+}
+
+select:focus,
+input:focus,
+button:focus-visible,
+summary:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+}
+
+button {
+    border: 1px solid transparent;
+    background: var(--primary);
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: 700;
+    padding: 8px 12px;
+    transition:
+        background-color 120ms ease,
+        border-color 120ms ease,
+        color 120ms ease;
+}
+
+button:hover {
+    background: var(--primary-hover);
+}
+
+button:disabled {
+    background: var(--neutral);
+    color: var(--muted);
+    cursor: not-allowed;
+}
+
+.header-options-button {
+    min-width: 44px;
+    min-height: 32px;
+    border-color: var(--border-strong);
+    background: var(--surface);
+    color: var(--text);
+    padding: 4px 8px;
+    font-size: 12px;
+}
+
+.header-options-button:hover {
+    background: var(--neutral);
+    color: #ffffff;
+}
+
+.secondary-button {
+    background: var(--neutral);
+}
+
+.secondary-button:hover {
+    background: var(--neutral-hover);
+}
+
+.danger-button {
+    border-color: var(--danger);
+    background: var(--danger-bg);
+    color: var(--danger);
+}
+
+.danger-button:hover {
+    background: var(--danger);
+    color: #ffffff;
+}
+
+.picker-settings {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+}
+
+.full-width-field {
+    grid-column: 1 / -1;
+}
+
+.primary-action-button {
+    min-height: 42px;
+}
+
+.popup-footer button {
+    min-height: 32px;
+    padding: 5px 10px;
+    font-size: 12px;
+}

@@ -1,0 +1,84 @@
+.pomodoro-panel-header,
+.pomodoro-timer-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.pomodoro-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.pomodoro-timer-row strong {
+    color: var(--text);
+    font-size: 28px;
+    line-height: 1;
+}
+
+.pomodoro-timer-row span,
+.pomodoro-session-text {
+    min-width: 0;
+    overflow: hidden;
+    color: var(--muted);
+    font-size: 12px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.pomodoro-timer-row span {
+    text-align: right;
+}
+
+.pomodoro-session-text {
+    margin: 0;
+}
+
+.pomodoro-timeline-list {
+    display: grid;
+    gap: 4px;
+    margin: 0;
+    border-top: 1px solid var(--border);
+    padding-top: 7px;
+}
+
+.pomodoro-timeline-list div {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.pomodoro-timeline-list dt,
+.pomodoro-timeline-list dd {
+    min-width: 0;
+    margin: 0;
+    overflow: hidden;
+    font-size: 11px;
+    line-height: 1.3;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.pomodoro-timeline-list dt {
+    color: var(--muted);
+    font-weight: 700;
+}
+
+.pomodoro-timeline-list dd {
+    color: var(--text);
+    text-align: right;
+}
+
+.pomodoro-actions button {
+    width: 100%;
+    min-height: 34px;
+    padding: 6px 8px;
+    font-size: 12px;
+}
+
+.pomodoro-actions .full-width-pomodoro-action {
+    grid-column: 1 / -1;
+}

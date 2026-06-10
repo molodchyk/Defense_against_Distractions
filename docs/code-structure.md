@@ -14,6 +14,8 @@ The detailed modularization target, dependency rules, file-size budgets, and mig
 
 `src/js/popup` contains popup-only helper modules. The root `src/js/popup.js` is still the popup entry point, but generic Chrome messaging, DOM helpers, formatting helpers, popup shell behavior, popup i18n, the protection summary, the Page Signals panel, the Block Diagnostics panel, the Intent Diagnostics panel, and the Pomodoro panel now live in `src/js/popup/chrome.js`, `src/js/popup/dom.js`, `src/js/popup/format.js`, `src/js/popup/shell.js`, `src/js/popup/i18n.js`, `src/js/popup/protectionSummaryPanel.js`, `src/js/popup/pageSignalsPanel.js`, `src/js/popup/blockDiagnosticsPanel.js`, `src/js/popup/intentDiagnosticsPanel.js`, and `src/js/popup/pomodoroPanel.js`. Future popup work should move one feature panel at a time out of the entry file.
 
+`src/css/popup.css` is a thin popup stylesheet entry point. It imports focused files from `src/css/popup`: `tokens.css` for theme variables, `layout.css` for shell/card/tab structure, `controls.css` for fields and buttons, `status.css` for protection badges and status grids, `pomodoro.css` for the popup timer panel, and `diagnostics.css` for Page Signals, block diagnostics, and intent diagnostics. Future popup styling should go into the narrowest matching CSS module instead of growing the entry file.
+
 `src/js/shared` contains ES modules used by option/background code and tests.
 
 Plan behavior is split by runtime:

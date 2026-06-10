@@ -1,0 +1,92 @@
+.status-badge,
+.page-signals-badge,
+.block-diagnostics-badge,
+.pomodoro-phase-badge,
+.intent-risk-badge {
+    max-width: 112px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.2;
+    padding: 3px 7px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.status-badge[data-state="active"],
+.pomodoro-phase-badge[data-state="work"] {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.status-badge[data-state="ready"],
+.block-diagnostics-badge[data-state="ready"],
+.pomodoro-phase-badge[data-state="shortBreak"],
+.pomodoro-phase-badge[data-state="longBreak"],
+.pomodoro-phase-badge[data-state="completed"],
+.intent-risk-badge[data-state="clear"] {
+    border-color: var(--success);
+    color: var(--success);
+}
+
+.status-badge[data-state="idle"] {
+    border-color: var(--border);
+    color: var(--muted);
+}
+
+.block-diagnostics-badge[data-state="active"],
+.intent-risk-badge[data-state="intervene"],
+.intent-risk-badge[data-state="locked"] {
+    border-color: var(--danger);
+    color: var(--danger);
+}
+
+.pomodoro-phase-badge[data-state="paused"],
+.intent-risk-badge[data-state="watch"],
+.intent-risk-badge[data-state="drift"] {
+    border-color: var(--warning);
+    color: var(--warning);
+}
+
+.intent-risk-badge {
+    max-width: 104px;
+    text-transform: capitalize;
+}
+
+.protection-status-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    margin: 0;
+}
+
+.protection-status-grid div {
+    min-width: 0;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--field);
+    padding: 8px 9px;
+}
+
+.protection-status-grid dt,
+.protection-status-grid dd {
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.protection-status-grid dt {
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.protection-status-grid dd {
+    color: var(--text);
+    font-size: 12px;
+    font-weight: 700;
+}

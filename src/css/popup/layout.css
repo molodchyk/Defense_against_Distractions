@@ -1,0 +1,206 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    width: 420px;
+    max-height: 640px;
+    margin: 0;
+    overflow: hidden;
+    background: var(--bg);
+    color: var(--text);
+    font: 14px/1.45 Arial, sans-serif;
+}
+
+.popup-shell {
+    display: grid;
+    max-height: 640px;
+    gap: 10px;
+    padding: 14px;
+    overflow-y: auto;
+    scrollbar-color: var(--border-strong) transparent;
+    scrollbar-width: thin;
+}
+
+.popup-section {
+    display: grid;
+    min-width: 0;
+    gap: 10px;
+}
+
+.diagnostics-section {
+    gap: 8px;
+}
+
+.popup-header,
+.section-header,
+.page-signals-panel-header,
+.block-diagnostics-panel-header,
+.intent-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.popup-header {
+    padding: 1px 1px 2px;
+}
+
+.popup-title-block {
+    min-width: 0;
+}
+
+header p {
+    margin: 0;
+    overflow: hidden;
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+h1 {
+    margin: 2px 0 0;
+    font-size: 22px;
+    line-height: 1.15;
+}
+
+h2 {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.2;
+}
+
+.section-header span {
+    overflow: hidden;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.popup-tab-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 4px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface-action);
+    padding: 4px;
+}
+
+.popup-tab-button {
+    min-height: 32px;
+    border-color: transparent;
+    background: transparent;
+    color: var(--muted);
+    padding: 5px 8px;
+    font-size: 12px;
+}
+
+.popup-tab-button:hover {
+    background: var(--surface-raised);
+    color: var(--text);
+}
+
+.popup-tab-button[aria-pressed="true"] {
+    border-color: var(--primary-border);
+    background: var(--primary-soft);
+    color: var(--text);
+}
+
+[data-popup-pane][hidden] {
+    display: none;
+}
+
+.popup-card {
+    display: grid;
+    gap: 10px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    padding: 12px;
+}
+
+.primary-panel {
+    border-color: var(--primary-border);
+    background:
+        linear-gradient(180deg, var(--primary-soft), transparent 74%),
+        var(--surface-raised);
+    box-shadow: var(--shadow);
+}
+
+.action-panel {
+    background: var(--surface-action);
+}
+
+.diagnostic-panel {
+    border-color: var(--diagnostic-border);
+    background: var(--surface-diagnostic);
+}
+
+details.popup-card {
+    display: block;
+}
+
+details.popup-card > summary {
+    min-height: 30px;
+    list-style: none;
+    cursor: pointer;
+}
+
+details.popup-card > summary::-webkit-details-marker {
+    display: none;
+}
+
+details.popup-card > summary::after {
+    content: "";
+    flex: 0 0 auto;
+    width: 7px;
+    height: 7px;
+    border-right: 2px solid var(--muted);
+    border-bottom: 2px solid var(--muted);
+    transform: rotate(45deg);
+    transition: transform 120ms ease;
+}
+
+details.popup-card[open] > summary::after {
+    transform: rotate(225deg);
+}
+
+details.diagnostic-panel:not([open]) {
+    padding: 9px 10px;
+}
+
+details.diagnostic-panel[open] {
+    padding: 11px;
+}
+
+details.diagnostic-panel:not([open]) h2 {
+    color: var(--muted);
+}
+
+.popup-footer {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 8px;
+    border-top: 1px solid var(--border);
+    padding: 9px 2px 0;
+}
+
+#statusText {
+    min-width: 0;
+    min-height: 18px;
+    margin: 0;
+    overflow: hidden;
+    color: var(--muted);
+    font-size: 12px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
