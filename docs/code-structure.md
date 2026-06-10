@@ -16,6 +16,8 @@ The detailed modularization target, dependency rules, file-size budgets, and mig
 
 `src/css/popup.css` is a thin popup stylesheet entry point. It imports focused files from `src/css/popup`: `tokens.css` for theme variables, `layout.css` for shell/card/tab structure, `controls.css` for fields and buttons, `status.css` for protection badges and status grids, `pomodoro.css` for the popup timer panel, and `diagnostics.css` for Page Signals, block diagnostics, and intent diagnostics. Future popup styling should go into the narrowest matching CSS module instead of growing the entry file.
 
+`src/css/style.css` is a thin options-page stylesheet entry point. It imports focused files from `src/css/options`: `tokens.css` for theme variables and base controls, `layout.css` for the page shell and sidebar navigation, `settings.css` for global settings cards, `blocked-ui.css` for UI element rules, `plans.css` for plan rows and plan pages, `diagnostics.css` for intent and usage diagnostics, `actions.css` for action states and password controls, `dialogs.css` for overlays and export/import actions, `responsive.css` for options-page breakpoints, and `schedule.css` for the weekly schedule editor. Future options styling should go into the narrowest matching CSS module instead of growing the entry file.
+
 `src/js/shared` contains ES modules used by option/background code and tests.
 
 Plan behavior is split by runtime and feature folder:
