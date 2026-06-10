@@ -17,6 +17,20 @@ This note records external best-practice constraints for DaD as it grows. Source
 - Chrome i18n guidance: https://developer.chrome.com/docs/extensions/develop/ui/i18n
 - Chrome options-page guidance: https://developer.chrome.com/docs/extensions/develop/ui/options-page
 
+## 2026-06-10 Research Refresh
+
+The official Chrome documentation still supports the current DaD modularization direction. There is no Chrome-specific line-count rule for extension files; the line budgets in [DaD Modularization Roadmap](modularization-roadmap.md) are local maintainability guardrails, not browser requirements.
+
+Current implications:
+
+- Continue incremental responsibility extraction instead of a giant folder rename. This matches the risk profile of a growing MV3 extension with storage migrations, content-script load order, and user data compatibility.
+- Keep the service worker modular with static imports. Chrome supports module service workers but not dynamic `import()` in extension service workers.
+- Keep content scripts as an explicit adapter boundary while they are manifest-loaded classic scripts. Moving pure logic into shared modules is good; changing manifest order or adding a bundler should be justified separately.
+- Treat content-script messages as untrusted inputs. Any future background message router should validate action names, sender context, tab identity, and payload shape.
+- Keep sync storage for compact mission-critical configuration. Diagnostics, history, picker state, usage signals, and other noisy data should remain local, bounded, exportable, and clearable.
+- Do not add a bundler just to make the tree look modern. A bundler becomes justified when it reduces content-script load-order fragility, enables safer package verification, or solves real duplication.
+- Add browser E2E coverage before larger schedule/picker/UI rewrites. Unit tests prove model behavior; they do not prove extension-page, popup, service-worker, and content-script behavior.
+
 ## Findings And DaD Decisions
 
 ### 1. Background Code Must Be Termination-Safe
