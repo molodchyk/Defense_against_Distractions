@@ -1,0 +1,375 @@
+.plan-list {
+    display: grid;
+    gap: 12px;
+    margin: 14px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.plan-item {
+    display: grid;
+    gap: 14px;
+    padding: 14px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface-raised);
+}
+
+.plan-page {
+    display: grid;
+    gap: 16px;
+    padding: 18px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface-raised);
+}
+
+.plan-summary {
+    display: grid;
+    grid-template-columns: auto minmax(180px, 1fr) auto auto;
+    gap: 14px;
+    align-items: center;
+}
+
+.plan-page-header {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 16px;
+    align-items: center;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+}
+
+.plan-title-group {
+    display: grid;
+    gap: 4px;
+    min-width: 0;
+}
+
+.plan-title-group strong {
+    font-size: 16px;
+}
+
+.plan-title-group span,
+.muted-text,
+.plan-warning {
+    color: var(--muted);
+}
+
+.plan-fact-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0;
+}
+
+.plan-fact-list div {
+    display: inline-flex;
+    min-width: 0;
+    max-width: 100%;
+    align-items: baseline;
+    gap: 4px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--field);
+    padding: 3px 7px;
+}
+
+.plan-fact-list dt,
+.plan-fact-list dd {
+    min-width: 0;
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.35;
+}
+
+.plan-fact-list dt {
+    color: var(--muted);
+    font-weight: 700;
+}
+
+.plan-fact-list dd {
+    overflow: hidden;
+    color: var(--text);
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.plan-summary-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: flex-end;
+}
+
+.plan-row-navigation,
+.plan-page-navigation {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+}
+
+.plan-text-button {
+    min-height: 34px;
+    padding: 6px 10px;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    background: transparent;
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.plan-text-button:hover,
+.plan-text-button.active {
+    border-color: var(--border);
+    background: var(--field);
+}
+
+.plan-back-button {
+    color: var(--muted);
+}
+
+.icon-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    min-width: 38px;
+    height: 38px;
+    min-height: 38px;
+    padding: 0;
+    border-radius: 6px;
+    background: var(--neutral);
+}
+
+.icon-button:hover {
+    background: var(--neutral-hover);
+}
+
+.icon-button svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2;
+}
+
+.plan-delete-icon {
+    color: var(--danger);
+}
+
+.plan-toggle {
+    min-width: 92px;
+    background: var(--neutral);
+}
+
+.plan-toggle:hover {
+    background: var(--neutral-hover);
+}
+
+.plan-toggle.active {
+    background: var(--success);
+}
+
+.plan-toggle.active:hover {
+    background: var(--success-hover);
+}
+
+.plan-details {
+    display: grid;
+    gap: 14px;
+    border-top: 1px solid var(--border);
+    padding-top: 14px;
+}
+
+.plan-field {
+    display: grid;
+    gap: 6px;
+}
+
+.plan-field {
+    grid-template-columns: minmax(120px, 180px) minmax(0, 1fr) auto;
+    align-items: end;
+}
+
+.plan-field span,
+.plan-subsection h4 {
+    color: var(--text);
+    font-weight: 700;
+}
+
+.plan-subsection {
+    display: grid;
+    gap: 10px;
+}
+
+.plan-subsection h4,
+.plan-subsection-header h4 {
+    margin: 0;
+    font-size: 14px;
+}
+
+.plan-subsection-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.schedule-expand-button {
+    flex: 0 0 auto;
+}
+
+.plan-schedule-section-expanded {
+    position: fixed;
+    inset: 12px;
+    z-index: 2147483645;
+    align-content: start;
+    overflow: auto;
+    padding: 18px !important;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--panel-bg);
+    box-shadow: var(--shadow);
+}
+
+.plan-schedule-section-expanded .schedule-workspace {
+    min-height: calc(100vh - 132px);
+}
+
+.plan-schedule-section-expanded .schedule-board-scroller {
+    max-height: calc(100vh - 246px);
+    min-height: calc(100vh - 270px);
+}
+
+.plan-schedule-section-expanded .schedule-board {
+    min-width: max(1180px, calc(100vw - 124px));
+}
+
+.plan-entry-add-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 10px;
+}
+
+.plan-schedule-add-row {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.schedule-add-button,
+.secondary-button {
+    background: var(--neutral);
+}
+
+.schedule-add-button:hover,
+.secondary-button:hover {
+    background: var(--neutral-hover);
+}
+
+.plan-entry-list,
+.allowed-site-list {
+    display: grid;
+    gap: 10px;
+}
+
+.plan-entry-item {
+    display: grid;
+    grid-template-columns: minmax(180px, 0.8fr) minmax(220px, 1fr) minmax(220px, 1fr) auto;
+    gap: 10px;
+    align-items: start;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--surface);
+}
+
+.plan-entry-field {
+    display: grid;
+    gap: 6px;
+}
+
+.plan-pomodoro-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 10px;
+}
+
+.plan-pomodoro-runtime {
+    display: grid;
+    gap: 10px;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--field);
+}
+
+.plan-pomodoro-runtime-status {
+    display: grid;
+    grid-template-columns: minmax(130px, auto) minmax(0, 1fr) auto;
+    gap: 8px;
+    align-items: center;
+}
+
+.plan-pomodoro-runtime-status strong,
+.plan-pomodoro-runtime-status span {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.plan-pomodoro-runtime-status span {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.plan-pomodoro-timeline {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 8px;
+    margin: 0;
+    padding: 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--surface);
+}
+
+.plan-pomodoro-timeline div {
+    display: grid;
+    gap: 2px;
+    min-width: 0;
+}
+
+.plan-pomodoro-timeline dt,
+.plan-pomodoro-timeline dd {
+    min-width: 0;
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.plan-pomodoro-timeline dt {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.plan-pomodoro-timeline dd {
+    color: var(--text);
+    font-weight: 700;
+}
+
+.plan-pomodoro-runtime-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: flex-end;
+}
+

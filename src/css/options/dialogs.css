@@ -1,0 +1,145 @@
+#passwordOverlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2147483647;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: var(--overlay-bg);
+}
+
+.release-notice-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2147483646;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: var(--overlay-bg);
+}
+
+.release-notice-dialog {
+    width: min(520px, 100%);
+    display: grid;
+    gap: 14px;
+    padding: 22px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface-raised);
+    box-shadow: var(--shadow);
+}
+
+.release-notice-dialog h2 {
+    margin: 0;
+}
+
+.release-notice-dialog p {
+    margin: 0;
+    color: var(--muted);
+}
+
+.release-notice-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.release-notice-primary {
+    background: var(--primary);
+}
+
+.release-notice-primary:hover {
+    background: var(--primary-hover);
+}
+
+.release-notice-secondary {
+    background: var(--neutral);
+}
+
+.release-notice-secondary:hover {
+    background: var(--neutral-hover);
+}
+
+.confirmation-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2147483646;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: var(--overlay-bg);
+}
+
+.confirmation-dialog {
+    width: min(460px, 100%);
+    display: grid;
+    gap: 14px;
+    padding: 22px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface-raised);
+    box-shadow: var(--shadow);
+}
+
+.confirmation-dialog h2,
+.confirmation-dialog p {
+    margin: 0;
+}
+
+.confirmation-dialog p {
+    color: var(--muted);
+}
+
+.confirmation-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.centered-form-wrapper {
+    width: min(360px, 100%);
+}
+
+#passwordForm {
+    display: grid;
+    gap: 12px;
+    padding: 22px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface-raised);
+    box-shadow: var(--shadow);
+}
+
+#passwordForm label {
+    color: var(--text);
+    font-weight: 700;
+}
+
+#passwordForm input[type="password"],
+#passwordForm button {
+    width: 100%;
+}
+
+#exportImportButtons {
+    width: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.action-bar button {
+    min-width: 112px;
+}
+

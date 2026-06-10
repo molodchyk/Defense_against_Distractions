@@ -1,0 +1,128 @@
+@media (max-width: 980px) {
+    .options-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .options-sidebar {
+        position: static;
+        display: flex;
+        overflow-x: auto;
+        scrollbar-width: thin;
+    }
+
+    .options-sidebar a {
+        flex: 0 0 auto;
+    }
+}
+
+@media (max-width: 760px) {
+    body {
+        padding: 16px 14px 24px;
+    }
+
+    .app-header {
+        align-items: stretch;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .instruction-link a {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .input-group,
+    .theme-mode-control,
+    #passwordManagement,
+    .element-rule-controls {
+        grid-template-columns: 1fr;
+    }
+
+    .element-rule-item {
+        grid-template-areas:
+            "title"
+            "summary"
+            "controls"
+            "diagnostics"
+            "domain"
+            "delete";
+        grid-template-columns: 1fr;
+    }
+
+    .element-rule-item .delete-button,
+    .element-rule-item .secondary-button {
+        justify-self: stretch;
+    }
+
+    .element-rule-meta-row {
+        grid-template-columns: 1fr;
+    }
+
+    .plan-summary,
+    .plan-page-header,
+    .plan-entry-add-row,
+    .plan-schedule-add-row,
+    .plan-entry-item,
+    .plan-pomodoro-runtime-status,
+    .panel-header-row,
+    .intent-debug-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .panel-header-row {
+        display: grid;
+    }
+
+    .settings-header-link {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .settings-card-password {
+        grid-column: auto;
+    }
+
+    .settings-card-password #passwordManagement {
+        grid-template-columns: 1fr;
+    }
+
+    .plan-row-navigation,
+    .plan-page-navigation,
+    .plan-summary-actions,
+    .plan-pomodoro-runtime-actions,
+    .plan-entry-actions {
+        justify-content: stretch;
+    }
+
+    .plan-row-navigation button,
+    .plan-page-navigation button,
+    .plan-summary-actions button,
+    .plan-pomodoro-runtime-actions button,
+    .plan-entry-actions button {
+        width: 100%;
+    }
+
+    .icon-button {
+        width: 100%;
+    }
+
+    #exportImportButtons {
+        max-width: none;
+        justify-content: stretch;
+    }
+
+    .settings-card-wide #exportImportButtons {
+        max-width: none;
+    }
+
+    #exportImportButtons button {
+        flex: 1 1 0;
+    }
+
+    .release-notice-actions,
+    .confirmation-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+}
+

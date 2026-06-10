@@ -1,0 +1,247 @@
+.intent-diagnostics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.intent-diagnostic-card {
+    display: grid;
+    gap: 4px;
+    min-width: 0;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--surface-raised);
+}
+
+.intent-diagnostic-label {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.intent-diagnostic-card strong,
+.intent-diagnostic-card small {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.intent-diagnostic-card strong {
+    color: var(--text);
+    font-size: 18px;
+    text-transform: capitalize;
+}
+
+.intent-diagnostic-card strong[data-state="clear"] {
+    color: var(--success);
+}
+
+.intent-diagnostic-card strong[data-state="watch"],
+.intent-diagnostic-card strong[data-state="drift"] {
+    color: #d6a03d;
+}
+
+.intent-diagnostic-card strong[data-state="intervene"],
+.intent-diagnostic-card strong[data-state="locked"] {
+    color: var(--danger);
+}
+
+.intent-diagnostic-card small {
+    color: var(--muted);
+}
+
+.usage-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 10px;
+    margin: 14px 0 18px;
+}
+
+.usage-stat-card {
+    display: grid;
+    gap: 4px;
+    min-width: 0;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--surface-raised);
+}
+
+.usage-stat-card span {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.usage-stat-card strong {
+    min-width: 0;
+    overflow: hidden;
+    color: var(--text);
+    font-size: 20px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.usage-domain-section h3 {
+    margin: 0 0 8px;
+    font-size: 15px;
+}
+
+.usage-domain-list {
+    display: grid;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.usage-domain-list li {
+    display: grid;
+    gap: 4px;
+    min-width: 0;
+    padding: 9px 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--field);
+}
+
+.usage-domain-list strong,
+.usage-domain-list small {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.usage-domain-list strong {
+    color: var(--text);
+}
+
+.usage-domain-list small {
+    color: var(--muted);
+}
+
+.intent-debug-layout {
+    display: grid;
+    grid-template-columns: minmax(220px, 0.8fr) minmax(320px, 1fr);
+    gap: 14px;
+    margin-bottom: 14px;
+}
+
+.intent-debug-layout h3,
+#intentDiagnosticsPanel h3 {
+    margin: 0 0 8px;
+    font-size: 15px;
+}
+
+.intent-debug-list,
+.intent-trajectory-list {
+    display: grid;
+    gap: 8px;
+}
+
+.intent-debug-list li,
+.intent-trajectory-list li {
+    min-width: 0;
+    padding: 9px 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--field);
+    overflow-wrap: anywhere;
+}
+
+.intent-trajectory-list li {
+    display: grid;
+    gap: 2px;
+}
+
+.intent-trajectory-list strong,
+.intent-trajectory-list span {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.intent-trajectory-list span {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.intent-metric-grid {
+    display: grid;
+    grid-template-columns: minmax(160px, 1fr) auto;
+    gap: 7px 12px;
+    margin: 0;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--field);
+}
+
+.intent-metric-grid dt {
+    color: var(--muted);
+    font-weight: 700;
+}
+
+.intent-metric-grid dd {
+    margin: 0;
+    color: var(--text);
+    font-weight: 700;
+    text-align: right;
+}
+
+.plan-entry-field span {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.plan-entry-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    align-items: end;
+    height: 100%;
+}
+
+.allowed-site-item {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 10px;
+    align-items: center;
+    padding: 8px 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--field);
+}
+
+.allowed-site-item span {
+    overflow-wrap: anywhere;
+}
+
+.plan-checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 8px;
+}
+
+.plan-checkbox-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    min-height: 36px;
+    padding: 8px 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--field);
+}
+
+.plan-checkbox-row input {
+    width: auto;
+    min-height: 0;
+}
+

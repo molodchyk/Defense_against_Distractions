@@ -1,0 +1,127 @@
+.billing-panel {
+    display: grid;
+    gap: 10px;
+}
+
+.billing-panel[hidden] {
+    display: none;
+}
+
+.billing-status {
+    margin: 0;
+    font-weight: 700;
+}
+
+.billing-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.billing-actions button {
+    background: var(--primary);
+}
+
+.billing-actions button:hover {
+    background: var(--primary-hover);
+}
+
+.billing-actions .secondary-button {
+    background: var(--neutral);
+}
+
+.billing-actions .secondary-button:hover {
+    background: var(--neutral-hover);
+}
+
+.edit-button,
+.edit-button-schedule {
+    background: var(--neutral);
+}
+
+.edit-button:hover,
+.edit-button-schedule:hover {
+    background: var(--neutral-hover);
+}
+
+.save-button,
+.save-button-group,
+.save-button-schedule,
+#setPasswordButton,
+#passwordForm button,
+#exportButton,
+#passwordManagement button.enabled {
+    background: var(--success);
+}
+
+.save-button:hover,
+.save-button-group:hover,
+.save-button-schedule:hover,
+#setPasswordButton:hover,
+#passwordForm button:hover,
+#exportButton:hover,
+#passwordManagement button.enabled:hover {
+    background: var(--success-hover);
+}
+
+.delete-button,
+.delete-button-schedule,
+#deletePasswordButton,
+#passwordManagement button.disabled {
+    background: var(--danger);
+}
+
+.delete-button:hover,
+.delete-button-schedule:hover,
+#deletePasswordButton:hover {
+    background: var(--danger-hover);
+}
+
+.day-button {
+    min-width: 44px;
+    background: transparent;
+    border-color: var(--border-strong);
+    color: var(--muted);
+}
+
+.day-button:hover {
+    background: var(--day-hover);
+}
+
+.day-button.selected {
+    background: var(--success);
+    color: #ffffff;
+}
+
+.day-button.selected:hover {
+    background: var(--success-hover);
+}
+
+#passwordManagement {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    max-width: none;
+}
+
+.settings-card-password #passwordManagement {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+#passwordManagement input[type="password"],
+#passwordManagement button {
+    width: 100%;
+}
+
+#deletePasswordButton:disabled,
+#deletePasswordButton:disabled:hover,
+#passwordManagement button.disabled,
+#passwordManagement button.disabled:hover,
+#passwordManagement button.password-set-button:disabled,
+#passwordManagement button.password-set-button:disabled:hover {
+    background: var(--disabled-bg);
+    color: var(--disabled-text);
+    cursor: not-allowed;
+}
+

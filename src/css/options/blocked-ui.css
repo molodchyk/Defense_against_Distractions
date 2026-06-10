@@ -1,0 +1,166 @@
+.element-rule-list {
+    display: grid;
+    gap: 10px;
+}
+
+.element-rule-storage-usage {
+    margin: -4px 0 12px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.element-rule-list li {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 10px 14px;
+    align-items: center;
+    min-height: 40px;
+    padding: 14px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--surface);
+}
+
+.element-rule-list span {
+    overflow-wrap: anywhere;
+}
+
+.element-rule-item {
+    grid-template-areas:
+        "title delete"
+        "summary summary"
+        "controls controls"
+        "diagnostics domain";
+    align-items: start;
+}
+
+.element-rule-title {
+    grid-area: title;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    font-weight: 700;
+}
+
+.element-rule-summary {
+    grid-area: summary;
+    min-width: 0;
+    color: var(--muted);
+    overflow-wrap: anywhere;
+    font-size: 12px;
+}
+
+.element-rule-item .delete-button {
+    grid-area: delete;
+    min-width: 112px;
+}
+
+.element-rule-item .secondary-button {
+    grid-area: domain;
+    justify-self: end;
+    background: var(--neutral);
+}
+
+.element-rule-item .secondary-button:hover {
+    background: var(--neutral-hover);
+}
+
+.element-rule-controls {
+    grid-area: controls;
+    display: grid;
+    grid-template-columns: minmax(84px, 0.36fr) repeat(2, minmax(180px, 1fr));
+    gap: 10px;
+    padding-top: 2px;
+}
+
+.element-rule-control {
+    display: grid;
+    gap: 4px;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.element-rule-control-wide {
+    grid-column: 1 / -1;
+}
+
+.element-rule-control select,
+.element-rule-control input {
+    min-height: 34px;
+    font-size: 13px;
+}
+
+.element-rule-control input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    min-height: 0;
+    margin: 6px 0 0;
+    justify-self: start;
+    accent-color: var(--primary);
+}
+
+.element-rule-plan-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 8px;
+}
+
+.element-rule-plan-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 34px;
+    padding: 7px 9px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--field);
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.element-rule-plan-row input {
+    flex: 0 0 auto;
+}
+
+.element-rule-plan-empty {
+    margin: 0;
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.element-rule-diagnostics {
+    grid-area: diagnostics;
+    min-width: 0;
+    color: var(--muted);
+}
+
+.element-rule-diagnostics summary {
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.element-rule-diagnostics-body {
+    display: grid;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.element-rule-meta-row {
+    display: grid;
+    grid-template-columns: 120px minmax(0, 1fr);
+    gap: 8px;
+    align-items: start;
+}
+
+.element-rule-meta-row code {
+    color: var(--text);
+    overflow-wrap: anywhere;
+    white-space: normal;
+}
+
+.element-rule-empty {
+    color: var(--muted);
+}
+
