@@ -62,10 +62,21 @@ The options page now separates the main surfaces into dedicated sections with a 
 
 - Plans.
 - Blocked UI.
-- Intent diagnostics.
+- Intent.
+- Usage.
 - Settings.
 
-The Settings panel owns global controls: UI mode, instruction guide, password management, import/export, and dormant billing/supporter controls. The navigation is a left sidebar on wider screens and collapses into a horizontal section nav on smaller screens.
+The navigation is a left sidebar on wider screens and collapses into a horizontal section nav on smaller screens.
+
+Section ownership:
+
+- Plans owns plan creation, compact plan rows, plan entry editing, plan-owned schedules, allowed websites, plan-owned Pomodoro settings, and plan-owned intent policy.
+- Blocked UI owns global and plan-assigned UI element hiding rules.
+- Intent owns local intent-coherence diagnostics, score reasons, recent trajectory, export, clear, and refresh controls.
+- Usage owns bounded local hostname-level usage aggregates, export, clear, and refresh controls.
+- Settings owns global controls: UI mode, UI language, instruction guide, password management, import/export, and dormant billing/supporter controls.
+
+Settings should remain a global utility surface, not a second protection model. Moving a control into Settings should not change storage semantics or weaken locked-schedule protection.
 
 Plans should be compact by default. A compact plan row should show:
 
