@@ -28,7 +28,9 @@ Plan behavior is split by runtime:
 - `src/js/options/planElementRules.js` owns compact UI-rule summaries and storage keys used when plan rows reference global UI cleanup rules.
 - `src/js/options/planMessages.js` owns plan-editor fallback text and UI-language message resolution.
 - `src/js/options/planFacts.js` owns compact plan summary/fact-list rendering for plan rows and plan detail headers.
+- `src/js/options/planIntentEditor.js` owns plan intent-coherence settings UI. `plans.js` still owns persistence and protected-schedule checks through explicit callbacks.
 - `src/js/options/planMigration.js` owns default-plan creation and one-way migration of legacy standalone groups, schedules, and whitelist entries into plan-owned records.
+- `src/js/options/planPomodoroEditor.js` owns plan Pomodoro settings UI, runtime status rendering, runtime command buttons, and active-page polling. `plans.js` still owns persistence and protected-schedule checks through explicit callbacks.
 - `src/js/options/planScheduleModel.js` owns plan-schedule normalization helpers shared by migration and the schedule editor.
 - `src/js/options/scheduleBoard.js` owns the reusable weekly schedule board used by plan schedules.
 - `src/js/content/plans.js` owns the non-module content-script adapter used by website blocking and UI-rule filtering.
