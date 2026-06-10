@@ -38,6 +38,15 @@ const budgets = [
     }
   },
   {
+    name: 'popup module',
+    max: 450,
+    hard: 900,
+    matches(relativePath) {
+      const normalized = relativePath.replaceAll('\\', '/');
+      return normalized.startsWith('src/js/popup/') && normalized.endsWith('.js');
+    }
+  },
+  {
     name: 'options module',
     max: 450,
     hard: 900,

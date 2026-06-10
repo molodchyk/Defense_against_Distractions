@@ -1,0 +1,58 @@
+// SPDX-License-Identifier: GPL-3.0-only
+// Copyright (C) 2023-2026 Oleksandr Molodchyk
+
+export function getActiveTab() {
+  return new Promise(resolve => {
+    chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
+      resolve(tabs[0]);
+    });
+  });
+}
+
+export function getSyncStorage(keys) {
+  return new Promise(resolve => {
+    chrome.storage.sync.get(keys, result => {
+      if (chrome.runtime.lastError) {
+        resolve(null);
+        return;
+      }
+
+      resolve(result);
+    });
+  });
+}
+
+export function isExtensionPage(url) {
+  return Boolean(url && url.startsWith(chrome.runtime.getURL('')));
+}
+
+export function openOptions() {
+  chrome.runtime.openOptionsPage();
+  window.close();
+}
+
+export function sendRuntimeMessage(message) {
+  return new Promise(resolve => {
+    chrome.runtime.sendMessage(message, response => {
+      if (chrome.runtime.lastError) {
+        resolve(null);
+        return;
+      }
+
+      resolve(response);
+    });
+  });
+}
+
+export function sendTabMessage(tabId, message) {
+  return new Promise(resolve => {
+    chrome.tabs.sendMessage(tabId, message, { frameId: 0 }, response => {
+      if (chrome.runtime.lastError) {
+        resolve(null);
+        return;
+      }
+
+      resolve(response);
+    });
+  });
+}

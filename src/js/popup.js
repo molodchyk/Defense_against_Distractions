@@ -22,6 +22,27 @@ import {
   getUiMessage,
   initializeUiLanguage
 } from './shared/uiLanguage.js';
+import {
+  getActiveTab,
+  getSyncStorage,
+  isExtensionPage,
+  openOptions,
+  sendRuntimeMessage,
+  sendTabMessage
+} from './popup/chrome.js';
+import {
+  copyTextToClipboard,
+  createTimelineRow,
+  setTextWithTitle
+} from './popup/dom.js';
+import {
+  formatClock,
+  formatCount,
+  formatDuration,
+  formatShortDuration,
+  getBreakDurationMs,
+  getHostnameLabel
+} from './popup/format.js';
 
 const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 const MAX_VISITS_IN_POPUP = 4;
@@ -258,14 +279,6 @@ function initializePopupTabs() {
   setPopupPane(activePopupPane);
 }
 
-function getActiveTab() {
-  return new Promise(resolve => {
-    chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
-      resolve(tabs[0]);
-    });
-  });
-}
-
 function applyTheme(mode) {
   document.documentElement.dataset.theme = resolveThemeMode(mode, mediaQuery.matches);
 }
@@ -274,23 +287,6 @@ function loadTheme() {
   chrome.storage.sync.get({ [THEME_STORAGE_KEY]: DEFAULT_THEME_MODE }, result => {
     applyTheme(normalizeThemeMode(result[THEME_STORAGE_KEY]));
   });
-}
-
-function getSyncStorage(keys) {
-  return new Promise(resolve => {
-    chrome.storage.sync.get(keys, result => {
-      if (chrome.runtime.lastError) {
-        resolve(null);
-        return;
-      }
-
-      resolve(result);
-    });
-  });
-}
-
-function isExtensionPage(url) {
-  return Boolean(url && url.startsWith(chrome.runtime.getURL('')));
 }
 
 async function redirectExtensionTabsToOptions() {
@@ -324,13 +320,6 @@ function summarizeNames(names, emptyText, maxVisible = 2) {
   }
 
   return `${visibleNames.slice(0, maxVisible).join(', ')} +${visibleNames.length - maxVisible}`;
-}
-
-function setTextWithTitle(elementId, value) {
-  const element = document.getElementById(elementId);
-  const text = String(value || '--');
-  element.textContent = text;
-  element.title = text;
 }
 
 function getProtectionPageSummary(activeTab = latestActiveTab) {
@@ -586,120 +575,6 @@ async function openPomodoroMiniPanel() {
 
   setStatus(getMessage('popupTimerPanelOpened'));
   window.close();
-}
-
-function openOptions() {
-  chrome.runtime.openOptionsPage();
-  window.close();
-}
-
-function sendRuntimeMessage(message) {
-  return new Promise(resolve => {
-    chrome.runtime.sendMessage(message, response => {
-      if (chrome.runtime.lastError) {
-        resolve(null);
-        return;
-      }
-
-      resolve(response);
-    });
-  });
-}
-
-function sendTabMessage(tabId, message) {
-  return new Promise(resolve => {
-    chrome.tabs.sendMessage(tabId, message, { frameId: 0 }, response => {
-      if (chrome.runtime.lastError) {
-        resolve(null);
-        return;
-      }
-
-      resolve(response);
-    });
-  });
-}
-
-function getHostnameLabel(visitOrOrigin) {
-  if (!visitOrOrigin) {
-    return '--';
-  }
-
-  const hostname = String(visitOrOrigin.hostname || '').replace(/^www\./i, '');
-  const title = String(visitOrOrigin.title || '').trim();
-
-  if (hostname && title) {
-    return `${hostname} - ${title}`;
-  }
-
-  return title || hostname || '--';
-}
-
-function formatClock(value) {
-  const date = new Date(value || '');
-  if (!Number.isFinite(date.getTime())) {
-    return '--';
-  }
-
-  return date.toLocaleTimeString([], {
-    hour: '2-digit',
-    minute: '2-digit'
-  });
-}
-
-function formatDuration(milliseconds) {
-  const totalSeconds = Math.max(0, Math.floor(Number(milliseconds || 0) / 1000));
-  const hours = Math.floor(totalSeconds / 3600);
-  const minutes = Math.floor((totalSeconds % 3600) / 60);
-  const seconds = totalSeconds % 60;
-
-  if (hours > 0) {
-    return `${hours}h ${minutes}m`;
-  }
-
-  if (minutes > 0) {
-    return `${minutes}m ${seconds}s`;
-  }
-
-  return `${seconds}s`;
-}
-
-function getBreakDurationMs(phase, settings = {}, completedWorkSessions = 0) {
-  const shortBreakMinutes = Number(settings.shortBreakMinutes || 0);
-  const longBreakMinutes = Number(settings.longBreakMinutes || 0);
-  const sessionsBeforeLongBreak = Math.max(1, Number(settings.sessionsBeforeLongBreak || 1));
-
-  if (phase === 'longBreak') {
-    return longBreakMinutes * 60 * 1000;
-  }
-
-  if (phase === 'shortBreak') {
-    return shortBreakMinutes * 60 * 1000;
-  }
-
-  const nextCompletedCount = completedWorkSessions + 1;
-  return nextCompletedCount % sessionsBeforeLongBreak === 0
-    ? longBreakMinutes * 60 * 1000
-    : shortBreakMinutes * 60 * 1000;
-}
-
-function createTimelineRow(label, value) {
-  const row = document.createElement('div');
-  const term = document.createElement('dt');
-  const description = document.createElement('dd');
-
-  term.textContent = label;
-  description.textContent = value || '--';
-  row.append(term, description);
-  return row;
-}
-
-function formatCount(value) {
-  const number = Number(value);
-  if (!Number.isFinite(number)) {
-    return '--';
-  }
-
-  return new Intl.NumberFormat().format(Math.max(0, Math.round(number)));
 }
 
 function setPageSignalsUnavailable(message = getMessage('popupUnavailableLabel')) {
@@ -1003,13 +878,6 @@ function formatIntentLineage(metrics = {}) {
   return parts.join(' - ');
 }
 
-function formatShortDuration(value) {
-  const totalSeconds = Math.max(0, Math.round(Number(value || 0) / 1000));
-  const minutes = Math.floor(totalSeconds / 60);
-  const seconds = totalSeconds % 60;
-  return minutes > 0 ? `${minutes}m ${String(seconds).padStart(2, '0')}s` : `${seconds}s`;
-}
-
 function renderIntentVisitList(visits = []) {
   const visitList = document.getElementById('intentVisitList');
   const recentVisits = visits.slice(-MAX_VISITS_IN_POPUP);
@@ -1294,23 +1162,6 @@ function buildPopupDiagnosticsPayload() {
     pomodoro: getCompactPomodoroDiagnostics(),
     intent: getCompactIntentDiagnostics()
   };
-}
-
-async function copyTextToClipboard(text) {
-  if (navigator.clipboard?.writeText) {
-    await navigator.clipboard.writeText(text);
-    return;
-  }
-
-  const textarea = document.createElement('textarea');
-  textarea.value = text;
-  textarea.setAttribute('readonly', '');
-  textarea.style.position = 'fixed';
-  textarea.style.left = '-9999px';
-  document.body.appendChild(textarea);
-  textarea.select();
-  document.execCommand('copy');
-  textarea.remove();
 }
 
 async function copyPopupDiagnostics() {
