@@ -3,21 +3,18 @@
 
 import { createDefaultSchedule, formatScheduleTime, getNextUnnamedScheduleName } from '../shared/scheduleForm.js';
 import { savePlansWithPriority } from '../shared/criticalScheduleStorage.js';
-import { getSync, removeSync, setSync } from '../shared/chromeStorage.js';
+import { getSync, setSync } from '../shared/chromeStorage.js';
 import {
   cloneSchedule,
   createScheduleBoardWorkspace
 } from './scheduleBoard.js';
 import {
-  createDefaultPlanFromItems,
   getNextPlanName,
-  getStoredGroupMap,
   isInProtectedSchedule,
   isPlanActive,
   normalizePlan,
   normalizePlans,
   PLAN_COUNTER_STORAGE_KEY,
-  PLAN_MIGRATION_STORAGE_KEY,
   PLANS_STORAGE_KEY
 } from '../shared/plans.js';
 import { normalizeUrl } from '../shared/url.js';
@@ -48,8 +45,14 @@ import {
   createTextNavigationButton,
   runAction
 } from './planDom.js';
+import { uniqueStrings } from './planCollections.js';
 import { createPlanFactList } from './planFacts.js';
+import { ensureDefaultPlan } from './planMigration.js';
 import { getMessage, getPlanMessage } from './planMessages.js';
+import {
+  normalizePlanScheduleAnchorDate,
+  normalizePlanScheduleWeekInterval
+} from './planScheduleModel.js';
 
 const ELEMENT_RULE_IDS_STORAGE_KEY = 'elementBlockRuleIds';
 const ELEMENT_RULE_ITEM_PREFIX = 'elementBlockRule.';
@@ -113,169 +116,6 @@ function bindPlanShellEvents() {
       }
     });
   }
-}
-
-async function ensureDefaultPlan() {
-  const items = await getSync(null);
-  const plans = normalizePlans(items[PLANS_STORAGE_KEY]);
-  const groups = Object.keys(getStoredGroupMap(items));
-  const legacySchedules = Array.isArray(items.schedules) ? items.schedules : [];
-  const legacyAllowedSites = Array.isArray(items.whitelistedSites) ? items.whitelistedSites : [];
-
-  if (plans.length > 0) {
-    await persistNormalizedPlansIfNeeded(items[PLANS_STORAGE_KEY], plans);
-    await migrateStandaloneDataIntoPlans(items, plans);
-    return;
-  }
-
-  if (groups.length === 0 && legacySchedules.length === 0 && legacyAllowedSites.length === 0) {
-    return;
-  }
-
-  const defaultPlan = createDefaultPlanFromItems(items, getPlanMessage('defaultPlanName'));
-  await savePlansWithPriority([defaultPlan]);
-  await setSync({
-    [PLAN_COUNTER_STORAGE_KEY]: 1,
-    [PLAN_MIGRATION_STORAGE_KEY]: {
-      legacySchedulesMovedToPlans: legacySchedules.length > 0,
-      legacyWhitelistMovedToPlans: legacyAllowedSites.length > 0,
-      legacyGroupsMovedToPlans: groups.length > 0
-    },
-    schedules: [],
-    whitelistedSites: []
-  });
-
-  if (groups.length > 0) {
-    await removeSync(groups);
-  }
-}
-
-async function persistNormalizedPlansIfNeeded(storedPlans, normalizedPlans) {
-  if (!Array.isArray(storedPlans)) {
-    return;
-  }
-
-  if (JSON.stringify(storedPlans) === JSON.stringify(normalizedPlans)) {
-    return;
-  }
-
-  await savePlansWithPriority(normalizedPlans);
-}
-
-async function migrateStandaloneDataIntoPlans(items, plans) {
-  const migrationState = items[PLAN_MIGRATION_STORAGE_KEY] || {};
-  const legacyGroupMap = getStoredGroupMap(items);
-  const legacyGroupKeys = Object.keys(legacyGroupMap);
-  const legacySchedules = Array.isArray(items.schedules) ? items.schedules : [];
-  const legacyAllowedSites = Array.isArray(items.whitelistedSites)
-    ? uniqueStrings(items.whitelistedSites.map(normalizeUrl).filter(Boolean))
-    : [];
-  let nextPlans = plans.map(normalizePlan);
-  let plansChanged = false;
-  const nextMigrationState = { ...migrationState };
-
-  if (legacySchedules.length > 0 && !migrationState.legacySchedulesMovedToPlans) {
-    const targetIndex = Math.max(0, nextPlans.findIndex(plan => plan.id === 'plan_1'));
-    nextPlans[targetIndex] = {
-      ...nextPlans[targetIndex],
-      schedules: mergeSchedules(nextPlans[targetIndex].schedules, legacySchedules)
-    };
-    nextMigrationState.legacySchedulesMovedToPlans = true;
-    plansChanged = true;
-  }
-
-  if (legacyAllowedSites.length > 0 && !migrationState.legacyWhitelistMovedToPlans) {
-    nextPlans = nextPlans.map(plan => ({
-      ...plan,
-      allowedSites: uniqueStrings([...plan.allowedSites, ...legacyAllowedSites])
-    }));
-    nextMigrationState.legacyWhitelistMovedToPlans = true;
-    plansChanged = true;
-  }
-
-  if (legacyGroupKeys.length > 0 && !migrationState.legacyGroupsMovedToPlans) {
-    const assignedGroupIds = new Set();
-    nextPlans = nextPlans.map(plan => {
-      const referencedGroups = plan.groupIds
-        .map(groupId => legacyGroupMap[groupId])
-        .filter(Boolean);
-
-      referencedGroups.forEach(group => assignedGroupIds.add(group.id));
-      return {
-        ...plan,
-        groupIds: [],
-        groups: mergePlanGroups(plan.groups, referencedGroups)
-      };
-    });
-
-    const unassignedGroups = Object.values(legacyGroupMap)
-      .filter(group => !assignedGroupIds.has(group.id));
-
-    if (unassignedGroups.length > 0) {
-      const targetIndex = Math.max(0, nextPlans.findIndex(plan => plan.id === 'plan_1'));
-      nextPlans[targetIndex] = {
-        ...nextPlans[targetIndex],
-        groups: mergePlanGroups(nextPlans[targetIndex].groups, unassignedGroups)
-      };
-    }
-
-    nextMigrationState.legacyGroupsMovedToPlans = true;
-    plansChanged = true;
-  }
-
-  if (plansChanged) {
-    await savePlansWithPriority(nextPlans.map(normalizePlan));
-  }
-
-  if (plansChanged || legacySchedules.length > 0 || legacyAllowedSites.length > 0 || legacyGroupKeys.length > 0) {
-    await setSync({
-      [PLAN_MIGRATION_STORAGE_KEY]: nextMigrationState,
-      schedules: [],
-      whitelistedSites: []
-    });
-  }
-
-  if (legacyGroupKeys.length > 0 && nextMigrationState.legacyGroupsMovedToPlans) {
-    await removeSync(legacyGroupKeys);
-  }
-}
-
-function mergeSchedules(existingSchedules, migratedSchedules) {
-  const seen = new Set();
-  return [...existingSchedules, ...migratedSchedules].map(cloneSchedule).filter(schedule => {
-    const key = [
-      schedule.name,
-      schedule.startTime,
-      schedule.endTime,
-      normalizePlanScheduleWeekInterval(schedule.weekInterval),
-      normalizePlanScheduleAnchorDate(schedule.anchorDate),
-      SCHEDULE_GRID_DAYS.filter(day => schedule.days.includes(day)).join(',')
-    ].join('|').toLowerCase();
-
-    if (seen.has(key)) {
-      return false;
-    }
-
-    seen.add(key);
-    return true;
-  });
-}
-
-function uniqueStrings(values) {
-  return [...new Set(values.map(value => String(value || '').trim()).filter(Boolean))];
-}
-
-function mergePlanGroups(existingGroups, migratedGroups) {
-  const seenIds = new Set();
-  return [...existingGroups, ...migratedGroups].filter(group => {
-    const groupId = group.id || group.groupName;
-    if (seenIds.has(groupId)) {
-      return false;
-    }
-
-    seenIds.add(groupId);
-    return true;
-  });
 }
 
 export async function renderPlans() {
@@ -1553,41 +1393,6 @@ function createUnsavedPlanScheduleDraft(plan) {
     anchorDate: normalizePlanScheduleAnchorDate(''),
     isActive: true
   };
-}
-
-function normalizePlanScheduleWeekInterval(value) {
-  const interval = Number.parseInt(value, 10);
-  return Number.isFinite(interval) ? Math.min(Math.max(interval, 1), 12) : 1;
-}
-
-function normalizePlanScheduleAnchorDate(value) {
-  const text = String(value || '').trim();
-  if (isValidLocalDateString(text)) {
-    return text;
-  }
-
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = String(now.getMonth() + 1).padStart(2, '0');
-  const day = String(now.getDate()).padStart(2, '0');
-  return `${year}-${month}-${day}`;
-}
-
-function isValidLocalDateString(value) {
-  const match = String(value || '').trim().match(/^(\d{4})-(\d{2})-(\d{2})$/);
-  if (!match) {
-    return false;
-  }
-
-  const [, year, month, day] = match;
-  const yearNumber = Number(year);
-  const monthNumber = Number(month);
-  const dayNumber = Number(day);
-  const date = new Date(yearNumber, monthNumber - 1, dayNumber);
-  return !Number.isNaN(date.getTime())
-    && date.getFullYear() === yearNumber
-    && date.getMonth() === monthNumber - 1
-    && date.getDate() === dayNumber;
 }
 
 function validatePlanSchedules(schedules) {
