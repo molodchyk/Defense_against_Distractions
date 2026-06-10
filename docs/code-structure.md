@@ -120,6 +120,7 @@ Pomodoro is split across plan configuration, runtime, and local activity:
 - `src/js/background/pomodoro.js` owns timer truth, alarms, local runtime state, activity state, local history state, auto-start, system idle/locked reconciliation, and popup/options messages.
 - `src/js/content/pomodoroActivity.js` sends throttled top-frame activity pings for local active/away status.
 - `src/js/content/pomodoroMiniPanelState.js` owns local-only mini-panel UI-state persistence and normalization.
-- `src/js/content/pomodoroMiniPanel.js` renders the optional on-page Pomodoro mini-panel opened from the popup.
+- `src/js/content/pomodoroMiniPanelStyle.js` owns mini-panel CSS injection and shared layout constants. It must load before `pomodoroMiniPanel.js`.
+- `src/js/content/pomodoroMiniPanel.js` renders the optional on-page Pomodoro mini-panel opened from the popup and owns runtime refresh, drag, resize, and close/open behavior.
 - `src/js/content/contentBlockingSiteCheck.js` applies strict-break blocking when a Pomodoro break is active for the current plan.
 - `src/js/content/contentBlockingOverlay.js` and `src/blocked.html` render Pomodoro timer status on blocked pages.

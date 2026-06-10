@@ -302,16 +302,20 @@ The schedule core logic already has useful shared modules. The UI should match t
 
 ### Phase 5: Pomodoro Mini-Panel Split
 
-Split `pomodoroMiniPanel.js` into:
+Continue splitting `pomodoroMiniPanel.js` into small content-script modules:
 
 - panel controller
-- theme sync
+- runtime refresh and message handling
 - drag/resize geometry
 - renderer
-- styles
-- local UI-state persistence
+- formatting/status rows
 
-The current `pomodoroMiniPanelState.js` is the first step. Continue from there.
+Completed first steps:
+
+- `pomodoroMiniPanelState.js` owns local UI-state persistence.
+- `pomodoroMiniPanelStyle.js` owns CSS injection and shared layout constants.
+
+The final shape should keep `pomodoroMiniPanel.js` as a thin adapter that wires the modules together and exposes the public mini-panel API.
 
 ### Phase 6: Intent Core Split
 
