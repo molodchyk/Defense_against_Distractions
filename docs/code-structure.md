@@ -2,13 +2,13 @@
 
 DaD is moving toward small modules grouped by runtime surface and product responsibility.
 
-The detailed modularization target, dependency rules, file-size budgets, and migration phases live in [DaD Modularization Roadmap](modularization-roadmap.md). The external Chrome extension architecture constraints behind that roadmap are summarized in [Extension Architecture Research](extension-architecture-research.md).
+The detailed modularization target, dependency rules, file-size budgets, and migration phases live in [DaD Modularization Roadmap](modularization-roadmap.md). Parallel ownership rules live in [Parallel Development Coordination](parallel-development.md). The external Chrome extension architecture constraints behind that roadmap are summarized in [Extension Architecture Research](extension-architecture-research.md).
 
 ## Runtime Areas
 
 `src/js/background` contains extension background/service-worker behavior.
 
-`src/js/content` contains page-injected content scripts. These files are loaded by `manifest.json` in order and are not ES modules, so shared content-script APIs attach to `window.DAD`.
+`src/js/content` contains page-injected content scripts. These files are loaded by `manifest.json` in order and are not ES modules, so shared content-script APIs attach to `window.DAD`. Feature-specific content scripts should live in subfolders while preserving the manifest order.
 
 `src/js/options` contains options-page-only UI helpers and page behavior. Feature-specific option modules should live in a feature subfolder instead of adding more files directly to this folder.
 
@@ -51,12 +51,12 @@ Billing behavior is intentionally dormant and provider-neutral:
 
 UI element blocking is split into ordered content-script modules:
 
-- `elementBlockingConstants.js`: storage keys, attributes, defaults, and shared constants.
-- `elementBlockingFingerprint.js`: element fingerprints, labels, roles, target selection, and picker hit testing.
-- `elementBlockingMatcher.js`: structural matching and match scoring.
-- `elementBlockingStorage.js`: sync storage migration, split-rule storage, quota reserve checks, and rule persistence.
-- `elementBlockingDom.js`: applying saved rules, previewing candidate rules, hiding/restoring elements, and mutation observation.
-- `elementBlocking.js`: public entry points, picker lifecycle, rule creation, and content-script event wiring.
+- `src/js/content/ui-blocking/constants.js`: storage keys, attributes, defaults, and shared constants.
+- `src/js/content/ui-blocking/fingerprint.js`: element fingerprints, labels, roles, target selection, and picker hit testing.
+- `src/js/content/ui-blocking/matcher.js`: structural matching and match scoring.
+- `src/js/content/ui-blocking/storage.js`: sync storage migration, split-rule storage, quota reserve checks, and rule persistence.
+- `src/js/content/ui-blocking/dom.js`: applying saved rules, previewing candidate rules, hiding/restoring elements, and mutation observation.
+- `src/js/content/ui-blocking/controller.js`: public entry points, picker lifecycle, rule creation, and content-script event wiring.
 
 The public content-script API remains:
 
@@ -64,21 +64,21 @@ The public content-script API remains:
 - `window.DAD.applyElementBlockRules`
 - `window.DAD.startElementPicker`
 
-Future work should keep new UI blocking behavior inside the narrowest module that owns it. For example, selector or diagnostic changes belong near fingerprint/matcher code, while preview display changes belong in `elementBlockingDom.js`.
+Future work should keep new UI blocking behavior inside the narrowest module that owns it. For example, selector or diagnostic changes belong near fingerprint/matcher code, while preview display changes belong in `ui-blocking/dom.js`.
 
 ## Page Blocking
 
 Main page blocking is also split into ordered content-script modules:
 
-- `contentBlockingConstants.js`: score thresholds, message names, overlay IDs, event options, and timing constants.
-- `contentBlockingOverlay.js`: blocked-page overlay rendering and blocked-page event guards.
-- `contentBlockingMedia.js`: audio, video, iframe, embed, and object suspension.
-- `contentBlockingBlocker.js`: the central `blockPage` action and runtime tab-mute messaging.
-- `contentBlockingKeywords.js`: keyword context extraction, text-node scanning, score updates, badge updates, and mutation observation.
-- `contentBlockingSiteCheck.js`: storage lookup, plan allowed-site checks, matching plan-owned or legacy website groups, and starting scans.
+- `src/js/content/content-blocking/constants.js`: score thresholds, message names, overlay IDs, event options, and timing constants.
+- `src/js/content/content-blocking/overlay.js`: blocked-page overlay rendering and blocked-page event guards.
+- `src/js/content/content-blocking/media.js`: audio, video, iframe, embed, and object suspension.
+- `src/js/content/content-blocking/blocker.js`: the central `blockPage` action and runtime tab-mute messaging.
+- `src/js/content/content-blocking/keywords.js`: keyword context extraction, text-node scanning, score updates, badge updates, and mutation observation.
+- `src/js/content/content-blocking/siteCheck.js`: storage lookup, plan allowed-site checks, matching plan-owned or legacy website groups, and starting scans.
 - `content.js`: bootstrap, runtime message handling, and BFCache/pageshow reinitialization.
 
-Blocking diagnostics start in `contentBlockingKeywords.js`, where score contributions are recorded into local page state. `contentBlockingOverlay.js` can render a concise reason on the blocked overlay. Future diagnostic expansion should stay near `contentBlockingKeywords.js` and `contentBlockingSiteCheck.js`, because those modules know which keyword or group caused risk to rise. Future intervention work should start near `contentBlockingBlocker.js` and `contentBlockingMedia.js`.
+Blocking diagnostics start in `content-blocking/keywords.js`, where score contributions are recorded into local page state. `content-blocking/overlay.js` can render a concise reason on the blocked overlay. Future diagnostic expansion should stay near `content-blocking/keywords.js` and `content-blocking/siteCheck.js`, because those modules know which keyword or group caused risk to rise. Future intervention work should start near `content-blocking/blocker.js` and `content-blocking/media.js`.
 
 ## Future Protection Model
 
@@ -118,9 +118,9 @@ Pomodoro is split across plan configuration, runtime, and local activity:
 
 - `src/js/shared/pomodoro.js` owns tested Pomodoro settings, runtime, phase, activity-state, rest-credit, and local history helpers.
 - `src/js/background/pomodoro.js` owns timer truth, alarms, local runtime state, activity state, local history state, auto-start, system idle/locked reconciliation, and popup/options messages.
-- `src/js/content/pomodoroActivity.js` sends throttled top-frame activity pings for local active/away status.
-- `src/js/content/pomodoroMiniPanelState.js` owns local-only mini-panel UI-state persistence and normalization.
-- `src/js/content/pomodoroMiniPanelStyle.js` owns mini-panel CSS injection and shared layout constants. It must load before `pomodoroMiniPanel.js`.
-- `src/js/content/pomodoroMiniPanel.js` renders the optional on-page Pomodoro mini-panel opened from the popup and owns runtime refresh, drag, resize, and close/open behavior.
-- `src/js/content/contentBlockingSiteCheck.js` applies strict-break blocking when a Pomodoro break is active for the current plan.
-- `src/js/content/contentBlockingOverlay.js` and `src/blocked.html` render Pomodoro timer status on blocked pages.
+- `src/js/content/pomodoro/activity.js` sends throttled top-frame activity pings for local active/away status.
+- `src/js/content/pomodoro/miniPanelState.js` owns local-only mini-panel UI-state persistence and normalization.
+- `src/js/content/pomodoro/miniPanelStyle.js` owns mini-panel CSS injection and shared layout constants. It must load before `miniPanel.js`.
+- `src/js/content/pomodoro/miniPanel.js` renders the optional on-page Pomodoro mini-panel opened from the popup and owns runtime refresh, drag, resize, and close/open behavior.
+- `src/js/content/content-blocking/siteCheck.js` applies strict-break blocking when a Pomodoro break is active for the current plan.
+- `src/js/content/content-blocking/overlay.js` and `src/blocked.html` render Pomodoro timer status on blocked pages.

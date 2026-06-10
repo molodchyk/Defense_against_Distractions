@@ -4,7 +4,7 @@ This document defines the target structure for the extension as it grows from a 
 
 The goal is not cosmetic folder movement. The goal is to make future work cheaper, safer, and easier to review.
 
-The source-backed Chrome extension constraints behind this roadmap are summarized in [Extension Architecture Research](extension-architecture-research.md).
+The source-backed Chrome extension constraints behind this roadmap are summarized in [Extension Architecture Research](extension-architecture-research.md). When more than one developer is active, ownership and handoff rules live in [Parallel Development Coordination](parallel-development.md).
 
 ## Problems To Fix
 
@@ -318,7 +318,7 @@ The schedule core logic already has useful shared modules. The UI should match t
 
 ### Phase 5: Pomodoro Mini-Panel Split
 
-Continue splitting `pomodoroMiniPanel.js` into small content-script modules:
+Continue splitting `src/js/content/pomodoro/miniPanel.js` into small content-script modules:
 
 - panel controller
 - runtime refresh and message handling
@@ -328,10 +328,13 @@ Continue splitting `pomodoroMiniPanel.js` into small content-script modules:
 
 Completed first steps:
 
-- `pomodoroMiniPanelState.js` owns local UI-state persistence.
-- `pomodoroMiniPanelStyle.js` owns CSS injection and shared layout constants.
+- `src/js/content/pomodoro/miniPanelState.js` owns local UI-state persistence.
+- `src/js/content/pomodoro/miniPanelStyle.js` owns CSS injection and shared layout constants.
+- Pomodoro content scripts now live under `src/js/content/pomodoro/`.
+- UI blocking content scripts now live under `src/js/content/ui-blocking/`.
+- Page blocking content scripts now live under `src/js/content/content-blocking/`.
 
-The final shape should keep `pomodoroMiniPanel.js` as a thin adapter that wires the modules together and exposes the public mini-panel API.
+The final shape should keep `miniPanel.js` as a thin adapter that wires the modules together and exposes the public mini-panel API.
 
 ### Phase 6: Intent Core Split
 
