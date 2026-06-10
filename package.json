@@ -10,6 +10,9 @@
     "package": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/package-extension.ps1",
     "verify:release": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/verify-release.ps1",
     "verify:manifest": "node scripts/check-manifest-references.mjs",
+    "verify:imports": "node scripts/check-relative-imports.mjs",
+    "audit:folder-density": "node scripts/audit-folder-density.mjs",
+    "audit:folder-density:strict": "node scripts/audit-folder-density.mjs --fail",
     "audit:file-sizes": "node scripts/audit-file-sizes.mjs",
     "audit:file-sizes:strict": "node scripts/audit-file-sizes.mjs --fail",
     "test": "node --test test/*.test.js"

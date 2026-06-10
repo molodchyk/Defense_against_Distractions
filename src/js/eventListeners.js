@@ -6,7 +6,7 @@ import { initializeBillingPanel } from './options/billing.js';
 import { initializeElementRulesSync, renderElementRules } from './options/elementRules.js';
 import { initializeIntentDiagnosticsPanel } from './options/intentDiagnostics.js';
 import { migrateLegacyWebsiteGroupsStorage } from './options/legacyMigration.js';
-import { initializePlans, renderPlans } from './options/plans.js';
+import { initializePlans, renderPlans } from './options/plans/controller.js';
 import { initializeReleaseBackupNotice } from './options/releaseNotice.js';
 import { initializeStorageTransfer } from './options/storageTransfer.js';
 import { initializeThemeModeControl } from './options/theme.js';

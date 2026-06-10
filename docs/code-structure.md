@@ -10,7 +10,7 @@ The detailed modularization target, dependency rules, file-size budgets, and mig
 
 `src/js/content` contains page-injected content scripts. These files are loaded by `manifest.json` in order and are not ES modules, so shared content-script APIs attach to `window.DAD`.
 
-`src/js/options` contains options-page-only UI helpers and page behavior.
+`src/js/options` contains options-page-only UI helpers and page behavior. Feature-specific option modules should live in a feature subfolder instead of adding more files directly to this folder.
 
 `src/js/popup` contains popup-only helper modules. The root `src/js/popup.js` is still the popup entry point, but generic Chrome messaging, DOM helpers, formatting helpers, popup shell behavior, popup i18n, the protection summary, the Page Signals panel, the Block Diagnostics panel, the Intent Diagnostics panel, and the Pomodoro panel now live in `src/js/popup/chrome.js`, `src/js/popup/dom.js`, `src/js/popup/format.js`, `src/js/popup/shell.js`, `src/js/popup/i18n.js`, `src/js/popup/protectionSummaryPanel.js`, `src/js/popup/pageSignalsPanel.js`, `src/js/popup/blockDiagnosticsPanel.js`, `src/js/popup/intentDiagnosticsPanel.js`, and `src/js/popup/pomodoroPanel.js`. Future popup work should move one feature panel at a time out of the entry file.
 
@@ -18,21 +18,21 @@ The detailed modularization target, dependency rules, file-size budgets, and mig
 
 `src/js/shared` contains ES modules used by option/background code and tests.
 
-Plan behavior is split by runtime:
+Plan behavior is split by runtime and feature folder:
 
 - `src/js/shared/plans.js` owns the tested ES-module plan model used by options code.
-- `src/js/options/plans.js` owns the options-page plan UI.
-- `src/js/options/planDom.js` owns reusable plan-editor DOM controls, destructive confirmation dialogs, and guarded action dispatch.
-- `src/js/options/planCollections.js` owns small plan-editor collection helpers shared by migration and editing flows.
-- `src/js/options/planEntriesEditor.js` owns plan detail rendering for the plan name, website/keyword entries, allowed sites, and assigned UI cleanup rules. It is UI-only; `plans.js` still owns storage mutation and protected-schedule checks.
-- `src/js/options/planElementRules.js` owns compact UI-rule summaries and storage keys used when plan rows reference global UI cleanup rules.
-- `src/js/options/planMessages.js` owns plan-editor fallback text and UI-language message resolution.
-- `src/js/options/planFacts.js` owns compact plan summary/fact-list rendering for plan rows and plan detail headers.
-- `src/js/options/planIntentEditor.js` owns plan intent-coherence settings UI. `plans.js` still owns persistence and protected-schedule checks through explicit callbacks.
-- `src/js/options/planMigration.js` owns default-plan creation and one-way migration of legacy standalone groups, schedules, and whitelist entries into plan-owned records.
-- `src/js/options/planPomodoroEditor.js` owns plan Pomodoro settings UI, runtime status rendering, runtime command buttons, and active-page polling. `plans.js` still owns persistence and protected-schedule checks through explicit callbacks.
-- `src/js/options/planScheduleEditor.js` owns plan schedule UI, draft and selected-schedule state, schedule graph expansion state, schedule persistence, and schedule validation. `plans.js` supplies the render callback and clears schedule UI state when a plan is deleted.
-- `src/js/options/planScheduleModel.js` owns plan-schedule normalization helpers shared by migration and the schedule editor.
+- `src/js/options/plans/controller.js` owns the options-page plan UI controller, storage mutation, and protected-schedule checks.
+- `src/js/options/plans/dom.js` owns reusable plan-editor DOM controls, destructive confirmation dialogs, and guarded action dispatch.
+- `src/js/options/plans/collections.js` owns small plan-editor collection helpers shared by migration and editing flows.
+- `src/js/options/plans/entriesEditor.js` owns plan detail rendering for the plan name, website/keyword entries, allowed sites, and assigned UI cleanup rules.
+- `src/js/options/plans/elementRules.js` owns compact UI-rule summaries and storage keys used when plan rows reference global UI cleanup rules.
+- `src/js/options/plans/messages.js` owns plan-editor fallback text and UI-language message resolution.
+- `src/js/options/plans/facts.js` owns compact plan summary/fact-list rendering for plan rows and plan detail headers.
+- `src/js/options/plans/intentEditor.js` owns plan intent-coherence settings UI.
+- `src/js/options/plans/migration.js` owns default-plan creation and one-way migration of legacy standalone groups, schedules, and whitelist entries into plan-owned records.
+- `src/js/options/plans/pomodoroEditor.js` owns plan Pomodoro settings UI, runtime status rendering, runtime command buttons, and active-page polling.
+- `src/js/options/plans/scheduleEditor.js` owns plan schedule UI, draft and selected-schedule state, schedule graph expansion state, schedule persistence, and schedule validation. `controller.js` supplies the render callback and clears schedule UI state when a plan is deleted.
+- `src/js/options/plans/scheduleModel.js` owns plan-schedule normalization helpers shared by migration and the schedule editor.
 - `src/js/options/scheduleBoard.js` owns the reusable weekly schedule graph and drag/resize interaction used by plan schedules.
 - `src/js/options/scheduleBoardInspector.js` owns the schedule inspector form, day presets, recurrence controls, validation message, and action buttons.
 - `src/js/options/scheduleBoardModel.js` owns pure schedule-board helpers such as schedule cloning, selected-draft resolution, date normalization, recurrence bounds, and draft completeness checks.
@@ -109,7 +109,7 @@ The first local signal collector is split by runtime:
 - `src/js/content/intentIntervention.js` renders proportional drift interventions for `intervene` and `locked` states. Depending on the active plan policy, it can warn, desaturate the page with grayscale, show a return/isolate prompt, show a modal drift-chain block, or show a non-continue current-page chain quarantine for locked/drift-descendant block actions with a cooldown before isolation.
 - `src/js/options/intentDiagnostics.js` renders the options-page intent diagnostics panel with policy source, score reasons, score signals, recent trajectory, clear, and user-triggered local JSON export.
 - `src/js/options/usageStats.js` renders the options-page Usage panel, clear control, and user-triggered local JSON export for local hostname aggregates.
-- `src/js/options/plans.js` owns plan-level intent settings: enabled state, intervention action, thresholds, local auto-calibration, and Pomodoro influence.
+- `src/js/options/plans/intentEditor.js` owns plan-level intent settings: enabled state, intervention action, thresholds, local auto-calibration, and Pomodoro influence.
 - `src/js/popup.js` renders the compact popup control surface: current protection status, UI picker controls, Pomodoro runtime controls, collapsible page-signal diagnostics, current-tab block/media/mute diagnostics with local copy support, and collapsible intent diagnostics with score reasons and clear support.
 
 The intent layer is plan-aware, but it is still not a full browser-navigation quarantine. It records bounded local diagnostic state, prunes trajectory sessions by the strictest active plan retention setting, evaluates the current page against the active plan policy, and can intervene proportionally when coherence collapses. Local feedback can conservatively adjust the effective intervention threshold when plan auto-calibration is enabled, but it does not lower the configured locked threshold. Current proportional content-script actions are warn-only, grayscale page, return prompt, modal drift-chain block, and current-page hard chain quarantine for locked or drift-descendant block actions. Hard quarantine includes a cooldown that delays isolation while keeping Return available. Opener-based tab lineage and top-frame `chrome.webNavigation` transition summaries are tracked, but DaD does not yet suspend or close every drift-descendant tab automatically.

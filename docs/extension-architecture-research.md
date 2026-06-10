@@ -272,4 +272,4 @@ The roadmap's feature-first structure is still the right direction, with these r
    - intent diagnostics,
    - diagnostics export.
 4. Add a basic Playwright or Puppeteer E2E harness that loads the unpacked extension.
-5. Split `src/js/options/plans.js` after the popup split proves the module pattern.
+5. Continue splitting `src/js/options/plans/controller.js` after the plan-specific files have been moved into `src/js/options/plans/`.

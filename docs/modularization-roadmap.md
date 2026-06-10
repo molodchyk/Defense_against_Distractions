@@ -241,6 +241,17 @@ These are review limits, not hard compiler limits:
 
 If a file crosses 600 lines, create a follow-up split unless there is a clear reason. If a file crosses 900 lines, treat it as architecture debt, not normal growth.
 
+## Folder Density Budgets
+
+Runtime folders should stay navigable without becoming flat indexes of unrelated work.
+
+- Root runtime folders such as `src/js/options`, `src/js/content`, `src/js/shared`, and `src/js/background` should target 12 files or fewer.
+- Feature subfolders should target 15 files or fewer. If a feature crosses that, split by sub-surface such as `options`, `content`, `core`, `background`, or `styles`.
+- A flat folder may temporarily exceed the target during migration, but new work should either land in an existing feature folder or create one.
+- File moves should be behavior-neutral and accompanied by import checks, tests, and documentation updates.
+
+Use `npm run audit:folder-density` for reporting and `npm run audit:folder-density:strict` when hard folder-index debt should fail the check.
+
 ## Migration Strategy
 
 Do not perform a giant rename-only refactor. It creates high merge risk and hides behavior regressions.
@@ -275,16 +286,21 @@ The popup entry file should become an initializer that wires modules together.
 
 ### Phase 3: Plans Options Split
 
-Split `src/js/options/plans.js` by plan page:
+Move plan-specific options modules into `src/js/options/plans/` and continue splitting the plan controller by plan page:
 
-- plan storage and migration controller
 - compact plan list
 - plan page shell and navigation
+- storage mutation and protected-schedule guards
 - entries editor
 - schedule editor
 - Pomodoro editor
 - intent editor
 - shared controls and confirmation dialog
+
+Completed first step:
+
+- Plan-specific options files now live under `src/js/options/plans/`.
+- Reusable schedule-board modules remain directly under `src/js/options/` because they are not plan-specific.
 
 This is high priority because plans are the center of the product.
 
@@ -396,4 +412,4 @@ Reason:
 - It touches Pomodoro, block diagnostics, intent diagnostics, and UI picker, so splitting it creates reusable UI conventions before deeper options-page work.
 - It does not require changing content-script manifest load order.
 
-The second target should be `src/js/options/plans.js`, because that file owns the product model users will live in.
+The second target is the plan controller in `src/js/options/plans/controller.js`, because that file owns the product model users will live in.

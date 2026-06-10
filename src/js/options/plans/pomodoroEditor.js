@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
-import { isPlanActive } from '../shared/plans.js';
+import { isPlanActive } from '../../shared/plans.js';
 import {
   POMODORO_PHASES,
   formatDuration,
   normalizePomodoroSettings
-} from '../shared/pomodoro.js';
+} from '../../shared/pomodoro.js';
 import {
   createButton,
   createCheckboxInput,
@@ -14,8 +14,8 @@ import {
   createLabeledControl,
   createNumberInput,
   createPlanSubsection
-} from './planDom.js';
-import { getPlanMessage } from './planMessages.js';
+} from './dom.js';
+import { getPlanMessage } from './messages.js';
 
 let planPomodoroStatusInterval = null;
 

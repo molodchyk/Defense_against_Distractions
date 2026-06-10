@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
-import { savePlansWithPriority } from '../shared/criticalScheduleStorage.js';
-import { getSync, setSync } from '../shared/chromeStorage.js';
+import { savePlansWithPriority } from '../../shared/criticalScheduleStorage.js';
+import { getSync, setSync } from '../../shared/chromeStorage.js';
 import {
   getNextPlanName,
   isInProtectedSchedule,
@@ -10,34 +10,34 @@ import {
   normalizePlans,
   PLAN_COUNTER_STORAGE_KEY,
   PLANS_STORAGE_KEY
-} from '../shared/plans.js';
-import { normalizeUrl } from '../shared/url.js';
+} from '../../shared/plans.js';
+import { normalizeUrl } from '../../shared/url.js';
 import {
   confirmDestructiveAction,
   createButton,
   createIconButton,
   createTextNavigationButton
-} from './planDom.js';
-import { uniqueStrings } from './planCollections.js';
-import { createPlanEntriesEditor } from './planEntriesEditor.js';
+} from './dom.js';
+import { uniqueStrings } from './collections.js';
+import { createPlanEntriesEditor } from './entriesEditor.js';
 import {
   ELEMENT_RULE_IDS_STORAGE_KEY,
   ELEMENT_RULE_ITEM_PREFIX,
   getElementRuleSummaries
-} from './planElementRules.js';
-import { createPlanFactList } from './planFacts.js';
-import { createPlanIntentEditor } from './planIntentEditor.js';
-import { ensureDefaultPlan } from './planMigration.js';
-import { getPlanMessage } from './planMessages.js';
+} from './elementRules.js';
+import { createPlanFactList } from './facts.js';
+import { createPlanIntentEditor } from './intentEditor.js';
+import { ensureDefaultPlan } from './migration.js';
+import { getPlanMessage } from './messages.js';
 import {
   createPlanPomodoroEditor,
   startPlanPomodoroStatusPolling,
   stopPlanPomodoroStatusPolling
-} from './planPomodoroEditor.js';
+} from './pomodoroEditor.js';
 import {
   clearPlanScheduleState,
   createPlanScheduleEditor
-} from './planScheduleEditor.js';
+} from './scheduleEditor.js';
 
 let activePlanView = null;
 

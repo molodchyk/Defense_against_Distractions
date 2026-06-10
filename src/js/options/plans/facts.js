@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
-import { INTENT_INTERVENTION_ACTIONS } from '../shared/intentCoherence.js';
-import { isPlanActive } from '../shared/plans.js';
-import { formatScheduleActivitySummary } from '../shared/scheduleSummary.js';
-import { getScheduleActivityCounts } from '../shared/scheduleTime.js';
-import { getPlanMessage } from './planMessages.js';
+import { INTENT_INTERVENTION_ACTIONS } from '../../shared/intentCoherence.js';
+import { isPlanActive } from '../../shared/plans.js';
+import { formatScheduleActivitySummary } from '../../shared/scheduleSummary.js';
+import { getScheduleActivityCounts } from '../../shared/scheduleTime.js';
+import { getPlanMessage } from './messages.js';
 
 export function createPlanFactList(plan) {
   const list = document.createElement('dl');

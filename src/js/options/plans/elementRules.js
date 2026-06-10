@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
-import { getSync } from '../shared/chromeStorage.js';
+import { getSync } from '../../shared/chromeStorage.js';
 
 export const ELEMENT_RULE_IDS_STORAGE_KEY = 'elementBlockRuleIds';
 export const ELEMENT_RULE_ITEM_PREFIX = 'elementBlockRule.';

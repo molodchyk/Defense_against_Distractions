@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
-import { savePlansWithPriority } from '../shared/criticalScheduleStorage.js';
-import { getSync, removeSync, setSync } from '../shared/chromeStorage.js';
+import { savePlansWithPriority } from '../../shared/criticalScheduleStorage.js';
+import { getSync, removeSync, setSync } from '../../shared/chromeStorage.js';
 import {
   createDefaultPlanFromItems,
   getStoredGroupMap,
@@ -11,16 +11,16 @@ import {
   PLAN_COUNTER_STORAGE_KEY,
   PLAN_MIGRATION_STORAGE_KEY,
   PLANS_STORAGE_KEY
-} from '../shared/plans.js';
-import { normalizeUrl } from '../shared/url.js';
-import { SCHEDULE_GRID_DAYS } from '../shared/scheduleGrid.js';
-import { cloneSchedule } from './scheduleBoard.js';
-import { uniqueStrings } from './planCollections.js';
-import { getPlanMessage } from './planMessages.js';
+} from '../../shared/plans.js';
+import { normalizeUrl } from '../../shared/url.js';
+import { SCHEDULE_GRID_DAYS } from '../../shared/scheduleGrid.js';
+import { cloneSchedule } from '../scheduleBoard.js';
+import { uniqueStrings } from './collections.js';
+import { getPlanMessage } from './messages.js';
 import {
   normalizePlanScheduleAnchorDate,
   normalizePlanScheduleWeekInterval
-} from './planScheduleModel.js';
+} from './scheduleModel.js';
 
 export async function ensureDefaultPlan() {
   const items = await getSync(null);

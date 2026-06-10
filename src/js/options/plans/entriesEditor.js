@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
-import { normalizeUrl } from '../shared/url.js';
+import { normalizeUrl } from '../../shared/url.js';
 import {
   createButton,
   createCheckboxRow,
@@ -9,8 +9,8 @@ import {
   createLabeledControl,
   createPlanSubsection,
   runAction
-} from './planDom.js';
-import { getMessage, getPlanMessage } from './planMessages.js';
+} from './dom.js';
+import { getMessage, getPlanMessage } from './messages.js';
 
 export function createPlanEntriesEditor({
   plan,

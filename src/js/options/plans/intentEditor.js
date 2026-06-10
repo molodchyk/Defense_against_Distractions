@@ -5,7 +5,7 @@ import {
   INTENT_INTERVENTION_ACTIONS,
   INTENT_POMODORO_INFLUENCE_MODES,
   normalizeIntentSettings
-} from '../shared/intentCoherence.js';
+} from '../../shared/intentCoherence.js';
 import {
   createButton,
   createCheckboxInput,
@@ -14,8 +14,8 @@ import {
   createNumberInput,
   createPlanSubsection,
   createSelectInput
-} from './planDom.js';
-import { getPlanMessage } from './planMessages.js';
+} from './dom.js';
+import { getPlanMessage } from './messages.js';
 
 export function createPlanIntentEditor(plan, isLocked, { onSaveSettings }) {
   const section = createPlanSubsection('planIntentLabel');

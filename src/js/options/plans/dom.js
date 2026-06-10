@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
-import { getPlanMessage } from './planMessages.js';
+import { getPlanMessage } from './messages.js';
 
 export function createPlanSubsection(titleKey) {
   const section = document.createElement('section');
