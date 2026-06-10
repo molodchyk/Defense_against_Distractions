@@ -2,6 +2,8 @@
 
 DaD is moving toward small modules grouped by runtime surface and product responsibility.
 
+The detailed modularization target, dependency rules, file-size budgets, and migration phases live in [DaD Modularization Roadmap](modularization-roadmap.md). The external Chrome extension architecture constraints behind that roadmap are summarized in [Extension Architecture Research](extension-architecture-research.md).
+
 ## Runtime Areas
 
 `src/js/background` contains extension background/service-worker behavior.
