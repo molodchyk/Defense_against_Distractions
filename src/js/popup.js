@@ -18,8 +18,6 @@ import {
 } from './shared/url.js';
 import {
   UI_LANGUAGE_STORAGE_KEY,
-  getResolvedUiLanguage,
-  getUiMessage,
   initializeUiLanguage
 } from './shared/uiLanguage.js';
 import {
@@ -43,6 +41,10 @@ import {
   getBreakDurationMs,
   getHostnameLabel
 } from './popup/format.js';
+import {
+  getMessage,
+  localizePopup
+} from './popup/i18n.js';
 
 const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 const MAX_VISITS_IN_POPUP = 4;
@@ -57,196 +59,6 @@ let latestPageSignalSnapshot = null;
 let latestPomodoroPayload = null;
 let latestIntentDebugState = null;
 let activePopupPane = 'actions';
-
-const POPUP_MESSAGES = {
-  popupDocumentTitle: 'Defense against Distractions',
-  popupBrandName: 'Defense against Distractions',
-  popupQuickActionsTitle: 'Quick Actions',
-  popupOpenOptionsTitle: 'Open options',
-  popupSectionsAriaLabel: 'Popup sections',
-  popupActionsTab: 'Actions',
-  popupDiagnosticsTab: 'Diagnostics',
-  popupProtectionStatusTitle: 'Protection status',
-  popupLoadingLabel: 'Loading',
-  popupProtectionStatusAriaLabel: 'Current protection status',
-  popupPlansLabel: 'Plans',
-  popupCurrentPageLabel: 'Current page',
-  popupTimerLabel: 'Timer',
-  popupIntentLabel: 'Intent',
-  popupCheckingLabel: 'Checking',
-  popupControlsAriaLabel: 'Controls',
-  popupUiPickerTitle: 'UI Picker',
-  popupCurrentTabLabel: 'Current tab',
-  popupMatchStrategyLabel: 'Match strategy',
-  popupSamePositionOption: 'Same position in repeated UI',
-  popupSameTextOption: 'Same text or label',
-  popupSimilarStructureOption: 'Similar structure',
-  popupClosestMatchOption: 'Closest match',
-  popupMinimumScoreLabel: 'Minimum score',
-  popupAncestorDepthLabel: 'Ancestor depth',
-  popupLabelMatchLabel: 'Label match',
-  popupPreferLabelOption: 'Prefer label',
-  popupIgnoreLabelOption: 'Ignore label',
-  popupRequireLabelOption: 'Require label',
-  popupPickUiElementButton: 'Pick UI Element',
-  popupPomodoroTitle: 'Pomodoro',
-  popupIdleLabel: 'Idle',
-  popupNoActivePomodoroPlan: 'No active Pomodoro plan',
-  popupZeroWorkSessionsCompleted: '0 work sessions completed',
-  popupActivityUnknownLabel: 'Activity unknown',
-  popupPomodoroTimingAriaLabel: 'Pomodoro timing details',
-  popupStartButton: 'Start',
-  popupPauseButton: 'Pause',
-  popupResumeButton: 'Resume',
-  popupResetButton: 'Reset',
-  popupOpenTimerPanelButton: 'Open timer panel',
-  popupTimerPanelOpened: 'Timer panel opened on this page.',
-  popupDiagnosticsAriaLabel: 'Diagnostics',
-  popupPageSignalsTitle: 'Page Signals',
-  popupPageSignalsAriaLabel: 'Current page signal counts',
-  popupImagesLabel: 'Images',
-  popupVideoLabel: 'Video',
-  popupAudioLabel: 'Audio',
-  popupGifsLabel: 'GIFs',
-  popupEmojiLabel: 'Emoji',
-  popupLinksLabel: 'Links',
-  popupBlockDiagnosticsTitle: 'Block Diagnostics',
-  popupBlockDiagnosticsAriaLabel: 'Current page block diagnostics',
-  popupPageLabel: 'Page',
-  popupOverlayLabel: 'Overlay',
-  popupMediaLabel: 'Media',
-  popupTabMuteLabel: 'Tab mute',
-  popupTriggerLabel: 'Trigger',
-  popupScoreLabel: 'Score',
-  popupRefreshButton: 'Refresh',
-  popupCopyDiagnosticsButton: 'Copy Diagnostics',
-  popupIntentDiagnosticsTitle: 'Intent Diagnostics',
-  popupNoDataLabel: 'No data',
-  popupCoherenceLabel: 'Coherence',
-  popupOriginLabel: 'Origin',
-  popupCurrentLabel: 'Current',
-  popupFirstDriftLabel: 'First drift',
-  popupLineageLabel: 'Lineage',
-  popupIntentReasonsAriaLabel: 'Intent score reasons',
-  popupIntentTrajectoryAriaLabel: 'Recent intent trajectory',
-  popupClearButton: 'Clear',
-  popupOptionsButton: 'Options',
-  popupUnavailableLabel: 'Unavailable',
-  popupNoPageLabel: 'No page',
-  popupNoScriptLabel: 'No script',
-  popupCurrentTabStatus: 'Current tab',
-  popupNoWebPage: 'No web page',
-  popupBlockedOverlayActive: 'Blocked overlay active',
-  popupBlockedWithKeyword: 'Blocked: $1',
-  popupAllowedByPlans: 'Allowed: $1',
-  popupMatchedGroups: 'Matched: $1',
-  popupNoMatchingRule: 'No matching rule',
-  popupNoActivePlan: 'No active plan',
-  popupNoPlansConfigured: 'No plans configured',
-  popupActivePlansFallback: '$1 active',
-  popupActivePlansSummary: '$1 active / $2 total',
-  popupActiveState: 'Active',
-  popupReadyState: 'Ready',
-  popupIdleState: 'Idle',
-  popupAutoStartPaused: 'Auto-start paused',
-  popupAutoStartDelayed: 'Auto-start delayed',
-  popupWorkSummary: 'Work - $1',
-  popupPomodoroStateSummary: '$1 - $2',
-  popupPausedSummary: 'Paused - $1',
-  popupRestSatisfied: 'Rest satisfied',
-  popupNotRunning: 'Not running',
-  popupStrictBreaks: 'strict breaks',
-  popupAdvisoryBreaks: 'advisory breaks',
-  popupAutoStart: 'auto-start',
-  popupAutoStartTimelineLabel: 'Auto-start',
-  popupManualStart: 'manual start',
-  popupWorkSessionsCompleted: '$1 work sessions completed',
-  popupAutoStartDelayedFor: 'auto-start delayed $1',
-  popupAutoStartPausedUntilStart: 'auto-start paused until Start or Resume',
-  popupPomodoroProtectedScheduleControls: 'Controls locked',
-  popupPomodoroProtectedScheduleReason: 'Pause and reset are locked while a protected schedule is active.',
-  popupNoTrajectory: 'No trajectory',
-  popupClearState: 'clear',
-  popupBlockedState: 'blocked',
-  popupNoneDetected: 'none detected',
-  popupNoTriggerRecorded: 'No trigger recorded',
-  popupUnknownLabel: 'unknown',
-  popupBlockedOverlayIn: 'overlay in $1',
-  popupMediaSuspendedSummary: '$1 media / $2 frames suspended',
-  popupMediaRestoredSummary: 'restored $1 media / $2 frames',
-  popupMediaCapableElements: '$1 media-capable elements',
-  popupMutedOriginallyMuted: 'muted, originally muted',
-  popupMutedByDad: 'muted by DaD',
-  popupRestoredMutedState: 'restored to muted',
-  popupRestoredUnmutedState: 'restored to unmuted',
-  popupRestoreSkipped: 'restore skipped',
-  popupNotTracked: 'not tracked',
-  popupNoTrajectoryDataYet: 'No trajectory data yet',
-  popupNoneDetectedTitleCase: 'None detected',
-  popupConfiguredCycle: '$1m work / $2m rest',
-  popupStateForDuration: '$1 for $2',
-  popupStateLastActivity: '$1 - last activity $2 ago',
-  popupActivityWithActiveToday: '$1 - active today $2',
-  popupLastActivityAgo: '$1 ago',
-  popupOpenPageBeforePicking: 'Open a page before picking an element.',
-  popupReloadBeforePicking: 'Reload this page, then try picking again.',
-  popupElementPickerStarted: 'Element picker started.',
-  popupCouldNotClearIntent: 'Could not clear intent diagnostics.',
-  popupClearedLabel: 'Cleared',
-  popupPomodoroActionFailed: 'Pomodoro action failed.',
-  pomodoroWorkStartedLabel: 'Work started',
-  pomodoroNextBreakLabel: 'Next break',
-  pomodoroRequiredRestLabel: 'Required rest',
-  pomodoroRestCreditedLabel: 'Rest already credited',
-  pomodoroRestStillNeededLabel: 'Rest still needed',
-  pomodoroReturnBehaviorLabel: 'Return behavior',
-  pomodoroReturnStartsNewWork: 'new work starts on activity',
-  pomodoroBreakStartedLabel: 'Break started',
-  pomodoroBreakEndsLabel: 'Break ends',
-  pomodoroNextWorkLabel: 'Next work',
-  pomodoroNextWorkAfterRestLabel: 'after rest is done',
-  pomodoroRestSatisfiedLabel: 'Rest satisfied',
-  pomodoroNextWorkOnActivityLabel: 'when activity returns',
-  pomodoroCompletedBlocksLabel: 'Completed work blocks',
-  pomodoroPausedAtLabel: 'Paused at',
-  pomodoroPausedPhaseLabel: 'Paused phase',
-  pomodoroRemainingLabel: 'Remaining',
-  pomodoroTimerStateLabel: 'Timer state',
-  pomodoroReadyToStartLabel: 'ready to start',
-  pomodoroConfiguredCycleLabel: 'Configured cycle',
-  popupActivityStateLabel: 'System state',
-  popupLastActivityLabel: 'Last activity',
-  pomodoroHistoryTodayLabel: 'Today',
-  pomodoroHistoryWorkSessionsLabel: 'Work sessions',
-  pomodoroHistoryBreaksLabel: 'Breaks completed',
-  pomodoroHistoryCreditedRestLabel: 'Rest credited',
-  pomodoroHistorySkippedBreaksLabel: 'Breaks skipped',
-  popupDiagnosticsCopied: 'Diagnostics copied.',
-  popupCouldNotCopyDiagnostics: 'Could not copy diagnostics.'
-};
-
-function getMessage(key, fallbackOrSubstitutions, maybeSubstitutions) {
-  const hasExplicitFallback = maybeSubstitutions !== undefined;
-  const fallback = hasExplicitFallback ? fallbackOrSubstitutions : (POPUP_MESSAGES[key] || key);
-  const substitutions = hasExplicitFallback ? maybeSubstitutions : fallbackOrSubstitutions;
-  return getUiMessage(key, POPUP_MESSAGES[key] || fallback, substitutions);
-}
-
-function localizePopup() {
-  document.documentElement.lang = getResolvedUiLanguage();
-
-  document.querySelectorAll('[data-i18n]').forEach(element => {
-    element.textContent = getMessage(element.dataset.i18n, element.textContent);
-  });
-
-  document.querySelectorAll('[data-i18n-title]').forEach(element => {
-    element.title = getMessage(element.dataset.i18nTitle, element.title);
-  });
-
-  document.querySelectorAll('[data-i18n-aria-label]').forEach(element => {
-    element.setAttribute('aria-label', getMessage(element.dataset.i18nAriaLabel, element.getAttribute('aria-label') || ''));
-  });
-}
 
 function setStatus(message) {
   const status = document.getElementById('statusText');
