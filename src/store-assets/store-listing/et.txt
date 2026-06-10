@@ -14,14 +14,11 @@ Lehtede blokeerimine märksõnade, fraaside ja kaalutud skooride järgi.
 Korraldage erinevad fookusreeglid veebisaitide ja märksõnarühmadesse.
 Kasutage lukustatud ajakavasid, valgeid loendeid, paroolikaitset, eksporti/importi, kasutajaliidese režiime ja kasutajaliidese elementide peitmist, et seadistus oleks praktiline.
 
-Mis on uut versioonis 1.5:
-
-Heledad, tumedad ja süsteemi kasutajaliidese režiimid.
-Hüpikaknapõhine kasutajaliidese elementide valija segavate lehe juhtelementide peitmiseks.
-Täiustatud blokeeritud lehe ülekate koos kandja peatamise või vaigistamise ja valitava diagnostikaga.
-Uuendatud kaupluse varad, pakendid, vabastamise kontrollid ja projekti struktuur.
+Mis on uut versioonis 1.6:
+Pomodoro arvestab nüüd jõudeoleku ja lukustatud aja vajaliku puhkeaja hulka.
+Hüpikaken ja plaani Pomodoro leht näitavad nüüd selgemaid taimeri diagnostikaandmeid.
+Range pausiblokeering taastab nüüd meedia ja vahekaardi vaigistuse oleku pärast blokeeringu lõppu.
+Blokeeritud lehe diagnostika näitab nüüd meedia peatamist ja laienduse juhitud vahekaardi vaigistust.
 
 Defense Against Distractions on avatud lähtekoodiga:
 https://github.com/molodchyk/Defense_against_Distractions
-
-

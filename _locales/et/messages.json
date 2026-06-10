@@ -451,5 +451,75 @@
     },
     "noElementRulesLabel": {
         "message": "Blokeeritud kasutajaliidese elemente pole"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "Nädalaplaan"
+    },
+    "scheduleSelectedTitle": {
+        "message": "Valitud ajakava"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "Aeg"
+    },
+    "scheduleDaysLabel": {
+        "message": "Päevad"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "Tööpäevad"
+    },
+    "scheduleWeekendPreset": {
+        "message": "Nädalavahetus"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "Iga päev"
+    },
+    "scheduleClearPreset": {
+        "message": "Tühjenda päevad"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "Ajakavasid veel pole."
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "Looge või valige ajakava muutmiseks."
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ praegu aktiivne",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ lubatud ajaplokki",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ salvestatud ajaplokki",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ keelatud",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ mittetäielist eiratud",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
     }
 }

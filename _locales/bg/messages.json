@@ -209,26 +209,26 @@
     "cannotDeselectDaysError": {
         "message": "Не може да се деселектират дни за активен график, който в момента е в сила."
     },
-    "passwordManagementHeader": { 
-        "message": "Управление на паролите" 
+    "passwordManagementHeader": {
+        "message": "Управление на паролите"
     },
-    "enterPasswordPlaceholder": { 
-        "message": "Въведете парола" 
+    "enterPasswordPlaceholder": {
+        "message": "Въведете парола"
     },
-    "confirmPasswordPlaceholder": { 
-        "message": "Потвърдете паролата" 
+    "confirmPasswordPlaceholder": {
+        "message": "Потвърдете паролата"
     },
-    "setPasswordButton": { 
-        "message": "Задайте парола" 
+    "setPasswordButton": {
+        "message": "Задайте парола"
     },
-    "deletePasswordButton": { 
-        "message": "Изтрийте паролата" 
+    "deletePasswordButton": {
+        "message": "Изтрийте паролата"
     },
-    "enterPasswordToAccessLabel": { 
-        "message": "Въведете парола за достъп:" 
+    "enterPasswordToAccessLabel": {
+        "message": "Въведете парола за достъп:"
     },
-    "submitButton": { 
-        "message": "Изпратете" 
+    "submitButton": {
+        "message": "Изпратете"
     },
     "tooManyAttempts": {
         "message": "Твърде много неуспешни опити. Моля, изчакайте $TIME$ секунди преди да опитате отново.",
@@ -433,5 +433,93 @@
     },
     "importButton": {
         "message": "Импорт"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "Седмичен график"
+    },
+    "scheduleSelectedTitle": {
+        "message": "Избран график"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "време"
+    },
+    "scheduleDaysLabel": {
+        "message": "Дни"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "работни дни"
+    },
+    "scheduleWeekendPreset": {
+        "message": "Уикенд"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "всеки ден"
+    },
+    "scheduleClearPreset": {
+        "message": "Изчисти дните"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "Все още няма графици."
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "Създайте или изберете график, за да го редактирате."
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ активни сега",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ активирани времеви блока",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ запазени времеви блока",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ деактивирани",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ непълни игнорирани",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "themeModeLabel": {
+        "message": "Режим на интерфейса"
+    },
+    "themeModeSystemOption": {
+        "message": "Системен"
+    },
+    "themeModeDarkOption": {
+        "message": "Тъмен"
+    },
+    "themeModeLightOption": {
+        "message": "Светъл"
+    },
+    "elementRulesLabel": {
+        "message": "Блокиран интерфейс"
+    },
+    "noElementRulesLabel": {
+        "message": "Няма блокирани елементи на интерфейса"
     }
 }

@@ -1,5 +1,39 @@
 Changelog
 
+Version 1.6.0:
+
+- added Pomodoro rest-credit behavior so idle and locked time can satisfy required rest
+- added Pomodoro runtime diagnostics in the popup and plan Pomodoro page
+- improved strict-break blocking so media is stopped during the block and restored when the block ends
+- added blocked-page diagnostics for media suspension and extension-owned tab mute state
+- fixed Pomodoro reset so strict-break and stale no-diagnostics overlays are cleared immediately, including frame-originated blocks
+- fixed Pomodoro reset auto-start suppression so passive tab, window, visibility, and page-visible events do not restart Pomodoro and re-block the page
+- fixed Pomodoro reset suppression so activity-driven auto-start stays off until the user explicitly starts or resumes Pomodoro
+- fixed Pomodoro reset clearing for stale Pomodoro-only overlays whose DOM remained after page state had already been reset
+- fixed Pomodoro reset during active plan schedules so it clears Pomodoro-only strict-break overlays while normal keyword blocking still re-checks immediately
+- fixed blocked-overlay Pomodoro status so it is shown only for strict-break blocks instead of unrelated keyword/content blocks
+- added current-page media and link signal counts to the popup
+- added intent-coherence tab opener lineage so child tabs stay connected to the chain that opened them
+- added lineage and drift-descendant diagnostics to the popup and options page
+- improved intent isolation so a trusted drift-descendant tab detaches from inherited opener drift lineage
+- added grayscale as a reversible intent-coherence intervention between warn-only and return prompts
+- added dwell-time and active-page-time signals to intent-coherence scoring and diagnostics
+- added scroll, click, key, and input velocity signals to intent-coherence scoring and diagnostics
+- added recommendation/feed click attribution to intent-coherence scoring and diagnostics
+- added top-frame webNavigation transition ancestry to intent-coherence diagnostics and redirect-chain scoring
+- added plan-owned intent diagnostics retention, plan policy provenance, clear controls, and local JSON diagnostics export
+- added bounded local intent intervention feedback recording for local calibration diagnostics
+- added intent feedback summary diagnostics for return rate, isolate rate, continue rate, dismiss rate, average score, and local auto-calibration signal
+- added plan-level local intent auto-calibration so feedback can conservatively adjust the effective intervention threshold without weakening the configured locked threshold
+- added hard current-page chain quarantine for intent block actions when a session is locked or the current tab is a drift descendant
+- added a stable cooldown on hard intent chain quarantine before isolation is available, while keeping Return available immediately
+- added bounded local usage stats with hostname-level aggregates, tab-pressure summaries, retention pruning, an options-page Usage panel, and a user-triggered local JSON export
+- improved plan editing with in-page delete confirmations, icon-based destructive actions, and Enter-to-add allowed websites
+- improved plan schedules so dragging on empty grid space creates a selected inactive time block, and selected schedules can be extended from a stable grid anchor
+- moved global controls into a dedicated Settings panel for UI mode, instructions, password management, import/export, and dormant supporter access
+- added options-page section navigation for Plans, Blocked UI, Intent diagnostics, Usage stats, and Settings
+- improved Blocked UI management with visible global/plan scope, direct plan assignment controls, and cleanup of stale plan assignments when a rule is deleted
+
 Version 1.5.0:
 
 - added light, dark, and system UI modes

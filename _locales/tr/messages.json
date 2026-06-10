@@ -209,26 +209,26 @@
     "cannotDeselectDaysError": {
         "message": "Şu anda etkili olan aktif bir program için günlerin seçimi kaldırılamaz."
     },
-    "passwordManagementHeader": { 
-        "message": "Şifre Yönetimi" 
+    "passwordManagementHeader": {
+        "message": "Şifre Yönetimi"
     },
-    "enterPasswordPlaceholder": { 
-        "message": "Şifre girin" 
+    "enterPasswordPlaceholder": {
+        "message": "Şifre girin"
     },
-    "confirmPasswordPlaceholder": { 
-        "message": "Şifreyi Onaylayın" 
+    "confirmPasswordPlaceholder": {
+        "message": "Şifreyi Onaylayın"
     },
-    "setPasswordButton": { 
-        "message": "Şifre Belirle" 
+    "setPasswordButton": {
+        "message": "Şifre Belirle"
     },
-    "deletePasswordButton": { 
-        "message": "Şifreyi Sil" 
+    "deletePasswordButton": {
+        "message": "Şifreyi Sil"
     },
-    "enterPasswordToAccessLabel": { 
-        "message": "Erişmek için Şifre Girin:" 
+    "enterPasswordToAccessLabel": {
+        "message": "Erişmek için Şifre Girin:"
     },
-    "submitButton": { 
-        "message": "Gönder" 
+    "submitButton": {
+        "message": "Gönder"
     },
     "tooManyAttempts": {
         "message": "Çok fazla başarısız deneme. Yeniden denemeden önce lütfen $TIME$ saniye bekleyin.",
@@ -433,5 +433,93 @@
     },
     "importButton": {
         "message": "İçe Aktar"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "Haftalık program"
+    },
+    "scheduleSelectedTitle": {
+        "message": "Seçilen program"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "Zaman"
+    },
+    "scheduleDaysLabel": {
+        "message": "Günler"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "İş günleri"
+    },
+    "scheduleWeekendPreset": {
+        "message": "Hafta sonu"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "Her gün"
+    },
+    "scheduleClearPreset": {
+        "message": "Günleri temizle"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "Henüz program yok."
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "Create or select a schedule to edit it."
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ şu anda aktif",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ etkin zaman bloğu",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ kayıtlı zaman bloğu",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ devre dışı",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ eksik yok sayıldı",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "themeModeLabel": {
+        "message": "Arayüz modu"
+    },
+    "themeModeSystemOption": {
+        "message": "Sistem"
+    },
+    "themeModeDarkOption": {
+        "message": "Koyu"
+    },
+    "themeModeLightOption": {
+        "message": "Açık"
+    },
+    "elementRulesLabel": {
+        "message": "Engellenen arayüz"
+    },
+    "noElementRulesLabel": {
+        "message": "Engellenen arayüz öğesi yok"
     }
 }

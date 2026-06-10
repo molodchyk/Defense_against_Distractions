@@ -14,12 +14,11 @@ Blokir halaman berdasarkan kata kunci, frasa, dan skor berbobot.
 Atur berbagai aturan fokus ke dalam grup situs web dan kata kunci.
 Gunakan jadwal terkunci, whitelist, perlindungan kata sandi, ekspor/impor, mode UI, dan penyembunyian elemen UI agar pengaturan tetap praktis.
 
-Yang baru di versi 1.5:
-
-Mode UI terang, gelap, dan sistem.
-Pemilih elemen UI berbasis popup untuk menyembunyikan kontrol halaman yang mengganggu.
-Overlay halaman terblokir yang ditingkatkan dengan penghentian atau pembisuan media dan diagnostik yang dapat dipilih.
-Store assets, packaging, release checks, dan struktur proyek yang diperbarui.
+Yang baru di versi 1.6:
+Pomodoro sekarang menghitung waktu idle dan terkunci sebagai bagian dari istirahat yang diperlukan.
+Popup dan halaman Pomodoro pada plan sekarang menampilkan diagnostik runtime yang lebih jelas.
+Pemblokiran istirahat ketat sekarang memulihkan media dan status mute tab setelah blok berakhir.
+Diagnostik halaman yang diblokir sekarang menampilkan penangguhan media dan mute tab yang dimiliki ekstensi.
 
 Defense Against Distractions bersifat open source:
 https://github.com/molodchyk/Defense_against_Distractions

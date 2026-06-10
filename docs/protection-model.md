@@ -34,6 +34,8 @@ Possible session signals:
 
 - Time on page.
 - Time in browser.
+- Recent browser activity.
+- Local active-time totals.
 - Number of open tabs.
 - Longevity of the current session.
 - Recently blocked pages.
@@ -88,6 +90,7 @@ Possible interventions:
 - Hide matched UI elements.
 - Stop or remove video/audio playback.
 - Remove distracting page sections.
+- Desaturate the page with grayscale.
 - Click a dismiss/close control.
 - Fill or clear a field.
 - Delay access.
@@ -134,6 +137,8 @@ A plan can combine:
 
 Plans should be enableable and disableable, but locked plans need stricter rules. The schedule UI should support workdays, all days, and plan-specific schedules.
 
+Pomodoro behavior should follow the plan-owned implementation direction in [DaD Pomodoro Implementation Spec](pomodoro-implementation.md). The timer is a work/rest rhythm inside active plans, not a bypass timer for blocked pages.
+
 ## Data Policy
 
 The default direction should be local-first.
@@ -149,6 +154,8 @@ Local data can support:
 Product telemetry should be explicit, transparent, and opt-out or opt-in depending on the final business model. If telemetry exists, users need to know what is collected, why, and how to disable it.
 
 Sensitive content such as detected page text needs special care. The product should prefer derived stats and local processing unless there is a deliberate research reason and clear user consent.
+
+The first local usage-stats slice follows that rule. It stores bounded hostname-level aggregates in `chrome.storage.local` under `usageStats`: samples, visits, active time, dwell time, maximum observed open-tab/window counts, and maximum observed counts for text size, media elements, interaction elements, and page structure. It does not store raw page text, full URLs, page titles, topic tokens, tab URLs, tab titles, or tab identities. Retention is bounded and the options page exposes a Usage panel with clear and user-triggered local JSON export controls.
 
 ## Research Questions
 
@@ -176,18 +183,88 @@ Near-term implementation should prioritize:
 
 This keeps DaD moving toward the larger vision while reducing the risk of building disconnected features.
 
-## First Implementation Slice
+## Implemented Diagnostic And Intervention Slice
 
-The first implementation slice is a local page signal collector. It does not change blocking behavior and does not send data anywhere.
+The first implemented slice is a local page signal, trajectory, diagnostics, and proportional intervention layer. It does not send data anywhere.
 
-The collector summarizes:
+The page collector summarizes top-frame pages on navigation, throttled DOM changes, and local activity events:
 
 - Page URL and host.
+- Page title.
 - Text sample length, word count, and emoji count.
+- Bounded visible-text topic tokens. Raw page text is not stored.
 - Images, videos, audio elements, GIFs, and iframes.
 - Links, buttons, inputs, and forms.
 - Total element count and feed-like regions.
+- Page age, active visible page time, scroll/click/input/key counts, recommendation/feed click counts, bounded interaction rates, and maximum scroll depth. Raw input is not stored.
 
-This gives later features a common source for diagnostics, risk scoring, usage stats, and research-informed tuning.
+The trajectory collector stores bounded local state in `chrome.storage.local` under `intentTrajectoryState`. It currently tracks:
+
+- session origin after idle reset
+- page visits
+- active tab id
+- bounded tab opener lineage from `chrome.tabs.onCreated`
+- top-frame transition type and qualifiers from `chrome.webNavigation`
+- parent visit/session links for child tabs when the opener chain is known
+- drift-descendant flags for tabs opened from a drifted chain
+- extracted URL/title/host tokens
+- extracted visible-text topic tokens
+- origin and local metadata/text similarity
+- media/feed/link pressure
+- passive scroll/click pressure
+- interaction velocity
+- recommendation/feed click dependence
+- dwell time and active visible page time
+- active input and constructive dwell signals
+- a deterministic coherence score and risk state
+- the first visit that crosses into drift/intervention territory
+- a tab-aware soft intervention decision for the current content script
+- a recovery target, usually the last visit before the first drift point
+- bounded local intervention feedback actions, such as acknowledge, continue, isolate, or return
+- a feedback summary with return/isolate/continue/dismiss rates and a conservative calibration diagnostic
+- plan-level local auto-calibration that can adjust the effective intervention threshold after enough feedback without lowering the configured locked threshold
+
+This gives later features a common source for diagnostics, risk scoring, usage stats, and research-informed tuning. Intent coherence is now plan-aware:
+
+- active enabled plans contribute intent settings unless the current URL is allowed by that plan
+- multiple active plans combine conservatively so stricter thresholds and stronger actions win
+- each plan can disable intent coherence, warn only, desaturate the page with grayscale, show a return prompt, use a modal drift-chain block, or quarantine locked/drift-descendant block-action pages
+- active Pomodoro work phases can make intent intervention stricter, while break phases can make it more lenient
+- each plan can bound local intent-diagnostics retention from 1 to 30 days; when multiple plans apply, the strictest retention wins
+
+The current intervention remains conservative: when the active tab reaches `intervene` or `locked`, DaD can show a plan-configured prompt or modal with recovery actions. The grayscale action is a reversible middle layer: it desaturates the current drift page while keeping recovery controls available.
+
+- continue or acknowledge the current drift event when the active action allows it
+- return to the last coherent page in the chain
+- isolate the current page as a new intent session and detach the current tab from inherited opener drift lineage
+
+The modal `block` action blocks the current drift-chain interaction surface, not the keyword blocker’s full-page violation state. For active plan policies that use `block`, DaD now flags locked sessions and drift-descendant tabs as hard current-page chain quarantines. The content script shows a non-continue overlay with Return and explicit Isolate recovery actions. Return stays available immediately; Isolate waits for a short cooldown anchored to the first locked/descendant detection, not to repeated DOM or page-signal reports. This is chain-scoped and current-page scoped: it does not ban the whole hostname, and it does not yet suspend or close every descendant tab automatically.
 
 The second implementation slice is local trigger diagnostics for page blocking. DaD records recent keyword score contributions in page-local state and shows the latest trigger on the blocked overlay. This does not send data anywhere and does not change the blocking threshold.
+
+The Pomodoro implementation adds a local activity slice. Top-frame page events and browser focus events update bounded local state under `pomodoroActivityState`. This is used to show active/away status, approximate local active time today, and trigger Pomodoro auto-start for active plans. It does not send data anywhere and does not yet drive intent enforcement.
+
+The popup now exposes a compact current-page signal snapshot from the top-frame content script:
+
+- images
+- videos
+- audio elements
+- GIFs
+- emoji
+- links
+
+This implements the first visible version of the "show video count image audio emoji on popup" idea without adding new storage or telemetry.
+
+Intent diagnostics now expose opener-lineage information in both the popup and options page:
+
+- number of tabs in the active chain
+- child-tab branches
+- drift-descendant count
+- whether the current page is a drift descendant
+- latest top-frame navigation transition
+- redirect transition load
+- per-visit tab and opener-tab markers
+
+The options diagnostics panel also shows the contributing plan policy for current and recent visits, shows the active retention window, shows intervention feedback counts and rates, reports the effective auto-calibration adjustment, reports whether the current intervention is a chain quarantine and whether its cooldown is active, can clear local trajectory state, and can export a user-triggered local JSON diagnostics snapshot. This export is for debugging and self-analysis; it does not upload data.
+
+This keeps the descendant model inspectable while DaD’s hard chain behavior remains current-page scoped rather than tab-suspension scoped.

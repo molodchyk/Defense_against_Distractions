@@ -451,5 +451,75 @@
     },
     "noElementRulesLabel": {
         "message": "തടഞ്ഞ UI ഘടകങ്ങളൊന്നുമില്ല"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "പ്രതിവാര ഷെഡ്യൂൾ"
+    },
+    "scheduleSelectedTitle": {
+        "message": "തിരഞ്ഞെടുത്ത ഷെഡ്യൂൾ"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "സമയം"
+    },
+    "scheduleDaysLabel": {
+        "message": "ദിവസങ്ങൾ"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "പ്രവൃത്തിദിനങ്ങൾ"
+    },
+    "scheduleWeekendPreset": {
+        "message": "വാരാന്ത്യം"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "എല്ലാ ദിവസവും"
+    },
+    "scheduleClearPreset": {
+        "message": "ദിവസങ്ങൾ മായ്ക്കുക"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "ഇതുവരെ ഷെഡ്യൂളുകളൊന്നുമില്ല."
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "അത് എഡിറ്റ് ചെയ്യാൻ ഒരു ഷെഡ്യൂൾ സൃഷ്ടിക്കുക അല്ലെങ്കിൽ തിരഞ്ഞെടുക്കുക."
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ ഇപ്പോൾ സജീവം",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ പ്രവർത്തനക്ഷമമാക്കിയ സമയ ബ്ലോക്കുകൾ",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ സംരക്ഷിച്ച സമയ ബ്ലോക്കുകൾ",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ പ്രവർത്തനരഹിതം",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ അപൂർണ്ണം അവഗണിച്ചു",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
     }
 }

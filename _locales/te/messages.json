@@ -451,5 +451,75 @@
     },
     "noElementRulesLabel": {
         "message": "బ్లాక్ చేయబడిన UI మూలకాలు లేవు"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "వీక్లీ షెడ్యూల్"
+    },
+    "scheduleSelectedTitle": {
+        "message": "ఎంచుకున్న షెడ్యూల్"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "సమయం"
+    },
+    "scheduleDaysLabel": {
+        "message": "రోజులు"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "పనిదినాలు"
+    },
+    "scheduleWeekendPreset": {
+        "message": "వారాంతం"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "ప్రతి రోజు"
+    },
+    "scheduleClearPreset": {
+        "message": "రోజులను క్లియర్ చేయండి"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "ఇంకా షెడ్యూల్‌లు లేవు."
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "దాన్ని సవరించడానికి షెడ్యూల్‌ను సృష్టించండి లేదా ఎంచుకోండి."
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ ఇప్పుడు సక్రియంగా ఉంది",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ ప్రారంభించిన సమయ బ్లాక్‌లు",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ సేవ్ చేసిన సమయ బ్లాక్‌లు",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ నిలిపివేయబడింది",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ అసంపూర్ణం విస్మరించబడింది",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
     }
 }

@@ -209,26 +209,26 @@
     "cannotDeselectDaysError": {
         "message": "Kan ikke fjerne markering av dager for en aktiv tidsplan som er i effekt."
     },
-    "passwordManagementHeader": { 
-        "message": "Passordforvaltning" 
+    "passwordManagementHeader": {
+        "message": "Passordforvaltning"
     },
-    "enterPasswordPlaceholder": { 
-        "message": "Skriv inn passord" 
+    "enterPasswordPlaceholder": {
+        "message": "Skriv inn passord"
     },
-    "confirmPasswordPlaceholder": { 
-        "message": "Bekreft passord" 
+    "confirmPasswordPlaceholder": {
+        "message": "Bekreft passord"
     },
-    "setPasswordButton": { 
-        "message": "Sett Passord" 
+    "setPasswordButton": {
+        "message": "Sett Passord"
     },
-    "deletePasswordButton": { 
-        "message": "Slett Passord" 
+    "deletePasswordButton": {
+        "message": "Slett Passord"
     },
-    "enterPasswordToAccessLabel": { 
-        "message": "Skriv inn passord for å få tilgang:" 
+    "enterPasswordToAccessLabel": {
+        "message": "Skriv inn passord for å få tilgang:"
     },
-    "submitButton": { 
-        "message": "Send inn" 
+    "submitButton": {
+        "message": "Send inn"
     },
     "tooManyAttempts": {
         "message": "For mange mislykkede forsøk. Vennligst vent $TIME$ sekunder før du prøver igjen.",
@@ -433,5 +433,93 @@
     },
     "importButton": {
         "message": "Importer"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "Ukeplan"
+    },
+    "scheduleSelectedTitle": {
+        "message": "Valgt tidsplan"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "Tid"
+    },
+    "scheduleDaysLabel": {
+        "message": "Dager"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "Arbeidsdager"
+    },
+    "scheduleWeekendPreset": {
+        "message": "Helg"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "Hver dag"
+    },
+    "scheduleClearPreset": {
+        "message": "Tøm dager"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "Ingen tidsplaner ennå."
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "Opprett eller velg en tidsplan for å redigere den."
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ aktiv nå",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ aktiverte tidsblokker",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ lagrede tidsblokker",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ deaktivert",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ ufullstendig ignorert",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "themeModeLabel": {
+        "message": "UI-modus"
+    },
+    "themeModeSystemOption": {
+        "message": "System"
+    },
+    "themeModeDarkOption": {
+        "message": "Mørk"
+    },
+    "themeModeLightOption": {
+        "message": "Lys"
+    },
+    "elementRulesLabel": {
+        "message": "Blokkert UI"
+    },
+    "noElementRulesLabel": {
+        "message": "Ingen blokkerte UI-elementer"
     }
 }

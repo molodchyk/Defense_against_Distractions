@@ -14,13 +14,11 @@ Səhifələri açar sözlər, ifadələr və ölçülmüş ballarla bloklayın.
 Veb sayt və açar söz qruplarına fərqli diqqət qaydalarını təşkil edin.
 Quraşdırmanı praktik saxlamaq üçün kilidlənmiş cədvəllər, ağ siyahılar, parol qorunması, ixrac/idxal, UI rejimləri və UI elementinin gizlədilməsindən istifadə edin.
 
-1.5 versiyasında yeniliklər:
+1.6 versiyasında yeniliklər:
+Pomodoro artıq boş və kilidli vaxtı tələb olunan istirahətə daxil edir.
+Popup və plan Pomodoro səhifəsi indi daha aydın iş vaxtı diaqnostikası göstərir.
+Sərt fasilə bloklaması blok bitdikdən sonra medianı və tabın səssiz vəziyyətini bərpa edir.
+Bloklanmış səhifə diaqnostikası indi media dayandırılmasını və genişlənmənin idarə etdiyi tab səssizliyini göstərir.
 
-İşıq, qaranlıq və sistem UI rejimləri.
-Diqqəti yayındıran səhifə nəzarətlərini gizlətmək üçün pop-up əsaslı UI element seçicisi.
-Medianın dayandırılması və ya səssizləşdirilməsi və seçilə bilən diaqnostika ilə təkmilləşdirilmiş bloklanmış səhifə örtüyü.
-Yenilənmiş mağaza aktivləri, qablaşdırma, buraxılış yoxlamaları və layihə strukturu.
-
-Diqqətin yayındırılmasına qarşı müdafiə açıq mənbədir:
 https://github.com/molodchyk/Defense_against_Disttractions
 https://github.com/molodchyk/Defense_against_Distractions

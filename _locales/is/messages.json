@@ -451,5 +451,75 @@
     },
     "noElementRulesLabel": {
         "message": "Engir læstir UI þættir"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "Dagskrá vikunnar"
+    },
+    "scheduleSelectedTitle": {
+        "message": "Valin dagskrá"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "Tími"
+    },
+    "scheduleDaysLabel": {
+        "message": "Dagar"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "Vinnudagar"
+    },
+    "scheduleWeekendPreset": {
+        "message": "Helgi"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "Á hverjum degi"
+    },
+    "scheduleClearPreset": {
+        "message": "Hreinsa daga"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "Engar tímasetningar ennþá."
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "Búðu til eða veldu áætlun til að breyta henni."
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ virkt núna",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ virk tímablokk",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ vistuð tímablokk",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ óvirk",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ ófullgerð hunsuð",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
     }
 }

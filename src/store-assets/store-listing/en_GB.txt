@@ -14,12 +14,11 @@ Block pages by keywords, phrases, and weighted scores.
 Organize different focus rules into website and keyword groups.
 Use locked schedules, whitelists, password protection, export/import, UI modes, and UI element hiding to keep the setup practical.
 
-What is new in version 1.5:
-
-Light, dark, and system UI modes.
-Popup-based UI element picker for hiding distracting page controls.
-Improved blocked-page overlay with media stopping or muting and selectable diagnostics.
-Updated store assets, packaging, release checks, and project structure.
+What is new in version 1.6:
+Pomodoro now counts idle and locked time towards required rest.
+The popup and plan Pomodoro page now show clearer runtime diagnostics.
+Strict-break blocking now restores media and tab mute state after the block ends.
+Blocked-page diagnostics now show media suspension and extension-owned tab mute state.
 
 Defense Against Distractions is open source:
 https://github.com/molodchyk/Defense_against_Distractions

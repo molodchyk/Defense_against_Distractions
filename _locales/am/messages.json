@@ -451,5 +451,75 @@
     },
     "noElementRulesLabel": {
         "message": "ምንም የታገዱ UI ክፍሎች የሉም"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "ሳምንታዊ መርሐግብር"
+    },
+    "scheduleSelectedTitle": {
+        "message": "የተመረጠ መርሐግብር"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "ጊዜ"
+    },
+    "scheduleDaysLabel": {
+        "message": "ቀናት"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "የስራ ቀናት"
+    },
+    "scheduleWeekendPreset": {
+        "message": "ቅዳሜና እሁድ"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "በየቀኑ"
+    },
+    "scheduleClearPreset": {
+        "message": "ቀኖችን አጽዳ"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "እስካሁን ምንም መርሃ ግብሮች የሉም።"
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "እሱን ለማረም መርሐግብር ይፍጠሩ ወይም ይምረጡ።"
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ አሁን ንቁ",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ የነቁ የጊዜ ብሎኮች",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ የተቀመጡ የጊዜ ብሎኮች",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ ተሰናክሏል",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ ያልተሟላ ተትቷል",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
     }
 }

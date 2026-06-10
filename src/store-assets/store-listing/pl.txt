@@ -13,13 +13,11 @@ Główne funkcje:
 Blokowanie stron według słów kluczowych, fraz i ważonych wyników.
 Organizowanie różnych zasad skupienia w grupy stron i słów kluczowych.
 Używanie zablokowanych harmonogramów, whitelist, ochrony hasłem, eksportu/importu, trybów UI i ukrywania elementów UI, aby konfiguracja była praktyczna.
-
-Nowości w wersji 1.5:
-
-Jasny, ciemny i systemowy tryb UI.
-Popupowy wybór elementów UI do ukrywania rozpraszających kontrolek strony.
-Ulepszona nakładka blokowania z zatrzymywaniem lub wyciszaniem multimediów i zaznaczalną diagnostyką.
-Zaktualizowane store assets, pakowanie, kontrole wydania i struktura projektu.
+Nowości w wersji 1.6:
+Pomodoro teraz zalicza czas bezczynności i zablokowania do wymaganego odpoczynku.
+Popup i strona Pomodoro planu pokazują teraz czytelniejszą diagnostykę działania.
+Ścisłe blokowanie przerwy przywraca teraz media i stan wyciszenia karty po zakończeniu blokady.
+Diagnostyka zablokowanej strony pokazuje teraz wstrzymanie mediów i wyciszenie karty kontrolowane przez rozszerzenie.
 
 Defense Against Distractions jest open source:
 https://github.com/molodchyk/Defense_against_Distractions

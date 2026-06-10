@@ -209,26 +209,26 @@
     "cannotDeselectDaysError": {
         "message": "Nem lehet kiválasztani a napokat egy aktív időzítés esetén, amely jelenleg hatályban van."
     },
-    "passwordManagementHeader": { 
-        "message": "Jelszókezelés" 
+    "passwordManagementHeader": {
+        "message": "Jelszókezelés"
     },
-    "enterPasswordPlaceholder": { 
-        "message": "Írja be a jelszót" 
+    "enterPasswordPlaceholder": {
+        "message": "Írja be a jelszót"
     },
-    "confirmPasswordPlaceholder": { 
-        "message": "Erősítse meg a jelszót" 
+    "confirmPasswordPlaceholder": {
+        "message": "Erősítse meg a jelszót"
     },
-    "setPasswordButton": { 
-        "message": "Jelszó beállítása" 
+    "setPasswordButton": {
+        "message": "Jelszó beállítása"
     },
-    "deletePasswordButton": { 
-        "message": "Jelszó törlése" 
+    "deletePasswordButton": {
+        "message": "Jelszó törlése"
     },
-    "enterPasswordToAccessLabel": { 
-        "message": "Írja be a hozzáférési jelszót:" 
+    "enterPasswordToAccessLabel": {
+        "message": "Írja be a hozzáférési jelszót:"
     },
-    "submitButton": { 
-        "message": "Beküldés" 
+    "submitButton": {
+        "message": "Beküldés"
     },
     "tooManyAttempts": {
         "message": "Túl sok sikertelen próbálkozás. Várjon kérlek $TIME$ másodpercet a újrapróbálkozás előtt.",
@@ -433,5 +433,93 @@
     },
     "importButton": {
         "message": "Importálás"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "Heti menetrend"
+    },
+    "scheduleSelectedTitle": {
+        "message": "Kiválasztott ütemterv"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "Idő"
+    },
+    "scheduleDaysLabel": {
+        "message": "Napok"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "Munkanapok"
+    },
+    "scheduleWeekendPreset": {
+        "message": "Hétvégi"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "Minden nap"
+    },
+    "scheduleClearPreset": {
+        "message": "Napok törlése"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "Még nincsenek menetrendek."
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "Hozzon létre vagy válasszon ütemezést a szerkesztéshez."
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ most aktív",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ engedélyezett időblokk",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ mentett időblokk",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ letiltva",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ hiányos figyelmen kívül hagyva",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "themeModeLabel": {
+        "message": "Felület módja"
+    },
+    "themeModeSystemOption": {
+        "message": "Rendszer"
+    },
+    "themeModeDarkOption": {
+        "message": "Sötét"
+    },
+    "themeModeLightOption": {
+        "message": "Világos"
+    },
+    "elementRulesLabel": {
+        "message": "Blokkolt felület"
+    },
+    "noElementRulesLabel": {
+        "message": "Nincsenek blokkolt felületelemek"
     }
 }

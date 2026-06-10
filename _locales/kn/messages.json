@@ -451,5 +451,75 @@
     },
     "noElementRulesLabel": {
         "message": "ಯಾವುದೇ ನಿರ್ಬಂಧಿತ UI ಅಂಶಗಳಿಲ್ಲ"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "ಸಾಪ್ತಾಹಿಕ ವೇಳಾಪಟ್ಟಿ"
+    },
+    "scheduleSelectedTitle": {
+        "message": "ಆಯ್ದ ವೇಳಾಪಟ್ಟಿ"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "ಸಮಯ"
+    },
+    "scheduleDaysLabel": {
+        "message": "ದಿನಗಳು"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "ಕೆಲಸದ ದಿನಗಳು"
+    },
+    "scheduleWeekendPreset": {
+        "message": "ವಾರಾಂತ್ಯ"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "ಪ್ರತಿ ದಿನ"
+    },
+    "scheduleClearPreset": {
+        "message": "ದಿನಗಳನ್ನು ತೆರವುಗೊಳಿಸಿ"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "ಇನ್ನೂ ಯಾವುದೇ ವೇಳಾಪಟ್ಟಿಗಳಿಲ್ಲ."
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "ಅದನ್ನು ಸಂಪಾದಿಸಲು ವೇಳಾಪಟ್ಟಿಯನ್ನು ರಚಿಸಿ ಅಥವಾ ಆಯ್ಕೆಮಾಡಿ."
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ ಈಗ ಸಕ್ರಿಯ",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ ಸಕ್ರಿಯಗೊಳಿಸಿದ ಸಮಯ ಬ್ಲಾಕ್‌ಗಳು",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ ಉಳಿಸಿದ ಸಮಯ ಬ್ಲಾಕ್‌ಗಳು",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ ನಿಷ್ಕ್ರಿಯ",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ ಅಪೂರ್ಣವು ನಿರ್ಲಕ್ಷಿಸಲಾಗಿದೆ",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
     }
 }

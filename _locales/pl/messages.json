@@ -209,26 +209,26 @@
     "cannotDeselectDaysError": {
         "message": "Nie można odznaczyć dni dla aktywnego harmonogramu, który obecnie obowiązuje."
     },
-    "passwordManagementHeader": { 
-        "message": "Zarządzanie hasłami" 
+    "passwordManagementHeader": {
+        "message": "Zarządzanie hasłami"
     },
-    "enterPasswordPlaceholder": { 
-        "message": "Wpisz hasło" 
+    "enterPasswordPlaceholder": {
+        "message": "Wpisz hasło"
     },
-    "confirmPasswordPlaceholder": { 
-        "message": "Potwierdź hasło" 
+    "confirmPasswordPlaceholder": {
+        "message": "Potwierdź hasło"
     },
-    "setPasswordButton": { 
-        "message": "Ustaw hasło" 
+    "setPasswordButton": {
+        "message": "Ustaw hasło"
     },
-    "deletePasswordButton": { 
-        "message": "Usuń hasło" 
+    "deletePasswordButton": {
+        "message": "Usuń hasło"
     },
-    "enterPasswordToAccessLabel": { 
-        "message": "Wpisz hasło, aby uzyskać dostęp:" 
+    "enterPasswordToAccessLabel": {
+        "message": "Wpisz hasło, aby uzyskać dostęp:"
     },
-    "submitButton": { 
-        "message": "Zatwierdź" 
+    "submitButton": {
+        "message": "Zatwierdź"
     },
     "tooManyAttempts": {
         "message": "Zbyt wiele nieudanych prób. Poczekaj $TIME$ sekund przed ponowną próbą.",
@@ -433,5 +433,93 @@
     },
     "importButton": {
         "message": "Importuj"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "Harmonogram tygodniowy"
+    },
+    "scheduleSelectedTitle": {
+        "message": "Wybrany harmonogram"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "Czas"
+    },
+    "scheduleDaysLabel": {
+        "message": "Dni"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "Dni robocze"
+    },
+    "scheduleWeekendPreset": {
+        "message": "Weekend"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "Każdego dnia"
+    },
+    "scheduleClearPreset": {
+        "message": "Wyczyść dni"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "Nie ma jeszcze harmonogramów."
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "Utwórz lub wybierz harmonogram, aby go edytować."
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ aktywne teraz",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ włączone bloki czasu",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ zapisane bloki czasu",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ wyłączone",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ niekompletne zignorowane",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "themeModeLabel": {
+        "message": "Tryb interfejsu"
+    },
+    "themeModeSystemOption": {
+        "message": "Systemowy"
+    },
+    "themeModeDarkOption": {
+        "message": "Ciemny"
+    },
+    "themeModeLightOption": {
+        "message": "Jasny"
+    },
+    "elementRulesLabel": {
+        "message": "Zablokowany interfejs"
+    },
+    "noElementRulesLabel": {
+        "message": "Brak zablokowanych elementów interfejsu"
     }
 }

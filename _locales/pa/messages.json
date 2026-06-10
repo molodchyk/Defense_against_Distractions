@@ -451,5 +451,75 @@
     },
     "noElementRulesLabel": {
         "message": "ਕੋਈ ਬਲੌਕ ਕੀਤੇ UI ਤੱਤ ਨਹੀਂ ਹਨ"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "ਹਫਤਾਵਾਰੀ ਅਨੁਸੂਚੀ"
+    },
+    "scheduleSelectedTitle": {
+        "message": "ਚੁਣਿਆ ਸਮਾਂ-ਸਾਰਣੀ"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "ਸਮਾਂ"
+    },
+    "scheduleDaysLabel": {
+        "message": "ਦਿਨ"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "ਕੰਮਕਾਜੀ ਦਿਨ"
+    },
+    "scheduleWeekendPreset": {
+        "message": "ਵੀਕਐਂਡ"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "ਹਰ ਰੋਜ਼"
+    },
+    "scheduleClearPreset": {
+        "message": "ਦਿਨ ਮਿਟਾਓ"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "ਅਜੇ ਕੋਈ ਸਮਾਂ-ਸਾਰਣੀ ਨਹੀਂ ਹੈ।"
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "ਇਸਨੂੰ ਸੰਪਾਦਿਤ ਕਰਨ ਲਈ ਇੱਕ ਸਮਾਂ-ਸੂਚੀ ਬਣਾਓ ਜਾਂ ਚੁਣੋ।"
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ ਹੁਣ ਸਰਗਰਮ",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ ਸਮਰੱਥ ਸਮਾਂ ਬਲਾਕ",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ ਸੰਭਾਲੇ ਸਮਾਂ ਬਲਾਕ",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ ਅਸਮਰੱਥ",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ ਅਧੂਰਾ ਅਣਡਿੱਠਾ ਕੀਤਾ",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
     }
 }

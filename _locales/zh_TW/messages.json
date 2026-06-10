@@ -433,5 +433,93 @@
     },
     "importButton": {
         "message": "匯入"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "每週行程"
+    },
+    "scheduleSelectedTitle": {
+        "message": "選定的時間表"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "時間"
+    },
+    "scheduleDaysLabel": {
+        "message": "天數"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "工作日"
+    },
+    "scheduleWeekendPreset": {
+        "message": "週末"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "每天"
+    },
+    "scheduleClearPreset": {
+        "message": "清除日期"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "還沒有時間表。"
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "建立或選擇一個計劃進行編輯。"
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ 個目前啟用",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ 個已啟用時間區塊",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ 個已儲存時間區塊",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ 個已停用",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ 個不完整已忽略",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "themeModeLabel": {
+        "message": "介面模式"
+    },
+    "themeModeSystemOption": {
+        "message": "跟隨系統"
+    },
+    "themeModeDarkOption": {
+        "message": "深色"
+    },
+    "themeModeLightOption": {
+        "message": "淺色"
+    },
+    "elementRulesLabel": {
+        "message": "已封鎖的介面"
+    },
+    "noElementRulesLabel": {
+        "message": "沒有已封鎖的介面元素"
     }
 }

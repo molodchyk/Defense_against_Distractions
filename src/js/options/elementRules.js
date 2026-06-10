@@ -2,6 +2,9 @@
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
 import { getBytesInUseSync, getSync, removeSync, setSync } from '../shared/chromeStorage.js';
+import { savePlansWithPriority } from '../shared/criticalScheduleStorage.js';
+import { isInProtectedSchedule, normalizePlans, PLANS_STORAGE_KEY } from '../shared/plans.js';
+import { getUiMessage } from '../shared/uiLanguage.js';
 import { createLocalizedButton } from './dom.js';
 
 const ELEMENT_RULES_STORAGE_KEY = 'elementBlockRules';
@@ -36,6 +39,15 @@ const FINGERPRINT_FIELDS = [
   ['labelTokens', 'Label tokens'],
   ['directTextTokens', 'Direct text tokens']
 ];
+
+const ELEMENT_RULE_MESSAGES = {
+  lockedScheduleErrorMessage: 'Cannot weaken protection during an active protected schedule.',
+  noElementRulesLabel: 'No blocked UI elements'
+};
+
+function getElementRuleMessage(key, fallback = '') {
+  return getUiMessage(key, ELEMENT_RULE_MESSAGES[key] || fallback || key);
+}
 
 function getElementRuleStorageKey(ruleId) {
   return `${ELEMENT_RULE_ITEM_PREFIX}${ruleId}`;
@@ -140,7 +152,17 @@ async function updateRule(ruleId, patch) {
 
 async function removeRule(ruleId) {
   const rules = await getRules();
+  const items = await getSync({ [PLANS_STORAGE_KEY]: [] });
+  const plans = normalizePlans(items[PLANS_STORAGE_KEY]);
+
   await saveRules(rules.filter(rule => rule.id !== ruleId));
+
+  if (plans.length > 0) {
+    await savePlansWithPriority(plans.map(plan => ({
+      ...plan,
+      uiRuleIds: plan.uiRuleIds.filter(candidateId => candidateId !== ruleId)
+    })));
+  }
 }
 
 async function renderStorageUsage(rules) {
@@ -215,6 +237,12 @@ function createCheckbox(checked, onChange) {
   return input;
 }
 
+function createPlanAssignmentCheckbox(checked, disabled, onChange) {
+  const input = createCheckbox(checked, onChange);
+  input.disabled = disabled;
+  return input;
+}
+
 function createControl(labelText, control) {
   const wrapper = document.createElement('label');
   wrapper.className = 'element-rule-control';
@@ -279,7 +307,105 @@ function getDomainPattern(pattern) {
   return (pattern || '').split('/')[0].trim();
 }
 
-function createDiagnostics(rule) {
+function getAssignedPlans(rule, plans) {
+  return plans.filter(plan => plan.uiRuleIds.includes(rule.id));
+}
+
+function formatPlanScope(rule, plans) {
+  const assignedPlans = getAssignedPlans(rule, plans);
+
+  if (assignedPlans.length === 0) {
+    return 'global';
+  }
+
+  return `plans: ${assignedPlans.map(plan => {
+    return plan.enabled ? plan.name : `${plan.name} (disabled)`;
+  }).join(', ')}`;
+}
+
+function getLockedAssignmentMessage() {
+  return getElementRuleMessage('lockedScheduleErrorMessage');
+}
+
+async function updateRulePlanAssignment(ruleId, planId, assigned) {
+  const items = await getSync({ [PLANS_STORAGE_KEY]: [], schedules: [] });
+  const plans = normalizePlans(items[PLANS_STORAGE_KEY]);
+  const plan = plans.find(candidate => candidate.id === planId);
+
+  if (!plan) {
+    return;
+  }
+
+  const isCurrentlyAssigned = plan.uiRuleIds.includes(ruleId);
+  if (!assigned && isCurrentlyAssigned && isInProtectedSchedule(items)) {
+    alert(getLockedAssignmentMessage());
+    await renderElementRules();
+    return;
+  }
+
+  await savePlansWithPriority(plans.map(candidate => {
+    if (candidate.id !== planId) {
+      return candidate;
+    }
+
+    const nextRuleIds = assigned
+      ? Array.from(new Set([...candidate.uiRuleIds, ruleId]))
+      : candidate.uiRuleIds.filter(candidateRuleId => candidateRuleId !== ruleId);
+
+    return {
+      ...candidate,
+      uiRuleIds: nextRuleIds
+    };
+  }));
+}
+
+function createRulePlanAssignment(rule, plans, isLocked) {
+  const wrapper = document.createElement('div');
+  wrapper.className = 'element-rule-control element-rule-control-wide';
+
+  const label = document.createElement('span');
+  label.textContent = 'Plan assignment';
+  wrapper.appendChild(label);
+
+  if (plans.length === 0) {
+    const empty = document.createElement('p');
+    empty.className = 'element-rule-plan-empty';
+    empty.textContent = 'Global rule. Create a plan to scope it.';
+    wrapper.appendChild(empty);
+    return wrapper;
+  }
+
+  const grid = document.createElement('div');
+  grid.className = 'element-rule-plan-grid';
+
+  plans.forEach(plan => {
+    const assigned = plan.uiRuleIds.includes(rule.id);
+    const row = document.createElement('label');
+    row.className = 'element-rule-plan-row';
+
+    const checkbox = createPlanAssignmentCheckbox(
+      assigned,
+      isLocked && assigned,
+      value => {
+        updateRulePlanAssignment(rule.id, plan.id, value).catch(error => {
+          console.error('Failed to update UI rule plan assignment:', error);
+        });
+      }
+    );
+
+    const text = document.createElement('span');
+    text.textContent = plan.enabled ? plan.name : `${plan.name} (disabled)`;
+
+    row.appendChild(checkbox);
+    row.appendChild(text);
+    grid.appendChild(row);
+  });
+
+  wrapper.appendChild(grid);
+  return wrapper;
+}
+
+function createDiagnostics(rule, plans) {
   const details = document.createElement('details');
   details.className = 'element-rule-diagnostics';
 
@@ -293,6 +419,7 @@ function createDiagnostics(rule) {
   body.appendChild(createMetaLine('Created', formatDate(rule.createdAt)));
   body.appendChild(createMetaLine('URL scope', rule.urlScope || 'pattern'));
   body.appendChild(createMetaLine('URL pattern', rule.urlPattern || 'current site'));
+  body.appendChild(createMetaLine('Plan scope', formatPlanScope(rule, plans)));
 
   FINGERPRINT_FIELDS.forEach(([key, label]) => {
     body.appendChild(createMetaLine(label, rule.fingerprint?.[key]));
@@ -302,7 +429,7 @@ function createDiagnostics(rule) {
   return details;
 }
 
-function createRuleItem(rule) {
+function createRuleItem(rule, plans, isLocked) {
   const item = document.createElement('li');
   item.className = 'element-rule-item';
 
@@ -314,6 +441,7 @@ function createRuleItem(rule) {
   summary.className = 'element-rule-summary';
   summary.textContent = [
     rule.enabled === false ? 'disabled' : 'enabled',
+    formatPlanScope(rule, plans),
     rule.urlPattern || 'current site',
     rule.strategy || rule.mode || 'samePosition',
     `score ${rule.minScore || 12}`,
@@ -387,6 +515,8 @@ function createRuleItem(rule) {
     })
   ));
 
+  controls.appendChild(createRulePlanAssignment(rule, plans, isLocked));
+
   const domainButton = createButton('Use domain', () => {
     const domainPattern = getDomainPattern(rule.urlPattern);
     if (!domainPattern) return;
@@ -405,7 +535,7 @@ function createRuleItem(rule) {
   item.appendChild(title);
   item.appendChild(summary);
   item.appendChild(controls);
-  item.appendChild(createDiagnostics(rule));
+  item.appendChild(createDiagnostics(rule, plans));
   item.appendChild(domainButton);
   item.appendChild(deleteButton);
   return item;
@@ -417,7 +547,12 @@ export async function renderElementRules() {
     return;
   }
 
-  const rules = await getRules();
+  const [rules, items] = await Promise.all([
+    getRules(),
+    getSync({ [PLANS_STORAGE_KEY]: [], schedules: [] })
+  ]);
+  const plans = normalizePlans(items[PLANS_STORAGE_KEY]);
+  const isLocked = isInProtectedSchedule(items);
   list.innerHTML = '';
   renderStorageUsage(rules).catch(error => {
     console.error('Failed to render element rule storage usage:', error);
@@ -426,13 +561,13 @@ export async function renderElementRules() {
   if (rules.length === 0) {
     const emptyItem = document.createElement('li');
     emptyItem.className = 'element-rule-empty';
-    emptyItem.textContent = chrome.i18n.getMessage('noElementRulesLabel') || 'No blocked UI elements';
+    emptyItem.textContent = getElementRuleMessage('noElementRulesLabel');
     list.appendChild(emptyItem);
     return;
   }
 
   rules.forEach(rule => {
-    list.appendChild(createRuleItem(rule));
+    list.appendChild(createRuleItem(rule, plans, isLocked));
   });
 }
 
@@ -444,7 +579,7 @@ export function initializeElementRulesSync() {
         || Object.keys(changes).some(key => key.startsWith(ELEMENT_RULE_ITEM_PREFIX))
     );
 
-    if (areaName === 'sync' && hasElementRuleChange) {
+    if (areaName === 'sync' && (hasElementRuleChange || changes[PLANS_STORAGE_KEY])) {
       renderElementRules().catch(error => {
         console.error('Failed to sync element blocking rules:', error);
       });

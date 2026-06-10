@@ -209,26 +209,26 @@
     "cannotDeselectDaysError": {
         "message": "Tage können für einen aktiven Zeitplan, der gerade in Kraft ist, nicht abgewählt werden."
     },
-    "passwordManagementHeader": { 
-        "message": "Passwortverwaltung" 
+    "passwordManagementHeader": {
+        "message": "Passwortverwaltung"
     },
-    "enterPasswordPlaceholder": { 
-        "message": "Passwort eingeben" 
+    "enterPasswordPlaceholder": {
+        "message": "Passwort eingeben"
     },
-    "confirmPasswordPlaceholder": { 
-        "message": "Passwort bestätigen" 
+    "confirmPasswordPlaceholder": {
+        "message": "Passwort bestätigen"
     },
-    "setPasswordButton": { 
-        "message": "Passwort festlegen" 
+    "setPasswordButton": {
+        "message": "Passwort festlegen"
     },
-    "deletePasswordButton": { 
-        "message": "Passwort löschen" 
+    "deletePasswordButton": {
+        "message": "Passwort löschen"
     },
-    "enterPasswordToAccessLabel": { 
-        "message": "Geben Sie das Passwort für den Zugriff ein:" 
+    "enterPasswordToAccessLabel": {
+        "message": "Geben Sie das Passwort für den Zugriff ein:"
     },
-    "submitButton": { 
-        "message": "Einreichen" 
+    "submitButton": {
+        "message": "Einreichen"
     },
     "tooManyAttempts": {
         "message": "Zu viele Fehlversuche. Bitte warten Sie $TIME$ Sekunden, bevor Sie es erneut versuchen.",
@@ -433,5 +433,99 @@
     },
     "importButton": {
         "message": "Importieren"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "Wochenplan"
+    },
+    "scheduleSelectedTitle": {
+        "message": "Ausgewählter Zeitplan"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "Zeit"
+    },
+    "scheduleDaysLabel": {
+        "message": "Tage"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "Arbeitstage"
+    },
+    "scheduleWeekendPreset": {
+        "message": "Wochenende"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "Täglich"
+    },
+    "scheduleClearPreset": {
+        "message": "Tage leeren"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "Noch keine Zeitpläne."
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "Erstellen Sie einen Zeitplan oder wählen Sie ihn aus, um ihn zu bearbeiten."
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ jetzt aktiv",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ aktivierte Zeitblöcke",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ gespeicherte Zeitblöcke",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ deaktiviert",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ unvollständig ignoriert",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledLabel": {
+        "message": "Aktiviert"
+    },
+    "scheduleDisabledLabel": {
+        "message": "Deaktiviert"
+    },
+    "themeModeLabel": {
+        "message": "UI-Modus"
+    },
+    "themeModeSystemOption": {
+        "message": "System"
+    },
+    "themeModeDarkOption": {
+        "message": "Dunkel"
+    },
+    "themeModeLightOption": {
+        "message": "Hell"
+    },
+    "elementRulesLabel": {
+        "message": "Blockierte UI"
+    },
+    "noElementRulesLabel": {
+        "message": "Keine blockierten UI-Elemente"
     }
 }

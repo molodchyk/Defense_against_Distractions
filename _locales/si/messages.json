@@ -451,5 +451,75 @@
     },
     "noElementRulesLabel": {
         "message": "අවහිර කළ UI මූලද්‍රව්‍ය නැත"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "සතිපතා කාලසටහන"
+    },
+    "scheduleSelectedTitle": {
+        "message": "තෝරාගත් කාලසටහන"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "කාලය"
+    },
+    "scheduleDaysLabel": {
+        "message": "දින"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "වැඩ කරන දින"
+    },
+    "scheduleWeekendPreset": {
+        "message": "සති අන්තය"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "සෑම දිනකම"
+    },
+    "scheduleClearPreset": {
+        "message": "දින හිස් කරන්න"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "තවම කාලසටහන් නැත."
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "එය සංස්කරණය කිරීමට කාලසටහනක් සාදන්න හෝ තෝරන්න."
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ දැන් සක්‍රීයයි",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ සක්‍රීය කළ කාල කොටස්",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ සුරකින ලද කාල කොටස්",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ අක්‍රීය",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ අසම්පූර්ණ නොසලකා හැර ඇත",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
     }
 }

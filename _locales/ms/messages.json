@@ -209,26 +209,26 @@
     "cannotDeselectDaysError": {
         "message": "Tidak boleh nyahpilih hari untuk jadual aktif yang sedang berkuat kuasa."
     },
-    "passwordManagementHeader": { 
-        "message": "Pengurusan Kata Laluan" 
+    "passwordManagementHeader": {
+        "message": "Pengurusan Kata Laluan"
     },
-    "enterPasswordPlaceholder": { 
-        "message": "Masukkan kata laluan" 
+    "enterPasswordPlaceholder": {
+        "message": "Masukkan kata laluan"
     },
-    "confirmPasswordPlaceholder": { 
-        "message": "Sahkan kata laluan" 
+    "confirmPasswordPlaceholder": {
+        "message": "Sahkan kata laluan"
     },
-    "setPasswordButton": { 
-        "message": "Tetapkan Kata Laluan" 
+    "setPasswordButton": {
+        "message": "Tetapkan Kata Laluan"
     },
-    "deletePasswordButton": { 
-        "message": "Padam Kata Laluan" 
+    "deletePasswordButton": {
+        "message": "Padam Kata Laluan"
     },
-    "enterPasswordToAccessLabel": { 
-        "message": "Masukkan Kata Laluan untuk Akses:" 
+    "enterPasswordToAccessLabel": {
+        "message": "Masukkan Kata Laluan untuk Akses:"
     },
-    "submitButton": { 
-        "message": "Hantar" 
+    "submitButton": {
+        "message": "Hantar"
     },
     "tooManyAttempts": {
         "message": "Terlalu banyak percubaan gagal. Sila tunggu $TIME$ saat sebelum mencuba semula.",
@@ -433,5 +433,93 @@
     },
     "importButton": {
         "message": "Import"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "Jadual mingguan"
+    },
+    "scheduleSelectedTitle": {
+        "message": "Jadual yang dipilih"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "Masa"
+    },
+    "scheduleDaysLabel": {
+        "message": "hari-hari"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "hari bekerja"
+    },
+    "scheduleWeekendPreset": {
+        "message": "Hujung minggu"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "Setiap hari"
+    },
+    "scheduleClearPreset": {
+        "message": "Kosongkan hari"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "Tiada jadual lagi."
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "Buat atau pilih jadual untuk mengeditnya."
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ aktif sekarang",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ blok masa didayakan",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ blok masa disimpan",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ dilumpuhkan",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ tidak lengkap diabaikan",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "themeModeLabel": {
+        "message": "Mod UI"
+    },
+    "themeModeSystemOption": {
+        "message": "Sistem"
+    },
+    "themeModeDarkOption": {
+        "message": "Gelap"
+    },
+    "themeModeLightOption": {
+        "message": "Cerah"
+    },
+    "elementRulesLabel": {
+        "message": "UI disekat"
+    },
+    "noElementRulesLabel": {
+        "message": "Tiada elemen UI disekat"
     }
 }

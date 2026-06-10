@@ -16,6 +16,7 @@ export function hasExistingConfiguration(items) {
   return Object.entries(items).some(([key, value]) => {
     if (key.startsWith('group_')) return true;
     if (key.startsWith('elementBlockRule.')) return true;
+    if (key === 'plans' && Array.isArray(value) && value.length > 0) return true;
     if (key === 'websiteGroups' && Array.isArray(value) && value.length > 0) return true;
     if (key === 'schedules' && Array.isArray(value) && value.length > 0) return true;
     if (key === 'elementBlockRules' && Array.isArray(value) && value.length > 0) return true;

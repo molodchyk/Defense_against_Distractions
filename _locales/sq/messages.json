@@ -451,5 +451,75 @@
     },
     "noElementRulesLabel": {
         "message": "Nuk ka elementë të UI të bllokuar"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "Orari javor"
+    },
+    "scheduleSelectedTitle": {
+        "message": "Orari i zgjedhur"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "Koha"
+    },
+    "scheduleDaysLabel": {
+        "message": "Ditët"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "Ditët e punës"
+    },
+    "scheduleWeekendPreset": {
+        "message": "Fundjavë"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "Çdo ditë"
+    },
+    "scheduleClearPreset": {
+        "message": "Pastro ditët"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "Nuk ka ende orare."
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "Krijoni ose zgjidhni një orar për ta modifikuar."
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ aktiv tani",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ blloqe kohe të aktivizuara",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ blloqe kohe të ruajtura",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ të çaktivizuara",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ të paplota të shpërfillura",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
     }
 }

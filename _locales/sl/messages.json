@@ -451,5 +451,75 @@
     },
     "noElementRulesLabel": {
         "message": "Ni blokiranih elementov uporabniškega vmesnika"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "Tedenski urnik"
+    },
+    "scheduleSelectedTitle": {
+        "message": "Izbrani urnik"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "Čas"
+    },
+    "scheduleDaysLabel": {
+        "message": "dni"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "Delovni dnevi"
+    },
+    "scheduleWeekendPreset": {
+        "message": "Vikend"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "vsak dan"
+    },
+    "scheduleClearPreset": {
+        "message": "Počisti dneve"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "Ni še urnikov."
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "Ustvarite ali izberite urnik, da ga uredite."
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ trenutno aktivno",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ omogočenih časovnih blokov",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ shranjenih časovnih blokov",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ onemogočeno",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ nepopolno prezrto",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
     }
 }

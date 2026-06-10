@@ -209,26 +209,26 @@
     "cannotDeselectDaysError": {
         "message": "Неможливо скасувати вибір днів для активного розкладу, який зараз діє."
     },
-    "passwordManagementHeader": { 
-        "message": "Управління Паролями" 
+    "passwordManagementHeader": {
+        "message": "Управління Паролями"
     },
-    "enterPasswordPlaceholder": { 
-        "message": "Введіть пароль" 
+    "enterPasswordPlaceholder": {
+        "message": "Введіть пароль"
     },
-    "confirmPasswordPlaceholder": { 
-        "message": "Підтвердіть пароль" 
+    "confirmPasswordPlaceholder": {
+        "message": "Підтвердіть пароль"
     },
-    "setPasswordButton": { 
-        "message": "Встановити Пароль" 
+    "setPasswordButton": {
+        "message": "Встановити Пароль"
     },
-    "deletePasswordButton": { 
-        "message": "Видалити Пароль" 
+    "deletePasswordButton": {
+        "message": "Видалити Пароль"
     },
-    "enterPasswordToAccessLabel": { 
-        "message": "Введіть пароль для доступу:" 
+    "enterPasswordToAccessLabel": {
+        "message": "Введіть пароль для доступу:"
     },
-    "submitButton": { 
-        "message": "Надіслати" 
+    "submitButton": {
+        "message": "Надіслати"
     },
     "tooManyAttempts": {
         "message": "Забагато невдалих спроб. Зачекайте $TIME$ секунд перед повторною спробою.",
@@ -433,5 +433,93 @@
     },
     "importButton": {
         "message": "Імпорт"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "Тижневий розклад"
+    },
+    "scheduleSelectedTitle": {
+        "message": "Вибраний розклад"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "час"
+    },
+    "scheduleDaysLabel": {
+        "message": "днів"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "робочі дні"
+    },
+    "scheduleWeekendPreset": {
+        "message": "Вихідні"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "Кожен день"
+    },
+    "scheduleClearPreset": {
+        "message": "Очистити дні"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "Розкладів ще немає."
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "Створіть або виберіть розклад для його редагування."
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ активні зараз",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ увімкнених часових блоків",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ збережених часових блоків",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ вимкнено",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ неповних проігноровано",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "themeModeLabel": {
+        "message": "Режим інтерфейсу"
+    },
+    "themeModeSystemOption": {
+        "message": "Системний"
+    },
+    "themeModeDarkOption": {
+        "message": "Темний"
+    },
+    "themeModeLightOption": {
+        "message": "Світлий"
+    },
+    "elementRulesLabel": {
+        "message": "Заблокований інтерфейс"
+    },
+    "noElementRulesLabel": {
+        "message": "Немає заблокованих елементів інтерфейсу"
     }
 }

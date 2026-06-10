@@ -451,5 +451,75 @@
     },
     "noElementRulesLabel": {
         "message": "Արգելափակված UI տարրեր չկան"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "Շաբաթական գրաֆիկ"
+    },
+    "scheduleSelectedTitle": {
+        "message": "Ընտրված ժամանակացույց"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "Ժամանակը"
+    },
+    "scheduleDaysLabel": {
+        "message": "Օրեր"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "Աշխատանքային օրեր"
+    },
+    "scheduleWeekendPreset": {
+        "message": "Հանգստյան օրեր"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "Ամեն օր"
+    },
+    "scheduleClearPreset": {
+        "message": "Մաքրել օրերը"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "Դեռևս ժամանակացույց չկա:"
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "Ստեղծեք կամ ընտրեք ժամանակացույց՝ այն խմբագրելու համար:"
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ այժմ ակտիվ",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ միացված ժամանակային բլոկ",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ պահված ժամանակային բլոկ",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ անջատված",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ թերի՝ անտեսված",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
     }
 }

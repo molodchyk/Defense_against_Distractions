@@ -13,13 +13,11 @@ Hovedfunksjoner:
 Blokker sider etter nøkkelord, fraser og vektede scorer.
 Organiser ulike fokusregler i grupper for nettsteder og nøkkelord.
 Bruk låste tidsplaner, whitelists, passordbeskyttelse, eksport/import, UI-moduser og skjuling av UI-elementer for å holde oppsettet praktisk.
-
-Nytt i versjon 1.5:
-
-Lys, mørk og systembasert UI-modus.
-Popup-basert UI-elementvelger for å skjule distraherende sidekontroller.
-Forbedret blokkeringslag med stopp eller demping av media og valgbare diagnoser.
-Oppdaterte store assets, pakking, release checks og prosjektstruktur.
+Nytt i versjon 1.6:
+Pomodoro teller nå inaktiv og låst tid som del av nødvendig hvile.
+Popupen og planens Pomodoro-side viser nå tydeligere kjøretidsdiagnostikk.
+Streng pauseblokkering gjenoppretter nå medier og fanens dempestatus når blokkeringen slutter.
+Diagnostikk for blokkerte sider viser nå mediesuspensjon og fanedemping styrt av utvidelsen.
 
 Defense Against Distractions er åpen kildekode:
 https://github.com/molodchyk/Defense_against_Distractions

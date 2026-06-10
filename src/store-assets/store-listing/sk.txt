@@ -13,13 +13,11 @@ Hlavné funkcie:
 Blokovanie stránok podľa kľúčových slov, fráz a vážených skóre.
 Organizovanie rôznych pravidiel sústredenia do skupín webov a kľúčových slov.
 Používanie uzamknutých plánov, whitelistov, ochrany heslom, exportu/importu, režimov UI a skrývania prvkov UI, aby nastavenie zostalo praktické.
-
-Novinky vo verzii 1.5:
-
-Svetlý, tmavý a systémový režim UI.
-Popupový výber prvkov UI na skrytie rušivých ovládacích prvkov stránky.
-Vylepšený blokovací overlay so zastavením alebo stlmením médií a označiteľnou diagnostikou.
-Aktualizované store assets, balenie, kontroly vydania a štruktúra projektu.
+Novinky vo verzii 1.6:
+Pomodoro teraz započítava nečinný a uzamknutý čas do potrebného oddychu.
+Popup a stránka Pomodoro plánu teraz zobrazujú jasnejšiu diagnostiku časovača.
+Prísne blokovanie prestávky teraz po skončení bloku obnoví médiá aj stav stlmenia karty.
+Diagnostika blokovanej stránky teraz zobrazuje pozastavenie médií a stlmenie karty riadené rozšírením.
 
 Defense Against Distractions je open source:
 https://github.com/molodchyk/Defense_against_Distractions

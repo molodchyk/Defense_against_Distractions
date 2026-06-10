@@ -20,10 +20,51 @@
 
   initializeContentScript();
 
+  function getBlockDiagnosticsDebugState() {
+    const diagnostics = global.blockDiagnostics || null;
+    const triggers = Array.isArray(diagnostics?.triggers) ? diagnostics.triggers : [];
+
+    return diagnostics ? {
+      pomodoroStrictBreak: Boolean(diagnostics.pomodoroStrictBreak),
+      blockedAt: diagnostics.blockedAt || null,
+      finalScore: diagnostics.finalScore ?? null,
+      triggerCount: triggers.length,
+      latestTrigger: triggers.at(-1) || null
+    } : null;
+  }
+
+  function isTopFrame() {
+    try {
+      return global.top === global.self;
+    } catch (error) {
+      return false;
+    }
+  }
+
+  function buildBlockDebugState(tabMuteState = null) {
+    const overlay = document.getElementById('dad-block-overlay');
+
+    return {
+      pageBlocked: Boolean(global.pageBlocked),
+      pageScore: global.pageScore,
+      hasOverlay: Boolean(overlay),
+      overlayParent: overlay?.parentElement?.tagName || null,
+      readyState: document.readyState,
+      url: global.location.href,
+      isTopFrame: isTopFrame(),
+      pomodoroStrictBreakBlockActive: Boolean(global.pomodoroStrictBreakBlockActive),
+      pomodoroStrictBreakMonitorActive: Boolean(global.pomodoroStrictBreakInterval),
+      blockDiagnostics: getBlockDiagnosticsDebugState(),
+      media: global.DAD.ContentBlocking.media.getMediaSuspensionDebugState?.() || null,
+      tabMute: tabMuteState
+    };
+  }
+
   chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.action === SITE_CHECK_MESSAGE) {
       performSiteCheck();
       sendResponse({ status: 'Site check performed' });
+      return false;
     }
 
     if (message.action === 'startElementPicker') {
@@ -34,6 +75,7 @@
         labelMatch: message.labelMatch || 'prefer'
       });
       sendResponse({ status: 'Element picker started' });
+      return false;
     }
 
     if (message.action === 'forceBlockPage') {
@@ -42,20 +84,37 @@
         diagnostics: message.diagnostics
       });
       sendResponse({ status: 'Top frame blocked' });
+      return false;
+    }
+
+    if (message.action === 'pomodoroRuntimeChanged') {
+      global.DAD.ContentBlocking.siteCheck.syncPomodoroBreakState(message.reason || null);
+      sendResponse({ status: 'Pomodoro runtime synced' });
+      return false;
+    }
+
+    if (message.action === 'clearPomodoroStrictBreakBlock') {
+      const cleared = global.DAD.ContentBlocking.siteCheck.clearPomodoroStrictBreakBlock();
+      sendResponse({ status: cleared ? 'Pomodoro block cleared' : 'No Pomodoro block to clear' });
+      return false;
+    }
+
+    if (message.action === 'showPomodoroMiniPanel') {
+      const opened = global.DAD.PomodoroMiniPanel?.show?.();
+      sendResponse(opened
+        ? { status: 'Pomodoro panel opened' }
+        : { status: 'error', reason: 'Pomodoro panel is only available in the top page frame.' });
+      return false;
     }
 
     if (message.action === 'getBlockDebugState') {
-      const overlay = document.getElementById('dad-block-overlay');
-      sendResponse({
-        pageBlocked: Boolean(global.pageBlocked),
-        pageScore: global.pageScore,
-        hasOverlay: Boolean(overlay),
-        overlayParent: overlay?.parentElement?.tagName || null,
-        readyState: document.readyState,
-        url: global.location.href,
-        isTopFrame: global.top === global.self
+      global.DAD.safeRuntimeSendMessage({ action: 'getBlockedTabMuteDebugState' }, tabMuteState => {
+        sendResponse(buildBlockDebugState(tabMuteState));
       });
+      return true;
     }
+
+    return false;
   });
 
   global.onpageshow = function(event) {

@@ -14,12 +14,11 @@ Blokeatu orriak gako-hitz, esaldi eta puntuazio haztatuen arabera.
 Antolatu foku-arau desberdinak webgune eta gako-taldeetan.
 Erabili blokeatutako ordutegiak, zerrenda zuriak, pasahitz babesa, esportazioa/inportazioa, UI moduak eta UI elementua ezkutatzea konfigurazioa praktikoa izan dadin.
 
-Zer da berria 1.5 bertsioan:
-
-Argia, iluna eta sistemako UI moduak.
-Popup-en oinarritutako interfazearen elementu-hautatzailea, arreta distraitzen duten orrien kontrolak ezkutatzeko.
-Blokeatutako orrialdeen gainjartzea hobetu da multimedia gelditu edo isilarazi eta hauta daitezkeen diagnostikoekin.
-Dendaren aktiboak, ontziratzeak, kaleratze-egiaztapenak eta proiektuaren egitura eguneratuak.
+Zer da berria 1.6 bertsioan:
+Pomodorok orain inaktibo eta blokeatutako denbora beharrezko atseden gisa zenbatzen du.
+Popup-ak eta planaren Pomodoro orriak orain exekuzio-denboraren diagnostika argiagoa erakusten dute.
+Atseden-blokeatze zorrotzak orain media eta fitxaren isiltze-egoera leheneratzen ditu blokeoa amaitzean.
+Blokeatutako orriaren diagnostikak orain media-etetea eta luzapenak kontrolatutako fitxa-isiltzea erakusten ditu.
 
 Distrakzioen aurkako defentsa kode irekia da:
 https://github.com/molodchyk/Defense_against_Distractions

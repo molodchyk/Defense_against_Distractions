@@ -451,5 +451,75 @@
     },
     "noElementRulesLabel": {
         "message": "Geen geblokkeerde UI-elemente nie"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "Weeklikse skedule"
+    },
+    "scheduleSelectedTitle": {
+        "message": "Geselekteerde skedule"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "Tyd"
+    },
+    "scheduleDaysLabel": {
+        "message": "Dae"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "Werksdae"
+    },
+    "scheduleWeekendPreset": {
+        "message": "Naweek"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "Elke dag"
+    },
+    "scheduleClearPreset": {
+        "message": "Vee dae uit"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "Nog geen skedules nie."
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "Skep of kies 'n skedule om dit te wysig."
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ aktief nou",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ geaktiveerde tydblokke",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ gestoorde tydblokke",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ gedeaktiveer",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ onvolledig geignoreer",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
     }
 }

@@ -209,26 +209,26 @@
     "cannotDeselectDaysError": {
         "message": "Kan geen dagen de-selecteren voor een actief schema dat momenteel van kracht is."
     },
-    "passwordManagementHeader": { 
-        "message": "Wachtwoordbeheer" 
+    "passwordManagementHeader": {
+        "message": "Wachtwoordbeheer"
     },
-    "enterPasswordPlaceholder": { 
-        "message": "Voer wachtwoord in" 
+    "enterPasswordPlaceholder": {
+        "message": "Voer wachtwoord in"
     },
-    "confirmPasswordPlaceholder": { 
-        "message": "Bevestig wachtwoord" 
+    "confirmPasswordPlaceholder": {
+        "message": "Bevestig wachtwoord"
     },
-    "setPasswordButton": { 
-        "message": "Stel Wachtwoord In" 
+    "setPasswordButton": {
+        "message": "Stel Wachtwoord In"
     },
-    "deletePasswordButton": { 
-        "message": "Verwijder Wachtwoord" 
+    "deletePasswordButton": {
+        "message": "Verwijder Wachtwoord"
     },
-    "enterPasswordToAccessLabel": { 
-        "message": "Voer wachtwoord in om toegang te krijgen:" 
+    "enterPasswordToAccessLabel": {
+        "message": "Voer wachtwoord in om toegang te krijgen:"
     },
-    "submitButton": { 
-        "message": "Indienen" 
+    "submitButton": {
+        "message": "Indienen"
     },
     "tooManyAttempts": {
         "message": "Te veel mislukte pogingen. Wacht alstublieft $TIME$ seconden voor het opnieuw proberen.",
@@ -433,5 +433,93 @@
     },
     "importButton": {
         "message": "Importeren"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "Wekelijks schema"
+    },
+    "scheduleSelectedTitle": {
+        "message": "Geselecteerd schema"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "Tijd"
+    },
+    "scheduleDaysLabel": {
+        "message": "Dagen"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "Werkdagen"
+    },
+    "scheduleWeekendPreset": {
+        "message": "Weekend"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "Elke dag"
+    },
+    "scheduleClearPreset": {
+        "message": "Dagen wissen"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "Nog geen schema's."
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "Maak of selecteer een schema om het te bewerken."
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ nu actief",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ ingeschakelde tijdblokken",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ opgeslagen tijdblokken",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ uitgeschakeld",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ onvolledig genegeerd",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "themeModeLabel": {
+        "message": "UI-modus"
+    },
+    "themeModeSystemOption": {
+        "message": "Systeem"
+    },
+    "themeModeDarkOption": {
+        "message": "Donker"
+    },
+    "themeModeLightOption": {
+        "message": "Licht"
+    },
+    "elementRulesLabel": {
+        "message": "Geblokkeerde UI"
+    },
+    "noElementRulesLabel": {
+        "message": "Geen geblokkeerde UI-elementen"
     }
 }

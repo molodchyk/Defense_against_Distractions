@@ -451,5 +451,81 @@
     },
     "noElementRulesLabel": {
         "message": "No blocked UI elements"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "Weekly schedule"
+    },
+    "scheduleSelectedTitle": {
+        "message": "Selected schedule"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "Time"
+    },
+    "scheduleDaysLabel": {
+        "message": "Days"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "Workdays"
+    },
+    "scheduleWeekendPreset": {
+        "message": "Weekend"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "Every day"
+    },
+    "scheduleClearPreset": {
+        "message": "Clear days"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "No schedules yet."
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "Create or select a schedule to edit it."
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ active now",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ enabled time blocks",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ saved time blocks",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ disabled",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ incomplete ignored",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledLabel": {
+        "message": "Enabled"
+    },
+    "scheduleDisabledLabel": {
+        "message": "Disabled"
     }
 }

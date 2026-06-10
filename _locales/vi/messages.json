@@ -433,5 +433,93 @@
     },
     "importButton": {
         "message": "Nhập khẩu"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "Lịch trình hàng tuần"
+    },
+    "scheduleSelectedTitle": {
+        "message": "Lịch trình đã chọn"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "thời gian"
+    },
+    "scheduleDaysLabel": {
+        "message": "ngày"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "Ngày làm việc"
+    },
+    "scheduleWeekendPreset": {
+        "message": "Cuối tuần"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "Mỗi ngày"
+    },
+    "scheduleClearPreset": {
+        "message": "Xóa ngày"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "Chưa có lịch trình nào."
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "Tạo hoặc chọn một lịch trình để chỉnh sửa nó."
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ đang hoạt động",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ khối thời gian đã bật",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ khối thời gian đã lưu",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ đã tắt",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ chưa hoàn chỉnh bị bỏ qua",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "themeModeLabel": {
+        "message": "Chế độ giao diện"
+    },
+    "themeModeSystemOption": {
+        "message": "Hệ thống"
+    },
+    "themeModeDarkOption": {
+        "message": "Tối"
+    },
+    "themeModeLightOption": {
+        "message": "Sáng"
+    },
+    "elementRulesLabel": {
+        "message": "Giao diện bị chặn"
+    },
+    "noElementRulesLabel": {
+        "message": "Không có thành phần giao diện bị chặn"
     }
 }

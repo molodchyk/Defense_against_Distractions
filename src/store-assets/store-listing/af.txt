@@ -14,12 +14,11 @@ Blokkeer bladsye volgens sleutelwoorde, frases en geweegde tellings.
 Organiseer verskillende fokusreëls in webwerf- en sleutelwoordgroepe.
 Gebruik geslote skedules, witlyste, wagwoordbeskerming, uitvoer/invoer, UI-modusse en UI-element wegsteek om die opstelling prakties te hou.
 
-Wat is nuut in weergawe 1.5:
-
-Lig, donker en stelsel-UI-modusse.
-Opspring-gebaseerde UI-elementkieser om afleidende bladsykontroles weg te steek.
-Verbeterde geblokkeerde bladsy-oorleg met media stop of demp en kiesbare diagnostiek.
-Opgedateerde winkelbates, verpakking, vrystellingstjeks en projekstruktuur.
+Wat is nuut in weergawe 1.6:
+Pomodoro tel nou ledige en geslote tyd as deel van die vereiste rus.
+Die opspringvenster en plan-Pomodoro-bladsy wys nou duideliker looptyddiagnostiek.
+Streng pouse-blokkering herstel nou media en die oortjie se dempstatus nadat die blokkering eindig.
+Geblokkeerde-bladsy-diagnostiek wys nou media-onderbreking en dempstatus wat deur die uitbreiding beheer word.
 
 Defence Against Distractions is oopbron:
 https://github.com/molodchyk/Defense_against_Distractions

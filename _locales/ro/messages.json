@@ -209,26 +209,26 @@
     "cannotDeselectDaysError": {
         "message": "Nu se pot deselecta zilele pentru un program activ care este în desfășurare."
     },
-    "passwordManagementHeader": { 
-        "message": "Administrare Parolă" 
+    "passwordManagementHeader": {
+        "message": "Administrare Parolă"
     },
-    "enterPasswordPlaceholder": { 
-        "message": "Introduceți parola" 
+    "enterPasswordPlaceholder": {
+        "message": "Introduceți parola"
     },
-    "confirmPasswordPlaceholder": { 
-        "message": "Confirmați parola" 
+    "confirmPasswordPlaceholder": {
+        "message": "Confirmați parola"
     },
-    "setPasswordButton": { 
-        "message": "Setează Parola" 
+    "setPasswordButton": {
+        "message": "Setează Parola"
     },
-    "deletePasswordButton": { 
-        "message": "Șterge Parola" 
+    "deletePasswordButton": {
+        "message": "Șterge Parola"
     },
-    "enterPasswordToAccessLabel": { 
-        "message": "Introduceți Parola pentru Acces:" 
+    "enterPasswordToAccessLabel": {
+        "message": "Introduceți Parola pentru Acces:"
     },
-    "submitButton": { 
-        "message": "Trimite" 
+    "submitButton": {
+        "message": "Trimite"
     },
     "tooManyAttempts": {
         "message": "Prea multe încercări eșuate. Vă rugăm să așteptați $TIME$ secunde înainte de a încerca din nou.",
@@ -433,5 +433,93 @@
     },
     "importButton": {
         "message": "Importă"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "Program săptămânal"
+    },
+    "scheduleSelectedTitle": {
+        "message": "Programul selectat"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "timpul"
+    },
+    "scheduleDaysLabel": {
+        "message": "Zile"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "Zilele lucrătoare"
+    },
+    "scheduleWeekendPreset": {
+        "message": "Weekend"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "În fiecare zi"
+    },
+    "scheduleClearPreset": {
+        "message": "Șterge zilele"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "Încă nu există programe."
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "Creați sau selectați un program pentru al edita."
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ active acum",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ blocuri de timp activate",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ blocuri de timp salvate",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ dezactivate",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ incomplete ignorate",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "themeModeLabel": {
+        "message": "Mod interfață"
+    },
+    "themeModeSystemOption": {
+        "message": "Sistem"
+    },
+    "themeModeDarkOption": {
+        "message": "Întunecat"
+    },
+    "themeModeLightOption": {
+        "message": "Luminos"
+    },
+    "elementRulesLabel": {
+        "message": "Interfață blocată"
+    },
+    "noElementRulesLabel": {
+        "message": "Nu există elemente de interfață blocate"
     }
 }

@@ -451,5 +451,75 @@
     },
     "noElementRulesLabel": {
         "message": "Нема блокирани елементи на интерфејсот"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "Неделен распоред"
+    },
+    "scheduleSelectedTitle": {
+        "message": "Избран распоред"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "Време"
+    },
+    "scheduleDaysLabel": {
+        "message": "Денови"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "Работни денови"
+    },
+    "scheduleWeekendPreset": {
+        "message": "Викенд"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "Секој ден"
+    },
+    "scheduleClearPreset": {
+        "message": "Исчисти денови"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "Сè уште нема распоред."
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "Креирајте или изберете распоред за да го уредите."
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ активно сега",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ овозможени временски блокови",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ зачувани временски блокови",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ оневозможени",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ нецелосни игнорирани",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
     }
 }

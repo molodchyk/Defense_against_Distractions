@@ -209,26 +209,26 @@
     "cannotDeselectDaysError": {
         "message": "현재 효력을 발휘 중인 활성 스케줄에 대해 요일을 선택 해제할 수 없습니다."
     },
-    "passwordManagementHeader": { 
-        "message": "비밀번호 관리" 
+    "passwordManagementHeader": {
+        "message": "비밀번호 관리"
     },
-    "enterPasswordPlaceholder": { 
-        "message": "비밀번호 입력" 
+    "enterPasswordPlaceholder": {
+        "message": "비밀번호 입력"
     },
-    "confirmPasswordPlaceholder": { 
-        "message": "비밀번호 확인" 
+    "confirmPasswordPlaceholder": {
+        "message": "비밀번호 확인"
     },
-    "setPasswordButton": { 
-        "message": "비밀번호 설정" 
+    "setPasswordButton": {
+        "message": "비밀번호 설정"
     },
-    "deletePasswordButton": { 
-        "message": "비밀번호 삭제" 
+    "deletePasswordButton": {
+        "message": "비밀번호 삭제"
     },
-    "enterPasswordToAccessLabel": { 
-        "message": "접근하려면 비밀번호를 입력하세요:" 
+    "enterPasswordToAccessLabel": {
+        "message": "접근하려면 비밀번호를 입력하세요:"
     },
-    "submitButton": { 
-        "message": "제출" 
+    "submitButton": {
+        "message": "제출"
     },
     "tooManyAttempts": {
         "message": "시도 횟수가 너무 많습니다. $TIME$초 후에 다시 시도하세요.",
@@ -433,5 +433,93 @@
     },
     "importButton": {
         "message": "가져오기"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "주간 일정"
+    },
+    "scheduleSelectedTitle": {
+        "message": "선택한 일정"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "시간"
+    },
+    "scheduleDaysLabel": {
+        "message": "일"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "근무일"
+    },
+    "scheduleWeekendPreset": {
+        "message": "주말"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "매일"
+    },
+    "scheduleClearPreset": {
+        "message": "요일 지우기"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "아직 일정이 없습니다."
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "일정을 생성하거나 선택하여 편집하세요."
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$개 현재 활성",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$개 활성화된 시간 블록",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$개 저장된 시간 블록",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$개 비활성화",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$개 미완료 항목 무시됨",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "themeModeLabel": {
+        "message": "UI 모드"
+    },
+    "themeModeSystemOption": {
+        "message": "시스템"
+    },
+    "themeModeDarkOption": {
+        "message": "어둡게"
+    },
+    "themeModeLightOption": {
+        "message": "밝게"
+    },
+    "elementRulesLabel": {
+        "message": "차단된 UI"
+    },
+    "noElementRulesLabel": {
+        "message": "차단된 UI 요소 없음"
     }
 }

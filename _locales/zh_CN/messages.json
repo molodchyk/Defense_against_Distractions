@@ -433,5 +433,93 @@
     },
     "importButton": {
         "message": "导入"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "每周日程"
+    },
+    "scheduleSelectedTitle": {
+        "message": "选定的时间表"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "时间"
+    },
+    "scheduleDaysLabel": {
+        "message": "天数"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "工作日"
+    },
+    "scheduleWeekendPreset": {
+        "message": "周末"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "每天"
+    },
+    "scheduleClearPreset": {
+        "message": "清除日期"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "还没有时间表。"
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "创建或选择一个计划进行编辑。"
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ 个当前有效",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ 个已启用时间块",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ 个已保存时间块",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ 个已停用",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ 个不完整已忽略",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "themeModeLabel": {
+        "message": "界面模式"
+    },
+    "themeModeSystemOption": {
+        "message": "跟随系统"
+    },
+    "themeModeDarkOption": {
+        "message": "深色"
+    },
+    "themeModeLightOption": {
+        "message": "浅色"
+    },
+    "elementRulesLabel": {
+        "message": "已屏蔽的界面"
+    },
+    "noElementRulesLabel": {
+        "message": "没有已屏蔽的界面元素"
     }
 }

@@ -209,26 +209,26 @@
     "cannotDeselectDaysError": {
         "message": "ไม่สามารถยกเลิกการเลือกวันสำหรับตารางเวลาที่ใช้งานอยู่และมีผลในปัจจุบัน"
     },
-    "passwordManagementHeader": { 
-        "message": "การจัดการรหัสผ่าน" 
+    "passwordManagementHeader": {
+        "message": "การจัดการรหัสผ่าน"
     },
-    "enterPasswordPlaceholder": { 
-        "message": "ใส่รหัสผ่าน" 
+    "enterPasswordPlaceholder": {
+        "message": "ใส่รหัสผ่าน"
     },
-    "confirmPasswordPlaceholder": { 
-        "message": "ยืนยันรหัสผ่าน" 
+    "confirmPasswordPlaceholder": {
+        "message": "ยืนยันรหัสผ่าน"
     },
-    "setPasswordButton": { 
-        "message": "ตั้งค่ารหัสผ่าน" 
+    "setPasswordButton": {
+        "message": "ตั้งค่ารหัสผ่าน"
     },
-    "deletePasswordButton": { 
-        "message": "ลบรหัสผ่าน" 
+    "deletePasswordButton": {
+        "message": "ลบรหัสผ่าน"
     },
-    "enterPasswordToAccessLabel": { 
-        "message": "ใส่รหัสผ่านเพื่อเข้าถึง:" 
+    "enterPasswordToAccessLabel": {
+        "message": "ใส่รหัสผ่านเพื่อเข้าถึง:"
     },
-    "submitButton": { 
-        "message": "ส่ง" 
+    "submitButton": {
+        "message": "ส่ง"
     },
     "tooManyAttempts": {
         "message": "พยายามไม่สำเร็จมากเกินไป กรุณารอ $TIME$ วินาทีก่อนที่จะลองใหม่",
@@ -433,5 +433,93 @@
     },
     "importButton": {
         "message": "นำเข้า"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "ตารางรายสัปดาห์"
+    },
+    "scheduleSelectedTitle": {
+        "message": "กำหนดการที่เลือก"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "เวลา"
+    },
+    "scheduleDaysLabel": {
+        "message": "วัน"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "วันทำงาน"
+    },
+    "scheduleWeekendPreset": {
+        "message": "วันหยุดสุดสัปดาห์"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "ทุกวัน"
+    },
+    "scheduleClearPreset": {
+        "message": "ล้างวัน"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "ยังไม่มีกำหนดการ"
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "สร้างหรือเลือกกำหนดการเพื่อแก้ไข"
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ กำลังใช้งานตอนนี้",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ บล็อกเวลาที่เปิดใช้งาน",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ บล็อกเวลาที่บันทึกไว้",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ ปิดใช้งาน",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ ไม่สมบูรณ์และถูกละเว้น",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "themeModeLabel": {
+        "message": "โหมด UI"
+    },
+    "themeModeSystemOption": {
+        "message": "ระบบ"
+    },
+    "themeModeDarkOption": {
+        "message": "มืด"
+    },
+    "themeModeLightOption": {
+        "message": "สว่าง"
+    },
+    "elementRulesLabel": {
+        "message": "UI ที่ถูกบล็อก"
+    },
+    "noElementRulesLabel": {
+        "message": "ไม่มีองค์ประกอบ UI ที่ถูกบล็อก"
     }
 }

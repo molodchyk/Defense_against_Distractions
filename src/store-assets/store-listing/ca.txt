@@ -14,12 +14,11 @@ Bloqueja pàgines per paraules clau, frases i puntuacions ponderades.
 Organitzeu diferents regles d'enfocament en llocs web i grups de paraules clau.
 Utilitzeu horaris bloquejats, llistes blanques, protecció de contrasenya, exportació/importació, modes d'interfície d'usuari i amagat d'elements d'IU per mantenir la configuració pràctica.
 
-Què hi ha de nou a la versió 1.5:
-
-Modes d'interfície d'usuari clar, fosc i del sistema.
-Selector d'elements de la interfície d'usuari basat en finestres emergents per amagar els controls de la pàgina que distreuen.
-S'ha millorat la superposició de pàgines bloquejades amb l'aturada o el silenci dels mitjans i diagnòstics seleccionables.
-S'han actualitzat els actius de la botiga, l'embalatge, les comprovacions de llançament i l'estructura del projecte.
+Què hi ha de nou a la versió 1.6:
+Pomodoro ara compta el temps inactiu i bloquejat com a part del descans requerit.
+El popup i la pàgina Pomodoro del pla mostren diagnòstics del temporitzador més clars.
+El bloqueig estricte de descans ara restaura els mitjans i l’estat de silenci de la pestanya quan acaba el bloqueig.
+Els diagnòstics de la pàgina bloquejada ara mostren la suspensió de mitjans i el silenci de pestanya controlat per l’extensió.
 
 Defense Against Distractions és de codi obert:
 https://github.com/molodchyk/Defense_against_Distractions

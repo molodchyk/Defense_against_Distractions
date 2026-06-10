@@ -13,13 +13,11 @@ Tính năng chính:
 Chặn trang theo từ khóa, cụm từ và điểm có trọng số.
 Tổ chức các quy tắc tập trung khác nhau thành nhóm website và từ khóa.
 Sử dụng lịch khóa, whitelist, bảo vệ bằng mật khẩu, export/import, chế độ UI và ẩn phần tử UI để giữ cấu hình thực tế.
-
-Điểm mới trong phiên bản 1.5:
-
-Chế độ UI sáng, tối và theo hệ thống.
-Bộ chọn phần tử UI từ popup để ẩn các điều khiển gây xao nhãng trên trang.
-Overlay chặn trang được cải thiện với dừng hoặc tắt tiếng media và chẩn đoán có thể chọn.
-Store assets, đóng gói, kiểm tra phát hành và cấu trúc dự án được cập nhật.
+Điểm mới trong phiên bản 1.6:
+Pomodoro hiện tính thời gian rảnh và thời gian bị khóa vào phần nghỉ bắt buộc.
+Popup và trang Pomodoro của kế hoạch hiện hiển thị chẩn đoán runtime rõ hơn.
+Chặn nghỉ nghiêm ngặt hiện khôi phục media và trạng thái tắt tiếng tab sau khi kết thúc chặn.
+Chẩn đoán trang bị chặn hiện hiển thị trạng thái tạm dừng media và tắt tiếng tab do tiện ích kiểm soát.
 
 Defense Against Distractions là mã nguồn mở:
 https://github.com/molodchyk/Defense_against_Distractions

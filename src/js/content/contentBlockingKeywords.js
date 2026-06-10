@@ -106,7 +106,7 @@
     } else {
       badgeText = Math.round(global.pageScore).toString();
     }
-    chrome.runtime.sendMessage({ action: 'updateBadge', score: badgeText });
+    global.DAD.safeRuntimeSendMessage({ action: 'updateBadge', score: badgeText });
   }
 
   function recordScoreTrigger(operation, value, keyword, contextText, scoreAfter) {

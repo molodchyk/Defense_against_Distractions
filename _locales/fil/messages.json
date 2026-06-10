@@ -451,5 +451,75 @@
     },
     "noElementRulesLabel": {
         "message": "Walang naka-block na elemento ng UI"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "Lingguhang iskedyul"
+    },
+    "scheduleSelectedTitle": {
+        "message": "Napiling iskedyul"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "Oras"
+    },
+    "scheduleDaysLabel": {
+        "message": "Mga araw"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "Mga araw ng trabaho"
+    },
+    "scheduleWeekendPreset": {
+        "message": "Weekend"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "Araw-araw"
+    },
+    "scheduleClearPreset": {
+        "message": "Burahin ang mga araw"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "Wala pang schedule."
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "Gumawa o pumili ng iskedyul para i-edit ito."
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ aktibo ngayon",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ naka-enable na time block",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ naka-save na time block",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ naka-disable",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ hindi kumpleto, binalewala",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
     }
 }

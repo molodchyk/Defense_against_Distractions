@@ -451,5 +451,75 @@
     },
     "noElementRulesLabel": {
         "message": "Bloklangan UI elementlari yo‘q"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "Haftalik jadval"
+    },
+    "scheduleSelectedTitle": {
+        "message": "Tanlangan jadval"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "Vaqt"
+    },
+    "scheduleDaysLabel": {
+        "message": "Kunlar"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "Ish kunlari"
+    },
+    "scheduleWeekendPreset": {
+        "message": "Dam olish kunlari"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "Har kuni"
+    },
+    "scheduleClearPreset": {
+        "message": "Kunlarni tozalash"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "Hozircha jadval yo'q."
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "Uni tahrirlash uchun jadval yarating yoki tanlang."
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ hozir faol",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ yoqilgan vaqt bloklari",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ saqlangan vaqt bloklari",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ o‘chirilgan",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ to‘liq emas, e’tiborga olinmadi",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
     }
 }

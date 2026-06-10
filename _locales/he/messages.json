@@ -209,26 +209,26 @@
     "cannotDeselectDaysError": {
         "message": "לא ניתן לבטל בחירה של ימים עבור לו\"ז פעיל שנמצא כרגע בתוקף."
     },
-    "passwordManagementHeader": { 
-        "message": "ניהול סיסמאות" 
+    "passwordManagementHeader": {
+        "message": "ניהול סיסמאות"
     },
-    "enterPasswordPlaceholder": { 
-        "message": "הכנס סיסמה" 
+    "enterPasswordPlaceholder": {
+        "message": "הכנס סיסמה"
     },
-    "confirmPasswordPlaceholder": { 
-        "message": "אשר סיסמה" 
+    "confirmPasswordPlaceholder": {
+        "message": "אשר סיסמה"
     },
-    "setPasswordButton": { 
-        "message": "הגדר סיסמה" 
+    "setPasswordButton": {
+        "message": "הגדר סיסמה"
     },
-    "deletePasswordButton": { 
-        "message": "מחק סיסמה" 
+    "deletePasswordButton": {
+        "message": "מחק סיסמה"
     },
-    "enterPasswordToAccessLabel": { 
-        "message": "הכנס סיסמה לגישה:" 
+    "enterPasswordToAccessLabel": {
+        "message": "הכנס סיסמה לגישה:"
     },
-    "submitButton": { 
-        "message": "שלח" 
+    "submitButton": {
+        "message": "שלח"
     },
     "tooManyAttempts": {
         "message": "יותר מדי ניסיונות כושלים. המתן בבקשה $TIME$ שניות לפני ניסיון חוזר.",
@@ -433,5 +433,93 @@
     },
     "importButton": {
         "message": "ייבוא"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "לוח זמנים שבועי"
+    },
+    "scheduleSelectedTitle": {
+        "message": "לוח זמנים נבחר"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "זְמַן"
+    },
+    "scheduleDaysLabel": {
+        "message": "ימים"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "ימי עבודה"
+    },
+    "scheduleWeekendPreset": {
+        "message": "סוֹף שָׁבוּעַ"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "כל יום"
+    },
+    "scheduleClearPreset": {
+        "message": "נקה ימים"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "עדיין אין לוחות זמנים."
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "צור או בחר לוח זמנים כדי לערוך אותו."
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ פעיל עכשיו",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ מקטעי זמן מופעלים",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ מקטעי זמן שמורים",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ מושבתים",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ לא שלם והתעלמו ממנו",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "themeModeLabel": {
+        "message": "מצב ממשק"
+    },
+    "themeModeSystemOption": {
+        "message": "מערכת"
+    },
+    "themeModeDarkOption": {
+        "message": "כהה"
+    },
+    "themeModeLightOption": {
+        "message": "בהיר"
+    },
+    "elementRulesLabel": {
+        "message": "ממשק חסום"
+    },
+    "noElementRulesLabel": {
+        "message": "אין רכיבי ממשק חסומים"
     }
 }

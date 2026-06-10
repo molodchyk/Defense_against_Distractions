@@ -43,6 +43,58 @@
   let highlightedElement = null;
   let pickerCleanup = null;
 
+  const PICKER_MESSAGES = {
+    elementPickerTitle: 'DaD UI picker',
+    elementPickerInitialMessage: 'Hover an element, click to preview the rule, then save or choose again.',
+    elementPickerNoElementSelected: 'No element selected',
+    elementPickerModeLabel: 'Mode',
+    elementPickerPickElementOption: 'Pick element',
+    elementPickerClickPageOption: 'Click page',
+    elementPickerPreviewLabel: 'Preview',
+    elementPickerHideMatchedOption: 'Hide matched',
+    elementPickerOutlineMatchedOption: 'Outline matched',
+    elementPickerTargetLabel: 'Target',
+    elementPickerClickedElementOption: 'Clicked element',
+    elementPickerParentOption: 'Parent',
+    elementPickerGrandparentOption: 'Grandparent',
+    elementPickerGreatGrandparentOption: 'Great-grandparent',
+    elementPickerStrategyLabel: 'Strategy',
+    elementPickerSamePositionOption: 'Same position',
+    elementPickerSameTextOption: 'Same text/label',
+    elementPickerSimilarOption: 'Similar',
+    elementPickerClosestOption: 'Closest',
+    elementPickerMinimumScoreLabel: 'Minimum score',
+    elementPickerAncestorDepthLabel: 'Ancestor depth',
+    elementPickerLabelMatchLabel: 'Label match',
+    elementPickerPreferLabelOption: 'Prefer label',
+    elementPickerIgnoreLabelOption: 'Ignore label',
+    elementPickerRequireLabelOption: 'Require label',
+    elementPickerSaveRuleButton: 'Save rule',
+    elementPickerSaveRuleAndContinueButton: 'Save rule and continue',
+    elementPickerChooseAgainButton: 'Choose again',
+    elementPickerCancelButton: 'Cancel',
+    elementPickerPreviewHidingVerb: 'hiding',
+    elementPickerPreviewOutliningVerb: 'outlining',
+    elementPickerElementSingular: 'element',
+    elementPickerElementPlural: 'elements',
+    elementPickerPreviewMessage: 'Preview is $1 $2 $3. Adjust settings, save, choose again, or cancel.',
+    elementPickerRuleSavedPickAnother: 'Element blocking rule saved. Pick another element.',
+    elementPickerRuleSaved: 'Element blocking rule saved.',
+    elementPickerChooseAgainMessage: 'Hover an element and click to preview the rule.',
+    elementPickerClickPageModeMessage: 'Click page mode is active. Use the page normally, then hover Mode and scroll back to pick an element.',
+    elementPickerPickModeMessage: 'Hover an element and click it to preview the rule.',
+    elementPickerSaveErrorMessage: 'Could not save this rule. Try again.'
+  };
+
+  function getPickerMessage(key, fallbackOrSubstitutions, maybeSubstitutions) {
+    const hasExplicitFallback = maybeSubstitutions !== undefined;
+    const fallback = hasExplicitFallback ? fallbackOrSubstitutions : (PICKER_MESSAGES[key] || key);
+    const substitutions = hasExplicitFallback ? maybeSubstitutions : fallbackOrSubstitutions;
+    return global.DAD.UiLanguage?.getMessage?.(key, PICKER_MESSAGES[key] || fallback, substitutions)
+      || PICKER_MESSAGES[key]
+      || fallback;
+  }
+
   function getUrlPattern() {
     return normalizeToken(location.hostname);
   }
@@ -225,7 +277,12 @@
   }
 
   function syncPickerTheme(panel) {
-    chrome.storage.sync.get({ [THEME_STORAGE_KEY]: DEFAULT_THEME_MODE }, result => {
+    global.DAD.safeSyncStorageGet({ [THEME_STORAGE_KEY]: DEFAULT_THEME_MODE }, result => {
+      if (!result) {
+        applyPickerTheme(panel, DEFAULT_THEME_MODE);
+        return;
+      }
+
       applyPickerTheme(panel, result[THEME_STORAGE_KEY]);
     });
   }
@@ -312,78 +369,78 @@
     handle.style.cssText = 'display:grid;gap:2px;padding:12px 12px 8px;cursor:move;border-bottom:1px solid var(--dad-picker-border);';
 
     const title = document.createElement('strong');
-    title.textContent = 'DaD UI picker';
+    title.textContent = getPickerMessage('elementPickerTitle');
 
     const message = document.createElement('span');
     message.style.cssText = 'color:var(--dad-picker-muted);font-size:12px;';
-    message.textContent = 'Hover an element, click to preview the rule, then save or choose again.';
+    message.textContent = getPickerMessage('elementPickerInitialMessage');
 
     handle.appendChild(title);
     handle.appendChild(message);
 
     const selectedText = document.createElement('div');
     selectedText.style.cssText = 'padding:10px 12px 0;color:var(--dad-picker-text);overflow-wrap:anywhere;';
-    selectedText.textContent = 'No element selected';
+    selectedText.textContent = getPickerMessage('elementPickerNoElementSelected');
 
     const controlGrid = document.createElement('div');
     controlGrid.style.cssText = 'display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:10px 12px 0;';
 
     controlGrid.appendChild(createPickerControl(
-      'Mode',
+      getPickerMessage('elementPickerModeLabel'),
       createPickerWheelToggle([
-        ['pick', 'Pick element'],
-        ['click', 'Click page']
+        ['pick', getPickerMessage('elementPickerPickElementOption')],
+        ['click', getPickerMessage('elementPickerClickPageOption')]
       ], controls.actionMode, value => onControlsChange({ actionMode: value }))
     ));
     controlGrid.appendChild(createPickerControl(
-      'Preview',
+      getPickerMessage('elementPickerPreviewLabel'),
       createPickerWheelToggle([
-        ['hide', 'Hide matched'],
-        ['outline', 'Outline matched']
+        ['hide', getPickerMessage('elementPickerHideMatchedOption')],
+        ['outline', getPickerMessage('elementPickerOutlineMatchedOption')]
       ], controls.previewMode, value => onControlsChange({ previewMode: value }))
     ));
     controlGrid.appendChild(createPickerControl(
-      'Target',
+      getPickerMessage('elementPickerTargetLabel'),
       createPickerWheelToggle([
-        ['0', 'Clicked element'],
-        ['1', 'Parent'],
-        ['2', 'Grandparent'],
-        ['3', 'Great-grandparent']
+        ['0', getPickerMessage('elementPickerClickedElementOption')],
+        ['1', getPickerMessage('elementPickerParentOption')],
+        ['2', getPickerMessage('elementPickerGrandparentOption')],
+        ['3', getPickerMessage('elementPickerGreatGrandparentOption')]
       ], String(controls.targetLevel), value => onControlsChange({ targetLevel: Number.parseInt(value, 10) }))
     ));
     controlGrid.appendChild(createPickerControl(
-      'Strategy',
+      getPickerMessage('elementPickerStrategyLabel'),
       createPickerSelect([
-        ['samePosition', 'Same position'],
-        ['sameText', 'Same text/label'],
-        ['similar', 'Similar'],
-        ['exact', 'Closest']
+        ['samePosition', getPickerMessage('elementPickerSamePositionOption')],
+        ['sameText', getPickerMessage('elementPickerSameTextOption')],
+        ['similar', getPickerMessage('elementPickerSimilarOption')],
+        ['exact', getPickerMessage('elementPickerClosestOption')]
       ], controls.strategy, value => onControlsChange({ strategy: value }))
     ));
     controlGrid.appendChild(createPickerControl(
-      'Minimum score',
+      getPickerMessage('elementPickerMinimumScoreLabel'),
       createPickerNumberInput(controls.minScore, 6, 24, value => onControlsChange({ minScore: value }))
     ));
     controlGrid.appendChild(createPickerControl(
-      'Ancestor depth',
+      getPickerMessage('elementPickerAncestorDepthLabel'),
       createPickerNumberInput(controls.ancestorDepth, 0, 6, value => onControlsChange({ ancestorDepth: value }))
     ));
     controlGrid.appendChild(createPickerControl(
-      'Label match',
+      getPickerMessage('elementPickerLabelMatchLabel'),
       createPickerSelect([
-        ['prefer', 'Prefer label'],
-        ['ignore', 'Ignore label'],
-        ['require', 'Require label']
+        ['prefer', getPickerMessage('elementPickerPreferLabelOption')],
+        ['ignore', getPickerMessage('elementPickerIgnoreLabelOption')],
+        ['require', getPickerMessage('elementPickerRequireLabelOption')]
       ], controls.labelMatch, value => onControlsChange({ labelMatch: value }))
     ));
 
     const actions = document.createElement('div');
     actions.style.cssText = 'display:flex;gap:8px;justify-content:flex-end;padding:0 12px 12px;flex-wrap:wrap;';
 
-    const saveButton = createPickerButton('Save rule', onSave);
+    const saveButton = createPickerButton(getPickerMessage('elementPickerSaveRuleButton'), onSave);
     saveButton.disabled = true;
-    actions.appendChild(createPickerButton('Choose again', onChooseAgain, true));
-    actions.appendChild(createPickerButton('Cancel', onCancel, true));
+    actions.appendChild(createPickerButton(getPickerMessage('elementPickerChooseAgainButton'), onChooseAgain, true));
+    actions.appendChild(createPickerButton(getPickerMessage('elementPickerCancelButton'), onCancel, true));
     actions.appendChild(saveButton);
 
     panel.appendChild(handle);
@@ -395,14 +452,16 @@
 
     return {
       setSelection(element) {
-        selectedText.textContent = describeElement(element);
+        selectedText.textContent = element ? describeElement(element) : getPickerMessage('elementPickerNoElementSelected');
         saveButton.disabled = !element;
       },
       setMessage(text) {
         message.textContent = text;
       },
       setSaveContinuation(isContinuing) {
-        saveButton.textContent = isContinuing ? 'Save rule and continue' : 'Save rule';
+        saveButton.textContent = isContinuing
+          ? getPickerMessage('elementPickerSaveRuleAndContinueButton')
+          : getPickerMessage('elementPickerSaveRuleButton');
       },
       remove() {
         panel.remove();
@@ -443,12 +502,19 @@
 
   global.DAD.applyElementBlockRules = function() {
     loadElementRules(rules => {
-      applyElementRules(rules);
-      observeElementRules(rules);
+      global.DAD.safeSyncStorageGet('plans', items => {
+        if (!items) {
+          return;
+        }
+
+        const activeRules = global.DAD.Plans.filterElementRulesForActivePlans(rules, items);
+        applyElementRules(activeRules);
+        observeElementRules(activeRules);
+      });
     });
   };
 
-  chrome.storage.onChanged.addListener((changes, areaName) => {
+  global.DAD.safeStorageOnChangedAddListener((changes, areaName) => {
     if (areaName === 'sync' && changes[THEME_STORAGE_KEY]) {
       const pickerPanel = document.getElementById(PICKER_PANEL_ID);
       if (pickerPanel) {
@@ -456,12 +522,19 @@
       }
     }
 
-    if (areaName !== 'sync' || !hasElementRuleChange(changes)) return;
+    if (areaName !== 'sync' || (!hasElementRuleChange(changes) && !changes.plans)) return;
 
     loadElementRules(rules => {
-      resetElementBlocks();
-      applyElementRules(rules);
-      observeElementRules(rules);
+      global.DAD.safeSyncStorageGet('plans', items => {
+        if (!items) {
+          return;
+        }
+
+        const activeRules = global.DAD.Plans.filterElementRulesForActivePlans(rules, items);
+        resetElementBlocks();
+        applyElementRules(activeRules);
+        observeElementRules(activeRules);
+      });
     });
   });
 
@@ -518,9 +591,18 @@
 
       previewRule = buildPreviewRule();
       const matchCount = previewElementRule(previewRule, pickerControls.previewMode);
-      const verb = pickerControls.previewMode === 'outline' ? 'outlining' : 'hiding';
+      const verb = pickerControls.previewMode === 'outline'
+        ? getPickerMessage('elementPickerPreviewOutliningVerb')
+        : getPickerMessage('elementPickerPreviewHidingVerb');
+      const noun = matchCount === 1
+        ? getPickerMessage('elementPickerElementSingular')
+        : getPickerMessage('elementPickerElementPlural');
       pickerPanel.setSelection(getRuleTargetElement(selectedElement, pickerControls.targetLevel));
-      pickerPanel.setMessage(`Preview is ${verb} ${matchCount} ${matchCount === 1 ? 'element' : 'elements'}. Adjust settings, save, choose again, or cancel.`);
+      pickerPanel.setMessage(getPickerMessage('elementPickerPreviewMessage', [
+        verb,
+        String(matchCount),
+        noun
+      ]));
     };
 
     const schedulePreviewUpdate = () => {
@@ -588,11 +670,11 @@
         disconnectPreviewObserver();
         clearHighlight();
         pickerPanel.setSelection(null);
-        pickerPanel.setMessage('Element blocking rule saved. Pick another element.');
+        pickerPanel.setMessage(getPickerMessage('elementPickerRuleSavedPickAnother'));
         return;
       }
 
-      pickerPanel.setMessage('Element blocking rule saved.');
+      pickerPanel.setMessage(getPickerMessage('elementPickerRuleSaved'));
       window.setTimeout(stopPicker, 500);
     };
 
@@ -603,7 +685,7 @@
       previewRule = null;
       clearHighlight();
       pickerPanel.setSelection(null);
-      pickerPanel.setMessage('Hover an element and click to preview the rule.');
+      pickerPanel.setMessage(getPickerMessage('elementPickerChooseAgainMessage'));
     };
 
     const onKeyDown = event => {
@@ -636,19 +718,19 @@
         Object.assign(pickerControls, patch);
         if (patch.actionMode === 'click') {
           clearHighlight();
-          pickerPanel.setMessage('Click page mode is active. Use the page normally, then hover Mode and scroll back to pick an element.');
+          pickerPanel.setMessage(getPickerMessage('elementPickerClickPageModeMessage'));
           return;
         }
         if (selectedElement) {
           updatePreview();
           return;
         }
-        pickerPanel.setMessage('Hover an element and click it to preview the rule.');
+        pickerPanel.setMessage(getPickerMessage('elementPickerPickModeMessage'));
       },
       onSave: () => {
         saveSelection().catch(error => {
           console.error('Failed to save element blocking rule:', error);
-          pickerPanel.setMessage(error?.message || 'Could not save this rule. Try again.');
+          pickerPanel.setMessage(error?.message || getPickerMessage('elementPickerSaveErrorMessage'));
         });
       },
       onChooseAgain: chooseAgain,

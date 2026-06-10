@@ -51,6 +51,18 @@ This section preserves the original phrasing of ideas before they are clarified 
 - grayscale on websites
 - establish research pipeline
 
+
+- the line that goes at the current day and time at this graph for easy understanding where we are right now in the graph is also needed
+schedule should not be enabled or disabled. The plan itself has enabled disabled option. Every schedule should show up on that graph, but if you define start and end times yourself, it won't show up. The option to choose to run it every second week or any whatever week. That schedule graph should be expandable by default, working with a window 1/6 of the size is viscerally painful. Why if you click somewhere two times they disappear and appear again? It is all very painful to use all around. Add time block is like horizontally taking all the space, and is red? Ugly. Add plan is red, refresh export json clear are red too, Configuration at the bottom also has this crazy horizontal fill in line that is ugly.
+
+and the project structure? One folder has like 17 files, each having 500 lines of code? Making it maintainable and modularizable, no?
+
+Doing git push, at least sometimes? Saving critical information and knowledge you get along the way, at least sometimes? Making it easy for me to understand what is exactly being implemented by saving that information as we move as well, in docs?
+
+time away (idle time) should go into rest (pause time). Meaning that if you were ... Look, we start the timer from a time that the work session begins, right? For example user has 25 minutes work 5 minutes rest. That means a 30 minutes block. But if in that block the user takes a 10 minute work then 10 minute rest, that 10 minute rest is already more than 5 minute rest. Meaning, all that rest already happened. If in the same 25 minute work 5 minute rest the user takes 2 minute pause after 20 minute rest, and comes at 25 minutes, he only needs to do 3 minutes rest, you get the formula? And after the mandatory rest, the cycle resets. So it is important to take the work start time as reference point.
+
+if 5 minute rest is already satisfied, the session will start anew once the user comes back, right? Also, popup timer could make it all crystal clear. When it started how much pause already happened, when next pause and so on. So that I don't have to guess right now if it is even correctly implemented or do like secret tests by turning computer off and looking up if it got it all correctly
+
 ## Blocking Capabilities
 
 - Make blocking resilient against leave-page, unsaved-changes, and similar browser or site warnings that can interrupt navigation away from a blocked page.
@@ -67,6 +79,10 @@ This section preserves the original phrasing of ideas before they are clarified 
 - Track URLs, time spent, and words on pages that were subsequently blocked.
 - Track URLs, time spent, and words on pages that were not blocked.
 - Add a usage stats feature for DaD.
+
+Initial implementation note: the popup now shows current-tab image, video, audio, GIF, emoji, and link counts from the local page-signal collector. This covers the first visible slice of "show video count image audio emoji on popup DaD" without storing telemetry.
+
+Initial implementation note: DaD now keeps bounded local hostname-level usage aggregates under `usageStats` and exposes them in an options-page Usage panel. The first slice tracks visits, active time, dwell time, maximum observed open-tab/window counts, and maximum observed media/UI/page-structure counts. It intentionally does not store raw page text, full URLs, page titles, topic tokens, tab URLs, tab titles, or tab identities. Users can clear the local stats or export a local JSON snapshot for inspection.
 
 ## Configuration and Sharing
 
@@ -86,6 +102,14 @@ This section preserves the original phrasing of ideas before they are clarified 
 - Add a "send feedback" button.
 - Continue modularizing DaD internals.
 
+Initial implementation note: grayscale is now available as a reversible intent-coherence intervention action in plan intent settings. It desaturates the current drift page while keeping recovery controls available, and clears when the intervention is dismissed, isolated, returned, or no longer active.
+
+Initial implementation note: intent intervention buttons now record bounded local feedback actions (`acknowledge`, `continue`, `isolate`, `return`) in the intent diagnostics state. This creates the local calibration data needed to evaluate what interventions work.
+
+Initial implementation note: intent diagnostics now summarize that feedback into return/isolate/continue/dismiss rates, an average intervention score, and a conservative calibration diagnostic. Plan intent settings can now enable local auto-calibration, which adjusts the effective intervention threshold after enough feedback while keeping the configured locked threshold fixed.
+
+Initial implementation note: intent coherence now exposes hard chain-quarantine decision metadata for active plan policies that use `block`. Locked sessions and drift-descendant tabs get a non-continue current-page overlay with Return and explicit Isolate recovery actions. Isolate is delayed by a stable cooldown that does not reset on repeated page-signal reports. Closing/suspending all descendant tabs remains future work.
+
 ## Ecosystem and Platforms
 
 - Create a Windows application for DaD.
@@ -99,3 +123,9 @@ This section preserves the original phrasing of ideas before they are clarified 
 - What data should usage stats store, and what should never be stored for privacy reasons?
 - Should community configurations be moderated before appearing on a sharing website?
 - Should the blocking score remain at 1000 for compatibility, or should the product migrate to a 100-point model?
+
+Initial implementation note: intent coherence now records page dwell time and active visible page time as bounded local signals. Sustained active time on passive/high-pressure pages can reduce coherence, while constructive reading/input can still count as a recovery signal.
+
+Initial implementation note: intent coherence now also records bounded scroll, click, key, and input velocity as local rate signals. These rates help distinguish slow reading from rapid interaction loops without storing raw input.
+
+Initial implementation note: intent coherence now records aggregate recommendation/feed click counts and rates. This supports the "algorithms / feeds / recommender-driven drift" direction without storing clicked text or raw selectors.

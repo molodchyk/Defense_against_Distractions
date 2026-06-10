@@ -451,5 +451,75 @@
     },
     "noElementRulesLabel": {
         "message": "No hay elementos de interfaz de usuario bloqueados"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "horario semanal"
+    },
+    "scheduleSelectedTitle": {
+        "message": "Horario seleccionado"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "Tiempo"
+    },
+    "scheduleDaysLabel": {
+        "message": "Días"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "Días laborables"
+    },
+    "scheduleWeekendPreset": {
+        "message": "Fin de semana"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "Cada día"
+    },
+    "scheduleClearPreset": {
+        "message": "Borrar días"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "Aún no hay horarios."
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "Crea o selecciona un horario para editarlo."
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ activos ahora",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ bloques de tiempo activados",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ bloques de tiempo guardados",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ desactivados",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ incompletos ignorados",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
     }
 }

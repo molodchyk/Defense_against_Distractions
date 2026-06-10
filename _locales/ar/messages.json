@@ -209,26 +209,26 @@
     "cannotDeselectDaysError": {
         "message": "لا يمكن إلغاء تحديد الأيام لجدول زمني نشط وقائم حاليًا."
     },
-    "passwordManagementHeader": { 
-        "message": "إدارة كلمة المرور" 
+    "passwordManagementHeader": {
+        "message": "إدارة كلمة المرور"
     },
-    "enterPasswordPlaceholder": { 
-        "message": "أدخل كلمة المرور" 
+    "enterPasswordPlaceholder": {
+        "message": "أدخل كلمة المرور"
     },
-    "confirmPasswordPlaceholder": { 
-        "message": "تأكيد كلمة المرور" 
+    "confirmPasswordPlaceholder": {
+        "message": "تأكيد كلمة المرور"
     },
-    "setPasswordButton": { 
-        "message": "تعيين كلمة المرور" 
+    "setPasswordButton": {
+        "message": "تعيين كلمة المرور"
     },
-    "deletePasswordButton": { 
-        "message": "حذف كلمة المرور" 
+    "deletePasswordButton": {
+        "message": "حذف كلمة المرور"
     },
-    "enterPasswordToAccessLabel": { 
-        "message": "أدخل كلمة المرور للوصول:" 
+    "enterPasswordToAccessLabel": {
+        "message": "أدخل كلمة المرور للوصول:"
     },
-    "submitButton": { 
-        "message": "إرسال" 
+    "submitButton": {
+        "message": "إرسال"
     },
     "tooManyAttempts": {
         "message": "عدد كبير جدًا من المحاولات الفاشلة. يرجى الانتظار $TIME$ ثانية قبل المحاولة مرة أخرى.",
@@ -451,5 +451,75 @@
     },
     "noElementRulesLabel": {
         "message": "لا توجد عناصر واجهة محظورة"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "الجدول الأسبوعي"
+    },
+    "scheduleSelectedTitle": {
+        "message": "الجدول الزمني المحدد"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "وقت"
+    },
+    "scheduleDaysLabel": {
+        "message": "أيام"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "أيام العمل"
+    },
+    "scheduleWeekendPreset": {
+        "message": "عطلة نهاية الأسبوع"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "كل يوم"
+    },
+    "scheduleClearPreset": {
+        "message": "مسح الأيام"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "لا توجد جداول زمنية حتى الآن."
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "قم بإنشاء جدول زمني أو تحديده لتحريره."
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ نشط الآن",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ كتل وقت مفعلة",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ كتل وقت محفوظة",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ معطل",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ غير مكتمل تم تجاهله",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
     }
 }

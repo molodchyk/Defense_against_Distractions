@@ -451,5 +451,75 @@
     },
     "noElementRulesLabel": {
         "message": "தடுக்கப்பட்ட UI கூறுகள் இல்லை"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "வாராந்திர அட்டவணை"
+    },
+    "scheduleSelectedTitle": {
+        "message": "தேர்ந்தெடுக்கப்பட்ட அட்டவணை"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "நேரம்"
+    },
+    "scheduleDaysLabel": {
+        "message": "நாட்கள்"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "வேலை நாட்கள்"
+    },
+    "scheduleWeekendPreset": {
+        "message": "வார இறுதி"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "ஒவ்வொரு நாளும்"
+    },
+    "scheduleClearPreset": {
+        "message": "நாட்களை அழி"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "இன்னும் அட்டவணைகள் இல்லை."
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "அதைத் திருத்த ஒரு அட்டவணையை உருவாக்கவும் அல்லது தேர்ந்தெடுக்கவும்."
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ இப்போது செயலில்",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ இயக்கப்பட்ட நேரத் தொகுதிகள்",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ சேமிக்கப்பட்ட நேரத் தொகுதிகள்",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ முடக்கப்பட்டது",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ முழுமையற்றது புறக்கணிக்கப்பட்டது",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
     }
 }

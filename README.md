@@ -2,15 +2,15 @@
 
 Defense Against Distractions is a browser extension that helps you avoid procrastination by blocking pages when distracting words or phrases appear in their text.
 
-Instead of only blocking entire domains, you can define groups of websites and keywords. When a matching page reaches the configured distraction score, the extension redirects it to a block page.
+Instead of only blocking entire domains, you can define plan entries with websites and keywords. When a matching page reaches the configured distraction score, the extension redirects it to a block page.
 
 ## Features
 
 - Block pages based on keywords, phrases, and weighted keyword scores.
-- Organize websites and keywords into separate groups.
-- Apply multiple groups to the same website.
+- Organize websites and keywords inside enableable plans.
+- Give plans their own allowed websites, schedules, and optional UI cleanup assignments.
 - Use locked schedules to make focus rules harder to relax during chosen time windows.
-- Whitelist websites that should never be scanned.
+- Allow websites inside a plan so that plan does not scan them.
 - Protect the options page with a password.
 - Hide distracting UI elements with a popup-based element picker. See [UI Element Blocking](docs/ui-element-blocking.md).
 - Export and import extension settings.
@@ -18,7 +18,7 @@ Instead of only blocking entire domains, you can define groups of websites and k
 
 ## How It Works
 
-Create a group, add one or more websites to that group, then add keywords that should be detected on those websites.
+Create a plan, add one or more entries with websites and keywords, then decide when that plan should be active. Different protection contexts can be enabled, disabled, scheduled, and adjusted independently.
 
 Keywords can be entered in three formats:
 
@@ -30,7 +30,7 @@ Pages are blocked when their score reaches `1000`.
 
 ## Locked Schedules
 
-Locked schedules let you define times when the extension should resist being weakened. During an active locked schedule, the extension prevents changes such as deleting active schedules, removing existing websites or keywords from groups, relaxing schedule constraints, adding whitelisted websites, or changing password protection.
+Locked schedules let you define times when the extension should resist being weakened. During an active locked schedule, the extension prevents changes such as deleting active schedules, weakening plan entries, relaxing schedule constraints, adding allowed websites, or changing password protection.
 
 Each scheduled day must keep at least one hour unlocked.
 

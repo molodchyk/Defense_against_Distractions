@@ -209,26 +209,26 @@
     "cannotDeselectDaysError": {
         "message": "Impossible de désélectionner des jours pour un programme actif qui est actuellement en vigueur."
     },
-    "passwordManagementHeader": { 
-        "message": "Gestion des mots de passe" 
+    "passwordManagementHeader": {
+        "message": "Gestion des mots de passe"
     },
-    "enterPasswordPlaceholder": { 
-        "message": "Entrez le mot de passe" 
+    "enterPasswordPlaceholder": {
+        "message": "Entrez le mot de passe"
     },
-    "confirmPasswordPlaceholder": { 
-        "message": "Confirmez le mot de passe" 
+    "confirmPasswordPlaceholder": {
+        "message": "Confirmez le mot de passe"
     },
-    "setPasswordButton": { 
-        "message": "Définir le mot de passe" 
+    "setPasswordButton": {
+        "message": "Définir le mot de passe"
     },
-    "deletePasswordButton": { 
-        "message": "Supprimer le mot de passe" 
+    "deletePasswordButton": {
+        "message": "Supprimer le mot de passe"
     },
-    "enterPasswordToAccessLabel": { 
-        "message": "Entrez le mot de passe pour accéder:" 
+    "enterPasswordToAccessLabel": {
+        "message": "Entrez le mot de passe pour accéder:"
     },
-    "submitButton": { 
-        "message": "Soumettre" 
+    "submitButton": {
+        "message": "Soumettre"
     },
     "tooManyAttempts": {
         "message": "Trop de tentatives échouées. Veuillez attendre $TIME$ secondes avant de réessayer.",
@@ -250,7 +250,7 @@
     },
     "passwordMismatchAlert": {
         "message": "Les mots de passe ne correspondent pas. Veuillez vous assurer que les deux mots de passe sont identiques."
-    },    
+    },
     "pageTitle": {
         "message": "Guide d'instructions - Défense contre les distractions"
     },
@@ -433,5 +433,93 @@
     },
     "importButton": {
         "message": "Importer"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "Horaire hebdomadaire"
+    },
+    "scheduleSelectedTitle": {
+        "message": "Horaire sélectionné"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "Temps"
+    },
+    "scheduleDaysLabel": {
+        "message": "Jours"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "Jours ouvrables"
+    },
+    "scheduleWeekendPreset": {
+        "message": "Fin de semaine"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "Tous les jours"
+    },
+    "scheduleClearPreset": {
+        "message": "Effacer les jours"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "Pas encore d'horaires."
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "Créez ou sélectionnez un planning pour le modifier."
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ actif maintenant",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ blocs de temps activés",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ blocs de temps enregistrés",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ désactivés",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ incomplets ignorés",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "themeModeLabel": {
+        "message": "Mode d’interface"
+    },
+    "themeModeSystemOption": {
+        "message": "Système"
+    },
+    "themeModeDarkOption": {
+        "message": "Sombre"
+    },
+    "themeModeLightOption": {
+        "message": "Clair"
+    },
+    "elementRulesLabel": {
+        "message": "Interface bloquée"
+    },
+    "noElementRulesLabel": {
+        "message": "Aucun élément d’interface bloqué"
     }
 }

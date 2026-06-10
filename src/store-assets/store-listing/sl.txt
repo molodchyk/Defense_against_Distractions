@@ -13,13 +13,11 @@ Glavne značilnosti:
 Blokirajte strani s ključnimi besedami, frazami in tehtanimi rezultati.
 Organizirajte različna pravila osredotočanja v skupine spletnih mest in ključnih besed.
 Uporabite zaklenjene urnike, sezname dovoljenih, zaščito z geslom, izvoz/uvoz, načine uporabniškega vmesnika in skrivanje elementov uporabniškega vmesnika, da bo nastavitev praktična.
-
-Kaj je novega v različici 1.5:
-
-Svetli, temni in sistemski načini uporabniškega vmesnika.
-Pojavni izbirnik elementov uporabniškega vmesnika za skrivanje motečih kontrolnikov strani.
-Izboljšano prekrivanje blokiranih strani z zaustavitvijo ali utišanjem predstavnosti in izbirno diagnostiko.
-Posodobljena sredstva trgovine, embalaža, pregledi izdaje in struktura projekta.
+Kaj je novega v različici 1.6:
+Pomodoro zdaj šteje nedejaven in zaklenjen čas kot del potrebnega počitka.
+Pojavno okno in stran Pomodoro načrta zdaj prikazujeta jasnejšo diagnostiko delovanja.
+Strogo blokiranje odmora zdaj po koncu blokade obnovi medije in stanje utišanja zavihka.
+Diagnostika blokirane strani zdaj prikazuje prekinitev medijev in utišanje zavihka, ki ga upravlja razširitev.
 
 Defense Against Distractions je odprtokoden:
 https://github.com/molodchyk/Defense_against_Distractions

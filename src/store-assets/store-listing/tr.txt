@@ -13,13 +13,11 @@ Ana özellikler:
 Sayfaları anahtar kelimeler, ifadeler ve ağırlıklı skorlarla engelleyin.
 Farklı odak kurallarını web sitesi ve anahtar kelime grupları halinde düzenleyin.
 Kilitli programlar, whitelist, parola koruması, dışa/içe aktarma, UI modları ve UI öğesi gizleme ile kurulumu pratik tutun.
-
-Sürüm 1.5 yenilikleri:
-
-Açık, koyu ve sistem UI modları.
-Dikkat dağıtan sayfa kontrollerini gizlemek için popup tabanlı UI öğesi seçici.
-Medya durdurma veya sessize alma ve seçilebilir tanılama içeren geliştirilmiş engelleme overlay’i.
-Güncellenmiş store assets, paketleme, release checks ve proje yapısı.
+Sürüm 1.6 yenilikleri:
+Pomodoro artık boşta ve kilitli geçen zamanı gerekli dinlenmeye dahil eder.
+Popup ve plan Pomodoro sayfası artık daha net çalışma zamanı tanıları gösterir.
+Katı mola engellemesi artık engel bittikten sonra medyayı ve sekme sessiz durumunu geri yükler.
+Engellenen sayfa tanıları artık medya askıya alma ve eklentinin yönettiği sekme sessiz durumunu gösterir.
 
 Defense Against Distractions açık kaynaklıdır:
 https://github.com/molodchyk/Defense_against_Distractions

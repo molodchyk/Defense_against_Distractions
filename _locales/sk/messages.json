@@ -209,43 +209,43 @@
     "cannotDeselectDaysError": {
         "message": "Nemôžete zrušiť výber dní pre aktívny harmonogram, ktorý je momentálne v platnosti."
     },
-    "passwordManagementHeader": { 
-        "message": "Správa hesiel" 
+    "passwordManagementHeader": {
+        "message": "Správa hesiel"
     },
-    "enterPasswordPlaceholder": { 
-        "message": "Zadajte heslo" 
+    "enterPasswordPlaceholder": {
+        "message": "Zadajte heslo"
     },
-    "confirmPasswordPlaceholder": { 
-        "message": "Potvrďte heslo" 
+    "confirmPasswordPlaceholder": {
+        "message": "Potvrďte heslo"
     },
-    "setPasswordButton": { 
-        "message": "Nastaviť heslo" 
+    "setPasswordButton": {
+        "message": "Nastaviť heslo"
     },
-    "deletePasswordButton": { 
-        "message": "Vymazať heslo" 
+    "deletePasswordButton": {
+        "message": "Vymazať heslo"
     },
-    "enterPasswordToAccessLabel": { 
-        "message": "Zadajte heslo pre prístup:" 
+    "enterPasswordToAccessLabel": {
+        "message": "Zadajte heslo pre prístup:"
     },
-    "submitButton": { 
-        "message": "Odoslať" 
+    "submitButton": {
+        "message": "Odoslať"
     },
     "tooManyAttempts": {
         "message": "Príliš veľa neúspešných pokusov. Počkajte prosím $TIME$ sekúnd pred opätovným pokusom.",
         "placeholders": {
-        "time": {
-            "content": "$1",
-            "example": "30"
-        }
+            "time": {
+                "content": "$1",
+                "example": "30"
+            }
         }
     },
     "incorrectPassword": {
         "message": "Nesprávne heslo. Zostáva $ATTEMPTS$ pokusov.",
         "placeholders": {
-        "attempts": {
-            "content": "$1",
-            "example": "5"
-        }
+            "attempts": {
+                "content": "$1",
+                "example": "5"
+            }
         }
     },
     "passwordMismatchAlert": {
@@ -433,5 +433,93 @@
     },
     "importButton": {
         "message": "Importovať"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "Týždenný rozvrh"
+    },
+    "scheduleSelectedTitle": {
+        "message": "Vybraný rozvrh"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "Čas"
+    },
+    "scheduleDaysLabel": {
+        "message": "dní"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "pracovné dni"
+    },
+    "scheduleWeekendPreset": {
+        "message": "Víkend"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "Každý deň"
+    },
+    "scheduleClearPreset": {
+        "message": "Vymazať dni"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "Zatiaľ žiadne plány."
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "Vytvorte alebo vyberte plán a upravte ho."
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ práve aktívne",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ povolených časových blokov",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ uložených časových blokov",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ vypnuté",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ neúplné ignorované",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "themeModeLabel": {
+        "message": "Režim rozhrania"
+    },
+    "themeModeSystemOption": {
+        "message": "Systém"
+    },
+    "themeModeDarkOption": {
+        "message": "Tmavý"
+    },
+    "themeModeLightOption": {
+        "message": "Svetlý"
+    },
+    "elementRulesLabel": {
+        "message": "Blokované UI"
+    },
+    "noElementRulesLabel": {
+        "message": "Žiadne blokované prvky UI"
     }
 }

@@ -451,5 +451,75 @@
     },
     "noElementRulesLabel": {
         "message": "Nav bloķētu lietotāja interfeisa elementu"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "Nedēļas grafiks"
+    },
+    "scheduleSelectedTitle": {
+        "message": "Izvēlētais grafiks"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "Laiks"
+    },
+    "scheduleDaysLabel": {
+        "message": "Dienas"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "Darba dienas"
+    },
+    "scheduleWeekendPreset": {
+        "message": "Nedēļas nogale"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "Katru dienu"
+    },
+    "scheduleClearPreset": {
+        "message": "Notīrīt dienas"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "Vēl nav grafiku."
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "Izveidojiet vai atlasiet grafiku, lai to rediģētu."
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ pašlaik aktīvi",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ iespējoti laika bloki",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ saglabāti laika bloki",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ atspējoti",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ nepilnīgi ignorēti",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
     }
 }

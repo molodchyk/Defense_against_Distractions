@@ -433,5 +433,93 @@
     },
     "importButton": {
         "message": "आयात"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "साप्ताहिक सूची"
+    },
+    "scheduleSelectedTitle": {
+        "message": "चयनित शेड्यूल"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "समय"
+    },
+    "scheduleDaysLabel": {
+        "message": "दिन"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "कार्य दिवसों"
+    },
+    "scheduleWeekendPreset": {
+        "message": "सप्ताहांत"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "रोज रोज"
+    },
+    "scheduleClearPreset": {
+        "message": "दिन साफ़ करें"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "अभी तक कोई शेड्यूल नहीं है."
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "इसे संपादित करने के लिए एक शेड्यूल बनाएं या चुनें।"
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ अभी सक्रिय",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ सक्षम समय ब्लॉक",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ सहेजे गए समय ब्लॉक",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ अक्षम",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ अधूरे अनदेखे",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "themeModeLabel": {
+        "message": "UI मोड"
+    },
+    "themeModeSystemOption": {
+        "message": "सिस्टम"
+    },
+    "themeModeDarkOption": {
+        "message": "गहरा"
+    },
+    "themeModeLightOption": {
+        "message": "हल्का"
+    },
+    "elementRulesLabel": {
+        "message": "अवरुद्ध UI"
+    },
+    "noElementRulesLabel": {
+        "message": "कोई अवरुद्ध UI तत्व नहीं"
     }
 }

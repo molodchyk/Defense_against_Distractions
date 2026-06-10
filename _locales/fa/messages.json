@@ -451,5 +451,75 @@
     },
     "noElementRulesLabel": {
         "message": "هیچ عنصر رابط کاربری مسدود شده ای وجود ندارد"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "برنامه هفتگی"
+    },
+    "scheduleSelectedTitle": {
+        "message": "برنامه انتخاب شده"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "زمان"
+    },
+    "scheduleDaysLabel": {
+        "message": "روزها"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "روزهای کاری"
+    },
+    "scheduleWeekendPreset": {
+        "message": "آخر هفته"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "هر روز"
+    },
+    "scheduleClearPreset": {
+        "message": "پاک کردن روزها"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "هنوز برنامه زمانی وجود ندارد."
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "یک برنامه زمانبندی برای ویرایش آن ایجاد یا انتخاب کنید."
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ اکنون فعال",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ بلوک زمانی فعال",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ بلوک زمانی ذخیره‌شده",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ غیرفعال",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ ناقص نادیده گرفته شد",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
     }
 }

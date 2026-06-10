@@ -13,13 +13,11 @@ Defense Against Distractions 提供更精準的控制。
 依關鍵字、片語和加權分數封鎖頁面。
 將不同的專注規則整理到網站和關鍵字群組中。
 使用鎖定排程、白名單、密碼保護、匯出/匯入、UI 模式和 UI 元素隱藏，讓設定保持實用。
-
-版本 1.5 新增內容：
-
-淺色、深色和系統 UI 模式。
-以 popup 為基礎的 UI 元素選擇器，用於隱藏分散注意力的頁面控制項。
-改進的封鎖 overlay，可停止或靜音媒體，並提供可選取的診斷資訊。
-更新 store assets、打包、發布檢查和專案結構。
+版本 1.6 新增內容：
+Pomodoro 現在會將閒置和鎖定時間計入所需休息時間。
+彈出視窗和計畫 Pomodoro 頁面現在會顯示更清楚的執行診斷。
+嚴格休息封鎖現在會在封鎖結束後還原媒體和分頁靜音狀態。
+被封鎖頁面的診斷現在會顯示媒體暫停和擴充功能控制的分頁靜音狀態。
 
 Defense Against Distractions 是開源專案：
 https://github.com/molodchyk/Defense_against_Distractions

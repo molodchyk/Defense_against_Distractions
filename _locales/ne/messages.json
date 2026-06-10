@@ -451,5 +451,75 @@
     },
     "noElementRulesLabel": {
         "message": "कुनै अवरुद्ध UI तत्वहरू छैनन्"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "साप्ताहिक तालिका"
+    },
+    "scheduleSelectedTitle": {
+        "message": "चयन गरिएको तालिका"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "समय"
+    },
+    "scheduleDaysLabel": {
+        "message": "दिनहरू"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "कामका दिनहरू"
+    },
+    "scheduleWeekendPreset": {
+        "message": "सप्ताहन्त"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "हरेक दिन"
+    },
+    "scheduleClearPreset": {
+        "message": "दिनहरू खाली गर्नुहोस्"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "अझै कुनै तालिका छैन।"
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "यसलाई सम्पादन गर्न समयतालिका सिर्जना गर्नुहोस् वा चयन गर्नुहोस्।"
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ अहिले सक्रिय",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ सक्षम समय ब्लक",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ सुरक्षित समय ब्लक",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ अक्षम",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ अपूर्ण बेवास्ता गरियो",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
     }
 }

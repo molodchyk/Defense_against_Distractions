@@ -14,12 +14,11 @@ Bloquea páginas por palabras clave, frases y puntuaciones ponderadas.
 Organiza distintas reglas de enfoque en grupos de sitios web y palabras clave.
 Usa horarios bloqueados, listas blancas, protección con contraseña, exportación/importación, modos de interfaz y ocultación de elementos de UI para mantener la configuración práctica.
 
-Novedades de la versión 1.5:
-
-Modos de interfaz claro, oscuro y del sistema.
-Selector de elementos de UI desde el popup para ocultar controles de página que distraen.
-Overlay de bloqueo mejorado con detención o silenciamiento de medios y diagnósticos seleccionables.
-Activos de tienda, empaquetado, verificaciones de lanzamiento y estructura del proyecto actualizados.
+Novedades de la versión 1.6:
+Pomodoro ahora cuenta el tiempo inactivo y bloqueado como parte del descanso requerido.
+El popup y la página Pomodoro del plan ahora muestran diagnósticos del temporizador más claros.
+El bloqueo estricto de descanso ahora restaura los medios y el estado de silencio de la pestaña al terminar el bloqueo.
+Los diagnósticos de la página bloqueada ahora muestran la suspensión de medios y el silencio de pestaña controlado por la extensión.
 
 Defense Against Distractions es de código abierto:
 https://github.com/molodchyk/Defense_against_Distractions

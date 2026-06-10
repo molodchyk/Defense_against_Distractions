@@ -451,5 +451,75 @@
     },
     "noElementRulesLabel": {
         "message": "কোনো অবরুদ্ধ UI উপাদান নেই"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "সাপ্তাহিক সময়সূচী"
+    },
+    "scheduleSelectedTitle": {
+        "message": "নির্বাচিত সময়সূচী"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "সময়"
+    },
+    "scheduleDaysLabel": {
+        "message": "দিন"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "কর্মদিবস"
+    },
+    "scheduleWeekendPreset": {
+        "message": "সপ্তাহান্তে"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "প্রতিদিন"
+    },
+    "scheduleClearPreset": {
+        "message": "দিনগুলো মুছুন"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "এখনও কোন সময়সূচী."
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "এটি সম্পাদনা করতে একটি সময়সূচী তৈরি করুন বা নির্বাচন করুন৷"
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ এখন সক্রিয়",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ সক্রিয় সময় ব্লক",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ সংরক্ষিত সময় ব্লক",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ নিষ্ক্রিয়",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ অসম্পূর্ণ উপেক্ষিত",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
     }
 }

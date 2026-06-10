@@ -451,5 +451,75 @@
     },
     "noElementRulesLabel": {
         "message": "Bloklanmış UI elementləri yoxdur"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "Həftəlik cədvəl"
+    },
+    "scheduleSelectedTitle": {
+        "message": "Seçilmiş cədvəl"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "Vaxt"
+    },
+    "scheduleDaysLabel": {
+        "message": "Günlər"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "İş günləri"
+    },
+    "scheduleWeekendPreset": {
+        "message": "Həftə sonu"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "Hər gün"
+    },
+    "scheduleClearPreset": {
+        "message": "Günləri təmizlə"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "Hələ cədvəl yoxdur."
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "Redaktə etmək üçün cədvəl yaradın və ya seçin."
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ indi aktiv",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ aktiv vaxt bloku",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ saxlanmış vaxt bloku",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ deaktiv",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ natamam nəzərə alınmadı",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
     }
 }

@@ -451,5 +451,75 @@
     },
     "noElementRulesLabel": {
         "message": "કોઈ અવરોધિત UI ઘટકો નથી"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "સાપ્તાહિક શેડ્યૂલ"
+    },
+    "scheduleSelectedTitle": {
+        "message": "પસંદ કરેલ શેડ્યૂલ"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "સમય"
+    },
+    "scheduleDaysLabel": {
+        "message": "દિવસો"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "કામકાજના દિવસો"
+    },
+    "scheduleWeekendPreset": {
+        "message": "સપ્તાહાંત"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "દરરોજ"
+    },
+    "scheduleClearPreset": {
+        "message": "દિવસો સાફ કરો"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "હજુ સુધી કોઈ શેડ્યૂલ નથી."
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "તેને સંપાદિત કરવા માટે શેડ્યૂલ બનાવો અથવા પસંદ કરો."
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ હાલમાં સક્રિય",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ સક્ષમ સમય બ્લોક",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ સાચવેલા સમય બ્લોક",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ અક્ષમ",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ અધૂરું અવગણ્યું",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
     }
 }

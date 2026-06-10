@@ -209,26 +209,26 @@
     "cannotDeselectDaysError": {
         "message": "Não é possível desmarcar dias para um horário ativo que está atualmente em vigor."
     },
-    "passwordManagementHeader": { 
-        "message": "Gestão de Senhas" 
+    "passwordManagementHeader": {
+        "message": "Gestão de Senhas"
     },
-    "enterPasswordPlaceholder": { 
-        "message": "Digite a senha" 
+    "enterPasswordPlaceholder": {
+        "message": "Digite a senha"
     },
-    "confirmPasswordPlaceholder": { 
-        "message": "Confirme a senha" 
+    "confirmPasswordPlaceholder": {
+        "message": "Confirme a senha"
     },
-    "setPasswordButton": { 
-        "message": "Definir Senha" 
+    "setPasswordButton": {
+        "message": "Definir Senha"
     },
-    "deletePasswordButton": { 
-        "message": "Apagar Senha" 
+    "deletePasswordButton": {
+        "message": "Apagar Senha"
     },
-    "enterPasswordToAccessLabel": { 
-        "message": "Digite a Senha para Acessar:" 
+    "enterPasswordToAccessLabel": {
+        "message": "Digite a Senha para Acessar:"
     },
-    "submitButton": { 
-        "message": "Enviar" 
+    "submitButton": {
+        "message": "Enviar"
     },
     "tooManyAttempts": {
         "message": "Demasiadas tentativas falhadas. Aguarde $TIME$ segundos antes de tentar novamente.",
@@ -433,5 +433,93 @@
     },
     "importButton": {
         "message": "Importar"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "Programação semanal"
+    },
+    "scheduleSelectedTitle": {
+        "message": "Programação selecionada"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "Hora"
+    },
+    "scheduleDaysLabel": {
+        "message": "Dias"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "Dias úteis"
+    },
+    "scheduleWeekendPreset": {
+        "message": "Fim de semana"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "Todos os dias"
+    },
+    "scheduleClearPreset": {
+        "message": "Limpar dias"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "Ainda não há horários."
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "Crie ou selecione uma programação para editá-la."
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ ativos agora",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ blocos de tempo ativados",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ blocos de tempo guardados",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ desativados",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ incompletos ignorados",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "themeModeLabel": {
+        "message": "Modo da interface"
+    },
+    "themeModeSystemOption": {
+        "message": "Sistema"
+    },
+    "themeModeDarkOption": {
+        "message": "Escuro"
+    },
+    "themeModeLightOption": {
+        "message": "Claro"
+    },
+    "elementRulesLabel": {
+        "message": "Interface bloqueada"
+    },
+    "noElementRulesLabel": {
+        "message": "Nenhum elemento da interface bloqueado"
     }
 }

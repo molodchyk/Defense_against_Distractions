@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
-import { isCurrentTimeInAnySchedule } from './utilityFunctions.js';
 import {
     decryptPassword,
     encryptPassword,
@@ -9,6 +8,7 @@ import {
     generatePasswordKey,
     importPasswordKey
 } from './options/passwordCrypto.js';
+import { isInProtectedSchedule } from './shared/plans.js';
 
 const MAX_ATTEMPTS = 5;
 const LOCKOUT_INTERVAL = 30 * 1000; // 30 seconds
@@ -220,33 +220,27 @@ document.getElementById('passwordForm').addEventListener('submit', async (event)
 document.getElementById('deletePasswordButton').addEventListener('click', deletePassword);
 
 export function updateButtonStates() {
-    chrome.storage.sync.get(['password', 'schedules'], function(data) {
+    chrome.storage.sync.get(null, function(data) {
         const hasPassword = !!data.password;
 
-        // Check if current time is in any schedule
-        chrome.storage.sync.get('schedules', ({ schedules }) => {
-            if (isCurrentTimeInAnySchedule(schedules)) {
-                // Disable all elements if current time is in any schedule
-                document.getElementById('deletePasswordButton').disabled = true;
-                document.getElementById('setPasswordButton').disabled = true;
-                document.getElementById('passwordInputField').disabled = true;
-                document.getElementById('confirmPasswordInputField').disabled = true;
+        if (isInProtectedSchedule(data)) {
+            document.getElementById('deletePasswordButton').disabled = true;
+            document.getElementById('setPasswordButton').disabled = true;
+            document.getElementById('passwordInputField').disabled = true;
+            document.getElementById('confirmPasswordInputField').disabled = true;
 
-                const deleteButton = document.getElementById('deletePasswordButton');
-                deleteButton.className = 'disabled';
-            } else {
-                // Otherwise, enable/disable based on password
-                document.getElementById('deletePasswordButton').disabled = !hasPassword;
-                document.getElementById('setPasswordButton').disabled = hasPassword;
-                document.getElementById('passwordInputField').disabled = hasPassword;
-                document.getElementById('confirmPasswordInputField').disabled = hasPassword;
+            const deleteButton = document.getElementById('deletePasswordButton');
+            deleteButton.className = 'disabled';
+            return;
+        }
 
-                // Update button class for styling
-                const deleteButton = document.getElementById('deletePasswordButton');
-                deleteButton.className = hasPassword ? 'enabled' : 'disabled';
-            }
+        document.getElementById('deletePasswordButton').disabled = !hasPassword;
+        document.getElementById('setPasswordButton').disabled = hasPassword;
+        document.getElementById('passwordInputField').disabled = hasPassword;
+        document.getElementById('confirmPasswordInputField').disabled = hasPassword;
 
-        });
+        const deleteButton = document.getElementById('deletePasswordButton');
+        deleteButton.className = hasPassword ? 'enabled' : 'disabled';
     });
 }
 

@@ -451,5 +451,75 @@
     },
     "noElementRulesLabel": {
         "message": "Hakuna vipengele vya UI vilivyozuiwa"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "Ratiba ya kila wiki"
+    },
+    "scheduleSelectedTitle": {
+        "message": "Ratiba iliyochaguliwa"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "Wakati"
+    },
+    "scheduleDaysLabel": {
+        "message": "Siku"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "Siku za kazi"
+    },
+    "scheduleWeekendPreset": {
+        "message": "Mwishoni mwa wiki"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "Kila siku"
+    },
+    "scheduleClearPreset": {
+        "message": "Futa siku"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "Hakuna ratiba bado."
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "Unda au chagua ratiba ili kuihariri."
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ hai sasa",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ vizuizi vya muda vilivyowezeshwa",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ vizuizi vya muda vilivyohifadhiwa",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ vimezimwa",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ visivyokamilika vimepuuzwa",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
     }
 }

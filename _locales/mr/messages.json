@@ -451,5 +451,75 @@
     },
     "noElementRulesLabel": {
         "message": "कोणतेही अवरोधित UI घटक नाहीत"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "साप्ताहिक वेळापत्रक"
+    },
+    "scheduleSelectedTitle": {
+        "message": "निवडलेले वेळापत्रक"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "वेळ"
+    },
+    "scheduleDaysLabel": {
+        "message": "दिवस"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "कामाचे दिवस"
+    },
+    "scheduleWeekendPreset": {
+        "message": "वीकेंड"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "दररोज"
+    },
+    "scheduleClearPreset": {
+        "message": "दिवस साफ करा"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "अद्याप कोणतेही वेळापत्रक नाही."
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "संपादित करण्यासाठी शेड्यूल तयार करा किंवा निवडा."
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ आत्ता सक्रिय",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ सक्षम वेळ ब्लॉक",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ जतन केलेले वेळ ब्लॉक",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ अक्षम",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ अपूर्ण दुर्लक्षित",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
     }
 }

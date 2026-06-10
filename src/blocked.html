@@ -76,6 +76,33 @@
             font-size: 48px;
             margin-top: 20px;
         }
+        #pomodoroBlockPanel {
+            margin-top: 18px;
+            padding-top: 14px;
+            border-top: 1px solid var(--blocked-border);
+            text-align: left;
+        }
+        #pomodoroBlockPanel[hidden] {
+            display: none;
+        }
+        #pomodoroBlockPhase {
+            margin: 0 0 6px;
+            color: var(--blocked-text);
+            font-size: 15px;
+            font-weight: 700;
+        }
+        #pomodoroBlockTimer {
+            display: inline-block;
+            margin-right: 8px;
+            color: #3d8bfd;
+            font-size: 22px;
+            font-weight: 700;
+            line-height: 1;
+        }
+        #pomodoroBlockMessage {
+            color: var(--blocked-muted);
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
@@ -83,6 +110,11 @@
         <div id="contentDiv">
             <h1 id="title"></h1>
             <p id="message"></p>
+            <div id="pomodoroBlockPanel" hidden>
+                <p id="pomodoroBlockPhase">Pomodoro</p>
+                <span id="pomodoroBlockTimer">0:00</span>
+                <span id="pomodoroBlockMessage"></span>
+            </div>
         </div>
     </div>
     <script src="js/blockedScript.js"></script>

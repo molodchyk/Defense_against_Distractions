@@ -1,44 +1,224 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Defense against Distractions</title>
+    <title data-i18n="popupDocumentTitle">Defense against Distractions</title>
     <link rel="stylesheet" href="css/popup.css">
     <meta charset="UTF-8">
 </head>
 <body>
     <main class="popup-shell">
-        <header>
-            <div class="popup-header-row">
-                <p>Defense against Distractions</p>
-                <button id="headerOptionsButton" class="header-options-button" type="button" title="Open Options">DaD</button>
+        <header class="popup-header">
+            <div class="popup-title-block">
+                <p data-i18n="popupBrandName">Defense against Distractions</p>
+                <h1 data-i18n="popupQuickActionsTitle">Quick Actions</h1>
             </div>
-            <h1>Quick Actions</h1>
+            <button id="headerOptionsButton" class="header-options-button" type="button" title="Open Options" aria-label="Open options" data-i18n-title="popupOpenOptionsTitle" data-i18n-aria-label="popupOpenOptionsTitle">DaD</button>
         </header>
 
-        <label for="matchStrategySelect">Match strategy</label>
-        <select id="matchStrategySelect">
-            <option value="samePosition">Same position in repeated UI</option>
-            <option value="sameText">Same text or label</option>
-            <option value="similar">Similar structure</option>
-            <option value="exact">Closest match</option>
-        </select>
+        <nav class="popup-tab-list" aria-label="Popup sections" data-i18n-aria-label="popupSectionsAriaLabel">
+            <button class="popup-tab-button" type="button" data-popup-tab="actions" aria-pressed="true" data-i18n="popupActionsTab">Actions</button>
+            <button class="popup-tab-button" type="button" data-popup-tab="diagnostics" aria-pressed="false" data-i18n="popupDiagnosticsTab">Diagnostics</button>
+        </nav>
 
-        <label for="minimumScoreInput">Minimum score</label>
-        <input id="minimumScoreInput" type="number" min="6" max="24" value="12">
+        <section class="popup-card primary-panel protection-panel" aria-labelledby="protectionStatusTitle">
+            <div class="section-header">
+                <h2 id="protectionStatusTitle" data-i18n="popupProtectionStatusTitle">Protection status</h2>
+                <span id="protectionStatusBadge" class="status-badge" data-state="idle" data-i18n="popupLoadingLabel">Loading</span>
+            </div>
+            <dl class="protection-status-grid" aria-label="Current protection status" data-i18n-aria-label="popupProtectionStatusAriaLabel">
+                <div>
+                    <dt data-i18n="popupPlansLabel">Plans</dt>
+                    <dd id="activePlansText" data-i18n="popupLoadingLabel">Loading</dd>
+                </div>
+                <div>
+                    <dt data-i18n="popupCurrentPageLabel">Current page</dt>
+                    <dd id="currentProtectionText" data-i18n="popupCheckingLabel">Checking</dd>
+                </div>
+                <div>
+                    <dt data-i18n="popupTimerLabel">Timer</dt>
+                    <dd id="pomodoroProtectionText" data-i18n="popupCheckingLabel">Checking</dd>
+                </div>
+                <div>
+                    <dt data-i18n="popupIntentLabel">Intent</dt>
+                    <dd id="intentProtectionText" data-i18n="popupCheckingLabel">Checking</dd>
+                </div>
+            </dl>
+        </section>
 
-        <label for="ancestorDepthInput">Ancestor depth</label>
-        <input id="ancestorDepthInput" type="number" min="0" max="6" value="2">
+        <section class="popup-section control-section" aria-label="Controls" data-i18n-aria-label="popupControlsAriaLabel" data-popup-pane="actions">
+            <section class="popup-card action-panel picker-panel" aria-labelledby="pickerTitle">
+                <div class="section-header">
+                    <h2 id="pickerTitle" data-i18n="popupUiPickerTitle">UI Picker</h2>
+                    <span data-i18n="popupCurrentTabLabel">Current tab</span>
+                </div>
 
-        <label for="labelMatchSelect">Label match</label>
-        <select id="labelMatchSelect">
-            <option value="prefer">Prefer label</option>
-            <option value="ignore">Ignore label</option>
-            <option value="require">Require label</option>
-        </select>
+                <div class="picker-settings">
+                    <label class="field full-width-field" for="matchStrategySelect">
+                        <span data-i18n="popupMatchStrategyLabel">Match strategy</span>
+                        <select id="matchStrategySelect">
+                            <option value="samePosition" data-i18n="popupSamePositionOption">Same position in repeated UI</option>
+                            <option value="sameText" data-i18n="popupSameTextOption">Same text or label</option>
+                            <option value="similar" data-i18n="popupSimilarStructureOption">Similar structure</option>
+                            <option value="exact" data-i18n="popupClosestMatchOption">Closest match</option>
+                        </select>
+                    </label>
 
-        <button id="pickElementButton">Pick UI Element</button>
-        <button id="openOptionsButton" class="secondary-button">Open Options</button>
-        <p id="statusText" role="status"></p>
+                    <label class="field" for="minimumScoreInput">
+                        <span data-i18n="popupMinimumScoreLabel">Minimum score</span>
+                        <input id="minimumScoreInput" type="number" min="6" max="24" value="12">
+                    </label>
+
+                    <label class="field" for="ancestorDepthInput">
+                        <span data-i18n="popupAncestorDepthLabel">Ancestor depth</span>
+                        <input id="ancestorDepthInput" type="number" min="0" max="6" value="2">
+                    </label>
+
+                    <label class="field full-width-field" for="labelMatchSelect">
+                        <span data-i18n="popupLabelMatchLabel">Label match</span>
+                        <select id="labelMatchSelect">
+                            <option value="prefer" data-i18n="popupPreferLabelOption">Prefer label</option>
+                            <option value="ignore" data-i18n="popupIgnoreLabelOption">Ignore label</option>
+                            <option value="require" data-i18n="popupRequireLabelOption">Require label</option>
+                        </select>
+                    </label>
+                </div>
+
+                <button id="pickElementButton" class="primary-action-button" type="button" data-i18n="popupPickUiElementButton">Pick UI Element</button>
+            </section>
+
+            <section class="popup-card action-panel pomodoro-panel" aria-labelledby="pomodoroTitle">
+                <div class="pomodoro-panel-header">
+                    <h2 id="pomodoroTitle" data-i18n="popupPomodoroTitle">Pomodoro</h2>
+                    <span id="pomodoroPhaseText" class="pomodoro-phase-badge" data-i18n="popupIdleLabel">Idle</span>
+                </div>
+                <div class="pomodoro-timer-row">
+                    <strong id="pomodoroRemainingText">0:00</strong>
+                    <span id="pomodoroPlanText" data-i18n="popupNoActivePomodoroPlan">No active Pomodoro plan</span>
+                </div>
+                <p id="pomodoroSessionText" class="pomodoro-session-text" data-i18n="popupZeroWorkSessionsCompleted">0 work sessions completed</p>
+                <p id="pomodoroActivityText" class="pomodoro-session-text" data-i18n="popupActivityUnknownLabel">Activity unknown</p>
+                <dl id="pomodoroTimelineList" class="pomodoro-timeline-list" aria-label="Pomodoro timing details" data-i18n-aria-label="popupPomodoroTimingAriaLabel"></dl>
+                <div class="pomodoro-actions">
+                    <button id="startPomodoroButton" type="button" data-i18n="popupStartButton">Start</button>
+                    <button id="pausePomodoroButton" class="secondary-button" type="button" data-i18n="popupPauseButton">Pause</button>
+                    <button id="resumePomodoroButton" class="secondary-button" type="button" data-i18n="popupResumeButton">Resume</button>
+                    <button id="resetPomodoroButton" class="secondary-button danger-button" type="button" data-i18n="popupResetButton">Reset</button>
+                    <button id="openPomodoroPanelButton" class="secondary-button full-width-pomodoro-action" type="button" data-i18n="popupOpenTimerPanelButton">Open timer panel</button>
+                </div>
+            </section>
+        </section>
+
+        <section class="popup-section diagnostics-section" aria-label="Diagnostics" data-i18n-aria-label="popupDiagnosticsAriaLabel" data-popup-pane="diagnostics" hidden>
+            <details class="popup-card diagnostic-panel page-signals-panel">
+                <summary class="page-signals-panel-header">
+                    <h2 id="pageSignalsTitle" data-i18n="popupPageSignalsTitle">Page Signals</h2>
+                    <span id="pageSignalsStatus" class="page-signals-badge" data-i18n="popupLoadingLabel">Loading</span>
+                </summary>
+                <dl class="page-signal-grid" aria-label="Current page signal counts" data-i18n-aria-label="popupPageSignalsAriaLabel">
+                    <div>
+                        <dt data-i18n="popupImagesLabel">Images</dt>
+                        <dd id="pageSignalImageCount">--</dd>
+                    </div>
+                    <div>
+                        <dt data-i18n="popupVideoLabel">Video</dt>
+                        <dd id="pageSignalVideoCount">--</dd>
+                    </div>
+                    <div>
+                        <dt data-i18n="popupAudioLabel">Audio</dt>
+                        <dd id="pageSignalAudioCount">--</dd>
+                    </div>
+                    <div>
+                        <dt data-i18n="popupGifsLabel">GIFs</dt>
+                        <dd id="pageSignalGifCount">--</dd>
+                    </div>
+                    <div>
+                        <dt data-i18n="popupEmojiLabel">Emoji</dt>
+                        <dd id="pageSignalEmojiCount">--</dd>
+                    </div>
+                    <div>
+                        <dt data-i18n="popupLinksLabel">Links</dt>
+                        <dd id="pageSignalLinkCount">--</dd>
+                    </div>
+                </dl>
+            </details>
+
+            <details class="popup-card diagnostic-panel block-diagnostics-panel">
+                <summary class="block-diagnostics-panel-header">
+                    <h2 id="blockDiagnosticsTitle" data-i18n="popupBlockDiagnosticsTitle">Block Diagnostics</h2>
+                    <span id="blockDiagnosticsStatus" class="block-diagnostics-badge" data-i18n="popupLoadingLabel">Loading</span>
+                </summary>
+                <dl class="block-diagnostics-grid" aria-label="Current page block diagnostics" data-i18n-aria-label="popupBlockDiagnosticsAriaLabel">
+                    <div>
+                        <dt data-i18n="popupPageLabel">Page</dt>
+                        <dd id="blockPageStateText">--</dd>
+                    </div>
+                    <div>
+                        <dt data-i18n="popupOverlayLabel">Overlay</dt>
+                        <dd id="blockOverlayStateText">--</dd>
+                    </div>
+                    <div>
+                        <dt data-i18n="popupMediaLabel">Media</dt>
+                        <dd id="blockMediaStateText">--</dd>
+                    </div>
+                    <div>
+                        <dt data-i18n="popupTabMuteLabel">Tab mute</dt>
+                        <dd id="blockTabMuteStateText">--</dd>
+                    </div>
+                    <div class="full-width-diagnostic">
+                        <dt data-i18n="popupTriggerLabel">Trigger</dt>
+                        <dd id="blockTriggerText">--</dd>
+                    </div>
+                    <div class="full-width-diagnostic">
+                        <dt data-i18n="popupScoreLabel">Score</dt>
+                        <dd id="blockScoreText">--</dd>
+                    </div>
+                </dl>
+                <div class="diagnostic-actions">
+                    <button id="refreshBlockDiagnosticsButton" class="secondary-button" type="button" data-i18n="popupRefreshButton">Refresh</button>
+                    <button id="copyDiagnosticsButton" class="secondary-button" type="button" data-i18n="popupCopyDiagnosticsButton">Copy Diagnostics</button>
+                </div>
+            </details>
+
+            <details class="popup-card diagnostic-panel intent-panel">
+                <summary class="intent-panel-header">
+                    <h2 id="intentDiagnosticsTitle" data-i18n="popupIntentDiagnosticsTitle">Intent Diagnostics</h2>
+                    <span id="intentRiskBadge" class="intent-risk-badge" data-i18n="popupNoDataLabel">No data</span>
+                </summary>
+                <div class="intent-score-row">
+                    <span data-i18n="popupCoherenceLabel">Coherence</span>
+                    <strong id="intentCoherenceScore">--</strong>
+                </div>
+                <dl class="intent-details">
+                    <div>
+                        <dt data-i18n="popupOriginLabel">Origin</dt>
+                        <dd id="intentOriginText">--</dd>
+                    </div>
+                    <div>
+                        <dt data-i18n="popupCurrentLabel">Current</dt>
+                        <dd id="intentCurrentText">--</dd>
+                    </div>
+                    <div>
+                        <dt data-i18n="popupFirstDriftLabel">First drift</dt>
+                        <dd id="intentDriftText">--</dd>
+                    </div>
+                    <div>
+                        <dt data-i18n="popupLineageLabel">Lineage</dt>
+                        <dd id="intentLineageText">--</dd>
+                    </div>
+                </dl>
+                <ul id="intentReasonList" class="intent-reason-list" aria-label="Intent score reasons" data-i18n-aria-label="popupIntentReasonsAriaLabel"></ul>
+                <ol id="intentVisitList" class="intent-visit-list" aria-label="Recent intent trajectory" data-i18n-aria-label="popupIntentTrajectoryAriaLabel"></ol>
+                <div class="intent-actions">
+                    <button id="refreshIntentButton" class="secondary-button" type="button" data-i18n="popupRefreshButton">Refresh</button>
+                    <button id="clearIntentButton" class="secondary-button danger-button" type="button" data-i18n="popupClearButton">Clear</button>
+                </div>
+            </details>
+        </section>
+
+        <footer class="popup-footer">
+            <p id="statusText" role="status"></p>
+            <button id="openOptionsButton" class="secondary-button" type="button" data-i18n="popupOptionsButton">Options</button>
+        </footer>
     </main>
 
     <script src="js/popup.js" type="module"></script>

@@ -209,26 +209,26 @@
     "cannotDeselectDaysError": {
         "message": "Нельзя отменить выбор дней для активного расписания, которое в данный момент действует."
     },
-    "passwordManagementHeader": { 
-        "message": "Управление Паролями" 
+    "passwordManagementHeader": {
+        "message": "Управление Паролями"
     },
-    "enterPasswordPlaceholder": { 
-        "message": "Введите пароль" 
+    "enterPasswordPlaceholder": {
+        "message": "Введите пароль"
     },
-    "confirmPasswordPlaceholder": { 
-        "message": "Подтвердите пароль" 
+    "confirmPasswordPlaceholder": {
+        "message": "Подтвердите пароль"
     },
-    "setPasswordButton": { 
-        "message": "Установить Пароль" 
+    "setPasswordButton": {
+        "message": "Установить Пароль"
     },
-    "deletePasswordButton": { 
-        "message": "Удалить Пароль" 
+    "deletePasswordButton": {
+        "message": "Удалить Пароль"
     },
-    "enterPasswordToAccessLabel": { 
-        "message": "Введите пароль для доступа:" 
+    "enterPasswordToAccessLabel": {
+        "message": "Введите пароль для доступа:"
     },
-    "submitButton": { 
-        "message": "Отправить" 
+    "submitButton": {
+        "message": "Отправить"
     },
     "tooManyAttempts": {
         "message": "Слишком много неудачных попыток. Пожалуйста, подождите $TIME$ секунд перед повторной попыткой.",
@@ -433,5 +433,93 @@
     },
     "importButton": {
         "message": "Импорт"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "Еженедельный график"
+    },
+    "scheduleSelectedTitle": {
+        "message": "Выбранное расписание"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "Время"
+    },
+    "scheduleDaysLabel": {
+        "message": "Дни"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "Рабочие дни"
+    },
+    "scheduleWeekendPreset": {
+        "message": "Выходные"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "Каждый день"
+    },
+    "scheduleClearPreset": {
+        "message": "Очистить дни"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "Расписаний пока нет."
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "Создайте или выберите расписание, чтобы отредактировать его."
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ активно сейчас",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ включенных временных блоков",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ сохраненных временных блоков",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ отключено",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ неполных проигнорировано",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "themeModeLabel": {
+        "message": "Режим интерфейса"
+    },
+    "themeModeSystemOption": {
+        "message": "Системный"
+    },
+    "themeModeDarkOption": {
+        "message": "Тёмный"
+    },
+    "themeModeLightOption": {
+        "message": "Светлый"
+    },
+    "elementRulesLabel": {
+        "message": "Заблокированный интерфейс"
+    },
+    "noElementRulesLabel": {
+        "message": "Нет заблокированных элементов интерфейса"
     }
 }

@@ -14,12 +14,11 @@ Defense Against Distractions आपको अधिक सटीक नियं
 अलग-अलग फोकस नियमों को वेबसाइट और कीवर्ड समूहों में व्यवस्थित करें।
 लॉक्ड शेड्यूल, whitelist, पासवर्ड सुरक्षा, export/import, UI modes और UI element hiding का उपयोग करके सेटअप को व्यावहारिक रखें।
 
-वर्जन 1.5 में नया:
-
-Light, dark और system UI modes।
-ध्यान भटकाने वाले page controls छिपाने के लिए popup-based UI element picker।
-मीडिया रोकने या mute करने और selectable diagnostics के साथ बेहतर blocked-page overlay।
-अपडेटेड store assets, packaging, release checks और project structure।
+वर्जन 1.6 में नया:
+Pomodoro अब idle और locked समय को आवश्यक विश्राम में गिनता है।
+पॉपअप और प्लान Pomodoro पेज अब रनटाइम diagnostics को अधिक स्पष्ट दिखाते हैं।
+Strict-break blocking अब block समाप्त होने के बाद media और tab mute state को restore करता है।
+Blocked-page diagnostics अब media suspension और extension-owned tab mute state दिखाते हैं।
 
 Defense Against Distractions open source है:
 https://github.com/molodchyk/Defense_against_Distractions

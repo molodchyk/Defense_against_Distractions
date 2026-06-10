@@ -451,5 +451,75 @@
     },
     "noElementRulesLabel": {
         "message": "Ez dago blokeatutako UI elementurik"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "Asteko ordutegia"
+    },
+    "scheduleSelectedTitle": {
+        "message": "Aukeratutako ordutegia"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "Denbora"
+    },
+    "scheduleDaysLabel": {
+        "message": "Egunak"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "Lanegunak"
+    },
+    "scheduleWeekendPreset": {
+        "message": "Asteburua"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "Egunero"
+    },
+    "scheduleClearPreset": {
+        "message": "Garbitu egunak"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "Oraindik ez dago ordutegirik."
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "Sortu edo hautatu programazio bat editatzeko."
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ aktibo orain",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ gaitutako denbora-bloke",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ gordetako denbora-bloke",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ desgaituta",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ osatu gabe baztertuta",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
     }
 }

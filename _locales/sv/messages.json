@@ -209,26 +209,26 @@
     "cannotDeselectDaysError": {
         "message": "Kan inte avmarkera dagar för ett aktivt schema som för närvarande är i effekt."
     },
-    "passwordManagementHeader": { 
-        "message": "Lösenordshantering" 
+    "passwordManagementHeader": {
+        "message": "Lösenordshantering"
     },
-    "enterPasswordPlaceholder": { 
-        "message": "Ange lösenord" 
+    "enterPasswordPlaceholder": {
+        "message": "Ange lösenord"
     },
-    "confirmPasswordPlaceholder": { 
-        "message": "Bekräfta lösenord" 
+    "confirmPasswordPlaceholder": {
+        "message": "Bekräfta lösenord"
     },
-    "setPasswordButton": { 
-        "message": "Ange Lösenord" 
+    "setPasswordButton": {
+        "message": "Ange Lösenord"
     },
-    "deletePasswordButton": { 
-        "message": "Radera Lösenord" 
+    "deletePasswordButton": {
+        "message": "Radera Lösenord"
     },
-    "enterPasswordToAccessLabel": { 
-        "message": "Ange lösenord för att få tillgång:" 
+    "enterPasswordToAccessLabel": {
+        "message": "Ange lösenord för att få tillgång:"
     },
-    "submitButton": { 
-        "message": "Skicka in" 
+    "submitButton": {
+        "message": "Skicka in"
     },
     "tooManyAttempts": {
         "message": "För många misslyckade försök. Vänligen vänta $TIME$ sekunder innan du försöker igen.",
@@ -433,5 +433,93 @@
     },
     "importButton": {
         "message": "Importera"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "Veckoschema"
+    },
+    "scheduleSelectedTitle": {
+        "message": "Valt schema"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "Tid"
+    },
+    "scheduleDaysLabel": {
+        "message": "dagar"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "Arbetsdagar"
+    },
+    "scheduleWeekendPreset": {
+        "message": "Helgen"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "Varje dag"
+    },
+    "scheduleClearPreset": {
+        "message": "Rensa dagar"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "Inga scheman ännu."
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "Skapa eller välj ett schema för att redigera det."
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ aktiva nu",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ aktiverade tidsblock",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ sparade tidsblock",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ inaktiverade",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ ofullständiga ignorerade",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "themeModeLabel": {
+        "message": "UI-läge"
+    },
+    "themeModeSystemOption": {
+        "message": "System"
+    },
+    "themeModeDarkOption": {
+        "message": "Mörkt"
+    },
+    "themeModeLightOption": {
+        "message": "Ljust"
+    },
+    "elementRulesLabel": {
+        "message": "Blockerat gränssnitt"
+    },
+    "noElementRulesLabel": {
+        "message": "Inga blockerade UI-element"
     }
 }

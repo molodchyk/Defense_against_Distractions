@@ -209,26 +209,26 @@
     "cannotDeselectDaysError": {
         "message": "Nelze odznačit dny pro aktivní rozvrh, který je právě v platnosti."
     },
-    "passwordManagementHeader": { 
-    "message": "Správa hesel" 
+    "passwordManagementHeader": {
+        "message": "Správa hesel"
     },
-    "enterPasswordPlaceholder": { 
-        "message": "Zadejte heslo" 
+    "enterPasswordPlaceholder": {
+        "message": "Zadejte heslo"
     },
-    "confirmPasswordPlaceholder": { 
-        "message": "Potvrďte heslo" 
+    "confirmPasswordPlaceholder": {
+        "message": "Potvrďte heslo"
     },
-    "setPasswordButton": { 
-        "message": "Nastavit heslo" 
+    "setPasswordButton": {
+        "message": "Nastavit heslo"
     },
-    "deletePasswordButton": { 
-        "message": "Smazat heslo" 
+    "deletePasswordButton": {
+        "message": "Smazat heslo"
     },
-    "enterPasswordToAccessLabel": { 
-        "message": "Zadejte heslo pro přístup:" 
+    "enterPasswordToAccessLabel": {
+        "message": "Zadejte heslo pro přístup:"
     },
-    "submitButton": { 
-        "message": "Odeslat" 
+    "submitButton": {
+        "message": "Odeslat"
     },
     "tooManyAttempts": {
         "message": "Příliš mnoho neúspěšných pokusů. Počkejte prosím $TIME$ sekund před dalším pokusem.",
@@ -433,5 +433,93 @@
     },
     "importButton": {
         "message": "Import"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "Týdenní rozvrh"
+    },
+    "scheduleSelectedTitle": {
+        "message": "Vybraný rozvrh"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "Čas"
+    },
+    "scheduleDaysLabel": {
+        "message": "Dny"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "pracovní dny"
+    },
+    "scheduleWeekendPreset": {
+        "message": "Víkend"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "Každý den"
+    },
+    "scheduleClearPreset": {
+        "message": "Vymazat dny"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "Zatím žádné jízdní řády."
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "Vytvořte nebo vyberte plán, který chcete upravit."
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ právě aktivní",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ povolených časových bloků",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ uložených časových bloků",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ zakázáno",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ neúplné ignorováno",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "themeModeLabel": {
+        "message": "Režim rozhraní"
+    },
+    "themeModeSystemOption": {
+        "message": "Systém"
+    },
+    "themeModeDarkOption": {
+        "message": "Tmavý"
+    },
+    "themeModeLightOption": {
+        "message": "Světlý"
+    },
+    "elementRulesLabel": {
+        "message": "Blokované UI"
+    },
+    "noElementRulesLabel": {
+        "message": "Žádné blokované prvky UI"
     }
 }

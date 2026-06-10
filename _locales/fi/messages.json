@@ -209,26 +209,26 @@
     "cannotDeselectDaysError": {
         "message": "Aktiivisen ja voimassaolevan aikataulun päiviä ei voi poistaa valinnasta."
     },
-    "passwordManagementHeader": { 
-        "message": "Salasanojen Hallinta" 
+    "passwordManagementHeader": {
+        "message": "Salasanojen Hallinta"
     },
-    "enterPasswordPlaceholder": { 
-        "message": "Anna salasana" 
+    "enterPasswordPlaceholder": {
+        "message": "Anna salasana"
     },
-    "confirmPasswordPlaceholder": { 
-        "message": "Vahvista salasana" 
+    "confirmPasswordPlaceholder": {
+        "message": "Vahvista salasana"
     },
-    "setPasswordButton": { 
-        "message": "Aseta Salasana" 
+    "setPasswordButton": {
+        "message": "Aseta Salasana"
     },
-    "deletePasswordButton": { 
-        "message": "Poista Salasana" 
+    "deletePasswordButton": {
+        "message": "Poista Salasana"
     },
-    "enterPasswordToAccessLabel": { 
-        "message": "Anna Salasana Päästäksesi Käsiksi:" 
+    "enterPasswordToAccessLabel": {
+        "message": "Anna Salasana Päästäksesi Käsiksi:"
     },
-    "submitButton": { 
-        "message": "Lähetä" 
+    "submitButton": {
+        "message": "Lähetä"
     },
     "tooManyAttempts": {
         "message": "Liian monta epäonnistunutta yritystä. Odota $TIME$ sekuntia ennen uudelleen yrittämistä.",
@@ -433,5 +433,93 @@
     },
     "importButton": {
         "message": "Tuo"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "Viikon aikataulu"
+    },
+    "scheduleSelectedTitle": {
+        "message": "Valittu aikataulu"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "Aika"
+    },
+    "scheduleDaysLabel": {
+        "message": "päivää"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "Työpäivät"
+    },
+    "scheduleWeekendPreset": {
+        "message": "Viikonloppu"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "Joka päivä"
+    },
+    "scheduleClearPreset": {
+        "message": "Tyhjennä päivät"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "Ei vielä aikatauluja."
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "Luo tai valitse aikataulu muokataksesi sitä."
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ aktiivisena nyt",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ käytössä olevaa aikajaksoa",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ tallennettua aikajaksoa",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ pois käytöstä",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ keskeneräistä ohitettu",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "themeModeLabel": {
+        "message": "Käyttöliittymätila"
+    },
+    "themeModeSystemOption": {
+        "message": "Järjestelmä"
+    },
+    "themeModeDarkOption": {
+        "message": "Tumma"
+    },
+    "themeModeLightOption": {
+        "message": "Vaalea"
+    },
+    "elementRulesLabel": {
+        "message": "Estetty käyttöliittymä"
+    },
+    "noElementRulesLabel": {
+        "message": "Ei estettyjä käyttöliittymäelementtejä"
     }
 }

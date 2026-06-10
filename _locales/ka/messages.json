@@ -451,5 +451,75 @@
     },
     "noElementRulesLabel": {
         "message": "არ არის დაბლოკილი UI ელემენტები"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "ყოველკვირეული განრიგი"
+    },
+    "scheduleSelectedTitle": {
+        "message": "არჩეული განრიგი"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "დრო"
+    },
+    "scheduleDaysLabel": {
+        "message": "დღეები"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "სამუშაო დღეები"
+    },
+    "scheduleWeekendPreset": {
+        "message": "შაბათ-კვირა"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "ყოველ დღე"
+    },
+    "scheduleClearPreset": {
+        "message": "დღეების გასუფთავება"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "ჯერ არ არის განრიგი."
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "შექმენით ან აირჩიეთ განრიგი მის რედაქტირებისთვის."
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ ახლა აქტიურია",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ ჩართული დროის ბლოკი",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ შენახული დროის ბლოკი",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ გამორთულია",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ არასრული იგნორირებულია",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
     }
 }

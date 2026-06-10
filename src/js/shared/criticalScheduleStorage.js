@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
+import { sanitizePlansForStorage } from './plans.js';
+
 const LEGACY_ELEMENT_RULES_STORAGE_KEY = 'elementBlockRules';
 const ELEMENT_RULE_IDS_STORAGE_KEY = 'elementBlockRuleIds';
 const ELEMENT_RULE_ITEM_PREFIX = 'elementBlockRule.';
@@ -67,6 +69,21 @@ function setSchedules(schedules) {
   });
 }
 
+function setPlans(plans) {
+  const sanitizedPlans = sanitizePlansForStorage(plans);
+
+  return new Promise((resolve, reject) => {
+    chrome.storage.sync.set({ plans: sanitizedPlans }, () => {
+      if (chrome.runtime.lastError) {
+        reject(chrome.runtime.lastError);
+        return;
+      }
+
+      resolve();
+    });
+  });
+}
+
 export async function saveSchedulesWithPriority(schedules) {
   try {
     await setSchedules(schedules);
@@ -78,5 +95,19 @@ export async function saveSchedulesWithPriority(schedules) {
     console.warn('Schedule save hit sync quota. Removing non-critical UI element rules and retrying.', error);
     await removeElementRules();
     await setSchedules(schedules);
+  }
+}
+
+export async function savePlansWithPriority(plans) {
+  try {
+    await setPlans(plans);
+  } catch (error) {
+    if (!isQuotaError(error)) {
+      throw error;
+    }
+
+    console.warn('Plan save hit sync quota. Removing non-critical UI element rules and retrying.', error);
+    await removeElementRules();
+    await setPlans(plans);
   }
 }

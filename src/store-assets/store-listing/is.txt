@@ -14,12 +14,11 @@ Lokaðu síðum eftir leitarorðum, orðasamböndum og vegnum stigum.
 Skipuleggðu mismunandi áherslureglur í vefsíðu- og leitarorðahópa.
 Notaðu læstar áætlanir, hvítlista, lykilorðsvörn, útflutning/innflutning, notendastillingar og felu notendahluti til að halda uppsetningunni hagnýtri.
 
-Hvað er nýtt í útgáfu 1.5:
-
-Ljós, dökk og kerfisviðmótsstillingar.
-Sprettiglugga-undirstaða UI þáttaval til að fela truflandi síðustýringar.
-Bætt yfirlag á lokuðum síðum með því að stöðva eða þagga miðla og velja greiningu.
-Uppfærðar verslunareignir, umbúðir, losunarathuganir og uppbygging verks.
+Hvað er nýtt í útgáfu 1.6:
+Pomodoro telur nú aðgerðalausan og læstan tíma með nauðsynlegri hvíld.
+Sprettiglugginn og Pomodoro-síða áætlunarinnar sýna nú skýrari keyrslugreiningu.
+Ströng hléblokkun endurheimtir nú miðla og hljóðstillingu flipa þegar blokkun lýkur.
+Greining á blokkaðri síðu sýnir nú miðlastöðvun og flipahljóðstillingu sem viðbótin stjórnar.
 
 Defence Against Distractions er opinn uppspretta:
 https://github.com/molodchyk/Defense_against_Distractions

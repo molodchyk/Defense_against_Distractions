@@ -209,26 +209,26 @@
     "cannotDeselectDaysError": {
         "message": "Kan ikke fravælge dage for en aktiv tidsplan, der i øjeblikket er i kraft."
     },
-    "passwordManagementHeader": { 
-    "message": "Adgangskodeadministration" 
+    "passwordManagementHeader": {
+        "message": "Adgangskodeadministration"
     },
-    "enterPasswordPlaceholder": { 
-        "message": "Indtast adgangskode" 
+    "enterPasswordPlaceholder": {
+        "message": "Indtast adgangskode"
     },
-    "confirmPasswordPlaceholder": { 
-        "message": "Bekræft adgangskode" 
+    "confirmPasswordPlaceholder": {
+        "message": "Bekræft adgangskode"
     },
-    "setPasswordButton": { 
-        "message": "Indstil adgangskode" 
+    "setPasswordButton": {
+        "message": "Indstil adgangskode"
     },
-    "deletePasswordButton": { 
-        "message": "Slet adgangskode" 
+    "deletePasswordButton": {
+        "message": "Slet adgangskode"
     },
-    "enterPasswordToAccessLabel": { 
-        "message": "Indtast adgangskode for at få adgang:" 
+    "enterPasswordToAccessLabel": {
+        "message": "Indtast adgangskode for at få adgang:"
     },
-    "submitButton": { 
-        "message": "Indsend" 
+    "submitButton": {
+        "message": "Indsend"
     },
     "tooManyAttempts": {
         "message": "For mange fejlede forsøg. Vent venligst $TIME$ sekunder før du prøver igen.",
@@ -250,7 +250,7 @@
     },
     "passwordMismatchAlert": {
         "message": "Adgangskoderne stemmer ikke overens. Vær venlig at sikre dig, at begge adgangskoder er ens."
-    },   
+    },
     "pageTitle": {
         "message": "Instruktionsguide - Forsvar mod Forstyrrelser"
     },
@@ -433,5 +433,93 @@
     },
     "importButton": {
         "message": "Importér"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "Ugeplan"
+    },
+    "scheduleSelectedTitle": {
+        "message": "Valgt tidsplan"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "Tid"
+    },
+    "scheduleDaysLabel": {
+        "message": "dage"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "Arbejdsdage"
+    },
+    "scheduleWeekendPreset": {
+        "message": "Weekend"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "Hver dag"
+    },
+    "scheduleClearPreset": {
+        "message": "Ryd dage"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "Ingen tidsplaner endnu."
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "Opret eller vælg en tidsplan for at redigere den."
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ aktiv nu",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ aktiverede tidsblokke",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ gemte tidsblokke",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ deaktiveret",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ ufuldstændig ignoreret",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "themeModeLabel": {
+        "message": "UI-tilstand"
+    },
+    "themeModeSystemOption": {
+        "message": "System"
+    },
+    "themeModeDarkOption": {
+        "message": "Mørk"
+    },
+    "themeModeLightOption": {
+        "message": "Lys"
+    },
+    "elementRulesLabel": {
+        "message": "Blokeret brugerflade"
+    },
+    "noElementRulesLabel": {
+        "message": "Ingen blokerede UI-elementer"
     }
 }

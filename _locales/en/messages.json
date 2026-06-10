@@ -101,6 +101,105 @@
     "schedulesHeading": {
         "message": "Locked Schedules"
     },
+    "scheduleWeeklyBoardTitle": {
+        "message": "Weekly schedule"
+    },
+    "scheduleSelectedTitle": {
+        "message": "Selected schedule"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "Time"
+    },
+    "scheduleDaysLabel": {
+        "message": "Days"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "Workdays"
+    },
+    "scheduleWeekendPreset": {
+        "message": "Weekend"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "Every day"
+    },
+    "scheduleClearPreset": {
+        "message": "Clear days"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "No schedules yet."
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "Click and drag in the weekly grid to create a time block, or select an existing block to edit it."
+    },
+    "scheduleCreateTitle": {
+        "message": "New time block"
+    },
+    "scheduleCreateInstructionMessage": {
+        "message": "Click and drag on the weekly grid to draft the new time block. It is saved only after you press Save."
+    },
+    "scheduleNowLabel": {
+        "message": "Now"
+    },
+    "scheduleWeekIntervalLabel": {
+        "message": "Repeat every N weeks"
+    },
+    "scheduleAnchorWeekLabel": {
+        "message": "Starting week"
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ active now",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ enabled time blocks",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ saved time blocks",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleTimeBlocksSummaryPart": {
+        "message": "$COUNT$ time blocks",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ disabled",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ incomplete ignored",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledLabel": {
+        "message": "Enabled"
+    },
+    "scheduleDisabledLabel": {
+        "message": "Disabled"
+    },
     "unnamedGroupsMaxReached": {
         "message": "Maximum number of unnamed groups reached."
     },
@@ -133,6 +232,18 @@
     },
     "contentBlockedMessage": {
         "message": "This page contains restricted content and has been blocked for your protection."
+    },
+    "blockedTriggeredByLabel": {
+        "message": "Triggered by:"
+    },
+    "blockedScoreLabel": {
+        "message": "Score:"
+    },
+    "blockedContextLabel": {
+        "message": "Context:"
+    },
+    "blockedPomodoroBreakMessage": {
+        "message": "$1: $2 active. Return when this reaches zero."
     },
     "keywordDetected": {
         "message": "Keyword Detected"
@@ -209,26 +320,26 @@
     "cannotDeselectDaysError": {
         "message": "Cannot de-select days for an active schedule that's currently in effect."
     },
-    "passwordManagementHeader": { 
-        "message": "Password Management" 
+    "passwordManagementHeader": {
+        "message": "Password Management"
     },
-    "enterPasswordPlaceholder": { 
-        "message": "Enter password" 
+    "enterPasswordPlaceholder": {
+        "message": "Enter password"
     },
-    "confirmPasswordPlaceholder": { 
-        "message": "Confirm password" 
+    "confirmPasswordPlaceholder": {
+        "message": "Confirm password"
     },
-    "setPasswordButton": { 
-        "message": "Set Password" 
+    "setPasswordButton": {
+        "message": "Set Password"
     },
-    "deletePasswordButton": { 
-        "message": "Delete Password" 
+    "deletePasswordButton": {
+        "message": "Delete Password"
     },
-    "enterPasswordToAccessLabel": { 
-        "message": "Enter Password to Access:" 
+    "enterPasswordToAccessLabel": {
+        "message": "Enter Password to Access:"
     },
-    "submitButton": { 
-        "message": "Submit" 
+    "submitButton": {
+        "message": "Submit"
     },
     "tooManyAttempts": {
         "message": "Too many failed attempts. Please wait $TIME$ seconds before retrying.",
@@ -422,6 +533,45 @@
     "instructionGuideLink": {
         "message": "Instruction Guide"
     },
+    "settingsHeading": {
+        "message": "Settings"
+    },
+    "intentDiagnosticsNavLabel": {
+        "message": "Intent"
+    },
+    "intentDiagnosticsHeading": {
+        "message": "Intent diagnostics"
+    },
+    "intentDiagnosticsIntroText": {
+        "message": "Local trajectory state used by intent coherence. No raw typed input is stored."
+    },
+    "usageStatsNavLabel": {
+        "message": "Usage"
+    },
+    "usageStatsHeading": {
+        "message": "Usage stats"
+    },
+    "usageStatsIntroText": {
+        "message": "Local hostname-level aggregates. No raw text, full URLs, titles, or tokens are stored."
+    },
+    "refreshButtonLabel": {
+        "message": "Refresh"
+    },
+    "exportJsonButtonLabel": {
+        "message": "Export JSON"
+    },
+    "clearButtonLabel": {
+        "message": "Clear"
+    },
+    "settingsIntroText": {
+        "message": "Global extension controls that apply outside individual plans."
+    },
+    "appearanceSettingsHeading": {
+        "message": "Appearance"
+    },
+    "configurationSettingsHeading": {
+        "message": "Configuration"
+    },
     "description": {
         "message": "Allows you to block websites based on the text that appears on their pages."
     },
@@ -446,10 +596,688 @@
     "themeModeLightOption": {
         "message": "Light"
     },
+    "uiLanguageLabel": {
+        "message": "UI Language"
+    },
+    "uiLanguageSystemOption": {
+        "message": "System"
+    },
+    "uiLanguageHint": {
+        "message": "System follows Chrome. A selected language applies to DaD screens where translations exist."
+    },
     "elementRulesLabel": {
         "message": "Blocked UI"
     },
     "noElementRulesLabel": {
         "message": "No blocked UI elements"
+    },
+    "plansHeading": {
+        "message": "Plans"
+    },
+    "planNamePlaceholder": {
+        "message": "Plan name"
+    },
+    "addPlanButton": {
+        "message": "Add Plan"
+    },
+    "defaultPlanName": {
+        "message": "Default plan"
+    },
+    "planEnabledLabel": {
+        "message": "Enabled"
+    },
+    "planDisabledLabel": {
+        "message": "Disabled"
+    },
+    "planActiveLabel": {
+        "message": "active now"
+    },
+    "planInactiveLabel": {
+        "message": "not active now"
+    },
+    "planStatusFactLabel": {
+        "message": "Status"
+    },
+    "planScheduleFactLabel": {
+        "message": "Schedule"
+    },
+    "planEntriesFactLabel": {
+        "message": "Entries"
+    },
+    "planWebsitesFactLabel": {
+        "message": "Websites"
+    },
+    "planKeywordsFactLabel": {
+        "message": "Keywords"
+    },
+    "planAllowedFactLabel": {
+        "message": "Allowed"
+    },
+    "planUiFactLabel": {
+        "message": "UI"
+    },
+    "planPomodoroFactLabel": {
+        "message": "Pomodoro"
+    },
+    "planIntentFactLabel": {
+        "message": "Intent"
+    },
+    "planOffLabel": {
+        "message": "Off"
+    },
+    "planGroupsLabel": {
+        "message": "Entries"
+    },
+    "planAllowedSitesLabel": {
+        "message": "Allowed websites"
+    },
+    "planAllowedSitesHint": {
+        "message": "One URL or domain per line. These apply only to this plan."
+    },
+    "planUiRulesLabel": {
+        "message": "UI cleanup rules"
+    },
+    "planSchedulesLabel": {
+        "message": "Schedule"
+    },
+    "planScheduleNamePlaceholder": {
+        "message": "Schedule name"
+    },
+    "addPlanScheduleButton": {
+        "message": "Add time block"
+    },
+    "expandScheduleGraphLabel": {
+        "message": "Expand graph"
+    },
+    "collapseScheduleGraphLabel": {
+        "message": "Close expanded graph"
+    },
+    "planEntriesLabel": {
+        "message": "Entries"
+    },
+    "planEntryNamePlaceholder": {
+        "message": "Entry name"
+    },
+    "planEntryWebsitesLabel": {
+        "message": "Websites"
+    },
+    "planEntryKeywordsLabel": {
+        "message": "Keywords"
+    },
+    "addPlanEntryButton": {
+        "message": "Add entry"
+    },
+    "addAllowedSiteButton": {
+        "message": "Add allowed website"
+    },
+    "backToPlansLabel": {
+        "message": "Back to plans"
+    },
+    "expandLabel": {
+        "message": "Expand"
+    },
+    "collapseLabel": {
+        "message": "Collapse"
+    },
+    "noGroupsLabel": {
+        "message": "No groups yet."
+    },
+    "noPlanSchedulesLabel": {
+        "message": "No scheduled time blocks. Without schedules, an enabled plan is active all the time."
+    },
+    "planNameExists": {
+        "message": "A plan with this name already exists."
+    },
+    "confirmDeleteTitle": {
+        "message": "Confirm deletion"
+    },
+    "confirmDeleteGeneric": {
+        "message": "Delete this item?"
+    },
+    "confirmDeletePlan": {
+        "message": "Delete this plan? This removes its schedules, entries, allowed websites, and UI rule assignments."
+    },
+    "confirmDeletePlanEntry": {
+        "message": "Delete this entry?"
+    },
+    "confirmDeleteAllowedSite": {
+        "message": "Delete this allowed website?"
+    },
+    "confirmDeletePlanSchedule": {
+        "message": "Delete this schedule time block?"
+    },
+    "planNeedsGroupWarning": {
+        "message": "This plan has no groups assigned, so it will not block website keywords."
+    },
+    "billingHeading": {
+        "message": "Supporter Access"
+    },
+    "billingStatusPrefix": {
+        "message": "Current access"
+    },
+    "billingProviderPrefix": {
+        "message": "Provider"
+    },
+    "billingNoProvider": {
+        "message": "not configured"
+    },
+    "billingNoPaywallNotice": {
+        "message": "Feature gating is not active yet. This section is a dormant payment foundation."
+    },
+    "supporterMonthlyButton": {
+        "message": "Monthly support"
+    },
+    "lifetimeSupportButton": {
+        "message": "Lifetime support"
+    },
+    "manageBillingButton": {
+        "message": "Manage billing"
+    },
+    "popupDocumentTitle": {
+        "message": "Defense against Distractions"
+    },
+    "popupBrandName": {
+        "message": "Defense against Distractions"
+    },
+    "popupQuickActionsTitle": {
+        "message": "Quick Actions"
+    },
+    "popupOpenOptionsTitle": {
+        "message": "Open options"
+    },
+    "popupSectionsAriaLabel": {
+        "message": "Popup sections"
+    },
+    "popupActionsTab": {
+        "message": "Actions"
+    },
+    "popupDiagnosticsTab": {
+        "message": "Diagnostics"
+    },
+    "popupProtectionStatusTitle": {
+        "message": "Protection status"
+    },
+    "popupLoadingLabel": {
+        "message": "Loading"
+    },
+    "popupProtectionStatusAriaLabel": {
+        "message": "Current protection status"
+    },
+    "popupPlansLabel": {
+        "message": "Plans"
+    },
+    "popupCurrentPageLabel": {
+        "message": "Current page"
+    },
+    "popupTimerLabel": {
+        "message": "Timer"
+    },
+    "popupIntentLabel": {
+        "message": "Intent"
+    },
+    "popupCheckingLabel": {
+        "message": "Checking"
+    },
+    "popupControlsAriaLabel": {
+        "message": "Controls"
+    },
+    "popupUiPickerTitle": {
+        "message": "UI Picker"
+    },
+    "popupCurrentTabLabel": {
+        "message": "Current tab"
+    },
+    "popupMatchStrategyLabel": {
+        "message": "Match strategy"
+    },
+    "popupSamePositionOption": {
+        "message": "Same position in repeated UI"
+    },
+    "popupSameTextOption": {
+        "message": "Same text or label"
+    },
+    "popupSimilarStructureOption": {
+        "message": "Similar structure"
+    },
+    "popupClosestMatchOption": {
+        "message": "Closest match"
+    },
+    "popupMinimumScoreLabel": {
+        "message": "Minimum score"
+    },
+    "popupAncestorDepthLabel": {
+        "message": "Ancestor depth"
+    },
+    "popupLabelMatchLabel": {
+        "message": "Label match"
+    },
+    "popupPreferLabelOption": {
+        "message": "Prefer label"
+    },
+    "popupIgnoreLabelOption": {
+        "message": "Ignore label"
+    },
+    "popupRequireLabelOption": {
+        "message": "Require label"
+    },
+    "popupPickUiElementButton": {
+        "message": "Pick UI Element"
+    },
+    "popupPomodoroTitle": {
+        "message": "Pomodoro"
+    },
+    "popupIdleLabel": {
+        "message": "Idle"
+    },
+    "popupNoActivePomodoroPlan": {
+        "message": "No active Pomodoro plan"
+    },
+    "popupZeroWorkSessionsCompleted": {
+        "message": "0 work sessions completed"
+    },
+    "popupActivityUnknownLabel": {
+        "message": "Activity unknown"
+    },
+    "popupPomodoroTimingAriaLabel": {
+        "message": "Pomodoro timing details"
+    },
+    "popupStartButton": {
+        "message": "Start"
+    },
+    "popupPauseButton": {
+        "message": "Pause"
+    },
+    "popupResumeButton": {
+        "message": "Resume"
+    },
+    "popupResetButton": {
+        "message": "Reset"
+    },
+    "popupOpenTimerPanelButton": {
+        "message": "Open timer panel"
+    },
+    "popupTimerPanelOpened": {
+        "message": "Timer panel opened on this page."
+    },
+    "pomodoroWorkStartedLabel": {
+        "message": "Work started"
+    },
+    "pomodoroNextBreakLabel": {
+        "message": "Next break"
+    },
+    "pomodoroRequiredRestLabel": {
+        "message": "Required rest"
+    },
+    "pomodoroRestCreditedLabel": {
+        "message": "Rest already credited"
+    },
+    "pomodoroRestStillNeededLabel": {
+        "message": "Rest still needed"
+    },
+    "pomodoroReturnBehaviorLabel": {
+        "message": "Return behavior"
+    },
+    "pomodoroReturnStartsNewWork": {
+        "message": "new work starts on activity"
+    },
+    "pomodoroBreakStartedLabel": {
+        "message": "Break started"
+    },
+    "pomodoroBreakEndsLabel": {
+        "message": "Break ends"
+    },
+    "pomodoroNextWorkLabel": {
+        "message": "Next work"
+    },
+    "pomodoroNextWorkAfterRestLabel": {
+        "message": "after rest is done"
+    },
+    "pomodoroRestSatisfiedLabel": {
+        "message": "Rest satisfied"
+    },
+    "pomodoroNextWorkOnActivityLabel": {
+        "message": "when activity returns"
+    },
+    "pomodoroCompletedBlocksLabel": {
+        "message": "Completed work blocks"
+    },
+    "pomodoroPausedAtLabel": {
+        "message": "Paused at"
+    },
+    "pomodoroPausedPhaseLabel": {
+        "message": "Paused phase"
+    },
+    "pomodoroRemainingLabel": {
+        "message": "Remaining"
+    },
+    "pomodoroTimerStateLabel": {
+        "message": "Timer state"
+    },
+    "pomodoroReadyToStartLabel": {
+        "message": "ready to start"
+    },
+    "pomodoroConfiguredCycleLabel": {
+        "message": "Configured cycle"
+    },
+    "popupActivityStateLabel": {
+        "message": "System state"
+    },
+    "popupLastActivityLabel": {
+        "message": "Last activity"
+    },
+    "pomodoroHistoryTodayLabel": {
+        "message": "Today"
+    },
+    "pomodoroHistoryWorkSessionsLabel": {
+        "message": "Work sessions"
+    },
+    "pomodoroHistoryBreaksLabel": {
+        "message": "Breaks completed"
+    },
+    "pomodoroHistoryCreditedRestLabel": {
+        "message": "Rest credited"
+    },
+    "pomodoroHistorySkippedBreaksLabel": {
+        "message": "Breaks skipped"
+    },
+    "pomodoroMiniPanelTitle": {
+        "message": "DaD Pomodoro"
+    },
+    "pomodoroMiniPanelCloseLabel": {
+        "message": "Close"
+    },
+    "pomodoroMiniPanelMinimizeLabel": {
+        "message": "Minimize"
+    },
+    "pomodoroMiniPanelExpandLabel": {
+        "message": "Expand"
+    },
+    "popupDiagnosticsAriaLabel": {
+        "message": "Diagnostics"
+    },
+    "popupPageSignalsTitle": {
+        "message": "Page Signals"
+    },
+    "popupPageSignalsAriaLabel": {
+        "message": "Current page signal counts"
+    },
+    "popupImagesLabel": {
+        "message": "Images"
+    },
+    "popupVideoLabel": {
+        "message": "Video"
+    },
+    "popupAudioLabel": {
+        "message": "Audio"
+    },
+    "popupGifsLabel": {
+        "message": "GIFs"
+    },
+    "popupEmojiLabel": {
+        "message": "Emoji"
+    },
+    "popupLinksLabel": {
+        "message": "Links"
+    },
+    "popupBlockDiagnosticsTitle": {
+        "message": "Block Diagnostics"
+    },
+    "popupBlockDiagnosticsAriaLabel": {
+        "message": "Current page block diagnostics"
+    },
+    "popupPageLabel": {
+        "message": "Page"
+    },
+    "popupOverlayLabel": {
+        "message": "Overlay"
+    },
+    "popupMediaLabel": {
+        "message": "Media"
+    },
+    "popupTabMuteLabel": {
+        "message": "Tab mute"
+    },
+    "popupTriggerLabel": {
+        "message": "Trigger"
+    },
+    "popupScoreLabel": {
+        "message": "Score"
+    },
+    "popupRefreshButton": {
+        "message": "Refresh"
+    },
+    "popupCopyDiagnosticsButton": {
+        "message": "Copy Diagnostics"
+    },
+    "popupIntentDiagnosticsTitle": {
+        "message": "Intent Diagnostics"
+    },
+    "popupNoDataLabel": {
+        "message": "No data"
+    },
+    "popupCoherenceLabel": {
+        "message": "Coherence"
+    },
+    "popupOriginLabel": {
+        "message": "Origin"
+    },
+    "popupCurrentLabel": {
+        "message": "Current"
+    },
+    "popupFirstDriftLabel": {
+        "message": "First drift"
+    },
+    "popupLineageLabel": {
+        "message": "Lineage"
+    },
+    "popupIntentReasonsAriaLabel": {
+        "message": "Intent score reasons"
+    },
+    "popupIntentTrajectoryAriaLabel": {
+        "message": "Recent intent trajectory"
+    },
+    "popupClearButton": {
+        "message": "Clear"
+    },
+    "popupOptionsButton": {
+        "message": "Options"
+    },
+    "elementPickerTitle": {
+        "message": "DaD UI picker"
+    },
+    "elementPickerInitialMessage": {
+        "message": "Hover an element, click to preview the rule, then save or choose again."
+    },
+    "elementPickerNoElementSelected": {
+        "message": "No element selected"
+    },
+    "elementPickerModeLabel": {
+        "message": "Mode"
+    },
+    "elementPickerPickElementOption": {
+        "message": "Pick element"
+    },
+    "elementPickerClickPageOption": {
+        "message": "Click page"
+    },
+    "elementPickerPreviewLabel": {
+        "message": "Preview"
+    },
+    "elementPickerHideMatchedOption": {
+        "message": "Hide matched"
+    },
+    "elementPickerOutlineMatchedOption": {
+        "message": "Outline matched"
+    },
+    "elementPickerTargetLabel": {
+        "message": "Target"
+    },
+    "elementPickerClickedElementOption": {
+        "message": "Clicked element"
+    },
+    "elementPickerParentOption": {
+        "message": "Parent"
+    },
+    "elementPickerGrandparentOption": {
+        "message": "Grandparent"
+    },
+    "elementPickerGreatGrandparentOption": {
+        "message": "Great-grandparent"
+    },
+    "elementPickerStrategyLabel": {
+        "message": "Strategy"
+    },
+    "elementPickerSamePositionOption": {
+        "message": "Same position"
+    },
+    "elementPickerSameTextOption": {
+        "message": "Same text/label"
+    },
+    "elementPickerSimilarOption": {
+        "message": "Similar"
+    },
+    "elementPickerClosestOption": {
+        "message": "Closest"
+    },
+    "elementPickerMinimumScoreLabel": {
+        "message": "Minimum score"
+    },
+    "elementPickerAncestorDepthLabel": {
+        "message": "Ancestor depth"
+    },
+    "elementPickerLabelMatchLabel": {
+        "message": "Label match"
+    },
+    "elementPickerPreferLabelOption": {
+        "message": "Prefer label"
+    },
+    "elementPickerIgnoreLabelOption": {
+        "message": "Ignore label"
+    },
+    "elementPickerRequireLabelOption": {
+        "message": "Require label"
+    },
+    "elementPickerSaveRuleButton": {
+        "message": "Save rule"
+    },
+    "elementPickerSaveRuleAndContinueButton": {
+        "message": "Save rule and continue"
+    },
+    "elementPickerChooseAgainButton": {
+        "message": "Choose again"
+    },
+    "elementPickerCancelButton": {
+        "message": "Cancel"
+    },
+    "elementPickerPreviewHidingVerb": {
+        "message": "hiding"
+    },
+    "elementPickerPreviewOutliningVerb": {
+        "message": "outlining"
+    },
+    "elementPickerElementSingular": {
+        "message": "element"
+    },
+    "elementPickerElementPlural": {
+        "message": "elements"
+    },
+    "elementPickerPreviewMessage": {
+        "message": "Preview is $1 $2 $3. Adjust settings, save, choose again, or cancel."
+    },
+    "elementPickerRuleSavedPickAnother": {
+        "message": "Element blocking rule saved. Pick another element."
+    },
+    "elementPickerRuleSaved": {
+        "message": "Element blocking rule saved."
+    },
+    "elementPickerChooseAgainMessage": {
+        "message": "Hover an element and click to preview the rule."
+    },
+    "elementPickerClickPageModeMessage": {
+        "message": "Click page mode is active. Use the page normally, then hover Mode and scroll back to pick an element."
+    },
+    "elementPickerPickModeMessage": {
+        "message": "Hover an element and click it to preview the rule."
+    },
+    "elementPickerSaveErrorMessage": {
+        "message": "Could not save this rule. Try again."
+    },
+    "intentPromptDriftChainBlockedTitle": {
+        "message": "Drift chain blocked"
+    },
+    "intentPromptDriftBlockedTitle": {
+        "message": "Intent drift blocked"
+    },
+    "intentPromptDriftDetectedTitle": {
+        "message": "Intent drift detected"
+    },
+    "intentPromptChainQuarantineSummary": {
+        "message": "This tab is part of a drift chain that this plan is quarantining. Return to the last coherent page or isolate this page as a new chain."
+    },
+    "intentPromptBlockSummary": {
+        "message": "This plan is preventing this drift chain from continuing."
+    },
+    "intentPromptGrayscaleSummary": {
+        "message": "This page has been desaturated because this browsing chain appears to have detached from where it started."
+    },
+    "intentPromptDetectedSummary": {
+        "message": "This browsing chain appears to have detached from where it started."
+    },
+    "intentPromptCoherenceLabel": {
+        "message": "Coherence:"
+    },
+    "intentPromptOriginLabel": {
+        "message": "Origin:"
+    },
+    "intentPromptCurrentLabel": {
+        "message": "Current:"
+    },
+    "intentPromptCooldownLabel": {
+        "message": "Cooldown:"
+    },
+    "intentPromptCooldownActive": {
+        "message": "$1 before isolation is available. Return is available now."
+    },
+    "intentPromptCooldownComplete": {
+        "message": "complete. Isolation is available if this page is intentional."
+    },
+    "intentPromptCloseTabsFailed": {
+        "message": "Could not close other drift tabs. Return and isolate are still available."
+    },
+    "intentPromptClosedOtherTabs": {
+        "message": "Closed $1 other drift $2 in this chain. Return or isolate this tab next."
+    },
+    "intentPromptNoOtherDriftTabs": {
+        "message": "No other drift descendant tabs are currently open in this chain. Return or isolate this tab next."
+    },
+    "intentPromptTabSingular": {
+        "message": "tab"
+    },
+    "intentPromptTabPlural": {
+        "message": "tabs"
+    },
+    "intentPromptGotItButton": {
+        "message": "Got it"
+    },
+    "intentPromptIsolateButton": {
+        "message": "Isolate"
+    },
+    "intentPromptCloseOtherDriftTabsButton": {
+        "message": "Close other drift tabs"
+    },
+    "intentPromptIsolateAsNewChainButton": {
+        "message": "Isolate as new chain"
+    },
+    "intentPromptTrustShiftButton": {
+        "message": "Trust this shift"
+    },
+    "intentPromptCooldownUnavailableTitle": {
+        "message": "Available after the chain cooldown."
+    },
+    "intentPromptReturnButton": {
+        "message": "Return"
+    },
+    "intentPromptContinueButton": {
+        "message": "Continue"
     }
 }

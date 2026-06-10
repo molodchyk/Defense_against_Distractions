@@ -451,5 +451,75 @@
     },
     "noElementRulesLabel": {
         "message": "Nėra užblokuotų vartotojo sąsajos elementų"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "Savaitės tvarkaraštis"
+    },
+    "scheduleSelectedTitle": {
+        "message": "Pasirinktas tvarkaraštis"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "Laikas"
+    },
+    "scheduleDaysLabel": {
+        "message": "Dienos"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "Darbo dienos"
+    },
+    "scheduleWeekendPreset": {
+        "message": "Savaitgalis"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "Kasdien"
+    },
+    "scheduleClearPreset": {
+        "message": "Išvalyti dienas"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "Tvarkaračių dar nėra."
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "Sukurkite arba pasirinkite tvarkaraštį, kad galėtumėte jį redaguoti."
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ dabar aktyvu",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ įjungti laiko blokai",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ išsaugoti laiko blokai",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ išjungta",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ neužbaigta ignoruota",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
     }
 }

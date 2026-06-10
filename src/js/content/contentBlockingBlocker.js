@@ -11,11 +11,7 @@
   } = contentBlocking.overlay;
 
   function sendRuntimeMessage(message) {
-    try {
-      chrome.runtime.sendMessage(message);
-    } catch (error) {
-      console.error('Failed to send runtime message:', error);
-    }
+    global.DAD.safeRuntimeSendMessage(message);
   }
 
   function isTopFrame() {
@@ -30,22 +26,47 @@
     return global.blockDiagnostics ? JSON.parse(JSON.stringify(global.blockDiagnostics)) : null;
   }
 
-  function requestTopFrameBlock() {
+  function isPomodoroStrictBreakDiagnostics(diagnostics) {
+    return diagnostics?.pomodoroStrictBreak === true;
+  }
+
+  function hasContentBlockDiagnostics() {
+    const diagnostics = global.blockDiagnostics;
+    const triggers = Array.isArray(diagnostics?.triggers) ? diagnostics.triggers : [];
+    return triggers.some(trigger => trigger?.source !== 'pomodoro') && !isPomodoroStrictBreakDiagnostics(diagnostics);
+  }
+
+  function applyBlockDiagnostics(diagnostics) {
+    if (!diagnostics) {
+      return;
+    }
+
+    if (isPomodoroStrictBreakDiagnostics(diagnostics)) {
+      global.pomodoroStrictBreakBlockActive = true;
+      if (hasContentBlockDiagnostics()) {
+        return;
+      }
+    }
+
+    global.blockDiagnostics = diagnostics;
+  }
+
+  function requestTopFrameBlock(diagnostics = null) {
     sendRuntimeMessage({
       action: 'blockTopFrame',
-      diagnostics: getBlockDiagnosticsSnapshot()
+      diagnostics: diagnostics || getBlockDiagnosticsSnapshot()
     });
   }
 
   function blockPage(options = {}) {
-    if (global.pageBlocked) return;
+    applyBlockDiagnostics(options.diagnostics);
 
-    if (!options.fromTopFrameRequest && !isTopFrame()) {
-      requestTopFrameBlock();
+    if (global.pageBlocked) {
+      return;
     }
 
-    if (options.diagnostics) {
-      global.blockDiagnostics = options.diagnostics;
+    if (!options.fromTopFrameRequest && !isTopFrame()) {
+      requestTopFrameBlock(getBlockDiagnosticsSnapshot());
     }
 
     global.pageBlocked = true;

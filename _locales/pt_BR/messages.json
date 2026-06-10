@@ -433,5 +433,93 @@
     },
     "importButton": {
         "message": "Importar"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "Programação semanal"
+    },
+    "scheduleSelectedTitle": {
+        "message": "Programação selecionada"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "Hora"
+    },
+    "scheduleDaysLabel": {
+        "message": "Dias"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "Dias úteis"
+    },
+    "scheduleWeekendPreset": {
+        "message": "Fim de semana"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "Todos os dias"
+    },
+    "scheduleClearPreset": {
+        "message": "Limpar dias"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "Ainda não há horários."
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "Crie ou selecione uma programação para editá-la."
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ ativos agora",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ blocos de tempo ativados",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ blocos de tempo salvos",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ desativados",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ incompletos ignorados",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "themeModeLabel": {
+        "message": "Modo da interface"
+    },
+    "themeModeSystemOption": {
+        "message": "Sistema"
+    },
+    "themeModeDarkOption": {
+        "message": "Escuro"
+    },
+    "themeModeLightOption": {
+        "message": "Claro"
+    },
+    "elementRulesLabel": {
+        "message": "Interface bloqueada"
+    },
+    "noElementRulesLabel": {
+        "message": "Nenhum elemento da interface bloqueado"
     }
 }

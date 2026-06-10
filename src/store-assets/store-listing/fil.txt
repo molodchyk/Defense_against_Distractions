@@ -14,12 +14,11 @@ I-block ang mga pahina sa pamamagitan ng mga keyword, parirala, at may timbang n
 Ayusin ang iba't ibang panuntunan sa pagtutok sa mga pangkat ng website at keyword.
 Gumamit ng mga naka-lock na iskedyul, mga whitelist, proteksyon ng password, pag-export/pag-import, mga mode ng UI, at pagtatago ng elemento ng UI upang panatilihing praktikal ang setup.
 
-Ano ang bago sa bersyon 1.5:
-
-Light, dark, at system UI modes.
-Tagapili ng elemento ng UI na nakabatay sa popup para sa pagtatago ng mga nakakagambalang kontrol ng page.
-Pinahusay na naka-block na page na overlay na may paghinto o pag-mute ng media at mga mapipiling diagnostic.
-Na-update na mga asset ng tindahan, packaging, mga pagsusuri sa release, at istraktura ng proyekto.
+Ano ang bago sa bersyon 1.6:
+Binibilang na ngayon ng Pomodoro ang idle at locked na oras bilang bahagi ng kinakailangang pahinga.
+Mas malinaw na ngayon ang runtime diagnostics sa popup at plan Pomodoro page.
+Ibinabalik na ngayon ng strict-break blocking ang media at mute state ng tab pagkatapos matapos ang block.
+Ipinapakita na ngayon ng blocked-page diagnostics ang media suspension at tab mute state na hawak ng extension.
 
 Ang Defense Against Distractions ay open source:
 https://github.com/molodchyk/Defense_against_Distractions

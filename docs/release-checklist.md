@@ -24,18 +24,24 @@ Use this checklist before publishing a new extension release.
 - With an existing pre-update configuration, confirm the one-time backup notice appears, exports settings, and does not appear again after export or dismissal.
 - With a fresh/default install, confirm the backup notice does not appear.
 - Confirm the popup opens, matches the selected UI mode, and opens options from the compact top-right control.
+- Confirm the popup Page Signals panel shows current-tab image, video, audio, GIF, emoji, and link counts.
 - Switch UI mode between light, dark, and system; confirm popup, options, blocked page, and UI picker follow it.
-- Add, edit, save, and delete a group.
-- Add websites and keywords to a group.
-- Add, edit, save, and delete a locked schedule.
-- Confirm active locked schedules disable restricted controls.
-- Confirm locked schedules preserve mission-critical protection while storage-heavy UI blocked rules still save or fail gracefully.
-- Add and delete a whitelisted website.
+- With an existing configuration, confirm legacy groups, locked schedules, and whitelisted websites are migrated into plans on options-page load.
+- Confirm standalone Groups, Locked Schedules, and Whitelist sections are not visible as primary editing surfaces.
+- Open a plan's Entries page, then add, edit, save, and delete a website/keyword entry.
+- Add and delete plan allowed websites from the plan Entries page.
+- Open a plan's Schedule page, then add, select, drag, resize, save, and delete a plan schedule in the weekly schedule board.
+- Select an existing schedule block and drag above or below it in the grid to confirm the selected block expands from the opposite edge.
+- Use the plan schedule day shortcuts to apply workdays, weekend, every day, and clear days.
+- Confirm active plan schedules disable restricted controls and remain protected during storage pressure.
+- Confirm plan schedules preserve mission-critical protection while storage-heavy UI blocked rules still save or fail gracefully.
 - Set and delete an options-page password.
 - Confirm the password overlay appears when a password is set.
 - Visit a configured site and confirm matching keywords trigger blocking.
 - Confirm the blocked overlay stops or mutes page media and shows selectable diagnostic text.
-- Confirm whitelisted sites are not blocked.
+- Confirm a strict Pomodoro break stops media, then restores tab mute state and media playback after the break is paused or ends.
+- Confirm resetting Pomodoro during a paused strict break removes the Pomodoro-only blocked overlay, including while a plan schedule is active, and does not immediately auto-start a new work session. If the page is keyword-blocked, regular blocking should re-apply.
+- Confirm plan allowed websites are not blocked by that plan.
 - Use a static page and a dynamic page to confirm page blocking still renders an overlay after navigation or reload warnings.
 - Use the UI element picker to hide one repeated control, outline matched controls, adjust match settings, save a rule, and delete it from options.
 - Confirm UI element rules sync live between popup/content picker/options without reloading the options page.

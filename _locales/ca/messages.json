@@ -451,5 +451,75 @@
     },
     "noElementRulesLabel": {
         "message": "No hi ha elements de la interfície d'usuari bloquejats"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "Horari setmanal"
+    },
+    "scheduleSelectedTitle": {
+        "message": "Horari seleccionat"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "Temps"
+    },
+    "scheduleDaysLabel": {
+        "message": "Dies"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "Dies laborables"
+    },
+    "scheduleWeekendPreset": {
+        "message": "Cap de setmana"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "Cada dia"
+    },
+    "scheduleClearPreset": {
+        "message": "Neteja els dies"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "Encara no hi ha horaris."
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "Crea o selecciona una programació per editar-la."
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ actiu ara",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ blocs de temps activats",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ blocs de temps desats",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ desactivats",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ incomplets ignorats",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
     }
 }

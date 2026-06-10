@@ -209,26 +209,26 @@
     "cannotDeselectDaysError": {
         "message": "Ne mogu se odznačiti dani za aktivan raspored koji je trenutno na snazi."
     },
-    "passwordManagementHeader": { 
-        "message": "Upravljanje lozinkama" 
+    "passwordManagementHeader": {
+        "message": "Upravljanje lozinkama"
     },
-    "enterPasswordPlaceholder": { 
-        "message": "Unesite lozinku" 
+    "enterPasswordPlaceholder": {
+        "message": "Unesite lozinku"
     },
-    "confirmPasswordPlaceholder": { 
-        "message": "Potvrdite lozinku" 
+    "confirmPasswordPlaceholder": {
+        "message": "Potvrdite lozinku"
     },
-    "setPasswordButton": { 
-        "message": "Postavite lozinku" 
+    "setPasswordButton": {
+        "message": "Postavite lozinku"
     },
-    "deletePasswordButton": { 
-        "message": "Izbriši lozinku" 
+    "deletePasswordButton": {
+        "message": "Izbriši lozinku"
     },
-    "enterPasswordToAccessLabel": { 
-        "message": "Unesite lozinku za pristup:" 
+    "enterPasswordToAccessLabel": {
+        "message": "Unesite lozinku za pristup:"
     },
-    "submitButton": { 
-        "message": "Pošalji" 
+    "submitButton": {
+        "message": "Pošalji"
     },
     "tooManyAttempts": {
         "message": "Previše neuspjelih pokušaja. Molimo pričekajte $TIME$ sekundi prije ponovnog pokušaja.",
@@ -433,5 +433,93 @@
     },
     "importButton": {
         "message": "Uvoz"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "Tjedni raspored"
+    },
+    "scheduleSelectedTitle": {
+        "message": "Odabrani raspored"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "Vrijeme"
+    },
+    "scheduleDaysLabel": {
+        "message": "dana"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "Radnim danima"
+    },
+    "scheduleWeekendPreset": {
+        "message": "Vikend"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "Svaki dan"
+    },
+    "scheduleClearPreset": {
+        "message": "Očisti dane"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "Još nema rasporeda."
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "Stvorite ili odaberite raspored da biste ga uredili."
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ sada aktivno",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ omogućenih vremenskih blokova",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ spremljenih vremenskih blokova",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ onemogućeno",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ nepotpuno zanemareno",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "themeModeLabel": {
+        "message": "Način sučelja"
+    },
+    "themeModeSystemOption": {
+        "message": "Sustav"
+    },
+    "themeModeDarkOption": {
+        "message": "Tamno"
+    },
+    "themeModeLightOption": {
+        "message": "Svijetlo"
+    },
+    "elementRulesLabel": {
+        "message": "Blokirano sučelje"
+    },
+    "noElementRulesLabel": {
+        "message": "Nema blokiranih elemenata sučelja"
     }
 }

@@ -451,5 +451,75 @@
     },
     "noElementRulesLabel": {
         "message": "کوئی بلاک شدہ UI عناصر نہیں ہیں۔"
+    },
+    "scheduleWeeklyBoardTitle": {
+        "message": "ہفتہ وار شیڈول"
+    },
+    "scheduleSelectedTitle": {
+        "message": "منتخب شیڈول"
+    },
+    "scheduleBoardTimeLabel": {
+        "message": "وقت"
+    },
+    "scheduleDaysLabel": {
+        "message": "دن"
+    },
+    "scheduleWorkdaysPreset": {
+        "message": "کام کے دن"
+    },
+    "scheduleWeekendPreset": {
+        "message": "ویک اینڈ"
+    },
+    "scheduleEveryDayPreset": {
+        "message": "ہر روز"
+    },
+    "scheduleClearPreset": {
+        "message": "دن صاف کریں"
+    },
+    "scheduleNoSchedulesMessage": {
+        "message": "ابھی تک کوئی شیڈول نہیں ہے۔"
+    },
+    "scheduleEmptySelectionMessage": {
+        "message": "اس میں ترمیم کرنے کے لیے شیڈول بنائیں یا منتخب کریں۔"
+    },
+    "scheduleActiveNowSummaryPart": {
+        "message": "$COUNT$ ابھی فعال",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleEnabledSummaryPart": {
+        "message": "$COUNT$ فعال وقت کے بلاکس",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleSavedSummaryPart": {
+        "message": "$COUNT$ محفوظ وقت کے بلاکس",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleDisabledSummaryPart": {
+        "message": "$COUNT$ غیر فعال",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
+    },
+    "scheduleIncompleteSummaryPart": {
+        "message": "$COUNT$ نامکمل نظر انداز",
+        "placeholders": {
+            "count": {
+                "content": "$1"
+            }
+        }
     }
 }

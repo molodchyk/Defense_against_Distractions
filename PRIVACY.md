@@ -4,13 +4,13 @@ Defense Against Distractions is a local-first browser extension for blocking dis
 
 ## Data the Extension Uses
 
-The extension may process page text, URLs, page structure, and visible interface elements in order to detect configured keywords, apply blocking rules, show a blocked-page overlay, and hide user-selected UI elements.
+The extension may process page text, URLs, page titles, page structure, media counts, link counts, visible interface elements, top-frame navigation transition types and qualifiers, open-tab/window counts, and coarse browser activity signals such as recent interaction time and whether the browser reports the system as active, idle, or locked. This is used to detect configured keywords, apply blocking rules, show a blocked-page overlay, hide user-selected UI elements, run Pomodoro work/rest behavior, avoid counting locked or idle system time as completed work time, and produce local diagnostics about browsing-session coherence.
 
-The extension stores user configuration such as website groups, keywords, schedules, whitelist entries, UI mode, UI element blocking rules, export/import state, and optional extension password data.
+The extension stores user configuration such as website groups, keywords, schedules, whitelist entries, UI mode, UI element blocking rules, Pomodoro settings, export/import state, and optional extension password data. It may also store bounded local diagnostic summaries such as recent page visits, extracted URL/title/host tokens, media/feed/link counts, hostname-level usage aggregates, open-tab/window count summaries, recent activity time, local active-time totals, current local system activity state, navigation transition summaries, intent-coherence scores, and local intervention feedback actions such as continue, isolate, or return. If plan auto-calibration is enabled, that local feedback may conservatively adjust the effective intent-intervention threshold. The usage aggregates do not store raw page text, full URLs, page titles, topic tokens, tab URLs, tab titles, or tab identities.
 
 ## Storage
 
-Configuration is stored using Chrome extension storage. Some settings use `chrome.storage.sync` so they can be available across the user's browser profile. Some local security state, such as password attempt state and encryption helper data, uses `chrome.storage.local`.
+Configuration is stored using Chrome extension storage. Some settings use `chrome.storage.sync` so they can be available across the user's browser profile. Some local security, timer, and diagnostic state, such as password attempt state, encryption helper data, Pomodoro runtime and activity state, hostname-level usage aggregates, and intent-coherence trajectory summaries, uses `chrome.storage.local`.
 
 ## No Sale or Third-Party Transfer
 
@@ -28,7 +28,7 @@ Defense Against Distractions does not require a remote server to perform its cor
 
 ## User Control
 
-Users can export and import their own extension configuration. Users can delete or change stored rules from the extension options page, subject to any locked schedules they configured.
+Users can export and import their own extension configuration. Users can delete or change stored rules from the extension options page, subject to any locked schedules they configured. Users can also clear local usage stats, clear local intent-coherence diagnostics, and export local diagnostics JSON snapshots from the options page.
 
 ## Contact
 

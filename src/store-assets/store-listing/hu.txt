@@ -14,12 +14,11 @@ Oldalak blokkolása kulcsszavak, kifejezések és súlyozott pontszámok alapjá
 Különböző fókuszszabályok rendezése webhely- és kulcsszócsoportokba.
 Zárolt ütemezések, whitelistek, jelszóvédelem, export/import, UI módok és UI elemek elrejtése a praktikus beállításért.
 
-Újdonságok az 1.5-ös verzióban:
-
-Világos, sötét és rendszer szerinti UI mód.
-Popup-alapú UI elemválasztó a zavaró oldalelemek elrejtéséhez.
-Javított blokkoló overlay média leállításával vagy némításával és kijelölhető diagnosztikával.
-Frissített store assets, csomagolás, kiadási ellenőrzések és projektstruktúra.
+Újdonságok az 1.6-os verzióban:
+A Pomodoro mostantól a tétlen és zárolt időt is beszámítja a szükséges pihenőbe.
+A felugró ablak és a terv Pomodoro oldala most egyértelműbb futási diagnosztikát mutat.
+A szigorú szünetblokkolás most a blokk vége után visszaállítja a médiát és a lap némítási állapotát.
+A blokkolt oldal diagnosztikája most megmutatja a média felfüggesztését és a bővítmény által kezelt lapnémítást.
 
 A Defense Against Distractions nyílt forráskódú:
 https://github.com/molodchyk/Defense_against_Distractions

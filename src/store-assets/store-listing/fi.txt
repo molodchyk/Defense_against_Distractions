@@ -14,12 +14,11 @@ Estä sivuja avainsanojen, lauseiden ja painotettujen pisteiden perusteella.
 Järjestä eri keskittymissäännöt verkkosivusto- ja avainsanaryhmiin.
 Käytä lukittuja aikatauluja, sallittujen listoja, salasanasuojausta, vientiä/tuontia, käyttöliittymätiloja ja UI-elementtien piilotusta, jotta asetukset pysyvät käytännöllisinä.
 
-Uutta versiossa 1.5:
-
-Vaalea, tumma ja järjestelmän mukainen käyttöliittymätila.
-Popup-pohjainen UI-elementtien valitsin häiritsevien sivukontrollien piilottamiseen.
-Parannettu esto-overlay, joka pysäyttää tai mykistää median ja tarjoaa valittavat diagnostiikkatiedot.
-Päivitetyt store assets, paketointi, julkaisun tarkistukset ja projektirakenne.
+Uutta versiossa 1.6:
+Pomodoro laskee nyt käyttämättömän ja lukitun ajan osaksi vaadittua lepoa.
+Ponnahdusikkuna ja suunnitelman Pomodoro-sivu näyttävät nyt selkeämmät ajastimen diagnostiikat.
+Tiukka taukoblokkaus palauttaa nyt median ja välilehden mykistystilan blokin päätyttyä.
+Blokatun sivun diagnostiikka näyttää nyt median keskeytyksen ja laajennuksen hallitseman välilehden mykistyksen.
 
 Defense Against Distractions on avointa lähdekoodia:
 https://github.com/molodchyk/Defense_against_Distractions

@@ -61,6 +61,8 @@ export function createDefaultSchedule(name) {
     days: [],
     startTime: '00:00',
     endTime: '23:59',
+    weekInterval: 1,
+    anchorDate: '',
     isActive: false
   };
 }

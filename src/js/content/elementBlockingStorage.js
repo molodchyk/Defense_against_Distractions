@@ -39,10 +39,17 @@
     );
   }
 
+  function getSyncQuotaBytes() {
+    try {
+      return global.chrome?.storage?.sync?.QUOTA_BYTES || SYNC_QUOTA_BYTES_FALLBACK;
+    } catch (error) {
+      return SYNC_QUOTA_BYTES_FALLBACK;
+    }
+  }
+
   function loadElementRules(callback) {
-    chrome.storage.sync.get({ [ELEMENT_RULES_STORAGE_KEY]: [], [ELEMENT_RULE_IDS_STORAGE_KEY]: [] }, result => {
-      if (chrome.runtime.lastError) {
-        console.error('Failed to load element blocking rules:', chrome.runtime.lastError);
+    global.DAD.safeSyncStorageGet({ [ELEMENT_RULES_STORAGE_KEY]: [], [ELEMENT_RULE_IDS_STORAGE_KEY]: [] }, result => {
+      if (!result) {
         callback([]);
         return;
       }
@@ -62,9 +69,8 @@
         return;
       }
 
-      chrome.storage.sync.get(ruleKeys, ruleItems => {
-        if (chrome.runtime.lastError) {
-          console.error('Failed to load indexed element blocking rules:', chrome.runtime.lastError);
+      global.DAD.safeSyncStorageGet(ruleKeys, ruleItems => {
+        if (!ruleItems) {
           callback(dedupeRules(legacyRules));
           return;
         }
@@ -95,18 +101,18 @@
       });
 
       const replacingKeys = [ELEMENT_RULES_STORAGE_KEY, ...Object.keys(items)];
-      const quotaBytes = chrome.storage.sync.QUOTA_BYTES || SYNC_QUOTA_BYTES_FALLBACK;
+      const quotaBytes = getSyncQuotaBytes();
       const protectedLimit = quotaBytes - PROTECTED_SYNC_RESERVE_BYTES;
 
-      chrome.storage.sync.getBytesInUse(null, totalBytes => {
-        if (chrome.runtime.lastError) {
-          reject(chrome.runtime.lastError);
+      global.DAD.safeSyncStorageGetBytesInUse(null, totalBytes => {
+        if (totalBytes === null) {
+          reject(new Error('Cannot save this UI rule because extension storage is unavailable.'));
           return;
         }
 
-        chrome.storage.sync.getBytesInUse(replacingKeys, replacingBytes => {
-          if (chrome.runtime.lastError) {
-            reject(chrome.runtime.lastError);
+        global.DAD.safeSyncStorageGetBytesInUse(replacingKeys, replacingBytes => {
+          if (replacingBytes === null) {
+            reject(new Error('Cannot save this UI rule because extension storage is unavailable.'));
             return;
           }
 
@@ -117,15 +123,15 @@
             return;
           }
 
-          chrome.storage.sync.set(items, () => {
-            if (chrome.runtime.lastError) {
-              reject(chrome.runtime.lastError);
+          global.DAD.safeSyncStorageSet(items, didSave => {
+            if (!didSave) {
+              reject(new Error('Cannot save this UI rule because extension storage is unavailable.'));
               return;
             }
 
-            chrome.storage.sync.remove(ELEMENT_RULES_STORAGE_KEY, () => {
-              if (chrome.runtime.lastError) {
-                reject(chrome.runtime.lastError);
+            global.DAD.safeSyncStorageRemove(ELEMENT_RULES_STORAGE_KEY, didRemove => {
+              if (!didRemove) {
+                reject(new Error('Cannot remove legacy UI rule storage after saving.'));
                 return;
               }
 
