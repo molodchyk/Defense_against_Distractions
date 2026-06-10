@@ -36,9 +36,7 @@ import {
 import {
   formatClock,
   formatDuration,
-  formatShortDuration,
-  getBreakDurationMs,
-  getHostnameLabel
+  getBreakDurationMs
 } from './popup/format.js';
 import {
   getMessage,
@@ -47,18 +45,21 @@ import {
 import {
   createPageSignalsPanel
 } from './popup/pageSignalsPanel.js';
+import {
+  createBlockDiagnosticsPanel
+} from './popup/blockDiagnosticsPanel.js';
+import {
+  createIntentDiagnosticsPanel
+} from './popup/intentDiagnosticsPanel.js';
 
 const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-const MAX_VISITS_IN_POPUP = 4;
 const POMODORO_RUNNING_PHASES = new Set(['work', 'shortBreak', 'longBreak']);
 const POMODORO_BREAK_PHASES = new Set(['shortBreak', 'longBreak']);
 let pomodoroRefreshInterval = null;
 let blockDiagnosticsRefreshInterval = null;
 let cachedPlans = [];
 let latestActiveTab = null;
-let latestBlockDebugState = null;
 let latestPomodoroPayload = null;
-let latestIntentDebugState = null;
 let activePopupPane = 'actions';
 
 const pageSignalsPanel = createPageSignalsPanel({
@@ -68,6 +69,35 @@ const pageSignalsPanel = createPageSignalsPanel({
   sendTabMessage,
   onActiveTabChange(activeTab) {
     latestActiveTab = activeTab || null;
+    renderProtectionSummary();
+  }
+});
+
+const blockDiagnosticsPanel = createBlockDiagnosticsPanel({
+  getMessage,
+  getActiveTab,
+  isExtensionPage,
+  sendTabMessage,
+  onActiveTabChange(activeTab) {
+    latestActiveTab = activeTab || null;
+  },
+  onStateChange() {
+    renderProtectionSummary();
+  }
+});
+
+const intentDiagnosticsPanel = createIntentDiagnosticsPanel({
+  getMessage,
+  getActiveTab,
+  isExtensionPage,
+  sendRuntimeMessage,
+  sendTabMessage,
+  pageSignalsPanel,
+  setStatus,
+  onActiveTabChange(activeTab) {
+    latestActiveTab = activeTab || null;
+  },
+  onStateChange() {
     renderProtectionSummary();
   }
 });
@@ -147,6 +177,8 @@ function summarizeNames(names, emptyText, maxVisible = 2) {
 }
 
 function getProtectionPageSummary(activeTab = latestActiveTab) {
+  const blockDebugState = blockDiagnosticsPanel.getDebugState();
+
   if (!activeTab?.url || isExtensionPage(activeTab.url)) {
     return {
       state: 'idle',
@@ -154,8 +186,8 @@ function getProtectionPageSummary(activeTab = latestActiveTab) {
     };
   }
 
-  if (latestBlockDebugState?.pageBlocked || latestBlockDebugState?.hasOverlay) {
-    const trigger = latestBlockDebugState?.blockDiagnostics?.latestTrigger;
+  if (blockDebugState?.pageBlocked || blockDebugState?.hasOverlay) {
+    const trigger = blockDebugState?.blockDiagnostics?.latestTrigger;
     return {
       state: 'active',
       text: trigger?.keyword
@@ -272,41 +304,6 @@ function getPomodoroAutoStartSuppressionText(payload = latestPomodoroPayload) {
   return getMessage('popupAutoStartPaused');
 }
 
-function getIntentSummary(debugState = latestIntentDebugState) {
-  const activeSession = debugState?.activeSession;
-  const riskState = debugState?.intervention?.riskState || activeSession?.riskState || 'none';
-  const score = Number.isFinite(Number(activeSession?.coherenceScore))
-    ? activeSession.coherenceScore
-    : null;
-  const scoreText = score === null ? '' : ` · ${score}`;
-
-  if (!activeSession) {
-    return {
-      state: 'idle',
-      text: getMessage('popupNoTrajectory')
-    };
-  }
-
-  if (riskState === 'locked' || riskState === 'intervene') {
-    return {
-      state: 'active',
-      text: `${riskState}${scoreText}`
-    };
-  }
-
-  if (riskState === 'watch' || riskState === 'drift') {
-    return {
-      state: 'ready',
-      text: `${riskState}${scoreText}`
-    };
-  }
-
-  return {
-    state: 'idle',
-    text: `${riskState}${scoreText}`
-  };
-}
-
 function getOverallProtectionState(summaries, activePlans) {
   if (summaries.some(summary => summary.state === 'active')) {
     return {
@@ -332,7 +329,7 @@ function renderProtectionSummary() {
   const activePlans = getActivePlans();
   const pageSummary = getProtectionPageSummary();
   const pomodoroSummary = getPomodoroSummary();
-  const intentSummary = getIntentSummary();
+  const intentSummary = intentDiagnosticsPanel.getSummary();
   const overall = getOverallProtectionState([pageSummary, pomodoroSummary, intentSummary], activePlans);
   const badge = document.getElementById('protectionStatusBadge');
 
@@ -401,133 +398,8 @@ async function openPomodoroMiniPanel() {
   window.close();
 }
 
-function setBlockDiagnosticsUnavailable(message = getMessage('popupUnavailableLabel')) {
-  latestBlockDebugState = null;
-  const status = document.getElementById('blockDiagnosticsStatus');
-  status.textContent = message;
-  status.dataset.state = 'idle';
-  [
-    'blockPageStateText',
-    'blockOverlayStateText',
-    'blockMediaStateText',
-    'blockTabMuteStateText',
-    'blockTriggerText',
-    'blockScoreText'
-  ].forEach(elementId => {
-    setTextWithTitle(elementId, '--');
-  });
-  renderProtectionSummary();
-}
-
-function formatBlockStateLabel(active, activeText, inactiveText = getMessage('popupClearState')) {
-  return active ? activeText : inactiveText;
-}
-
-function formatBlockMediaState(media = {}) {
-  const suspendedMediaCount = Number(media.suspendedMediaCount || 0);
-  const suspendedFrameCount = Number(media.suspendedFrameCount || 0);
-  const currentMediaElementCount = Number(media.currentMediaElementCount || 0);
-  const currentEmbeddedFrameCount = Number(media.currentEmbeddedFrameCount || 0);
-  const suspendedTotal = suspendedMediaCount + suspendedFrameCount;
-  const currentTotal = currentMediaElementCount + currentEmbeddedFrameCount;
-
-  if (suspendedTotal > 0) {
-    return getMessage('popupMediaSuspendedSummary', [suspendedMediaCount, suspendedFrameCount]);
-  }
-
-  if (media.lastRestoreSummary) {
-    return getMessage('popupMediaRestoredSummary', [
-      media.lastRestoreSummary.restoredMediaCount || 0,
-      media.lastRestoreSummary.restoredFrameCount || 0
-    ]);
-  }
-
-  return currentTotal > 0
-    ? getMessage('popupMediaCapableElements', [currentTotal])
-    : getMessage('popupNoneDetected');
-}
-
-function formatTabMuteState(tabMute = {}) {
-  if (tabMute.tracked) {
-    return tabMute.originalMuted === true ? getMessage('popupMutedOriginallyMuted') : getMessage('popupMutedByDad');
-  }
-
-  if (tabMute.lastAction === 'restored') {
-    return tabMute.restoredMutedState ? getMessage('popupRestoredMutedState') : getMessage('popupRestoredUnmutedState');
-  }
-
-  if (tabMute.lastAction === 'restoreSkipped') {
-    return getMessage('popupRestoreSkipped');
-  }
-
-  return getMessage('popupNotTracked');
-}
-
-function formatBlockTrigger(debugState = {}) {
-  const trigger = debugState.blockDiagnostics?.latestTrigger;
-  if (!trigger) {
-    return getMessage('popupNoTriggerRecorded');
-  }
-
-  const keyword = trigger.keyword || getMessage('popupUnknownLabel');
-  const source = trigger.source ? ` · ${trigger.source}` : '';
-  return `${keyword}${source}`;
-}
-
-function formatBlockScore(debugState = {}) {
-  const diagnosticsScore = debugState.blockDiagnostics?.finalScore;
-  const pageScore = debugState.pageScore;
-  const score = diagnosticsScore ?? pageScore;
-  if (!Number.isFinite(Number(score))) {
-    return '--';
-  }
-
-  const trigger = debugState.blockDiagnostics?.latestTrigger;
-  const delta = trigger ? ` · ${trigger.operation || '+'}${trigger.value ?? 0}` : '';
-  return `${Math.round(Number(score))}${delta}`;
-}
-
-function renderBlockDiagnostics(debugState) {
-  latestBlockDebugState = debugState || null;
-  const status = document.getElementById('blockDiagnosticsStatus');
-
-  if (!debugState) {
-    setBlockDiagnosticsUnavailable();
-    return;
-  }
-
-  const active = Boolean(debugState.pageBlocked || debugState.hasOverlay);
-  status.textContent = active ? getMessage('popupBlockedState') : getMessage('popupClearButton');
-  status.dataset.state = active ? 'active' : 'ready';
-
-  setTextWithTitle('blockPageStateText', formatBlockStateLabel(debugState.pageBlocked, getMessage('popupBlockedState')));
-  setTextWithTitle(
-    'blockOverlayStateText',
-    formatBlockStateLabel(debugState.hasOverlay, getMessage('popupBlockedOverlayIn', [debugState.overlayParent || getMessage('popupPageLabel')]))
-  );
-  setTextWithTitle('blockMediaStateText', formatBlockMediaState(debugState.media));
-  setTextWithTitle('blockTabMuteStateText', formatTabMuteState(debugState.tabMute));
-  setTextWithTitle('blockTriggerText', formatBlockTrigger(debugState));
-  setTextWithTitle('blockScoreText', formatBlockScore(debugState));
-  renderProtectionSummary();
-}
-
-async function refreshBlockDiagnostics() {
-  const activeTab = await getActiveTab();
-  latestActiveTab = activeTab || null;
-
-  if (!activeTab?.id || isExtensionPage(activeTab.url)) {
-    setBlockDiagnosticsUnavailable(getMessage('popupNoPageLabel'));
-    return;
-  }
-
-  const debugState = await sendTabMessage(activeTab.id, { action: 'getBlockDebugState' });
-  if (!debugState) {
-    setBlockDiagnosticsUnavailable(getMessage('popupNoScriptLabel'));
-    return;
-  }
-
-  renderBlockDiagnostics(debugState);
+function refreshBlockDiagnostics() {
+  return blockDiagnosticsPanel.refresh();
 }
 
 function renderPomodoroTimeline(payload) {
@@ -623,148 +495,12 @@ function formatPomodoroActivityText(activityStatus = {}, includeActiveToday = tr
   return includeActiveToday ? getMessage('popupActivityWithActiveToday', [stateText, activeToday]) : stateText;
 }
 
-function setIntentEmptyState(message = getMessage('popupNoTrajectoryDataYet')) {
-  document.getElementById('intentRiskBadge').textContent = getMessage('popupNoDataLabel');
-  document.getElementById('intentRiskBadge').dataset.state = 'none';
-  document.getElementById('intentCoherenceScore').textContent = '--';
-  document.getElementById('intentOriginText').textContent = message;
-  document.getElementById('intentCurrentText').textContent = '--';
-  document.getElementById('intentDriftText').textContent = '--';
-  document.getElementById('intentLineageText').textContent = '--';
-  document.getElementById('intentReasonList').replaceChildren();
-  document.getElementById('intentVisitList').replaceChildren();
+function refreshIntentDiagnostics() {
+  return intentDiagnosticsPanel.refresh();
 }
 
-function formatIntentLineage(metrics = {}) {
-  const tabCount = Number(metrics.tabCount || 0);
-  const branchCount = Number(metrics.branchCount || 0);
-  const driftDescendantCount = Number(metrics.driftDescendantCount || 0);
-  const transitionType = metrics.latestTransitionType || 'unknown';
-  const parts = [
-    `${tabCount} tab${tabCount === 1 ? '' : 's'}`,
-    `${branchCount} branch${branchCount === 1 ? '' : 'es'}`,
-    `latest ${transitionType}`
-  ];
-
-  if (driftDescendantCount > 0) {
-    parts.push(`${driftDescendantCount} drift descendant${driftDescendantCount === 1 ? '' : 's'}`);
-  }
-
-  if (metrics.latestIsDriftDescendant) {
-    parts.push('current is descendant');
-  }
-
-  return parts.join(' - ');
-}
-
-function renderIntentVisitList(visits = []) {
-  const visitList = document.getElementById('intentVisitList');
-  const recentVisits = visits.slice(-MAX_VISITS_IN_POPUP);
-
-  visitList.replaceChildren(...recentVisits.map(visit => {
-    const item = document.createElement('li');
-    const title = document.createElement('span');
-    const meta = document.createElement('small');
-
-    title.textContent = getHostnameLabel(visit);
-    const metaParts = [];
-    if (Number.isFinite(Number(visit.tabId))) {
-      metaParts.push(`tab ${visit.tabId}`);
-    }
-    if (Number.isFinite(Number(visit.openerTabId))) {
-      metaParts.push(`from tab ${visit.openerTabId}`);
-    }
-    if (visit.driftDescendant) {
-      metaParts.push('drift descendant');
-    }
-    if (visit.transitionType) {
-      metaParts.push(`transition ${visit.transitionType}`);
-    }
-    if (Array.isArray(visit.transitionQualifiers) && visit.transitionQualifiers.length > 0) {
-      metaParts.push(visit.transitionQualifiers.join(', '));
-    }
-    metaParts.push(`active ${formatShortDuration(visit.activeMs ?? visit.signals?.activity?.activePageMs)}`);
-    if (visit.metrics) {
-      metaParts.push(`origin ${Math.round(Number(visit.metrics.originSimilarity || 0) * 100)}%`);
-      metaParts.push(`local ${Math.round(Number(visit.metrics.localSimilarity || 0) * 100)}%`);
-    }
-
-    meta.textContent = metaParts.join(' - ');
-
-    item.append(title, meta);
-    return item;
-  }));
-}
-
-function renderIntentReasonList(reasons = []) {
-  const reasonList = document.getElementById('intentReasonList');
-  const visibleReasons = Array.isArray(reasons) ? reasons.slice(0, 3) : [];
-
-  reasonList.replaceChildren(...visibleReasons.map(reason => {
-    const item = document.createElement('li');
-    item.textContent = reason;
-    return item;
-  }));
-}
-
-function renderIntentDiagnostics(debugState) {
-  const activeSession = debugState?.activeSession;
-
-  if (!activeSession) {
-    setIntentEmptyState();
-    return;
-  }
-
-  const visits = Array.isArray(activeSession.visits) ? activeSession.visits : [];
-  const latestVisit = visits.at(-1);
-  const driftVisit = visits.find(visit => visit.id === activeSession.firstDriftVisitId);
-  const riskState = debugState?.intervention?.riskState || activeSession.riskState || 'clear';
-  const score = Number.isFinite(activeSession.coherenceScore)
-    ? activeSession.coherenceScore
-    : '--';
-
-  document.getElementById('intentRiskBadge').textContent = riskState;
-  document.getElementById('intentRiskBadge').dataset.state = riskState;
-  document.getElementById('intentCoherenceScore').textContent = score;
-  document.getElementById('intentOriginText').textContent = getHostnameLabel(activeSession.origin);
-  document.getElementById('intentCurrentText').textContent = getHostnameLabel(latestVisit);
-  document.getElementById('intentDriftText').textContent = driftVisit ? getHostnameLabel(driftVisit) : 'None detected';
-  document.getElementById('intentLineageText').textContent = formatIntentLineage(activeSession.metrics);
-  renderIntentReasonList(debugState?.intervention?.reasonLines);
-  renderIntentVisitList(visits);
-}
-
-async function refreshIntentDiagnostics() {
-  const activeTab = await getActiveTab();
-  latestActiveTab = activeTab || null;
-
-  await pageSignalsPanel.refresh();
-
-  if (activeTab?.id && !isExtensionPage(activeTab.url)) {
-    await sendTabMessage(activeTab.id, { action: 'reportIntentPageSignals' });
-  }
-
-  const debugState = await sendRuntimeMessage({
-    action: 'getIntentDebugState',
-    tabId: activeTab?.id
-  });
-  latestIntentDebugState = debugState || null;
-  renderIntentDiagnostics(debugState);
-  renderProtectionSummary();
-}
-
-async function clearIntentDiagnostics() {
-  const clearButton = document.getElementById('clearIntentButton');
-  clearButton.disabled = true;
-  const response = await sendRuntimeMessage({ action: 'clearIntentDebugState' });
-
-  if (response?.status === 'cleared') {
-    setIntentEmptyState(getMessage('popupClearedLabel'));
-  } else {
-    setStatus(getMessage('popupCouldNotClearIntent'));
-  }
-
-  clearButton.disabled = false;
+function clearIntentDiagnostics() {
+  return intentDiagnosticsPanel.clear();
 }
 
 function renderPomodoroState(payload) {
@@ -845,38 +581,6 @@ function getElementText(elementId) {
   return document.getElementById(elementId)?.textContent || '';
 }
 
-function getCompactIntentDiagnostics(debugState = latestIntentDebugState) {
-  const activeSession = debugState?.activeSession || null;
-  const visits = Array.isArray(activeSession?.visits) ? activeSession.visits : [];
-  const latestVisit = visits.at(-1) || null;
-  const driftVisit = visits.find(visit => visit.id === activeSession?.firstDriftVisitId) || null;
-
-  if (!activeSession) {
-    return {
-      active: false,
-      riskState: 'none'
-    };
-  }
-
-  return {
-    active: true,
-    sessionId: activeSession.id || null,
-    riskState: debugState?.intervention?.riskState || activeSession.riskState || null,
-    coherenceScore: Number.isFinite(Number(activeSession.coherenceScore))
-      ? activeSession.coherenceScore
-      : null,
-    origin: activeSession.origin || null,
-    current: latestVisit,
-    firstDrift: driftVisit,
-    metrics: activeSession.metrics || null,
-    reasonLines: Array.isArray(debugState?.intervention?.reasonLines)
-      ? debugState.intervention.reasonLines
-      : [],
-    intervention: debugState?.intervention || null,
-    visitCount: visits.length
-  };
-}
-
 function getCompactPomodoroDiagnostics(payload = latestPomodoroPayload) {
   if (!payload) {
     return null;
@@ -901,7 +605,7 @@ function getCompactPomodoroDiagnostics(payload = latestPomodoroPayload) {
 function buildPopupDiagnosticsPayload() {
   const pageSummary = getProtectionPageSummary();
   const pomodoroSummary = getPomodoroSummary();
-  const intentSummary = getIntentSummary();
+  const intentSummary = intentDiagnosticsPanel.getSummary();
   const activePlans = getActivePlans();
 
   return {
@@ -936,10 +640,10 @@ function buildPopupDiagnosticsPayload() {
         text: getElementText('intentProtectionText') || intentSummary.text
       }
     },
-    block: latestBlockDebugState,
+    block: blockDiagnosticsPanel.getDebugState(),
     pageSignals: pageSignalsPanel.getSnapshot(),
     pomodoro: getCompactPomodoroDiagnostics(),
-    intent: getCompactIntentDiagnostics()
+    intent: intentDiagnosticsPanel.getCompactDiagnostics()
   };
 }
 
@@ -1001,9 +705,9 @@ async function initializePopup() {
           localizePopup();
           renderProtectionSummary();
           renderPomodoroState(latestPomodoroPayload);
-          renderBlockDiagnostics(latestBlockDebugState);
+          blockDiagnosticsPanel.render(blockDiagnosticsPanel.getDebugState());
           pageSignalsPanel.render(pageSignalsPanel.getSnapshot());
-          renderIntentDiagnostics(latestIntentDebugState);
+          intentDiagnosticsPanel.render(intentDiagnosticsPanel.getDebugState());
         })
         .catch(error => {
           console.error('Failed to sync popup language:', error);
