@@ -343,6 +343,7 @@ Completed first steps:
 - `src/js/content/ui-blocking/pickerStyle.js` owns picker highlight and panel CSS injection.
 - `src/js/content/ui-blocking/pickerPanel.js` owns picker copy, theme sync, draggable panel rendering, and picker controls.
 - Page blocking content scripts now live under `src/js/content/content-blocking/`.
+- Blocked-overlay content responsibilities now live in focused modules for messages, style, theme, diagnostics, Pomodoro strict-break status, event guards, and a thin overlay controller.
 - Intent content intervention modules now live under `src/js/content/intent/` for constants, messages, CSS injection, theme sync, and prompt rendering. `src/js/content/intentIntervention.js` remains the controller for polling, feedback, dismissal state, grayscale application, and action wiring.
 
 The final shape keeps `miniPanel.js` as a thin adapter that wires the modules together and exposes the public mini-panel API.

@@ -2,7 +2,7 @@
 
 DaD is moving toward small modules grouped by runtime surface and product responsibility.
 
-The detailed modularization target, dependency rules, file-size budgets, and migration phases live in [DaD Modularization Roadmap](modularization-roadmap.md). Parallel ownership rules live in [Parallel Development Coordination](parallel-development.md). The external Chrome extension architecture constraints behind that roadmap are summarized in [Extension Architecture Research](extension-architecture-research.md).
+The detailed modularization target, dependency rules, file-size budgets, and migration phases live in [DaD Modularization Roadmap](modularization-roadmap.md). Ownership and coordination rules live in [Development Coordination](parallel-development.md). The external Chrome extension architecture constraints behind that roadmap are summarized in [Extension Architecture Research](extension-architecture-research.md).
 
 ## Runtime Areas
 
@@ -110,14 +110,20 @@ Future work should keep new UI blocking behavior inside the narrowest module tha
 Main page blocking is also split into ordered content-script modules:
 
 - `src/js/content/content-blocking/constants.js`: score thresholds, message names, overlay IDs, event options, and timing constants.
-- `src/js/content/content-blocking/overlay.js`: blocked-page overlay rendering and blocked-page event guards.
+- `src/js/content/content-blocking/overlayMessages.js`: blocked-overlay localized message fallback resolution.
+- `src/js/content/content-blocking/overlayStyle.js`: blocked-overlay host style and theme-variable CSS injection.
+- `src/js/content/content-blocking/overlayTheme.js`: blocked-overlay UI-mode sync with extension theme settings and system color-scheme changes.
+- `src/js/content/content-blocking/overlayDiagnostics.js`: blocked-overlay trigger, score, and context diagnostics rendering.
+- `src/js/content/content-blocking/overlayPomodoro.js`: blocked-overlay Pomodoro strict-break timer rendering and stale Pomodoro-only block clearing.
+- `src/js/content/content-blocking/overlayEvents.js`: blocked-page event suppression and event-guard installation.
+- `src/js/content/content-blocking/overlay.js`: thin blocked-overlay controller that assembles, updates, and keeps the overlay mounted.
 - `src/js/content/content-blocking/media.js`: audio, video, iframe, embed, and object suspension.
 - `src/js/content/content-blocking/blocker.js`: the central `blockPage` action and runtime tab-mute messaging.
 - `src/js/content/content-blocking/keywords.js`: keyword context extraction, text-node scanning, score updates, badge updates, and mutation observation.
 - `src/js/content/content-blocking/siteCheck.js`: storage lookup, plan allowed-site checks, matching plan-owned or legacy website groups, and starting scans.
 - `content.js`: bootstrap, runtime message handling, and BFCache/pageshow reinitialization.
 
-Blocking diagnostics start in `content-blocking/keywords.js`, where score contributions are recorded into local page state. `content-blocking/overlay.js` can render a concise reason on the blocked overlay. Future diagnostic expansion should stay near `content-blocking/keywords.js` and `content-blocking/siteCheck.js`, because those modules know which keyword or group caused risk to rise. Future intervention work should start near `content-blocking/blocker.js` and `content-blocking/media.js`.
+Blocking diagnostics start in `content-blocking/keywords.js`, where score contributions are recorded into local page state. `content-blocking/overlayDiagnostics.js` renders the concise reason on the blocked overlay. Future diagnostic expansion should stay near `content-blocking/keywords.js` and `content-blocking/siteCheck.js`, because those modules know which keyword or group caused risk to rise. Future intervention work should start near `content-blocking/blocker.js` and `content-blocking/media.js`.
 
 ## Future Protection Model
 
@@ -193,4 +199,4 @@ Pomodoro is split across plan configuration, runtime, and local activity:
 - `src/js/content/pomodoro/miniPanelRender.js` owns mini-panel runtime/status row rendering and display formatting.
 - `src/js/content/pomodoro/miniPanel.js` is the thin optional on-page Pomodoro mini-panel controller opened from the popup. It wires DOM construction, refresh, close/open behavior, and the public content-script API.
 - `src/js/content/content-blocking/siteCheck.js` applies strict-break blocking when a Pomodoro break is active for the current plan.
-- `src/js/content/content-blocking/overlay.js` and `src/blocked.html` render Pomodoro timer status on blocked pages.
+- `src/js/content/content-blocking/overlayPomodoro.js`, `src/js/content/content-blocking/overlay.js`, and `src/blocked.html` render Pomodoro timer status on blocked pages.
