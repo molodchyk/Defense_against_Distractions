@@ -1,16 +1,18 @@
-# Parallel Development Coordination
+# Development Coordination
 
-This document is the shared coordination file for simultaneous development on DaD. Both developers should read it before starting work and update it when ownership, active tasks, or risk boundaries change.
+This document is the coordination file for DaD development. The project is currently in single-developer mode. If a second developer joins again later, this file becomes the shared coordination source for ownership, active tasks, risk boundaries, misunderstandings, step-ins, and handoffs.
 
 ## Current Rule
 
-One developer owns one area at a time. Do not edit another developer's owned files unless the owner has committed and pushed their checkpoint or explicitly hands the area over.
+Codex in this thread is currently the only active developer. Work should still be done in small, verified checkpoints so future parallel development can resume without untangling mixed changes.
+
+If a second developer becomes active again, one developer owns one area at a time. Do not edit another developer's owned files unless the owner has committed and pushed their checkpoint or explicitly hands the area over.
 
 Keep commits small, verified, and pushed. Prefer behavior-neutral structure commits before behavior changes.
 
-Developer 1 is responsible for keeping this document current. If the active ownership, next task, blocked area, or shared understanding changes, Developer 1 should update this file in the same checkpoint that changes the project state.
+Codex is responsible for keeping this document current. If the active ownership, next task, blocked area, or shared understanding changes, Codex should update this file in the same checkpoint that changes the project state.
 
-This file is also the shared communication place for coordination misunderstandings, step-ins, and handoffs. If chat context is unclear, this document is the authoritative local coordination record.
+If chat context is unclear, this document is the authoritative local coordination record.
 
 ## Protected Invariants
 
@@ -23,7 +25,7 @@ This file is also the shared communication place for coordination misunderstandi
 - Intent coherence stores bounded local diagnostics only. Do not store raw typed input, raw page text, full tab URLs, tab titles, or personal text samples.
 - Billing/entitlement UI is dormant unless explicitly enabled. Provider truth belongs on a backend, not in the extension package.
 
-## Developer 1
+## Active Developer
 
 Owner: Codex in this thread.
 
@@ -42,7 +44,7 @@ Current focus:
 - Current folder-density debt: none reported by `npm run audit:folder-density`.
 - `manifest.json` load order must stay preserved exactly when content scripts move.
 
-Developer 1 currently owns:
+Codex currently owns:
 
 - `manifest.json`
 - `src/js/content/**`
@@ -61,7 +63,7 @@ Developer 1 currently owns:
 - `docs/modularization-roadmap.md`
 - `docs/parallel-development.md`
 
-Next Developer 1 tasks after this checkpoint:
+Next active-developer tasks after this checkpoint:
 
 - Split remaining large content adapters:
   - `src/js/content/content-blocking/overlay.js`
@@ -74,9 +76,13 @@ Next Developer 1 tasks after this checkpoint:
 
 ## Developer 2
 
-Recommended owner: UI/CSS and options-page design work that does not touch Developer 1's files.
+Status: inactive. There is no second developer right now.
 
-Safe initial tasks:
+This lane is parked guidance for a future second developer. It is not an active ownership claim.
+
+Recommended future owner: UI/CSS and options-page design work that does not touch Codex-owned architecture/runtime files.
+
+Safe future tasks:
 
 - Split `src/css/style.css` into feature/surface CSS files according to `docs/modularization-roadmap.md`.
 - Improve options-page visual hierarchy and spacing without changing plan storage behavior.
@@ -86,9 +92,9 @@ Safe initial tasks:
   - `src/js/options/**`, except avoid `src/js/options/plans/**` if a plan-controller edit is also active and avoid `src/js/options/schedules/**` unless claiming schedule-board UI work.
   - `docs/release-readiness.md`
   - `docs/plans-architecture.md`
-- Add CSS ownership notes to `docs/code-structure.md` only after Developer 1's current doc edit is pushed.
+- Add CSS ownership notes to `docs/code-structure.md` only after Codex's current doc edit is pushed.
 
-Developer 2 should avoid while Developer 1 owns architecture/runtime debt:
+A future Developer 2 should avoid while Codex owns architecture/runtime debt:
 
 - `manifest.json`
 - `src/js/content/**`
@@ -107,7 +113,7 @@ Developer 2 should avoid while Developer 1 owns architecture/runtime debt:
 - `docs/modularization-roadmap.md`
 - `docs/parallel-development.md`, unless the edit is a coordination handoff note.
 
-Good Developer 2 follow-up tasks:
+Good future Developer 2 follow-up tasks:
 
 - Create an options-page layout plan for the future sidebar sections:
   - Plans
@@ -122,7 +128,7 @@ Good Developer 2 follow-up tasks:
 
 1. Pull latest `main`.
 2. Read this document, `docs/code-structure.md`, and `docs/modularization-roadmap.md`.
-3. Claim an area by updating this document before broad edits.
+3. In single-developer mode, keep this document updated when active focus or ownership boundaries change. In parallel mode, claim an area by updating this document before broad edits.
 4. Do not mix large path moves with behavior changes in the same commit.
 5. Run the narrowest relevant checks before committing.
 6. Push after every stable checkpoint.
