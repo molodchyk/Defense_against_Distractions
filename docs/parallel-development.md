@@ -49,7 +49,6 @@ Next Developer 1 tasks after this checkpoint:
 
 - Split remaining large content adapters without behavior changes:
   - `src/js/content/content-blocking/overlay.js`
-  - `src/js/content/intentIntervention.js`
   - `src/js/content/pageSignals.js`
   - `src/js/content/pomodoro/miniPanel.js`
 - Keep `src/js/content` direct file count below the folder-density budget.
@@ -139,6 +138,7 @@ Release-facing changes:
 - `src/js/shared` exceeds folder-density hard limits.
 - `src/js/content` is now split by feature folder, but several content adapters still exceed file-size budgets.
 - `src/js/content/ui-blocking/controller.js` is below the hard file-size limit after extracting `pickerStyle.js` and `pickerPanel.js`.
+- `src/js/content/intentIntervention.js` is below the hard file-size limit after extracting `src/js/content/intent/` constants, messages, style, theme, and prompt modules.
 - `src/css/style.css` exceeds file-size hard limits.
 - `test/shared.test.js` is too large and should be split by feature.
 - `src/js/shared/intentCoherence.js`, `src/js/background/pomodoro.js`, and `src/js/shared/pomodoro.js` exceed file-size hard limits.
