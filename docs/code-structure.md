@@ -76,6 +76,15 @@ Plan behavior is split by runtime and feature folder:
 - `src/js/options/schedules/scheduleBoardSummary.js` owns the compact saved-time-block summary shown above the schedule graph.
 - `src/js/content/plans.js` owns the non-module content-script adapter used by website blocking and UI-rule filtering.
 
+Global Blocked UI options behavior is split under `src/js/options/element-rules/`:
+
+- `constants.js` owns UI-rule storage keys, picker strategy labels, fingerprint diagnostic fields, and fallback messages.
+- `messages.js` owns localized message lookup for global UI-rule controls.
+- `format.js` owns small display formatters used by UI-rule diagnostics and quota text.
+- `storage.js` owns split sync-storage reads/writes, legacy rule migration, quota reserve checks, rule updates, deletion, and storage-usage measurement.
+- `ruleItem.js` owns global UI-rule card rendering, editable controls, diagnostics, domain-scope action, deletion action, and plan-assignment checkboxes.
+- `src/js/options/elementRules.js` is the thin entry that renders the list, storage-usage summary, empty state, and storage-change listener.
+
 Legacy standalone groups, schedules, and whitelist entries are migration inputs. The options page first converts old `websiteGroups` arrays into `group_*` records with an awaitable migration, then migrates `group_*` records into plan-owned entries, `schedules` into plan schedules, and `whitelistedSites` into plan allowed sites. The retired standalone editor modules have been removed; future compatibility work should happen in `src/js/options/legacyMigration.js`, `src/js/shared/legacyMigration.js`, and the plan model instead of reintroducing hidden global editors.
 
 Billing behavior is intentionally dormant and provider-neutral:

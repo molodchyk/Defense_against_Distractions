@@ -429,3 +429,7 @@ The popup split is complete for the entry-file level. The next practical targets
 - Split `src/css/style.css` by options surface once the options-page layout stabilizes.
 
 The highest product-value target remains the plan editor because it owns the product model users will live in.
+
+Recent checkpoint:
+
+- Global Blocked UI options behavior now lives under `src/js/options/element-rules/` for constants/messages, formatting, storage/quota, and rule-card rendering. `src/js/options/elementRules.js` remains the thin list/sync entry.
