@@ -147,7 +147,13 @@ The intent layer is plan-aware, but it is still not a full browser-navigation qu
 
 Pomodoro is split across plan configuration, runtime, and local activity:
 
-- `src/js/shared/pomodoro.js` owns tested Pomodoro settings, runtime, phase, activity-state, rest-credit, and local history helpers.
+- `src/js/shared/pomodoro.js` is the compatibility barrel for the tested shared Pomodoro API. Keep existing imports pointed there unless a caller has a narrow reason to import a submodule directly.
+- `src/js/shared/pomodoro/constants.js` owns Pomodoro storage keys, phase names, pause reasons, system states, default settings, and bounded constants.
+- `src/js/shared/pomodoro/settings.js` owns plan Pomodoro settings normalization.
+- `src/js/shared/pomodoro/activity.js` owns local activity-state normalization and active/away/system-state updates.
+- `src/js/shared/pomodoro/history.js` owns local Pomodoro history normalization, daily reset behavior, recent event bounding, and local aggregate counters.
+- `src/js/shared/pomodoro/runtime.js` owns runtime phase transitions, pause/resume/reset, system-rest credit, required rest, remaining time, and active-state checks.
+- `src/js/shared/pomodoro/status.js` owns display-oriented Pomodoro status summaries and duration formatting.
 - `src/js/background/pomodoro.js` owns timer truth, alarms, local runtime state, activity state, local history state, auto-start, system idle/locked reconciliation, and popup/options messages.
 - `src/js/content/pomodoro/activity.js` sends throttled top-frame activity pings for local active/away status.
 - `src/js/content/pomodoro/miniPanelState.js` owns local-only mini-panel UI-state persistence and normalization.

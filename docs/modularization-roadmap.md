@@ -11,7 +11,7 @@ The source-backed Chrome extension constraints behind this roadmap are summarize
 Current pressure points:
 
 - Runtime folders are becoming dumping grounds. `src/js/options`, `src/js/content`, and root `src/js` contain unrelated responsibilities side by side.
-- Some files are too large to reason about safely: options plans, popup, Pomodoro modules, Pomodoro mini-panel, and large CSS files.
+- Some files are too large to reason about safely: options plans, popup, Pomodoro background runtime, Pomodoro mini-panel, and large CSS files.
 - UI rendering, storage mutation, validation, Chrome API calls, and domain rules are often mixed in the same file.
 - Content scripts use classic manifest load order and `window.DAD` globals. That is workable, but it must be treated as an explicit adapter layer, not as the main architecture.
 - Tests have been split into feature-owned files under `test/shared/`, but runtime modules still carry the main hard-size debt.
@@ -328,6 +328,7 @@ Continue splitting `src/js/content/pomodoro/miniPanel.js` into small content-scr
 
 Completed first steps:
 
+- Shared Pomodoro core now lives under `src/js/shared/pomodoro/` for constants, settings, activity, history, runtime transitions, and status formatting. `src/js/shared/pomodoro.js` remains the compatibility barrel for current callers.
 - `src/js/content/pomodoro/miniPanelState.js` owns local UI-state persistence.
 - `src/js/content/pomodoro/miniPanelStyle.js` owns CSS injection and shared layout constants.
 - Pomodoro content scripts now live under `src/js/content/pomodoro/`.
