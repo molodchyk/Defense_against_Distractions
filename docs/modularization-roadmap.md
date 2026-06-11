@@ -267,9 +267,11 @@ Use compatibility wrappers and move one feature surface at a time.
 
 ### Phase 2: Popup Split
 
+Status: completed for the entry-file split. `src/js/popup.js` is now a bootstrap/wiring file, and popup responsibilities live under `src/js/popup/`.
+
 The popup is the safest first UI split because it is a single page and already imports ES modules.
 
-Split `src/js/popup.js` into:
+The split separates:
 
 - popup bootstrap
 - message helpers
@@ -282,7 +284,7 @@ Split `src/js/popup.js` into:
 - intent diagnostics card
 - diagnostics export
 
-The popup entry file should become an initializer that wires modules together.
+The popup entry file is now an initializer that wires modules together. New popup features should not grow `src/js/popup.js`; add or extend the smallest focused popup module.
 
 ### Phase 3: Plans Options Split
 
@@ -418,16 +420,12 @@ Each modularization slice should satisfy:
 - Docs are updated if ownership changes.
 - The commit message names the moved responsibility, not just "refactor".
 
-## First Implementation Target
+## Next Implementation Targets
 
-The next best practical target is the popup split.
+The popup split is complete for the entry-file level. The next practical targets are:
 
-Reason:
+- Continue reducing soft file-size warnings in touched files, starting with user-facing adapters and model files.
+- Split the plan controller further when plan schedule, entries, Pomodoro, or intent behavior changes.
+- Split `src/css/style.css` by options surface once the options-page layout stabilizes.
 
-- It is too large.
-- It is user-facing.
-- It is already ES-module based.
-- It touches Pomodoro, block diagnostics, intent diagnostics, and UI picker, so splitting it creates reusable UI conventions before deeper options-page work.
-- It does not require changing content-script manifest load order.
-
-The second target is the plan controller in `src/js/options/plans/controller.js`, because that file owns the product model users will live in.
+The highest product-value target remains the plan editor because it owns the product model users will live in.

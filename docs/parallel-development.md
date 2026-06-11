@@ -1,12 +1,12 @@
 # Development Coordination
 
-This document is the coordination file for DaD development. The project is currently in single-developer mode. If a second developer joins again later, this file becomes the shared coordination source for ownership, active tasks, risk boundaries, misunderstandings, step-ins, and handoffs.
+This document is the coordination file for DaD development. The project is currently in single-developer mode. If a second developer joins again later, this file can become the shared coordination source for ownership, active tasks, risk boundaries, misunderstandings, step-ins, and handoffs.
 
 ## Current Rule
 
 Codex in this thread is currently the only active developer. Work should still be done in small, verified checkpoints so future parallel development can resume without untangling mixed changes.
 
-If a second developer becomes active again, one developer owns one area at a time. Do not edit another developer's owned files unless the owner has committed and pushed their checkpoint or explicitly hands the area over.
+There is no active second developer right now. Treat all ownership notes below as Codex's current working ledger, not as a live handoff contract.
 
 Keep commits small, verified, and pushed. Prefer behavior-neutral structure commits before behavior changes.
 
@@ -42,6 +42,7 @@ Current focus:
 - Completed checkpoint: the on-page Pomodoro mini-panel has been split into state, style, theme, layout, render, and controller content scripts while preserving manifest load order.
 - Completed checkpoint: the blocked-page overlay has been split into messages, style, theme, diagnostics, Pomodoro status, event guards, and a thin controller while preserving manifest load order.
 - Completed checkpoint: page-signal content reporting has been split into activity, collector, reporter, and thin controller content scripts while preserving manifest load order.
+- Completed checkpoint: the popup entry file has been split into panel construction, UI picker launching, diagnostics export, event binding, refresh loops, and a thin bootstrap.
 - Current checkpoint: remaining JS work is soft-size adapter cleanup and folder-density reduction; no JS file-size hard violations are currently reported by `npm run audit:file-sizes`.
 - Current folder-density debt: none reported by `npm run audit:folder-density`.
 - `manifest.json` load order must stay preserved exactly when content scripts move.
@@ -60,6 +61,8 @@ Codex currently owns:
 - `src/js/options/schedules/**`
 - `src/js/background/pomodoro.js`
 - `src/js/background/pomodoro/**`
+- `src/js/popup.js`
+- `src/js/popup/**`
 - `test/shared/**`
 - `docs/code-structure.md`
 - `docs/modularization-roadmap.md`
@@ -74,65 +77,21 @@ Next active-developer tasks after this checkpoint:
 - Keep shared-root density under budget; new shared behavior should go into a feature subfolder instead of `src/js/shared`.
 - Keep tests in feature folders under `test/shared/`; do not recreate a broad omnibus test file.
 
-## Developer 2
+## Parked Parallel Lane
 
 Status: inactive. There is no second developer right now.
 
-This lane is parked guidance for a future second developer. It is not an active ownership claim.
-
-Recommended future owner: UI/CSS and options-page design work that does not touch Codex-owned architecture/runtime files.
-
-Safe future tasks:
-
-- Split `src/css/style.css` into feature/surface CSS files according to `docs/modularization-roadmap.md`.
-- Improve options-page visual hierarchy and spacing without changing plan storage behavior.
-- Work in these paths first:
-  - `src/css/**`
-  - `src/options.html`
-  - `src/js/options/**`, except avoid `src/js/options/plans/**` if a plan-controller edit is also active and avoid `src/js/options/schedules/**` unless claiming schedule-board UI work.
-  - `docs/release-readiness.md`
-  - `docs/plans-architecture.md`
-- Add CSS ownership notes to `docs/code-structure.md` only after Codex's current doc edit is pushed.
-
-A future Developer 2 should avoid while Codex owns architecture/runtime debt:
-
-- `manifest.json`
-- `src/js/content/**`
-- `src/js/shared/intentCoherence.js`
-- `src/js/shared/intent/**`
-- `src/js/shared/pomodoro.js`
-- `src/js/shared/pomodoro/**`
-- `src/js/shared/schedules/**`
-- `src/js/shared/storage/**`
-- `src/js/shared/ui/**`
-- `src/js/options/schedules/**`
-- `src/js/background/pomodoro.js`
-- `src/js/background/pomodoro/**`
-- `test/shared/**`
-- `docs/code-structure.md`
-- `docs/modularization-roadmap.md`
-- `docs/parallel-development.md`, unless the edit is a coordination handoff note.
-
-Good future Developer 2 follow-up tasks:
-
-- Create an options-page layout plan for the future sidebar sections:
-  - Plans
-  - Blocked UI
-  - Intent
-  - Usage
-  - Settings
-- Redesign settings placement so passwords, UI mode, UI language, import/export, and instruction guide live in Settings.
-- Keep the UI redesign grounded in existing behavior. Do not remove controls unless the replacement workflow is implemented.
+If a second developer joins again, recreate a live ownership lane here before they edit. Good future split points are CSS/options-page visual design or another clearly bounded feature area that does not overlap the active Codex checkpoint.
 
 ## Coordination Workflow
 
 1. Pull latest `main`.
 2. Read this document, `docs/code-structure.md`, and `docs/modularization-roadmap.md`.
-3. In single-developer mode, keep this document updated when active focus or ownership boundaries change. In parallel mode, claim an area by updating this document before broad edits.
+3. In single-developer mode, keep this document updated when active focus or ownership boundaries change. If parallel mode resumes, claim an area by updating this document before broad edits.
 4. Do not mix large path moves with behavior changes in the same commit.
 5. Run the narrowest relevant checks before committing.
 6. Push after every stable checkpoint.
-7. If both developers need the same file, one developer should finish and push first; the other rebases or pulls before continuing.
+7. If parallel mode resumes and two developers need the same file, one developer should finish and push first; the other rebases or pulls before continuing.
 
 ## Required Checks By Change Type
 
@@ -176,6 +135,7 @@ Release-facing changes:
 - `src/js/content/pomodoro/miniPanel.js` is now a thin controller after extracting mini-panel theme, layout, and render modules.
 - `src/js/content/content-blocking/overlay.js` is now a thin controller after extracting blocked-overlay message, style, theme, diagnostics, Pomodoro, and event modules.
 - `src/js/content/pageSignals.js` is now a thin controller after extracting page-signal activity, collector, and reporter modules.
+- `src/js/popup.js` is now a thin popup bootstrap after extracting panel construction, UI picker launch, diagnostics export, event binding, and refresh-loop modules.
 - `src/js/content/ui-blocking/controller.js` is below the hard file-size limit after extracting `pickerStyle.js` and `pickerPanel.js`.
 - `src/js/content/intentIntervention.js` is below the hard file-size limit after extracting `src/js/content/intent/` constants, messages, style, theme, and prompt modules.
 - `src/css/style.css` exceeds file-size hard limits.
