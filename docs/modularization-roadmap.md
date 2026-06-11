@@ -433,3 +433,4 @@ The highest product-value target remains the plan editor because it owns the pro
 Recent checkpoint:
 
 - Global Blocked UI options behavior now lives under `src/js/options/element-rules/` for constants/messages, formatting, storage/quota, and rule-card rendering. `src/js/options/elementRules.js` remains the thin list/sync entry.
+- Shared usage stats now live under `src/js/shared/usage-stats/` for constants, sanitizers, metric aggregation, state normalization, page-signal recording, summaries, and export payloads. `src/js/shared/usageStats.js` remains the compatibility barrel for current callers and tests.

@@ -44,6 +44,7 @@ Current focus:
 - Completed checkpoint: page-signal content reporting has been split into activity, collector, reporter, and thin controller content scripts while preserving manifest load order.
 - Completed checkpoint: the popup entry file has been split into panel construction, UI picker launching, diagnostics export, event binding, refresh loops, and a thin bootstrap.
 - Completed checkpoint: global Blocked UI options have been split into constants/messages, formatting, storage/quota, rule-card rendering, and a thin list/sync entry.
+- Completed checkpoint: shared usage stats have been split into constants, utils, metrics, state, record, and summary modules under `src/js/shared/usage-stats/` while preserving the public barrel API.
 - Current checkpoint: remaining JS work is soft-size adapter cleanup and folder-density reduction; no JS file-size hard violations are currently reported by `npm run audit:file-sizes`.
 - Current folder-density debt: none reported by `npm run audit:folder-density`.
 - `manifest.json` load order must stay preserved exactly when content scripts move.
@@ -59,6 +60,8 @@ Codex currently owns:
 - `src/js/shared/schedules/**`
 - `src/js/shared/storage/**`
 - `src/js/shared/ui/**`
+- `src/js/shared/usageStats.js`
+- `src/js/shared/usage-stats/**`
 - `src/js/options/schedules/**`
 - `src/js/options/elementRules.js`
 - `src/js/options/element-rules/**`
@@ -75,7 +78,6 @@ Next active-developer tasks after this checkpoint:
 
 - Split remaining large content adapters as they appear in `npm run audit:file-sizes`.
 - Split soft shared modules when they are touched for behavior:
-  - `src/js/shared/usageStats.js`
   - `src/js/shared/plans.js`
 - Keep shared-root density under budget; new shared behavior should go into a feature subfolder instead of `src/js/shared`.
 - Keep tests in feature folders under `test/shared/`; do not recreate a broad omnibus test file.
@@ -140,6 +142,7 @@ Release-facing changes:
 - `src/js/content/pageSignals.js` is now a thin controller after extracting page-signal activity, collector, and reporter modules.
 - `src/js/popup.js` is now a thin popup bootstrap after extracting panel construction, UI picker launch, diagnostics export, event binding, and refresh-loop modules.
 - `src/js/options/elementRules.js` is now a thin global Blocked UI list/sync entry after extracting storage/quota, formatting, and rule-item rendering modules.
+- `src/js/shared/usageStats.js` is now a small compatibility barrel. The bounded local usage-stats implementation lives under `src/js/shared/usage-stats/`.
 - `src/js/content/ui-blocking/controller.js` is below the hard file-size limit after extracting `pickerStyle.js` and `pickerPanel.js`.
 - `src/js/content/intentIntervention.js` is below the hard file-size limit after extracting `src/js/content/intent/` constants, messages, style, theme, and prompt modules.
 - `src/css/style.css` exceeds file-size hard limits.
