@@ -36,6 +36,8 @@
         "src/js/content/uiLanguage.js",
         "src/js/content/pomodoro/activity.js",
         "src/js/content/pomodoro/miniPanelState.js",
+        "src/js/content/pomodoro/miniPanelStyleConstants.js",
+        "src/js/content/pomodoro/miniPanelStyleCss.js",
         "src/js/content/pomodoro/miniPanelStyle.js",
         "src/js/content/pomodoro/miniPanelTheme.js",
         "src/js/content/pomodoro/miniPanelLayout.js",

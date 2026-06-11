@@ -46,6 +46,7 @@ Current focus:
 - Completed checkpoint: global Blocked UI options have been split into constants/messages, formatting, storage/quota, rule-card rendering, and a thin list/sync entry.
 - Completed checkpoint: shared usage stats have been split into constants, utils, metrics, state, record, and summary modules under `src/js/shared/usage-stats/` while preserving the public barrel API.
 - Completed checkpoint: background intent coherence has been split into Chrome API, storage, policy, page-signal recording, tab lineage, diagnostics, message routing, and initializer modules under `src/js/background/intent/` while preserving the public initializer barrel.
+- Completed checkpoint: Pomodoro mini-panel style behavior has been split into constants, CSS generation, and a thin style-injection facade while preserving the public `PomodoroMiniPanelStyle` API.
 - Current checkpoint: remaining JS work is soft-size adapter cleanup and folder-density reduction; no JS file-size hard violations are currently reported by `npm run audit:file-sizes`.
 - Current folder-density debt: none reported by `npm run audit:folder-density`.
 - `manifest.json` load order must stay preserved exactly when content scripts move.
@@ -141,6 +142,7 @@ Release-facing changes:
 - `src/js/options` is back within the folder-density budget after moving reusable schedule-board modules into `src/js/options/schedules/`.
 - `src/js/content` is now split by feature folder, but several content adapters still exceed file-size budgets.
 - `src/js/content/pomodoro/miniPanel.js` is now a thin controller after extracting mini-panel theme, layout, and render modules.
+- `src/js/content/pomodoro/miniPanelStyle.js` is now a thin style facade after extracting mini-panel constants and CSS text generation.
 - `src/js/content/content-blocking/overlay.js` is now a thin controller after extracting blocked-overlay message, style, theme, diagnostics, Pomodoro, and event modules.
 - `src/js/content/pageSignals.js` is now a thin controller after extracting page-signal activity, collector, and reporter modules.
 - `src/js/popup.js` is now a thin popup bootstrap after extracting panel construction, UI picker launch, diagnostics export, event binding, and refresh-loop modules.

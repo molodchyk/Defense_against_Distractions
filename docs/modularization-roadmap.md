@@ -335,7 +335,9 @@ Completed first steps:
 - Shared storage helpers now live under `src/js/shared/storage/`, and shared UI helpers now live under `src/js/shared/ui/`. `src/js/shared` is now within the folder-density budget.
 - Background Pomodoro now lives under `src/js/background/pomodoro/` for Chrome storage/alarms, auto-start suppression, plan selection, transition history, runtime reconciliation, notifications, and event listener registration. `src/js/background/pomodoro.js` remains the compatibility entry imported by `background.js`.
 - `src/js/content/pomodoro/miniPanelState.js` owns local UI-state persistence.
-- `src/js/content/pomodoro/miniPanelStyle.js` owns CSS injection and shared layout constants. It is still a soft file-size split candidate if mini-panel CSS changes again.
+- `src/js/content/pomodoro/miniPanelStyleConstants.js` owns mini-panel IDs, layout constants, and resize directions.
+- `src/js/content/pomodoro/miniPanelStyleCss.js` owns the generated mini-panel CSS text.
+- `src/js/content/pomodoro/miniPanelStyle.js` is the thin style facade that injects CSS and exposes the public `PomodoroMiniPanelStyle` API.
 - `src/js/content/pomodoro/miniPanelTheme.js` owns mini-panel theme sync.
 - `src/js/content/pomodoro/miniPanelLayout.js` owns mini-panel layout persistence, drag, resize, and viewport clamping.
 - `src/js/content/pomodoro/miniPanelRender.js` owns mini-panel runtime/status rendering and display formatting.
@@ -440,3 +442,4 @@ Recent checkpoint:
 - Shared plan helpers now live under `src/js/shared/plans/` for constants, normalization, schedule activity, effective group/UI-rule selection, and intent-policy combination. `src/js/shared/plans.js` remains the compatibility barrel for current callers and tests.
 - Blocked-page runtime behavior now lives under `src/js/blocked/` for Chrome API wrappers, localization, UI-mode theme sync, and Pomodoro timer rendering. `src/js/blockedScript.js` remains the `src/blocked.html` module entry.
 - Shared Pomodoro runtime helpers now live in focused modules for runtime state, phase durations, rest credit, and transitions. `src/js/shared/pomodoro/runtime.js` remains the compatibility barrel for current callers and tests.
+- Pomodoro mini-panel style behavior now lives in focused content scripts for constants, CSS text generation, and a thin injection facade. `src/js/content/pomodoro/miniPanelStyle.js` remains the public content-script style API.

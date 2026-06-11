@@ -213,7 +213,9 @@ Pomodoro is split across plan configuration, runtime, and local activity:
 - `src/js/background/pomodoro/initializer.js` owns Chrome event listener registration, idle detection startup, alarm wakeups, and runtime message routing.
 - `src/js/content/pomodoro/activity.js` sends throttled top-frame activity pings for local active/away status.
 - `src/js/content/pomodoro/miniPanelState.js` owns local-only mini-panel UI-state persistence and normalization.
-- `src/js/content/pomodoro/miniPanelStyle.js` owns mini-panel CSS injection and shared layout constants. It must load before the mini-panel controller.
+- `src/js/content/pomodoro/miniPanelStyleConstants.js` owns mini-panel IDs, layout constants, and resize directions.
+- `src/js/content/pomodoro/miniPanelStyleCss.js` owns the generated mini-panel CSS text.
+- `src/js/content/pomodoro/miniPanelStyle.js` is the thin style facade that injects CSS and exposes the public `PomodoroMiniPanelStyle` API. These style scripts must load before the mini-panel controller.
 - `src/js/content/pomodoro/miniPanelTheme.js` owns mini-panel UI-mode sync with extension theme settings and system color-scheme changes.
 - `src/js/content/pomodoro/miniPanelLayout.js` owns mini-panel persisted layout state, drag, resize, viewport clamping, minimized state, and responsive size flags.
 - `src/js/content/pomodoro/miniPanelRender.js` owns mini-panel runtime/status row rendering and display formatting.
