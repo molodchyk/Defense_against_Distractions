@@ -200,7 +200,7 @@ Pomodoro is split across plan configuration, runtime, and local activity:
 - `src/js/shared/pomodoro/settings.js` owns plan Pomodoro settings normalization.
 - `src/js/shared/pomodoro/activity.js` owns local activity-state normalization and active/away/system-state updates.
 - `src/js/shared/pomodoro/history.js` owns local Pomodoro history normalization, daily reset behavior, recent event bounding, and local aggregate counters.
-- `src/js/shared/pomodoro/runtime.js` owns runtime phase transitions, pause/resume/reset, system-rest credit, required rest, remaining time, and active-state checks.
+- `src/js/shared/pomodoro/runtime.js` is the compatibility barrel for runtime helpers. `runtimeState.js` owns runtime normalization, remaining time, and active checks. `runtimeDurations.js` owns phase duration and required-rest calculations. `runtimeRestCredit.js` owns system away/locked rest credit. `runtimeTransitions.js` owns start, pause, resume, reset, and phase completion.
 - `src/js/shared/pomodoro/status.js` owns display-oriented Pomodoro status summaries and duration formatting.
 - `src/js/background/pomodoro.js` is the background Pomodoro entry barrel imported by `src/js/background.js`.
 - `src/js/background/pomodoro/constants.js` owns background-only alarm, suppression, and protected-schedule message constants.
