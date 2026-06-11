@@ -20,6 +20,16 @@ The detailed modularization target, dependency rules, file-size budgets, and mig
 
 `src/js/shared` contains ES modules used by option/background code and tests.
 
+Shared schedule helpers live under `src/js/shared/schedules/`:
+
+- `src/js/shared/schedules/scheduleForm.js` owns schedule form defaults, display formatting, typed time normalization, and unnamed schedule naming.
+- `src/js/shared/schedules/scheduleGrid.js` owns weekly-grid constants and pure range helpers for click, drag, move, and resize interactions.
+- `src/js/shared/schedules/scheduleRules.js` owns overlap, minimum-unlocked-time, and strictness validation.
+- `src/js/shared/schedules/scheduleSummary.js` owns compact schedule count and activity summary text.
+- `src/js/shared/schedules/scheduleTime.js` owns time conversion, active-schedule checks, recurrence matching, and schedule activity counts.
+
+New schedule behavior should go into this subfolder instead of adding files directly to `src/js/shared`.
+
 ## Test Structure
 
 Node tests live under `test/shared/` by product area:

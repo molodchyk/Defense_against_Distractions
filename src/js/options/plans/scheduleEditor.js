@@ -3,10 +3,10 @@
 
 import { savePlansWithPriority } from '../../shared/criticalScheduleStorage.js';
 import { getSync } from '../../shared/chromeStorage.js';
-import { createDefaultSchedule, formatScheduleTime, getNextUnnamedScheduleName } from '../../shared/scheduleForm.js';
-import { createScheduleRangeFromStart, SCHEDULE_GRID_DAYS } from '../../shared/scheduleGrid.js';
-import { doSchedulesOverlap, hasMinimumUnlockedTime, isScheduleMoreStrict } from '../../shared/scheduleRules.js';
-import { isCurrentTimeInAnySchedule, timeStringToMinutes } from '../../shared/scheduleTime.js';
+import { createDefaultSchedule, formatScheduleTime, getNextUnnamedScheduleName } from '../../shared/schedules/scheduleForm.js';
+import { createScheduleRangeFromStart, SCHEDULE_GRID_DAYS } from '../../shared/schedules/scheduleGrid.js';
+import { doSchedulesOverlap, hasMinimumUnlockedTime, isScheduleMoreStrict } from '../../shared/schedules/scheduleRules.js';
+import { isCurrentTimeInAnySchedule, timeStringToMinutes } from '../../shared/schedules/scheduleTime.js';
 import {
   isInProtectedSchedule,
   normalizePlan,

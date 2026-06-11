@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
-import { timeStringToMinutes } from '../shared/scheduleTime.js';
+import { timeStringToMinutes } from '../shared/schedules/scheduleTime.js';
 
 export const WEEKDAY_DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
 export const WEEKEND_DAYS = ['Sat', 'Sun'];

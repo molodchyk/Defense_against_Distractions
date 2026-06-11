@@ -7,10 +7,10 @@ import {
   getScheduleActivityCounts,
   isCurrentTimeInAnySchedule,
   timeStringToMinutes
-} from '../../../src/js/shared/scheduleTime.js';
+} from '../../../src/js/shared/schedules/scheduleTime.js';
 import {
   formatScheduleActivitySummary
-} from '../../../src/js/shared/scheduleSummary.js';
+} from '../../../src/js/shared/schedules/scheduleSummary.js';
 
 describe('schedule time helpers', () => {
   it('converts HH:mm values to minutes', () => {

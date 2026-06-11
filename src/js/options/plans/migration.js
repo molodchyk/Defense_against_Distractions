@@ -13,7 +13,7 @@ import {
   PLANS_STORAGE_KEY
 } from '../../shared/plans.js';
 import { normalizeUrl } from '../../shared/url.js';
-import { SCHEDULE_GRID_DAYS } from '../../shared/scheduleGrid.js';
+import { SCHEDULE_GRID_DAYS } from '../../shared/schedules/scheduleGrid.js';
 import { cloneSchedule } from '../scheduleBoard.js';
 import { uniqueStrings } from './collections.js';
 import { getPlanMessage } from './messages.js';

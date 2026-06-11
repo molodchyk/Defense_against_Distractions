@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
-import { isCurrentTimeInAnySchedule } from './scheduleTime.js';
+import { isCurrentTimeInAnySchedule } from './schedules/scheduleTime.js';
 import { normalizeUrl } from './url.js';
 import { normalizePomodoroSettings } from './pomodoro.js';
 import {

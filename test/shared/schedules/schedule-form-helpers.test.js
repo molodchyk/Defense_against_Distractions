@@ -8,7 +8,7 @@ import {
   formatScheduleTime,
   getNextUnnamedScheduleName,
   normalizeScheduleTimeInput
-} from '../../../src/js/shared/scheduleForm.js';
+} from '../../../src/js/shared/schedules/scheduleForm.js';
 
 describe('schedule form helpers', () => {
   it('formats hour-only schedule times', () => {

@@ -34,8 +34,9 @@ Current focus:
 - Completed checkpoint: `src/js/shared/intentCoherence.js` has been split into feature-owned modules under `src/js/shared/intent/` while preserving the public barrel API.
 - Completed checkpoint: `src/js/shared/pomodoro.js` has been split into feature-owned modules under `src/js/shared/pomodoro/` while preserving the public barrel API.
 - Completed checkpoint: `src/js/background/pomodoro.js` has been split into feature-owned modules under `src/js/background/pomodoro/` while preserving the public background initializer export.
+- Completed checkpoint: shared schedule helpers have been moved from the shared root into `src/js/shared/schedules/`, reducing `src/js/shared` from hard folder-density debt to soft folder-density debt.
 - Current checkpoint: remaining JS work is soft-size adapter cleanup and folder-density reduction; no JS file-size hard violations are currently reported by `npm run audit:file-sizes`.
-- Current folder-density debt: `src/js/shared` is a hard violation and `src/js/options` is a soft violation.
+- Current folder-density debt: `src/js/shared` and `src/js/options` are soft violations.
 - `manifest.json` load order must stay preserved exactly when content scripts move.
 
 Developer 1 currently owns:
@@ -46,6 +47,7 @@ Developer 1 currently owns:
 - `src/js/shared/intent/**`
 - `src/js/shared/pomodoro.js`
 - `src/js/shared/pomodoro/**`
+- `src/js/shared/schedules/**`
 - `src/js/background/pomodoro.js`
 - `src/js/background/pomodoro/**`
 - `test/shared/**`
@@ -62,7 +64,7 @@ Next Developer 1 tasks after this checkpoint:
 - Split soft shared modules when they are touched for behavior:
   - `src/js/shared/usageStats.js`
   - `src/js/shared/plans.js`
-- Reduce `src/js/shared` folder density by moving remaining broad helpers into feature subfolders with barrel exports.
+- Reduce remaining `src/js/shared` soft folder density by moving another coherent helper slice into a feature subfolder when it is touched.
 - Keep tests in feature folders under `test/shared/`; do not recreate a broad omnibus test file.
 
 ## Developer 2
@@ -89,6 +91,7 @@ Developer 2 should avoid while Developer 1 owns architecture/runtime debt:
 - `src/js/shared/intent/**`
 - `src/js/shared/pomodoro.js`
 - `src/js/shared/pomodoro/**`
+- `src/js/shared/schedules/**`
 - `src/js/background/pomodoro.js`
 - `src/js/background/pomodoro/**`
 - `test/shared/**`
@@ -153,7 +156,7 @@ Release-facing changes:
 
 ## Current Architecture Hotspots
 
-- `src/js/shared` exceeds folder-density hard limits.
+- `src/js/shared` exceeds folder-density soft limits after the schedule-helper move.
 - `src/js/options` exceeds folder-density soft limits.
 - `src/js/content` is now split by feature folder, but several content adapters still exceed file-size budgets.
 - `src/js/content/ui-blocking/controller.js` is below the hard file-size limit after extracting `pickerStyle.js` and `pickerPanel.js`.
@@ -162,6 +165,7 @@ Release-facing changes:
 - The test suite is now feature-owned under `test/shared/`; `test/shared/intent/intent-coherence-tabs.test.js` is still over the soft file-size target and should not grow.
 - `src/js/shared/intentCoherence.js` is now a small compatibility barrel. The shared intent implementation lives under `src/js/shared/intent/`.
 - `src/js/shared/pomodoro.js` is now a small compatibility barrel. The shared Pomodoro implementation lives under `src/js/shared/pomodoro/`.
+- Shared schedule helpers now live under `src/js/shared/schedules/`.
 - `src/js/background/pomodoro.js` is now a small compatibility barrel. The background Pomodoro implementation lives under `src/js/background/pomodoro/`.
 - `npm run audit:file-sizes` currently reports no hard JS file-size violations. Remaining file-size issues are soft warnings.
 
