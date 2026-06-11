@@ -147,7 +147,10 @@ New protection features should avoid becoming one large content script again. Pr
 The first local signal collector is split by runtime:
 
 - `src/js/shared/pageSignals.js` is the tested ES-module collector shape, including bounded visible-text topic tokens and summarized activity signals.
-- `src/js/content/pageSignals.js` is the classic content-script adapter that reports top-frame page summaries on navigation, throttled DOM changes, and summarized scroll/click/input activity.
+- `src/js/content/page-signals/activity.js` owns page-local active time, scroll/click/input counters, recommender-zone click detection, and bounded interaction-rate summaries.
+- `src/js/content/page-signals/collector.js` owns the classic content-script page-signal collector shape, including bounded visible-text token extraction and media/structure counts.
+- `src/js/content/page-signals/reporter.js` owns top-frame signal reporting, duplicate-report suppression, URL-change detection, history hooks, and mutation-observer scheduling.
+- `src/js/content/pageSignals.js` is the thin classic content-script controller that exposes `window.DAD.PageSignals`, installs listeners, and answers popup/background message requests.
 - `src/js/shared/intentCoherence.js` is the compatibility barrel for the tested shared intent coherence API. Keep existing imports pointed there unless a caller has a narrow reason to import a submodule directly.
 - `src/js/shared/intent/constants.js` owns intent storage keys, default settings, action names, risk states, Pomodoro influence modes, and bounded numeric sets.
 - `src/js/shared/intent/settings.js` owns plan intent-settings normalization.

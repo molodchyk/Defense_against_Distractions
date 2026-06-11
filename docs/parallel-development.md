@@ -41,6 +41,7 @@ Current focus:
 - Completed checkpoint: shared storage helpers now live under `src/js/shared/storage/`, and shared UI helpers now live under `src/js/shared/ui/`, bringing `src/js/shared` back within the folder-density budget.
 - Completed checkpoint: the on-page Pomodoro mini-panel has been split into state, style, theme, layout, render, and controller content scripts while preserving manifest load order.
 - Completed checkpoint: the blocked-page overlay has been split into messages, style, theme, diagnostics, Pomodoro status, event guards, and a thin controller while preserving manifest load order.
+- Completed checkpoint: page-signal content reporting has been split into activity, collector, reporter, and thin controller content scripts while preserving manifest load order.
 - Current checkpoint: remaining JS work is soft-size adapter cleanup and folder-density reduction; no JS file-size hard violations are currently reported by `npm run audit:file-sizes`.
 - Current folder-density debt: none reported by `npm run audit:folder-density`.
 - `manifest.json` load order must stay preserved exactly when content scripts move.
@@ -66,8 +67,7 @@ Codex currently owns:
 
 Next active-developer tasks after this checkpoint:
 
-- Split remaining large content adapters:
-  - `src/js/content/pageSignals.js`
+- Split remaining large content adapters as they appear in `npm run audit:file-sizes`.
 - Split soft shared modules when they are touched for behavior:
   - `src/js/shared/usageStats.js`
   - `src/js/shared/plans.js`
@@ -175,6 +175,7 @@ Release-facing changes:
 - `src/js/content` is now split by feature folder, but several content adapters still exceed file-size budgets.
 - `src/js/content/pomodoro/miniPanel.js` is now a thin controller after extracting mini-panel theme, layout, and render modules.
 - `src/js/content/content-blocking/overlay.js` is now a thin controller after extracting blocked-overlay message, style, theme, diagnostics, Pomodoro, and event modules.
+- `src/js/content/pageSignals.js` is now a thin controller after extracting page-signal activity, collector, and reporter modules.
 - `src/js/content/ui-blocking/controller.js` is below the hard file-size limit after extracting `pickerStyle.js` and `pickerPanel.js`.
 - `src/js/content/intentIntervention.js` is below the hard file-size limit after extracting `src/js/content/intent/` constants, messages, style, theme, and prompt modules.
 - `src/css/style.css` exceeds file-size hard limits.
