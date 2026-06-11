@@ -18,6 +18,7 @@ import {
   normalizePlans
 } from '../../shared/plans.js';
 import { POMODORO_ALARM_NAME } from './constants.js';
+import { isPastDueWorkWaitingForSystemReturn } from './runtimeReconciliation.js';
 
 export function getSync(keys) {
   return new Promise((resolve, reject) => {
@@ -72,6 +73,10 @@ export async function schedulePomodoroAlarm(runtime) {
   }
 
   const when = Date.parse(runtime.phaseEndsAt);
+  if (isPastDueWorkWaitingForSystemReturn(runtime)) {
+    return;
+  }
+
   if (Number.isFinite(when)) {
     chrome.alarms.create(POMODORO_ALARM_NAME, { when: Math.max(when, Date.now() + 1000) });
   }

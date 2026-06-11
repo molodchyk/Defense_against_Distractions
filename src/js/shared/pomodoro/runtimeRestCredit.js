@@ -38,11 +38,9 @@ export function getPomodoroRestCreditMs(runtime, now = Date.now()) {
     return 0;
   }
 
-  const workEndsAt = toTimestamp(normalizedRuntime.phaseEndsAt);
   const creditStartedAt = toTimestamp(normalizedRuntime.restCreditStartedAt);
-  const creditEnd = Number.isFinite(workEndsAt) ? Math.min(now, workEndsAt) : now;
   const activeCreditMs = Number.isFinite(creditStartedAt)
-    ? Math.max(0, creditEnd - creditStartedAt)
+    ? Math.max(0, now - creditStartedAt)
     : 0;
 
   return Math.max(0, normalizedRuntime.restCreditMs + activeCreditMs);

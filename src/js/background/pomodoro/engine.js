@@ -60,10 +60,7 @@ import {
   notifyPomodoroStrictBreakReset
 } from './notifications.js';
 import { recordPomodoroTransitionHistory } from './history.js';
-
-function didRuntimeChange(before, after) {
-  return JSON.stringify(normalizePomodoroRuntime(before)) !== JSON.stringify(normalizePomodoroRuntime(after));
-}
+import { didRuntimeChange, getPhaseTransitionAt, isWaitingForSystemReturn } from './runtimeReconciliation.js';
 
 export async function startNextWorkIfReady(runtime, plans, now = Date.now(), reason = 'activityStartedNextWork') {
   const runtimePlan = findRuntimePlan(plans, runtime);
@@ -98,7 +95,7 @@ export async function startNextWorkIfReady(runtime, plans, now = Date.now(), rea
   return saveRuntime(startedRuntime);
 }
 
-export async function refreshExpiredRuntime(runtime, plans) {
+export async function refreshExpiredRuntime(runtime, plans, now = Date.now()) {
   if (!isPomodoroActive(runtime) && !runtime.activePlanId) {
     await schedulePomodoroAlarm(runtime);
     return runtime;
@@ -110,17 +107,19 @@ export async function refreshExpiredRuntime(runtime, plans) {
   }
 
   let nextRuntime = runtime;
+  if (isWaitingForSystemReturn(nextRuntime)) {
+    await schedulePomodoroAlarm(nextRuntime);
+    return nextRuntime;
+  }
+
   let guard = 0;
   while (
     isPomodoroActive(nextRuntime)
       && nextRuntime.phase !== POMODORO_PHASES.PAUSED
-      && getPomodoroRemainingMs(nextRuntime) <= 0
+      && getPomodoroRemainingMs(nextRuntime, now) <= 0
       && guard < 4
   ) {
-    const phaseEndsAt = Date.parse(nextRuntime.phaseEndsAt || '');
-    const transitionAt = Number.isFinite(phaseEndsAt) && phaseEndsAt <= Date.now()
-      ? phaseEndsAt
-      : Date.now();
+    const transitionAt = getPhaseTransitionAt(nextRuntime, now);
     const previousRuntime = nextRuntime;
     nextRuntime = completePomodoroPhase(previousRuntime, runtimePlan.pomodoro, transitionAt);
     await recordPomodoroTransitionHistory(previousRuntime, runtimePlan, nextRuntime, transitionAt, 'phaseExpired');
@@ -190,7 +189,7 @@ export async function recordActivity(activity = {}) {
     runtime = await saveRuntime(resumedRuntime);
   }
 
-  runtime = await refreshExpiredRuntime(runtime, plans);
+  runtime = await refreshExpiredRuntime(runtime, plans, now);
   runtime = await startNextWorkIfReady(runtime, plans, now, 'activityStartedNextWork');
 
   if (!isPomodoroActive(runtime)) {
@@ -323,13 +322,18 @@ export async function recordSystemState(systemState) {
       runtime = await saveRuntime(resumedRuntime);
     }
 
-    runtime = await refreshExpiredRuntime(runtime, plans);
+    runtime = await refreshExpiredRuntime(runtime, plans, now);
     runtime = await startNextWorkIfReady(runtime, plans, now, 'systemReturnedNextWork');
   } else {
-    runtime = await refreshExpiredRuntime(runtime, plans);
     const creditedRuntime = creditPomodoroRestForSystemState(runtime, systemState, now);
     if (didRuntimeChange(runtime, creditedRuntime)) {
       runtime = await saveRuntime(creditedRuntime);
+    } else {
+      runtime = creditedRuntime;
+    }
+
+    if (!isWaitingForSystemReturn(runtime)) {
+      runtime = await refreshExpiredRuntime(runtime, plans, now);
     }
   }
 

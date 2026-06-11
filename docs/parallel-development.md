@@ -48,6 +48,7 @@ Current focus:
 - Completed checkpoint: background intent coherence has been split into Chrome API, storage, policy, page-signal recording, tab lineage, diagnostics, message routing, and initializer modules under `src/js/background/intent/` while preserving the public initializer barrel.
 - Completed checkpoint: Pomodoro mini-panel style behavior has been split into constants, CSS generation, and a thin style-injection facade while preserving the public `PomodoroMiniPanelStyle` API.
 - Completed checkpoint: options and popup CSS are split into thin entry barrels plus focused surface stylesheets.
+- Completed checkpoint: Pomodoro away-rest credit now continues until user return, resolves remaining breaks from the return timestamp, avoids away-time alarm loops, and documents the behavior in the Pomodoro spec.
 - Current checkpoint: remaining JS work is soft-size adapter cleanup and folder-density reduction; no JS file-size hard violations are currently reported by `npm run audit:file-sizes`.
 - Current folder-density debt: none reported by `npm run audit:folder-density`.
 - `manifest.json` load order must stay preserved exactly when content scripts move.

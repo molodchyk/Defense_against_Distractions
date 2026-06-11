@@ -298,8 +298,9 @@ System idle/locked behavior:
 
 - DaD uses `chrome.idle` to detect `active`, `idle`, and `locked` system states.
 - During a `work` phase, `idle` or `locked` does not move the work-session anchor and does not manually pause the timer. The work phase remains referenced to its original `phaseStartedAt`.
-- Idle or locked time inside the anchored work window is accumulated as `restCreditMs`.
-- When work ends, the next short or long break is reduced by the accumulated rest credit.
+- Idle or locked time during a `work` phase is accumulated as `restCreditMs` from the moment the system goes away until the user returns.
+- If the user stays away past the anchored work end, DaD keeps crediting rest but does not start a new work block while the user is still away.
+- When the user returns, the next short or long break is reduced by the accumulated rest credit.
 - If rest credit is equal to or longer than the required break, the cycle is ready to reset. The next work session starts when the user returns with activity, and its `phaseStartedAt` is the return time. DaD must not keep accumulating a "rest still needed" value past the configured rest requirement, and it must not start counting a new work block while the user is still away.
 - Manual pause still behaves like a real pause: it preserves remaining time and does not count as automatic rest credit.
 - Short and long breaks are not auto-paused by system idle/locked state; time away from the computer continues to count as rest.
@@ -308,6 +309,7 @@ Example with 25 minutes work and 5 minutes rest:
 
 - If the user works 20 minutes, goes away for 2 minutes, returns, and reaches the 25-minute work anchor, only 3 minutes of required rest remain.
 - If the user works 10 minutes and goes away for 10 minutes inside the same cycle, the 5-minute rest requirement has already been satisfied. When the user returns, DaD completes that cycle and starts a new work session from the return timestamp.
+- If the user works 24 minutes, goes away for 3 minutes, and returns after the work anchor, only 2 minutes of required rest remain, counted from the return timestamp.
 - If the user returns before the required rest is satisfied, the original work anchor stays fixed and only the remaining rest is required after work ends.
 
 Pomodoro local history:
@@ -338,7 +340,7 @@ Shared model tests:
 - Transition break -> completed, then activity -> next work.
 - Reject protection-weakening changes during locked protection.
 - Record local activity and classify active/away state.
-- Credit idle/locked time inside the anchored work window against the next break.
+- Credit idle/locked time during a work phase against the next break, including away time past the work anchor until return.
 - Start a fresh work session from the return timestamp when idle/locked rest credit already satisfied the break.
 - Record bounded local Pomodoro history totals for completed work, completed breaks, credited rest, skipped breaks, and resets.
 - Keep manual pause separate from idle/locked rest credit.

@@ -158,7 +158,7 @@ describe('pomodoro helpers', () => {
     assert.equal(completed.completedWorkSessions, 1);
   });
 
-  it('credits in-progress away time only up to the anchored work end', () => {
+  it('credits in-progress away time past the work anchor until return', () => {
     const settings = {
       ...DEFAULT_POMODORO_SETTINGS,
       workMinutes: 25,
@@ -167,11 +167,30 @@ describe('pomodoro helpers', () => {
     const runtime = startPomodoroWork('plan_1', settings, now);
     const locked = pausePomodoroForSystemState(runtime, POMODORO_SYSTEM_STATES.LOCKED, now + 24 * 60 * 1000);
 
-    assert.equal(getPomodoroRestCreditMs(locked, now + 30 * 60 * 1000), 1 * 60 * 1000);
+    assert.equal(getPomodoroRestCreditMs(locked, now + 30 * 60 * 1000), 6 * 60 * 1000);
 
-    const breakRuntime = completePomodoroPhase(locked, settings, now + 25 * 60 * 1000);
+    const resumed = resumePomodoroFromSystemPause(locked, now + 30 * 60 * 1000);
+    const completed = completePomodoroWorkIfRestSatisfied(resumed, settings, now + 30 * 60 * 1000);
+    assert.equal(completed.phase, POMODORO_PHASES.COMPLETED);
+  });
+
+  it('starts the remaining break from the return timestamp when away rest is partial', () => {
+    const settings = {
+      ...DEFAULT_POMODORO_SETTINGS,
+      workMinutes: 25,
+      shortBreakMinutes: 5
+    };
+    const runtime = startPomodoroWork('plan_1', settings, now);
+    const locked = pausePomodoroForSystemState(runtime, POMODORO_SYSTEM_STATES.LOCKED, now + 24 * 60 * 1000);
+    const returnedAt = now + 27 * 60 * 1000;
+    const resumed = resumePomodoroFromSystemPause(locked, returnedAt);
+
+    assert.equal(resumed.restCreditMs, 3 * 60 * 1000);
+
+    const breakRuntime = completePomodoroPhase(resumed, settings, returnedAt);
     assert.equal(breakRuntime.phase, POMODORO_PHASES.SHORT_BREAK);
-    assert.equal(getPomodoroRemainingMs(breakRuntime, now + 25 * 60 * 1000), 4 * 60 * 1000);
+    assert.equal(breakRuntime.phaseStartedAt, new Date(returnedAt).toISOString());
+    assert.equal(getPomodoroRemainingMs(breakRuntime, returnedAt), 2 * 60 * 1000);
   });
 
   it('does not auto-resume manually paused timers on system activity', () => {
