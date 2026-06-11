@@ -16,7 +16,7 @@ import {
 import {
   cloneSchedule,
   createScheduleBoardWorkspace
-} from '../scheduleBoard.js';
+} from '../schedules/scheduleBoard.js';
 import { confirmDestructiveAction, createButton, createPlanSubsection } from './dom.js';
 import { getMessage, getPlanMessage } from './messages.js';
 import {

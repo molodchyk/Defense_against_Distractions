@@ -5,7 +5,7 @@ import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 import {
   isScheduleDraftComplete
-} from '../../../src/js/options/scheduleBoard.js';
+} from '../../../src/js/options/schedules/scheduleBoard.js';
 import {
   createScheduleRangeFromAnchor,
   createScheduleRangeFromStart,

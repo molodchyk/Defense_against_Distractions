@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
-import { formatScheduleTime } from '../shared/schedules/scheduleForm.js';
-import { SCHEDULE_GRID_DAYS } from '../shared/schedules/scheduleGrid.js';
+import { formatScheduleTime } from '../../shared/schedules/scheduleForm.js';
+import { SCHEDULE_GRID_DAYS } from '../../shared/schedules/scheduleGrid.js';
 import {
   MAX_WEEK_INTERVAL,
   WEEKDAY_DAYS,

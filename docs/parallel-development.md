@@ -35,8 +35,9 @@ Current focus:
 - Completed checkpoint: `src/js/shared/pomodoro.js` has been split into feature-owned modules under `src/js/shared/pomodoro/` while preserving the public barrel API.
 - Completed checkpoint: `src/js/background/pomodoro.js` has been split into feature-owned modules under `src/js/background/pomodoro/` while preserving the public background initializer export.
 - Completed checkpoint: shared schedule helpers have been moved from the shared root into `src/js/shared/schedules/`, reducing `src/js/shared` from hard folder-density debt to soft folder-density debt.
+- Completed checkpoint: reusable options schedule-board modules have been moved from the options root into `src/js/options/schedules/`, bringing `src/js/options` back within the folder-density budget.
 - Current checkpoint: remaining JS work is soft-size adapter cleanup and folder-density reduction; no JS file-size hard violations are currently reported by `npm run audit:file-sizes`.
-- Current folder-density debt: `src/js/shared` and `src/js/options` are soft violations.
+- Current folder-density debt: `src/js/shared` is a soft violation.
 - `manifest.json` load order must stay preserved exactly when content scripts move.
 
 Developer 1 currently owns:
@@ -48,6 +49,7 @@ Developer 1 currently owns:
 - `src/js/shared/pomodoro.js`
 - `src/js/shared/pomodoro/**`
 - `src/js/shared/schedules/**`
+- `src/js/options/schedules/**`
 - `src/js/background/pomodoro.js`
 - `src/js/background/pomodoro/**`
 - `test/shared/**`
@@ -78,7 +80,7 @@ Safe initial tasks:
 - Work in these paths first:
   - `src/css/**`
   - `src/options.html`
-  - `src/js/options/**`, except avoid `src/js/options/plans/**` if a plan-controller edit is also active.
+  - `src/js/options/**`, except avoid `src/js/options/plans/**` if a plan-controller edit is also active and avoid `src/js/options/schedules/**` unless claiming schedule-board UI work.
   - `docs/release-readiness.md`
   - `docs/plans-architecture.md`
 - Add CSS ownership notes to `docs/code-structure.md` only after Developer 1's current doc edit is pushed.
@@ -92,6 +94,7 @@ Developer 2 should avoid while Developer 1 owns architecture/runtime debt:
 - `src/js/shared/pomodoro.js`
 - `src/js/shared/pomodoro/**`
 - `src/js/shared/schedules/**`
+- `src/js/options/schedules/**`
 - `src/js/background/pomodoro.js`
 - `src/js/background/pomodoro/**`
 - `test/shared/**`
@@ -157,7 +160,7 @@ Release-facing changes:
 ## Current Architecture Hotspots
 
 - `src/js/shared` exceeds folder-density soft limits after the schedule-helper move.
-- `src/js/options` exceeds folder-density soft limits.
+- `src/js/options` is back within the folder-density budget after moving reusable schedule-board modules into `src/js/options/schedules/`.
 - `src/js/content` is now split by feature folder, but several content adapters still exceed file-size budgets.
 - `src/js/content/ui-blocking/controller.js` is below the hard file-size limit after extracting `pickerStyle.js` and `pickerPanel.js`.
 - `src/js/content/intentIntervention.js` is below the hard file-size limit after extracting `src/js/content/intent/` constants, messages, style, theme, and prompt modules.

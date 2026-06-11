@@ -300,7 +300,7 @@ Move plan-specific options modules into `src/js/options/plans/` and continue spl
 Completed first step:
 
 - Plan-specific options files now live under `src/js/options/plans/`.
-- Reusable schedule-board modules remain directly under `src/js/options/` because they are not plan-specific.
+- Reusable schedule-board modules now live under `src/js/options/schedules/` because they are a shared options-page schedule feature, not generic options root code.
 
 This is high priority because plans are the center of the product.
 

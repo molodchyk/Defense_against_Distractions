@@ -11,7 +11,7 @@ import {
   scheduleTopPixels,
   SCHEDULE_GRID_DAYS,
   SCHEDULE_GRID_HOUR_HEIGHT
-} from '../shared/schedules/scheduleGrid.js';
+} from '../../shared/schedules/scheduleGrid.js';
 import { createScheduleInspector } from './scheduleBoardInspector.js';
 import {
   cloneSchedule,
