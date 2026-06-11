@@ -171,7 +171,15 @@ The first local signal collector is split by runtime:
 - `src/js/shared/intent/trajectory.js` owns public page-visit, navigation, tab-lifecycle, feedback, and active-session recording functions.
 - `src/js/shared/intent/interventions.js` owns recovery-visit selection, user-facing reason lines, intervention decisions, and chain-block metadata.
 - `src/js/shared/usageStats.js` is the compatibility barrel for tested bounded hostname-level usage aggregates. The implementation lives under `src/js/shared/usage-stats/`: constants and retention limits, timestamp/hostname sanitizers, metric bucket aggregation, state normalization, page-signal recording, summaries, and local JSON export payloads. It stores counts, timing summaries, and coarse tab/window pressure maxima only, not raw page text, full URLs, titles, topic tokens, tab URLs, tab titles, or tab identities.
-- `src/js/background/intentCoherence.js` records page summaries and `chrome.tabs` opener lineage into `chrome.storage.local` under `intentTrajectoryState`, records bounded local usage aggregates under `usageStats`, resolves the effective plan-owned intent policy, applies local feedback calibration, exposes tab-aware intervention state to content scripts and diagnostics UI, and detaches the active tab from inherited opener lineage when the user isolates the current page.
+- `src/js/background/intentCoherence.js` is the background intent compatibility barrel imported by `src/js/background.js`.
+- `src/js/background/intent/chromeApi.js` owns Chrome storage, tab pressure, open-tab enumeration, and tab-removal wrappers used by background intent runtime.
+- `src/js/background/intent/storage.js` owns `intentTrajectoryState` and `usageStats` local-storage read/update helpers.
+- `src/js/background/intent/policy.js` owns plan-owned intent-policy lookup, Pomodoro runtime influence, feedback summaries, and local feedback calibration.
+- `src/js/background/intent/pageSignals.js` owns background recording of page-signal messages into intent trajectory and bounded usage stats.
+- `src/js/background/intent/tabs.js` owns active-tab, created-tab, removed-tab, navigation-transition, and drift-descendant tab cleanup recording.
+- `src/js/background/intent/diagnostics.js` owns intent diagnostics, intervention-state reads, clear actions, and usage-stats diagnostic reads.
+- `src/js/background/intent/messages.js` owns runtime message routing for intent diagnostics, interventions, page-signal recording, feedback, usage stats, and drift-descendant cleanup.
+- `src/js/background/intent/initializer.js` owns Chrome event listener registration for the background intent runtime.
 - `src/js/content/intent/constants.js` owns intent-intervention content-script constants.
 - `src/js/content/intent/messages.js` owns intent-intervention localized fallback copy.
 - `src/js/content/intent/style.js` owns intent prompt and grayscale CSS injection.

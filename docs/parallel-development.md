@@ -45,6 +45,7 @@ Current focus:
 - Completed checkpoint: the popup entry file has been split into panel construction, UI picker launching, diagnostics export, event binding, refresh loops, and a thin bootstrap.
 - Completed checkpoint: global Blocked UI options have been split into constants/messages, formatting, storage/quota, rule-card rendering, and a thin list/sync entry.
 - Completed checkpoint: shared usage stats have been split into constants, utils, metrics, state, record, and summary modules under `src/js/shared/usage-stats/` while preserving the public barrel API.
+- Completed checkpoint: background intent coherence has been split into Chrome API, storage, policy, page-signal recording, tab lineage, diagnostics, message routing, and initializer modules under `src/js/background/intent/` while preserving the public initializer barrel.
 - Current checkpoint: remaining JS work is soft-size adapter cleanup and folder-density reduction; no JS file-size hard violations are currently reported by `npm run audit:file-sizes`.
 - Current folder-density debt: none reported by `npm run audit:folder-density`.
 - `manifest.json` load order must stay preserved exactly when content scripts move.
@@ -67,6 +68,8 @@ Codex currently owns:
 - `src/js/options/element-rules/**`
 - `src/js/background/pomodoro.js`
 - `src/js/background/pomodoro/**`
+- `src/js/background/intentCoherence.js`
+- `src/js/background/intent/**`
 - `src/js/popup.js`
 - `src/js/popup/**`
 - `test/shared/**`
@@ -143,6 +146,7 @@ Release-facing changes:
 - `src/js/popup.js` is now a thin popup bootstrap after extracting panel construction, UI picker launch, diagnostics export, event binding, and refresh-loop modules.
 - `src/js/options/elementRules.js` is now a thin global Blocked UI list/sync entry after extracting storage/quota, formatting, and rule-item rendering modules.
 - `src/js/shared/usageStats.js` is now a small compatibility barrel. The bounded local usage-stats implementation lives under `src/js/shared/usage-stats/`.
+- `src/js/background/intentCoherence.js` is now a small compatibility barrel. Background intent runtime responsibilities live under `src/js/background/intent/`.
 - `src/js/content/ui-blocking/controller.js` is below the hard file-size limit after extracting `pickerStyle.js` and `pickerPanel.js`.
 - `src/js/content/intentIntervention.js` is below the hard file-size limit after extracting `src/js/content/intent/` constants, messages, style, theme, and prompt modules.
 - `src/css/style.css` exceeds file-size hard limits.

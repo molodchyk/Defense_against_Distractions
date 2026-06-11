@@ -367,6 +367,8 @@ The split separates:
 
 Do not put new intent behavior back into the barrel file. Add it to the smallest fitting `src/js/shared/intent/` module and export it through the barrel only when it is part of the public shared API.
 
+The background intent runtime is also split. `src/js/background/intentCoherence.js` remains the initializer barrel imported by `background.js`, while Chrome API wrappers, storage mutation, effective-policy lookup, page-signal recording, tab lineage, diagnostics, runtime messages, and listener registration live under `src/js/background/intent/`.
+
 ### Phase 7: CSS Split
 
 Split CSS by surface and feature:
@@ -434,3 +436,4 @@ Recent checkpoint:
 
 - Global Blocked UI options behavior now lives under `src/js/options/element-rules/` for constants/messages, formatting, storage/quota, and rule-card rendering. `src/js/options/elementRules.js` remains the thin list/sync entry.
 - Shared usage stats now live under `src/js/shared/usage-stats/` for constants, sanitizers, metric aggregation, state normalization, page-signal recording, summaries, and export payloads. `src/js/shared/usageStats.js` remains the compatibility barrel for current callers and tests.
+- Background intent coherence now lives under `src/js/background/intent/` for Chrome API wrappers, storage mutation, effective-policy lookup, page-signal recording, tab lineage, diagnostics, runtime messages, and listener registration. `src/js/background/intentCoherence.js` remains the compatibility barrel for `background.js`.
