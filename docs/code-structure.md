@@ -220,3 +220,4 @@ Pomodoro is split across plan configuration, runtime, and local activity:
 - `src/js/content/pomodoro/miniPanel.js` is the thin optional on-page Pomodoro mini-panel controller opened from the popup. It wires DOM construction, refresh, close/open behavior, and the public content-script API.
 - `src/js/content/content-blocking/siteCheck.js` applies strict-break blocking when a Pomodoro break is active for the current plan.
 - `src/js/content/content-blocking/overlayPomodoro.js`, `src/js/content/content-blocking/overlay.js`, and `src/blocked.html` render Pomodoro timer status on blocked pages.
+- `src/js/blockedScript.js` is the blocked-page module entry. Blocked-page Chrome API wrappers, localization, theme sync, and Pomodoro timer rendering live under `src/js/blocked/`.
