@@ -318,11 +318,11 @@ The schedule core logic already has useful shared modules. The UI should match t
 
 ### Phase 5: Pomodoro Mini-Panel Split
 
-Continue splitting `src/js/content/pomodoro/miniPanel.js` into small content-script modules:
+Status: completed for the controller split. `src/js/content/pomodoro/miniPanel.js` is now the thin content-script controller, and the surrounding mini-panel responsibilities live in focused sibling modules:
 
 - panel controller
-- runtime refresh and message handling
-- drag/resize geometry
+- theme sync
+- layout state, drag, resize, and viewport geometry
 - renderer
 - formatting/status rows
 
@@ -333,7 +333,11 @@ Completed first steps:
 - Shared storage helpers now live under `src/js/shared/storage/`, and shared UI helpers now live under `src/js/shared/ui/`. `src/js/shared` is now within the folder-density budget.
 - Background Pomodoro now lives under `src/js/background/pomodoro/` for Chrome storage/alarms, auto-start suppression, plan selection, transition history, runtime reconciliation, notifications, and event listener registration. `src/js/background/pomodoro.js` remains the compatibility entry imported by `background.js`.
 - `src/js/content/pomodoro/miniPanelState.js` owns local UI-state persistence.
-- `src/js/content/pomodoro/miniPanelStyle.js` owns CSS injection and shared layout constants.
+- `src/js/content/pomodoro/miniPanelStyle.js` owns CSS injection and shared layout constants. It is still a soft file-size split candidate if mini-panel CSS changes again.
+- `src/js/content/pomodoro/miniPanelTheme.js` owns mini-panel theme sync.
+- `src/js/content/pomodoro/miniPanelLayout.js` owns mini-panel layout persistence, drag, resize, and viewport clamping.
+- `src/js/content/pomodoro/miniPanelRender.js` owns mini-panel runtime/status rendering and display formatting.
+- `src/js/content/pomodoro/miniPanel.js` is now the thin controller that wires modules together and exposes the public mini-panel API.
 - Pomodoro content scripts now live under `src/js/content/pomodoro/`.
 - UI blocking content scripts now live under `src/js/content/ui-blocking/`.
 - `src/js/content/ui-blocking/pickerStyle.js` owns picker highlight and panel CSS injection.
@@ -341,7 +345,7 @@ Completed first steps:
 - Page blocking content scripts now live under `src/js/content/content-blocking/`.
 - Intent content intervention modules now live under `src/js/content/intent/` for constants, messages, CSS injection, theme sync, and prompt rendering. `src/js/content/intentIntervention.js` remains the controller for polling, feedback, dismissal state, grayscale application, and action wiring.
 
-The final shape should keep `miniPanel.js` as a thin adapter that wires the modules together and exposes the public mini-panel API.
+The final shape keeps `miniPanel.js` as a thin adapter that wires the modules together and exposes the public mini-panel API.
 
 ### Phase 6: Intent Core Split
 

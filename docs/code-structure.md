@@ -187,7 +187,10 @@ Pomodoro is split across plan configuration, runtime, and local activity:
 - `src/js/background/pomodoro/initializer.js` owns Chrome event listener registration, idle detection startup, alarm wakeups, and runtime message routing.
 - `src/js/content/pomodoro/activity.js` sends throttled top-frame activity pings for local active/away status.
 - `src/js/content/pomodoro/miniPanelState.js` owns local-only mini-panel UI-state persistence and normalization.
-- `src/js/content/pomodoro/miniPanelStyle.js` owns mini-panel CSS injection and shared layout constants. It must load before `miniPanel.js`.
-- `src/js/content/pomodoro/miniPanel.js` renders the optional on-page Pomodoro mini-panel opened from the popup and owns runtime refresh, drag, resize, and close/open behavior.
+- `src/js/content/pomodoro/miniPanelStyle.js` owns mini-panel CSS injection and shared layout constants. It must load before the mini-panel controller.
+- `src/js/content/pomodoro/miniPanelTheme.js` owns mini-panel UI-mode sync with extension theme settings and system color-scheme changes.
+- `src/js/content/pomodoro/miniPanelLayout.js` owns mini-panel persisted layout state, drag, resize, viewport clamping, minimized state, and responsive size flags.
+- `src/js/content/pomodoro/miniPanelRender.js` owns mini-panel runtime/status row rendering and display formatting.
+- `src/js/content/pomodoro/miniPanel.js` is the thin optional on-page Pomodoro mini-panel controller opened from the popup. It wires DOM construction, refresh, close/open behavior, and the public content-script API.
 - `src/js/content/content-blocking/siteCheck.js` applies strict-break blocking when a Pomodoro break is active for the current plan.
 - `src/js/content/content-blocking/overlay.js` and `src/blocked.html` render Pomodoro timer status on blocked pages.

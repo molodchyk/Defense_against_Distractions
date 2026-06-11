@@ -37,6 +37,7 @@ Current focus:
 - Completed checkpoint: shared schedule helpers have been moved from the shared root into `src/js/shared/schedules/`, reducing `src/js/shared` from hard folder-density debt to soft folder-density debt.
 - Completed checkpoint: reusable options schedule-board modules have been moved from the options root into `src/js/options/schedules/`, bringing `src/js/options` back within the folder-density budget.
 - Completed checkpoint: shared storage helpers now live under `src/js/shared/storage/`, and shared UI helpers now live under `src/js/shared/ui/`, bringing `src/js/shared` back within the folder-density budget.
+- Completed checkpoint: the on-page Pomodoro mini-panel has been split into state, style, theme, layout, render, and controller content scripts while preserving manifest load order.
 - Current checkpoint: remaining JS work is soft-size adapter cleanup and folder-density reduction; no JS file-size hard violations are currently reported by `npm run audit:file-sizes`.
 - Current folder-density debt: none reported by `npm run audit:folder-density`.
 - `manifest.json` load order must stay preserved exactly when content scripts move.
@@ -63,7 +64,6 @@ Developer 1 currently owns:
 Next Developer 1 tasks after this checkpoint:
 
 - Split remaining large content adapters:
-  - `src/js/content/pomodoro/miniPanel.js`
   - `src/js/content/content-blocking/overlay.js`
   - `src/js/content/pageSignals.js`
 - Split soft shared modules when they are touched for behavior:
@@ -167,6 +167,7 @@ Release-facing changes:
 - `src/js/shared` is back within the folder-density budget after moving schedule, storage, and UI helpers into feature subfolders.
 - `src/js/options` is back within the folder-density budget after moving reusable schedule-board modules into `src/js/options/schedules/`.
 - `src/js/content` is now split by feature folder, but several content adapters still exceed file-size budgets.
+- `src/js/content/pomodoro/miniPanel.js` is now a thin controller after extracting mini-panel theme, layout, and render modules.
 - `src/js/content/ui-blocking/controller.js` is below the hard file-size limit after extracting `pickerStyle.js` and `pickerPanel.js`.
 - `src/js/content/intentIntervention.js` is below the hard file-size limit after extracting `src/js/content/intent/` constants, messages, style, theme, and prompt modules.
 - `src/css/style.css` exceeds file-size hard limits.
