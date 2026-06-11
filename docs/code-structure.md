@@ -58,7 +58,9 @@ UI element blocking is split into ordered content-script modules:
 - `src/js/content/ui-blocking/matcher.js`: structural matching and match scoring.
 - `src/js/content/ui-blocking/storage.js`: sync storage migration, split-rule storage, quota reserve checks, and rule persistence.
 - `src/js/content/ui-blocking/dom.js`: applying saved rules, previewing candidate rules, hiding/restoring elements, and mutation observation.
-- `src/js/content/ui-blocking/controller.js`: public entry points, picker lifecycle, rule creation, and content-script event wiring.
+- `src/js/content/ui-blocking/pickerStyle.js`: picker highlight and panel CSS injection.
+- `src/js/content/ui-blocking/pickerPanel.js`: picker copy, theme sync, draggable panel rendering, and picker controls.
+- `src/js/content/ui-blocking/controller.js`: public entry points, picker lifecycle, rule creation, preview orchestration, and content-script event wiring.
 
 The public content-script API remains:
 
@@ -66,7 +68,7 @@ The public content-script API remains:
 - `window.DAD.applyElementBlockRules`
 - `window.DAD.startElementPicker`
 
-Future work should keep new UI blocking behavior inside the narrowest module that owns it. For example, selector or diagnostic changes belong near fingerprint/matcher code, while preview display changes belong in `ui-blocking/dom.js`.
+Future work should keep new UI blocking behavior inside the narrowest module that owns it. For example, selector or diagnostic changes belong near fingerprint/matcher code, preview matching belongs in `ui-blocking/dom.js`, picker panel presentation belongs in `ui-blocking/pickerPanel.js`, and picker CSS belongs in `ui-blocking/pickerStyle.js`.
 
 ## Page Blocking
 

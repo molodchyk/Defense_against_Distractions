@@ -332,6 +332,8 @@ Completed first steps:
 - `src/js/content/pomodoro/miniPanelStyle.js` owns CSS injection and shared layout constants.
 - Pomodoro content scripts now live under `src/js/content/pomodoro/`.
 - UI blocking content scripts now live under `src/js/content/ui-blocking/`.
+- `src/js/content/ui-blocking/pickerStyle.js` owns picker highlight and panel CSS injection.
+- `src/js/content/ui-blocking/pickerPanel.js` owns picker copy, theme sync, draggable panel rendering, and picker controls.
 - Page blocking content scripts now live under `src/js/content/content-blocking/`.
 
 The final shape should keep `miniPanel.js` as a thin adapter that wires the modules together and exposes the public mini-panel API.
