@@ -120,7 +120,16 @@ The first local signal collector is split by runtime:
 
 - `src/js/shared/pageSignals.js` is the tested ES-module collector shape, including bounded visible-text topic tokens and summarized activity signals.
 - `src/js/content/pageSignals.js` is the classic content-script adapter that reports top-frame page summaries on navigation, throttled DOM changes, and summarized scroll/click/input activity.
-- `src/js/shared/intentCoherence.js` owns the tested trajectory model, bounded tab opener lineage, token extraction, metadata/text similarity, coherence scoring, intervention decisions, hard chain-quarantine decision metadata, stable chain cooldown metadata, plan-owned diagnostics retention, local feedback calibration, and recovery-target selection.
+- `src/js/shared/intentCoherence.js` is the compatibility barrel for the tested shared intent coherence API. Keep existing imports pointed there unless a caller has a narrow reason to import a submodule directly.
+- `src/js/shared/intent/constants.js` owns intent storage keys, default settings, action names, risk states, Pomodoro influence modes, and bounded numeric sets.
+- `src/js/shared/intent/settings.js` owns plan intent-settings normalization.
+- `src/js/shared/intent/signals.js` owns token extraction, page-signal normalization, navigation-transition normalization, and token similarity helpers.
+- `src/js/shared/intent/feedback.js` owns feedback normalization, feedback summaries, and local feedback calibration.
+- `src/js/shared/intent/state.js` owns trajectory state construction, tab-lineage normalization, lineage queries, and drift-descendant tab selection.
+- `src/js/shared/intent/scoring.js` owns load metrics, session metrics, coherence scoring, and risk-state classification.
+- `src/js/shared/intent/visits.js` owns visit/session construction, visit/session mutation, pruning, and tab-session helpers.
+- `src/js/shared/intent/trajectory.js` owns public page-visit, navigation, tab-lifecycle, feedback, and active-session recording functions.
+- `src/js/shared/intent/interventions.js` owns recovery-visit selection, user-facing reason lines, intervention decisions, and chain-block metadata.
 - `src/js/shared/usageStats.js` owns tested bounded hostname-level usage aggregates. It stores counts, timing summaries, and coarse tab/window pressure maxima only, not raw page text, full URLs, titles, topic tokens, tab URLs, tab titles, or tab identities.
 - `src/js/background/intentCoherence.js` records page summaries and `chrome.tabs` opener lineage into `chrome.storage.local` under `intentTrajectoryState`, records bounded local usage aggregates under `usageStats`, resolves the effective plan-owned intent policy, applies local feedback calibration, exposes tab-aware intervention state to content scripts and diagnostics UI, and detaches the active tab from inherited opener lineage when the user isolates the current page.
 - `src/js/content/intent/constants.js` owns intent-intervention content-script constants.

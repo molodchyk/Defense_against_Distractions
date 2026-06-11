@@ -31,7 +31,8 @@ Current focus:
 
 - Repository modularization and hard architecture debt burn-down.
 - Completed checkpoint: the broad `test/shared.test.js` file has been split into feature-owned tests under `test/shared/`.
-- Current checkpoint: shared runtime debt is next, especially intent coherence and Pomodoro modules.
+- Completed checkpoint: `src/js/shared/intentCoherence.js` has been split into feature-owned modules under `src/js/shared/intent/` while preserving the public barrel API.
+- Current checkpoint: Pomodoro shared/background runtime debt is next.
 - `manifest.json` load order must stay preserved exactly when content scripts move.
 
 Developer 1 currently owns:
@@ -39,6 +40,7 @@ Developer 1 currently owns:
 - `manifest.json`
 - `src/js/content/**`
 - `src/js/shared/intentCoherence.js`
+- `src/js/shared/intent/**`
 - `src/js/shared/pomodoro.js`
 - `src/js/background/pomodoro.js`
 - `test/shared/**`
@@ -48,7 +50,6 @@ Developer 1 currently owns:
 
 Next Developer 1 tasks after this checkpoint:
 
-- Split `src/js/shared/intentCoherence.js` into feature-owned shared modules without changing public exports.
 - Split Pomodoro runtime debt in `src/js/shared/pomodoro.js` and `src/js/background/pomodoro.js`.
 - Split remaining large content adapters after shared runtime boundaries are clearer:
   - `src/js/content/content-blocking/overlay.js`
@@ -77,6 +78,7 @@ Developer 2 should avoid while Developer 1 owns architecture/runtime debt:
 - `manifest.json`
 - `src/js/content/**`
 - `src/js/shared/intentCoherence.js`
+- `src/js/shared/intent/**`
 - `src/js/shared/pomodoro.js`
 - `src/js/background/pomodoro.js`
 - `test/shared/**`
@@ -147,7 +149,8 @@ Release-facing changes:
 - `src/js/content/intentIntervention.js` is below the hard file-size limit after extracting `src/js/content/intent/` constants, messages, style, theme, and prompt modules.
 - `src/css/style.css` exceeds file-size hard limits.
 - The test suite is now feature-owned under `test/shared/`; `test/shared/intent/intent-coherence-tabs.test.js` is still over the soft file-size target and should not grow.
-- `src/js/shared/intentCoherence.js`, `src/js/background/pomodoro.js`, and `src/js/shared/pomodoro.js` exceed file-size hard limits.
+- `src/js/shared/intentCoherence.js` is now a small compatibility barrel. The shared intent implementation lives under `src/js/shared/intent/`.
+- `src/js/background/pomodoro.js` and `src/js/shared/pomodoro.js` still exceed file-size hard limits.
 
 ## Conflict Resolution
 

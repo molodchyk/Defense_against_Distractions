@@ -11,7 +11,7 @@ The source-backed Chrome extension constraints behind this roadmap are summarize
 Current pressure points:
 
 - Runtime folders are becoming dumping grounds. `src/js/options`, `src/js/content`, and root `src/js` contain unrelated responsibilities side by side.
-- Some files are too large to reason about safely: options plans, popup, Pomodoro mini-panel, intent coherence, and large CSS files.
+- Some files are too large to reason about safely: options plans, popup, Pomodoro modules, Pomodoro mini-panel, and large CSS files.
 - UI rendering, storage mutation, validation, Chrome API calls, and domain rules are often mixed in the same file.
 - Content scripts use classic manifest load order and `window.DAD` globals. That is workable, but it must be treated as an explicit adapter layer, not as the main architecture.
 - Tests have been split into feature-owned files under `test/shared/`, but runtime modules still carry the main hard-size debt.
@@ -341,7 +341,9 @@ The final shape should keep `miniPanel.js` as a thin adapter that wires the modu
 
 ### Phase 6: Intent Core Split
 
-Split intent coherence core into:
+Status: completed for the shared intent model. `src/js/shared/intentCoherence.js` now stays as a public compatibility barrel, while the implementation lives under `src/js/shared/intent/`.
+
+The split separates:
 
 - token extraction
 - similarity scoring
@@ -351,7 +353,7 @@ Split intent coherence core into:
 - feedback calibration
 - diagnostics summarization
 
-This should be done after popup/options splits because intent is more behavior-sensitive.
+Do not put new intent behavior back into the barrel file. Add it to the smallest fitting `src/js/shared/intent/` module and export it through the barrel only when it is part of the public shared API.
 
 ### Phase 7: CSS Split
 
