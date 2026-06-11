@@ -14,7 +14,7 @@ Current pressure points:
 - Some files are too large to reason about safely: options plans, popup, Pomodoro mini-panel, intent coherence, and large CSS files.
 - UI rendering, storage mutation, validation, Chrome API calls, and domain rules are often mixed in the same file.
 - Content scripts use classic manifest load order and `window.DAD` globals. That is workable, but it must be treated as an explicit adapter layer, not as the main architecture.
-- Tests are growing in one broad file instead of feature-owned test files.
+- Tests have been split into feature-owned files under `test/shared/`, but runtime modules still carry the main hard-size debt.
 
 ## Architectural Direction
 
@@ -263,7 +263,7 @@ Use compatibility wrappers and move one feature surface at a time.
 - Add this roadmap.
 - Add a file-size audit script that reports files over the budget. Use `npm run audit:file-sizes` for reporting and `npm run audit:file-sizes:strict` when a hard threshold should fail.
 - Add a manifest reference check so moved files cannot silently break extension loading. Use `npm run verify:manifest`.
-- Split the large test file into feature-owned tests without changing assertions.
+- Done: split the large shared test file into feature-owned tests under `test/shared/` without changing assertions.
 
 ### Phase 2: Popup Split
 

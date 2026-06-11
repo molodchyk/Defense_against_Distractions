@@ -15,6 +15,6 @@
     "audit:folder-density:strict": "node scripts/audit-folder-density.mjs --fail",
     "audit:file-sizes": "node scripts/audit-file-sizes.mjs",
     "audit:file-sizes:strict": "node scripts/audit-file-sizes.mjs --fail",
-    "test": "node --test test/*.test.js"
+    "test": "node --test \"test/**/*.test.js\""
   }
 }

@@ -20,6 +20,19 @@ The detailed modularization target, dependency rules, file-size budgets, and mig
 
 `src/js/shared` contains ES modules used by option/background code and tests.
 
+## Test Structure
+
+Node tests live under `test/shared/` by product area:
+
+- `test/shared/core/`: small shared primitives such as keywords, URLs, themes, UI language, release notice, and billing entitlement helpers.
+- `test/shared/schedules/`: schedule time, validation, form, and weekly-grid model tests.
+- `test/shared/plans/`: plan model, legacy migration, and group-rule tests.
+- `test/shared/pomodoro/`: Pomodoro shared runtime and history model tests.
+- `test/shared/signals/`: page-signal and usage-stat model tests.
+- `test/shared/intent/`: intent coherence scoring, sessions, diagnostics, interventions, and tab-lineage tests.
+
+Do not recreate a broad `test/shared.test.js` file. New tests should be added to the smallest matching feature folder, and new folders should be created before a folder becomes hard to scan.
+
 Plan behavior is split by runtime and feature folder:
 
 - `src/js/shared/plans.js` owns the tested ES-module plan model used by options code.

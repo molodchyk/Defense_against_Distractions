@@ -29,30 +29,32 @@ Owner: Codex in this thread.
 
 Current focus:
 
-- Content-script architecture and remaining content adapter splits.
-- The first folder-density checkpoint moves feature-owned content scripts into:
-  - `src/js/content/content-blocking/`
-  - `src/js/content/ui-blocking/`
-  - `src/js/content/pomodoro/`
-- `manifest.json` load order must stay preserved exactly.
-- After this checkpoint, Developer 1 continues with large content adapters and content-script behavior checks.
+- Repository modularization and hard architecture debt burn-down.
+- Completed checkpoint: the broad `test/shared.test.js` file has been split into feature-owned tests under `test/shared/`.
+- Current checkpoint: shared runtime debt is next, especially intent coherence and Pomodoro modules.
+- `manifest.json` load order must stay preserved exactly when content scripts move.
 
 Developer 1 currently owns:
 
 - `manifest.json`
 - `src/js/content/**`
+- `src/js/shared/intentCoherence.js`
+- `src/js/shared/pomodoro.js`
+- `src/js/background/pomodoro.js`
+- `test/shared/**`
 - `docs/code-structure.md`
 - `docs/modularization-roadmap.md`
 - `docs/parallel-development.md`
 
 Next Developer 1 tasks after this checkpoint:
 
-- Split remaining large content adapters without behavior changes:
+- Split `src/js/shared/intentCoherence.js` into feature-owned shared modules without changing public exports.
+- Split Pomodoro runtime debt in `src/js/shared/pomodoro.js` and `src/js/background/pomodoro.js`.
+- Split remaining large content adapters after shared runtime boundaries are clearer:
   - `src/js/content/content-blocking/overlay.js`
   - `src/js/content/pageSignals.js`
   - `src/js/content/pomodoro/miniPanel.js`
-- Keep `src/js/content` direct file count below the folder-density budget.
-- Keep content-script public APIs on `window.DAD` stable until a build step is approved.
+- Keep tests in feature folders under `test/shared/`; do not recreate a broad omnibus test file.
 
 ## Developer 2
 
@@ -70,10 +72,14 @@ Safe initial tasks:
   - `docs/plans-architecture.md`
 - Add CSS ownership notes to `docs/code-structure.md` only after Developer 1's current doc edit is pushed.
 
-Developer 2 should avoid while Developer 1 owns the content area:
+Developer 2 should avoid while Developer 1 owns architecture/runtime debt:
 
 - `manifest.json`
 - `src/js/content/**`
+- `src/js/shared/intentCoherence.js`
+- `src/js/shared/pomodoro.js`
+- `src/js/background/pomodoro.js`
+- `test/shared/**`
 - `docs/code-structure.md`
 - `docs/modularization-roadmap.md`
 - `docs/parallel-development.md`, unless the edit is a coordination handoff note.
@@ -140,7 +146,7 @@ Release-facing changes:
 - `src/js/content/ui-blocking/controller.js` is below the hard file-size limit after extracting `pickerStyle.js` and `pickerPanel.js`.
 - `src/js/content/intentIntervention.js` is below the hard file-size limit after extracting `src/js/content/intent/` constants, messages, style, theme, and prompt modules.
 - `src/css/style.css` exceeds file-size hard limits.
-- `test/shared.test.js` is too large and should be split by feature.
+- The test suite is now feature-owned under `test/shared/`; `test/shared/intent/intent-coherence-tabs.test.js` is still over the soft file-size target and should not grow.
 - `src/js/shared/intentCoherence.js`, `src/js/background/pomodoro.js`, and `src/js/shared/pomodoro.js` exceed file-size hard limits.
 
 ## Conflict Resolution
