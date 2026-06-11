@@ -9,16 +9,19 @@ export function bindPopupEvents({
   intentDiagnosticsPanel,
   diagnosticsExporter
 }) {
-  document.getElementById('pickElementButton').addEventListener('click', startElementPicker);
-  document.getElementById('headerOptionsButton').addEventListener('click', openOptions);
-  document.getElementById('startPomodoroButton').addEventListener('click', () => pomodoroPanel.runCommand('startPomodoro'));
-  document.getElementById('pausePomodoroButton').addEventListener('click', () => pomodoroPanel.runCommand('pausePomodoro'));
-  document.getElementById('resumePomodoroButton').addEventListener('click', () => pomodoroPanel.runCommand('resumePomodoro'));
-  document.getElementById('resetPomodoroButton').addEventListener('click', () => pomodoroPanel.runCommand('resetPomodoro'));
-  document.getElementById('openPomodoroPanelButton').addEventListener('click', () => pomodoroPanel.openMiniPanel());
-  document.getElementById('refreshBlockDiagnosticsButton').addEventListener('click', () => blockDiagnosticsPanel.refresh());
-  document.getElementById('copyDiagnosticsButton').addEventListener('click', () => diagnosticsExporter.copyDiagnostics());
-  document.getElementById('refreshIntentButton').addEventListener('click', () => intentDiagnosticsPanel.refresh());
-  document.getElementById('clearIntentButton').addEventListener('click', () => intentDiagnosticsPanel.clear());
-  document.getElementById('openOptionsButton').addEventListener('click', openOptions);
+  const bindClick = (id, handler) => {
+    document.getElementById(id)?.addEventListener('click', handler);
+  };
+
+  bindClick('pickElementButton', startElementPicker);
+  bindClick('headerOptionsButton', openOptions);
+  bindClick('startPomodoroButton', () => pomodoroPanel.runCommand('startPomodoro'));
+  bindClick('pausePomodoroButton', () => pomodoroPanel.runCommand('pausePomodoro'));
+  bindClick('resumePomodoroButton', () => pomodoroPanel.runCommand('resumePomodoro'));
+  bindClick('resetPomodoroButton', () => pomodoroPanel.runCommand('resetPomodoro'));
+  bindClick('openPomodoroPanelButton', () => pomodoroPanel.openMiniPanel());
+  bindClick('refreshBlockDiagnosticsButton', () => blockDiagnosticsPanel.refresh());
+  bindClick('copyDiagnosticsButton', () => diagnosticsExporter.copyDiagnostics());
+  bindClick('refreshIntentButton', () => intentDiagnosticsPanel.refresh());
+  bindClick('clearIntentButton', () => intentDiagnosticsPanel.clear());
 }

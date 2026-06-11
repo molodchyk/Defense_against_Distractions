@@ -10,14 +10,14 @@
         <header class="popup-header">
             <div class="popup-title-block">
                 <p data-i18n="popupBrandName">Defense against Distractions</p>
-                <h1 data-i18n="popupQuickActionsTitle">Quick Actions</h1>
+                <h1 data-i18n="popupQuickActionsTitle">Defense Panel</h1>
             </div>
             <button id="headerOptionsButton" class="header-options-button" type="button" title="Open Options" aria-label="Open options" data-i18n-title="popupOpenOptionsTitle" data-i18n-aria-label="popupOpenOptionsTitle">DaD</button>
         </header>
 
         <nav class="popup-tab-list" aria-label="Popup sections" data-i18n-aria-label="popupSectionsAriaLabel">
-            <button class="popup-tab-button" type="button" data-popup-tab="actions" aria-pressed="true" data-i18n="popupActionsTab">Actions</button>
-            <button class="popup-tab-button" type="button" data-popup-tab="diagnostics" aria-pressed="false" data-i18n="popupDiagnosticsTab">Diagnostics</button>
+            <button class="popup-tab-button" type="button" data-popup-tab="actions" aria-pressed="true" data-i18n="popupActionsTab">Control</button>
+            <button class="popup-tab-button" type="button" data-popup-tab="diagnostics" aria-pressed="false" data-i18n="popupDiagnosticsTab">Inspect</button>
         </nav>
 
         <section class="popup-card primary-panel protection-panel" aria-labelledby="protectionStatusTitle">
@@ -46,9 +46,30 @@
         </section>
 
         <section class="popup-section control-section" aria-label="Controls" data-i18n-aria-label="popupControlsAriaLabel" data-popup-pane="actions">
+            <section class="popup-card action-panel pomodoro-panel" aria-labelledby="pomodoroTitle">
+                <div class="pomodoro-panel-header">
+                    <h2 id="pomodoroTitle" data-i18n="popupPomodoroTitle">Pomodoro</h2>
+                    <span id="pomodoroPhaseText" class="pomodoro-phase-badge" data-i18n="popupIdleLabel">Idle</span>
+                </div>
+                <div class="pomodoro-timer-row">
+                    <strong id="pomodoroRemainingText">0:00</strong>
+                    <span id="pomodoroPlanText" data-i18n="popupNoActivePomodoroPlan">No active Pomodoro plan</span>
+                </div>
+                <p id="pomodoroSessionText" class="pomodoro-session-text" data-i18n="popupZeroWorkSessionsCompleted">0 work sessions completed</p>
+                <p id="pomodoroActivityText" class="pomodoro-session-text" data-i18n="popupActivityUnknownLabel">Activity unknown</p>
+                <dl id="pomodoroTimelineList" class="pomodoro-timeline-list" aria-label="Pomodoro timing details" data-i18n-aria-label="popupPomodoroTimingAriaLabel"></dl>
+                <div class="pomodoro-actions">
+                    <button id="startPomodoroButton" type="button" data-i18n="popupStartButton">Start</button>
+                    <button id="pausePomodoroButton" class="secondary-button" type="button" data-i18n="popupPauseButton">Pause</button>
+                    <button id="resumePomodoroButton" class="secondary-button" type="button" data-i18n="popupResumeButton">Resume</button>
+                    <button id="resetPomodoroButton" class="secondary-button danger-button" type="button" data-i18n="popupResetButton">Reset</button>
+                    <button id="openPomodoroPanelButton" class="secondary-button full-width-pomodoro-action" type="button" data-i18n="popupOpenTimerPanelButton">Open timer panel</button>
+                </div>
+            </section>
+
             <section class="popup-card action-panel picker-panel" aria-labelledby="pickerTitle">
                 <div class="section-header">
-                    <h2 id="pickerTitle" data-i18n="popupUiPickerTitle">UI Picker</h2>
+                    <h2 id="pickerTitle" data-i18n="popupUiPickerTitle">UI cleanup</h2>
                     <span data-i18n="popupCurrentTabLabel">Current tab</span>
                 </div>
 
@@ -83,28 +104,7 @@
                     </label>
                 </div>
 
-                <button id="pickElementButton" class="primary-action-button" type="button" data-i18n="popupPickUiElementButton">Pick UI Element</button>
-            </section>
-
-            <section class="popup-card action-panel pomodoro-panel" aria-labelledby="pomodoroTitle">
-                <div class="pomodoro-panel-header">
-                    <h2 id="pomodoroTitle" data-i18n="popupPomodoroTitle">Pomodoro</h2>
-                    <span id="pomodoroPhaseText" class="pomodoro-phase-badge" data-i18n="popupIdleLabel">Idle</span>
-                </div>
-                <div class="pomodoro-timer-row">
-                    <strong id="pomodoroRemainingText">0:00</strong>
-                    <span id="pomodoroPlanText" data-i18n="popupNoActivePomodoroPlan">No active Pomodoro plan</span>
-                </div>
-                <p id="pomodoroSessionText" class="pomodoro-session-text" data-i18n="popupZeroWorkSessionsCompleted">0 work sessions completed</p>
-                <p id="pomodoroActivityText" class="pomodoro-session-text" data-i18n="popupActivityUnknownLabel">Activity unknown</p>
-                <dl id="pomodoroTimelineList" class="pomodoro-timeline-list" aria-label="Pomodoro timing details" data-i18n-aria-label="popupPomodoroTimingAriaLabel"></dl>
-                <div class="pomodoro-actions">
-                    <button id="startPomodoroButton" type="button" data-i18n="popupStartButton">Start</button>
-                    <button id="pausePomodoroButton" class="secondary-button" type="button" data-i18n="popupPauseButton">Pause</button>
-                    <button id="resumePomodoroButton" class="secondary-button" type="button" data-i18n="popupResumeButton">Resume</button>
-                    <button id="resetPomodoroButton" class="secondary-button danger-button" type="button" data-i18n="popupResetButton">Reset</button>
-                    <button id="openPomodoroPanelButton" class="secondary-button full-width-pomodoro-action" type="button" data-i18n="popupOpenTimerPanelButton">Open timer panel</button>
-                </div>
+                <button id="pickElementButton" class="primary-action-button" type="button" data-i18n="popupPickUiElementButton">Pick element</button>
             </section>
         </section>
 
@@ -217,7 +217,6 @@
 
         <footer class="popup-footer">
             <p id="statusText" role="status"></p>
-            <button id="openOptionsButton" class="secondary-button" type="button" data-i18n="popupOptionsButton">Options</button>
         </footer>
     </main>
 

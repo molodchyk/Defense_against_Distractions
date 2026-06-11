@@ -3,7 +3,7 @@
 }
 
 body {
-    width: 420px;
+    width: 400px;
     max-height: 640px;
     margin: 0;
     overflow: hidden;
@@ -15,8 +15,8 @@ body {
 .popup-shell {
     display: grid;
     max-height: 640px;
-    gap: 10px;
-    padding: 14px;
+    gap: 9px;
+    padding: 12px;
     overflow-y: auto;
     scrollbar-color: var(--border-strong) transparent;
     scrollbar-width: thin;
@@ -44,7 +44,13 @@ body {
 }
 
 .popup-header {
-    padding: 1px 1px 2px;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    margin: -12px -12px 0;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+    padding: 12px 12px 9px;
 }
 
 .popup-title-block {
@@ -65,7 +71,7 @@ header p {
 
 h1 {
     margin: 2px 0 0;
-    font-size: 22px;
+    font-size: 21px;
     line-height: 1.15;
 }
 
@@ -124,7 +130,7 @@ h2 {
     border: 1px solid var(--border);
     border-radius: 8px;
     background: var(--surface);
-    padding: 12px;
+    padding: 11px;
 }
 
 .primary-panel {
@@ -187,11 +193,11 @@ details.diagnostic-panel:not([open]) h2 {
 
 .popup-footer {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-columns: minmax(0, 1fr);
     align-items: center;
     gap: 8px;
     border-top: 1px solid var(--border);
-    padding: 9px 2px 0;
+    padding: 8px 2px 0;
 }
 
 #statusText {

@@ -780,7 +780,7 @@
         "message": "Defense against Distractions"
     },
     "popupQuickActionsTitle": {
-        "message": "Quick Actions"
+        "message": "Defense Panel"
     },
     "popupOpenOptionsTitle": {
         "message": "Open options"
@@ -789,10 +789,10 @@
         "message": "Popup sections"
     },
     "popupActionsTab": {
-        "message": "Actions"
+        "message": "Control"
     },
     "popupDiagnosticsTab": {
-        "message": "Diagnostics"
+        "message": "Inspect"
     },
     "popupProtectionStatusTitle": {
         "message": "Protection status"
@@ -822,7 +822,7 @@
         "message": "Controls"
     },
     "popupUiPickerTitle": {
-        "message": "UI Picker"
+        "message": "UI cleanup"
     },
     "popupCurrentTabLabel": {
         "message": "Current tab"
@@ -861,7 +861,7 @@
         "message": "Require label"
     },
     "popupPickUiElementButton": {
-        "message": "Pick UI Element"
+        "message": "Pick element"
     },
     "popupPomodoroTitle": {
         "message": "Pomodoro"
