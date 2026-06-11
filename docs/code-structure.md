@@ -154,7 +154,15 @@ Pomodoro is split across plan configuration, runtime, and local activity:
 - `src/js/shared/pomodoro/history.js` owns local Pomodoro history normalization, daily reset behavior, recent event bounding, and local aggregate counters.
 - `src/js/shared/pomodoro/runtime.js` owns runtime phase transitions, pause/resume/reset, system-rest credit, required rest, remaining time, and active-state checks.
 - `src/js/shared/pomodoro/status.js` owns display-oriented Pomodoro status summaries and duration formatting.
-- `src/js/background/pomodoro.js` owns timer truth, alarms, local runtime state, activity state, local history state, auto-start, system idle/locked reconciliation, and popup/options messages.
+- `src/js/background/pomodoro.js` is the background Pomodoro entry barrel imported by `src/js/background.js`.
+- `src/js/background/pomodoro/constants.js` owns background-only alarm, suppression, and protected-schedule message constants.
+- `src/js/background/pomodoro/chromeStorage.js` owns Chrome sync/local storage wrappers, runtime/activity/history persistence, and alarm scheduling.
+- `src/js/background/pomodoro/autoStartSuppression.js` owns manual-reset auto-start suppression state.
+- `src/js/background/pomodoro/planSelection.js` owns active/startable/runtime plan selection helpers.
+- `src/js/background/pomodoro/history.js` owns background transition-history event emission.
+- `src/js/background/pomodoro/engine.js` owns timer truth, runtime reconciliation, auto-start, strict-break protected command guards, system idle/locked reconciliation, and popup/options payloads.
+- `src/js/background/pomodoro/notifications.js` owns best-effort tab notifications for runtime changes and strict-break reset clearing.
+- `src/js/background/pomodoro/initializer.js` owns Chrome event listener registration, idle detection startup, alarm wakeups, and runtime message routing.
 - `src/js/content/pomodoro/activity.js` sends throttled top-frame activity pings for local active/away status.
 - `src/js/content/pomodoro/miniPanelState.js` owns local-only mini-panel UI-state persistence and normalization.
 - `src/js/content/pomodoro/miniPanelStyle.js` owns mini-panel CSS injection and shared layout constants. It must load before `miniPanel.js`.
