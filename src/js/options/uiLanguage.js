@@ -9,7 +9,7 @@ import {
   getUiMessage,
   initializeUiLanguage,
   setUiLanguagePreference
-} from '../shared/uiLanguage.js';
+} from '../shared/ui/uiLanguage.js';
 
 export function initializeUiLanguageControl(onLanguageChanged) {
   const languageSelect = document.getElementById('uiLanguageSelect');

@@ -1,13 +1,13 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
-import { getSync, setSync } from '../shared/chromeStorage.js';
+import { getSync, setSync } from '../shared/storage/chromeStorage.js';
 import {
   DEFAULT_THEME_MODE,
   THEME_STORAGE_KEY,
   normalizeThemeMode,
   resolveThemeMode
-} from '../shared/theme.js';
+} from '../shared/ui/theme.js';
 
 const THEME_QUERY = '(prefers-color-scheme: dark)';
 

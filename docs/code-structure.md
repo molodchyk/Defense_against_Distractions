@@ -30,6 +30,18 @@ Shared schedule helpers live under `src/js/shared/schedules/`:
 
 New schedule behavior should go into this subfolder instead of adding files directly to `src/js/shared`.
 
+Shared storage helpers live under `src/js/shared/storage/`:
+
+- `src/js/shared/storage/chromeStorage.js` owns Promise wrappers around `chrome.storage.sync`.
+- `src/js/shared/storage/criticalScheduleStorage.js` owns priority saving for plan data when forced schedule data must be preserved.
+
+Shared UI helpers live under `src/js/shared/ui/`:
+
+- `src/js/shared/ui/theme.js` owns UI-mode normalization and system-mode resolution.
+- `src/js/shared/ui/uiLanguage.js` owns UI-language normalization, Chrome-locale fallback, and message formatting.
+
+New storage or UI helpers should go into these subfolders instead of adding files directly to `src/js/shared`.
+
 ## Test Structure
 
 Node tests live under `test/shared/` by product area:

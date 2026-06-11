@@ -7,7 +7,7 @@ import {
 import {
   UI_LANGUAGE_STORAGE_KEY,
   initializeUiLanguage
-} from './shared/uiLanguage.js';
+} from './shared/ui/uiLanguage.js';
 import {
   getActiveTab,
   getSyncStorage,

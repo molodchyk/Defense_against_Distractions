@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
-import { sanitizePlansForStorage } from './plans.js';
+import { sanitizePlansForStorage } from '../plans.js';
 
 const LEGACY_ELEMENT_RULES_STORAGE_KEY = 'elementBlockRules';
 const ELEMENT_RULE_IDS_STORAGE_KEY = 'elementBlockRuleIds';

@@ -6,7 +6,7 @@ import { describe, it } from 'node:test';
 import {
   formatLocalizedMessage,
   normalizeUiLanguage
-} from '../../../src/js/shared/uiLanguage.js';
+} from '../../../src/js/shared/ui/uiLanguage.js';
 
 describe('UI language helpers', () => {
   it('normalizes supported browser locale codes', () => {

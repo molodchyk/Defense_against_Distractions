@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
-import { clearSync, getSync, setSync } from '../shared/chromeStorage.js';
+import { clearSync, getSync, setSync } from '../shared/storage/chromeStorage.js';
 
 export function initializeStorageTransfer() {
   const exportButton = document.getElementById('exportButton');

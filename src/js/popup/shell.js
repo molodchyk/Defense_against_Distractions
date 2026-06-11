@@ -6,7 +6,7 @@ import {
   THEME_STORAGE_KEY,
   normalizeThemeMode,
   resolveThemeMode
-} from '../shared/theme.js';
+} from '../shared/ui/theme.js';
 
 export function createPopupShell() {
   const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');

@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
-import { getUiMessage } from '../../shared/uiLanguage.js';
+import { getUiMessage } from '../../shared/ui/uiLanguage.js';
 
 const PLAN_MESSAGES = {
   plansHeading: 'Plans',

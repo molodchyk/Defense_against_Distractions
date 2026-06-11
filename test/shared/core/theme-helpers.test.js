@@ -6,7 +6,7 @@ import { describe, it } from 'node:test';
 import {
   normalizeThemeMode,
   resolveThemeMode
-} from '../../../src/js/shared/theme.js';
+} from '../../../src/js/shared/ui/theme.js';
 
 describe('theme helpers', () => {
   it('defaults unknown theme modes to system', () => {

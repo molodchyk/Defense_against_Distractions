@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
-import { getBytesInUseSync, getSync, removeSync, setSync } from '../shared/chromeStorage.js';
-import { savePlansWithPriority } from '../shared/criticalScheduleStorage.js';
+import { getBytesInUseSync, getSync, removeSync, setSync } from '../shared/storage/chromeStorage.js';
+import { savePlansWithPriority } from '../shared/storage/criticalScheduleStorage.js';
 import { isInProtectedSchedule, normalizePlans, PLANS_STORAGE_KEY } from '../shared/plans.js';
-import { getUiMessage } from '../shared/uiLanguage.js';
+import { getUiMessage } from '../shared/ui/uiLanguage.js';
 import { createLocalizedButton } from './dom.js';
 
 const ELEMENT_RULES_STORAGE_KEY = 'elementBlockRules';

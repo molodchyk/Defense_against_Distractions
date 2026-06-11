@@ -4,7 +4,7 @@
 import {
   getResolvedUiLanguage,
   getUiMessage
-} from '../shared/uiLanguage.js';
+} from '../shared/ui/uiLanguage.js';
 
 export const POPUP_MESSAGES = {
   popupDocumentTitle: 'Defense against Distractions',

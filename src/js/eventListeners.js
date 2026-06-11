@@ -12,8 +12,8 @@ import { initializeStorageTransfer } from './options/storageTransfer.js';
 import { initializeThemeModeControl } from './options/theme.js';
 import { initializeUiLanguageControl } from './options/uiLanguage.js';
 import { initializeUsageStatsPanel } from './options/usageStats.js';
-import { getSync } from './shared/chromeStorage.js';
-import { initializeUiLanguage } from './shared/uiLanguage.js';
+import { getSync } from './shared/storage/chromeStorage.js';
+import { initializeUiLanguage } from './shared/ui/uiLanguage.js';
 import { isInProtectedSchedule } from './shared/plans.js';
 
 let lastProtectedScheduleState = null;

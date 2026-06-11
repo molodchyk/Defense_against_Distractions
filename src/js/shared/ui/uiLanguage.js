@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
-import { getSync, setSync } from './chromeStorage.js';
+import { getSync, setSync } from '../storage/chromeStorage.js';
 
 export const UI_LANGUAGE_STORAGE_KEY = 'uiLanguage';
 export const DEFAULT_UI_LANGUAGE = 'system';
