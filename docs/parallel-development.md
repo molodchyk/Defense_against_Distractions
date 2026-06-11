@@ -47,6 +47,7 @@ Current focus:
 - Completed checkpoint: shared usage stats have been split into constants, utils, metrics, state, record, and summary modules under `src/js/shared/usage-stats/` while preserving the public barrel API.
 - Completed checkpoint: background intent coherence has been split into Chrome API, storage, policy, page-signal recording, tab lineage, diagnostics, message routing, and initializer modules under `src/js/background/intent/` while preserving the public initializer barrel.
 - Completed checkpoint: Pomodoro mini-panel style behavior has been split into constants, CSS generation, and a thin style-injection facade while preserving the public `PomodoroMiniPanelStyle` API.
+- Completed checkpoint: options and popup CSS are split into thin entry barrels plus focused surface stylesheets.
 - Current checkpoint: remaining JS work is soft-size adapter cleanup and folder-density reduction; no JS file-size hard violations are currently reported by `npm run audit:file-sizes`.
 - Current folder-density debt: none reported by `npm run audit:folder-density`.
 - `manifest.json` load order must stay preserved exactly when content scripts move.
@@ -140,7 +141,7 @@ Release-facing changes:
 
 - `src/js/shared` is back within the folder-density budget after moving schedule, storage, and UI helpers into feature subfolders.
 - `src/js/options` is back within the folder-density budget after moving reusable schedule-board modules into `src/js/options/schedules/`.
-- `src/js/content` is now split by feature folder, but several content adapters still exceed file-size budgets.
+- `src/js/content` is now split by feature folder, and current file-size audits report no hard JS violations.
 - `src/js/content/pomodoro/miniPanel.js` is now a thin controller after extracting mini-panel theme, layout, and render modules.
 - `src/js/content/pomodoro/miniPanelStyle.js` is now a thin style facade after extracting mini-panel constants and CSS text generation.
 - `src/js/content/content-blocking/overlay.js` is now a thin controller after extracting blocked-overlay message, style, theme, diagnostics, Pomodoro, and event modules.
@@ -151,7 +152,7 @@ Release-facing changes:
 - `src/js/background/intentCoherence.js` is now a small compatibility barrel. Background intent runtime responsibilities live under `src/js/background/intent/`.
 - `src/js/content/ui-blocking/controller.js` is below the hard file-size limit after extracting `pickerStyle.js` and `pickerPanel.js`.
 - `src/js/content/intentIntervention.js` is below the hard file-size limit after extracting `src/js/content/intent/` constants, messages, style, theme, and prompt modules.
-- `src/css/style.css` exceeds file-size hard limits.
+- `src/css/style.css` and `src/css/popup.css` are thin stylesheet entry barrels. Surface styles live under `src/css/options/` and `src/css/popup/`.
 - The test suite is now feature-owned under `test/shared/`; `test/shared/intent/intent-coherence-tabs.test.js` is still over the soft file-size target and should not grow.
 - `src/js/shared/intentCoherence.js` is now a small compatibility barrel. The shared intent implementation lives under `src/js/shared/intent/`.
 - `src/js/shared/pomodoro.js` is now a small compatibility barrel. The shared Pomodoro implementation lives under `src/js/shared/pomodoro/`.

@@ -11,10 +11,10 @@ The source-backed Chrome extension constraints behind this roadmap are summarize
 Current pressure points:
 
 - Runtime folders are becoming dumping grounds. `src/js/options`, `src/js/content`, and root `src/js` contain unrelated responsibilities side by side.
-- Some files are too large to reason about safely: options plans, popup, Pomodoro background runtime, Pomodoro mini-panel, and large CSS files.
+- Some files were too large to reason about safely. The largest JavaScript and CSS entry points have been split, but plan/schedule UI behavior still needs careful incremental refinement.
 - UI rendering, storage mutation, validation, Chrome API calls, and domain rules are often mixed in the same file.
 - Content scripts use classic manifest load order and `window.DAD` globals. That is workable, but it must be treated as an explicit adapter layer, not as the main architecture.
-- Tests and several runtime modules have been split into feature-owned files. Remaining debt is concentrated in folder density, CSS, and soft-size adapters.
+- Tests and several runtime modules have been split into feature-owned files. Remaining debt is concentrated in product-flow refinement, soft-size adapters, and keeping new work inside the existing feature folders.
 
 ## Architectural Direction
 
@@ -373,31 +373,33 @@ The background intent runtime is also split. `src/js/background/intentCoherence.
 
 ### Phase 7: CSS Split
 
-Split CSS by surface and feature:
+Status: completed for popup and options-page entry stylesheets. `src/css/popup.css` and `src/css/style.css` are now thin import barrels, and the actual styling lives in focused surface folders.
+
+Current CSS structure:
 
 ```text
 src/css/
-  tokens.css
   options/
+    tokens.css
     layout.css
     plans.css
     schedule.css
     blocked-ui.css
     diagnostics.css
     settings.css
+    actions.css
+    dialogs.css
+    responsive.css
   popup/
+    tokens.css
     layout.css
-    cards.css
+    controls.css
+    status.css
+    pomodoro.css
     diagnostics.css
-  content/
-    picker.css
-    pomodoro-mini-panel.css
-    blocking-overlay.css
-  blocked/
-    blocked-page.css
 ```
 
-Only split CSS after the JS ownership boundaries are stable, otherwise selectors will churn twice.
+Content-script CSS is still mostly injected by content-script modules because those surfaces need page isolation and manifest load-order compatibility. Future content styling should stay in the owning content module unless a bundling step is introduced.
 
 ### Phase 8: Optional Build Step
 
@@ -426,11 +428,12 @@ Each modularization slice should satisfy:
 
 ## Next Implementation Targets
 
-The popup split is complete for the entry-file level. The next practical targets are:
+The popup and CSS entry splits are complete for the entry-file level. The next practical targets are:
 
 - Continue reducing soft file-size warnings in touched files, starting with user-facing adapters and model files.
 - Split the plan controller further when plan schedule, entries, Pomodoro, or intent behavior changes.
-- Split `src/css/style.css` by options surface once the options-page layout stabilizes.
+- Refine the plan schedule editor behavior and visuals without reintroducing standalone global schedules.
+- Keep CSS changes inside the narrowest existing surface file instead of growing `src/css/style.css` or `src/css/popup.css`.
 
 The highest product-value target remains the plan editor because it owns the product model users will live in.
 
@@ -443,3 +446,4 @@ Recent checkpoint:
 - Blocked-page runtime behavior now lives under `src/js/blocked/` for Chrome API wrappers, localization, UI-mode theme sync, and Pomodoro timer rendering. `src/js/blockedScript.js` remains the `src/blocked.html` module entry.
 - Shared Pomodoro runtime helpers now live in focused modules for runtime state, phase durations, rest credit, and transitions. `src/js/shared/pomodoro/runtime.js` remains the compatibility barrel for current callers and tests.
 - Pomodoro mini-panel style behavior now lives in focused content scripts for constants, CSS text generation, and a thin injection facade. `src/js/content/pomodoro/miniPanelStyle.js` remains the public content-script style API.
+- Options and popup CSS now use thin entry barrels with focused surface files under `src/css/options/` and `src/css/popup/`.
