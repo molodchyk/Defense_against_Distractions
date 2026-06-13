@@ -4,7 +4,9 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 import {
+  detachIntentTabLineageEntries,
   getActiveIntentSession,
+  getIntentChainReturnTabIds,
   getIntentDriftDescendantTabIds,
   getIntentInterventionDecision,
   getIntentSessionForTab,
@@ -62,10 +64,14 @@ describe('intent coherence tab lineage', () => {
   }
 
   it('records active tab changes separately from page visits', () => {
-    const state = recordIntentTabActivation(null, 42, { now: () => 1000 });
+    let state = recordIntentTabActivation(null, 42, { now: () => 1000 });
+    state = recordIntentTabActivation(state, 42, { now: () => 1500 });
+    state = recordIntentTabActivation(state, 43, { now: () => 2000 });
 
-    assert.equal(state.activeTabId, 42);
+    assert.equal(state.activeTabId, 43);
     assert.equal(state.sessions.length, 0);
+    assert.deepEqual(state.tabActivations.map(entry => entry.tabId), [42, 43]);
+    assert.equal(state.tabActivations[0].activatedAt, new Date(1000).toISOString());
   });
 
   it('records tab lineage and connects a child tab to its opener session', () => {
@@ -220,6 +226,7 @@ describe('intent coherence tab lineage', () => {
     assert.ok(getIntentInterventionDecision(getActiveIntentSession(state)).reasonLines.includes(
       'Current tab descends from an already drifted chain'
     ));
+
   });
 
   it('marks block-action drift descendants as chain quarantine targets', () => {
@@ -417,6 +424,46 @@ describe('intent coherence tab lineage', () => {
 
     assert.deepEqual(getIntentDriftDescendantTabIds(state, { currentTabId: 2 }), [3]);
     assert.deepEqual(getIntentDriftDescendantTabIds(state, { currentTabId: 2, includeCurrent: true }), [2, 3]);
+    assert.deepEqual(getIntentDriftDescendantTabIds(state, { currentTabId: 1 }), [2, 3]);
+    assert.deepEqual(getIntentDriftDescendantTabIds(state, {}), []);
+    assert.deepEqual(getIntentChainReturnTabIds(state, { currentTabId: 1 }), [1, 2, 3]);
+    assert.deepEqual(getIntentChainReturnTabIds(state, { currentTabId: 2 }), [2, 3]);
+    assert.deepEqual(getIntentChainReturnTabIds(state, {}), []);
+  });
+
+  it('uses the current tab as the chain root when the root tab has no lineage entry', () => {
+    const state = {
+      tabLineage: [
+        { tabId: 2, rootTabId: 1, driftDescendant: true },
+        { tabId: 3, rootTabId: 1, driftDescendant: true },
+        { tabId: 4, rootTabId: 4, driftDescendant: true }
+      ]
+    };
+
+    assert.deepEqual(getIntentDriftDescendantTabIds(state, { currentTabId: 1 }), [2, 3]);
+    assert.deepEqual(getIntentChainReturnTabIds(state, { currentTabId: 1 }), [1, 2, 3]);
+  });
+
+  it('detaches only selected returned drift tabs from tab lineage', () => {
+    const state = {
+      activeTabId: 1,
+      activeSessionId: null,
+      updatedAt: new Date(1000).toISOString(),
+      sessions: [],
+      feedback: [],
+      tabLineage: [
+        { tabId: 1, rootTabId: 1, driftDescendant: false },
+        { tabId: 2, rootTabId: 1, driftDescendant: true },
+        { tabId: 3, rootTabId: 1, driftDescendant: true },
+        { tabId: 4, rootTabId: 4, driftDescendant: true }
+      ]
+    };
+
+    const nextState = detachIntentTabLineageEntries(state, [2, 4], { now: () => 2000 });
+
+    assert.deepEqual(nextState.tabLineage.map(entry => entry.tabId), [1, 3]);
+    assert.equal(nextState.activeTabId, 1);
+    assert.equal(nextState.updatedAt, new Date(2000).toISOString());
   });
 
   it('finds the latest session that belongs to a tab', () => {

@@ -9,6 +9,7 @@ import { migrateLegacyWebsiteGroupsStorage } from './options/legacyMigration.js'
 import { initializePlans, renderPlans } from './options/plans/controller.js';
 import { initializeReleaseBackupNotice } from './options/releaseNotice.js';
 import { initializeStorageTransfer } from './options/storageTransfer.js';
+import { initializeBlockedPageSettings } from './options/settings/blockedPageSettings.js';
 import { initializeThemeModeControl } from './options/theme.js';
 import { initializeUiLanguageControl } from './options/uiLanguage.js';
 import { initializeUsageStatsPanel } from './options/usageStats.js';
@@ -36,6 +37,7 @@ async function initializeOptionsPage() {
   initializeIntentDiagnosticsPanel();
   initializeUsageStatsPanel();
   initializeBillingPanel();
+  initializeBlockedPageSettings();
   initializeProtectionLockPolling();
   initializeStorageTransfer();
   initializeReleaseBackupNotice();

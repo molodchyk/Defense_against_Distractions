@@ -40,6 +40,16 @@ function normalizeDayEntry(entry = {}, options = {}) {
     dwellMs: sanitizeMs(entry.dwellMs),
     tabMax: sanitizeCount(entry.tabMax),
     windowMax: sanitizeCount(entry.windowMax),
+    allowedSamples: sanitizeCount(entry.allowedSamples),
+    allowedVisits: sanitizeCount(entry.allowedVisits),
+    allowedActiveMs: sanitizeMs(entry.allowedActiveMs),
+    allowedDwellMs: sanitizeMs(entry.allowedDwellMs),
+    allowedWordCount: sanitizeCount(entry.allowedWordCount),
+    blockedSamples: sanitizeCount(entry.blockedSamples),
+    blockedVisits: sanitizeCount(entry.blockedVisits),
+    blockedActiveMs: sanitizeMs(entry.blockedActiveMs),
+    blockedDwellMs: sanitizeMs(entry.blockedDwellMs),
+    blockedWordCount: sanitizeCount(entry.blockedWordCount),
     updatedAt: toIsoString(toTimestamp(entry.updatedAt)) || new Date(now).toISOString(),
     domains
   };

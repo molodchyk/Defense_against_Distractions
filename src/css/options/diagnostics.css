@@ -171,6 +171,113 @@
     font-size: 12px;
 }
 
+.intent-graph-section {
+    margin-bottom: 14px;
+}
+
+.intent-graph-list {
+    display: grid;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.intent-graph-list li {
+    position: relative;
+    display: grid;
+    grid-template-columns: 34px minmax(0, 1fr);
+    gap: 10px;
+    min-width: 0;
+    padding: 0 0 12px;
+}
+
+.intent-graph-list li::before {
+    content: "";
+    position: absolute;
+    top: 30px;
+    bottom: 0;
+    left: 16px;
+    width: 2px;
+    background: var(--border);
+}
+
+[dir="rtl"] .intent-graph-list li::before {
+    right: 16px;
+    left: auto;
+}
+
+.intent-graph-list li:last-child {
+    padding-bottom: 0;
+}
+
+.intent-graph-list li:last-child::before {
+    display: none;
+}
+
+.intent-graph-marker {
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--surface-raised);
+    color: var(--text);
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.intent-graph-node-body {
+    display: grid;
+    gap: 5px;
+    min-width: 0;
+    padding: 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--field);
+}
+
+.intent-graph-node-body strong,
+.intent-graph-node-body small {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.intent-graph-node-body small {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.intent-graph-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.intent-graph-badge {
+    padding: 2px 6px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.intent-graph-list li[data-current="true"] .intent-graph-marker {
+    border-color: var(--primary);
+    background: var(--primary);
+    color: #ffffff;
+}
+
+.intent-graph-list li[data-drift-descendant="true"] .intent-graph-node-body,
+.intent-graph-list li[data-first-drift="true"] .intent-graph-node-body {
+    border-color: var(--danger);
+}
+
 .intent-metric-grid {
     display: grid;
     grid-template-columns: minmax(160px, 1fr) auto;
@@ -192,6 +299,10 @@
     color: var(--text);
     font-weight: 700;
     text-align: right;
+}
+
+[dir="rtl"] .intent-metric-grid dd {
+    text-align: left;
 }
 
 .plan-entry-field span {

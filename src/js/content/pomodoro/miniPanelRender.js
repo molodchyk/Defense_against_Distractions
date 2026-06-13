@@ -67,6 +67,25 @@
       : shortBreakMinutes * 60 * 1000;
   }
 
+  function getRestTiming(status, phase, settings) {
+    const fallbackRequiredRestMs = getBreakDurationMs(phase, settings, status.completedWorkSessions || 0);
+    const requiredRestMs = Number.isFinite(Number(status.requiredRestMs))
+      ? Math.max(0, Number(status.requiredRestMs))
+      : fallbackRequiredRestMs;
+    const effectiveRestCreditMs = Number.isFinite(Number(status.effectiveRestCreditMs))
+      ? Math.max(0, Number(status.effectiveRestCreditMs))
+      : Math.min(Number(status.restCreditMs || 0), requiredRestMs);
+    const restStillNeededMs = Number.isFinite(Number(status.restStillNeededMs))
+      ? Math.max(0, Number(status.restStillNeededMs))
+      : Math.max(0, requiredRestMs - effectiveRestCreditMs);
+
+    return {
+      effectiveRestCreditMs,
+      requiredRestMs,
+      restStillNeededMs
+    };
+  }
+
   function createRow(label, value) {
     const row = document.createElement('div');
     const term = document.createElement('dt');
@@ -80,26 +99,43 @@
   function getPhaseRows(runtime, status, payload) {
     const settings = status.settings || {};
     const phase = status.phase || runtime.phase || 'idle';
-    const upcomingBreakMs = getBreakDurationMs(phase, settings, status.completedWorkSessions || 0);
-    const restCreditMs = upcomingBreakMs > 0
-      ? Math.min(Number(status.restCreditMs || 0), upcomingBreakMs)
-      : Number(status.restCreditMs || 0);
-    const restStillNeededMs = Math.max(0, upcomingBreakMs - restCreditMs);
+    const {
+      effectiveRestCreditMs,
+      requiredRestMs,
+      restStillNeededMs
+    } = getRestTiming(status, phase, settings);
 
     if (phase === 'work') {
-      return [
+      const rows = [
         createRow(getMessage('pomodoroWorkStartedLabel', 'Work started'), formatClock(runtime.phaseStartedAt)),
         createRow(getMessage('pomodoroNextBreakLabel', 'Next break'), formatClock(runtime.phaseEndsAt)),
-        createRow(getMessage('pomodoroRestCreditedLabel', 'Rest already credited'), formatDuration(restCreditMs)),
+        createRow(getMessage('pomodoroRequiredRestLabel', 'Required rest'), formatDuration(requiredRestMs)),
+        createRow(getMessage('pomodoroRestCreditedLabel', 'Rest already credited'), formatDuration(effectiveRestCreditMs)),
         createRow(getMessage('pomodoroRestStillNeededLabel', 'Rest still needed'), formatDuration(restStillNeededMs))
       ];
+
+      if (runtime.restCreditStartedAt || status.restCreditStartedAt) {
+        rows.splice(3, 0, createRow(
+          getMessage('pomodoroRestCreditStartedLabel', 'Rest credit started'),
+          formatClock(status.restCreditStartedAt || runtime.restCreditStartedAt)
+        ));
+      }
+
+      if (requiredRestMs > 0 && restStillNeededMs <= 0) {
+        rows.push(createRow(
+          getMessage('pomodoroReturnBehaviorLabel', 'Return behavior'),
+          getMessage('pomodoroReturnStartsNewWork', 'new work starts on activity')
+        ));
+      }
+
+      return rows;
     }
 
     if (BREAK_PHASES.has(phase)) {
       return [
         createRow(getMessage('pomodoroBreakStartedLabel', 'Break started'), formatClock(runtime.phaseStartedAt)),
         createRow(getMessage('pomodoroBreakEndsLabel', 'Break ends'), formatClock(runtime.phaseEndsAt)),
-        createRow(getMessage('pomodoroRequiredRestLabel', 'Required rest'), formatDuration(upcomingBreakMs))
+        createRow(getMessage('pomodoroRequiredRestLabel', 'Required rest'), formatDuration(requiredRestMs))
       ];
     }
 
@@ -141,7 +177,9 @@
 
     panel.querySelector('[data-dad-mini-time]').textContent = status.remainingText || '0:00';
     const phaseElement = panel.querySelector('[data-dad-mini-phase]');
-    phaseElement.textContent = status.phaseLabel || getMessage('popupIdleLabel', 'Idle');
+    phaseElement.textContent = status.restSatisfiedByCredit
+      ? getMessage('pomodoroRestSatisfiedLabel', 'Rest satisfied')
+      : (status.phaseLabel || getMessage('popupIdleLabel', 'Idle'));
     phaseElement.dataset.phase = phase;
     panel.querySelector('[data-dad-mini-plan]').textContent = planName;
 

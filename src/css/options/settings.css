@@ -42,6 +42,36 @@
     max-width: 520px;
 }
 
+.blocked-page-message-control {
+    display: grid;
+    gap: 8px;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.blocked-page-message-control textarea {
+    min-height: 96px;
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.45;
+}
+
+.settings-field-meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px 14px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.settings-field-meta span:last-child {
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+}
+
 .instruction-link {
     flex: 0 0 auto;
     display: flex;

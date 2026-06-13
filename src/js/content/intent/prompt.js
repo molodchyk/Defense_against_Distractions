@@ -6,7 +6,9 @@
   const intent = global.DAD.IntentIntervention = global.DAD.IntentIntervention || {};
   const {
     PROMPT_ID,
-    GRAYSCALE_ACTION
+    GRAYSCALE_ACTION,
+    REDUCE_NOISE_ACTION,
+    CONTINUE_REASON_MAX_LENGTH
   } = intent.constants;
   const {
     getIntentMessage
@@ -63,11 +65,75 @@
     return button;
   }
 
+  function normalizeContinueReason(value) {
+    return String(value || '')
+      .trim()
+      .replace(/\s+/g, ' ')
+      .slice(0, CONTINUE_REASON_MAX_LENGTH);
+  }
+
+  function createContinueReasonControl() {
+    const wrapper = global.document.createElement('div');
+    wrapper.dataset.dadIntentContinueReason = 'true';
+
+    const label = global.document.createElement('label');
+    const inputId = `${PROMPT_ID}-continue-reason`;
+    label.setAttribute('for', inputId);
+    label.textContent = getIntentMessage('intentPromptContinueReasonLabel');
+
+    const input = global.document.createElement('textarea');
+    input.id = inputId;
+    input.rows = 2;
+    input.maxLength = CONTINUE_REASON_MAX_LENGTH;
+    input.placeholder = getIntentMessage('intentPromptContinueReasonPlaceholder');
+
+    const count = global.document.createElement('span');
+    count.dataset.dadIntentContinueReasonCount = 'true';
+
+    wrapper.append(label, input, count);
+
+    return {
+      wrapper,
+      focus: () => input.focus(),
+      getReason: () => normalizeContinueReason(input.value),
+      bindButton: button => {
+        const update = () => {
+          const reason = normalizeContinueReason(input.value);
+          button.disabled = !reason;
+          button.title = reason ? '' : getIntentMessage('intentPromptContinueReasonRequired');
+          count.textContent = `${String(reason.length)} / ${String(CONTINUE_REASON_MAX_LENGTH)}`;
+        };
+        input.addEventListener('input', update);
+        update();
+      }
+    };
+  }
+
   function appendStrongLabel(container, label) {
     const strong = global.document.createElement('strong');
     strong.textContent = label;
     container.appendChild(strong);
     container.appendChild(global.document.createTextNode(' '));
+  }
+
+  function createMetaLine(labelKey, text) {
+    const line = global.document.createElement('p');
+    line.dataset.dadIntentMeta = 'true';
+    appendStrongLabel(line, getIntentMessage(labelKey));
+    line.appendChild(global.document.createTextNode(text));
+    return line;
+  }
+
+  function formatDriftTabScope(decision) {
+    const count = Math.max(0, Number(decision?.chainBlock?.driftDescendantTabCount || 0));
+    if (count <= 0) {
+      return getIntentMessage('intentPromptDriftTabsNone');
+    }
+
+    const tabNoun = count === 1
+      ? getIntentMessage('intentPromptTabSingular')
+      : getIntentMessage('intentPromptTabPlural');
+    return getIntentMessage('intentPromptDriftTabsScope', [String(count), tabNoun]);
   }
 
   function renderPrompt(decision, handlers) {
@@ -93,6 +159,7 @@
     prompt.dataset.cooldownActive = decision.chainBlock?.cooldownActive ? 'true' : 'false';
     prompt.setAttribute('role', 'dialog');
     prompt.setAttribute('aria-live', 'polite');
+    global.DAD.UiLanguage?.applyDirection?.(prompt);
     if (decision.action === 'block') {
       prompt.setAttribute('aria-modal', 'true');
     }
@@ -117,34 +184,44 @@
       summary.textContent = getIntentMessage('intentPromptBlockSummary');
     } else if (decision.action === GRAYSCALE_ACTION) {
       summary.textContent = getIntentMessage('intentPromptGrayscaleSummary');
+    } else if (decision.action === REDUCE_NOISE_ACTION) {
+      summary.textContent = getIntentMessage('intentPromptReduceNoiseSummary');
     } else {
       summary.textContent = getIntentMessage('intentPromptDetectedSummary');
     }
 
-    const meta = global.document.createElement('p');
-    meta.dataset.dadIntentMeta = 'true';
-    appendStrongLabel(meta, getIntentMessage('intentPromptCoherenceLabel'));
-    meta.appendChild(global.document.createTextNode(`${decision.coherenceScore ?? '--'} / 100 · ${decision.riskState}`));
-
-    const origin = global.document.createElement('p');
-    origin.dataset.dadIntentMeta = 'true';
-    appendStrongLabel(origin, getIntentMessage('intentPromptOriginLabel'));
-    origin.appendChild(global.document.createTextNode(getLabel(decision.origin)));
-
-    const current = global.document.createElement('p');
-    current.dataset.dadIntentMeta = 'true';
-    appendStrongLabel(current, getIntentMessage('intentPromptCurrentLabel'));
-    current.appendChild(global.document.createTextNode(getLabel(decision.currentVisit)));
+    const meta = createMetaLine(
+      'intentPromptCoherenceLabel',
+      `${decision.coherenceScore ?? '--'} / 100 · ${decision.riskState}`
+    );
+    const origin = createMetaLine('intentPromptOriginLabel', getLabel(decision.origin));
+    const recovery = createMetaLine(
+      'intentPromptRecoveryLabel',
+      getLabel(decision.recoveryVisit || decision.origin)
+    );
+    const drift = decision.driftVisit
+      ? createMetaLine('intentPromptFirstDriftLabel', getLabel(decision.driftVisit))
+      : null;
+    const current = createMetaLine('intentPromptCurrentLabel', getLabel(decision.currentVisit));
+    const driftTabs = decision.chainBlock?.active
+      ? createMetaLine('intentPromptDriftTabsLabel', formatDriftTabScope(decision))
+      : null;
 
     const cooldown = global.document.createElement('p');
     cooldown.dataset.dadIntentMeta = 'true';
     appendStrongLabel(cooldown, getIntentMessage('intentPromptCooldownLabel'));
     if (decision.chainBlock?.cooldownActive) {
-      cooldown.appendChild(global.document.createTextNode(getIntentMessage('intentPromptCooldownActive', [
+      const messageKey = decision.chainBlock?.autoCloseCurrentTab
+        ? 'intentPromptCooldownAutoCloseActive'
+        : 'intentPromptCooldownActive';
+      cooldown.appendChild(global.document.createTextNode(getIntentMessage(messageKey, [
         formatCooldown(decision.chainBlock.cooldownRemainingMs)
       ])));
     } else {
-      cooldown.appendChild(global.document.createTextNode(getIntentMessage('intentPromptCooldownComplete')));
+      const messageKey = decision.chainBlock?.autoCloseCurrentTab
+        ? 'intentPromptCooldownAutoCloseComplete'
+        : 'intentPromptCooldownComplete';
+      cooldown.appendChild(global.document.createTextNode(getIntentMessage(messageKey)));
     }
 
     const reasons = global.document.createElement('ul');
@@ -155,7 +232,14 @@
       reasons.appendChild(item);
     });
 
-    body.append(title, summary, meta, origin, current);
+    body.append(title, summary, meta, origin, recovery);
+    if (drift) {
+      body.append(drift);
+    }
+    body.append(current);
+    if (driftTabs) {
+      body.append(driftTabs);
+    }
     if (decision.chainBlock?.active && Number(decision.chainBlock.cooldownMs || 0) > 0) {
       body.append(cooldown);
     }
@@ -173,11 +257,24 @@
         createButton(getIntentMessage('intentPromptIsolateButton'), {
           primary: true,
           onClick: () => handlers.isolateCurrentPage(decision)
+        }),
+        createButton(getIntentMessage('intentPromptShowGraphButton'), {
+          onClick: () => handlers.showIntentGraph(decision)
         })
       );
     } else if (decision.action === 'block') {
       if (decision.chainBlock?.active) {
         actions.append(
+          createButton(getIntentMessage('intentPromptReturnChainButton'), {
+            primary: true,
+            onClick: () => handlers.returnChainToRecovery(decision)
+          }),
+          createButton(getIntentMessage('intentPromptMoveOtherDriftTabsButton'), {
+            onClick: () => handlers.moveDriftDescendantTabs(decision)
+          }),
+          createButton(getIntentMessage('intentPromptSuspendOtherDriftTabsButton'), {
+            onClick: () => handlers.suspendDriftDescendantTabs(decision)
+          }),
           createButton(getIntentMessage('intentPromptCloseOtherDriftTabsButton'), {
             onClick: () => handlers.closeDriftDescendantTabs(decision)
           })
@@ -189,24 +286,46 @@
           : getIntentMessage('intentPromptTrustShiftButton'), {
           disabled: decision.chainBlock?.cooldownActive,
           title: decision.chainBlock?.cooldownActive ? getIntentMessage('intentPromptCooldownUnavailableTitle') : '',
-          onClick: () => handlers.isolateCurrentPage(decision)
+          onClick: () => handlers.isolateCurrentPage(
+            decision,
+            decision.chainBlock?.active ? 'isolate' : 'markCoherent'
+          )
         }),
-        createButton(getIntentMessage('intentPromptReturnButton'), {
+        ...(decision.chainBlock?.active ? [] : [createButton(getIntentMessage('intentPromptReturnButton'), {
           primary: true,
           onClick: () => handlers.returnToRecovery(decision)
+        })]),
+        createButton(getIntentMessage('intentPromptShowGraphButton'), {
+          onClick: () => handlers.showIntentGraph(decision)
         })
       );
     } else {
+      const continueReason = createContinueReasonControl();
+      body.append(continueReason.wrapper);
+      const continueButton = createButton(getIntentMessage('intentPromptContinueButton'), {
+        disabled: true,
+        title: getIntentMessage('intentPromptContinueReasonRequired'),
+        onClick: () => {
+          const reason = continueReason.getReason();
+          if (!reason) {
+            continueReason.focus();
+            return;
+          }
+          handlers.dismissAndRemove(decision, undefined, 'continue', { reason });
+        }
+      });
+      continueReason.bindButton(continueButton);
       actions.append(
-        createButton(getIntentMessage('intentPromptContinueButton'), {
-          onClick: () => handlers.dismissAndRemove(decision, undefined, 'continue')
-        }),
+        continueButton,
         createButton(getIntentMessage('intentPromptIsolateButton'), {
           onClick: () => handlers.isolateCurrentPage(decision)
         }),
         createButton(getIntentMessage('intentPromptReturnButton'), {
           primary: true,
           onClick: () => handlers.returnToRecovery(decision)
+        }),
+        createButton(getIntentMessage('intentPromptShowGraphButton'), {
+          onClick: () => handlers.showIntentGraph(decision)
         })
       );
     }
@@ -219,4 +338,8 @@
   intent.prompt = {
     renderPrompt
   };
+
+  global.DAD.UiLanguage?.onChange?.(() => {
+    global.DAD.UiLanguage?.applyDirection?.(global.document.getElementById(PROMPT_ID));
+  });
 })(window);

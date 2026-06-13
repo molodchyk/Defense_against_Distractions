@@ -6,3 +6,4 @@ export * from './plans/model.js';
 export * from './plans/activity.js';
 export * from './plans/effectiveRules.js';
 export * from './plans/intentPolicy.js';
+export * from './plans/protectedScheduleChanges.js';

@@ -2,6 +2,8 @@
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
 import {
+  detachIntentTabLineageEntries,
+  getIntentChainReturnTabIds,
   getIntentDriftDescendantTabIds,
   recordIntentNavigationTransition,
   recordIntentTabActivation,
@@ -9,8 +11,11 @@ import {
   recordIntentTabRemoved
 } from '../../shared/intentCoherence.js';
 import {
+  discardTabs,
   getOpenTabIds,
-  removeTabs
+  moveTabsToNewWindow,
+  removeTabs,
+  updateTabsUrl
 } from './chromeApi.js';
 import {
   readIntentState,
@@ -74,5 +79,181 @@ export async function closeIntentDriftDescendantTabs(currentTabId, options = {})
     status: 'closed',
     closedCount: existingTargetTabIds.length,
     tabIds: existingTargetTabIds
+  };
+}
+
+export async function closeIntentQuarantinedCurrentTab(currentTabId) {
+  const normalizedTabId = Number(currentTabId);
+  if (!Number.isFinite(normalizedTabId)) {
+    return {
+      status: 'closed',
+      closedCount: 0,
+      tabIds: []
+    };
+  }
+
+  let state = await readIntentState();
+  const openTabIds = await getOpenTabIds();
+  if (openTabIds && !openTabIds.has(normalizedTabId)) {
+    return {
+      status: 'closed',
+      closedCount: 0,
+      tabIds: []
+    };
+  }
+
+  await removeTabs([normalizedTabId]);
+  state = recordIntentTabRemoved(state, normalizedTabId);
+  await saveIntentState(state);
+
+  return {
+    status: 'closed',
+    closedCount: 1,
+    tabIds: [normalizedTabId]
+  };
+}
+
+export async function suspendIntentDriftDescendantTabs(currentTabId, options = {}) {
+  const state = await readIntentState();
+  const targetTabIds = getIntentDriftDescendantTabIds(state, {
+    currentTabId,
+    includeCurrent: options.includeCurrent === true
+  });
+  const openTabIds = await getOpenTabIds();
+  const existingTargetTabIds = openTabIds
+    ? targetTabIds.filter(tabId => openTabIds.has(tabId))
+    : targetTabIds;
+
+  if (existingTargetTabIds.length === 0) {
+    return {
+      status: 'suspended',
+      suspendedCount: 0,
+      failedCount: 0,
+      tabIds: [],
+      failedTabIds: []
+    };
+  }
+
+  const result = await discardTabs(existingTargetTabIds);
+  const suspendedCount = result.discardedTabIds.length;
+  const failedCount = result.failedTabIds.length;
+
+  return {
+    status: suspendedCount > 0 || failedCount === 0 ? 'suspended' : 'error',
+    suspendedCount,
+    failedCount,
+    tabIds: result.discardedTabIds,
+    failedTabIds: result.failedTabIds
+  };
+}
+
+export async function moveIntentDriftDescendantTabsToWindow(currentTabId, options = {}) {
+  const state = await readIntentState();
+  const targetTabIds = getIntentDriftDescendantTabIds(state, {
+    currentTabId,
+    includeCurrent: options.includeCurrent === true
+  });
+  const openTabIds = await getOpenTabIds();
+  const existingTargetTabIds = openTabIds
+    ? targetTabIds.filter(tabId => openTabIds.has(tabId))
+    : targetTabIds;
+
+  if (existingTargetTabIds.length === 0) {
+    return {
+      status: 'moved',
+      movedCount: 0,
+      failedCount: 0,
+      tabIds: [],
+      failedTabIds: [],
+      windowId: null
+    };
+  }
+
+  const result = await moveTabsToNewWindow(existingTargetTabIds);
+  const movedCount = result.movedTabIds.length;
+  const failedCount = result.failedTabIds.length;
+
+  return {
+    status: movedCount > 0 || failedCount === 0 ? 'moved' : 'error',
+    movedCount,
+    failedCount,
+    tabIds: result.movedTabIds,
+    failedTabIds: result.failedTabIds,
+    windowId: result.windowId
+  };
+}
+
+export async function returnIntentDriftDescendantTabs(currentTabId, recoveryUrl, options = {}) {
+  let state = await readIntentState();
+  const targetTabIds = getIntentDriftDescendantTabIds(state, {
+    currentTabId,
+    includeCurrent: options.includeCurrent === true
+  });
+  const openTabIds = await getOpenTabIds();
+  const existingTargetTabIds = openTabIds
+    ? targetTabIds.filter(tabId => openTabIds.has(tabId))
+    : targetTabIds;
+
+  if (existingTargetTabIds.length === 0) {
+    return {
+      status: 'returned',
+      returnedCount: 0,
+      failedCount: 0,
+      tabIds: [],
+      failedTabIds: []
+    };
+  }
+
+  const result = await updateTabsUrl(existingTargetTabIds, recoveryUrl);
+  const returnedCount = result.updatedTabIds.length;
+  const failedCount = result.failedTabIds.length;
+
+  if (returnedCount > 0) {
+    state = detachIntentTabLineageEntries(state, result.updatedTabIds);
+    await saveIntentState(state);
+  }
+
+  return {
+    status: returnedCount > 0 || failedCount === 0 ? 'returned' : 'error',
+    returnedCount,
+    failedCount,
+    tabIds: result.updatedTabIds,
+    failedTabIds: result.failedTabIds
+  };
+}
+
+export async function returnIntentQuarantinedChain(currentTabId, recoveryUrl) {
+  let state = await readIntentState();
+  const targetTabIds = getIntentChainReturnTabIds(state, { currentTabId });
+  const openTabIds = await getOpenTabIds();
+  const existingTargetTabIds = openTabIds
+    ? targetTabIds.filter(tabId => openTabIds.has(tabId))
+    : targetTabIds;
+
+  if (existingTargetTabIds.length === 0) {
+    return {
+      status: 'returned',
+      returnedCount: 0,
+      failedCount: 0,
+      tabIds: [],
+      failedTabIds: []
+    };
+  }
+
+  const result = await updateTabsUrl(existingTargetTabIds, recoveryUrl);
+  const returnedCount = result.updatedTabIds.length;
+  const failedCount = result.failedTabIds.length;
+
+  if (returnedCount > 0) {
+    state = detachIntentTabLineageEntries(state, result.updatedTabIds);
+    await saveIntentState(state);
+  }
+
+  return {
+    status: returnedCount > 0 || failedCount === 0 ? 'returned' : 'error',
+    returnedCount,
+    failedCount,
+    tabIds: result.updatedTabIds,
+    failedTabIds: result.failedTabIds
   };
 }

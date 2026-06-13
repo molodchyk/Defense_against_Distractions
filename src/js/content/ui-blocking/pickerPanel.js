@@ -24,6 +24,11 @@
     elementPickerModeLabel: 'Mode',
     elementPickerPickElementOption: 'Pick element',
     elementPickerClickPageOption: 'Click page',
+    elementPickerActionLabel: 'Rule action',
+    elementPickerHideActionOption: 'Hide',
+    elementPickerClickActionOption: 'Click once',
+    elementPickerClearActionOption: 'Clear field',
+    elementPickerPauseMediaActionOption: 'Pause media',
     elementPickerPreviewLabel: 'Preview',
     elementPickerHideMatchedOption: 'Hide matched',
     elementPickerOutlineMatchedOption: 'Outline matched',
@@ -49,6 +54,9 @@
     elementPickerCancelButton: 'Cancel',
     elementPickerPreviewHidingVerb: 'hiding',
     elementPickerPreviewOutliningVerb: 'outlining',
+    elementPickerPreviewClickingVerb: 'clicking once on',
+    elementPickerPreviewClearingVerb: 'clearing once in',
+    elementPickerPreviewPausingMediaVerb: 'pausing media in',
     elementPickerElementSingular: 'element',
     elementPickerElementPlural: 'elements',
     elementPickerPreviewMessage: 'Preview is $1 $2 $3. Adjust settings, save, choose again, or cancel.',
@@ -213,6 +221,7 @@
 
     const panel = document.createElement('section');
     panel.id = PICKER_PANEL_ID;
+    global.DAD.UiLanguage?.applyDirection?.(panel);
     syncPickerTheme(panel);
 
     const handle = document.createElement('div');
@@ -248,6 +257,15 @@
         ['hide', getPickerMessage('elementPickerHideMatchedOption')],
         ['outline', getPickerMessage('elementPickerOutlineMatchedOption')]
       ], controls.previewMode, value => onControlsChange({ previewMode: value }))
+    ));
+    controlGrid.appendChild(createPickerControl(
+      getPickerMessage('elementPickerActionLabel'),
+      createPickerWheelToggle([
+        ['hide', getPickerMessage('elementPickerHideActionOption')],
+        ['click', getPickerMessage('elementPickerClickActionOption')],
+        ['clear', getPickerMessage('elementPickerClearActionOption')],
+        ['pauseMedia', getPickerMessage('elementPickerPauseMediaActionOption')]
+      ], controls.action, value => onControlsChange({ action: value }))
     ));
     controlGrid.appendChild(createPickerControl(
       getPickerMessage('elementPickerTargetLabel'),
@@ -326,4 +344,6 @@
     getPickerMessage,
     isPickerPanelEvent
   };
+
+  global.DAD.UiLanguage?.onChange?.(() => global.DAD.UiLanguage?.applyDirection?.(document.getElementById(PICKER_PANEL_ID)));
 })(window);

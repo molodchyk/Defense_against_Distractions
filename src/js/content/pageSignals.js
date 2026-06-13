@@ -5,11 +5,10 @@
   global.DAD = global.DAD || {};
 
   const activity = global.DAD.PageSignalsActivity;
-  const collector = global.DAD.PageSignalsCollector;
   const reporter = global.DAD.PageSignalsReporter;
 
   function collectPageSignals(root = global.document, options = {}) {
-    return collector.collectPageSignals(root, options);
+    return reporter.collectPageSignals(root, options);
   }
 
   function schedulePageSignalReport() {

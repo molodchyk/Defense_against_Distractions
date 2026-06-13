@@ -584,6 +584,7 @@ type PageStructureSignals = {
   hasCommentSection: boolean
   hasAutoplay: boolean
   mediaDensity: number
+  audibleMediaCount: number
 }
 ```
 
@@ -924,6 +925,8 @@ If the user remembers the goal but continues drifting, the problem was not memor
 
 DaD should then escalate differently.
 
+The first implemented slice records a bounded local outcome on the next observed page visit after intervention feedback. It stores only the observed risk state, coherence score, score delta, tab/session/visit identifiers, and whether the user returned to the recorded recovery hostname; it does not store the follow-up page URL, title, text, or topic tokens. Options diagnostics summarize these outcomes as recovery rate, return-host rate, and average score delta so the product can distinguish reminders that actually restore control from prompts that the user simply dismisses or continues past. If enough observed outcomes keep failing and local auto-calibration is enabled, DaD now makes the effective policy stricter by intervening earlier and escalating one action step, capped at prompt-level actions so a user-configured prompt is not silently turned into hard blocking.
+
 ---
 
 ## 14. Privacy Principles
@@ -1039,6 +1042,8 @@ Implement deterministic scoring:
 - passive media load
 - recommendation dependence
 - agency ratio
+- search refinement loop load
+- deliberate-action staleness load
 
 Deliverable:
 
@@ -1369,6 +1374,10 @@ Mitigation:
 - track video chains
 - track comments and feed interactions
 
+Initial implementation note: intent coherence now tracks recent origin decay as a bounded session metric. It accumulates only when recent visits remain low-overlap with a clear origin and passive/recommender/loop/stale-control pressure is also present, so ordinary connected reading is not treated as destructive decay.
+
+Initial implementation note: intent coherence now tracks repeated passive media chains as a bounded session metric. A media-chain load rises only when recent video/audio/playback visits form a run and another drift context is present, such as origin decay, recommender clicks, low agency, stale-control, navigation-loop, or unanchored-session pressure.
+
 ### 18.3 Privacy
 
 Deep browsing analysis can become sensitive.
@@ -1393,6 +1402,8 @@ Mitigation:
 - password controls
 - distinguish calm configuration from hot-state override
 
+Initial implementation note: locked schedules now distinguish stricter plan edits from hot-state relaxation. Entry blocked-site/keyword additions, UI cleanup assignments, Pomodoro tightening, and intent tightening can be saved during a locked schedule; disabling, removals, allowed-site additions, lower keyword scores, and softer Pomodoro/intent settings are rejected by a shared protected-plan comparator.
+
 ### 18.5 Ambiguous Intent
 
 Sometimes the user has no clear objective.
@@ -1402,6 +1413,10 @@ Mitigation:
 - classify as “unanchored session”
 - reduce confidence
 - intervene based on fragmentation/passivity, not goal mismatch
+
+Initial implementation note: intent coherence now calculates a bounded origin-anchor confidence from local metadata/text-token summaries and input counts. Weak anchors reduce the origin-mismatch penalty, while a separate unanchored-session load rises only when the weak-anchor chain is passive or fragmented.
+
+Initial implementation note: intent coherence now treats direct navigation transitions as bounded intent evidence. Typed, bookmark, keyword/search, form-submit, and address-bar transitions strengthen the origin anchor and can provide a small latest-page recovery signal only when the page is not already under strong passive media, recommender, feed/comment, stale-control, loop, origin-decay, or unanchored pressure.
 
 ---
 
@@ -1536,6 +1551,8 @@ Example Facebook/Instagram/X:
 - explore sections
 
 The goal is not perfect classification. The goal is to detect when the user is increasingly following external selection machinery.
+
+Initial implementation note: the page-signal activity layer now has a dedicated recommender-zone helper with generic selectors plus first-pass site-specific selectors for YouTube, Reddit, X/Twitter, Instagram, and Facebook recommendation, feed, comment, timeline, reels, shorts, and related-content areas. It also has a conservative generic repeated-card/grid heuristic that treats clicks inside thumbnail/card clusters as feed clicks while ignoring repeated plain navigation links. It records only bounded click counts and rates, not clicked text beyond the existing bounded link-token summary. The activity layer also summarizes dynamic DOM growth and separately counts content appended shortly after scrolling, so infinite-scroll continuation can become a small diagnostic drift pressure without storing added node text, selectors, or scroll positions. The activity summary now preserves the aggregate recommender click count while also classifying local clicks as recommendation, feed, or comment interactions; the scorer exposes feed/comment interaction load as a separate bounded drift pressure. The collector also counts bounded recommendation-region, comment-section, and short-form media region totals as passive structure pressure, while diagnostics and usage stats expose only counts and maxima.
 
 ### Generic Detection Heuristics
 
@@ -1742,20 +1759,37 @@ The first diagnostic layer and the first low-friction intervention are now imple
 
 Implemented:
 
-- top-frame page signal reporting from `src/js/content/page-signals/` and the thin `src/js/content/pageSignals.js` controller on navigation, throttled DOM changes, summarized scroll/click/input activity, and bounded interaction velocity
+- top-frame page signal reporting from `src/js/content/page-signals/` and the thin `src/js/content/pageSignals.js` controller on navigation, throttled DOM changes, summarized scroll/click/input/editable-focus activity, and bounded interaction velocity
 - tested page-signal shape in `src/js/shared/pageSignals.js`
 - tested trajectory/session model in `src/js/shared/intentCoherence.js`
 - local background recording in `src/js/background/intentCoherence.js`
 - bounded storage under `chrome.storage.local` key `intentTrajectoryState`
 - idle-reset session creation
-- URL/title/host token extraction
+- weighted URL/title/search-query/heading/meta-description/clicked-link/selected-text token extraction without storing raw headings, descriptions, clicked text, or selected text
 - bounded visible-text topic token extraction without storing raw text
 - origin and local metadata/text similarity
-- media/feed/link pressure
+- media/feed/link/passive-region pressure
+- visible audio/video playback time, currently audible media counts, opt-in audible structural keywords, bounded passive recommendation/comment/short-form region counts, and bounded media play/pause/end/source-change counts without storing media URLs, source strings, selectors, comments, or recommendation text
 - passive scroll/click pressure
 - scroll/click/key/input velocity beyond summarized counts
+- bounded active editable-field focus duration as an active-input and deliberate-action signal without storing raw typed input, field values, labels, selectors, or focused element identity
+- agency ratio and low-agency load from bounded active input duration plus input, key, scroll, click, recommender-click, and media-play counts
+- aggregate open-tab/window pressure as a weak fragmentation signal
+- bounded recent active-tab switching, switch velocity, and short A/B tab-loop pressure without storing tab URLs or titles
+- bounded same-page repeat, reload, and back/forward loop pressure from existing visit and transition summaries
+- bounded scroll distance in viewport units plus scroll-direction reversals as local passive-loop signals, folded into passive scroll/click pressure without storing scroll positions
+- bounded dynamic-content growth and scroll-linked append counts for infinite-scroll pressure, without storing added node text, selectors, or positions
+- bounded repeated-search-cycle pressure from search-query token continuity without storing raw query strings
+- bounded session-age, deliberate-action gap, and visits-since-search/input/edit pressure without storing raw typed input
+- bounded origin-anchor confidence and unanchored-session load, so ambiguous sessions are judged by passive or fragmented behavior rather than treated as strong goal mismatches
+- bounded direct-navigation evidence from typed, bookmark, keyword/search, form-submit, and address-bar transitions in origin anchoring, scoring, and diagnostics
+- bounded recent origin-decay pressure for strong-origin chains that stay low-overlap while passive, recommender-driven, loop-like, or stale-control
 - recommendation/feed click attribution from generic page zones
-- active input and constructive dwell recovery signals
+- first-pass site-specific recommendation/feed/comment zone click attribution for major social/video surfaces, with separate bounded recommendation, feed, and comment interaction counters plus feed/comment load and passive-region counts in scoring and diagnostics
+- conservative generic repeated-card/grid click attribution that counts thumbnail/card clusters as feed interaction without counting plain navigation lists
+- repeated passive media-chain pressure for video/audio sequences with contextual drift pressure
+- bounded long-session pressure from total dwell/active time only when passive or drift-context pressure is already present, so long deliberate reading/input is not penalized by duration alone
+- active input duration and constructive dwell recovery signals
 - deterministic coherence score, score reasons, and risk state
 - first drift visit marker
 - bounded `chrome.tabs` opener lineage in `intentTrajectoryState`
@@ -1763,27 +1797,32 @@ Implemented:
 - top-frame `chrome.webNavigation` transition type and qualifier ancestry
 - redirect-heavy navigation chain pressure in scoring and diagnostics
 - drift-descendant flags for tabs opened from already drifted chains
-- tab branching and drift-descendant pressure in the coherence score
-- popup diagnostics panel with current score, state, reasons, origin/current/drift, lineage summary, recent visits, refresh, and clear
+- tab branching, open-tab pressure, recent tab-switch pressure, navigation-loop pressure, and drift-descendant pressure in the coherence score
+- return-to-origin/hub rate and low-return load for fragmented chains
+- popup diagnostics panel with current score, state, compact score-signal breakdown, reasons, origin/current/drift, effective policy status, lineage summary, recent visits, refresh, and clear
+- popup Session coherence card with current score, state, recovery targets, active intervention status, effective policy status, drift-tab scope, a compact bounded session path with first-drift/current markers, accountable Continue for prompt-style interventions, and chain recovery actions
 - tab-aware intervention decisions for content scripts
-- a dismissible on-page drift prompt for `intervene` and `locked` sessions
+- a dismissible on-page drift prompt for `intervene` and `locked` sessions that shows origin, last coherent recovery target, first drift point when known, current page, score, reasons, and available recovery actions
 - return to the last coherent page
 - isolate the current page as a new intent session and detach the current tab from inherited opener drift lineage
 - plan-owned intent settings with enable/disable, intervention action, thresholds, and Pomodoro influence
 - Options-page intent diagnostics with policy source, active score, reasons, lineage summary, score signals, plan-owned retention, local JSON export, and recent trajectory
-- Options-page usage diagnostics with bounded hostname-level aggregates, clear control, and local JSON export
+- a bounded Options-page intent chain graph with coherent, uncertain, drift-point, and drift-descendant labels, plus Show graph buttons on intent prompts and the popup Session coherence card that open that graph from active recovery surfaces
+- Options-page usage diagnostics with bounded hostname-level aggregates, blocked/allowed outcome counters, derived blocked outcome shares, aggregate page word counts, clear control, and local JSON export, plus a read-only popup Today usage summary for the current day
 - proportional content-script actions: warn-only, grayscale page, return prompt, modal drift-chain block, and hard current-page chain quarantine for locked or drift-descendant block actions
+- reversible element-level reduction that hides bounded recommendation, feed, related-content, shorts/reels, and comment containers while the reduce-noise intent action is active
+- reversible new-tab freezing for active non-warning drift interventions, covering target-blank, modifier-click, middle-click, and matching Enter gestures on links
+- block-style intent interventions pause and mute page media while the intervention surface is active, then restore media state when the intent intervention clears and no keyword block owns the page
 - a stable chain-quarantine cooldown timer anchored to first locked/descendant detection, so repeated page-signal reports do not reset the cooldown
-- conservative chain cleanup from the drift-block prompt: close other open tabs in the same known root chain that are explicitly marked as drift descendants, while keeping the current tab available for Return or Isolate recovery
+- conservative chain cleanup from the drift-block prompt and popup: explicitly return the current tab and other drift tabs together, return only other drift tabs, move them to a separate window, suspend them, or close other open tabs in the same known root chain that are explicitly marked as drift descendants, while keeping the current tab available for Return or Isolate recovery
+- automatic hard-chain return after the chain-quarantine cooldown: if the user has not chosen a recovery action, DaD can return the current tab and known same-root drift descendants to the last coherent page together
+- opt-in automatic current-tab closure after the chain-quarantine cooldown for plans that explicitly enable the stricter hard-quarantine behavior
 - dwell time and active visible page duration as local scoring and diagnostic signals
-- bounded local intervention feedback recording for acknowledge, continue, isolate, and return choices
-- feedback-derived calibration diagnostics, including return rate, isolate rate, continue rate, dismiss rate, average intervention score, and a conservative recommendation
-- plan-level local auto-calibration that can conservatively adjust the effective intervention threshold from feedback while leaving the configured locked threshold unchanged
+- bounded local intervention feedback recording for acknowledge, continue, isolate, mark-coherent, and return choices
+- return-prompt and popup prompt-style Continue choices now require a short user-entered reason, stored as bounded local feedback rather than page content
+- feedback-derived calibration diagnostics, including return rate, isolate rate, coherent-mark rate, continue rate, continue-reason count, dismiss rate, average intervention score, post-intervention outcome recovery rate, Continue-specific recovery/drift-after-Continue rates, return-host outcome rate, average outcome score delta, average Continue score delta, and a conservative recommendation
+- bounded coherent-host and drift-descendant host summaries in Options diagnostics, capped to normalized hostname counts without paths, queries, titles, page text, or topic tokens
+- plan-level local auto-calibration that can conservatively adjust the effective intervention threshold and, after repeated failed outcomes, escalate the effective action one step up to prompt level while leaving the configured locked threshold unchanged
+- popup Focus state as a bounded local user-state signal: Calm has no effect, while Strained and Vulnerable expire automatically and raise effective intent thresholds after feedback calibration
 
-Not implemented yet:
-
-- suspending drift-descendant tabs
-- redirecting the entire drift chain back to origin automatically
-- automatically closing the current drift tab without an explicit user action
-
-The current layer should still be treated as conservative. It is designed to test whether the scoring model can identify useful drift moments and offer recovery. The grayscale action is an intermediate reversible intervention between warning and prompting. Auto-calibration adjusts only the effective intervention threshold after enough local feedback; it does not silently lower locked protection. The `block` action is not a keyword-style full-page violation. When the active plan uses `block`, DaD now marks locked sessions and drift-descendant tabs as hard current-page chain quarantines: the page is covered by a non-continue overlay with Return, explicit Isolate recovery, and a same-chain cleanup action for other drift-descendant tabs. Return stays available immediately, while isolation is delayed by a short cooldown.
+The current layer should still be treated as conservative. It is designed to test whether the scoring model can identify useful drift moments and offer recovery. The grayscale action is an intermediate reversible intervention between warning and prompting, and the reduce-noise action is a bounded element-level intervention that hides recommendation/feed/comment containers without treating the whole page as forbidden. Active non-warning interventions also pause link gestures that would open new tabs from the drift page, while leaving same-tab navigation and prompt controls alone. Continue from a return-style prompt or from the popup during a prompt-style intervention now requires a short local reason, which creates a small accountability step without sending data anywhere. The prompt and popup Session coherence card also include Show graph, which opens the local Intent diagnostics chain graph for the current trajectory. The prompt Trust this shift path and the popup Mark coherent action let the user explicitly mark the current page as the new coherent local baseline by reusing the clean isolate/new-session path; this records local feedback without trusting a domain globally or relaxing locked settings. Auto-calibration adjusts only effective policy after enough local evidence; repeated failed outcomes can raise the effective intervention threshold and move warning/grayscale/reduce-noise one step stricter, but it does not silently lower locked protection or auto-upgrade prompt-level plans to hard blocking. Popup Focus state is explicitly user-owned and only makes effective intent thresholds stricter while active. The `block` action is not a keyword-style full-page violation. When the active plan uses `block`, DaD now marks locked sessions and drift-descendant tabs as hard current-page chain quarantines: the page is covered by a non-continue overlay, page media is paused while the intervention is active, and Return chain, Return, explicit Isolate recovery, and same-chain return/move/suspend/close cleanup actions are available. Return chain stays immediately available as an explicit action. If the hard chain quarantine cooldown finishes without a recovery choice, DaD can automatically return the current tab and known same-root drift descendants to the last coherent page. A stricter plan setting can instead close the current quarantined tab after the cooldown. Return stays available immediately, while isolation is delayed by the same short cooldown.

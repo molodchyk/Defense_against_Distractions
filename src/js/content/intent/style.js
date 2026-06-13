@@ -45,6 +45,12 @@
         color-scheme: dark;
       }
 
+      #${PROMPT_ID}[dir="rtl"] {
+        right: auto;
+        left: 18px;
+        text-align: right;
+      }
+
       html[${GRAYSCALE_ATTRIBUTE}="true"] body > *:not(#${PROMPT_ID}) {
         filter: grayscale(1) saturate(0.25) contrast(0.95) !important;
         transition: filter 160ms ease;
@@ -146,6 +152,44 @@
         border-radius: 999px;
         background: var(--dad-intent-warning);
         vertical-align: 1px;
+      }
+
+      #${PROMPT_ID}[dir="rtl"] [data-dad-intent-reasons] li::before {
+        margin-right: 0;
+        margin-left: 7px;
+      }
+
+      #${PROMPT_ID} [data-dad-intent-continue-reason] {
+        display: grid;
+        gap: 6px;
+      }
+
+      #${PROMPT_ID} [data-dad-intent-continue-reason] label {
+        color: var(--dad-intent-text);
+        font: 700 12px/1.2 Arial, sans-serif;
+      }
+
+      #${PROMPT_ID} [data-dad-intent-continue-reason] textarea {
+        width: 100%;
+        min-height: 56px;
+        max-height: 110px;
+        resize: vertical;
+        border: 1px solid var(--dad-intent-border);
+        border-radius: 6px;
+        background: var(--dad-intent-bg);
+        color: var(--dad-intent-text);
+        font: 13px/1.4 Arial, sans-serif;
+        padding: 8px;
+      }
+
+      #${PROMPT_ID} [data-dad-intent-continue-reason] textarea::placeholder {
+        color: var(--dad-intent-muted);
+      }
+
+      #${PROMPT_ID} [data-dad-intent-continue-reason-count] {
+        justify-self: end;
+        color: var(--dad-intent-muted);
+        font: 11px/1.2 Arial, sans-serif;
       }
 
       #${PROMPT_ID} [data-dad-intent-actions] {

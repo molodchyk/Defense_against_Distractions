@@ -1,7 +1,25 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
-
+import {
+  createIntentLineageGraph
+} from '../shared/intentCoherence.js';
+import {
+  formatChainBlock,
+  formatCoherentHosts,
+  formatContinueOutcomeSummary,
+  formatCount,
+  formatDriftDescendantHosts,
+  formatDuration,
+  formatFeedbackRecommendation,
+  formatIntentCalibration,
+  formatLineageDetail,
+  formatLineageSummary,
+  formatPercent,
+  formatRate,
+  formatSignedNumber
+} from './intent-diagnostics/format.js';
 const MAX_VISITS = 10;
+const MAX_GRAPH_NODES = 12;
 
 function sendRuntimeMessage(message) {
   return new Promise(resolve => {
@@ -34,109 +52,6 @@ function getLabel(entity) {
   return title || hostname || '--';
 }
 
-function formatPercent(value) {
-  const number = Number(value);
-  return Number.isFinite(number) ? `${Math.round(number * 100)}%` : '--';
-}
-
-function formatCount(value) {
-  const number = Number(value);
-  return Number.isFinite(number) ? String(number) : '0';
-}
-
-function formatDuration(value) {
-  const totalSeconds = Math.max(0, Math.round(Number(value || 0) / 1000));
-  const minutes = Math.floor(totalSeconds / 60);
-  const seconds = totalSeconds % 60;
-  if (minutes <= 0) {
-    return `${seconds}s`;
-  }
-
-  return `${minutes}m ${String(seconds).padStart(2, '0')}s`;
-}
-
-function formatRate(value) {
-  const number = Number(value);
-  return Number.isFinite(number) ? `${number.toFixed(number >= 10 ? 1 : 2)}/min` : '--';
-}
-
-function formatFeedbackRecommendation(value) {
-  const labels = {
-    insufficientData: 'insufficient data',
-    interventionsHelpful: 'interventions helpful',
-    tooSensitive: 'possibly too sensitive',
-    mixed: 'mixed'
-  };
-  return labels[value] || '--';
-}
-
-function formatSignedNumber(value) {
-  const number = Number(value);
-  if (!Number.isFinite(number) || number === 0) {
-    return '0';
-  }
-
-  return number > 0 ? `+${number}` : String(number);
-}
-
-function formatIntentCalibration(calibration = null) {
-  if (!calibration) {
-    return '--';
-  }
-
-  if (!calibration.enabled) {
-    return 'disabled';
-  }
-
-  const delta = Number(calibration.thresholdDelta || 0);
-  const thresholdText = Number.isFinite(Number(calibration.effectiveInterventionThreshold))
-    ? `intervene <= ${calibration.effectiveInterventionThreshold}`
-    : 'no effective threshold';
-  const adjustmentText = calibration.applied
-    ? `${formatSignedNumber(delta)} (${thresholdText})`
-    : `0 (${thresholdText})`;
-
-  return `${adjustmentText} - ${calibration.reason || 'no adjustment'}`;
-}
-
-function formatChainBlock(chainBlock = null) {
-  if (!chainBlock?.active) {
-    return 'inactive';
-  }
-
-  const modeLabel = chainBlock.mode === 'driftDescendant'
-    ? 'drift descendant'
-    : (chainBlock.mode === 'lockedChain' ? 'locked chain' : 'active');
-  const cooldownText = chainBlock.cooldownActive
-    ? ` - cooldown ${formatDuration(chainBlock.cooldownRemainingMs)}`
-    : (Number(chainBlock.cooldownMs || 0) > 0 ? ' - cooldown complete' : '');
-  return `${modeLabel} - ${chainBlock.reason || 'quarantine active'}${cooldownText}`;
-}
-
-function formatLineageSummary(metrics = {}) {
-  const tabCount = Number(metrics.tabCount || 0);
-  const branchCount = Number(metrics.branchCount || 0);
-  return `${tabCount} tab${tabCount === 1 ? '' : 's'} / ${branchCount} branch${branchCount === 1 ? '' : 'es'}`;
-}
-
-function formatLineageDetail(metrics = {}) {
-  const driftDescendantCount = Number(metrics.driftDescendantCount || 0);
-  const transitionType = metrics.latestTransitionType || 'unknown transition';
-  const qualifiers = Array.isArray(metrics.latestTransitionQualifiers) && metrics.latestTransitionQualifiers.length > 0
-    ? ` (${metrics.latestTransitionQualifiers.join(', ')})`
-    : '';
-  const parts = [
-    `${driftDescendantCount} drift descendant${driftDescendantCount === 1 ? '' : 's'}`,
-    `latest ${transitionType}${qualifiers}`
-  ];
-
-  if (metrics.latestIsDriftDescendant) {
-    parts.push('current is descendant');
-  }
-
-  return parts.join(' - ');
-}
-
 function setEmptyState(message = 'No data') {
   getElement('optionsIntentState').textContent = message;
   getElement('optionsIntentState').dataset.state = 'none';
@@ -147,6 +62,7 @@ function setEmptyState(message = 'No data') {
   getElement('optionsIntentCurrent').textContent = '--';
   getElement('optionsIntentLineage').textContent = '--';
   getElement('optionsIntentLineageDetail').textContent = '--';
+  getElement('optionsIntentGraph').replaceChildren();
   getElement('optionsIntentReasons').replaceChildren();
   getElement('optionsIntentMetrics').replaceChildren();
   getElement('optionsIntentVisits').replaceChildren();
@@ -165,46 +81,71 @@ function renderReasons(reasons = []) {
   }));
 }
 
-function renderMetrics(metrics = {}, debugState = {}, feedbackSummary = {}) {
+function renderMetrics(metrics = {}, debugState = {}, feedbackSummary = {}, session = {}) {
   const feedbackCount = Array.isArray(debugState?.state?.feedback) ? debugState.state.feedback.length : 0;
   const metricRows = [
-    ['Origin similarity', formatPercent(metrics.originSimilarity)],
+    ['Origin similarity / anchor', `${formatPercent(metrics.originSimilarity)} / ${formatPercent(metrics.originAnchorStrength)}`],
     ['Local similarity', formatPercent(metrics.localSimilarity)],
     ['Text origin similarity', metrics.textOriginSimilarity === null ? '--' : formatPercent(metrics.textOriginSimilarity)],
     ['Passive media load', formatPercent(metrics.passiveMediaLoad)],
+    ['Media playback / chain load', `${formatPercent(metrics.mediaPlaybackLoad)} / ${formatPercent(metrics.mediaChainLoad)} (${formatCount(metrics.consecutiveMediaVisitCount)} in a row)`],
+    ['Media playback', formatDuration(metrics.mediaPlaybackMs)],
+    ['Media play/change/end events', `${formatCount(metrics.mediaPlayEvents)} / ${formatCount(metrics.mediaSourceChangeEvents)} / ${formatCount(metrics.mediaEndEvents)}`],
+    ['Passive regions', `${formatCount(metrics.recommendationRegionCount)} rec / ${formatCount(metrics.commentSectionCount)} comments / ${formatCount(metrics.shortFormMediaCount)} short`],
     ['Passive scroll/click pressure', formatPercent(metrics.passiveInteractionLoad)],
-    ['Active input load', formatPercent(metrics.activeInputLoad)],
+    ['Active input load', `${formatPercent(metrics.activeInputLoad)} (${formatDuration(metrics.activeInputMs)})`],
+    ['Agency ratio / low-agency load', `${formatPercent(metrics.agencyRatio)} / ${formatPercent(metrics.lowAgencyLoad)}`],
     ['Interaction velocity load', formatPercent(metrics.interactionVelocityLoad)],
-    ['Scroll velocity', formatRate(metrics.scrollRatePerMinute)],
-    ['Click velocity', formatRate(metrics.clickRatePerMinute)],
+    ['Scroll/click velocity', `${formatRate(metrics.scrollRatePerMinute)} / ${formatRate(metrics.clickRatePerMinute)}`],
+    ['Scroll movement', `${formatCount(metrics.scrollDirectionChanges)} reversals / ${Number(metrics.scrollDistanceViewportUnits || 0).toFixed(1)} screens`],
+    ['Dynamic scroll appends', `${formatPercent(metrics.dynamicContentLoad)} (${formatCount(metrics.scrollLinkedContentBatches)} batches / ${formatCount(metrics.scrollLinkedAddedElements)} elements)`],
     ['Recommendation/feed click load', formatPercent(metrics.recommenderClickLoad)],
-    ['Recommendation/feed clicks', formatCount(metrics.recommenderClickEvents)],
-    ['Recommendation/feed click velocity', formatRate(metrics.recommenderClickRatePerMinute)],
-    ['Latest transition', metrics.latestTransitionType || '--'],
+    ['Recommendation/feed clicks', `${formatCount(metrics.recommenderClickEvents)} (${formatCount(metrics.recommendationClickEvents)} rec / ${formatCount(metrics.feedClickEvents)} feed / ${formatCount(metrics.commentClickEvents)} comments)`],
+    ['Feed/comment load', `${formatPercent(metrics.feedCommentInteractionLoad)} (${formatRate(metrics.feedClickRatePerMinute)} / ${formatRate(metrics.commentClickRatePerMinute)})`],
+    ['Latest transition', `${metrics.latestTransitionType || '--'}${metrics.latestDirectNavigation ? ` (direct, recovery ${formatPercent(metrics.directNavigationRecovery)})` : ''}`],
     ['Transition qualifiers', Array.isArray(metrics.latestTransitionQualifiers) && metrics.latestTransitionQualifiers.length > 0 ? metrics.latestTransitionQualifiers.join(', ') : '--'],
     ['Redirect transition load', formatPercent(metrics.redirectTransitionLoad)],
     ['Redirect transitions', formatCount(metrics.redirectTransitionCount)],
+    ['Navigation loop load', `${formatPercent(metrics.navigationLoopLoad)} (${formatCount(metrics.samePageRepeatCount)} repeats, ${formatCount(metrics.reloadTransitionCount)} reloads)`],
+    ['Search loop load', `${formatPercent(metrics.searchRefinementLoad)} (${formatCount(metrics.searchVisitCount)} searches, ${formatCount(metrics.searchQueryShiftCount)} shifts)`],
+    ['Deliberate gap load', `${formatPercent(metrics.deliberateStalenessLoad)} (${formatCount(metrics.visitsSinceDeliberateAction)} visits)`],
+    ['Unanchored / origin decay load', `${formatPercent(metrics.unanchoredSessionLoad)} / ${formatPercent(metrics.originDecayLoad)} (${formatPercent(metrics.recentOriginSimilarity)} recent avg)`],
+    ['Session age / deliberate gap', `${formatDuration(metrics.sessionAgeMs)} / ${formatDuration(metrics.deliberateGapMs)}`],
     ['Input velocity', formatRate(metrics.inputRatePerMinute)],
     ['Key velocity', formatRate(metrics.keyRatePerMinute)],
     ['Constructive dwell', formatPercent(metrics.constructiveDwell)],
     ['Passive active-time load', formatPercent(metrics.passiveTimeLoad)],
-    ['Latest dwell', formatDuration(metrics.latestDwellMs)],
-    ['Latest active time', formatDuration(metrics.latestActiveMs)],
-    ['Total dwell', formatDuration(metrics.totalDwellMs)],
-    ['Total active time', formatDuration(metrics.totalActiveMs)],
+    ['Latest dwell / active', `${formatDuration(metrics.latestDwellMs)} / ${formatDuration(metrics.latestActiveMs)}`],
+    ['Total dwell / active', `${formatDuration(metrics.totalDwellMs)} / ${formatDuration(metrics.totalActiveMs)}`],
+    ['Long-session load', formatPercent(metrics.longSessionLoad)],
     ['Link density', formatPercent(metrics.linkDensity)],
     ['Domain entropy', formatPercent(metrics.domainEntropy)],
     ['Domain changes', String(metrics.domainChanges ?? 0)],
+    ['Return rate', formatPercent(metrics.returnRate)],
+    ['Origin return rate', formatPercent(metrics.originReturnRate)],
+    ['Low-return load', formatPercent(metrics.lowReturnLoad)],
     ['Tabs in chain', formatCount(metrics.tabCount)],
+    ['Open tabs', formatCount(metrics.openTabCount)],
+    ['Open windows', formatCount(metrics.openWindowCount)],
+    ['Open-tab pressure', formatPercent(metrics.tabPressureLoad)],
+    ['Recent tab switches', formatCount(metrics.tabSwitchCount)],
+    ['Tab-switch velocity', formatRate(metrics.tabSwitchRatePerMinute)],
+    ['Tab-switch loops', formatCount(metrics.tabSwitchLoopCount)],
+    ['Tab-switch load', formatPercent(metrics.tabSwitchLoad)],
     ['Child-tab branches', formatCount(metrics.branchCount)],
+    ['Coherent hosts', formatCoherentHosts(session)],
     ['Drift descendants', formatCount(metrics.driftDescendantCount)],
+    ['Drift descendant hosts', formatDriftDescendantHosts(session)],
     ['Current is drift descendant', metrics.latestIsDriftDescendant ? 'yes' : 'no'],
     ['Intervention feedback entries', formatCount(feedbackSummary.total ?? feedbackCount)],
+    ['Feedback continue reasons', formatCount(feedbackSummary.continueReasonCount)],
     ['Feedback return rate', formatPercent(feedbackSummary.returnRate)],
     ['Feedback isolate rate', formatPercent(feedbackSummary.isolateRate)],
+    ['Feedback coherent mark rate', formatPercent(feedbackSummary.markCoherentRate)],
     ['Feedback continue rate', formatPercent(feedbackSummary.continueRate)],
     ['Feedback dismiss rate', formatPercent(feedbackSummary.dismissRate)],
-    ['Feedback average score', Number.isFinite(feedbackSummary.averageCoherenceScore) ? String(feedbackSummary.averageCoherenceScore) : '--'],
+    ['Feedback score / outcomes', `${Number.isFinite(feedbackSummary.averageCoherenceScore) ? String(feedbackSummary.averageCoherenceScore) : '--'} avg - ${formatCount(feedbackSummary.outcomeTotal)} observed - ${formatPercent(feedbackSummary.outcomeRecoveredRate)} recovered (${formatCount(feedbackSummary.outcomeRecovered)}) - return host ${formatPercent(feedbackSummary.outcomeReturnHostRate)} - delta ${Number.isFinite(feedbackSummary.averageOutcomeScoreDelta) ? formatSignedNumber(feedbackSummary.averageOutcomeScoreDelta) : '--'}`],
+    ['Continue outcomes', formatContinueOutcomeSummary(feedbackSummary)],
     ['Calibration diagnostic', formatFeedbackRecommendation(feedbackSummary.recommendation)],
     ['Auto calibration', formatIntentCalibration(debugState?.intentPolicy?.settings?.calibration)],
     ['Chain block', formatChainBlock(debugState?.intervention?.chainBlock)]
@@ -251,6 +192,69 @@ function renderVisits(visits = []) {
   }));
 }
 
+function createGraphBadge(label) {
+  const badge = document.createElement('span');
+  badge.className = 'intent-graph-badge';
+  badge.textContent = label;
+  return badge;
+}
+
+function getGraphNodeMeta(node = {}) {
+  return [
+    node.startedAt ? new Date(node.startedAt).toLocaleTimeString() : '',
+    Number.isFinite(node.tabId) ? `tab ${node.tabId}` : '',
+    Number.isFinite(node.openerTabId) ? `from tab ${node.openerTabId}` : '',
+    node.transitionType ? `via ${node.transitionType}` : '',
+    Array.isArray(node.transitionQualifiers) && node.transitionQualifiers.length > 0
+      ? node.transitionQualifiers.join(', ')
+      : ''
+  ].filter(Boolean).join(' · ');
+}
+
+function renderLineageGraph(session = {}) {
+  const list = getElement('optionsIntentGraph');
+  const graph = createIntentLineageGraph(session, { maxNodes: MAX_GRAPH_NODES });
+  if (graph.nodes.length === 0) {
+    const item = document.createElement('li');
+    item.textContent = 'No graph data yet.';
+    list.replaceChildren(item);
+    return;
+  }
+
+  list.dataset.hiddenVisitCount = String(graph.summary.hiddenVisitCount);
+  list.replaceChildren(...graph.nodes.map(node => {
+    const item = document.createElement('li');
+    item.dataset.current = node.isCurrent ? 'true' : 'false';
+    item.dataset.origin = node.isOrigin ? 'true' : 'false';
+    item.dataset.firstDrift = node.isFirstDrift ? 'true' : 'false';
+    item.dataset.driftDescendant = node.isDriftDescendant ? 'true' : 'false';
+    item.dataset.coherenceState = node.coherenceState || 'uncertain';
+
+    const marker = document.createElement('span');
+    marker.className = 'intent-graph-marker';
+    marker.textContent = String(node.sequence);
+
+    const body = document.createElement('div');
+    body.className = 'intent-graph-node-body';
+
+    const title = document.createElement('strong');
+    title.textContent = node.label;
+
+    const meta = document.createElement('small');
+    meta.textContent = getGraphNodeMeta(node) || 'same tab';
+
+    const badges = document.createElement('div');
+    badges.className = 'intent-graph-badges';
+    badges.appendChild(createGraphBadge(node.coherenceLabel || 'uncertain'));
+    if (node.isOrigin) badges.appendChild(createGraphBadge('origin'));
+    if (node.isCurrent) badges.appendChild(createGraphBadge('current'));
+
+    body.append(title, meta, badges);
+    item.append(marker, body);
+    return item;
+  }));
+}
+
 function renderDiagnostics(debugState) {
   const session = debugState?.activeSession;
   if (!session) {
@@ -274,7 +278,7 @@ function renderDiagnostics(debugState) {
     : '--';
   getElement('optionsIntentPlan').textContent = `Policy: ${planNames}`;
   getElement('optionsIntentAction').textContent = decision.settings
-    ? `${decision.action} · intervene <= ${decision.settings.interventionThreshold} · locked <= ${decision.settings.lockedThreshold} · retain ${decision.settings.diagnosticsRetentionDays}d${decision.settings.calibration?.applied ? ` · calibrated ${formatSignedNumber(decision.settings.calibration.thresholdDelta)}` : ''}${decision.chainBlock?.active ? ' · chain quarantine' : ''}`
+    ? `${decision.action} · intervene <= ${decision.settings.interventionThreshold} · locked <= ${decision.settings.lockedThreshold} · retain ${decision.settings.diagnosticsRetentionDays}d${decision.settings.calibration?.applied ? ` · calibrated ${formatSignedNumber(decision.settings.calibration.thresholdDelta)}` : ''}${decision.chainBlock?.active ? ' · chain quarantine' : ''}${decision.settings.autoCloseQuarantinedTab ? ' · auto-close current tab' : ''}`
     : '--';
   getElement('optionsIntentOrigin').textContent = getLabel(session.origin);
   getElement('optionsIntentCurrent').textContent = latestVisit ? `Current: ${getLabel(latestVisit)}` : '--';
@@ -282,7 +286,8 @@ function renderDiagnostics(debugState) {
   getElement('optionsIntentLineageDetail').textContent = formatLineageDetail(session.metrics);
 
   renderReasons(decision.reasonLines);
-  renderMetrics(session.metrics, debugState, debugState?.feedbackSummary);
+  renderLineageGraph(session);
+  renderMetrics(session.metrics, debugState, debugState?.feedbackSummary, session);
   renderVisits(visits);
 }
 

@@ -9,6 +9,7 @@ import {
 import {
   createScheduleRangeFromAnchor,
   createScheduleRangeFromStart,
+  getCurrentScheduleMarker,
   minutesToTimeString,
   moveScheduleRange,
   resizeScheduleRange,
@@ -40,6 +41,24 @@ describe('schedule grid helpers', () => {
     assert.equal(snapMinutes(67), 60);
     assert.equal(snapMinutes(68), 75);
     assert.equal(minutesToTimeString(1439), '23:59');
+  });
+
+  it('maps the current local time to a weekly schedule marker', () => {
+    assert.deepEqual(getCurrentScheduleMarker(new Date(2026, 5, 11, 14, 30), 60), {
+      day: 'Thu',
+      minuteOfDay: 870,
+      timeText: '14:30',
+      topPixels: 870
+    });
+
+    assert.deepEqual(getCurrentScheduleMarker(new Date(2026, 5, 14, 0, 0), 48), {
+      day: 'Sun',
+      minuteOfDay: 0,
+      timeText: '00:00',
+      topPixels: 0
+    });
+
+    assert.equal(getCurrentScheduleMarker('not-a-date'), null);
   });
 
   it('creates one-hour ranges from a clicked grid offset', () => {

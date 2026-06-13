@@ -136,6 +136,15 @@ Add-Type -AssemblyName System.Drawing
 
 Assert-Condition ($packageJson.version -eq $manifest.version) "package.json version does not match manifest.json version"
 
+Push-Location $projectRoot
+try {
+  node scripts/check-locale-coverage.mjs
+  Assert-Condition ($LASTEXITCODE -eq 0) "Locale coverage verification failed"
+}
+finally {
+  Pop-Location
+}
+
 $manifestIconPaths = @()
 $manifest.icons.PSObject.Properties | ForEach-Object { $manifestIconPaths += $_.Value }
 $manifest.action.default_icon.PSObject.Properties | ForEach-Object { $manifestIconPaths += $_.Value }

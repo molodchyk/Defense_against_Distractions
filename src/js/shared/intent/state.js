@@ -8,7 +8,9 @@ import {
   normalizeString,
   normalizeTabId,
   normalizeTransitionQualifiers,
-  normalizeTransitionType
+  normalizeTransitionType,
+  getTimestamp,
+  parseTimestamp
 } from './utils.js';
 
 export function createIntentTrajectoryState(now = Date.now()) {
@@ -19,6 +21,7 @@ export function createIntentTrajectoryState(now = Date.now()) {
     updatedAt: new Date(now).toISOString(),
     sessions: [],
     tabLineage: [],
+    tabActivations: [],
     feedback: []
   };
 }
@@ -58,6 +61,33 @@ export function normalizeTabLineage(lineage = [], maxEntries = DEFAULT_INTENT_OP
     : [];
 }
 
+export function normalizeTabActivationEntry(entry = {}) {
+  const tabId = normalizeTabId(entry.tabId);
+  const activatedAt = normalizeString(entry.activatedAt);
+
+  if (!Number.isFinite(tabId) || parseTimestamp(activatedAt) === null) {
+    return null;
+  }
+
+  return {
+    tabId,
+    sessionId: typeof entry.sessionId === 'string' && entry.sessionId ? entry.sessionId : null,
+    activatedAt
+  };
+}
+
+export function normalizeTabActivations(
+  activations = [],
+  maxEntries = DEFAULT_INTENT_OPTIONS.maxTabActivationEntries
+) {
+  return Array.isArray(activations)
+    ? activations
+      .map(normalizeTabActivationEntry)
+      .filter(Boolean)
+      .slice(-maxEntries)
+    : [];
+}
+
 export function normalizeIntentState(currentState, now, options = {}) {
   const baseState = currentState && typeof currentState === 'object'
     ? currentState
@@ -70,6 +100,7 @@ export function normalizeIntentState(currentState, now, options = {}) {
     updatedAt: normalizeString(baseState.updatedAt) || new Date(now).toISOString(),
     sessions: Array.isArray(baseState.sessions) ? [...baseState.sessions] : [],
     tabLineage: normalizeTabLineage(baseState.tabLineage, options.maxTabLineageEntries),
+    tabActivations: normalizeTabActivations(baseState.tabActivations, options.maxTabActivationEntries),
     feedback: normalizeIntentFeedback(baseState.feedback, options.maxFeedbackEntries)
   };
 }
@@ -92,9 +123,13 @@ export function getIntentDriftDescendantTabIds(state = {}, options = {}) {
   const explicitRootTabId = normalizeTabId(options.rootTabId);
   const rootTabId = Number.isFinite(explicitRootTabId)
     ? explicitRootTabId
-    : currentLineage?.rootTabId;
+    : currentLineage?.rootTabId ?? (Number.isFinite(currentTabId) ? currentTabId : null);
   const includeCurrent = options.includeCurrent === true;
   const seenTabIds = new Set();
+
+  if (!Number.isFinite(rootTabId)) {
+    return [];
+  }
 
   return lineage
     .filter(entry => {
@@ -118,4 +153,39 @@ export function getIntentDriftDescendantTabIds(state = {}, options = {}) {
       return true;
     })
     .map(entry => entry.tabId);
+}
+
+export function getIntentChainReturnTabIds(state = {}, options = {}) {
+  const currentTabId = normalizeTabId(options.currentTabId ?? options.tabId);
+  if (!Number.isFinite(currentTabId)) {
+    return [];
+  }
+
+  const descendantTabIds = getIntentDriftDescendantTabIds(state, {
+    ...options,
+    currentTabId,
+    includeCurrent: false
+  });
+
+  return [currentTabId, ...descendantTabIds].filter((tabId, index, tabIds) => tabIds.indexOf(tabId) === index);
+}
+
+export function detachIntentTabLineageEntries(currentState = {}, tabIds = [], options = {}) {
+  const targetTabIds = new Set(
+    (Array.isArray(tabIds) ? tabIds : [tabIds])
+      .map(normalizeTabId)
+      .filter(Number.isFinite)
+  );
+  const now = getTimestamp({ ...DEFAULT_INTENT_OPTIONS, ...options });
+  const state = normalizeIntentState(currentState, now, options);
+
+  if (targetTabIds.size === 0) {
+    return state;
+  }
+
+  return {
+    ...state,
+    updatedAt: new Date(now).toISOString(),
+    tabLineage: state.tabLineage.filter(entry => !targetTabIds.has(entry.tabId))
+  };
 }

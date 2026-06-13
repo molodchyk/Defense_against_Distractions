@@ -3,6 +3,7 @@
 
 import {
   createScheduleRangeFromAnchor,
+  getCurrentScheduleMarker,
   getScheduleRange,
   minutesFromGridOffset,
   moveScheduleRange,
@@ -45,6 +46,7 @@ export function createScheduleBoardWorkspace({
   const selectedSchedule = getSelectedSchedule(normalizedSchedules, selectedIndex, draftSchedule);
   const hasNewDraftSchedule = selectedIndex < 0 && draftSchedule;
   const isCreateMode = selectedIndex < 0 && !draftSchedule;
+  const currentMarker = getCurrentScheduleMarker();
   let dragState = null;
 
   const workspace = document.createElement('div');
@@ -151,8 +153,8 @@ export function createScheduleBoardWorkspace({
       column.appendChild(createScheduleBlock(draftSchedule, selectedIndex, day));
     }
 
-    if (isCurrentScheduleDay(day)) {
-      column.appendChild(createCurrentTimeMarker(getMessage('scheduleNowLabel', 'Now')));
+    if (currentMarker?.day === day) {
+      column.appendChild(createCurrentTimeMarker(currentMarker, getMessage('scheduleNowLabel', 'Now')));
     }
 
     if (!readOnly) {
@@ -412,24 +414,22 @@ export function createScheduleBoardWorkspace({
   }
 }
 
-function isCurrentScheduleDay(day) {
-  return day === new Date().toLocaleString('en-US', { weekday: 'short' });
-}
-
-function createCurrentTimeMarker(labelText) {
-  const now = new Date();
+function createCurrentTimeMarker(markerData, labelText) {
+  const label = [labelText || 'Now', markerData.timeText].filter(Boolean).join(' ');
   const marker = document.createElement('span');
   marker.className = 'schedule-now-marker';
-  marker.style.top = `${((now.getHours() * 60 + now.getMinutes()) / 60) * SCHEDULE_GRID_HOUR_HEIGHT}px`;
+  marker.style.top = `${markerData.topPixels}px`;
+  marker.setAttribute('aria-hidden', 'true');
+  marker.title = label;
 
   const dot = document.createElement('span');
   dot.className = 'schedule-now-dot';
 
-  const label = document.createElement('span');
-  label.className = 'schedule-now-label';
-  label.textContent = labelText || 'Now';
+  const labelElement = document.createElement('span');
+  labelElement.className = 'schedule-now-label';
+  labelElement.textContent = label;
 
-  marker.append(dot, label);
+  marker.append(dot, labelElement);
   return marker;
 }
 

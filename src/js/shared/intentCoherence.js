@@ -8,17 +8,25 @@ export {
   INTENT_INTERVENTION_ACTIONS,
   INTENT_INTERVENTION_RISK_STATES,
   INTENT_POMODORO_INFLUENCE_MODES,
-  INTENT_TRAJECTORY_STORAGE_KEY
+  INTENT_TRAJECTORY_STORAGE_KEY,
+  MAX_INTENT_CONTINUE_REASON_LENGTH
 } from './intent/constants.js';
-export { normalizeIntentSettings } from './intent/settings.js';
+export {
+  isIntentSettingsAtLeastAsStrict,
+  normalizeIntentSettings
+} from './intent/settings.js';
 export {
   calculateTokenSimilarity,
+  calculateWeightedTokenSimilarity,
   extractIntentTokens,
+  extractWeightedIntentTokens,
   normalizeIntentNavigationTransition,
   normalizePageSignalForIntent
 } from './intent/signals.js';
 export {
   createIntentTrajectoryState,
+  detachIntentTabLineageEntries,
+  getIntentChainReturnTabIds,
   getIntentDriftDescendantTabIds,
   getIntentTabLineageEntry
 } from './intent/state.js';
@@ -27,7 +35,7 @@ export {
   deriveIntentFeedbackCalibration,
   summarizeIntentFeedback
 } from './intent/feedback.js';
-export { calculateIntentCoherence, getIntentRiskState } from './intent/scoring.js';
+export { calculateIntentCoherence, getIntentRiskState } from './intent/score/coherenceScore.js';
 export {
   getActiveIntentSession,
   getIntentSessionForTab,
@@ -42,5 +50,11 @@ export {
   createIntentInterventionId,
   getIntentInterventionDecision,
   getIntentReasonLines,
-  getLastCoherentIntentVisit
+  getLastCoherentIntentVisit,
+  shouldFreezeIntentNewTabs
 } from './intent/interventions.js';
+export {
+  createIntentLineageGraph,
+  getIntentCoherentHostSummary,
+  getIntentDriftDescendantHostSummary
+} from './intent/graph.js';

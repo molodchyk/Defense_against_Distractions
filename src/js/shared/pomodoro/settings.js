@@ -26,3 +26,25 @@ export function normalizePomodoroSettings(settings = {}) {
     autoStart: settings.autoStart === true
   };
 }
+
+export function isPomodoroSettingsAtLeastAsStrict(originalSettings = {}, nextSettings = {}) {
+  const original = normalizePomodoroSettings(originalSettings);
+  const next = normalizePomodoroSettings(nextSettings);
+
+  if (!original.enabled) {
+    return next.enabled;
+  }
+
+  if (!next.enabled) {
+    return false;
+  }
+
+  return Boolean(
+    next.workMinutes <= original.workMinutes
+      && next.shortBreakMinutes >= original.shortBreakMinutes
+      && next.longBreakMinutes >= original.longBreakMinutes
+      && next.sessionsBeforeLongBreak <= original.sessionsBeforeLongBreak
+      && (!original.strictBreaks || next.strictBreaks)
+      && (!original.autoStart || next.autoStart)
+  );
+}

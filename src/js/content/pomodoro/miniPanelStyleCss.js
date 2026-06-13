@@ -4,11 +4,7 @@
 (function(global) {
   global.DAD = global.DAD || {};
 
-  const fallbackConstants = {
-    PANEL_ID: 'dad-pomodoro-mini-panel',
-    DEFAULT_PANEL_WIDTH: 300,
-    MIN_PANEL_WIDTH: 220
-  };
+  const fallbackConstants = { PANEL_ID: 'dad-pomodoro-mini-panel', DEFAULT_PANEL_WIDTH: 300, MIN_PANEL_WIDTH: 220 };
 
   function buildMiniPanelCss(styleConstants = {}) {
     const constants = {
@@ -47,6 +43,8 @@
         text-align: left;
         color-scheme: dark;
       }
+
+      #${constants.PANEL_ID}[dir="rtl"] { right: auto; left: 16px; text-align: right; }
 
       #${constants.PANEL_ID}[data-theme="light"] {
         --dad-panel-bg: #ffffff;
@@ -243,6 +241,8 @@
         text-align: left;
       }
 
+      #${constants.PANEL_ID}[dir="rtl"][data-size="compact"] dd { text-align: right; }
+
       #${constants.PANEL_ID}[data-height="short"] .dad-mini-header {
         padding: 7px 9px;
       }
@@ -337,6 +337,8 @@
       #${constants.PANEL_ID} dd {
         text-align: right;
       }
+
+      #${constants.PANEL_ID}[dir="rtl"] dd { text-align: left; }
     `;
   }
 

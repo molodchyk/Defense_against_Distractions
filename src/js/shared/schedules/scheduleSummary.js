@@ -39,7 +39,7 @@ export function formatScheduleActivitySummary(counts = {}, options = {}) {
     formatCountPart(options, 'scheduleActiveNowSummaryPart', `${activeNow} active now`, activeNow)
   ];
 
-  if (options.includeEnabled !== false) {
+  if (options.includeEnabled === true) {
     parts.push(formatCountPart(
       options,
       'scheduleEnabledSummaryPart',
@@ -60,7 +60,7 @@ export function formatScheduleActivitySummary(counts = {}, options = {}) {
     ));
   }
 
-  if (options.includeDisabled !== false && disabled > 0) {
+  if (options.includeDisabled === true && disabled > 0) {
     parts.push(formatCountPart(options, 'scheduleDisabledSummaryPart', `${disabled} disabled`, disabled));
   }
 

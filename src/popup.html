@@ -12,12 +12,15 @@
                 <p data-i18n="popupBrandName">Defense against Distractions</p>
                 <h1 data-i18n="popupQuickActionsTitle">Defense Panel</h1>
             </div>
-            <button id="headerOptionsButton" class="header-options-button" type="button" title="Open Options" aria-label="Open options" data-i18n-title="popupOpenOptionsTitle" data-i18n-aria-label="popupOpenOptionsTitle">DaD</button>
+            <div class="popup-header-actions">
+                <button id="headerFeedbackButton" class="header-action-button" type="button" title="Send feedback" aria-label="Send feedback" data-i18n="popupFeedbackButton" data-i18n-title="popupFeedbackTitle" data-i18n-aria-label="popupFeedbackTitle">Feedback</button>
+                <button id="headerOptionsButton" class="header-action-button" type="button" title="Open Options" aria-label="Open options" data-i18n="popupOptionsButton" data-i18n-title="popupOpenOptionsTitle" data-i18n-aria-label="popupOpenOptionsTitle">Options</button>
+            </div>
         </header>
 
-        <nav class="popup-tab-list" aria-label="Popup sections" data-i18n-aria-label="popupSectionsAriaLabel">
-            <button class="popup-tab-button" type="button" data-popup-tab="actions" aria-pressed="true" data-i18n="popupActionsTab">Control</button>
-            <button class="popup-tab-button" type="button" data-popup-tab="diagnostics" aria-pressed="false" data-i18n="popupDiagnosticsTab">Inspect</button>
+        <nav class="popup-tab-list" role="tablist" aria-label="Popup sections" data-i18n-aria-label="popupSectionsAriaLabel">
+            <button id="popupActionsTabButton" class="popup-tab-button" type="button" role="tab" data-popup-tab="actions" aria-selected="true" aria-controls="popupActionsPane" tabindex="0" data-i18n="popupActionsTab">Control</button>
+            <button id="popupDiagnosticsTabButton" class="popup-tab-button" type="button" role="tab" data-popup-tab="diagnostics" aria-selected="false" aria-controls="popupDiagnosticsPane" tabindex="-1" data-i18n="popupDiagnosticsTab">Inspect</button>
         </nav>
 
         <section class="popup-card primary-panel protection-panel" aria-labelledby="protectionStatusTitle">
@@ -34,6 +37,10 @@
                     <dt data-i18n="popupCurrentPageLabel">Current page</dt>
                     <dd id="currentProtectionText" data-i18n="popupCheckingLabel">Checking</dd>
                 </div>
+                <div class="full-width-protection">
+                    <dt data-i18n="popupFocusLabel">Focus</dt>
+                    <dd id="focusProtectionText" data-i18n="popupFocusStateCalm">Calm</dd>
+                </div>
                 <div>
                     <dt data-i18n="popupTimerLabel">Timer</dt>
                     <dd id="pomodoroProtectionText" data-i18n="popupCheckingLabel">Checking</dd>
@@ -45,7 +52,101 @@
             </dl>
         </section>
 
-        <section class="popup-section control-section" aria-label="Controls" data-i18n-aria-label="popupControlsAriaLabel" data-popup-pane="actions">
+        <section id="popupActionsPane" class="popup-section control-section" role="tabpanel" aria-labelledby="popupActionsTabButton" aria-label="Controls" data-i18n-aria-label="popupControlsAriaLabel" data-popup-pane="actions">
+            <section class="popup-card action-panel focus-state-panel" aria-labelledby="focusStateTitle">
+                <div class="section-header">
+                    <h2 id="focusStateTitle" data-i18n="popupFocusStateTitle">Focus state</h2>
+                    <span id="focusStateBadge" class="focus-state-badge" data-state="calm" data-i18n="popupFocusStateCalm">Calm</span>
+                </div>
+                <div class="focus-state-actions" role="group" aria-label="Focus state" data-i18n-aria-label="popupFocusStateTitle">
+                    <button id="focusStateCalmButton" class="focus-state-button" type="button" aria-pressed="true" data-i18n="popupFocusStateCalm">Calm</button>
+                    <button id="focusStateStrainedButton" class="focus-state-button" type="button" aria-pressed="false" data-i18n="popupFocusStateStrained">Strained</button>
+                    <button id="focusStateVulnerableButton" class="focus-state-button" type="button" aria-pressed="false" data-i18n="popupFocusStateVulnerable">Vulnerable</button>
+                </div>
+                <p id="focusStateDetail" class="focus-state-detail" data-i18n="popupFocusStateNoExpiry">No expiry</p>
+            </section>
+
+            <section class="popup-card action-panel intent-recovery-panel" aria-labelledby="intentRecoveryTitle">
+                <div class="section-header">
+                    <h2 id="intentRecoveryTitle" data-i18n="popupIntentRecoveryTitle">Session coherence</h2>
+                    <span id="intentRecoveryBadge" class="intent-risk-badge" data-state="none" data-i18n="popupNoDataLabel">No data</span>
+                </div>
+                <div class="intent-recovery-score-row">
+                    <div>
+                        <span data-i18n="popupCoherenceLabel">Coherence</span>
+                        <strong id="intentRecoveryScore">--</strong>
+                    </div>
+                    <p id="intentRecoverySummary" data-i18n="popupIntentNoTrajectorySummary">No trajectory on this page</p>
+                </div>
+                <div class="intent-meter" aria-hidden="true">
+                    <span id="intentRecoveryMeter"></span>
+                </div>
+                <dl class="intent-recovery-details" aria-label="Current intent recovery details" data-i18n-aria-label="popupIntentRecoveryAriaLabel">
+                    <div>
+                        <dt data-i18n="popupOriginLabel">Origin</dt>
+                        <dd id="intentRecoveryOriginText">--</dd>
+                    </div>
+                    <div>
+                        <dt data-i18n="popupCurrentLabel">Current</dt>
+                        <dd id="intentRecoveryCurrentText">--</dd>
+                    </div>
+                    <div>
+                        <dt data-i18n="popupLastCoherentLabel">Last coherent</dt>
+                        <dd id="intentRecoveryLastCoherentText">--</dd>
+                    </div>
+                    <div>
+                        <dt data-i18n="popupFirstDriftLabel">First drift</dt>
+                        <dd id="intentRecoveryDriftText">--</dd>
+                    </div>
+                    <div>
+                        <dt data-i18n="popupIntentDriftTabsLabel">Drift tabs</dt>
+                        <dd id="intentRecoveryDriftTabsText">--</dd>
+                    </div>
+                    <div>
+                        <dt data-i18n="popupIntentInterventionLabel">Intervention</dt>
+                        <dd id="intentRecoveryInterventionText">--</dd>
+                    </div>
+                    <div>
+                        <dt data-i18n="popupIntentPolicyLabel">Policy</dt>
+                        <dd id="intentRecoveryPolicyText">--</dd>
+                    </div>
+                </dl>
+                <ol id="intentRecoveryTimelineList" class="intent-recovery-timeline" aria-label="Recent session path" data-i18n-aria-label="popupIntentRecoveryTimelineAriaLabel"></ol>
+                <ul id="intentRecoveryReasonList" class="intent-reason-list" aria-label="Intent recovery reasons" data-i18n-aria-label="popupIntentRecoveryReasonsAriaLabel"></ul>
+                <div class="intent-recovery-actions">
+                    <div class="intent-action-group intent-action-group-primary" role="group" aria-labelledby="intentRecoveryPrimaryActionsLabel">
+                        <span id="intentRecoveryPrimaryActionsLabel" class="intent-action-group-label" data-i18n="popupIntentPrimaryActionsLabel">Recover</span>
+                        <div class="intent-action-grid">
+                            <button id="returnIntentChainButton" class="primary-action-button" type="button" data-i18n="popupIntentReturnChainButton">Return chain</button>
+                            <button id="returnIntentButton" class="secondary-button" type="button" data-i18n="popupIntentReturnButton">Return</button>
+                        </div>
+                    </div>
+                    <div class="intent-action-group" role="group" aria-labelledby="intentRecoveryCurrentActionsLabel">
+                        <span id="intentRecoveryCurrentActionsLabel" class="intent-action-group-label" data-i18n="popupIntentCurrentActionsLabel">Current page</span>
+                        <label id="intentContinueReasonControl" class="intent-continue-reason" for="intentContinueReasonInput" hidden>
+                            <span data-i18n="popupIntentContinueReasonLabel">Reason to continue</span>
+                            <textarea id="intentContinueReasonInput" rows="2" maxlength="160" placeholder="What makes this page intentional now?" data-i18n-placeholder="popupIntentContinueReasonPlaceholder" aria-describedby="intentContinueReasonCount"></textarea>
+                            <small id="intentContinueReasonCount">0 / 160</small>
+                        </label>
+                        <div class="intent-action-grid">
+                            <button id="continueIntentButton" class="secondary-button" type="button" data-i18n="popupIntentContinueButton">Continue</button>
+                            <button id="isolateIntentButton" class="secondary-button" type="button" data-i18n="popupIntentIsolateButton">Isolate</button>
+                            <button id="markIntentCoherentButton" class="secondary-button" type="button" data-i18n="popupIntentMarkCoherentButton">Mark coherent</button>
+                            <button id="openIntentGraphButton" class="secondary-button" type="button" data-i18n="popupIntentShowGraphButton">Show graph</button>
+                        </div>
+                    </div>
+                    <div class="intent-action-group intent-action-group-drift" role="group" aria-labelledby="intentRecoveryDriftActionsLabel">
+                        <span id="intentRecoveryDriftActionsLabel" class="intent-action-group-label" data-i18n="popupIntentDriftActionsLabel">Drift tabs</span>
+                        <div class="intent-action-grid">
+                            <button id="returnIntentDriftTabsButton" class="secondary-button" type="button" data-i18n="popupIntentReturnTabsButton">Return drift tabs</button>
+                            <button id="moveIntentDriftTabsButton" class="secondary-button" type="button" data-i18n="popupIntentMoveTabsButton">Move drift tabs</button>
+                            <button id="suspendIntentDriftTabsButton" class="secondary-button" type="button" data-i18n="popupIntentSuspendButton">Suspend drift tabs</button>
+                            <button id="cleanIntentDriftTabsButton" class="secondary-button danger-button" type="button" data-i18n="popupIntentCleanButton">Close drift tabs</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <section class="popup-card action-panel pomodoro-panel" aria-labelledby="pomodoroTitle">
                 <div class="pomodoro-panel-header">
                     <h2 id="pomodoroTitle" data-i18n="popupPomodoroTitle">Pomodoro</h2>
@@ -108,7 +209,50 @@
             </section>
         </section>
 
-        <section class="popup-section diagnostics-section" aria-label="Diagnostics" data-i18n-aria-label="popupDiagnosticsAriaLabel" data-popup-pane="diagnostics" hidden>
+        <section id="popupDiagnosticsPane" class="popup-section diagnostics-section" role="tabpanel" aria-labelledby="popupDiagnosticsTabButton" aria-label="Diagnostics" data-i18n-aria-label="popupDiagnosticsAriaLabel" data-popup-pane="diagnostics" hidden>
+            <div class="inspect-action-bar" aria-label="Inspect actions" data-i18n-aria-label="popupInspectActionsAriaLabel">
+                <button id="copyDiagnosticsButton" class="secondary-button" type="button" data-i18n="popupCopyDiagnosticsButton">Copy Diagnostics</button>
+                <button id="copyDiagnosticsFeedbackButton" class="secondary-button" type="button" data-i18n="popupCopyDiagnosticsFeedbackButton">Copy + Feedback</button>
+            </div>
+
+            <section class="popup-card diagnostic-panel usage-summary-panel" aria-labelledby="usageSummaryTitle">
+                <div class="section-header">
+                    <h2 id="usageSummaryTitle" data-i18n="popupUsageSummaryTitle">Today usage</h2>
+                    <span id="usageSummaryStatus" class="usage-summary-badge" data-state="idle" data-i18n="popupLoadingLabel">Loading</span>
+                </div>
+                <dl class="usage-summary-grid" aria-label="Today local usage summary" data-i18n-aria-label="popupUsageSummaryAriaLabel">
+                    <div>
+                        <dt data-i18n="popupVisitsLabel">Visits</dt>
+                        <dd id="usageSummaryVisitsText">0</dd>
+                    </div>
+                    <div>
+                        <dt data-i18n="popupActiveTodayLabel">Active today</dt>
+                        <dd id="usageSummaryActiveText">0s</dd>
+                    </div>
+                    <div>
+                        <dt data-i18n="popupBlockedActiveLabel">Blocked active</dt>
+                        <dd id="usageSummaryBlockedText">0s</dd>
+                    </div>
+                    <div>
+                        <dt data-i18n="popupAllowedActiveLabel">Allowed active</dt>
+                        <dd id="usageSummaryAllowedText">0s</dd>
+                    </div>
+                    <div class="full-width-usage">
+                        <dt data-i18n="popupBlockedShareLabel">Blocked share</dt>
+                        <dd id="usageSummaryBlockedShareText">0% active / 0% visits</dd>
+                    </div>
+                    <div>
+                        <dt data-i18n="popupDomainsLabel">Domains</dt>
+                        <dd id="usageSummaryDomainsText">0</dd>
+                    </div>
+                    <div>
+                        <dt data-i18n="popupPageWordsLabel">Page words</dt>
+                        <dd id="usageSummaryWordsText">0</dd>
+                    </div>
+                </dl>
+                <ul id="usageSummaryDomainList" class="usage-domain-list" aria-label="Today top local usage domains" data-i18n-aria-label="popupUsageDomainsAriaLabel"></ul>
+            </section>
+
             <details class="popup-card diagnostic-panel page-signals-panel">
                 <summary class="page-signals-panel-header">
                     <h2 id="pageSignalsTitle" data-i18n="popupPageSignalsTitle">Page Signals</h2>
@@ -128,6 +272,10 @@
                         <dd id="pageSignalAudioCount">--</dd>
                     </div>
                     <div>
+                        <dt data-i18n="popupAudibleMediaLabel">Audible</dt>
+                        <dd id="pageSignalAudibleMediaCount">--</dd>
+                    </div>
+                    <div>
                         <dt data-i18n="popupGifsLabel">GIFs</dt>
                         <dd id="pageSignalGifCount">--</dd>
                     </div>
@@ -139,7 +287,26 @@
                         <dt data-i18n="popupLinksLabel">Links</dt>
                         <dd id="pageSignalLinkCount">--</dd>
                     </div>
+                    <div class="full-width-signal">
+                        <dt data-i18n="popupPassiveRegionsLabel">Passive regions</dt>
+                        <dd id="pageSignalPassiveRegions">--</dd>
+                    </div>
+                    <div>
+                        <dt data-i18n="popupOpenTabsLabel">Open tabs</dt>
+                        <dd id="pageSignalTabCount">--</dd>
+                    </div>
+                    <div>
+                        <dt data-i18n="popupOpenWindowsLabel">Windows</dt>
+                        <dd id="pageSignalWindowCount">--</dd>
+                    </div>
+                    <div class="full-width-signal">
+                        <dt data-i18n="popupKeywordIdeasLabel">Keyword ideas</dt>
+                        <dd id="pageSignalKeywordIdeasText" data-i18n="popupNoKeywordIdeas">None detected</dd>
+                    </div>
                 </dl>
+                <div class="diagnostic-actions">
+                    <button id="copyKeywordIdeasButton" class="secondary-button" type="button" disabled data-i18n="popupCopyKeywordIdeasButton">Copy keyword ideas</button>
+                </div>
             </details>
 
             <details class="popup-card diagnostic-panel block-diagnostics-panel">
@@ -172,10 +339,13 @@
                         <dt data-i18n="popupScoreLabel">Score</dt>
                         <dd id="blockScoreText">--</dd>
                     </div>
+                    <div class="full-width-diagnostic">
+                        <dt data-i18n="popupContributorsLabel">Contributors</dt>
+                        <dd id="blockContributorText">--</dd>
+                    </div>
                 </dl>
                 <div class="diagnostic-actions">
                     <button id="refreshBlockDiagnosticsButton" class="secondary-button" type="button" data-i18n="popupRefreshButton">Refresh</button>
-                    <button id="copyDiagnosticsButton" class="secondary-button" type="button" data-i18n="popupCopyDiagnosticsButton">Copy Diagnostics</button>
                 </div>
             </details>
 
@@ -204,6 +374,24 @@
                     <div>
                         <dt data-i18n="popupLineageLabel">Lineage</dt>
                         <dd id="intentLineageText">--</dd>
+                    </div>
+                </dl>
+                <dl class="intent-signal-grid" aria-label="Intent score signal breakdown" data-i18n-aria-label="popupIntentSignalsAriaLabel">
+                    <div>
+                        <dt data-i18n="popupIntentSignalOriginLabel">Origin signal</dt>
+                        <dd id="intentSignalOriginText">--</dd>
+                    </div>
+                    <div>
+                        <dt data-i18n="popupIntentSignalPassiveLabel">Passive signal</dt>
+                        <dd id="intentSignalPassiveText">--</dd>
+                    </div>
+                    <div>
+                        <dt data-i18n="popupIntentSignalAgencyLabel">Agency signal</dt>
+                        <dd id="intentSignalAgencyText">--</dd>
+                    </div>
+                    <div>
+                        <dt data-i18n="popupIntentSignalNavigationLabel">Navigation signal</dt>
+                        <dd id="intentSignalNavigationText">--</dd>
                     </div>
                 </dl>
                 <ul id="intentReasonList" class="intent-reason-list" aria-label="Intent score reasons" data-i18n-aria-label="popupIntentReasonsAriaLabel"></ul>

@@ -6,63 +6,42 @@
 
   const MIN_RATE_WINDOW_MS = 30 * 1000;
   const MAX_RATE_PER_MINUTE = 600;
-  const RECOMMENDER_ZONE_ATTRIBUTE_PATTERN = /recommend|related|suggest|upnext|up-next|watch-next|more-like|for-you|foryou|feed|timeline|trending|popular|explore|shorts|reels|sidebar|rail|home-feed/i;
+  const SCROLL_APPEND_WINDOW_MS = 3000;
+  const MAX_ADDED_ELEMENTS_PER_BATCH = 80;
 
   let pageStartedAt = Date.now();
   let activePageMs = 0;
   let activePageStartedAt = null;
+  let lastClickedLinkTokens = [];
+  let lastSelectedTextTokens = [];
 
   const activityCounters = {
-    scrollEvents: 0,
+    dynamicContentBatches: 0,
+    dynamicAddedElements: 0,
+    scrollLinkedContentBatches: 0,
+    scrollLinkedAddedElements: 0,
     clickEvents: 0,
     recommenderClickEvents: 0,
-    keyEvents: 0,
-    inputEvents: 0,
-    maxScrollDepthRatio: 0
+    recommendationClickEvents: 0,
+    feedClickEvents: 0,
+    commentClickEvents: 0
   };
 
-  function clamp(value, min, max) {
-    return Math.min(Math.max(value, min), max);
+  function recordClickContext(target) {
+    const contextTokens = global.DAD.PageSignalContextTokens;
+    lastClickedLinkTokens = contextTokens?.getClickedLinkTokens?.(target) || [];
+    lastSelectedTextTokens = contextTokens?.getSelectedTextTokens?.() || [];
   }
 
-  function getElementAttributeText(element) {
-    if (!element?.getAttribute) {
-      return '';
+  function getRecommenderZoneType(target) {
+    const zoneType = global.DAD.PageSignalRecommenderZones?.getRecommenderZoneType?.(target);
+    if (zoneType) {
+      return zoneType;
     }
 
-    const values = [
-      element.tagName,
-      element.getAttribute('role'),
-      element.getAttribute('id'),
-      element.getAttribute('class'),
-      element.getAttribute('aria-label'),
-      element.getAttribute('data-testid'),
-      element.getAttribute('data-test-id'),
-      element.getAttribute('data-test'),
-      element.getAttribute('data-pagelet')
-    ];
-
-    return values.filter(Boolean).join(' ');
-  }
-
-  function isRecommenderZoneClick(target) {
-    let element = target?.nodeType === Node.ELEMENT_NODE ? target : target?.parentElement;
-    let depth = 0;
-
-    while (element && depth < 8) {
-      if (element.matches?.('[role="feed"], [aria-label*="feed" i], [class*="feed" i], [id*="feed" i]')) {
-        return true;
-      }
-
-      if (RECOMMENDER_ZONE_ATTRIBUTE_PATTERN.test(getElementAttributeText(element))) {
-        return true;
-      }
-
-      element = element.parentElement;
-      depth += 1;
-    }
-
-    return false;
+    return global.DAD.PageSignalRecommenderZones?.isRecommenderZoneClick?.(target) === true
+      ? 'recommendation'
+      : null;
   }
 
   function calculateRatePerMinute(count, activeMs, pageAgeMs) {
@@ -76,22 +55,36 @@
     return Math.min(MAX_RATE_PER_MINUTE, Number((eventCount / minutes).toFixed(3)));
   }
 
-  function getScrollDepthRatio() {
-    const documentElement = global.document.documentElement;
-    const body = global.document.body;
-    const scrollTop = Number(global.scrollY || documentElement?.scrollTop || body?.scrollTop || 0);
-    const viewportHeight = Number(global.innerHeight || documentElement?.clientHeight || 0);
-    const documentHeight = Math.max(
-      Number(documentElement?.scrollHeight || 0),
-      Number(body?.scrollHeight || 0),
-      viewportHeight
-    );
-
-    if (documentHeight <= 0) {
+  function countAddedElements(node) {
+    if (!node || node.nodeType !== global.Node?.ELEMENT_NODE) {
       return 0;
     }
 
-    return clamp((scrollTop + viewportHeight) / documentHeight, 0, 1);
+    const descendantCount = typeof node.querySelectorAll === 'function'
+      ? node.querySelectorAll('*').length
+      : 0;
+    return 1 + descendantCount;
+  }
+
+  function recordDomMutationBatch(records = []) {
+    const addedElementCount = Array.from(records).reduce((total, record) => {
+      return total + Array.from(record?.addedNodes || []).reduce((nodeTotal, node) => {
+        return nodeTotal + countAddedElements(node);
+      }, 0);
+    }, 0);
+
+    if (addedElementCount <= 0) {
+      return;
+    }
+
+    const boundedAddedElements = Math.min(addedElementCount, MAX_ADDED_ELEMENTS_PER_BATCH);
+    activityCounters.dynamicContentBatches += 1;
+    activityCounters.dynamicAddedElements += boundedAddedElements;
+
+    if (global.DAD.PageSignalScrollActivity.wasRecentScroll(SCROLL_APPEND_WINDOW_MS)) {
+      activityCounters.scrollLinkedContentBatches += 1;
+      activityCounters.scrollLinkedAddedElements += boundedAddedElements;
+    }
   }
 
   function isPageVisible() {
@@ -99,14 +92,17 @@
   }
 
   function getActivePageMs() {
-    const currentActiveMs = activePageStartedAt && isPageVisible()
+    const currentActiveMs = activePageStartedAt !== null && isPageVisible()
       ? Date.now() - activePageStartedAt
       : 0;
     return Math.max(0, activePageMs + currentActiveMs);
   }
 
   function updateActivePageTime() {
-    if (activePageStartedAt) {
+    global.DAD.PageSignalMediaActivity.updateMediaPlaybackTime();
+    global.DAD.PageSignalInputActivity.updateActiveInputTime();
+
+    if (activePageStartedAt !== null) {
       activePageMs += Math.max(0, Date.now() - activePageStartedAt);
       activePageStartedAt = isPageVisible() ? Date.now() : null;
       return;
@@ -120,21 +116,39 @@
   function getActivitySignals() {
     const pageAgeMs = Math.max(0, Date.now() - pageStartedAt);
     const currentActivePageMs = getActivePageMs();
+    const scrollSignals = global.DAD.PageSignalScrollActivity.getScrollActivitySignals();
+    const inputSignals = global.DAD.PageSignalInputActivity.getInputActivitySignals();
+    const mediaSignals = global.DAD.PageSignalMediaActivity.getMediaActivitySignals();
 
     return {
       pageAgeMs,
       activePageMs: currentActivePageMs,
-      scrollEvents: activityCounters.scrollEvents,
+      ...scrollSignals,
+      ...inputSignals,
+      ...mediaSignals,
+      dynamicContentBatches: activityCounters.dynamicContentBatches,
+      dynamicAddedElements: activityCounters.dynamicAddedElements,
+      scrollLinkedContentBatches: activityCounters.scrollLinkedContentBatches,
+      scrollLinkedAddedElements: activityCounters.scrollLinkedAddedElements,
       clickEvents: activityCounters.clickEvents,
       recommenderClickEvents: activityCounters.recommenderClickEvents,
-      keyEvents: activityCounters.keyEvents,
-      inputEvents: activityCounters.inputEvents,
-      scrollRatePerMinute: calculateRatePerMinute(activityCounters.scrollEvents, currentActivePageMs, pageAgeMs),
+      recommendationClickEvents: activityCounters.recommendationClickEvents,
+      feedClickEvents: activityCounters.feedClickEvents,
+      commentClickEvents: activityCounters.commentClickEvents,
+      scrollRatePerMinute: calculateRatePerMinute(scrollSignals.scrollEvents, currentActivePageMs, pageAgeMs),
       clickRatePerMinute: calculateRatePerMinute(activityCounters.clickEvents, currentActivePageMs, pageAgeMs),
       recommenderClickRatePerMinute: calculateRatePerMinute(activityCounters.recommenderClickEvents, currentActivePageMs, pageAgeMs),
-      keyRatePerMinute: calculateRatePerMinute(activityCounters.keyEvents, currentActivePageMs, pageAgeMs),
-      inputRatePerMinute: calculateRatePerMinute(activityCounters.inputEvents, currentActivePageMs, pageAgeMs),
-      maxScrollDepthRatio: Number(activityCounters.maxScrollDepthRatio.toFixed(3))
+      recommendationClickRatePerMinute: calculateRatePerMinute(activityCounters.recommendationClickEvents, currentActivePageMs, pageAgeMs),
+      feedClickRatePerMinute: calculateRatePerMinute(activityCounters.feedClickEvents, currentActivePageMs, pageAgeMs),
+      commentClickRatePerMinute: calculateRatePerMinute(activityCounters.commentClickEvents, currentActivePageMs, pageAgeMs),
+      keyRatePerMinute: calculateRatePerMinute(inputSignals.keyEvents, currentActivePageMs, pageAgeMs),
+      inputRatePerMinute: calculateRatePerMinute(inputSignals.inputEvents, currentActivePageMs, pageAgeMs),
+      mediaPlayRatePerMinute: calculateRatePerMinute(mediaSignals.mediaPlayEvents, currentActivePageMs, pageAgeMs),
+      mediaPauseRatePerMinute: calculateRatePerMinute(mediaSignals.mediaPauseEvents, currentActivePageMs, pageAgeMs),
+      mediaEndRatePerMinute: calculateRatePerMinute(mediaSignals.mediaEndEvents, currentActivePageMs, pageAgeMs),
+      mediaSourceChangeRatePerMinute: calculateRatePerMinute(mediaSignals.mediaSourceChangeEvents, currentActivePageMs, pageAgeMs),
+      clickedLinkTokens: lastClickedLinkTokens,
+      selectedTextTokens: lastSelectedTextTokens
     };
   }
 
@@ -142,44 +156,54 @@
     pageStartedAt = Date.now();
     activePageMs = 0;
     activePageStartedAt = isPageVisible() ? Date.now() : null;
-    activityCounters.scrollEvents = 0;
+    activityCounters.dynamicContentBatches = 0;
+    activityCounters.dynamicAddedElements = 0;
+    activityCounters.scrollLinkedContentBatches = 0;
+    activityCounters.scrollLinkedAddedElements = 0;
     activityCounters.clickEvents = 0;
     activityCounters.recommenderClickEvents = 0;
-    activityCounters.keyEvents = 0;
-    activityCounters.inputEvents = 0;
-    activityCounters.maxScrollDepthRatio = getScrollDepthRatio();
+    activityCounters.recommendationClickEvents = 0;
+    activityCounters.feedClickEvents = 0;
+    activityCounters.commentClickEvents = 0;
+    global.DAD.PageSignalScrollActivity.resetScrollActivity();
+    global.DAD.PageSignalInputActivity.resetInputActivity();
+    global.DAD.PageSignalMediaActivity.resetMediaActivity();
+    lastClickedLinkTokens = [];
+    lastSelectedTextTokens = [];
   }
 
   function installActivitySignalListeners(schedulePageSignalReport) {
     global.addEventListener('scroll', () => {
-      activityCounters.scrollEvents += 1;
-      activityCounters.maxScrollDepthRatio = Math.max(activityCounters.maxScrollDepthRatio, getScrollDepthRatio());
+      global.DAD.PageSignalScrollActivity.recordScrollActivity();
       schedulePageSignalReport();
     }, { passive: true });
 
     global.addEventListener('click', event => {
       activityCounters.clickEvents += 1;
-      if (isRecommenderZoneClick(event.target)) {
+      recordClickContext(event.target);
+      const zoneType = getRecommenderZoneType(event.target);
+      if (zoneType) {
         activityCounters.recommenderClickEvents += 1;
+        if (zoneType === 'feed') {
+          activityCounters.feedClickEvents += 1;
+        } else if (zoneType === 'comment') {
+          activityCounters.commentClickEvents += 1;
+        } else {
+          activityCounters.recommendationClickEvents += 1;
+        }
       }
       schedulePageSignalReport();
     }, { passive: true });
 
-    global.addEventListener('keydown', () => {
-      activityCounters.keyEvents += 1;
-      schedulePageSignalReport();
-    }, { passive: true });
-
-    global.addEventListener('input', () => {
-      activityCounters.inputEvents += 1;
-      schedulePageSignalReport();
-    }, { passive: true });
+    global.DAD.PageSignalInputActivity.installInputActivityListeners(schedulePageSignalReport);
+    global.DAD.PageSignalMediaActivity.installMediaActivityListeners(schedulePageSignalReport);
   }
 
   global.DAD.PageSignalsActivity = {
     getActivitySignals,
     installActivitySignalListeners,
     isPageVisible,
+    recordDomMutationBatch,
     resetActivitySignals,
     updateActivePageTime
   };

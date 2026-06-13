@@ -11,6 +11,7 @@ import {
   savePlansWithPriority
 } from '../../shared/storage/criticalScheduleStorage.js';
 import {
+  isInProtectedSchedule,
   normalizePlans,
   PLANS_STORAGE_KEY
 } from '../../shared/plans.js';
@@ -18,9 +19,23 @@ import {
   ELEMENT_RULE_IDS_STORAGE_KEY,
   ELEMENT_RULE_ITEM_PREFIX,
   ELEMENT_RULES_STORAGE_KEY,
+  ELEMENT_RULE_MESSAGES,
   PROTECTED_SYNC_RESERVE_BYTES,
   SYNC_QUOTA_BYTES_FALLBACK
 } from './constants.js';
+
+export function isElementRulePatchAllowedDuringProtectedSchedule(rule = {}, patch = {}) {
+  const isActiveRule = rule?.enabled !== false;
+  return !(isActiveRule && patch?.enabled === false);
+}
+
+export function isElementRuleRemovalAllowedDuringProtectedSchedule(rule = {}) {
+  return rule?.enabled === false;
+}
+
+function createLockedScheduleError() {
+  return new Error(ELEMENT_RULE_MESSAGES.lockedScheduleErrorMessage);
+}
 
 export function getElementRuleStorageKey(ruleId) {
   return `${ELEMENT_RULE_ITEM_PREFIX}${ruleId}`;
@@ -110,6 +125,17 @@ export async function saveRules(rules) {
 
 export async function updateRule(ruleId, patch) {
   const rules = await getRules();
+  const items = await getSync({ [PLANS_STORAGE_KEY]: [], schedules: [] });
+  const rule = rules.find(candidate => candidate.id === ruleId);
+
+  if (
+    rule
+      && isInProtectedSchedule(items)
+      && !isElementRulePatchAllowedDuringProtectedSchedule(rule, patch)
+  ) {
+    throw createLockedScheduleError();
+  }
+
   await saveRules(rules.map(rule => {
     return rule.id === ruleId ? { ...rule, ...patch } : rule;
   }));
@@ -117,8 +143,17 @@ export async function updateRule(ruleId, patch) {
 
 export async function removeRule(ruleId) {
   const rules = await getRules();
-  const items = await getSync({ [PLANS_STORAGE_KEY]: [] });
+  const items = await getSync({ [PLANS_STORAGE_KEY]: [], schedules: [] });
   const plans = normalizePlans(items[PLANS_STORAGE_KEY]);
+  const rule = rules.find(candidate => candidate.id === ruleId);
+
+  if (
+    rule
+      && isInProtectedSchedule(items)
+      && !isElementRuleRemovalAllowedDuringProtectedSchedule(rule)
+  ) {
+    throw createLockedScheduleError();
+  }
 
   await saveRules(rules.filter(rule => rule.id !== ruleId));
 

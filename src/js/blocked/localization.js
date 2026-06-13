@@ -3,12 +3,14 @@
 
 const UI_LANGUAGE_STORAGE_KEY = 'uiLanguage';
 const DEFAULT_UI_LANGUAGE = 'system';
+const RTL_LANGUAGE_CODES = new Set(['ar', 'fa', 'he', 'ur']);
 
 export function initBlockedPageLocalization({
   safeSyncStorageGet,
   safeStorageOnChangedAddListener
 }) {
   let selectedUiMessages = null;
+  let resolvedUiLanguage = 'en';
 
   function normalizeUiLanguage(value) {
     const normalizedValue = String(value || DEFAULT_UI_LANGUAGE).trim().replace('-', '_');
@@ -21,6 +23,29 @@ export function initBlockedPageLocalization({
     }
 
     return normalizedValue;
+  }
+
+  function getSystemUiLanguage() {
+    const browserLanguage = globalThis.chrome?.i18n?.getUILanguage?.() || globalThis.navigator?.language || 'en';
+    const normalizedLanguage = normalizeUiLanguage(browserLanguage);
+    return normalizedLanguage === DEFAULT_UI_LANGUAGE ? 'en' : normalizedLanguage;
+  }
+
+  function getUiLanguageDirection(language = resolvedUiLanguage) {
+    const normalizedLanguage = normalizeUiLanguage(language);
+    const languageCode = normalizedLanguage === DEFAULT_UI_LANGUAGE ? getSystemUiLanguage() : normalizedLanguage;
+    const baseCode = languageCode.split('_')[0].toLowerCase();
+    return RTL_LANGUAGE_CODES.has(baseCode) ? 'rtl' : 'ltr';
+  }
+
+  function applyLanguageAttributes() {
+    if (!document.documentElement) {
+      return;
+    }
+
+    document.documentElement.setAttribute('lang', resolvedUiLanguage.replace('_', '-'));
+    document.documentElement.setAttribute('dir', getUiLanguageDirection());
+    document.documentElement.dataset.uiDirection = getUiLanguageDirection();
   }
 
   function normalizeSubstitutions(substitutions) {
@@ -83,6 +108,8 @@ export function initBlockedPageLocalization({
   function loadSelectedUiLanguage(callback) {
     safeSyncStorageGet({ [UI_LANGUAGE_STORAGE_KEY]: DEFAULT_UI_LANGUAGE }, result => {
       const language = normalizeUiLanguage(result?.[UI_LANGUAGE_STORAGE_KEY]);
+      resolvedUiLanguage = language === DEFAULT_UI_LANGUAGE ? getSystemUiLanguage() : language;
+      applyLanguageAttributes();
       if (language === DEFAULT_UI_LANGUAGE) {
         selectedUiMessages = null;
         callback();
@@ -116,6 +143,7 @@ export function initBlockedPageLocalization({
   }
 
   function localizeBlockedPage() {
+    applyLanguageAttributes();
     const title = getMessage('contentBlockedTitle', 'Content Blocked');
     setText('title', title);
     setText(
@@ -140,6 +168,7 @@ export function initBlockedPageLocalization({
 
   return {
     getMessage,
+    getUiLanguageDirection,
     localizeBlockedPage,
     loadSelectedUiLanguage
   };

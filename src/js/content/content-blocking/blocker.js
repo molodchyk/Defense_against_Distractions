@@ -5,6 +5,7 @@
   global.DAD = global.DAD || {};
   const contentBlocking = global.DAD.ContentBlocking = global.DAD.ContentBlocking || {};
   const { keepPageMediaSuspended } = contentBlocking.media;
+  const { installBlockedPageNavigationGuards } = contentBlocking.navigationGuards;
   const {
     installBlockedPageEventGuards,
     keepBlockedPageRendered
@@ -75,6 +76,8 @@
     keepBlockedPageRendered();
     keepPageMediaSuspended();
     installBlockedPageEventGuards();
+    installBlockedPageNavigationGuards();
+    global.DAD.PageSignalsReporter?.sendPageSignals?.({ force: true });
   }
 
   contentBlocking.blocker = {

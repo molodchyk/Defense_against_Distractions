@@ -19,6 +19,7 @@ export function createProtectionSummaryPanel({
   getSyncStorage,
   isExtensionPage,
   getBlockDebugState,
+  getFocusStateSummary,
   getPomodoroSummary,
   getIntentSummary
 }) {
@@ -124,13 +125,18 @@ export function createProtectionSummaryPanel({
   function getSummaries() {
     const activePlans = getActivePlans();
     const pageSummary = getPageSummary();
+    const focusSummary = getFocusStateSummary?.() || {
+      state: 'idle',
+      text: getMessage('popupFocusStateCalm')
+    };
     const pomodoroSummary = getPomodoroSummary();
     const intentSummary = getIntentSummary();
-    const overall = getOverallState([pageSummary, pomodoroSummary, intentSummary], activePlans);
+    const overall = getOverallState([pageSummary, focusSummary, pomodoroSummary, intentSummary], activePlans);
 
     return {
       activePlans,
       pageSummary,
+      focusSummary,
       pomodoroSummary,
       intentSummary,
       overall
@@ -141,6 +147,7 @@ export function createProtectionSummaryPanel({
     const {
       activePlans,
       pageSummary,
+      focusSummary,
       pomodoroSummary,
       intentSummary,
       overall
@@ -155,6 +162,7 @@ export function createProtectionSummaryPanel({
         ? getMessage('popupActivePlansSummary', ['0', cachedPlans.length])
         : summarizeNames(activePlans.map(plan => plan.name), getMessage('popupActivePlansFallback', [activePlans.length])));
     setTextWithTitle('currentProtectionText', pageSummary.text);
+    setTextWithTitle('focusProtectionText', focusSummary.text);
     setTextWithTitle('pomodoroProtectionText', pomodoroSummary.text);
     setTextWithTitle('intentProtectionText', intentSummary.text);
   }
@@ -181,6 +189,7 @@ export function createProtectionSummaryPanel({
     const {
       activePlans,
       pageSummary,
+      focusSummary,
       pomodoroSummary,
       intentSummary
     } = getSummaries();
@@ -205,6 +214,10 @@ export function createProtectionSummaryPanel({
         page: {
           ...pageSummary,
           text: document.getElementById('currentProtectionText')?.textContent || pageSummary.text
+        },
+        focus: {
+          ...focusSummary,
+          text: document.getElementById('focusProtectionText')?.textContent || focusSummary.text
         },
         pomodoro: {
           ...pomodoroSummary,

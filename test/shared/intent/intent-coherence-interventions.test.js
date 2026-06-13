@@ -11,8 +11,10 @@ import {
   getIntentInterventionDecision,
   getLastCoherentIntentVisit,
   INTENT_INTERVENTION_ACTIONS,
+  MAX_INTENT_CONTINUE_REASON_LENGTH,
   recordIntentFeedback,
   recordIntentPageVisit,
+  shouldFreezeIntentNewTabs,
   summarizeIntentFeedback
 } from '../../../src/js/shared/intentCoherence.js';
 
@@ -110,7 +112,35 @@ describe('intent coherence interventions', () => {
     assert.equal(intervention.riskState, 'intervene');
     assert.equal(intervention.shouldIntervene, true);
     assert.equal(intervention.recoveryUrl, 'https://wikipedia.org/wiki/PDE5');
+    assert.equal(intervention.freezeNewTabs, true);
     assert.ok(intervention.reasonLines.length > 0);
+  });
+
+  it('freezes new child tabs only for active non-warning interventions', () => {
+    assert.equal(shouldFreezeIntentNewTabs({
+      shouldIntervene: true,
+      action: INTENT_INTERVENTION_ACTIONS.PROMPT
+    }), true);
+    assert.equal(shouldFreezeIntentNewTabs({
+      shouldIntervene: true,
+      action: INTENT_INTERVENTION_ACTIONS.GRAYSCALE
+    }), true);
+    assert.equal(shouldFreezeIntentNewTabs({
+      shouldIntervene: true,
+      action: INTENT_INTERVENTION_ACTIONS.REDUCE_NOISE
+    }), true);
+    assert.equal(shouldFreezeIntentNewTabs({
+      shouldIntervene: true,
+      action: INTENT_INTERVENTION_ACTIONS.BLOCK
+    }), true);
+    assert.equal(shouldFreezeIntentNewTabs({
+      shouldIntervene: true,
+      action: INTENT_INTERVENTION_ACTIONS.WARN
+    }), false);
+    assert.equal(shouldFreezeIntentNewTabs({
+      shouldIntervene: false,
+      action: INTENT_INTERVENTION_ACTIONS.PROMPT
+    }), false);
   });
 
   it('marks block-action locked sessions as hard chain blocks', () => {
@@ -181,6 +211,22 @@ describe('intent coherence interventions', () => {
     assert.equal(afterCooldown.chainBlock.active, true);
     assert.equal(afterCooldown.chainBlock.cooldownActive, false);
     assert.equal(afterCooldown.chainBlock.cooldownRemainingMs, 0);
+    assert.equal(afterCooldown.chainBlock.autoCloseCurrentTab, false);
+
+    const autoCloseAfterCooldown = getIntentInterventionDecision(getActiveIntentSession(state), {
+      intentSettings: {
+        action: INTENT_INTERVENTION_ACTIONS.BLOCK,
+        interventionThreshold: 80,
+        lockedThreshold: 70,
+        autoCloseQuarantinedTab: true
+      },
+      chainBlockCooldownMs: 5000,
+      now: () => 7000
+    });
+
+    assert.equal(autoCloseAfterCooldown.chainBlock.active, true);
+    assert.equal(autoCloseAfterCooldown.chainBlock.cooldownActive, false);
+    assert.equal(autoCloseAfterCooldown.chainBlock.autoCloseCurrentTab, true);
   });
 
   it('records local intervention feedback against the active intent session', () => {
@@ -196,7 +242,8 @@ describe('intent coherence interventions', () => {
       interventionId: 'intent-session-1000:intervene:intent-visit-1000',
       coherenceScore: 33,
       riskState: 'intervene',
-      policyAction: 'prompt'
+      policyAction: 'prompt',
+      reason: '  Reviewing this citation\nfor the mechanism section.  '
     }, {
       now: () => 2000,
       tabId: 7
@@ -210,7 +257,46 @@ describe('intent coherence interventions', () => {
     assert.equal(state.feedback[0].riskState, 'intervene');
     assert.equal(state.feedback[0].coherenceScore, 33);
     assert.equal(state.feedback[0].policyAction, 'prompt');
+    assert.equal(state.feedback[0].reason, 'Reviewing this citation for the mechanism section.');
     assert.equal(state.feedback[0].currentHostname, 'docs.example.com');
+  });
+
+  it('bounds continue reasons and ignores reasons for other feedback actions', () => {
+    const longReason = ` ${'a'.repeat(MAX_INTENT_CONTINUE_REASON_LENGTH + 30)} `;
+    let state = recordIntentFeedback(createIntentTrajectoryState(1000), {
+      action: 'continue',
+      reason: longReason
+    }, {
+      now: () => 2000
+    });
+
+    state = recordIntentFeedback(state, {
+      action: 'return',
+      reason: 'This should not be stored.'
+    }, {
+      now: () => 3000
+    });
+
+    assert.equal(state.feedback[0].reason.length, MAX_INTENT_CONTINUE_REASON_LENGTH);
+    assert.equal(state.feedback[0].reason, 'a'.repeat(MAX_INTENT_CONTINUE_REASON_LENGTH));
+    assert.equal(state.feedback[1].reason, '');
+    assert.equal(summarizeIntentFeedback(state.feedback).continueReasonCount, 1);
+  });
+
+  it('records coherent marks as local false-positive feedback', () => {
+    const state = recordIntentFeedback(createIntentTrajectoryState(1000), {
+      action: 'markCoherent',
+      coherenceScore: 31
+    }, {
+      now: () => 1001
+    });
+
+    const summary = summarizeIntentFeedback(state.feedback);
+
+    assert.equal(state.feedback[0].action, 'markCoherent');
+    assert.equal(summary.counts.markCoherent, 1);
+    assert.equal(summary.markCoherentRate, 1);
+    assert.equal(summary.averageCoherenceScore, 31);
   });
 
   it('bounds stored intervention feedback entries', () => {
@@ -235,7 +321,8 @@ describe('intent coherence interventions', () => {
     ['return', 'return', 'return', 'isolate', 'continue'].forEach((action, index) => {
       state = recordIntentFeedback(state, {
         action,
-        coherenceScore: 20 + index
+        coherenceScore: 20 + index,
+        reason: action === 'continue' ? 'Still relevant to the task.' : ''
       }, {
         now: () => 1000 + index
       });
@@ -249,17 +336,21 @@ describe('intent coherence interventions', () => {
     assert.equal(summary.returnRate, 0.6);
     assert.equal(summary.isolateRate, 0.2);
     assert.equal(summary.continueRate, 0.2);
+    assert.equal(summary.continueReasonCount, 1);
     assert.equal(summary.averageCoherenceScore, 22);
     assert.equal(summary.recommendation, 'interventionsHelpful');
   });
 
-  it('flags repeated continue or isolate feedback as a sensitivity diagnostic', () => {
+  it('flags repeated continue, isolate, or coherent-mark feedback as a sensitivity diagnostic', () => {
     let state = createIntentTrajectoryState(1000);
-    ['isolate', 'continue', 'continue', 'isolate', 'continue'].forEach((action, index) => {
+    ['markCoherent', 'continue', 'markCoherent', 'isolate', 'continue'].forEach((action, index) => {
       state = recordIntentFeedback(state, { action }, { now: () => 1000 + index });
     });
 
-    assert.equal(summarizeIntentFeedback(state.feedback).recommendation, 'tooSensitive');
+    const summary = summarizeIntentFeedback(state.feedback);
+
+    assert.equal(summary.markCoherentRate, 0.4);
+    assert.equal(summary.recommendation, 'tooSensitive');
   });
 
   it('derives conservative local calibration from intervention feedback', () => {
@@ -279,7 +370,7 @@ describe('intent coherence interventions', () => {
     assert.equal(helpfulCalibration.effectiveInterventionThreshold, 46);
 
     let sensitiveState = createIntentTrajectoryState(1000);
-    ['continue', 'continue', 'isolate', 'continue', 'acknowledge'].forEach((action, index) => {
+    ['continue', 'markCoherent', 'isolate', 'continue', 'acknowledge'].forEach((action, index) => {
       sensitiveState = recordIntentFeedback(sensitiveState, { action }, { now: () => 2000 + index });
     });
 

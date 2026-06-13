@@ -2,6 +2,8 @@
 .page-signals-badge,
 .block-diagnostics-badge,
 .pomodoro-phase-badge,
+.focus-state-badge,
+.usage-summary-badge,
 .intent-risk-badge {
     max-width: 112px;
     overflow: hidden;
@@ -24,6 +26,8 @@
 
 .status-badge[data-state="ready"],
 .block-diagnostics-badge[data-state="ready"],
+.focus-state-badge[data-state="calm"],
+.usage-summary-badge[data-state="ready"],
 .pomodoro-phase-badge[data-state="shortBreak"],
 .pomodoro-phase-badge[data-state="longBreak"],
 .pomodoro-phase-badge[data-state="completed"],
@@ -32,7 +36,13 @@
     color: var(--success);
 }
 
+.usage-summary-badge[data-state="idle"],
 .status-badge[data-state="idle"] {
+    border-color: var(--border);
+    color: var(--muted);
+}
+
+.intent-risk-badge[data-state="none"] {
     border-color: var(--border);
     color: var(--muted);
 }
@@ -45,10 +55,16 @@
 }
 
 .pomodoro-phase-badge[data-state="paused"],
+.focus-state-badge[data-state="strained"],
 .intent-risk-badge[data-state="watch"],
 .intent-risk-badge[data-state="drift"] {
     border-color: var(--warning);
     color: var(--warning);
+}
+
+.focus-state-badge[data-state="vulnerable"] {
+    border-color: var(--danger);
+    color: var(--danger);
 }
 
 .intent-risk-badge {
@@ -69,6 +85,10 @@
     border-radius: 6px;
     background: var(--field);
     padding: 8px 9px;
+}
+
+.protection-status-grid .full-width-protection {
+    grid-column: 1 / -1;
 }
 
 .protection-status-grid dt,

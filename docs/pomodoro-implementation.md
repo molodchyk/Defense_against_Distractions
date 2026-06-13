@@ -302,6 +302,7 @@ System idle/locked behavior:
 - If the user stays away past the anchored work end, DaD keeps crediting rest but does not start a new work block while the user is still away.
 - When the user returns, the next short or long break is reduced by the accumulated rest credit.
 - If rest credit is equal to or longer than the required break, the cycle is ready to reset. The next work session starts when the user returns with activity, and its `phaseStartedAt` is the return time. DaD must not keep accumulating a "rest still needed" value past the configured rest requirement, and it must not start counting a new work block while the user is still away.
+- While the runtime is still in the work phase but away/locked rest credit has already satisfied the required break, shared status exposes `restSatisfiedByCredit`. Popup, Options, and mini-panel surfaces should label the cycle as Rest satisfied rather than presenting it as ordinary remaining work time.
 - Manual pause still behaves like a real pause: it preserves remaining time and does not count as automatic rest credit.
 - Short and long breaks are not auto-paused by system idle/locked state; time away from the computer continues to count as rest.
 

@@ -14,7 +14,10 @@ export {
   POMODORO_SYSTEM_STATES
 } from './pomodoro/constants.js';
 export { isPomodoroSystemPauseReason } from './pomodoro/utils.js';
-export { normalizePomodoroSettings } from './pomodoro/settings.js';
+export {
+  isPomodoroSettingsAtLeastAsStrict,
+  normalizePomodoroSettings
+} from './pomodoro/settings.js';
 export {
   normalizePomodoroActivityState,
   recordPomodoroActivity,

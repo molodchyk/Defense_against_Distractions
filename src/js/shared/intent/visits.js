@@ -3,11 +3,10 @@
 
 
 import { normalizeIntentSettings } from './settings.js';
+import { calculateIntentCoherence, getIntentRiskState } from './score/coherenceScore.js';
 import {
-  calculateIntentCoherence,
   calculateSessionMetrics,
-  calculateVisitSimilarity,
-  getIntentRiskState
+  calculateVisitSimilarity
 } from './scoring.js';
 import {
   normalizeComparableUrl,
@@ -17,6 +16,24 @@ import {
   normalizeTransitionQualifiers,
   normalizeTransitionType
 } from './utils.js';
+
+function normalizePressureCount(value) {
+  const count = Number(value);
+  return Number.isFinite(count) ? Math.max(0, Math.round(count)) : 0;
+}
+
+function normalizeTabActivity(activity = {}) {
+  return {
+    windowMs: normalizePressureCount(activity.windowMs),
+    switchCount: normalizePressureCount(activity.switchCount),
+    loopCount: normalizePressureCount(activity.loopCount),
+    uniqueTabCount: normalizePressureCount(activity.uniqueTabCount),
+    switchRatePerMinute: Number.isFinite(Number(activity.switchRatePerMinute))
+      ? Math.max(0, Number(Number(activity.switchRatePerMinute).toFixed(3)))
+      : 0,
+    lastActivatedAt: normalizeString(activity.lastActivatedAt) || null
+  };
+}
 
 export function createSession(signal, visit, now) {
   return {
@@ -30,6 +47,7 @@ export function createSession(signal, visit, now) {
       title: signal.title,
       tokens: signal.tokens,
       metadataTokens: signal.metadataTokens,
+      weightedMetadataTokens: signal.weightedMetadataTokens,
       textTokens: signal.textTokens
     },
     visits: [visit],
@@ -74,6 +92,11 @@ export function createVisit(signal, options, now) {
       planNames: normalizeStringArray(options.planNames),
       source: normalizeString(options.policySource) || null
     },
+    tabPressure: {
+      tabCount: normalizePressureCount(options.tabCount),
+      windowCount: normalizePressureCount(options.windowCount)
+    },
+    tabActivity: normalizeTabActivity(options.tabActivity),
     url: signal.url,
     hostname: signal.hostname,
     title: signal.title,
@@ -82,6 +105,7 @@ export function createVisit(signal, options, now) {
     activeMs: signal.activity.activePageMs,
     tokens: signal.tokens,
     metadataTokens: signal.metadataTokens,
+    weightedMetadataTokens: signal.weightedMetadataTokens,
     textTokens: signal.textTokens,
     signals: {
       text: signal.text,
@@ -119,6 +143,7 @@ export function updateSession(session, visit, options) {
   const originVisit = {
     tokens: session.origin?.tokens || visits[0]?.tokens || [],
     metadataTokens: session.origin?.metadataTokens || visits[0]?.metadataTokens || session.origin?.tokens || [],
+    weightedMetadataTokens: session.origin?.weightedMetadataTokens || visits[0]?.weightedMetadataTokens || [],
     textTokens: session.origin?.textTokens || visits[0]?.textTokens || []
   };
   const metrics = calculateSessionMetrics(visits, originVisit);

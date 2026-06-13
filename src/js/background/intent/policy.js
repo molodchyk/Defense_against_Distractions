@@ -14,6 +14,11 @@ import {
   normalizePomodoroRuntime
 } from '../../shared/pomodoro.js';
 import {
+  FOCUS_STATE_STORAGE_KEY,
+  applyFocusStateToIntentPolicy,
+  normalizeFocusStateSignal
+} from '../../shared/self-state/focusState.js';
+import {
   getLocal,
   getSync
 } from './chromeApi.js';
@@ -21,12 +26,17 @@ import {
 export async function getIntentPolicyForSignal(signal = {}) {
   const [syncItems, localItems] = await Promise.all([
     getSync(PLANS_STORAGE_KEY),
-    getLocal(POMODORO_RUNTIME_STORAGE_KEY)
+    getLocal([POMODORO_RUNTIME_STORAGE_KEY, FOCUS_STATE_STORAGE_KEY])
   ]);
 
-  return getEffectiveIntentPolicyForUrl(syncItems, signal.url, {
+  const intentPolicy = getEffectiveIntentPolicyForUrl(syncItems, signal.url, {
     pomodoroRuntime: normalizePomodoroRuntime(localItems[POMODORO_RUNTIME_STORAGE_KEY])
   });
+
+  return {
+    ...intentPolicy,
+    focusState: normalizeFocusStateSignal(localItems[FOCUS_STATE_STORAGE_KEY])
+  };
 }
 
 export function getFeedbackSummaryForState(state = {}) {
@@ -38,11 +48,11 @@ export function applyFeedbackCalibrationToPolicy(intentPolicy = {}, state = {}) 
   const baselineSettings = intentPolicy.settings || {};
   const settings = applyIntentFeedbackCalibration(baselineSettings, feedbackSummary);
 
-  return {
+  return applyFocusStateToIntentPolicy({
     ...intentPolicy,
     baselineSettings,
     settings,
     feedbackSummary,
     calibration: settings.calibration
-  };
+  }, intentPolicy.focusState);
 }

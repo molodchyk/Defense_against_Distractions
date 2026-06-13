@@ -22,10 +22,20 @@ import {
 } from './storage.js';
 
 export async function recordPageSignals(message, sender, options = {}) {
+  const tabId = sender.tab?.id ?? message.tabId;
   const baseIntentPolicy = await getIntentPolicyForSignal(message.signals || {});
+  let tabPressure = {};
+  try {
+    tabPressure = await getTabPressure();
+  } catch (error) {
+    console.error('Failed to read tab pressure for intent signals:', error);
+  }
+
   const state = await updateIntentState(currentState => recordIntentPageVisit(currentState, message.signals, {
-    tabId: sender.tab?.id,
+    tabId,
     frameId: sender.frameId,
+    tabCount: tabPressure.tabCount,
+    windowCount: tabPressure.windowCount,
     intentSettings: applyFeedbackCalibrationToPolicy(baseIntentPolicy, currentState).settings,
     planIds: baseIntentPolicy.planIds,
     planNames: baseIntentPolicy.planNames,
@@ -35,7 +45,6 @@ export async function recordPageSignals(message, sender, options = {}) {
   const intentPolicy = applyFeedbackCalibrationToPolicy(baseIntentPolicy, state);
   let usageSummary = null;
   try {
-    const tabPressure = await getTabPressure();
     const usageState = await updateUsageStats(currentState => recordUsagePageSignal(currentState, message.signals, {
       tabId: sender.tab?.id,
       frameId: sender.frameId,
@@ -55,7 +64,8 @@ export async function recordPageSignals(message, sender, options = {}) {
 }
 
 export function recordFeedback(message = {}, sender = {}) {
+  const tabId = sender.tab?.id ?? message.tabId;
   return updateIntentState(state => recordIntentFeedback(state, message.feedback || {}, {
-    tabId: sender.tab?.id
+    tabId
   }));
 }

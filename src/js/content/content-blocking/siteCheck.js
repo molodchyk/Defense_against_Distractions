@@ -9,9 +9,13 @@
     observeMutations,
     scanTextNodes
   } = contentBlocking.keywords;
+  const {
+    scanStructuralTriggers
+  } = contentBlocking.structuralTriggers;
   const BREAK_PHASES = new Set(['shortBreak', 'longBreak']);
   const POMODORO_RUNTIME_STORAGE_KEY = 'pomodoroRuntimeState';
   const POMODORO_INACTIVE_REASON = 'pomodoroInactive';
+  const STRUCTURAL_TIME_TRIGGER_INTERVAL_MS = 1000;
   let pomodoroRuntimeStorageListenerInstalled = false;
 
   function requestPomodoroState(callback) {
@@ -244,13 +248,46 @@
         if (!rootElement) {
           return;
         }
+        scanStructuralTriggers(global.parsedKeywords, calculateScore, document);
+        syncStructuralTimeTriggerMonitor(global.parsedKeywords);
         scanTextNodes(rootElement, calculateScore);
         observeMutations(allKeywords || []);
+      } else {
+        syncStructuralTimeTriggerMonitor([]);
       }
     }));
   }
 
+  function syncStructuralTimeTriggerMonitor(parsedKeywords = []) {
+    const hasTimeTrigger = contentBlocking.structuralTriggers?.hasTimeStructuralTrigger?.(parsedKeywords);
+    if (!hasTimeTrigger || global.pageBlocked) {
+      clearStructuralTimeTriggerMonitor();
+      return;
+    }
+
+    if (global.structuralTimeTriggerInterval) {
+      return;
+    }
+
+    global.structuralTimeTriggerInterval = global.setInterval(() => {
+      if (global.pageBlocked) {
+        clearStructuralTimeTriggerMonitor();
+        return;
+      }
+
+      scanStructuralTriggers(global.parsedKeywords, calculateScore, document);
+    }, STRUCTURAL_TIME_TRIGGER_INTERVAL_MS);
+  }
+
+  function clearStructuralTimeTriggerMonitor() {
+    if (global.structuralTimeTriggerInterval) {
+      global.clearInterval(global.structuralTimeTriggerInterval);
+      global.structuralTimeTriggerInterval = null;
+    }
+  }
+
   contentBlocking.siteCheck = {
+    clearStructuralTimeTriggerMonitor,
     clearPomodoroStrictBreakBlock,
     performSiteCheck,
     syncPomodoroBreakState

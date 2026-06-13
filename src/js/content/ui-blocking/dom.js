@@ -6,10 +6,6 @@
   const elementBlocking = global.DAD.ElementBlocking = global.DAD.ElementBlocking || {};
   const {
     BLOCKED_ATTRIBUTE,
-    ORIGINAL_DISPLAY_ATTRIBUTE,
-    ORIGINAL_DISPLAY_PRIORITY_ATTRIBUTE,
-    ORIGINAL_DISABLED_ATTRIBUTE,
-    ORIGINAL_ARIA_HIDDEN_ATTRIBUTE,
     PREVIEW_ATTRIBUTE,
     PREVIEW_DISPLAY_ATTRIBUTE,
     PREVIEW_DISPLAY_PRIORITY_ATTRIBUTE,
@@ -24,64 +20,13 @@
     PREVIEW_OUTLINE_CONTAINER_ID,
     DEFAULT_PREVIEW_MODE
   } = elementBlocking.constants;
-  const { normalizeToken } = elementBlocking.fingerprint;
   const { matchesElementRule } = elementBlocking.matcher;
+  const {
+    applyElementRules,
+    resetElementBlocks
+  } = elementBlocking.actions;
 
   let elementRuleObserver = null;
-
-  function hideElement(element) {
-    if (!element.hasAttribute(BLOCKED_ATTRIBUTE)) {
-      element.setAttribute(ORIGINAL_DISPLAY_ATTRIBUTE, element.style.getPropertyValue('display'));
-      element.setAttribute(ORIGINAL_DISPLAY_PRIORITY_ATTRIBUTE, element.style.getPropertyPriority('display'));
-      element.setAttribute(ORIGINAL_ARIA_HIDDEN_ATTRIBUTE, element.getAttribute('aria-hidden') || '');
-
-      if ('disabled' in element) {
-        element.setAttribute(ORIGINAL_DISABLED_ATTRIBUTE, element.disabled ? 'true' : 'false');
-      }
-    }
-
-    element.setAttribute(BLOCKED_ATTRIBUTE, 'true');
-    element.setAttribute('aria-hidden', 'true');
-    element.style.setProperty('display', 'none', 'important');
-
-    if ('disabled' in element) {
-      element.disabled = true;
-    }
-  }
-
-  function restoreElement(element) {
-    const originalDisplay = element.getAttribute(ORIGINAL_DISPLAY_ATTRIBUTE) || '';
-    const originalDisplayPriority = element.getAttribute(ORIGINAL_DISPLAY_PRIORITY_ATTRIBUTE) || '';
-    const originalAriaHidden = element.getAttribute(ORIGINAL_ARIA_HIDDEN_ATTRIBUTE) || '';
-    const originalDisabled = element.getAttribute(ORIGINAL_DISABLED_ATTRIBUTE);
-
-    element.removeAttribute(BLOCKED_ATTRIBUTE);
-
-    if (originalDisplay) {
-      element.style.setProperty('display', originalDisplay, originalDisplayPriority);
-    } else {
-      element.style.removeProperty('display');
-    }
-
-    if (originalAriaHidden) {
-      element.setAttribute('aria-hidden', originalAriaHidden);
-    } else {
-      element.removeAttribute('aria-hidden');
-    }
-
-    if ('disabled' in element && originalDisabled !== null) {
-      element.disabled = originalDisabled === 'true';
-    }
-
-    element.removeAttribute(ORIGINAL_DISPLAY_ATTRIBUTE);
-    element.removeAttribute(ORIGINAL_DISPLAY_PRIORITY_ATTRIBUTE);
-    element.removeAttribute(ORIGINAL_DISABLED_ATTRIBUTE);
-    element.removeAttribute(ORIGINAL_ARIA_HIDDEN_ATTRIBUTE);
-  }
-
-  function resetElementBlocks() {
-    document.querySelectorAll(`[${BLOCKED_ATTRIBUTE}="true"]`).forEach(restoreElement);
-  }
 
   function rememberPreviewStyle(element) {
     if (element.hasAttribute(PREVIEW_ATTRIBUTE)) return;
@@ -273,32 +218,6 @@
     });
 
     return hiddenCount;
-  }
-
-  function ruleAppliesToCurrentUrl(rule) {
-    const normalizedUrl = global.DAD.normalizeUrl(location.href);
-    const rulePattern = normalizeToken(rule.urlPattern);
-
-    return rulePattern && normalizedUrl.includes(rulePattern);
-  }
-
-  function applyElementRules(rules) {
-    const activeRules = (rules || []).filter(rule => {
-      return rule.enabled !== false && ruleAppliesToCurrentUrl(rule);
-    });
-
-    if (activeRules.length === 0 || !document.body) {
-      return;
-    }
-
-    const candidates = document.body.querySelectorAll('*');
-    activeRules.forEach(rule => {
-      candidates.forEach(element => {
-        if (matchesElementRule(element, rule)) {
-          hideElement(element);
-        }
-      });
-    });
   }
 
   function observeElementRules(rules) {

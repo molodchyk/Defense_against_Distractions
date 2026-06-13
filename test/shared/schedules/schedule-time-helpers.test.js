@@ -82,13 +82,26 @@ describe('schedule time helpers', () => {
     });
   });
 
-  it('formats schedule counts without confusing saved blocks with active-now blocks', () => {
+  it('formats schedule counts as saved time blocks by default', () => {
     assert.equal(formatScheduleActivitySummary({
       saved: 3,
       enabled: 2,
       disabled: 1,
       incomplete: 1,
       activeNow: 1
+    }), '1 active now · 3 saved time blocks · 1 incomplete ignored');
+  });
+
+  it('can opt into legacy enabled and disabled schedule wording', () => {
+    assert.equal(formatScheduleActivitySummary({
+      saved: 3,
+      enabled: 2,
+      disabled: 1,
+      incomplete: 1,
+      activeNow: 1
+    }, {
+      includeEnabled: true,
+      includeDisabled: true
     }), '1 active now · 2 enabled time blocks · 3 saved time blocks · 1 disabled · 1 incomplete ignored');
   });
 
@@ -100,7 +113,7 @@ describe('schedule time helpers', () => {
       activeNow: 1
     }, {
       includeSaved: false
-    }), '1 active now · 1 enabled time block · 14 disabled');
+    }), '1 active now');
   });
 
   it('can summarize plan schedule time blocks without enabled or disabled wording', () => {
@@ -131,7 +144,7 @@ describe('schedule time helpers', () => {
       }
     });
 
-    assert.equal(summary, '1 jetzt aktiv · 2 enabled time blocks · 2 saved time blocks');
+    assert.equal(summary, '1 jetzt aktiv · 2 saved time blocks');
   });
 
   it('does not use stale sentence-level schedule wording', () => {
@@ -148,6 +161,6 @@ describe('schedule time helpers', () => {
       }
     });
 
-    assert.equal(summary, '1 active now · 1 enabled time block · 15 saved time blocks');
+    assert.equal(summary, '1 active now · 15 saved time blocks');
   });
 });

@@ -43,6 +43,10 @@
     panelStyle.ensureStyle?.();
   }
 
+  function applyPanelLanguage(panel) {
+    global.DAD.UiLanguage?.applyDirection?.(panel);
+  }
+
   function createPanel() {
     ensureStyle();
     panelTheme.install?.();
@@ -51,6 +55,7 @@
     panel.id = PANEL_ID;
     panel.dataset.minimized = panelLayout.isMinimized?.() ? 'true' : 'false';
     panel.setAttribute('role', 'status');
+    applyPanelLanguage(panel);
 
     const header = document.createElement('div');
     header.className = 'dad-mini-header';
@@ -172,6 +177,7 @@
 
     panelLayout.apply?.(panel);
     panelTheme.apply?.(panel);
+    applyPanelLanguage(panel);
     refreshPanel();
     global.addEventListener('resize', handleViewportResize);
 
@@ -197,4 +203,8 @@
     close: closePanel,
     show: showPanel
   };
+
+  global.DAD.UiLanguage?.onChange?.(() => {
+    applyPanelLanguage(document.getElementById(PANEL_ID));
+  });
 })(window);

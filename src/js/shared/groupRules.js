@@ -1,7 +1,12 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
-import { parseKeywordForEditing, splitKeywordEntry } from './keywords.js';
+import {
+  isNormalizedKeywordScoreValue,
+  parseKeywordForEditing,
+  parseKeywordScoreValue,
+  splitKeywordEntry
+} from './keywords.js';
 
 export function getStoredGroups(storageItems) {
   return Object.entries(storageItems)
@@ -86,13 +91,18 @@ export function validateKeywordEntry(entry, isLockedSchedule) {
   }
 
   const sign = components.length === 3 ? components[1] : '+';
-  const numericValue = Number.parseFloat(components[components.length - 1]);
+  const valueComponent = components[components.length - 1];
+  const numericValue = parseKeywordScoreValue(valueComponent);
 
   if (sign !== '+' && sign !== '*') {
     return false;
   }
 
-  if (Number.isNaN(numericValue)) {
+  if (numericValue === null) {
+    return false;
+  }
+
+  if (sign === '*' && isNormalizedKeywordScoreValue(valueComponent)) {
     return false;
   }
 

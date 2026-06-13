@@ -44,11 +44,21 @@
         color-scheme: light;
       }
 
+      #${BLOCK_OVERLAY_ID},
+      #${BLOCK_OVERLAY_ID} * {
+        user-select: text !important;
+        -webkit-user-select: text !important;
+      }
+
       #${BLOCK_OVERLAY_ID} [data-dad-pomodoro] {
         margin-top: 18px;
         padding-top: 14px;
         border-top: 1px solid var(--dad-block-border);
         text-align: left;
+      }
+
+      #${BLOCK_OVERLAY_ID}[dir="rtl"] [data-dad-pomodoro] {
+        text-align: right;
       }
 
       #${BLOCK_OVERLAY_ID} [data-dad-pomodoro][hidden] {
@@ -66,6 +76,11 @@
         margin-right: 8px;
         color: var(--dad-block-accent);
         font: 700 22px/1 Arial,sans-serif;
+      }
+
+      #${BLOCK_OVERLAY_ID}[dir="rtl"] [data-dad-pomodoro-time] {
+        margin-right: 0;
+        margin-left: 8px;
       }
 
       #${BLOCK_OVERLAY_ID} [data-dad-pomodoro-message] {

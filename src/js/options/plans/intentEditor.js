@@ -25,28 +25,31 @@ export function createPlanIntentEditor(plan, isLocked, { onSaveSettings }) {
   hint.className = 'muted-text';
   hint.textContent = getPlanMessage('intentSettingsHint');
 
-  const enabledInput = createCheckboxInput(settings.enabled, isLocked);
+  const enabledInput = createCheckboxInput(settings.enabled, false);
   const autoCalibrationInput = createCheckboxInput(settings.autoCalibration, isLocked);
+  const autoCloseInput = createCheckboxInput(settings.autoCloseQuarantinedTab, false);
   const actionSelect = createSelectInput([
     [INTENT_INTERVENTION_ACTIONS.WARN, getPlanMessage('intentActionWarnLabel')],
     [INTENT_INTERVENTION_ACTIONS.GRAYSCALE, getPlanMessage('intentActionGrayscaleLabel')],
+    [INTENT_INTERVENTION_ACTIONS.REDUCE_NOISE, getPlanMessage('intentActionReduceNoiseLabel')],
     [INTENT_INTERVENTION_ACTIONS.PROMPT, getPlanMessage('intentActionPromptLabel')],
     [INTENT_INTERVENTION_ACTIONS.BLOCK, getPlanMessage('intentActionBlockLabel')]
-  ], settings.action, isLocked);
-  const interventionInput = createNumberInput(settings.interventionThreshold, 1, 99, isLocked);
-  const lockedInput = createNumberInput(settings.lockedThreshold, 0, 98, isLocked);
+  ], settings.action, false);
+  const interventionInput = createNumberInput(settings.interventionThreshold, 1, 99, false);
+  const lockedInput = createNumberInput(settings.lockedThreshold, 0, 98, false);
   const pomodoroInfluenceSelect = createSelectInput([
     [INTENT_POMODORO_INFLUENCE_MODES.IGNORE, getPlanMessage('intentPomodoroIgnoreLabel')],
     [INTENT_POMODORO_INFLUENCE_MODES.WORK_STRICTER, getPlanMessage('intentPomodoroWorkStricterLabel')],
     [INTENT_POMODORO_INFLUENCE_MODES.BREAK_LENIENT, getPlanMessage('intentPomodoroBreakLenientLabel')],
     [INTENT_POMODORO_INFLUENCE_MODES.BOTH, getPlanMessage('intentPomodoroBothLabel')]
-  ], settings.pomodoroInfluence, isLocked);
-  const diagnosticsRetentionInput = createNumberInput(settings.diagnosticsRetentionDays, 1, 30, isLocked);
+  ], settings.pomodoroInfluence, false);
+  const diagnosticsRetentionInput = createNumberInput(settings.diagnosticsRetentionDays, 1, 30, false);
 
   const toggles = document.createElement('div');
   toggles.className = 'plan-checkbox-grid';
   toggles.appendChild(createLabeledCheckbox(getPlanMessage('intentEnabledLabel'), enabledInput));
   toggles.appendChild(createLabeledCheckbox(getPlanMessage('intentAutoCalibrationLabel'), autoCalibrationInput));
+  toggles.appendChild(createLabeledCheckbox(getPlanMessage('intentAutoCloseQuarantinedTabLabel'), autoCloseInput));
 
   const grid = document.createElement('div');
   grid.className = 'plan-pomodoro-grid';
@@ -67,10 +70,11 @@ export function createPlanIntentEditor(plan, isLocked, { onSaveSettings }) {
       lockedThreshold: lockedInput.value,
       pomodoroInfluence: pomodoroInfluenceSelect.value,
       diagnosticsRetentionDays: diagnosticsRetentionInput.value,
-      autoCalibration: autoCalibrationInput.checked
+      autoCalibration: isLocked ? settings.autoCalibration : autoCalibrationInput.checked,
+      autoCloseQuarantinedTab: autoCloseInput.checked
     }));
   }, 'save-button');
-  saveButton.disabled = isLocked;
+  saveButton.disabled = false;
 
   actions.appendChild(saveButton);
   section.appendChild(hint);

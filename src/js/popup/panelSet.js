@@ -9,13 +9,19 @@ import {
 } from './blockDiagnosticsPanel.js';
 import {
   createIntentDiagnosticsPanel
-} from './intentDiagnosticsPanel.js';
+} from './intent/intentDiagnosticsPanel.js';
+import {
+  createFocusStatePanel
+} from './focusStatePanel.js';
 import {
   createPomodoroPanel
 } from './pomodoroPanel.js';
 import {
   createProtectionSummaryPanel
 } from './protectionSummaryPanel.js';
+import {
+  createUsageStatsPanel
+} from './usage/usageStatsPanel.js';
 
 export function createPopupPanelSet({
   getMessage,
@@ -24,6 +30,7 @@ export function createPopupPanelSet({
   isExtensionPage,
   sendRuntimeMessage,
   sendTabMessage,
+  updateTabUrl,
   setStatus
 }) {
   let protectionSummaryPanel = null;
@@ -40,7 +47,9 @@ export function createPopupPanelSet({
     getMessage,
     getActiveTab,
     isExtensionPage,
+    sendRuntimeMessage,
     sendTabMessage,
+    setStatus,
     onActiveTabChange(activeTab) {
       setProtectionActiveTab(activeTab);
       renderProtectionSummary();
@@ -66,12 +75,26 @@ export function createPopupPanelSet({
     isExtensionPage,
     sendRuntimeMessage,
     sendTabMessage,
+    updateTabUrl,
     pageSignalsPanel,
     setStatus,
     onActiveTabChange(activeTab) {
       setProtectionActiveTab(activeTab);
     },
     onStateChange() {
+      renderProtectionSummary();
+    }
+  });
+
+  const focusStatePanel = createFocusStatePanel({
+    getMessage,
+    sendRuntimeMessage,
+    setStatus,
+    onStateChange() {
+      renderProtectionSummary();
+    },
+    async onAfterChange() {
+      await intentDiagnosticsPanel.refresh();
       renderProtectionSummary();
     }
   });
@@ -91,12 +114,20 @@ export function createPopupPanelSet({
     }
   });
 
+  const usageStatsPanel = createUsageStatsPanel({
+    getMessage,
+    sendRuntimeMessage
+  });
+
   protectionSummaryPanel = createProtectionSummaryPanel({
     getMessage,
     getSyncStorage,
     isExtensionPage,
     getBlockDebugState() {
       return blockDiagnosticsPanel.getDebugState();
+    },
+    getFocusStateSummary() {
+      return focusStatePanel.getSummary();
     },
     getPomodoroSummary() {
       return pomodoroPanel.getSummary();
@@ -108,9 +139,11 @@ export function createPopupPanelSet({
 
   return {
     blockDiagnosticsPanel,
+    focusStatePanel,
     intentDiagnosticsPanel,
     pageSignalsPanel,
     pomodoroPanel,
+    usageStatsPanel,
     protectionSummaryPanel,
     renderProtectionSummary,
     setProtectionActiveTab

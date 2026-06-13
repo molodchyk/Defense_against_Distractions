@@ -10,6 +10,7 @@
     ELEMENT_RULE_VERSION,
     DEFAULT_MIN_SCORE,
     DEFAULT_ANCESTOR_DEPTH,
+    DEFAULT_RULE_ACTION,
     DEFAULT_PREVIEW_MODE,
     DEFAULT_PICKER_ACTION_MODE,
     DEFAULT_TARGET_LEVEL,
@@ -43,6 +44,10 @@
     getPickerMessage,
     isPickerPanelEvent
   } = elementBlocking.pickerPanel;
+  const {
+    applyBuiltInElementRules,
+    observeBuiltInElementRules
+  } = elementBlocking.builtInRules || {};
 
   let highlightedElement = null;
   let pickerCleanup = null;
@@ -74,6 +79,7 @@
       minScore: normalizeNumber(options.minScore, DEFAULT_MIN_SCORE, 6, 24),
       ancestorDepth: normalizeNumber(options.ancestorDepth, DEFAULT_ANCESTOR_DEPTH, 0, 6),
       labelMatch: options.labelMatch || 'prefer',
+      action: options.action || DEFAULT_RULE_ACTION,
       name: options.name || createRuleName(element),
       urlPattern: options.urlPattern || getUrlPattern(),
       urlScope: options.urlScope || 'host',
@@ -83,6 +89,9 @@
   };
 
   global.DAD.applyElementBlockRules = function() {
+    applyBuiltInElementRules?.();
+    observeBuiltInElementRules?.();
+
     loadElementRules(rules => {
       global.DAD.safeSyncStorageGet('plans', items => {
         if (!items) {
@@ -144,6 +153,7 @@
       minScore: normalizeNumber(minScore, DEFAULT_MIN_SCORE, 6, 24),
       ancestorDepth: normalizeNumber(ancestorDepth, DEFAULT_ANCESTOR_DEPTH, 0, 6),
       labelMatch,
+      action: DEFAULT_RULE_ACTION,
       previewMode: DEFAULT_PREVIEW_MODE,
       actionMode: DEFAULT_PICKER_ACTION_MODE,
       targetLevel: DEFAULT_TARGET_LEVEL
@@ -162,23 +172,27 @@
       }
     };
 
-    const buildPreviewRule = () => {
-      if (!selectedElement) return null;
-
-      return global.DAD.createElementBlockRule(getRuleTargetElement(selectedElement, pickerControls.targetLevel), pickerControls);
-    };
+    const buildPreviewRule = () => selectedElement
+      ? global.DAD.createElementBlockRule(getRuleTargetElement(selectedElement, pickerControls.targetLevel), pickerControls)
+      : null;
 
     const updatePreview = () => {
       if (!selectedElement || !pickerPanel) return;
 
       previewRule = buildPreviewRule();
-      const matchCount = previewElementRule(previewRule, pickerControls.previewMode);
-      const verb = pickerControls.previewMode === 'outline'
-        ? getPickerMessage('elementPickerPreviewOutliningVerb')
-        : getPickerMessage('elementPickerPreviewHidingVerb');
-      const noun = matchCount === 1
-        ? getPickerMessage('elementPickerElementSingular')
-        : getPickerMessage('elementPickerElementPlural');
+      const effectivePreviewMode = ['click', 'clear', 'pauseMedia'].includes(pickerControls.action) ? 'outline' : pickerControls.previewMode;
+      const matchCount = previewElementRule(previewRule, effectivePreviewMode);
+      const verbKey = pickerControls.action === 'click'
+        ? 'elementPickerPreviewClickingVerb'
+        : pickerControls.action === 'clear'
+          ? 'elementPickerPreviewClearingVerb'
+          : pickerControls.action === 'pauseMedia'
+            ? 'elementPickerPreviewPausingMediaVerb'
+            : effectivePreviewMode === 'outline'
+              ? 'elementPickerPreviewOutliningVerb'
+              : 'elementPickerPreviewHidingVerb';
+      const verb = getPickerMessage(verbKey);
+      const noun = getPickerMessage(matchCount === 1 ? 'elementPickerElementSingular' : 'elementPickerElementPlural');
       pickerPanel.setSelection(getRuleTargetElement(selectedElement, pickerControls.targetLevel));
       pickerPanel.setMessage(getPickerMessage('elementPickerPreviewMessage', [
         verb,

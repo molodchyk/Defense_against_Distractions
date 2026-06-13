@@ -66,17 +66,21 @@ button:disabled {
     cursor: not-allowed;
 }
 
-.header-options-button {
-    min-width: 44px;
+.header-action-button {
+    max-width: 84px;
+    min-width: 0;
     min-height: 32px;
     border-color: var(--border-strong);
     background: var(--surface);
     color: var(--text);
+    overflow: hidden;
     padding: 4px 8px;
     font-size: 12px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-.header-options-button:hover {
+.header-action-button:hover {
     background: var(--neutral);
     color: #ffffff;
 }
@@ -87,6 +91,51 @@ button:disabled {
 
 .secondary-button:hover {
     background: var(--neutral-hover);
+}
+
+.focus-state-actions {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 4px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--field);
+    padding: 4px;
+}
+
+.focus-state-button {
+    min-width: 0;
+    min-height: 32px;
+    border-color: transparent;
+    background: transparent;
+    color: var(--muted);
+    overflow: hidden;
+    padding: 5px 7px;
+    font-size: 12px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.focus-state-button:hover {
+    background: var(--surface-raised);
+    color: var(--text);
+}
+
+.focus-state-button[aria-pressed="true"] {
+    border-color: var(--primary-border);
+    background: var(--primary-soft);
+    color: var(--text);
+}
+
+.focus-state-detail {
+    min-width: 0;
+    margin: -2px 0 0;
+    overflow: hidden;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .danger-button {

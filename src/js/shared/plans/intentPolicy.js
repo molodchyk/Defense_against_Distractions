@@ -52,7 +52,8 @@ export function getEffectiveIntentPolicyForUrl(items = {}, url = '', options = {
     lockedThreshold: Math.max(current.lockedThreshold, plan.intent.lockedThreshold),
     pomodoroInfluence: getCombinedPomodoroInfluence(current.pomodoroInfluence, plan.intent.pomodoroInfluence),
     diagnosticsRetentionDays: Math.min(current.diagnosticsRetentionDays, plan.intent.diagnosticsRetentionDays),
-    autoCalibration: current.autoCalibration && plan.intent.autoCalibration !== false
+    autoCalibration: current.autoCalibration && plan.intent.autoCalibration !== false,
+    autoCloseQuarantinedTab: current.autoCloseQuarantinedTab || plan.intent.autoCloseQuarantinedTab === true
   }), {
     ...DEFAULT_INTENT_SETTINGS,
     enabled: true,
@@ -61,7 +62,8 @@ export function getEffectiveIntentPolicyForUrl(items = {}, url = '', options = {
     lockedThreshold: 0,
     pomodoroInfluence: INTENT_POMODORO_INFLUENCE_MODES.IGNORE,
     diagnosticsRetentionDays: DEFAULT_INTENT_SETTINGS.diagnosticsRetentionDays,
-    autoCalibration: DEFAULT_INTENT_SETTINGS.autoCalibration
+    autoCalibration: DEFAULT_INTENT_SETTINGS.autoCalibration,
+    autoCloseQuarantinedTab: DEFAULT_INTENT_SETTINGS.autoCloseQuarantinedTab
   }));
 
   return {
@@ -76,6 +78,7 @@ function getStricterIntentAction(firstAction, secondAction) {
   const order = [
     INTENT_INTERVENTION_ACTIONS.WARN,
     INTENT_INTERVENTION_ACTIONS.GRAYSCALE,
+    INTENT_INTERVENTION_ACTIONS.REDUCE_NOISE,
     INTENT_INTERVENTION_ACTIONS.PROMPT,
     INTENT_INTERVENTION_ACTIONS.BLOCK
   ];

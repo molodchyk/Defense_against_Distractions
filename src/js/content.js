@@ -6,6 +6,7 @@
 
   const { SITE_CHECK_MESSAGE } = global.DAD.ContentBlocking.constants;
   const { performSiteCheck } = global.DAD.ContentBlocking.siteCheck;
+  const MAX_DEBUG_SCORE_TRIGGERS = 5;
 
   function initializeContentScript() {
     if (document.readyState === 'loading') {
@@ -23,13 +24,22 @@
   function getBlockDiagnosticsDebugState() {
     const diagnostics = global.blockDiagnostics || null;
     const triggers = Array.isArray(diagnostics?.triggers) ? diagnostics.triggers : [];
+    const recentTriggers = triggers.slice(-MAX_DEBUG_SCORE_TRIGGERS).map(trigger => ({
+      keyword: trigger?.keyword || '',
+      operation: trigger?.operation || '+',
+      value: Number(trigger?.value || 0),
+      scoreAfter: Number(trigger?.scoreAfter || 0),
+      source: trigger?.source || 'keyword',
+      matchedAt: trigger?.matchedAt || null
+    }));
 
     return diagnostics ? {
       pomodoroStrictBreak: Boolean(diagnostics.pomodoroStrictBreak),
       blockedAt: diagnostics.blockedAt || null,
       finalScore: diagnostics.finalScore ?? null,
       triggerCount: triggers.length,
-      latestTrigger: triggers.at(-1) || null
+      latestTrigger: triggers.at(-1) || null,
+      recentTriggers
     } : null;
   }
 

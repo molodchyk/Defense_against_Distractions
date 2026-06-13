@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
-import { getResolvedUiLanguage, getUiMessage } from '../shared/ui/uiLanguage.js';
+import { applyUiLanguageAttributes, getUiMessage } from '../shared/ui/uiLanguage.js';
 
 const LOCALIZED_TEXT = {
   title: 'optionsTitle',
@@ -14,6 +14,7 @@ const LOCALIZED_TEXT = {
   plansHeading: 'plansHeading',
   intentDiagnosticsHeading: 'intentDiagnosticsHeading',
   intentDiagnosticsIntroText: 'intentDiagnosticsIntroText',
+  intentGraphHeading: 'intentGraphHeading',
   usageStatsHeading: 'usageStatsHeading',
   usageStatsIntroText: 'usageStatsIntroText',
   refreshUsageStatsButton: 'refreshButtonLabel',
@@ -22,11 +23,18 @@ const LOCALIZED_TEXT = {
   settingsHeading: 'settingsHeading',
   settingsIntroText: 'settingsIntroText',
   appearanceSettingsHeading: 'appearanceSettingsHeading',
+  blockedPageSettingsHeading: 'blockedPageSettingsHeading',
+  blockedPageSettingsIntro: 'blockedPageSettingsIntro',
+  blockedPageMessageLabel: 'blockedPageMessageLabel',
+  blockedPageMessageHint: 'blockedPageMessageHint',
+  saveBlockedPageMessageButton: 'saveButtonLabel',
+  clearBlockedPageMessageButton: 'clearButtonLabel',
   configurationSettingsHeading: 'configurationSettingsHeading',
   setPasswordButton: 'setPasswordButton',
   deletePasswordButton: 'deletePasswordButton',
   instructionGuideLink: 'instructionGuideLink',
   exportButton: 'exportButton',
+  exportRulesetButton: 'exportRulesetButton',
   importButton: 'importButton',
   addPlanButton: 'addPlanButton',
   themeModeLabel: 'themeModeLabel',
@@ -42,6 +50,7 @@ const LOCALIZED_PLACEHOLDERS = {
   planNameInput: 'planNamePlaceholder',
   passwordInputField: 'enterPasswordPlaceholder',
   confirmPasswordInputField: 'confirmPasswordPlaceholder',
+  blockedPageMessageInput: 'blockedPageMessagePlaceholder',
   passwordInput: 'enterPasswordPlaceholder'
 };
 
@@ -52,16 +61,26 @@ const FALLBACK_MESSAGES = {
   intentDiagnosticsNavLabel: 'Intent',
   intentDiagnosticsHeading: 'Intent diagnostics',
   intentDiagnosticsIntroText: 'Local trajectory state used by intent coherence. No raw typed input is stored.',
+  intentGraphHeading: 'Intent chain graph',
   usageStatsNavLabel: 'Usage',
   usageStatsHeading: 'Usage stats',
   usageStatsIntroText: 'Local hostname-level aggregates. No raw text, full URLs, titles, or tokens are stored.',
   refreshButtonLabel: 'Refresh',
   exportJsonButtonLabel: 'Export JSON',
   clearButtonLabel: 'Clear',
+  saveButtonLabel: 'Save',
   settingsHeading: 'Settings',
   settingsIntroText: 'Global extension controls that apply outside individual plans.',
   appearanceSettingsHeading: 'Appearance',
+  blockedPageSettingsHeading: 'Blocked page',
+  blockedPageSettingsIntro: 'Add a short note shown when DaD blocks a page.',
+  blockedPageMessageLabel: 'Custom note',
+  blockedPageMessageHint: 'Shown below the standard block reason. Stored locally in Chrome sync storage.',
+  blockedPageMessagePlaceholder: 'Return to the task you chose before opening this page.',
   configurationSettingsHeading: 'Configuration',
+  exportButton: 'Export',
+  exportRulesetButton: 'Export ruleset',
+  importButton: 'Import',
   themeModeLabel: 'UI Mode',
   themeModeSystemOption: 'System',
   themeModeDarkOption: 'Dark',
@@ -76,7 +95,7 @@ function getMessage(messageKey) {
 }
 
 export function localizeOptionsPage() {
-  document.documentElement.lang = getResolvedUiLanguage();
+  applyUiLanguageAttributes();
 
   Object.entries(LOCALIZED_TEXT).forEach(([id, messageKey]) => {
     const element = document.getElementById(id);

@@ -9,6 +9,7 @@ Run these from the project root:
 - `npm test`
 - `npm run verify:manifest`
 - `npm run audit:file-sizes`
+- `npm run audit:folder-density`
 - `npm run package`
 - `npm run verify:release`
 

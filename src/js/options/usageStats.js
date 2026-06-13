@@ -48,10 +48,39 @@ function formatDuration(value) {
   return `${seconds}s`;
 }
 
+function formatWordCount(value) {
+  return formatCount(value);
+}
+
+function formatPercent(value) {
+  const number = Number(value);
+  if (!Number.isFinite(number)) {
+    return '0%';
+  }
+
+  return `${Math.max(0, Math.min(100, Math.round(number)))}%`;
+}
+
+function getBlockedPercent(source = {}, percentKey, blockedKey, allowedKey) {
+  const explicitPercent = Number(source.outcomeShares?.[percentKey]);
+  if (Number.isFinite(explicitPercent)) {
+    return explicitPercent;
+  }
+
+  const blocked = Number(source[blockedKey] || 0);
+  const allowed = Number(source[allowedKey] || 0);
+  const total = blocked + allowed;
+  return total > 0 ? (blocked / total) * 100 : 0;
+}
+
+function formatBlockedShare(source = {}) {
+  return `${formatPercent(getBlockedPercent(source, 'blockedActivePercent', 'blockedActiveMs', 'allowedActiveMs'))} active / ${formatPercent(getBlockedPercent(source, 'blockedVisitPercent', 'blockedVisits', 'allowedVisits'))} visits`;
+}
+
 function createDomainItem(domain = {}) {
   const item = document.createElement('li');
   const title = document.createElement('strong');
-  const meta = document.createElement('span');
+  const meta = document.createElement('small');
   const media = domain.mediaMax || {};
   const interaction = domain.interactionMax || {};
 
@@ -59,9 +88,16 @@ function createDomainItem(domain = {}) {
   meta.textContent = [
     `${formatCount(domain.visits)} visits`,
     `${formatDuration(domain.activeMs)} active`,
+    `${formatPercent(getBlockedPercent(domain, 'blockedActivePercent', 'blockedActiveMs', 'allowedActiveMs'))} blocked active share`,
+    `${formatCount(domain.blockedVisits)} blocked visits`,
+    `${formatDuration(domain.blockedActiveMs)} blocked active`,
+    `${formatWordCount(domain.blockedWordCount)} blocked page words`,
+    `${formatCount(domain.allowedVisits)} allowed visits`,
+    `${formatWordCount(domain.allowedWordCount)} allowed page words`,
     `${formatCount(domain.tabMax)} tabs max`,
     `${formatCount(media.videoCount)} videos`,
     `${formatCount(media.audioCount)} audio`,
+    `${formatCount(media.audibleMediaCount)} audible`,
     `${formatCount(media.gifCount)} GIFs`,
     `${formatCount(interaction.linkCount)} links`
   ].join(' · ');
@@ -74,7 +110,14 @@ function setUsageEmptyState(message = 'No local usage stats yet') {
   getElement('usageStatsStatus').textContent = message;
   getElement('usageStatsTodayVisits').textContent = '0';
   getElement('usageStatsTodayActive').textContent = '0s';
+  getElement('usageStatsTodayBlockedActive').textContent = '0s';
+  getElement('usageStatsTodayAllowedActive').textContent = '0s';
+  getElement('usageStatsTodayBlockedShare').textContent = '0% active / 0% visits';
+  getElement('usageStatsTodayBlockedWords').textContent = '0';
+  getElement('usageStatsTodayAllowedWords').textContent = '0';
   getElement('usageStatsTodayDomains').textContent = '0';
+  getElement('usageStatsTodayBlockedVisits').textContent = '0';
+  getElement('usageStatsTodayAllowedVisits').textContent = '0';
   getElement('usageStatsTodayTabMax').textContent = '0';
   getElement('usageStatsTotalSamples').textContent = '0';
   getElement('usageStatsDomainList').replaceChildren();
@@ -94,7 +137,14 @@ function renderUsageStats(payload) {
   getElement('usageStatsStatus').textContent = `Local aggregates · ${summary.retentionDays || 14}d retention`;
   getElement('usageStatsTodayVisits').textContent = formatCount(today.visits);
   getElement('usageStatsTodayActive').textContent = formatDuration(today.activeMs);
+  getElement('usageStatsTodayBlockedActive').textContent = formatDuration(today.blockedActiveMs);
+  getElement('usageStatsTodayAllowedActive').textContent = formatDuration(today.allowedActiveMs);
+  getElement('usageStatsTodayBlockedShare').textContent = formatBlockedShare(today);
+  getElement('usageStatsTodayBlockedWords').textContent = formatWordCount(today.blockedWordCount);
+  getElement('usageStatsTodayAllowedWords').textContent = formatWordCount(today.allowedWordCount);
   getElement('usageStatsTodayDomains').textContent = formatCount(today.domainCount);
+  getElement('usageStatsTodayBlockedVisits').textContent = formatCount(today.blockedVisits);
+  getElement('usageStatsTodayAllowedVisits').textContent = formatCount(today.allowedVisits);
   getElement('usageStatsTodayTabMax').textContent = formatCount(today.tabMax);
   getElement('usageStatsTotalSamples').textContent = formatCount(total.samples);
   getElement('usageStatsDomainList').replaceChildren(

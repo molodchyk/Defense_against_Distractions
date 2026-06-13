@@ -11,6 +11,11 @@ import {
   summarizeUsageStats
 } from '../../shared/usageStats.js';
 import {
+  FOCUS_STATE_STORAGE_KEY,
+  createFocusStateSignal,
+  normalizeFocusStateSignal
+} from '../../shared/self-state/focusState.js';
+import {
   clearIntentDebugState,
   clearUsageStatsState,
   getIntentDebugState,
@@ -22,7 +27,16 @@ import {
   recordPageSignals
 } from './pageSignals.js';
 import {
-  closeIntentDriftDescendantTabs
+  getLocal,
+  setLocal,
+  getTabPressure,
+  openIntentDiagnosticsPage
+} from './chromeApi.js';
+import {
+  closeIntentDriftDescendantTabs,
+  moveIntentDriftDescendantTabsToWindow,
+  returnIntentDriftDescendantTabs,
+  suspendIntentDriftDescendantTabs
 } from './tabs.js';
 
 export function registerIntentRuntimeMessages() {
@@ -68,6 +82,61 @@ export function registerIntentRuntimeMessages() {
       return true;
     }
 
+    if (message.action === 'getTabPressure') {
+      getTabPressure()
+        .then(tabPressure => {
+          sendResponse({
+            status: 'ok',
+            tabPressure
+          });
+        })
+        .catch(error => {
+          console.error('Failed to read tab pressure:', error);
+          sendResponse({
+            status: 'error',
+            tabPressure: {}
+          });
+        });
+      return true;
+    }
+
+    if (message.action === 'getFocusStateSignal') {
+      getLocal(FOCUS_STATE_STORAGE_KEY)
+        .then(items => {
+          sendResponse({
+            status: 'ok',
+            focusStateSignal: normalizeFocusStateSignal(items?.[FOCUS_STATE_STORAGE_KEY])
+          });
+        })
+        .catch(error => {
+          console.error('Failed to read focus state:', error);
+          sendResponse({
+            status: 'error',
+            focusStateSignal: normalizeFocusStateSignal()
+          });
+        });
+      return true;
+    }
+
+    if (message.action === 'setFocusStateSignal') {
+      const focusStateSignal = createFocusStateSignal(message.level);
+      setLocal({ [FOCUS_STATE_STORAGE_KEY]: focusStateSignal })
+        .then(() => {
+          sendResponse({
+            status: 'saved',
+            focusStateSignal
+          });
+        })
+        .catch(error => {
+          console.error('Failed to save focus state:', error);
+          sendResponse({
+            status: 'error',
+            focusStateSignal: normalizeFocusStateSignal()
+          });
+        });
+      return true;
+    }
+
     if (message.action === 'clearUsageStats') {
       clearUsageStatsState()
         .then(result => sendResponse({ status: 'cleared', ...result }))
@@ -107,6 +176,16 @@ export function registerIntentRuntimeMessages() {
       return true;
     }
 
+    if (message.action === 'openIntentDiagnostics') {
+      openIntentDiagnosticsPage()
+        .then(sendResponse)
+        .catch(error => {
+          console.error('Failed to open intent diagnostics:', error);
+          sendResponse({ status: 'error' });
+        });
+      return true;
+    }
+
     if (message.action === 'isolateIntentCurrentPage') {
       Promise.resolve(message.feedback ? recordFeedback(message, sender) : null)
         .catch(error => {
@@ -132,7 +211,7 @@ export function registerIntentRuntimeMessages() {
     }
 
     if (message.action === 'closeIntentDriftDescendantTabs') {
-      closeIntentDriftDescendantTabs(sender.tab?.id, {
+      closeIntentDriftDescendantTabs(sender.tab?.id ?? message.tabId, {
         includeCurrent: message.includeCurrent === true
       })
         .then(sendResponse)
@@ -142,6 +221,61 @@ export function registerIntentRuntimeMessages() {
             status: 'error',
             closedCount: 0,
             tabIds: []
+          });
+        });
+      return true;
+    }
+
+    if (message.action === 'suspendIntentDriftDescendantTabs') {
+      suspendIntentDriftDescendantTabs(sender.tab?.id ?? message.tabId, {
+        includeCurrent: message.includeCurrent === true
+      })
+        .then(sendResponse)
+        .catch(error => {
+          console.error('Failed to suspend intent drift descendant tabs:', error);
+          sendResponse({
+            status: 'error',
+            suspendedCount: 0,
+            failedCount: 0,
+            tabIds: [],
+            failedTabIds: []
+          });
+        });
+      return true;
+    }
+
+    if (message.action === 'moveIntentDriftDescendantTabsToWindow') {
+      moveIntentDriftDescendantTabsToWindow(sender.tab?.id ?? message.tabId, {
+        includeCurrent: message.includeCurrent === true
+      })
+        .then(sendResponse)
+        .catch(error => {
+          console.error('Failed to move intent drift descendant tabs:', error);
+          sendResponse({
+            status: 'error',
+            movedCount: 0,
+            failedCount: 0,
+            tabIds: [],
+            failedTabIds: [],
+            windowId: null
+          });
+        });
+      return true;
+    }
+
+    if (message.action === 'returnIntentDriftDescendantTabs') {
+      returnIntentDriftDescendantTabs(sender.tab?.id ?? message.tabId, message.recoveryUrl, {
+        includeCurrent: message.includeCurrent === true
+      })
+        .then(sendResponse)
+        .catch(error => {
+          console.error('Failed to return intent drift descendant tabs:', error);
+          sendResponse({
+            status: 'error',
+            returnedCount: 0,
+            failedCount: 0,
+            tabIds: [],
+            failedTabIds: []
           });
         });
       return true;

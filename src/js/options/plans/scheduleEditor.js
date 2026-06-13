@@ -26,7 +26,7 @@ import {
 
 const selectedPlanScheduleIndexes = new Map();
 const planScheduleDrafts = new Map();
-const expandedPlanScheduleIds = new Set();
+const collapsedPlanScheduleIds = new Set();
 const NEW_PLAN_SCHEDULE_INDEX = -1;
 
 let renderPlansCallback = null;
@@ -35,7 +35,7 @@ export function createPlanScheduleEditor(plan, isLocked, { onRender } = {}) {
   renderPlansCallback = onRender;
 
   const section = createPlanSubsection('planSchedulesLabel');
-  const isExpanded = expandedPlanScheduleIds.has(plan.id);
+  const isExpanded = !collapsedPlanScheduleIds.has(plan.id);
   section.classList.add('plan-schedule-section');
   if (isExpanded) {
     section.classList.add('plan-schedule-section-expanded');
@@ -95,7 +95,7 @@ export function createPlanScheduleEditor(plan, isLocked, { onRender } = {}) {
 export function clearPlanScheduleState(planId) {
   selectedPlanScheduleIndexes.delete(planId);
   planScheduleDrafts.delete(planId);
-  expandedPlanScheduleIds.delete(planId);
+  collapsedPlanScheduleIds.delete(planId);
 }
 
 function requestRender(context) {
@@ -126,10 +126,10 @@ function attachPlanScheduleHeaderActions(section, planId, isExpanded) {
 }
 
 function togglePlanScheduleExpanded(planId) {
-  if (expandedPlanScheduleIds.has(planId)) {
-    expandedPlanScheduleIds.delete(planId);
+  if (collapsedPlanScheduleIds.has(planId)) {
+    collapsedPlanScheduleIds.delete(planId);
   } else {
-    expandedPlanScheduleIds.add(planId);
+    collapsedPlanScheduleIds.add(planId);
   }
 
   requestRender('toggle plan schedule expansion');

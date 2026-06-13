@@ -5,6 +5,7 @@ import { getSync, setSync } from '../storage/chromeStorage.js';
 
 export const UI_LANGUAGE_STORAGE_KEY = 'uiLanguage';
 export const DEFAULT_UI_LANGUAGE = 'system';
+const RTL_UI_LANGUAGE_BASE_CODES = new Set(['ar', 'fa', 'he', 'ur']);
 
 export const AVAILABLE_UI_LANGUAGES = Object.freeze([
   { code: DEFAULT_UI_LANGUAGE, label: 'System' },
@@ -112,6 +113,39 @@ export function getAvailableUiLanguages() {
 
 export function getResolvedUiLanguage() {
   return resolvedUiLanguage || getSystemUiLanguage();
+}
+
+export function getUiLanguageDirection(language = getResolvedUiLanguage()) {
+  const normalizedLanguage = normalizeUiLanguage(language);
+  const languageCode = normalizedLanguage === DEFAULT_UI_LANGUAGE
+    ? getSystemUiLanguage()
+    : normalizedLanguage;
+  const baseCode = languageCode.split('_')[0].toLowerCase();
+  return RTL_UI_LANGUAGE_BASE_CODES.has(baseCode) ? 'rtl' : 'ltr';
+}
+
+export function getResolvedUiDirection() {
+  return getUiLanguageDirection(getResolvedUiLanguage());
+}
+
+export function applyUiLanguageAttributes(element = globalThis.document?.documentElement) {
+  if (!element) {
+    return {
+      lang: getResolvedUiLanguage(),
+      dir: getResolvedUiDirection()
+    };
+  }
+
+  const language = getResolvedUiLanguage().replace('_', '-');
+  const direction = getResolvedUiDirection();
+  element.setAttribute('lang', language);
+  element.setAttribute('dir', direction);
+  element.dataset.uiDirection = direction;
+
+  return {
+    lang: language,
+    dir: direction
+  };
 }
 
 export async function initializeUiLanguage() {

@@ -312,7 +312,7 @@
         "message": "Group "
     },
     "lockedScheduleErrorMessage": {
-        "message": "Cannot add site to whitelist during an active schedule."
+        "message": "Cannot weaken protection during an active protected schedule."
     },
     "cannotToggleActiveState": {
         "message": "Cannot change the active state under the current conditions."
@@ -545,6 +545,9 @@
     "intentDiagnosticsIntroText": {
         "message": "Local trajectory state used by intent coherence. No raw typed input is stored."
     },
+    "intentGraphHeading": {
+        "message": "Intent chain graph"
+    },
     "usageStatsNavLabel": {
         "message": "Usage"
     },
@@ -569,6 +572,30 @@
     "appearanceSettingsHeading": {
         "message": "Appearance"
     },
+    "blockedPageSettingsHeading": {
+        "message": "Blocked page"
+    },
+    "blockedPageSettingsIntro": {
+        "message": "Add a short note shown when DaD blocks a page."
+    },
+    "blockedPageMessageLabel": {
+        "message": "Custom note"
+    },
+    "blockedPageMessageHint": {
+        "message": "Shown below the standard block reason. Stored locally in Chrome sync storage."
+    },
+    "blockedPageMessagePlaceholder": {
+        "message": "Return to the task you chose before opening this page."
+    },
+    "blockedPageSettingsSavedStatus": {
+        "message": "Blocked page note saved."
+    },
+    "blockedPageSettingsClearedStatus": {
+        "message": "Blocked page note cleared."
+    },
+    "blockedPageSettingsErrorStatus": {
+        "message": "Could not update the blocked page note."
+    },
     "configurationSettingsHeading": {
         "message": "Configuration"
     },
@@ -581,8 +608,35 @@
     "exportButton": {
         "message": "Export"
     },
+    "exportRulesetButton": {
+        "message": "Export ruleset"
+    },
     "importButton": {
         "message": "Import"
+    },
+    "importSettingsConfirm": {
+        "message": "Import $COUNT$ configuration items from this file? Current DaD configuration will be replaced.",
+        "placeholders": {
+            "count": {
+                "content": "$1",
+                "example": "6"
+            }
+        }
+    },
+    "importRulesetConfirm": {
+        "message": "Import $COUNT$ shared ruleset items from this file? Current plans, groups, schedules, allowed sites, and UI cleanup rules will be replaced. Local UI settings, passwords, billing, runtime state, and diagnostics stay unchanged.",
+        "placeholders": {
+            "count": {
+                "content": "$1",
+                "example": "3"
+            }
+        }
+    },
+    "importSettingsLockedError": {
+        "message": "Cannot import settings during an active protected schedule."
+    },
+    "importSettingsFailed": {
+        "message": "Could not import settings. Check that the file is a DaD settings or ruleset export."
     },
     "themeModeLabel": {
         "message": "UI Mode"
@@ -704,6 +758,9 @@
     "planEntryKeywordsLabel": {
         "message": "Keywords"
     },
+    "planEntryKeywordsHint": {
+        "message": "Use scores like 500, 50/100, or 50%. Structural tokens include has:video, has:audible, has:links>=25, and has:activeSeconds>=30."
+    },
     "addPlanEntryButton": {
         "message": "Add entry"
     },
@@ -782,6 +839,12 @@
     "popupQuickActionsTitle": {
         "message": "Defense Panel"
     },
+    "popupFeedbackButton": {
+        "message": "Feedback"
+    },
+    "popupFeedbackTitle": {
+        "message": "Send feedback"
+    },
     "popupOpenOptionsTitle": {
         "message": "Open options"
     },
@@ -809,6 +872,9 @@
     "popupCurrentPageLabel": {
         "message": "Current page"
     },
+    "popupFocusLabel": {
+        "message": "Focus"
+    },
     "popupTimerLabel": {
         "message": "Timer"
     },
@@ -821,11 +887,239 @@
     "popupControlsAriaLabel": {
         "message": "Controls"
     },
+    "popupFocusStateTitle": {
+        "message": "Focus state"
+    },
+    "popupFocusStateCalm": {
+        "message": "Calm"
+    },
+    "popupFocusStateStrained": {
+        "message": "Strained"
+    },
+    "popupFocusStateVulnerable": {
+        "message": "Vulnerable"
+    },
+    "popupFocusStateNoExpiry": {
+        "message": "No expiry"
+    },
+    "popupFocusStateUntil": {
+        "message": "Until $1"
+    },
+    "popupFocusStateStrictness": {
+        "message": "+$1 - $2"
+    },
+    "popupFocusStateSaved": {
+        "message": "Focus state saved."
+    },
+    "popupFocusStateFailed": {
+        "message": "Could not update focus state."
+    },
     "popupUiPickerTitle": {
         "message": "UI cleanup"
     },
     "popupCurrentTabLabel": {
         "message": "Current tab"
+    },
+    "popupIntentRecoveryTitle": {
+        "message": "Session coherence"
+    },
+    "popupIntentRecoveryAriaLabel": {
+        "message": "Current intent recovery details"
+    },
+    "popupIntentRecoveryTimelineAriaLabel": {
+        "message": "Recent session path"
+    },
+    "popupIntentRecoveryReasonsAriaLabel": {
+        "message": "Intent recovery reasons"
+    },
+    "popupIntentTimelineOriginLabel": {
+        "message": "Origin"
+    },
+    "popupIntentTimelineCurrentLabel": {
+        "message": "Current"
+    },
+    "popupIntentTimelineFirstDriftLabel": {
+        "message": "First drift"
+    },
+    "popupIntentTimelineDriftDescendantLabel": {
+        "message": "Drift descendant"
+    },
+    "popupIntentTimelineSkippedSteps": {
+        "message": "$1 skipped"
+    },
+    "popupIntentTimelineActiveDuration": {
+        "message": "active $1"
+    },
+    "popupIntentPrimaryActionsLabel": {
+        "message": "Recover"
+    },
+    "popupIntentCurrentActionsLabel": {
+        "message": "Current page"
+    },
+    "popupIntentDriftActionsLabel": {
+        "message": "Drift tabs"
+    },
+    "popupLastCoherentLabel": {
+        "message": "Last coherent"
+    },
+    "popupIntentReturnButton": {
+        "message": "Return"
+    },
+    "popupIntentReturnChainButton": {
+        "message": "Return chain"
+    },
+    "popupIntentContinueButton": {
+        "message": "Continue"
+    },
+    "popupIntentContinueReasonLabel": {
+        "message": "Reason to continue"
+    },
+    "popupIntentContinueReasonPlaceholder": {
+        "message": "What makes this page intentional now?"
+    },
+    "popupIntentContinueReasonRequired": {
+        "message": "Enter a short reason to continue."
+    },
+    "popupIntentContinueUnavailable": {
+        "message": "Continue is available only for active prompt-style interventions."
+    },
+    "popupIntentIsolateButton": {
+        "message": "Isolate"
+    },
+    "popupIntentMarkCoherentButton": {
+        "message": "Mark coherent"
+    },
+    "popupIntentShowGraphButton": {
+        "message": "Show graph"
+    },
+    "popupIntentReturnTabsButton": {
+        "message": "Return drift tabs"
+    },
+    "popupIntentMoveTabsButton": {
+        "message": "Move drift tabs"
+    },
+    "popupIntentSuspendButton": {
+        "message": "Suspend drift tabs"
+    },
+    "popupIntentCleanButton": {
+        "message": "Close drift tabs"
+    },
+    "popupIntentDriftTabsLabel": {
+        "message": "Drift tabs"
+    },
+    "popupIntentInterventionLabel": {
+        "message": "Intervention"
+    },
+    "popupIntentInterventionInactive": {
+        "message": "Inactive"
+    },
+    "popupIntentActionWarnLabel": {
+        "message": "Warning"
+    },
+    "popupIntentActionGrayscaleLabel": {
+        "message": "Grayscale"
+    },
+    "popupIntentActionReduceNoiseLabel": {
+        "message": "Reduce noise"
+    },
+    "popupIntentActionPromptLabel": {
+        "message": "Prompt"
+    },
+    "popupIntentActionBlockLabel": {
+        "message": "Block"
+    },
+    "popupIntentChainQuarantineLabel": {
+        "message": "Chain quarantine"
+    },
+    "popupIntentDriftDescendantLabel": {
+        "message": "drift descendant"
+    },
+    "popupIntentLockedChainLabel": {
+        "message": "locked chain"
+    },
+    "popupIntentAutoReturnIn": {
+        "message": "auto-return in $1"
+    },
+    "popupIntentAutoCloseIn": {
+        "message": "auto-close in $1"
+    },
+    "popupIntentAutoReturnReady": {
+        "message": "auto-return ready"
+    },
+    "popupIntentAutoCloseReady": {
+        "message": "auto-close ready"
+    },
+    "popupIntentPolicyLabel": {
+        "message": "Policy"
+    },
+    "popupIntentNoTrajectorySummary": {
+        "message": "No trajectory on this page"
+    },
+    "popupIntentClearSummary": {
+        "message": "Trajectory stable"
+    },
+    "popupIntentWatchSummary": {
+        "message": "Watch state"
+    },
+    "popupIntentDriftSummary": {
+        "message": "Drift detected"
+    },
+    "popupIntentInterveneSummary": {
+        "message": "Recovery recommended"
+    },
+    "popupIntentLockedSummary": {
+        "message": "Locked state"
+    },
+    "popupIntentChainBlockedSummary": {
+        "message": "Chain quarantined"
+    },
+    "popupIntentReturned": {
+        "message": "Returned to last coherent page."
+    },
+    "popupIntentContinued": {
+        "message": "Continue reason recorded."
+    },
+    "popupIntentContinueFailed": {
+        "message": "Could not continue current intervention."
+    },
+    "popupIntentContinueStale": {
+        "message": "Intent intervention changed. Refresh and try again."
+    },
+    "popupIntentIsolated": {
+        "message": "Current page isolated as a new chain."
+    },
+    "popupIntentMarkedCoherent": {
+        "message": "Marked current page as coherent."
+    },
+    "popupIntentReturnedTabs": {
+        "message": "Returned $1 drift $2."
+    },
+    "popupIntentReturnedChain": {
+        "message": "Returned current tab and $1 drift $2."
+    },
+    "popupIntentMovedTabs": {
+        "message": "Moved $1 drift $2 to a separate window."
+    },
+    "popupIntentSuspendedTabs": {
+        "message": "Suspended $1 drift $2."
+    },
+    "popupIntentCleanedTabs": {
+        "message": "Closed $1 drift $2."
+    },
+    "popupIntentNoOtherDriftTabs": {
+        "message": "No other drift tabs in this chain."
+    },
+    "popupIntentNoDriftTabsClosed": {
+        "message": "No other drift tabs to close."
+    },
+    "popupIntentTabSingular": {
+        "message": "tab"
+    },
+    "popupIntentTabPlural": {
+        "message": "tabs"
+    },
+    "popupIntentActionFailed": {
+        "message": "Intent action failed."
     },
     "popupMatchStrategyLabel": {
         "message": "Match strategy"
@@ -907,6 +1201,9 @@
     },
     "pomodoroRequiredRestLabel": {
         "message": "Required rest"
+    },
+    "pomodoroRestCreditStartedLabel": {
+        "message": "Rest credit started"
     },
     "pomodoroRestCreditedLabel": {
         "message": "Rest already credited"
@@ -995,6 +1292,9 @@
     "popupDiagnosticsAriaLabel": {
         "message": "Diagnostics"
     },
+    "popupInspectActionsAriaLabel": {
+        "message": "Inspect actions"
+    },
     "popupPageSignalsTitle": {
         "message": "Page Signals"
     },
@@ -1010,6 +1310,9 @@
     "popupAudioLabel": {
         "message": "Audio"
     },
+    "popupAudibleMediaLabel": {
+        "message": "Audible"
+    },
     "popupGifsLabel": {
         "message": "GIFs"
     },
@@ -1018,6 +1321,47 @@
     },
     "popupLinksLabel": {
         "message": "Links"
+    },
+    "popupPassiveRegionsLabel": {
+        "message": "Passive regions"
+    },
+    "popupPassiveRegionsSummary": {
+        "message": "$RECOMMENDATIONS$ rec / $COMMENTS$ comments / $SHORTS$ short",
+        "placeholders": {
+            "recommendations": {
+                "content": "$1",
+                "example": "2"
+            },
+            "comments": {
+                "content": "$2",
+                "example": "3"
+            },
+            "shorts": {
+                "content": "$3",
+                "example": "1"
+            }
+        }
+    },
+    "popupOpenTabsLabel": {
+        "message": "Open tabs"
+    },
+    "popupOpenWindowsLabel": {
+        "message": "Windows"
+    },
+    "popupKeywordIdeasLabel": {
+        "message": "Keyword ideas"
+    },
+    "popupNoKeywordIdeas": {
+        "message": "None detected"
+    },
+    "popupCopyKeywordIdeasButton": {
+        "message": "Copy keyword ideas"
+    },
+    "popupKeywordIdeasCopied": {
+        "message": "Keyword ideas copied."
+    },
+    "popupKeywordIdeasCopyFailed": {
+        "message": "Could not copy keyword ideas."
     },
     "popupBlockDiagnosticsTitle": {
         "message": "Block Diagnostics"
@@ -1049,6 +1393,9 @@
     "popupCopyDiagnosticsButton": {
         "message": "Copy Diagnostics"
     },
+    "popupCopyDiagnosticsFeedbackButton": {
+        "message": "Copy + Feedback"
+    },
     "popupIntentDiagnosticsTitle": {
         "message": "Intent Diagnostics"
     },
@@ -1069,6 +1416,21 @@
     },
     "popupLineageLabel": {
         "message": "Lineage"
+    },
+    "popupIntentSignalsAriaLabel": {
+        "message": "Intent score signal breakdown"
+    },
+    "popupIntentSignalOriginLabel": {
+        "message": "Origin signal"
+    },
+    "popupIntentSignalPassiveLabel": {
+        "message": "Passive signal"
+    },
+    "popupIntentSignalAgencyLabel": {
+        "message": "Agency signal"
+    },
+    "popupIntentSignalNavigationLabel": {
+        "message": "Navigation signal"
     },
     "popupIntentReasonsAriaLabel": {
         "message": "Intent score reasons"
@@ -1099,6 +1461,21 @@
     },
     "elementPickerClickPageOption": {
         "message": "Click page"
+    },
+    "elementPickerActionLabel": {
+        "message": "Rule action"
+    },
+    "elementPickerHideActionOption": {
+        "message": "Hide"
+    },
+    "elementPickerClickActionOption": {
+        "message": "Click once"
+    },
+    "elementPickerClearActionOption": {
+        "message": "Clear field"
+    },
+    "elementPickerPauseMediaActionOption": {
+        "message": "Pause media"
     },
     "elementPickerPreviewLabel": {
         "message": "Preview"
@@ -1175,6 +1552,15 @@
     "elementPickerPreviewOutliningVerb": {
         "message": "outlining"
     },
+    "elementPickerPreviewClickingVerb": {
+        "message": "clicking once on"
+    },
+    "elementPickerPreviewClearingVerb": {
+        "message": "clearing once in"
+    },
+    "elementPickerPreviewPausingMediaVerb": {
+        "message": "pausing media in"
+    },
     "elementPickerElementSingular": {
         "message": "element"
     },
@@ -1220,6 +1606,9 @@
     "intentPromptGrayscaleSummary": {
         "message": "This page has been desaturated because this browsing chain appears to have detached from where it started."
     },
+    "intentPromptReduceNoiseSummary": {
+        "message": "Recommendation, feed, and comment areas are hidden because this browsing chain appears to be drifting."
+    },
     "intentPromptDetectedSummary": {
         "message": "This browsing chain appears to have detached from where it started."
     },
@@ -1229,8 +1618,33 @@
     "intentPromptOriginLabel": {
         "message": "Origin:"
     },
+    "intentPromptRecoveryLabel": {
+        "message": "Last coherent:"
+    },
+    "intentPromptFirstDriftLabel": {
+        "message": "First drift:"
+    },
     "intentPromptCurrentLabel": {
         "message": "Current:"
+    },
+    "intentPromptDriftTabsLabel": {
+        "message": "Drift tabs:"
+    },
+    "intentPromptDriftTabsNone": {
+        "message": "No other known drift tabs in this chain."
+    },
+    "intentPromptDriftTabsScope": {
+        "message": "$COUNT$ other drift $TAB_NOUN$ in this chain. Return chain also affects this tab.",
+        "placeholders": {
+            "count": {
+                "content": "$1",
+                "example": "2"
+            },
+            "tab_noun": {
+                "content": "$2",
+                "example": "tabs"
+            }
+        }
     },
     "intentPromptCooldownLabel": {
         "message": "Cooldown:"
@@ -1241,11 +1655,35 @@
     "intentPromptCooldownComplete": {
         "message": "complete. Isolation is available if this page is intentional."
     },
+    "intentPromptCooldownAutoCloseActive": {
+        "message": "$1 before this quarantined tab closes. Return is available now."
+    },
+    "intentPromptCooldownAutoCloseComplete": {
+        "message": "complete. This quarantined tab is closing."
+    },
+    "intentPromptReturnTabsFailed": {
+        "message": "Could not return other drift tabs. Return and isolate are still available."
+    },
+    "intentPromptReturnChainFailed": {
+        "message": "Could not return the full chain. Return and isolate are still available."
+    },
     "intentPromptCloseTabsFailed": {
         "message": "Could not close other drift tabs. Return and isolate are still available."
     },
+    "intentPromptSuspendTabsFailed": {
+        "message": "Could not suspend other drift tabs. Return and isolate are still available."
+    },
+    "intentPromptReturnedOtherTabs": {
+        "message": "Returned $1 other drift $2 to the last coherent page. Return or isolate this tab next."
+    },
     "intentPromptClosedOtherTabs": {
         "message": "Closed $1 other drift $2 in this chain. Return or isolate this tab next."
+    },
+    "intentPromptSuspendedOtherTabs": {
+        "message": "Suspended $1 other drift $2 in this chain. Return or isolate this tab next."
+    },
+    "intentPromptMovedOtherTabs": {
+        "message": "Moved $1 other drift $2 to a separate window. Return or isolate this tab next."
     },
     "intentPromptNoOtherDriftTabs": {
         "message": "No other drift descendant tabs are currently open in this chain. Return or isolate this tab next."
@@ -1261,6 +1699,18 @@
     },
     "intentPromptIsolateButton": {
         "message": "Isolate"
+    },
+    "intentPromptReturnOtherDriftTabsButton": {
+        "message": "Return other drift tabs"
+    },
+    "intentPromptReturnChainButton": {
+        "message": "Return chain"
+    },
+    "intentPromptMoveOtherDriftTabsButton": {
+        "message": "Move drift tabs"
+    },
+    "intentPromptSuspendOtherDriftTabsButton": {
+        "message": "Suspend other drift tabs"
     },
     "intentPromptCloseOtherDriftTabsButton": {
         "message": "Close other drift tabs"
@@ -1279,5 +1729,26 @@
     },
     "intentPromptContinueButton": {
         "message": "Continue"
+    },
+    "intentPromptShowGraphButton": {
+        "message": "Show graph"
+    },
+    "intentPromptShowGraphFailed": {
+        "message": "Could not open intent diagnostics. Return and isolate are still available."
+    },
+    "intentPromptMoveTabsFailed": {
+        "message": "Could not move other drift tabs. Return and isolate are still available."
+    },
+    "intentPromptNewTabsFrozen": {
+        "message": "New tabs are paused while this drift intervention is active. Use the prompt controls first."
+    },
+    "intentPromptContinueReasonLabel": {
+        "message": "Reason to continue"
+    },
+    "intentPromptContinueReasonPlaceholder": {
+        "message": "What makes this page intentional now?"
+    },
+    "intentPromptContinueReasonRequired": {
+        "message": "Enter a short reason to continue."
     }
 }

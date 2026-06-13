@@ -75,6 +75,12 @@ ul {
     padding-left: 20px; /* Indent for lists */
 }
 
+[dir="rtl"] ul,
+[dir="rtl"] ol {
+    padding-right: 20px;
+    padding-left: 0;
+}
+
 a {
     color: var(--link);
     transition: color 0.3s ease; /* Smooth color transition for hover */
@@ -133,6 +139,11 @@ ol {
     background-color: var(--note-bg);
 }
 
+[dir="rtl"] .important-note {
+    border-right: 3px solid var(--note);
+    border-left: 0;
+}
+
 /* Enhancing link visibility */
 a {
     color: var(--link);
@@ -149,6 +160,12 @@ a:hover {
 @media (max-width: 768px) {
     ol, ul {
         padding-left: 15px;
+    }
+
+    [dir="rtl"] ol,
+    [dir="rtl"] ul {
+        padding-right: 15px;
+        padding-left: 0;
     }
 }
 

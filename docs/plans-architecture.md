@@ -78,6 +78,8 @@ Section ownership:
 
 Settings should remain a global utility surface, not a second protection model. Moving a control into Settings should not change storage semantics or weaken locked-schedule protection.
 
+Settings import/export is scoped to durable user configuration. The versioned export payload contains recognized sync configuration keys for plans, legacy migration inputs, UI element rules, blocked-page settings, theme, and UI language. Import clears and replaces only those configuration keys, preserving local/runtime state and ignoring diagnostics, billing identity/entitlement, release-notice stamps, and encrypted password data. Import stays unavailable during active protected schedules.
+
 Plans should be compact by default. A compact plan row should show:
 
 - Plan name.
@@ -92,7 +94,7 @@ Destructive plan actions should be explicit and inspectable: plan rows use icon-
 
 ## Schedule Editor Direction
 
-The plan schedule editor uses a weekly grid. Plan schedules are time blocks controlled by the plan; they do not have their own enabled/disabled state in the UI. If the plan is disabled, its time blocks are inert. If the plan is enabled, every complete saved time block can make the plan active.
+The plan schedule editor uses a weekly grid. Plan schedules are time blocks controlled by the plan; they do not have their own enabled/disabled state in the UI. If the plan is disabled, its time blocks are inert. If the plan is enabled, every complete saved time block can make the plan active. Shared schedule summaries default to this time-block language; enabled/disabled schedule wording is a legacy opt-in diagnostic path, not the plan UI default.
 
 The schedule data shape stays simple:
 
@@ -106,8 +108,8 @@ This grid is reused inside each plan schedule page. Existing standalone stored s
 
 Schedule grid interaction rules:
 
-- The graph is the primary editor surface and is wide by default.
-- The graph can be expanded into a full-page editor when the normal plan page is too cramped.
+- The graph is the primary editor surface and opens as a wide full-page editor by default.
+- The graph can be closed back into the normal plan page for quick surrounding context, then reopened with `Open wide graph`.
 - A current day/time marker appears in today's column so the user can see where they are in the week.
 - Clicking `Add time block` enters create mode but does not persist anything by itself.
 - Dragging on empty grid space drafts a new time block for that plan, selects it, and lets the user inspect it before saving it.
@@ -192,8 +194,9 @@ UI element blocking is also plan-aware:
 
 - UI rules with no plan assignment remain global.
 - UI rules assigned to one or more plans apply only while at least one assigned plan is active.
+- UI rules assigned only to disabled or inactive plans become inactive immediately.
 - The Blocked UI section shows whether each rule is global or plan-scoped, and can assign or unassign rules from plans directly.
-- Deleting a UI rule removes its plan assignments so stale plan references do not remain behind.
+- Deleting a UI rule removes its plan assignments so stale plan references do not remain behind. During a protected schedule, deleting or disabling an enabled UI rule is blocked because it relaxes protection; enabling a disabled UI rule remains allowed.
 
 Intent coherence is plan-aware:
 
@@ -208,7 +211,6 @@ Active enabled plan schedules are treated as protected schedules for configurati
 
 ## Open Questions
 
-- Should a UI blocked element assigned to a disabled plan become inactive immediately?
 - Should allowed websites be global overrides, plan-specific exceptions, or both?
 - How should conflicts resolve when one active plan allows something and another blocks it?
 - Which plan state should be stored in `chrome.storage.sync`, and which diagnostics should stay local?

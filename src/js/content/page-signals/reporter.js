@@ -13,8 +13,40 @@
   let lastReportedAt = 0;
   let pageSignalObserver = null;
 
+  function getBlockSource(diagnostics = {}) {
+    const triggers = Array.isArray(diagnostics.triggers) ? diagnostics.triggers : [];
+
+    if (diagnostics.pomodoroStrictBreak === true) {
+      return 'pomodoro';
+    }
+
+    if (triggers.some(trigger => trigger?.source === 'pomodoro')) {
+      return 'pomodoro';
+    }
+
+    if (triggers.length > 0) {
+      return 'keyword';
+    }
+
+    return 'content';
+  }
+
+  function collectProtectionSignals() {
+    const overlay = global.document?.getElementById?.('dad-block-overlay');
+    const diagnostics = global.blockDiagnostics || {};
+    const blocked = Boolean(global.pageBlocked || overlay || diagnostics.blockedAt);
+
+    return {
+      blocked,
+      blockSource: blocked ? getBlockSource(diagnostics) : 'none'
+    };
+  }
+
   function collectPageSignals(root = global.document, options = {}) {
-    return global.DAD.PageSignalsCollector.collectPageSignals(root, options);
+    return {
+      ...global.DAD.PageSignalsCollector.collectPageSignals(root, options),
+      protection: collectProtectionSignals()
+    };
   }
 
   function sendPageSignals(options = {}) {
@@ -27,7 +59,7 @@
     }
 
     const signals = collectPageSignals();
-    const signature = `${signals.url}\n${signals.title}`;
+    const signature = `${signals.url}\n${signals.title}\n${signals.protection?.blocked ? 'blocked' : 'allowed'}`;
     const now = Date.now();
 
     if (!options.force && signature === lastReportedSignature && now - lastReportedAt < DUPLICATE_REPORT_WINDOW_MS) {
@@ -90,7 +122,8 @@
       return;
     }
 
-    pageSignalObserver = new global.MutationObserver(() => {
+    pageSignalObserver = new global.MutationObserver(records => {
+      global.DAD.PageSignalsActivity.recordDomMutationBatch(records);
       schedulePageSignalReport();
     });
     pageSignalObserver.observe(global.document.documentElement, {

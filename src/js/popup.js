@@ -1,9 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
-import {
-  PLANS_STORAGE_KEY
-} from './shared/plans.js';
+import { PLANS_STORAGE_KEY } from './shared/plans.js';
 import {
   UI_LANGUAGE_STORAGE_KEY,
   initializeUiLanguage
@@ -12,14 +10,14 @@ import {
   getActiveTab,
   getSyncStorage,
   isExtensionPage,
+  openFeedback,
+  openIntentDiagnostics,
   openOptions,
   sendRuntimeMessage,
-  sendTabMessage
+  sendTabMessage,
+  updateTabUrl
 } from './popup/chrome.js';
-import {
-  getMessage,
-  localizePopup
-} from './popup/i18n.js';
+import { getMessage, localizePopup } from './popup/i18n.js';
 import {
   createPopupPanelSet
 } from './popup/panelSet.js';
@@ -47,6 +45,7 @@ const panels = createPopupPanelSet({
   isExtensionPage,
   sendRuntimeMessage,
   sendTabMessage,
+  updateTabUrl,
   setStatus
 });
 const refreshLoop = createPopupRefreshLoop(panels);
@@ -81,7 +80,9 @@ async function redirectExtensionTabsToOptions() {
 
 function renderLocalizedPanels() {
   panels.renderProtectionSummary();
+  panels.usageStatsPanel.render(panels.usageStatsPanel.getPayload());
   panels.pomodoroPanel.render(panels.pomodoroPanel.getPayload());
+  panels.focusStatePanel.render(panels.focusStatePanel.getSnapshot());
   panels.blockDiagnosticsPanel.render(panels.blockDiagnosticsPanel.getDebugState());
   panels.pageSignalsPanel.render(panels.pageSignalsPanel.getSnapshot());
   panels.intentDiagnosticsPanel.render(panels.intentDiagnosticsPanel.getDebugState());
@@ -92,6 +93,12 @@ function handleStorageChange(changes, areaName) {
 
   if (areaName === 'sync' && changes[PLANS_STORAGE_KEY]) {
     panels.protectionSummaryPanel.setPlans(changes[PLANS_STORAGE_KEY].newValue);
+  }
+
+  if (areaName === 'local' && changes.usageStats) {
+    panels.usageStatsPanel.refresh().catch(error => {
+      console.error('Failed to refresh popup usage stats:', error);
+    });
   }
 
   if (areaName === 'sync' && changes[UI_LANGUAGE_STORAGE_KEY]) {
@@ -113,6 +120,8 @@ async function initializePopup() {
   popupShell.loadTheme();
   redirectExtensionTabsToOptions();
   panels.protectionSummaryPanel.refreshPlans();
+  panels.focusStatePanel.refresh();
+  panels.usageStatsPanel.refresh();
   panels.intentDiagnosticsPanel.refresh();
   panels.blockDiagnosticsPanel.refresh();
   panels.pomodoroPanel.refresh();
@@ -121,6 +130,8 @@ async function initializePopup() {
   chrome.storage.onChanged.addListener(handleStorageChange);
   bindPopupEvents({
     startElementPicker,
+    openFeedback,
+    openIntentDiagnostics,
     openOptions,
     diagnosticsExporter,
     ...panels

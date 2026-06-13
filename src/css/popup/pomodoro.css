@@ -32,6 +32,10 @@
     text-align: right;
 }
 
+[dir="rtl"] .pomodoro-timer-row span {
+    text-align: left;
+}
+
 .pomodoro-session-text {
     margin: 0;
 }
@@ -70,6 +74,10 @@
 .pomodoro-timeline-list dd {
     color: var(--text);
     text-align: right;
+}
+
+[dir="rtl"] .pomodoro-timeline-list dd {
+    text-align: left;
 }
 
 .pomodoro-actions button {

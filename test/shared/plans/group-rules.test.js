@@ -49,22 +49,32 @@ describe('group rules', () => {
       areKeywordChangesValid(['news, 50'], ['news, 100']),
       true
     );
+    assert.equal(
+      areKeywordChangesValid(['news, 50/100'], ['news, 60/100']),
+      true
+    );
   });
 
   it('rejects locked keyword removals and value decreases', () => {
     assert.equal(areKeywordChangesValid(['news', 'games'], ['news']), false);
     assert.equal(areKeywordChangesValid(['news, 100'], ['news, 50']), false);
+    assert.equal(areKeywordChangesValid(['news, 50/100'], ['news, 40/100']), false);
   });
 
   it('validates keyword entries outside locked schedules', () => {
     assert.equal(validateKeywordEntry('news, -50', false), true);
+    assert.equal(validateKeywordEntry('news, -25/100', false), true);
+    assert.equal(validateKeywordEntry('news, 50/100', false), true);
     assert.equal(validateKeywordEntry('news, 0', false), false);
     assert.equal(validateKeywordEntry('news, *, 1', false), false);
+    assert.equal(validateKeywordEntry('news, *, 50%', false), false);
   });
 
   it('validates keyword entries inside locked schedules', () => {
     assert.equal(validateKeywordEntry('news, 50', true), true);
+    assert.equal(validateKeywordEntry('news, 50%', true), true);
     assert.equal(validateKeywordEntry('news, -50', true), false);
+    assert.equal(validateKeywordEntry('news, -25/100', true), false);
     assert.equal(validateKeywordEntry('news, *, 1', true), false);
   });
 });

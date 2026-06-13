@@ -5,6 +5,7 @@ import { getSync, setSync } from '../../shared/storage/chromeStorage.js';
 import { savePlansWithPriority } from '../../shared/storage/criticalScheduleStorage.js';
 import {
   getNextPlanName,
+  isPlanChangeAllowedDuringProtectedSchedule,
   isInProtectedSchedule,
   normalizePlan,
   normalizePlans,
@@ -407,36 +408,4 @@ async function deleteAllowedSite(planId, siteIndex) {
     ...plan,
     allowedSites: plan.allowedSites.filter((site, index) => index !== siteIndex)
   }));
-}
-
-function isPlanChangeAllowedDuringProtectedSchedule(originalPlan, nextPlan) {
-  if (originalPlan.enabled && !nextPlan.enabled) {
-    return false;
-  }
-
-  if (!originalPlan.groupIds.every(groupId => nextPlan.groupIds.includes(groupId))) {
-    return false;
-  }
-
-  if (JSON.stringify(originalPlan.groups) !== JSON.stringify(nextPlan.groups)) {
-    return false;
-  }
-
-  if (nextPlan.allowedSites.some(site => !originalPlan.allowedSites.includes(site))) {
-    return false;
-  }
-
-  if (!originalPlan.uiRuleIds.every(ruleId => nextPlan.uiRuleIds.includes(ruleId))) {
-    return false;
-  }
-
-  if (JSON.stringify(originalPlan.pomodoro) !== JSON.stringify(nextPlan.pomodoro)) {
-    return false;
-  }
-
-  if (JSON.stringify(originalPlan.intent) !== JSON.stringify(nextPlan.intent)) {
-    return false;
-  }
-
-  return true;
 }

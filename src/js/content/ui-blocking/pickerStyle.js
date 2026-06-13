@@ -62,6 +62,11 @@
         overflow: hidden;
       }
 
+      #${PICKER_PANEL_ID}[dir="rtl"] {
+        right: auto;
+        left: 16px;
+      }
+
       #${PICKER_PANEL_ID} label {
         display: grid;
         gap: 4px;

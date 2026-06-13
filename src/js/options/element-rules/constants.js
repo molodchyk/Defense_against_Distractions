@@ -20,6 +20,13 @@ export const LABEL_MATCHES = [
   ['require', 'Require label']
 ];
 
+export const ELEMENT_RULE_ACTIONS = [
+  ['hide', 'Hide element'],
+  ['click', 'Click once'],
+  ['clear', 'Clear field'],
+  ['pauseMedia', 'Pause media']
+];
+
 export const FINGERPRINT_FIELDS = [
   ['tag', 'Tag'],
   ['role', 'Role'],

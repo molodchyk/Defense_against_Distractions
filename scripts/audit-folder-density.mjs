@@ -13,6 +13,9 @@ const ignoredDirs = new Set([
   'dist',
   'node_modules'
 ]);
+const auditStats = {
+  ignoredDirectories: 0
+};
 
 const budgets = [
   {
@@ -78,6 +81,7 @@ async function collectFolders(directory) {
   for (const entry of entries) {
     if (entry.isDirectory()) {
       if (ignoredDirs.has(entry.name)) {
+        auditStats.ignoredDirectories += 1;
         continue;
       }
       folders.push(...await collectFolders(path.join(directory, entry.name)));
@@ -106,8 +110,10 @@ function pad(value, length) {
 }
 
 const folders = await collectFolders(rootDir);
-const rows = folders
-  .map(folder => ({ ...folder, budget: getBudget(folder.relativeDir) }))
+const foldersWithBudgets = folders.map(folder => ({ ...folder, budget: getBudget(folder.relativeDir) }));
+const budgetedFolderCount = foldersWithBudgets.filter(folder => folder.budget).length;
+const unbudgetedFolderCount = foldersWithBudgets.length - budgetedFolderCount;
+const rows = foldersWithBudgets
   .filter(folder => folder.budget)
   .map(folder => ({
     status: folder.sourceFileCount > folder.budget.hard
@@ -129,12 +135,19 @@ const rows = folders
       || a.folder.localeCompare(b.folder);
   });
 
+function printCoverageSummary() {
+  console.log(`Scope: folders containing ${Array.from(sourceExtensions).join(', ')} files outside ${Array.from(ignoredDirs).join(', ')}.`);
+  console.log(`Coverage: ${budgetedFolderCount} budgeted / ${folders.length} matching folders; ${unbudgetedFolderCount} matching folders are outside configured budgets; ${auditStats.ignoredDirectories} ignored directories.`);
+}
+
 if (rows.length === 0) {
   console.log('Folder-density audit passed.');
+  printCoverageSummary();
   process.exit(0);
 }
 
 console.log('Folder-density audit found folders over the documented budgets.');
+printCoverageSummary();
 console.log('');
 console.log(`${pad('Status', 8)}${pad('Files', 7)}${pad('Budget', 8)}${pad('Hard', 6)}${pad('Category', 18)}Folder`);
 console.log(`${pad('------', 8)}${pad('-----', 7)}${pad('------', 8)}${pad('----', 6)}${pad('--------', 18)}------`);

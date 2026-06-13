@@ -2,6 +2,11 @@
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
 import {
+  LEGACY_KEYWORD_BLOCK_SCORE_THRESHOLD,
+  normalizeKeywordScore,
+  normalizeKeywordScoreDelta
+} from '../shared/keywords.js';
+import {
   setTextWithTitle
 } from './dom.js';
 
@@ -11,8 +16,52 @@ const BLOCK_DIAGNOSTIC_TEXT_IDS = [
   'blockMediaStateText',
   'blockTabMuteStateText',
   'blockTriggerText',
-  'blockScoreText'
+  'blockScoreText',
+  'blockContributorText'
 ];
+
+const MAX_VISIBLE_BLOCK_CONTRIBUTORS = 3;
+
+export function getRecentBlockTriggers(debugState = {}) {
+  const diagnostics = debugState.blockDiagnostics || {};
+  const recentTriggers = Array.isArray(diagnostics.recentTriggers) ? diagnostics.recentTriggers : [];
+  if (recentTriggers.length > 0) {
+    return recentTriggers;
+  }
+
+  return diagnostics.latestTrigger ? [diagnostics.latestTrigger] : [];
+}
+
+export function formatBlockContributor(trigger = {}, getMessage) {
+  const keyword = trigger.keyword || getMessage('popupUnknownLabel');
+  const source = trigger.source ? ` · ${trigger.source}` : '';
+  const operation = trigger.operation || '+';
+  const normalizedDelta = operation !== '*'
+    ? normalizeKeywordScoreDelta(trigger.value)
+    : Number(trigger.value || 0);
+  const rawScore = Number(trigger.scoreAfter);
+  const scoreText = Number.isFinite(rawScore)
+    ? ` -> ${normalizeKeywordScore(rawScore)}/100`
+    : '';
+
+  return `${keyword}${source} ${operation}${normalizedDelta ?? 0}${scoreText}`;
+}
+
+export function formatBlockContributorTrail(debugState = {}, getMessage) {
+  const triggers = getRecentBlockTriggers(debugState);
+  if (triggers.length === 0) {
+    return getMessage('popupNoContributorRecorded');
+  }
+
+  const visibleTriggers = triggers.slice(-MAX_VISIBLE_BLOCK_CONTRIBUTORS).reverse();
+  const earlierCount = Math.max(0, Number(debugState.blockDiagnostics?.triggerCount || triggers.length) - visibleTriggers.length);
+  const entries = visibleTriggers.map(trigger => formatBlockContributor(trigger, getMessage));
+  if (earlierCount > 0) {
+    entries.push(getMessage('popupEarlierContributors', [earlierCount]));
+  }
+
+  return entries.join('; ');
+}
 
 export function createBlockDiagnosticsPanel({
   getMessage,
@@ -95,14 +144,23 @@ export function createBlockDiagnosticsPanel({
   function formatBlockScore(debugState = {}) {
     const diagnosticsScore = debugState.blockDiagnostics?.finalScore;
     const pageScore = debugState.pageScore;
-    const score = diagnosticsScore ?? pageScore;
-    if (!Number.isFinite(Number(score))) {
+    const rawScore = Number(diagnosticsScore ?? pageScore);
+    if (!Number.isFinite(rawScore)) {
       return '--';
     }
 
     const trigger = debugState.blockDiagnostics?.latestTrigger;
-    const delta = trigger ? ` · ${trigger.operation || '+'}${trigger.value ?? 0}` : '';
-    return `${Math.round(Number(score))}${delta}`;
+    const normalizedScore = normalizeKeywordScore(rawScore);
+    const normalizedDelta = trigger && trigger.operation !== '*'
+      ? normalizeKeywordScoreDelta(trigger.value)
+      : null;
+    const delta = trigger
+      ? ` · ${trigger.operation || '+'}${normalizedDelta ?? trigger.value ?? 0}`
+      : '';
+    const legacyText = Math.round(rawScore) === normalizedScore
+      ? ''
+      : ` · legacy ${Math.round(rawScore)}/${LEGACY_KEYWORD_BLOCK_SCORE_THRESHOLD}`;
+    return `${normalizedScore}/100${delta}${legacyText}`;
   }
 
   function render(debugState) {
@@ -127,6 +185,7 @@ export function createBlockDiagnosticsPanel({
     setTextWithTitle('blockTabMuteStateText', formatTabMuteState(debugState.tabMute));
     setTextWithTitle('blockTriggerText', formatBlockTrigger(debugState));
     setTextWithTitle('blockScoreText', formatBlockScore(debugState));
+    setTextWithTitle('blockContributorText', formatBlockContributorTrail(debugState, getMessage));
     onStateChange?.(latestDebugState);
   }
 

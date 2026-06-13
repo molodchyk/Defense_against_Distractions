@@ -3,6 +3,19 @@
     margin-top: 10px;
 }
 
+.inspect-action-bar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+}
+
+.inspect-action-bar button {
+    width: 100%;
+    min-height: 34px;
+    padding: 6px 10px;
+    font-size: 12px;
+}
+
 .page-signal-grid,
 .block-diagnostics-grid {
     display: grid;
@@ -15,8 +28,16 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.usage-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 7px;
+    margin: 0;
+}
+
 .page-signal-grid div,
-.block-diagnostics-grid div {
+.block-diagnostics-grid div,
+.usage-summary-grid div {
     min-width: 0;
     border: 1px solid var(--border);
     border-radius: 6px;
@@ -28,10 +49,20 @@
     grid-column: 1 / -1;
 }
 
+.page-signal-grid .full-width-signal {
+    grid-column: 1 / -1;
+}
+
+.usage-summary-grid .full-width-usage {
+    grid-column: 1 / -1;
+}
+
 .page-signal-grid dt,
 .page-signal-grid dd,
 .block-diagnostics-grid dt,
-.block-diagnostics-grid dd {
+.block-diagnostics-grid dd,
+.usage-summary-grid dt,
+.usage-summary-grid dd {
     margin: 0;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -39,17 +70,23 @@
 }
 
 .page-signal-grid dt,
-.block-diagnostics-grid dt {
+.block-diagnostics-grid dt,
+.usage-summary-grid dt {
     color: var(--muted);
     font-size: 11px;
     font-weight: 700;
 }
 
-.page-signal-grid dd {
+.page-signal-grid dd,
+.usage-summary-grid dd {
     color: var(--text);
     font-size: 16px;
     font-weight: 700;
     line-height: 1.15;
+}
+
+.page-signal-grid .full-width-signal dd {
+    font-size: 12px;
 }
 
 .block-diagnostics-grid dd {
@@ -57,13 +94,53 @@
     font-size: 12px;
 }
 
+.usage-domain-list {
+    display: grid;
+    gap: 5px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.usage-domain-list li {
+    display: grid;
+    min-width: 0;
+    gap: 1px;
+    border-top: 1px solid var(--border);
+    padding-top: 5px;
+}
+
+.usage-domain-list strong,
+.usage-domain-list span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.usage-domain-list strong {
+    color: var(--text);
+    font-size: 12px;
+}
+
+.usage-domain-list span {
+    color: var(--muted);
+    font-size: 11px;
+}
+
 .diagnostic-actions,
 .intent-actions {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
     align-items: center;
     gap: 8px;
     margin-top: 10px;
+}
+
+.diagnostic-actions {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.intent-actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .diagnostic-actions button,
@@ -76,6 +153,172 @@
 
 .intent-panel {
     gap: 0;
+}
+
+.intent-recovery-panel {
+    border-color: var(--primary-border);
+    background:
+        linear-gradient(180deg, var(--primary-soft), transparent 68%),
+        var(--surface-action);
+}
+
+.intent-recovery-score-row {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: end;
+    gap: 12px;
+}
+
+.intent-recovery-score-row div {
+    display: grid;
+    gap: 2px;
+}
+
+.intent-recovery-score-row span,
+.intent-recovery-score-row p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.intent-recovery-score-row strong {
+    color: var(--text);
+    font-size: 30px;
+    line-height: 1;
+}
+
+.intent-recovery-score-row p {
+    min-width: 0;
+    overflow-wrap: anywhere;
+    text-align: right;
+}
+
+[dir="rtl"] .intent-recovery-score-row p {
+    text-align: left;
+}
+
+.intent-meter {
+    height: 7px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: var(--field);
+}
+
+.intent-meter span {
+    display: block;
+    width: 0%;
+    height: 100%;
+    border-radius: inherit;
+    background: var(--primary);
+    transition: width 160ms ease, background-color 160ms ease;
+}
+
+.intent-meter span[data-state="clear"] {
+    background: var(--success);
+}
+
+.intent-meter span[data-state="watch"],
+.intent-meter span[data-state="drift"] {
+    background: var(--warning);
+}
+
+.intent-meter span[data-state="intervene"],
+.intent-meter span[data-state="locked"] {
+    background: var(--danger);
+}
+
+.intent-recovery-details {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 7px;
+    margin: 0;
+}
+
+.intent-recovery-details div {
+    min-width: 0;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--field);
+    padding: 7px 8px;
+}
+
+.intent-recovery-details div:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+}
+
+.intent-recovery-details dt,
+.intent-recovery-details dd {
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.intent-recovery-details dt {
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.intent-recovery-details dd {
+    color: var(--text);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.intent-recovery-actions {
+    display: grid;
+    gap: 10px;
+}
+
+.intent-action-group {
+    display: grid;
+    min-width: 0;
+    gap: 6px;
+    border-top: 1px solid var(--border);
+    padding-top: 8px;
+}
+
+.intent-action-group-primary {
+    border-top: 0;
+    padding-top: 0;
+}
+
+.intent-action-group-label {
+    overflow: hidden;
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.intent-action-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 7px;
+}
+
+.intent-action-grid-three {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.intent-action-group-drift {
+    border-top-color: var(--diagnostic-border);
+}
+
+.intent-action-grid button {
+    width: 100%;
+    min-height: 34px;
+    padding: 6px 8px;
+    font-size: 12px;
+}
+
+.intent-recovery-panel .intent-reason-list li {
+    overflow: visible;
+    text-overflow: clip;
+    white-space: normal;
 }
 
 .intent-score-row {
@@ -94,31 +337,40 @@
     line-height: 1;
 }
 
-.intent-details {
+.intent-details,
+.intent-signal-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 7px;
     margin: 8px 0 0;
 }
 
-.intent-details div {
+.intent-details div,
+.intent-signal-grid div {
     display: grid;
     gap: 2px;
 }
 
-.intent-details dt {
+.intent-details dt,
+.intent-signal-grid dt {
     color: var(--muted);
     font-size: 11px;
     font-weight: 700;
 }
 
-.intent-details dd {
+.intent-details dd,
+.intent-signal-grid dd {
     margin: 0;
     overflow: hidden;
     color: var(--text);
     font-size: 12px;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+.intent-signal-grid {
+    padding-top: 7px;
+    border-top: 1px solid var(--diagnostic-border);
 }
 
 .intent-reason-list,
@@ -152,6 +404,11 @@
     border-radius: 999px;
     background: var(--warning);
     vertical-align: 1px;
+}
+
+[dir="rtl"] .intent-reason-list li::before {
+    margin-right: 0;
+    margin-left: 6px;
 }
 
 .intent-visit-list li {

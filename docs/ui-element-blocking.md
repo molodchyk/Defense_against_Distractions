@@ -2,7 +2,7 @@
 
 UI element blocking is a cosmetic cleanup feature. It hides page controls or regions that you do not want to see, such as repeated action buttons, sidebars, suggestions, or other distracting interface pieces.
 
-It is separate from keyword blocking and locked schedules. It is not meant to be an enforceable block. It is meant to make websites quieter.
+It is separate from keyword blocking and is not meant to be a full-page enforcement block. It is meant to make websites quieter. During a locked schedule, active UI rules still count as protection: DaD allows making them stricter, but does not allow disabling or deleting an active rule until the lock ends.
 
 ## How To Use It
 
@@ -10,7 +10,7 @@ It is separate from keyword blocking and locked schedules. It is not meant to be
 2. Click the Defense Against Distractions toolbar icon.
 3. Choose the initial matching controls.
 4. Click `Pick UI Element`.
-5. Hover the page element and click it to preview the rule. DaD temporarily hides every element the rule would hide.
+5. Hover the page element and click it to preview the rule. DaD temporarily hides or outlines every element the rule would match.
 6. Use the on-page picker panel to tune the rule while the preview is active.
 7. Click `Save rule` to save and close the picker, or hold `Shift` and click `Save rule and continue` to save and keep picking.
 8. Review, enable, disable, or adjust saved rules in the options page under `Blocked UI`.
@@ -21,7 +21,13 @@ New rules apply to the current host by default, such as `chatgpt.com`, instead o
 
 DaD stores UI element rules as separate sync storage entries instead of one large rule list. This avoids Chrome's per-item sync storage limit as the number of UI rules grows.
 
-UI rules keep a sync storage reserve for locked schedules. Locked schedules are mission-critical, so DaD blocks new or larger UI cleanup rules before they can consume the space reserved for schedule data. If a schedule save still hits sync quota, DaD removes non-critical UI element rules and retries the schedule save. Deleting or shrinking UI rules is still allowed when storage is tight.
+UI rules keep a sync storage reserve for locked schedules. Locked schedules are mission-critical, so DaD blocks new or larger UI cleanup rules before they can consume the space reserved for schedule data. If a schedule save still hits sync quota, DaD removes non-critical UI element rules and retries the schedule save. Outside a locked schedule, deleting or shrinking UI rules is still allowed when storage is tight. During a locked schedule, deleting an enabled UI rule is blocked because it relaxes active protection.
+
+## Built-In Cleanup
+
+DaD includes one narrow built-in cleanup for ChatGPT message action controls. On `chatgpt.com` and `chat.openai.com`, it hides known repeated message-level copy, good response, bad response, share, more-actions, and report controls when they are scoped to a message container.
+
+This is cosmetic UI cleanup, not page blocking. It does not block ChatGPT, does not inspect conversation text beyond button labels and test IDs, and does not save a rule to sync storage. Use manual UI element rules when you want broader or different ChatGPT cleanup behavior.
 
 ## Picker Panel
 
@@ -60,6 +66,18 @@ Hover the `Preview` control and scroll to switch between `Hide matched` and `Out
 Outline preview draws independent golden geometry boxes instead of relying only on the website element's own CSS outline. This makes broad containers, clipped regions, text fields, and nested UI easier to inspect.
 
 The preview count updates when the page adds or removes matching elements.
+
+## Rule Action
+
+`Hide element` is the default action. It hides every matched element and restores it if the rule is removed or disabled.
+
+`Click once` is a bounded automation action. It clicks the first matched enabled element once per page URL and then stops, including across mutation-observer refreshes. Use it for narrow repeated annoyances such as dismissing a known prompt after you have verified the match with outline preview.
+
+`Clear field` is a bounded field-cleanup action. It clears the first matched visible editable text field once per page URL, dispatches normal `input` and `change` events, and then stops. It can clear text inputs, textareas, and contenteditable regions, but it does not store replacement content or clear hidden, disabled, read-only, checkbox, radio, file, range, color, button, submit, or reset controls.
+
+`Pause media` is a bounded media-cleanup action. It pauses playing `audio` or `video` elements that directly match the rule, or playing media inside the first matched container, once per page URL. It does not save media URLs, captions, titles, or playback history.
+
+DaD does not fill forms, type text, run arbitrary JavaScript, or repeatedly click, clear, or pause matching elements. Broader automation would need a separate safety model.
 
 ## Match Strategy
 
@@ -101,6 +119,8 @@ If a rule hides similar buttons in unrelated page areas, increase ancestor depth
 
 `Enabled` controls whether the rule is active. Disable a rule when you want to keep it for later without deleting its diagnostics and tuning.
 
+During an active locked schedule, enabling a disabled rule is allowed because it makes protection stricter. Disabling or deleting an enabled rule is blocked until the schedule lock ends.
+
 `URL pattern` controls where the rule is active. A host-only pattern like `chatgpt.com` applies across that site. A longer path pattern applies more narrowly. Use `Use domain` to reduce a long path to its host.
 
 `Diagnostics` shows the stored fingerprint: tag, role, parent structure, position path, labels, direct text tokens, class tokens, and related details. Use this before deleting or editing a rule so you can see what the rule was created from.
@@ -109,4 +129,4 @@ If a rule hides similar buttons in unrelated page areas, increase ancestor depth
 
 Websites often use generated classes, changing labels, nested SVG icons, and repeated generic buttons. DaD stores a structural fingerprint instead of a single CSS selector, but no automatic fingerprint can always know your intent.
 
-When a rule is too broad or too narrow, adjust strategy, minimum score, ancestor depth, label match, enabled state, and URL pattern in `Blocked UI`.
+When a rule is too broad or too narrow, adjust action, strategy, minimum score, ancestor depth, label match, enabled state, and URL pattern in `Blocked UI`.

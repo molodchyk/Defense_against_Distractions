@@ -250,7 +250,7 @@ Runtime folders should stay navigable without becoming flat indexes of unrelated
 - A flat folder may temporarily exceed the target during migration, but new work should either land in an existing feature folder or create one.
 - File moves should be behavior-neutral and accompanied by import checks, tests, and documentation updates.
 
-Use `npm run audit:folder-density` for reporting and `npm run audit:folder-density:strict` when hard folder-index debt should fail the check.
+Use `npm run audit:folder-density` for reporting and `npm run audit:folder-density:strict` when hard folder-index debt should fail the check. The audit output also reports how many matching source folders are covered by a configured budget and how many matching folders are intentionally outside current budgets.
 
 ## Migration Strategy
 
@@ -261,7 +261,7 @@ Use compatibility wrappers and move one feature surface at a time.
 ### Phase 1: Guardrails
 
 - Add this roadmap.
-- Add a file-size audit script that reports files over the budget. Use `npm run audit:file-sizes` for reporting and `npm run audit:file-sizes:strict` when a hard threshold should fail.
+- Add a file-size audit script that reports files over the budget and prints its source-file coverage scope. Use `npm run audit:file-sizes` for reporting and `npm run audit:file-sizes:strict` when a hard threshold should fail.
 - Add a manifest reference check so moved files cannot silently break extension loading. Use `npm run verify:manifest`.
 - Done: split the large shared test file into feature-owned tests under `test/shared/` without changing assertions.
 
@@ -281,7 +281,7 @@ The split separates:
 - Pomodoro card
 - block diagnostics card
 - page signals card
-- intent diagnostics card
+- intent diagnostics and recovery cards under `src/js/popup/intent/`
 - diagnostics export
 
 The popup entry file is now an initializer that wires modules together. New popup features should not grow `src/js/popup.js`; add or extend the smallest focused popup module.
@@ -346,10 +346,12 @@ Completed first steps:
 - UI blocking content scripts now live under `src/js/content/ui-blocking/`.
 - `src/js/content/ui-blocking/pickerStyle.js` owns picker highlight and panel CSS injection.
 - `src/js/content/ui-blocking/pickerPanel.js` owns picker copy, theme sync, draggable panel rendering, and picker controls.
+- `src/js/content/ui-blocking/builtInRules.js` owns narrow built-in cosmetic cleanup rules separately from user-saved structural rules.
 - Page blocking content scripts now live under `src/js/content/content-blocking/`.
-- Blocked-overlay content responsibilities now live in focused modules for messages, style, theme, diagnostics, Pomodoro strict-break status, event guards, and a thin overlay controller.
+- Blocked-overlay content responsibilities now live in focused modules for messages, style, theme, diagnostics, Pomodoro strict-break status, event guards, navigation guards, and a thin overlay controller.
+- Blocked-page customization uses a pure shared settings model under `src/js/shared/blocked-page/`, an options Settings card under `src/js/options/settings/`, an ES-module renderer under `src/js/blocked/`, and a classic content-script adapter in `src/js/content/content-blocking/overlayCustomization.js`.
 - Page-signal content responsibilities now live under `src/js/content/page-signals/` for activity tracking, signal collection, and reporting, with `src/js/content/pageSignals.js` kept as the thin public controller.
-- Intent content intervention modules now live under `src/js/content/intent/` for constants, messages, CSS injection, theme sync, and prompt rendering. `src/js/content/intentIntervention.js` remains the controller for polling, feedback, dismissal state, grayscale application, and action wiring.
+- Intent content intervention modules now live under `src/js/content/intent/` for constants, messages, CSS injection, theme sync, prompt rendering, reversible element reduction, visual-effect application, and media pause/restore. `src/js/content/intentIntervention.js` remains the controller for polling, feedback, dismissal state, and action wiring.
 
 The final shape keeps `miniPanel.js` as a thin adapter that wires the modules together and exposes the public mini-panel API.
 
@@ -447,3 +449,7 @@ Recent checkpoint:
 - Shared Pomodoro runtime helpers now live in focused modules for runtime state, phase durations, rest credit, and transitions. `src/js/shared/pomodoro/runtime.js` remains the compatibility barrel for current callers and tests.
 - Pomodoro mini-panel style behavior now lives in focused content scripts for constants, CSS text generation, and a thin injection facade. `src/js/content/pomodoro/miniPanelStyle.js` remains the public content-script style API.
 - Options and popup CSS now use thin entry barrels with focused surface files under `src/css/options/` and `src/css/popup/`.
+- Blocked-page customization is now a bounded local note rendered on both the extension blocked page and the in-page overlay. The content overlay keeps a small classic adapter because manifest-loaded content scripts cannot import the shared ES module directly without a build step.
+- Intent chain graph modeling now lives in `src/js/shared/intent/graph.js`, with the Options diagnostics panel rendering the bounded graph and the content prompt exposing a Show graph action that opens it.
+- Intent new-tab freezing now lives in `src/js/content/intent/newTabFreeze.js` as a small reversible content adapter owned by the intent effects layer.
+- Drift-descendant tab containment now includes an explicit move-to-separate-window action through `src/js/background/intent/tabs.js`, prompt controls, and popup recovery controls.

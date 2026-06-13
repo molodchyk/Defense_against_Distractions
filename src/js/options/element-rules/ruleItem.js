@@ -17,6 +17,7 @@ import {
 } from '../dom.js';
 import {
   FINGERPRINT_FIELDS,
+  ELEMENT_RULE_ACTIONS,
   LABEL_MATCHES,
   STRATEGIES
 } from './constants.js';
@@ -111,6 +112,11 @@ function createButton(text, onClick, className) {
   return button;
 }
 
+function handleProtectedRuleError(error, onRefresh) {
+  alert(error?.message || getElementRuleMessage('lockedScheduleErrorMessage'));
+  onRefresh?.();
+}
+
 function createMetaLine(label, value) {
   const row = document.createElement('div');
   row.className = 'element-rule-meta-row';
@@ -144,6 +150,22 @@ function formatPlanScope(rule, plans) {
   return `plans: ${assignedPlans.map(plan => {
     return plan.enabled ? plan.name : `${plan.name} (disabled)`;
   }).join(', ')}`;
+}
+
+function formatRuleAction(action) {
+  if (action === 'click') {
+    return 'click once';
+  }
+
+  if (action === 'clear') {
+    return 'clear field';
+  }
+
+  if (action === 'pauseMedia') {
+    return 'pause media';
+  }
+
+  return 'hide';
 }
 
 async function updateRulePlanAssignment(ruleId, planId, assigned, onRefresh) {
@@ -262,6 +284,7 @@ export function createRuleItem(rule, plans, isLocked, { onRefresh } = {}) {
     rule.enabled === false ? 'disabled' : 'enabled',
     formatPlanScope(rule, plans),
     rule.urlPattern || 'current site',
+    formatRuleAction(rule.action),
     rule.strategy || rule.mode || 'samePosition',
     `score ${rule.minScore || 12}`,
     `depth ${rule.ancestorDepth ?? 2}`,
@@ -276,6 +299,7 @@ export function createRuleItem(rule, plans, isLocked, { onRefresh } = {}) {
     createCheckbox(rule.enabled !== false, value => {
       updateRule(rule.id, { enabled: value }).catch(error => {
         console.error('Failed to update UI rule enabled state:', error);
+        handleProtectedRuleError(error, onRefresh);
       });
     })
   ));
@@ -294,6 +318,15 @@ export function createRuleItem(rule, plans, isLocked, { onRefresh } = {}) {
     createTextInput(rule.urlPattern || '', value => {
       updateRule(rule.id, { urlPattern: value, urlScope: 'pattern' }).catch(error => {
         console.error('Failed to update UI rule URL pattern:', error);
+      });
+    })
+  ));
+
+  controls.appendChild(createControl(
+    'Action',
+    createSelect(ELEMENT_RULE_ACTIONS, rule.action || 'hide', value => {
+      updateRule(rule.id, { action: value }).catch(error => {
+        console.error('Failed to update UI rule action:', error);
       });
     })
   ));
@@ -348,6 +381,7 @@ export function createRuleItem(rule, plans, isLocked, { onRefresh } = {}) {
   const deleteButton = createLocalizedButton('Delete', () => {
     removeRule(rule.id).catch(error => {
       console.error('Failed to remove element blocking rule:', error);
+      handleProtectedRuleError(error, onRefresh);
     });
   }, 'delete-button');
 

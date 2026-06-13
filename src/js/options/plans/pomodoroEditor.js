@@ -22,13 +22,14 @@ let planPomodoroStatusInterval = null;
 export function createPlanPomodoroEditor(plan, isLocked, { onSaveSettings }) {
   const section = createPlanSubsection('planPomodoroLabel');
   const settings = normalizePomodoroSettings(plan.pomodoro);
-  const enabledInput = createCheckboxInput(settings.enabled, isLocked);
-  const strictBreaksInput = createCheckboxInput(settings.strictBreaks, isLocked);
-  const autoStartInput = createCheckboxInput(settings.autoStart, isLocked);
-  const workInput = createNumberInput(settings.workMinutes, 1, 1440, isLocked);
-  const shortBreakInput = createNumberInput(settings.shortBreakMinutes, 1, 1440, isLocked);
-  const longBreakInput = createNumberInput(settings.longBreakMinutes, 1, 1440, isLocked);
-  const sessionsInput = createNumberInput(settings.sessionsBeforeLongBreak, 1, 12, isLocked);
+  const settingsInputsDisabled = false;
+  const enabledInput = createCheckboxInput(settings.enabled, settingsInputsDisabled);
+  const strictBreaksInput = createCheckboxInput(settings.strictBreaks, settingsInputsDisabled);
+  const autoStartInput = createCheckboxInput(settings.autoStart, settingsInputsDisabled);
+  const workInput = createNumberInput(settings.workMinutes, 1, 1440, settingsInputsDisabled);
+  const shortBreakInput = createNumberInput(settings.shortBreakMinutes, 1, 1440, settingsInputsDisabled);
+  const longBreakInput = createNumberInput(settings.longBreakMinutes, 1, 1440, settingsInputsDisabled);
+  const sessionsInput = createNumberInput(settings.sessionsBeforeLongBreak, 1, 12, settingsInputsDisabled);
 
   const grid = document.createElement('div');
   grid.className = 'plan-pomodoro-grid';
@@ -57,7 +58,6 @@ export function createPlanPomodoroEditor(plan, isLocked, { onSaveSettings }) {
       autoStart: autoStartInput.checked
     }));
   }, 'save-button');
-  saveButton.disabled = isLocked;
 
   actions.appendChild(saveButton);
   section.appendChild(createPlanPomodoroRuntimePanel(plan, isLocked));
@@ -84,6 +84,31 @@ export function stopPlanPomodoroStatusPolling() {
     window.clearInterval(planPomodoroStatusInterval);
     planPomodoroStatusInterval = null;
   }
+}
+
+export function getPlanPomodoroRuntimeControlState({
+  isLocked = false,
+  canStartTargetPlan = false,
+  hasRuntimePlan = false,
+  ownsRuntime = false,
+  phase = POMODORO_PHASES.IDLE
+} = {}) {
+  const isRunning = ownsRuntime && [
+    POMODORO_PHASES.WORK,
+    POMODORO_PHASES.SHORT_BREAK,
+    POMODORO_PHASES.LONG_BREAK
+  ].includes(phase);
+  const isPaused = ownsRuntime && phase === POMODORO_PHASES.PAUSED;
+  const isCompleted = ownsRuntime && phase === POMODORO_PHASES.COMPLETED;
+  const isIdle = phase === POMODORO_PHASES.IDLE;
+  const canStartFromCurrentState = canStartTargetPlan && (!hasRuntimePlan || isCompleted);
+
+  return {
+    startDisabled: !canStartFromCurrentState,
+    pauseDisabled: isLocked || !isRunning,
+    resumeDisabled: !isPaused,
+    resetDisabled: isLocked || !ownsRuntime || isIdle
+  };
 }
 
 function createPlanPomodoroRuntimePanel(plan, isLocked) {
@@ -130,7 +155,7 @@ function createPlanPomodoroRuntimePanel(plan, isLocked) {
 
   const startButton = createButton(getPlanMessage('pomodoroStartLabel'), () => runPlanPomodoroCommand('startPomodoro', plan.id), 'secondary-button');
   startButton.dataset.planPomodoroStart = 'true';
-  startButton.disabled = isLocked || !settings.enabled || !active;
+  startButton.disabled = !settings.enabled || !active;
 
   const pauseButton = createButton(getPlanMessage('pomodoroPauseLabel'), () => runPlanPomodoroCommand('pausePomodoro', plan.id), 'secondary-button');
   pauseButton.dataset.planPomodoroPause = 'true';
@@ -236,8 +261,13 @@ function renderPlanPomodoroTimeline(panel, payload, ownsRuntime) {
     ? normalizePomodoroSettings(status.settings || payload?.plan?.pomodoro)
     : getPanelPomodoroSettings(panel);
   const completedWorkSessions = Number(status.completedWorkSessions || 0);
-  const restCreditMs = Number(status.restCreditMs || 0);
+  const restCreditMs = Number.isFinite(Number(status.effectiveRestCreditMs))
+    ? Number(status.effectiveRestCreditMs)
+    : Number(status.restCreditMs || 0);
   const upcomingBreakMs = getPlanPomodoroBreakDurationMs(phase, settings, completedWorkSessions);
+  const restStillNeededMs = Number.isFinite(Number(status.restStillNeededMs))
+    ? Math.max(0, Number(status.restStillNeededMs))
+    : Math.max(0, upcomingBreakMs - restCreditMs);
   const rows = [];
 
   if (phase === POMODORO_PHASES.WORK) {
@@ -245,7 +275,10 @@ function renderPlanPomodoroTimeline(panel, payload, ownsRuntime) {
     rows.push(createPlanPomodoroTimelineRow(getPlanMessage('pomodoroNextBreakLabel'), formatClock(runtime.phaseEndsAt)));
     rows.push(createPlanPomodoroTimelineRow(getPlanMessage('pomodoroRequiredRestLabel'), formatDuration(upcomingBreakMs)));
     rows.push(createPlanPomodoroTimelineRow(getPlanMessage('pomodoroRestCreditedLabel'), formatDuration(restCreditMs)));
-    rows.push(createPlanPomodoroTimelineRow(getPlanMessage('pomodoroRestStillNeededLabel'), formatDuration(Math.max(0, upcomingBreakMs - restCreditMs))));
+    rows.push(createPlanPomodoroTimelineRow(getPlanMessage('pomodoroRestStillNeededLabel'), formatDuration(restStillNeededMs)));
+    if (status.restSatisfiedByCredit) {
+      rows.push(createPlanPomodoroTimelineRow(getPlanMessage('pomodoroReturnBehaviorLabel'), getPlanMessage('pomodoroReturnStartsNewWork')));
+    }
   } else if ([POMODORO_PHASES.SHORT_BREAK, POMODORO_PHASES.LONG_BREAK].includes(phase)) {
     rows.push(createPlanPomodoroTimelineRow(getPlanMessage('pomodoroBreakStartedLabel'), formatClock(runtime.phaseStartedAt)));
     rows.push(createPlanPomodoroTimelineRow(getPlanMessage('pomodoroBreakEndsLabel'), formatClock(runtime.phaseEndsAt)));
@@ -309,21 +342,22 @@ function renderPlanPomodoroRuntimePanel(panel, payload, planId) {
   const canStartTargetPlan = panel.dataset.planPomodoroCanStart === 'true';
   const hasRuntimePlan = Boolean(payload?.runtime?.activePlanId);
   const hasOtherRuntime = hasRuntimePlan && !ownsRuntime;
-  const isRunning = ownsRuntime && [
-    POMODORO_PHASES.WORK,
-    POMODORO_PHASES.SHORT_BREAK,
-    POMODORO_PHASES.LONG_BREAK
-  ].includes(phase);
-  const isPaused = ownsRuntime && phase === POMODORO_PHASES.PAUSED;
   const isCompleted = ownsRuntime && phase === POMODORO_PHASES.COMPLETED;
-  const isIdle = phase === POMODORO_PHASES.IDLE;
-  const phaseLabel = timerStatus.phaseLabel || 'Idle';
+  const phaseLabel = timerStatus.restSatisfiedByCredit
+    ? getPlanMessage('pomodoroRestSatisfiedLabel')
+    : (timerStatus.phaseLabel || 'Idle');
   const remainingText = timerStatus.remainingText || '0:00';
-  const canStartFromCurrentState = canStartTargetPlan && (!hasRuntimePlan || isCompleted);
   const activityStatus = payload?.activityStatus;
+  const controls = getPlanPomodoroRuntimeControlState({
+    isLocked,
+    canStartTargetPlan,
+    hasRuntimePlan,
+    ownsRuntime,
+    phase
+  });
 
   panel.querySelector('[data-plan-pomodoro-phase]').textContent = ownsRuntime
-    ? (isCompleted ? phaseLabel : `${phaseLabel} · ${remainingText}`)
+    ? (isCompleted || timerStatus.restSatisfiedByCredit ? phaseLabel : `${phaseLabel} · ${remainingText}`)
     : 'Idle';
   panel.querySelector('[data-plan-pomodoro-detail]').textContent = ownsRuntime
     ? `${payload?.plan?.name || 'Pomodoro'} · ${timerStatus.completedWorkSessions || 0} work sessions completed`
@@ -333,8 +367,8 @@ function renderPlanPomodoroRuntimePanel(panel, payload, planId) {
     : getPlanMessage('pomodoroActivityUnknown');
   renderPlanPomodoroTimeline(panel, payload, ownsRuntime);
 
-  panel.querySelector('[data-plan-pomodoro-start]').disabled = isLocked || !canStartFromCurrentState;
-  panel.querySelector('[data-plan-pomodoro-pause]').disabled = isLocked || !isRunning;
-  panel.querySelector('[data-plan-pomodoro-resume]').disabled = isLocked || !isPaused;
-  panel.querySelector('[data-plan-pomodoro-reset]').disabled = isLocked || !ownsRuntime || isIdle;
+  panel.querySelector('[data-plan-pomodoro-start]').disabled = controls.startDisabled;
+  panel.querySelector('[data-plan-pomodoro-pause]').disabled = controls.pauseDisabled;
+  panel.querySelector('[data-plan-pomodoro-resume]').disabled = controls.resumeDisabled;
+  panel.querySelector('[data-plan-pomodoro-reset]').disabled = controls.resetDisabled;
 }

@@ -288,7 +288,7 @@ describe('plan helpers', () => {
     }));
   });
 
-  it('orders grayscale between warn and prompt for active plan intent settings', () => {
+  it('orders reversible visual intent actions between warn and prompt', () => {
     const grayscalePolicy = getEffectiveIntentPolicyForUrl({
       plans: [
         {
@@ -312,7 +312,7 @@ describe('plan helpers', () => {
 
     assert.equal(grayscalePolicy.settings.action, INTENT_INTERVENTION_ACTIONS.GRAYSCALE);
 
-    const promptPolicy = getEffectiveIntentPolicyForUrl({
+    const reduceNoisePolicy = getEffectiveIntentPolicyForUrl({
       plans: [
         {
           id: 'plan_1',
@@ -320,6 +320,29 @@ describe('plan helpers', () => {
           intent: {
             enabled: true,
             action: INTENT_INTERVENTION_ACTIONS.GRAYSCALE
+          }
+        },
+        {
+          id: 'plan_2',
+          enabled: true,
+          intent: {
+            enabled: true,
+            action: INTENT_INTERVENTION_ACTIONS.REDUCE_NOISE
+          }
+        }
+      ]
+    }, 'https://example.com/', { now: mondayMorning });
+
+    assert.equal(reduceNoisePolicy.settings.action, INTENT_INTERVENTION_ACTIONS.REDUCE_NOISE);
+
+    const promptPolicy = getEffectiveIntentPolicyForUrl({
+      plans: [
+        {
+          id: 'plan_1',
+          enabled: true,
+          intent: {
+            enabled: true,
+            action: INTENT_INTERVENTION_ACTIONS.REDUCE_NOISE
           }
         },
         {
@@ -359,6 +382,31 @@ describe('plan helpers', () => {
     }, 'https://example.com/', { now: mondayMorning });
 
     assert.equal(policy.settings.autoCalibration, false);
+  });
+
+  it('enables quarantine auto-close if any contributing plan requires it', () => {
+    const policy = getEffectiveIntentPolicyForUrl({
+      plans: [
+        {
+          id: 'plan_1',
+          enabled: true,
+          intent: {
+            enabled: true,
+            autoCloseQuarantinedTab: false
+          }
+        },
+        {
+          id: 'plan_2',
+          enabled: true,
+          intent: {
+            enabled: true,
+            autoCloseQuarantinedTab: true
+          }
+        }
+      ]
+    }, 'https://example.com/', { now: mondayMorning });
+
+    assert.equal(policy.settings.autoCloseQuarantinedTab, true);
   });
 
   it('disables intent policy when no active plan contributes', () => {

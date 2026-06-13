@@ -8,6 +8,11 @@ import {
     normalizeThemeMode,
     resolveThemeMode
 } from './shared/ui/theme.js';
+import {
+    applyUiLanguageAttributes,
+    getUiMessage,
+    initializeUiLanguage
+} from './shared/ui/uiLanguage.js';
 
 const THEME_QUERY = '(prefers-color-scheme: dark)';
 
@@ -34,6 +39,8 @@ async function initializeThemeMode() {
 
 // Function to localize content based on ID
 function localizeContent() {
+    applyUiLanguageAttributes();
+
     const ids = [
         "pageTitle", "headerTitle",
         "introTitle", "introText1", "introText2", "introText3", "introText4",
@@ -56,13 +63,14 @@ function localizeContent() {
     ids.forEach(id => {
         const element = document.getElementById(id);
         if (element) {
-            element.textContent = chrome.i18n.getMessage(id);
+            element.textContent = getUiMessage(id, element.textContent || id);
         }
     });
 }
 
 // Execute the localization function when the document is loaded
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     initializeThemeMode();
+    await initializeUiLanguage();
     localizeContent();
 });

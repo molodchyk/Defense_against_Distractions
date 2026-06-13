@@ -3,7 +3,7 @@
 
 
 import { DEFAULT_INTENT_OPTIONS, DEFAULT_INTENT_SETTINGS } from './constants.js';
-import { normalizeIntentFeedbackEntry } from './feedback.js';
+import { normalizeIntentFeedbackEntry, recordIntentFeedbackOutcome } from './feedback.js';
 import { normalizeIntentSettings } from './settings.js';
 import { normalizeIntentNavigationTransition, normalizePageSignalForIntent } from './signals.js';
 import {
@@ -11,6 +11,7 @@ import {
   normalizeIntentState,
   normalizeTabLineageEntry
 } from './state.js';
+import { calculateRecentTabActivity, recordTabActivationState } from './tabActivity.js';
 import {
   getHostnameFromUrl,
   getTimestamp,
@@ -61,6 +62,7 @@ export function recordIntentPageVisit(currentState, rawSignal, options = {}) {
         ? {}
         : getMatchingTransitionForSignal(tabLineageEntry, signal)
     ),
+    tabActivity: calculateRecentTabActivity(state.tabActivations, now, normalizedOptions),
     driftDescendant: shouldIsolateTab
       ? false
       : normalizedOptions.driftDescendant === true || tabLineageEntry?.driftDescendant === true
@@ -87,7 +89,7 @@ export function recordIntentPageVisit(currentState, rawSignal, options = {}) {
 
   sessions = pruneSessionsByRetention(sessions, normalizedOptions, now).slice(-normalizedOptions.maxSessions);
 
-  return {
+  const nextState = {
     ...state,
     activeTabId: Number.isFinite(normalizedOptions.tabId) ? normalizedOptions.tabId : state.activeTabId,
     activeSessionId,
@@ -96,6 +98,15 @@ export function recordIntentPageVisit(currentState, rawSignal, options = {}) {
     tabLineage: shouldIsolateTab
       ? state.tabLineage.filter(entry => entry.tabId !== normalizedOptions.tabId)
       : state.tabLineage
+  };
+  const outcomeSession = nextState.sessions.find(session => session.id === activeSessionId) || null;
+
+  return {
+    ...nextState,
+    feedback: recordIntentFeedbackOutcome(nextState.feedback, outcomeSession, visit, {
+      maxFeedbackEntries: normalizedOptions.maxFeedbackEntries,
+      nowMs: now
+    })
   };
 }
 
@@ -134,14 +145,10 @@ export function recordIntentNavigationTransition(currentState, rawTransition = {
 }
 
 export function recordIntentTabActivation(currentState, tabId, options = {}) {
-  const now = getTimestamp({ ...DEFAULT_INTENT_OPTIONS, ...options });
-  const state = normalizeIntentState(currentState, now, { ...DEFAULT_INTENT_OPTIONS, ...options });
-
-  return {
-    ...state,
-    activeTabId: Number.isFinite(normalizeTabId(tabId)) ? normalizeTabId(tabId) : state.activeTabId,
-    updatedAt: new Date(now).toISOString()
-  };
+  const normalizedOptions = { ...DEFAULT_INTENT_OPTIONS, ...options };
+  const now = getTimestamp(normalizedOptions);
+  const state = normalizeIntentState(currentState, now, normalizedOptions);
+  return recordTabActivationState(state, tabId, now, normalizedOptions);
 }
 
 function isVisitAtOrAfterDriftPoint(session = {}, visit = null) {
@@ -268,6 +275,7 @@ export function recordIntentFeedback(currentState, rawFeedback = {}, options = {
     riskState: rawFeedback.riskState || activeSession?.riskState,
     coherenceScore: rawFeedback.coherenceScore ?? activeSession?.coherenceScore,
     policyAction: rawFeedback.policyAction || rawFeedback.decisionAction,
+    reason: rawFeedback.reason,
     currentHostname,
     recoveryHostname
   });

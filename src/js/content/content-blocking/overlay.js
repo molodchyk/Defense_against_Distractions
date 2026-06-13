@@ -14,7 +14,12 @@
   const overlayDiagnostics = contentBlocking.overlayDiagnostics || {};
   const overlayPomodoro = contentBlocking.overlayPomodoro || {};
   const overlayEvents = contentBlocking.overlayEvents || {};
+  const overlayCustomization = contentBlocking.overlayCustomization || {};
   const getLocalizedMessage = overlayMessages.getLocalizedMessage || ((key, fallback) => fallback);
+
+  function applyOverlayLanguage(overlay) {
+    global.DAD.UiLanguage?.applyDirection?.(overlay);
+  }
 
   function createBlockedOverlay() {
     overlayTheme.install?.();
@@ -23,6 +28,7 @@
     overlay.id = BLOCK_OVERLAY_ID;
     overlay.setAttribute('role', 'dialog');
     overlay.setAttribute('aria-modal', 'true');
+    applyOverlayLanguage(overlay);
     overlayStyle.applyHostStyle?.(overlay);
     overlayTheme.apply?.(overlay);
 
@@ -54,8 +60,13 @@
     paragraph.style.cssText = 'margin:0;color:var(--dad-block-muted);font:18px/1.45 Arial,sans-serif';
     paragraph.textContent = message;
 
+    const customMessage = overlayCustomization.createElement?.();
+
     content.appendChild(heading);
     content.appendChild(paragraph);
+    if (customMessage) {
+      content.appendChild(customMessage);
+    }
     content.appendChild(overlayDiagnostics.createElement?.(diagnostics) || document.createElement('div'));
     content.appendChild(overlayPomodoro.createElement?.() || document.createElement('div'));
     overlay.appendChild(content);
@@ -109,6 +120,7 @@
         console.error('Failed to create blocked overlay with diagnostics:', error);
         overlay = document.createElement('div');
         overlay.id = BLOCK_OVERLAY_ID;
+        applyOverlayLanguage(overlay);
         overlayStyle.applyHostStyle?.(overlay);
         overlay.textContent = getLocalizedMessage(
           'contentBlockedMessage',
@@ -117,9 +129,11 @@
       }
       document.documentElement.appendChild(overlay);
     } else {
+      applyOverlayLanguage(overlay);
       overlayStyle.applyHostStyle?.(overlay);
       overlayTheme.apply?.(overlay);
       updateBlockedOverlayText(overlay);
+      overlayCustomization.refreshOverlay?.(overlay);
       if (overlay.parentElement !== document.documentElement) {
         document.documentElement.appendChild(overlay);
       }
@@ -131,6 +145,7 @@
     }
 
     overlayPomodoro.updatePanel?.(overlay);
+    overlayCustomization.refreshOverlay?.(overlay);
 
     if (!global.blockedPagePomodoroInterval) {
       global.blockedPagePomodoroInterval = global.setInterval(() => {
@@ -165,4 +180,8 @@
     keepBlockedPageRendered,
     renderBlockedPage
   };
+
+  global.DAD.UiLanguage?.onChange?.(() => {
+    applyOverlayLanguage(document.getElementById(BLOCK_OVERLAY_ID));
+  });
 })(window);

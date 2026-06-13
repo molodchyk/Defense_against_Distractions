@@ -26,6 +26,14 @@ export function mergeMetricMax(target = {}, source = {}, keys = []) {
   ]));
 }
 
+export function createOutcomeTextBucket(values = {}) {
+  return createMetricBucket(TEXT_KEYS, values);
+}
+
+export function mergeOutcomeTextMax(target = {}, source = {}) {
+  return mergeMetricMax(target, source, TEXT_KEYS);
+}
+
 export function createEmptyDomain(hostname) {
   return {
     hostname,
@@ -36,6 +44,18 @@ export function createEmptyDomain(hostname) {
     tabMax: 0,
     windowMax: 0,
     lastSeenAt: null,
+    allowedSamples: 0,
+    allowedVisits: 0,
+    allowedActiveMs: 0,
+    allowedDwellMs: 0,
+    allowedWordCount: 0,
+    allowedTextMax: createOutcomeTextBucket(),
+    blockedSamples: 0,
+    blockedVisits: 0,
+    blockedActiveMs: 0,
+    blockedDwellMs: 0,
+    blockedWordCount: 0,
+    blockedTextMax: createOutcomeTextBucket(),
     textMax: createMetricBucket(TEXT_KEYS),
     mediaMax: createMetricBucket(MEDIA_KEYS),
     interactionMax: createMetricBucket(INTERACTION_KEYS),
@@ -58,6 +78,18 @@ export function normalizeDomainEntry(entry = {}) {
     tabMax: sanitizeCount(entry.tabMax),
     windowMax: sanitizeCount(entry.windowMax),
     lastSeenAt: toIsoString(toTimestamp(entry.lastSeenAt)),
+    allowedSamples: sanitizeCount(entry.allowedSamples),
+    allowedVisits: sanitizeCount(entry.allowedVisits),
+    allowedActiveMs: sanitizeMs(entry.allowedActiveMs),
+    allowedDwellMs: sanitizeMs(entry.allowedDwellMs),
+    allowedWordCount: sanitizeCount(entry.allowedWordCount),
+    allowedTextMax: createOutcomeTextBucket(entry.allowedTextMax),
+    blockedSamples: sanitizeCount(entry.blockedSamples),
+    blockedVisits: sanitizeCount(entry.blockedVisits),
+    blockedActiveMs: sanitizeMs(entry.blockedActiveMs),
+    blockedDwellMs: sanitizeMs(entry.blockedDwellMs),
+    blockedWordCount: sanitizeCount(entry.blockedWordCount),
+    blockedTextMax: createOutcomeTextBucket(entry.blockedTextMax),
     textMax: createMetricBucket(TEXT_KEYS, entry.textMax),
     mediaMax: createMetricBucket(MEDIA_KEYS, entry.mediaMax),
     interactionMax: createMetricBucket(INTERACTION_KEYS, entry.interactionMax),
@@ -77,7 +109,10 @@ export function normalizeContextEntry(entry = {}) {
     hostname,
     lastSeenAt: toIsoString(toTimestamp(entry.lastSeenAt)),
     lastPageAgeMs: sanitizeMs(entry.lastPageAgeMs),
-    lastActivePageMs: sanitizeMs(entry.lastActivePageMs)
+    lastActivePageMs: sanitizeMs(entry.lastActivePageMs),
+    lastWordCount: sanitizeCount(entry.lastWordCount),
+    lastOutcome: entry.lastOutcome === 'blocked' ? 'blocked' : 'allowed',
+    lastDayKey: /^\d{4}-\d{2}-\d{2}$/.test(entry.lastDayKey || '') ? entry.lastDayKey : null
   };
 }
 
@@ -102,6 +137,18 @@ export function aggregateDomain(target, source) {
     .filter(Boolean)
     .sort()
     .at(-1) || null;
+  target.allowedSamples += sanitizeCount(source.allowedSamples);
+  target.allowedVisits += sanitizeCount(source.allowedVisits);
+  target.allowedActiveMs += sanitizeMs(source.allowedActiveMs);
+  target.allowedDwellMs += sanitizeMs(source.allowedDwellMs);
+  target.allowedWordCount += sanitizeCount(source.allowedWordCount);
+  target.allowedTextMax = mergeOutcomeTextMax(target.allowedTextMax, source.allowedTextMax);
+  target.blockedSamples += sanitizeCount(source.blockedSamples);
+  target.blockedVisits += sanitizeCount(source.blockedVisits);
+  target.blockedActiveMs += sanitizeMs(source.blockedActiveMs);
+  target.blockedDwellMs += sanitizeMs(source.blockedDwellMs);
+  target.blockedWordCount += sanitizeCount(source.blockedWordCount);
+  target.blockedTextMax = mergeOutcomeTextMax(target.blockedTextMax, source.blockedTextMax);
   target.textMax = mergeMetricMax(target.textMax, source.textMax, TEXT_KEYS);
   target.mediaMax = mergeMetricMax(target.mediaMax, source.mediaMax, MEDIA_KEYS);
   target.interactionMax = mergeMetricMax(target.interactionMax, source.interactionMax, INTERACTION_KEYS);

@@ -10,6 +10,7 @@ import { normalizePomodoroActivityState } from './activity.js';
 import { normalizePomodoroSettings } from './settings.js';
 import {
   getPomodoroRemainingMs,
+  getPomodoroRequiredRestMs,
   getPomodoroRestCreditMs,
   normalizePomodoroRuntime
 } from './runtime.js';
@@ -17,8 +18,17 @@ import { toTimestamp } from './utils.js';
 
 export function getPomodoroStatus(runtime, settings, now = Date.now()) {
   const normalizedRuntime = normalizePomodoroRuntime(runtime, now);
+  const normalizedSettings = normalizePomodoroSettings(settings);
   const remainingMs = getPomodoroRemainingMs(normalizedRuntime, now);
+  const requiredRestMs = getPomodoroRequiredRestMs(normalizedRuntime, normalizedSettings);
   const restCreditMs = getPomodoroRestCreditMs(normalizedRuntime, now);
+  const effectiveRestCreditMs = requiredRestMs > 0
+    ? Math.min(restCreditMs, requiredRestMs)
+    : restCreditMs;
+  const restStillNeededMs = Math.max(0, requiredRestMs - effectiveRestCreditMs);
+  const restSatisfiedByCredit = normalizedRuntime.phase === POMODORO_PHASES.WORK
+    && requiredRestMs > 0
+    && restStillNeededMs <= 0;
 
   return {
     phase: normalizedRuntime.phase,
@@ -29,7 +39,16 @@ export function getPomodoroStatus(runtime, settings, now = Date.now()) {
     pauseReason: normalizedRuntime.pauseReason,
     restCreditMs,
     restCreditText: formatDuration(restCreditMs),
-    settings: normalizePomodoroSettings(settings)
+    effectiveRestCreditMs,
+    effectiveRestCreditText: formatDuration(effectiveRestCreditMs),
+    requiredRestMs,
+    requiredRestText: formatDuration(requiredRestMs),
+    restStillNeededMs,
+    restStillNeededText: formatDuration(restStillNeededMs),
+    restSatisfiedByCredit,
+    restCreditStartedAt: normalizedRuntime.restCreditStartedAt,
+    restCreditReason: normalizedRuntime.restCreditReason,
+    settings: normalizedSettings
   };
 }
 

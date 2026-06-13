@@ -34,12 +34,18 @@
     if (global.pageBlocked) return;
 
     let valueToSubtract = 0;
+    const isStructuralKeyword = keyword => Boolean(
+      global.DAD.parseStructuralKeywordCondition?.(keyword)
+    );
     const scanAndProcessText = (text, node) => {
       if (global.processedNodes.has(node)) return;
 
       global.parsedKeywords.forEach(keywordObj => {
         if (keywordObj) {
           const { keyword, operation, value } = keywordObj;
+          if (isStructuralKeyword(keyword)) {
+            return;
+          }
           const regex = global.DAD.createKeywordRegex(keyword);
           const matches = text.match(regex);
 
@@ -65,6 +71,9 @@
           global.parsedKeywords.forEach(keywordObj => {
             if (keywordObj) {
               const { keyword, operation, value } = keywordObj;
+              if (isStructuralKeyword(keyword)) {
+                return;
+              }
               const regex = global.DAD.createKeywordRegex(keyword);
               const matches = text.match(regex);
 
@@ -109,7 +118,7 @@
     global.DAD.safeRuntimeSendMessage({ action: 'updateBadge', score: badgeText });
   }
 
-  function recordScoreTrigger(operation, value, keyword, contextText, scoreAfter) {
+  function recordScoreTrigger(operation, value, keyword, contextText, scoreAfter, source = 'keyword') {
     const diagnostics = global.blockDiagnostics || {
       triggers: [],
       blockedAt: null,
@@ -122,6 +131,7 @@
       value,
       contextText: contextText || '',
       scoreAfter,
+      source,
       matchedAt: new Date().toISOString()
     });
 
@@ -130,14 +140,14 @@
     global.blockDiagnostics = diagnostics;
   }
 
-  function calculateScore(operation, value, keyword, contextText) {
+  function calculateScore(operation, value, keyword, contextText, source = 'keyword') {
     if (global.pageBlocked) return;
     if (operation === '*') {
       global.pageScore = global.pageScore === 0 ? value : global.pageScore * value;
     } else if (operation === '+') {
       global.pageScore += value;
     }
-    recordScoreTrigger(operation, value, keyword, contextText, global.pageScore);
+    recordScoreTrigger(operation, value, keyword, contextText, global.pageScore, source);
     updateBadgeScore();
     if (global.pageScore >= BLOCK_SCORE_THRESHOLD && !global.pageBlocked) {
       global.blockDiagnostics.blockedAt = new Date().toISOString();
@@ -158,6 +168,7 @@
       mutations.forEach(mutation => {
         mutation.addedNodes.forEach(node => {
           global.parsedKeywords = keywords.map(global.DAD.parseKeyword);
+          contentBlocking.structuralTriggers?.scanStructuralTriggers(global.parsedKeywords, calculateScore, document);
           scanTextNodes(node, calculateScore);
         });
       });

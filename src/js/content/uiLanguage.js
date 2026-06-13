@@ -13,6 +13,7 @@
     'no', 'pa', 'pl', 'pt_BR', 'pt_PT', 'ro', 'ru', 'si', 'sk', 'sl', 'sq', 'sr', 'sv', 'sw',
     'ta', 'te', 'th', 'tr', 'uk', 'ur', 'uz', 'vi', 'zh_CN', 'zh_TW'
   ]);
+  const RTL_LANGUAGE_CODES = new Set(['ar', 'fa', 'he', 'ur']);
   const NORMALIZED_LANGUAGE_CODES = new Map(
     Array.from(AVAILABLE_LANGUAGE_CODES).map(code => [code.toLowerCase(), code])
   );
@@ -37,6 +38,35 @@
 
     const baseCode = normalizedValue.split('_')[0].toLowerCase();
     return AVAILABLE_LANGUAGE_CODES.has(baseCode) ? baseCode : DEFAULT_UI_LANGUAGE;
+  }
+
+  function getSystemLanguage() {
+    const browserLanguage = global.chrome?.i18n?.getUILanguage?.() || global.navigator?.language || 'en';
+    const normalizedLanguage = normalizeLanguage(browserLanguage);
+    return normalizedLanguage === DEFAULT_UI_LANGUAGE ? 'en' : normalizedLanguage;
+  }
+
+  function getResolvedLanguage() {
+    return preferredLanguage === DEFAULT_UI_LANGUAGE ? getSystemLanguage() : preferredLanguage;
+  }
+
+  function getDirection(language = getResolvedLanguage()) {
+    const normalizedLanguage = normalizeLanguage(language);
+    const languageCode = normalizedLanguage === DEFAULT_UI_LANGUAGE ? getSystemLanguage() : normalizedLanguage;
+    const baseCode = languageCode.split('_')[0].toLowerCase();
+    return RTL_LANGUAGE_CODES.has(baseCode) ? 'rtl' : 'ltr';
+  }
+
+  function applyDirection(element) {
+    if (!element) {
+      return;
+    }
+
+    const language = getResolvedLanguage().replace('_', '-');
+    const direction = getDirection(language);
+    element.setAttribute('lang', language);
+    element.setAttribute('dir', direction);
+    element.dataset.dadUiDirection = direction;
   }
 
   async function loadLocaleMessages(language) {
@@ -105,7 +135,11 @@
   function notifyChangeListeners() {
     changeListeners.forEach(listener => {
       try {
-        listener(preferredLanguage);
+        listener({
+          preferred: preferredLanguage,
+          resolved: getResolvedLanguage(),
+          direction: getDirection()
+        });
       } catch (error) {
         console.error('Failed to notify content UI language listener:', error);
       }
@@ -194,8 +228,11 @@
       return initialized;
     },
     getMessage,
+    getDirection,
+    getResolvedLanguage,
     initialize,
     normalizeLanguage,
+    applyDirection,
     onChange
   };
 

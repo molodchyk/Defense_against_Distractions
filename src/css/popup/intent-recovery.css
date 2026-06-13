@@ -1,0 +1,130 @@
+.intent-recovery-timeline {
+    display: grid;
+    gap: 6px;
+    margin: 0;
+    padding: 8px 0 0;
+    border-top: 1px solid var(--border);
+    list-style: none;
+}
+
+.intent-recovery-timeline li {
+    display: grid;
+    grid-template-columns: 20px minmax(0, 1fr);
+    gap: 7px;
+    min-width: 0;
+}
+
+.intent-recovery-timeline-marker {
+    display: grid;
+    width: 20px;
+    height: 20px;
+    align-items: center;
+    justify-items: center;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--field);
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.intent-recovery-timeline li[data-first-drift="true"] .intent-recovery-timeline-marker,
+.intent-recovery-timeline li[data-drift-descendant="true"] .intent-recovery-timeline-marker {
+    border-color: var(--warning);
+    color: var(--warning);
+}
+
+.intent-recovery-timeline li[data-current="true"] .intent-recovery-timeline-marker {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.intent-recovery-timeline-body {
+    display: grid;
+    min-width: 0;
+    gap: 2px;
+}
+
+.intent-recovery-timeline strong,
+.intent-recovery-timeline small {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.intent-recovery-timeline strong {
+    color: var(--text);
+    font-size: 12px;
+}
+
+.intent-recovery-timeline small {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.intent-recovery-timeline-badges {
+    display: flex;
+    min-width: 0;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.intent-recovery-timeline-badges span {
+    max-width: 100%;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--muted);
+    font-size: 10px;
+    line-height: 1.1;
+    padding: 2px 5px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.intent-continue-reason {
+    display: grid;
+    min-width: 0;
+    gap: 4px;
+}
+
+.intent-continue-reason[hidden] {
+    display: none;
+}
+
+.intent-continue-reason span,
+.intent-continue-reason small {
+    overflow: hidden;
+    color: var(--muted);
+    font-size: 11px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.intent-continue-reason span {
+    font-weight: 700;
+}
+
+.intent-continue-reason small {
+    justify-self: end;
+}
+
+.intent-continue-reason textarea {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 50px;
+    max-height: 86px;
+    resize: vertical;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--field);
+    color: var(--text);
+    font: inherit;
+    font-size: 12px;
+    line-height: 1.35;
+    padding: 7px 8px;
+}
+
+.intent-continue-reason textarea::placeholder {
+    color: var(--muted);
+}

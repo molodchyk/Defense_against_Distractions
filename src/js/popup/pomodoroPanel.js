@@ -14,6 +14,62 @@ import {
 const RUNNING_PHASES = new Set(['work', 'shortBreak', 'longBreak']);
 const BREAK_PHASES = new Set(['shortBreak', 'longBreak']);
 
+export function getPomodoroSummary(payload, getMessage) {
+  if (payload?.autoStartSuppression?.active) {
+    return {
+      state: 'idle',
+      text: payload.autoStartSuppression.global
+        ? getMessage('popupAutoStartPaused')
+        : getMessage('popupAutoStartDelayed')
+    };
+  }
+
+  if (payload?.timerStatus?.restSatisfiedByCredit) {
+    return {
+      state: 'ready',
+      text: getMessage('popupRestSatisfied')
+    };
+  }
+
+  const phase = payload?.timerStatus?.phase || payload?.runtime?.phase || 'idle';
+  const phaseLabel = payload?.timerStatus?.phaseLabel || getMessage('popupIdleLabel');
+  const remainingText = payload?.timerStatus?.remainingText || '0:00';
+  const planName = payload?.plan?.name || '';
+
+  if (BREAK_PHASES.has(phase)) {
+    return {
+      state: 'active',
+      text: getMessage('popupPomodoroStateSummary', [phaseLabel, remainingText])
+    };
+  }
+
+  if (phase === 'work') {
+    return {
+      state: 'ready',
+      text: getMessage('popupWorkSummary', [remainingText])
+    };
+  }
+
+  if (phase === 'paused') {
+    return {
+      state: 'idle',
+      text: getMessage('popupPausedSummary', [remainingText])
+    };
+  }
+
+  if (phase === 'completed') {
+    return {
+      state: 'ready',
+      text: getMessage('popupRestSatisfied')
+    };
+  }
+
+  return {
+    state: 'idle',
+    text: planName || getMessage('popupNotRunning')
+  };
+}
+
 export function createPomodoroPanel({
   getMessage,
   getActiveTab,
@@ -27,52 +83,7 @@ export function createPomodoroPanel({
   let latestPayload = null;
 
   function getSummary(payload = latestPayload) {
-    if (payload?.autoStartSuppression?.active) {
-      return {
-        state: 'idle',
-        text: payload.autoStartSuppression.global
-          ? getMessage('popupAutoStartPaused')
-          : getMessage('popupAutoStartDelayed')
-      };
-    }
-
-    const phase = payload?.timerStatus?.phase || payload?.runtime?.phase || 'idle';
-    const phaseLabel = payload?.timerStatus?.phaseLabel || getMessage('popupIdleLabel');
-    const remainingText = payload?.timerStatus?.remainingText || '0:00';
-    const planName = payload?.plan?.name || '';
-
-    if (BREAK_PHASES.has(phase)) {
-      return {
-        state: 'active',
-        text: getMessage('popupPomodoroStateSummary', [phaseLabel, remainingText])
-      };
-    }
-
-    if (phase === 'work') {
-      return {
-        state: 'ready',
-        text: getMessage('popupWorkSummary', [remainingText])
-      };
-    }
-
-    if (phase === 'paused') {
-      return {
-        state: 'idle',
-        text: getMessage('popupPausedSummary', [remainingText])
-      };
-    }
-
-    if (phase === 'completed') {
-      return {
-        state: 'ready',
-        text: getMessage('popupRestSatisfied')
-      };
-    }
-
-    return {
-      state: 'idle',
-      text: planName || getMessage('popupNotRunning')
-    };
+    return getPomodoroSummary(payload, getMessage);
   }
 
   function getPolicyText(payload = latestPayload) {
@@ -97,6 +108,25 @@ export function createPomodoroPanel({
     }
 
     return getMessage('popupAutoStartPaused');
+  }
+
+  function getRestTiming(status, phase, settings) {
+    const fallbackRequiredRestMs = getBreakDurationMs(phase, settings, status.completedWorkSessions || 0);
+    const requiredRestMs = Number.isFinite(Number(status.requiredRestMs))
+      ? Math.max(0, Number(status.requiredRestMs))
+      : fallbackRequiredRestMs;
+    const effectiveRestCreditMs = Number.isFinite(Number(status.effectiveRestCreditMs))
+      ? Math.max(0, Number(status.effectiveRestCreditMs))
+      : Math.min(Number(status.restCreditMs || 0), requiredRestMs);
+    const restStillNeededMs = Number.isFinite(Number(status.restStillNeededMs))
+      ? Math.max(0, Number(status.restStillNeededMs))
+      : Math.max(0, requiredRestMs - effectiveRestCreditMs);
+
+    return {
+      effectiveRestCreditMs,
+      requiredRestMs,
+      restStillNeededMs
+    };
   }
 
   async function openMiniPanel() {
@@ -124,12 +154,11 @@ export function createPomodoroPanel({
     const activityStatus = payload?.activityStatus || {};
     const phase = status.phase || runtime.phase || 'idle';
     const settings = status.settings || {};
-    const upcomingBreakMs = getBreakDurationMs(phase, settings, status.completedWorkSessions || 0);
-    const rawRestCreditMs = Number(status.restCreditMs || 0);
-    const restCreditMs = upcomingBreakMs > 0
-      ? Math.min(rawRestCreditMs, upcomingBreakMs)
-      : rawRestCreditMs;
-    const restStillNeededMs = Math.max(0, upcomingBreakMs - restCreditMs);
+    const {
+      effectiveRestCreditMs,
+      requiredRestMs,
+      restStillNeededMs
+    } = getRestTiming(status, phase, settings);
     const historyTotals = payload?.history?.totals || {};
     const suppressionText = getAutoStartSuppressionText(payload);
     const rows = [];
@@ -144,16 +173,22 @@ export function createPomodoroPanel({
     if (phase === 'work') {
       rows.push(createTimelineRow(getMessage('pomodoroWorkStartedLabel', 'Work started'), formatClock(runtime.phaseStartedAt)));
       rows.push(createTimelineRow(getMessage('pomodoroNextBreakLabel', 'Next break'), formatClock(runtime.phaseEndsAt)));
-      rows.push(createTimelineRow(getMessage('pomodoroRequiredRestLabel', 'Required rest'), formatDuration(upcomingBreakMs)));
-      rows.push(createTimelineRow(getMessage('pomodoroRestCreditedLabel', 'Rest already credited'), formatDuration(restCreditMs)));
+      rows.push(createTimelineRow(getMessage('pomodoroRequiredRestLabel', 'Required rest'), formatDuration(requiredRestMs)));
+      if (runtime.restCreditStartedAt || status.restCreditStartedAt) {
+        rows.push(createTimelineRow(
+          getMessage('pomodoroRestCreditStartedLabel', 'Rest credit started'),
+          formatClock(status.restCreditStartedAt || runtime.restCreditStartedAt)
+        ));
+      }
+      rows.push(createTimelineRow(getMessage('pomodoroRestCreditedLabel', 'Rest already credited'), formatDuration(effectiveRestCreditMs)));
       rows.push(createTimelineRow(getMessage('pomodoroRestStillNeededLabel', 'Rest still needed'), formatDuration(restStillNeededMs)));
-      if (upcomingBreakMs > 0 && restStillNeededMs <= 0) {
+      if (requiredRestMs > 0 && restStillNeededMs <= 0) {
         rows.push(createTimelineRow(getMessage('pomodoroReturnBehaviorLabel'), getMessage('pomodoroReturnStartsNewWork')));
       }
     } else if (phase === 'shortBreak' || phase === 'longBreak') {
       rows.push(createTimelineRow(getMessage('pomodoroBreakStartedLabel', 'Break started'), formatClock(runtime.phaseStartedAt)));
       rows.push(createTimelineRow(getMessage('pomodoroBreakEndsLabel', 'Break ends'), formatClock(runtime.phaseEndsAt)));
-      rows.push(createTimelineRow(getMessage('pomodoroRequiredRestLabel', 'Required rest'), formatDuration(upcomingBreakMs)));
+      rows.push(createTimelineRow(getMessage('pomodoroRequiredRestLabel', 'Required rest'), formatDuration(requiredRestMs)));
       rows.push(createTimelineRow(getMessage('pomodoroNextWorkLabel', 'Next work'), getMessage('pomodoroNextWorkAfterRestLabel', 'after rest is done')));
     } else if (phase === 'completed') {
       rows.push(createTimelineRow(getMessage('pomodoroRestSatisfiedLabel', 'Rest satisfied'), formatClock(runtime.phaseStartedAt || runtime.lastCompletedAt)));
@@ -228,7 +263,9 @@ export function createPomodoroPanel({
     const protectedScheduleActive = Boolean(payload?.protectedScheduleActive);
     const protectedScheduleReason = getMessage('popupPomodoroProtectedScheduleReason');
 
-    phaseBadge.textContent = phaseLabel;
+    phaseBadge.textContent = payload?.timerStatus?.restSatisfiedByCredit
+      ? getMessage('pomodoroRestSatisfiedLabel', 'Rest satisfied')
+      : phaseLabel;
     phaseBadge.dataset.state = phase;
     document.getElementById('pomodoroRemainingText').textContent = remainingText;
     setTextWithTitle('pomodoroPlanText', planName);

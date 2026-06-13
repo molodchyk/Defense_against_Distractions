@@ -25,6 +25,23 @@ export function minutesToTimeString(minutes) {
   return `${String(hours).padStart(2, '0')}:${String(minutePart).padStart(2, '0')}`;
 }
 
+export function getCurrentScheduleMarker(now = new Date(), hourHeight = SCHEDULE_GRID_HOUR_HEIGHT) {
+  const date = now instanceof Date ? now : new Date(now);
+  if (!Number.isFinite(date.getTime())) {
+    return null;
+  }
+
+  const day = SCHEDULE_GRID_DAYS[(date.getDay() + 6) % 7];
+  const minuteOfDay = (date.getHours() * 60) + date.getMinutes();
+
+  return {
+    day,
+    minuteOfDay,
+    timeText: minutesToTimeString(minuteOfDay),
+    topPixels: (minuteOfDay / 60) * hourHeight
+  };
+}
+
 export function getScheduleRange(schedule) {
   return {
     start: timeStringToMinutes(schedule.startTime),

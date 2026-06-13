@@ -8,6 +8,7 @@ export const DEFAULT_INTENT_CHAIN_BLOCK_COOLDOWN_MS = 45 * 1000;
 export const INTENT_INTERVENTION_ACTIONS = {
   WARN: 'warn',
   GRAYSCALE: 'grayscale',
+  REDUCE_NOISE: 'reduceNoise',
   PROMPT: 'prompt',
   BLOCK: 'block'
 };
@@ -26,7 +27,8 @@ export const DEFAULT_INTENT_SETTINGS = {
   lockedThreshold: 20,
   pomodoroInfluence: INTENT_POMODORO_INFLUENCE_MODES.BOTH,
   diagnosticsRetentionDays: 7,
-  autoCalibration: true
+  autoCalibration: true,
+  autoCloseQuarantinedTab: false
 };
 
 export const DEFAULT_INTENT_OPTIONS = {
@@ -34,6 +36,8 @@ export const DEFAULT_INTENT_OPTIONS = {
   maxSessions: 6,
   maxVisitsPerSession: 80,
   maxTabLineageEntries: 120,
+  maxTabActivationEntries: 120,
+  tabSwitchWindowMs: 2 * 60 * 1000,
   maxFeedbackEntries: 80,
   chainBlockCooldownMs: DEFAULT_INTENT_CHAIN_BLOCK_COOLDOWN_MS,
   intentSettings: DEFAULT_INTENT_SETTINGS,
@@ -49,6 +53,7 @@ export const MAX_RATE_PER_MINUTE = 600;
 export const MIN_DIAGNOSTICS_RETENTION_DAYS = 1;
 export const MAX_DIAGNOSTICS_RETENTION_DAYS = 30;
 export const MIN_FEEDBACK_ENTRIES_FOR_CALIBRATION = 5;
+export const MAX_INTENT_CONTINUE_REASON_LENGTH = 160;
 export const HELPFUL_INTERVENTION_THRESHOLD_DELTA = 6;
 export const TOO_SENSITIVE_THRESHOLD_DELTA = -6;
 export const INTENT_TRANSITION_TYPES = new Set([
@@ -74,6 +79,7 @@ export const INTENT_FEEDBACK_ACTIONS = new Set([
   'acknowledge',
   'continue',
   'isolate',
+  'markCoherent',
   'return',
   'dismiss'
 ]);

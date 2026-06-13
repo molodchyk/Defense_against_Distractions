@@ -13,6 +13,9 @@
     ORIGINAL_DISPLAY_PRIORITY_ATTRIBUTE: 'data-dad-original-display-priority',
     ORIGINAL_DISABLED_ATTRIBUTE: 'data-dad-original-disabled',
     ORIGINAL_ARIA_HIDDEN_ATTRIBUTE: 'data-dad-original-aria-hidden',
+    AUTO_CLICK_ATTRIBUTE: 'data-dad-element-auto-clicked',
+    AUTO_CLEAR_ATTRIBUTE: 'data-dad-element-auto-cleared',
+    AUTO_PAUSE_MEDIA_ATTRIBUTE: 'data-dad-element-auto-paused-media',
     PREVIEW_ATTRIBUTE: 'data-dad-element-block-preview',
     PREVIEW_DISPLAY_ATTRIBUTE: 'data-dad-preview-display',
     PREVIEW_DISPLAY_PRIORITY_ATTRIBUTE: 'data-dad-preview-display-priority',
@@ -32,6 +35,13 @@
     ELEMENT_RULE_ITEM_PREFIX: 'elementBlockRule.',
     DEFAULT_MIN_SCORE: 12,
     DEFAULT_ANCESTOR_DEPTH: 2,
+    DEFAULT_RULE_ACTION: 'hide',
+    ELEMENT_RULE_ACTIONS: {
+      HIDE: 'hide',
+      CLICK: 'click',
+      CLEAR: 'clear',
+      PAUSE_MEDIA: 'pauseMedia'
+    },
     DEFAULT_PREVIEW_MODE: 'hide',
     DEFAULT_PICKER_ACTION_MODE: 'pick',
     DEFAULT_TARGET_LEVEL: 0,

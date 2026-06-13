@@ -13,7 +13,9 @@ import {
   createPomodoroHistoryState,
   getPomodoroActivityStatus,
   getPomodoroRemainingMs,
+  getPomodoroStatus,
   getPomodoroRestCreditMs,
+  isPomodoroSettingsAtLeastAsStrict,
   normalizePomodoroHistoryState,
   normalizePomodoroSettings,
   pausePomodoroForSystemState,
@@ -47,6 +49,63 @@ describe('pomodoro helpers', () => {
       strictBreaks: true,
       autoStart: true
     });
+  });
+
+  it('allows protected-schedule Pomodoro changes that make settings stricter', () => {
+    assert.equal(isPomodoroSettingsAtLeastAsStrict(
+      { ...DEFAULT_POMODORO_SETTINGS, enabled: false },
+      { ...DEFAULT_POMODORO_SETTINGS, enabled: true }
+    ), true);
+
+    assert.equal(isPomodoroSettingsAtLeastAsStrict({
+      ...DEFAULT_POMODORO_SETTINGS,
+      enabled: true,
+      workMinutes: 25,
+      shortBreakMinutes: 5,
+      longBreakMinutes: 15,
+      sessionsBeforeLongBreak: 4,
+      strictBreaks: false,
+      autoStart: false
+    }, {
+      ...DEFAULT_POMODORO_SETTINGS,
+      enabled: true,
+      workMinutes: 20,
+      shortBreakMinutes: 6,
+      longBreakMinutes: 20,
+      sessionsBeforeLongBreak: 3,
+      strictBreaks: true,
+      autoStart: true
+    }), true);
+  });
+
+  it('rejects protected-schedule Pomodoro changes that relax settings', () => {
+    const protectedSettings = {
+      ...DEFAULT_POMODORO_SETTINGS,
+      enabled: true,
+      workMinutes: 25,
+      shortBreakMinutes: 5,
+      longBreakMinutes: 15,
+      sessionsBeforeLongBreak: 4,
+      strictBreaks: true,
+      autoStart: true
+    };
+
+    [
+      { ...protectedSettings, enabled: false },
+      { ...protectedSettings, workMinutes: 30 },
+      { ...protectedSettings, shortBreakMinutes: 4 },
+      { ...protectedSettings, longBreakMinutes: 10 },
+      { ...protectedSettings, sessionsBeforeLongBreak: 5 },
+      { ...protectedSettings, strictBreaks: false },
+      { ...protectedSettings, autoStart: false }
+    ].forEach(nextSettings => {
+      assert.equal(isPomodoroSettingsAtLeastAsStrict(protectedSettings, nextSettings), false);
+    });
+
+    assert.equal(isPomodoroSettingsAtLeastAsStrict(
+      { ...DEFAULT_POMODORO_SETTINGS, enabled: false },
+      { ...DEFAULT_POMODORO_SETTINGS, enabled: false, workMinutes: 10 }
+    ), false);
   });
 
   it('starts work and advances to a short break after one completed work period', () => {
@@ -117,6 +176,32 @@ describe('pomodoro helpers', () => {
     const breakRuntime = completePomodoroPhase(resumed, settings, now + 25 * 60 * 1000);
     assert.equal(breakRuntime.phase, POMODORO_PHASES.SHORT_BREAK);
     assert.equal(getPomodoroRemainingMs(breakRuntime, now + 25 * 60 * 1000), 3 * 60 * 1000);
+  });
+
+  it('summarizes rest credit timing for Pomodoro UI surfaces', () => {
+    const settings = {
+      ...DEFAULT_POMODORO_SETTINGS,
+      workMinutes: 25,
+      shortBreakMinutes: 5
+    };
+    const runtime = startPomodoroWork('plan_1', settings, now);
+    const lockedAt = now + 20 * 60 * 1000;
+    const locked = pausePomodoroForSystemState(runtime, POMODORO_SYSTEM_STATES.LOCKED, lockedAt);
+    const status = getPomodoroStatus(locked, settings, lockedAt + 2 * 60 * 1000);
+
+    assert.equal(status.requiredRestMs, 5 * 60 * 1000);
+    assert.equal(status.restCreditMs, 2 * 60 * 1000);
+    assert.equal(status.effectiveRestCreditMs, 2 * 60 * 1000);
+    assert.equal(status.restStillNeededMs, 3 * 60 * 1000);
+    assert.equal(status.restSatisfiedByCredit, false);
+    assert.equal(status.restCreditStartedAt, new Date(lockedAt).toISOString());
+    assert.equal(status.restCreditReason, POMODORO_PAUSE_REASONS.SYSTEM_LOCKED);
+
+    const satisfiedStatus = getPomodoroStatus(locked, settings, lockedAt + 6 * 60 * 1000);
+    assert.equal(satisfiedStatus.restCreditMs, 6 * 60 * 1000);
+    assert.equal(satisfiedStatus.effectiveRestCreditMs, 5 * 60 * 1000);
+    assert.equal(satisfiedStatus.restStillNeededMs, 0);
+    assert.equal(satisfiedStatus.restSatisfiedByCredit, true);
   });
 
   it('skips the break when away credit already satisfies the required rest', () => {

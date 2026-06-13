@@ -3,7 +3,7 @@
 }
 
 body {
-    width: 400px;
+    width: 420px;
     max-height: 640px;
     margin: 0;
     overflow: hidden;
@@ -15,7 +15,7 @@ body {
 .popup-shell {
     display: grid;
     max-height: 640px;
-    gap: 9px;
+    gap: 10px;
     padding: 12px;
     overflow-y: auto;
     scrollbar-color: var(--border-strong) transparent;
@@ -55,6 +55,13 @@ body {
 
 .popup-title-block {
     min-width: 0;
+}
+
+.popup-header-actions {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 6px;
 }
 
 header p {
@@ -114,7 +121,7 @@ h2 {
     color: var(--text);
 }
 
-.popup-tab-button[aria-pressed="true"] {
+.popup-tab-button[aria-selected="true"] {
     border-color: var(--primary-border);
     background: var(--primary-soft);
     color: var(--text);

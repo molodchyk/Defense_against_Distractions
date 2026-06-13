@@ -13,6 +13,9 @@ const ignoredDirs = new Set([
   'dist',
   'node_modules'
 ]);
+const auditStats = {
+  ignoredDirectories: 0
+};
 
 const budgets = [
   {
@@ -98,6 +101,7 @@ async function collectFiles(directory) {
   for (const entry of entries) {
     if (entry.isDirectory()) {
       if (ignoredDirs.has(entry.name)) {
+        auditStats.ignoredDirectories += 1;
         continue;
       }
       files.push(...await collectFiles(path.join(directory, entry.name)));
@@ -129,13 +133,17 @@ function formatRelative(filePath) {
 
 const files = await collectFiles(rootDir);
 const rows = [];
+let budgetedFileCount = 0;
+let unbudgetedFileCount = 0;
 
 for (const filePath of files) {
   const relativePath = formatRelative(filePath);
   const budget = budgetFor(relativePath);
   if (!budget) {
+    unbudgetedFileCount += 1;
     continue;
   }
+  budgetedFileCount += 1;
 
   const contents = await readFile(filePath, 'utf8');
   const lines = lineCount(contents);
@@ -155,12 +163,19 @@ for (const filePath of files) {
 
 rows.sort((left, right) => right.lines - left.lines || left.relativePath.localeCompare(right.relativePath));
 
+function printCoverageSummary() {
+  console.log(`Scope: ${Array.from(extensions).join(', ')} files outside ${Array.from(ignoredDirs).join(', ')}.`);
+  console.log(`Coverage: ${budgetedFileCount} budgeted / ${files.length} matching files; ${unbudgetedFileCount} matching files are outside configured budgets; ${auditStats.ignoredDirectories} ignored directories.`);
+}
+
 if (rows.length === 0) {
   console.log('File-size audit passed: no files exceed the documented budgets.');
+  printCoverageSummary();
   process.exit(0);
 }
 
 console.log('File-size audit found files over the documented budgets.');
+printCoverageSummary();
 console.log('');
 console.log('Status  Lines  Budget  Hard  Category                File');
 console.log('------  -----  ------  ----  ----------------------  ----');

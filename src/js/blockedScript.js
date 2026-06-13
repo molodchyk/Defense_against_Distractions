@@ -7,6 +7,7 @@ import {
   safeSyncStorageGet
 } from './blocked/chromeApi.js';
 import { initBlockedPageLocalization } from './blocked/localization.js';
+import { initBlockedPageCustomMessage } from './blocked/customMessage.js';
 import { initBlockedPageTheme } from './blocked/theme.js';
 import { initBlockedPomodoroPanel } from './blocked/pomodoroPanel.js';
 
@@ -16,6 +17,11 @@ const localizer = initBlockedPageLocalization({
 });
 
 initBlockedPageTheme({
+  safeSyncStorageGet,
+  safeStorageOnChangedAddListener
+});
+
+initBlockedPageCustomMessage({
   safeSyncStorageGet,
   safeStorageOnChangedAddListener
 });

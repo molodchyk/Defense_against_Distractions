@@ -70,6 +70,7 @@ function getIntentActionLabel(action) {
   const labels = {
     [INTENT_INTERVENTION_ACTIONS.WARN]: getPlanMessage('intentActionWarnLabel'),
     [INTENT_INTERVENTION_ACTIONS.GRAYSCALE]: getPlanMessage('intentActionGrayscaleLabel'),
+    [INTENT_INTERVENTION_ACTIONS.REDUCE_NOISE]: getPlanMessage('intentActionReduceNoiseLabel'),
     [INTENT_INTERVENTION_ACTIONS.PROMPT]: getPlanMessage('intentActionPromptLabel'),
     [INTENT_INTERVENTION_ACTIONS.BLOCK]: getPlanMessage('intentActionBlockLabel')
   };

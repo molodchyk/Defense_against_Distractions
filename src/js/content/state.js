@@ -206,6 +206,9 @@
     if (typeof global.processedNodes === 'undefined') {
       global.processedNodes = new Set();
     }
+    if (typeof global.structuralTriggerKeys === 'undefined') {
+      global.structuralTriggerKeys = new Set();
+    }
     if (typeof global.keywordObserver === 'undefined') {
       global.keywordObserver = null;
     }
@@ -221,11 +224,17 @@
     if (typeof global.pomodoroStrictBreakInterval === 'undefined') {
       global.pomodoroStrictBreakInterval = null;
     }
+    if (typeof global.structuralTimeTriggerInterval === 'undefined') {
+      global.structuralTimeTriggerInterval = null;
+    }
     if (typeof global.pomodoroStrictBreakBlockActive === 'undefined') {
       global.pomodoroStrictBreakBlockActive = false;
     }
     if (typeof global.blockedPageEventGuardsInstalled === 'undefined') {
       global.blockedPageEventGuardsInstalled = false;
+    }
+    if (typeof global.blockedPageNavigationGuardsInstalled === 'undefined') {
+      global.blockedPageNavigationGuardsInstalled = false;
     }
     if (typeof global.blockDiagnostics === 'undefined') {
       global.blockDiagnostics = {
@@ -241,6 +250,7 @@
     global.pageScore = 0;
     global.pomodoroStrictBreakBlockActive = false;
     global.processedNodes.clear();
+    global.structuralTriggerKeys.clear();
     global.parsedKeywords = [];
     global.blockDiagnostics = {
       triggers: [],
@@ -248,6 +258,7 @@
       finalScore: 0
     };
     global.DAD.disconnectKeywordObserver();
+    global.DAD.ContentBlocking?.siteCheck?.clearStructuralTimeTriggerMonitor?.();
     global.DAD.removeBlockedPageOverlay();
   };
 

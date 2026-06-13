@@ -125,15 +125,20 @@ function createPlanGroupItem({ plan, group, groupIndex, isLocked, onUpdateGroup,
 
   const websitesTextarea = document.createElement('textarea');
   websitesTextarea.value = (group.websites || []).join('\n');
-  websitesTextarea.disabled = isLocked;
+  websitesTextarea.disabled = false;
 
   const keywordsTextarea = document.createElement('textarea');
   keywordsTextarea.value = (group.keywords || []).join('\n');
-  keywordsTextarea.disabled = isLocked;
+  keywordsTextarea.disabled = false;
 
   item.appendChild(createLabeledControl(getPlanMessage('planEntryNamePlaceholder'), nameInput));
   item.appendChild(createLabeledControl(getPlanMessage('planEntryWebsitesLabel'), websitesTextarea));
-  item.appendChild(createLabeledControl(getPlanMessage('planEntryKeywordsLabel'), keywordsTextarea));
+  const keywordsField = createLabeledControl(getPlanMessage('planEntryKeywordsLabel'), keywordsTextarea);
+  const keywordsHint = document.createElement('span');
+  keywordsHint.className = 'muted-text';
+  keywordsHint.textContent = getPlanMessage('planEntryKeywordsHint');
+  keywordsField.appendChild(keywordsHint);
+  item.appendChild(keywordsField);
 
   const actions = document.createElement('div');
   actions.className = 'plan-entry-actions';
@@ -146,12 +151,12 @@ function createPlanGroupItem({ plan, group, groupIndex, isLocked, onUpdateGroup,
   const saveButton = createButton(getPlanMessage('saveButtonLabel'), () => {
     onUpdateGroup(plan.id, groupIndex, {
       ...group,
-      groupName: nameInput.value.trim() || group.groupName,
+      groupName: isLocked ? group.groupName : (nameInput.value.trim() || group.groupName),
       websites: parseMultilineValues(websitesTextarea.value).map(normalizeUrl).filter(Boolean),
       keywords: parseMultilineValues(keywordsTextarea.value)
     });
   }, 'save-button');
-  saveButton.disabled = isLocked;
+  saveButton.disabled = false;
 
   actions.appendChild(deleteButton);
   actions.appendChild(saveButton);
@@ -212,7 +217,7 @@ function createAllowedSitesEditor({ plan, isLocked, onAddAllowedSite, onDeleteAl
     const deleteButton = createIconButton(getPlanMessage('deleteButtonLabel'), () => {
       onDeleteAllowedSite(plan.id, siteIndex);
     }, 'allowed-site-delete-icon');
-    deleteButton.disabled = isLocked;
+    deleteButton.disabled = false;
 
     item.appendChild(label);
     item.appendChild(deleteButton);
