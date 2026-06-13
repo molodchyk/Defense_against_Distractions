@@ -1,6 +1,6 @@
 .settings-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
     align-items: start;
     gap: 14px;
 }
@@ -103,16 +103,23 @@
 
 .theme-mode-control {
     display: grid;
-    grid-template-columns: minmax(110px, 0.55fr) minmax(160px, 1fr);
-    gap: 10px;
-    align-items: center;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 6px;
+    align-items: start;
     max-width: none;
     color: var(--muted);
     font-size: 12px;
     font-weight: 700;
 }
 
+.theme-mode-control span {
+    overflow-wrap: anywhere;
+}
+
 .theme-mode-control select {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
     cursor: pointer;
     color: var(--text);
     font-size: 14px;
