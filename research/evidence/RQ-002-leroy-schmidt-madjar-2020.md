@@ -21,6 +21,17 @@ The review integrates research on interruptions, intrusions, breaks, distraction
 
 Interruptions and task transitions have cognitive, emotional, and performance consequences. Their effects cannot be fully understood without considering the goal system in which they occur.
 
+## Empirical Detail
+
+- Source type: integrative review.
+- Scope: interruptions, intrusions, breaks, distractions, discrepancies, multitasking, and multiple-goal self-regulation.
+- Core frame: task transitions occur inside systems of goals and can have cognitive, affective, and performance consequences.
+- DaD-relevant implication: a transition's meaning depends on whether it serves, suspends, or conflicts with the active goal.
+
+## Non-Obvious Mechanism
+
+The same page transition can be useful, neutral, or damaging depending on the goal system. The page category alone cannot decide intent.
+
 ## Limitations
 
 The review is about work and organizational tasks. It does not directly validate browsing-graph algorithms, automated page classification, or the specific DaD coherence score.
@@ -33,7 +44,7 @@ strong for the broad task-transition framework; moderate for DaD application.
 
 This directly supports DaD's conceptual move from "bad site" to "goal-linked trajectory." A page shift is not inherently bad; it depends on whether it still belongs to the same goal system.
 
-## Product Implication
+## Design Consequence
 
 Intent coherence should keep modeling:
 
@@ -46,6 +57,10 @@ Intent coherence should keep modeling:
 - passive/recommender pressure.
 
 This source also supports keeping Continue and Isolate. Because transitions can be useful or harmful depending on goals, the system should allow users to mark a legitimate shift rather than treating every divergence as failure.
+
+## What Changes
+
+This supports DaD's trajectory model and legitimizes user branch declarations. It argues against host/category-only scoring.
 
 ## Notes
 

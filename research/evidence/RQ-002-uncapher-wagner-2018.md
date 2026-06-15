@@ -21,6 +21,17 @@ The paper reviews research on media multitasking and cognition, including attent
 
 The balance of evidence suggests heavier media multitaskers often perform worse in several cognitive domains than lighter media multitaskers, but causal direction and mechanisms remain unresolved.
 
+## Empirical Detail
+
+- Source type: PNAS review of media multitasking findings.
+- Reviewed domains: executive control, sustained attention, memory, neural correlates, and developmental issues.
+- Main conclusion direction: heavier media multitaskers often show worse performance in several domains.
+- Key caveat: causal direction and underlying mechanisms remain unresolved.
+
+## Non-Obvious Mechanism
+
+The evidence is suggestive enough to treat media-heavy environments as risk context, but too unresolved to treat media multitasking as a diagnostic state.
+
 ## Limitations
 
 The literature is mixed and often correlational. This review should make DaD more cautious, not more deterministic.
@@ -33,7 +44,7 @@ moderate.
 
 This supports using media multitasking as a weak-to-moderate contextual risk signal, especially in combination with behavior signals. It does not support hard claims about individual cognitive state.
 
-## Product Implication
+## Design Consequence
 
 DaD should avoid an automatic "media = bad" rule. Media pressure should matter more when:
 
@@ -42,6 +53,10 @@ DaD should avoid an automatic "media = bad" rule. Media pressure should matter m
 - tab switching or navigation loops are high;
 - the page is passive and low-agency;
 - the user is in a locked or work phase.
+
+## What Changes
+
+Media pressure remains in scoring, but only as a converging modifier. It should not trigger hard prompts alone.
 
 ## Notes
 

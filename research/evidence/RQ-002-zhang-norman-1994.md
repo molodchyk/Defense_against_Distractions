@@ -21,6 +21,16 @@ The paper studies tasks where cognition is distributed across internal mental re
 
 External representations can change the nature and difficulty of cognitive tasks by making information visible, persistent, and easier to manipulate.
 
+## Empirical Detail
+
+- Source type: cognitive science theory and experiments on distributed cognition.
+- Core claim: internal and external representations are not interchangeable; external representations can change task difficulty and strategy.
+- Relevant properties: visibility, persistence, manipulability, and reduced memory burden.
+
+## Non-Obvious Mechanism
+
+Externalizing a chain does more than show the user what DaD knows. It changes the user's problem from recall to recognition and action selection.
+
 ## Limitations
 
 The paper is not about web browsing, digital wellbeing, or self-control. The application to DaD is indirect.
@@ -33,7 +43,7 @@ moderate.
 
 The intent graph turns an invisible browsing chain into an external representation. This can make drift inspectable and can reduce the user's need to reconstruct the path from memory.
 
-## Product Implication
+## Design Consequence
 
 Show graph should be designed as a compact external representation:
 
@@ -46,6 +56,10 @@ Show graph should be designed as a compact external representation:
 - recovery actions.
 
 It should not overload the user with raw history.
+
+## What Changes
+
+This supports concise graph design: enough structure for recognition and action, not exhaustive history.
 
 ## Notes
 

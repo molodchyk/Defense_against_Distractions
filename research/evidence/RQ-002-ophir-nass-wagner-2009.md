@@ -21,6 +21,17 @@ The paper compares heavy and light media multitaskers on cognitive control tasks
 
 Heavy media multitaskers showed poorer performance on measures involving interference from irrelevant stimuli and memory representations, and performed worse on a task-switching measure.
 
+## Empirical Detail
+
+- Sample type: heavy and light media multitasker groups.
+- Measures: filtering irrelevant external stimuli, filtering irrelevant memory representations, and task switching.
+- Result direction: heavy media multitaskers performed worse on the reported cognitive-control measures.
+- Later evidence status: important original study, but later reviews and meta-analyses show mixed results and unresolved causality.
+
+## Non-Obvious Mechanism
+
+The result suggests breadth-biased attention or filtering difficulty, but the study does not show whether media multitasking caused that pattern or whether people with that pattern choose media multitasking.
+
 ## Limitations
 
 The study is correlational. It does not prove that media multitasking caused the deficits, nor does it prove that a specific browsing session is harmful. Later literature emphasizes mixed evidence and causality caveats.
@@ -33,9 +44,13 @@ moderate for association; weak for causal claims.
 
 Media-heavy, multi-stream browsing can be a plausible risk context, especially when combined with tab switching, recommender clicks, and origin decay. It should not become a standalone diagnosis or moral judgment.
 
-## Product Implication
+## Design Consequence
 
 DaD can keep media/recommender/feed pressure as a scoring modifier. It should require converging evidence before escalating to prompt or block.
+
+## What Changes
+
+This source remains useful only when paired with Parry and le Roux's later meta-analysis. It supports media as context, not as a primary intervention trigger.
 
 ## Notes
 

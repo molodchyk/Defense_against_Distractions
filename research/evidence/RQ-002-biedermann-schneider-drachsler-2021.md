@@ -21,6 +21,17 @@ The review examines digital self-control interventions for distracting media mul
 
 Digital self-control interventions use several mechanisms to address distracting media multitasking, but the evidence base is still developing and designs differ substantially.
 
+## Empirical Detail
+
+- Source type: systematic review.
+- Domain: digital self-control interventions for distracting media multitasking, especially in learning contexts.
+- Intervention families include blocking, goal setting, and visualization of device usage statistics.
+- Main synthesis: interventions vary substantially, and the evidence base remains developing.
+
+## Non-Obvious Mechanism
+
+Visualization is a legitimate digital self-control mechanism, but not sufficient by itself. It needs to connect to action.
+
 ## Limitations
 
 The review is focused on learning and media multitasking, not DaD's intent graph. It does not prove that graph-based trajectory recovery works.
@@ -39,9 +50,13 @@ DaD combines several digital self-control mechanisms:
 - recovery actions;
 - local usage and trajectory feedback.
 
-## Product Implication
+## Design Consequence
 
 DaD should keep Show graph and diagnostics as part of the intervention ladder, but should not treat visualization alone as sufficient. Graph view should be paired with actions: Return, Isolate, Continue, or Mark coherent.
+
+## What Changes
+
+This supports graph/action pairing and weakens any design that treats diagnostics as enough without recovery controls.
 
 ## Notes
 

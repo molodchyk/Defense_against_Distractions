@@ -21,6 +21,17 @@ The paper models goal-directed cognition using memory activation and associative
 
 Goals can be modeled as memory representations whose activation changes over time and with cues. Interruptions matter because the suspended goal must later be retrieved and resumed.
 
+## Empirical Detail
+
+- Source type: activation-based cognitive model.
+- Core construct: goals as memory representations whose activation decays and can be primed.
+- DaD-relevant implication: suspended goals need external or contextual cues for reliable retrieval.
+- Related interruption work from the same research line operationalizes recovery through resumption lag.
+
+## Non-Obvious Mechanism
+
+Forgetting the task is not only losing factual memory. It is failure to reactivate the correct goal representation at the right time.
+
 ## Limitations
 
 This is a cognitive model, not direct evidence that a browser graph improves real-world browsing outcomes. It mostly concerns structured tasks and goal retrieval.
@@ -33,7 +44,7 @@ moderate.
 
 DaD's last coherent page and graph act as external retrieval cues for the suspended browsing objective. Return gives a concrete cue and route back to the prior goal context.
 
-## Product Implication
+## Design Consequence
 
 DaD should keep recovery targets concrete:
 
@@ -42,6 +53,10 @@ DaD should keep recovery targets concrete:
 - show the first drift point where available;
 - make Return one click;
 - avoid vague "focus better" messages.
+
+## What Changes
+
+This supports large, visible recovery cues over generic warning copy. The label and target are part of the intervention mechanism.
 
 ## Notes
 

@@ -13,4 +13,4 @@ Do not paste full copyrighted papers here. Store citations, links, short excerpt
 
 ## Current Quality Note
 
-`RQ-001`, `RQ-002`, and `RQ-003` were created before the stricter novelty/depth standard in [`../quality-bar.md`](../quality-bar.md). They are retained as source scaffolding and first-pass orientation, but the registry marks them `revisit` until they are deepened with non-obvious findings, empirical details, mechanisms, and product-changing consequences.
+`RQ-003` was created before the stricter novelty/depth standard in [`../quality-bar.md`](../quality-bar.md). It is retained as source scaffolding and first-pass orientation, but the registry marks it `revisit` until it is deepened with non-obvious findings, empirical details, mechanisms, and product-changing consequences.

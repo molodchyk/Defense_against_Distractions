@@ -17,7 +17,7 @@ This order is practical because these questions affect already-implemented or re
 | ID | Status | Priority | Area | Research Question | Why DaD Needs It | Expected Output |
 | --- | --- | --- | --- | --- | --- | --- |
 | RQ-001 | answered | high | Commitment devices | When do locked schedules and stricter-only edits help self-control, and when do they backfire? | DaD blocks relaxation during locked schedules but allows stricter changes such as enabling Pomodoro. | Evidence-backed lock calibration model, including miscalibration failure, soft-vs-hard commitment, public strictness distortion, and local validation metrics. |
-| RQ-002 | revisit | high | Intent coherence | Does evidence around attention residue, task switching, and media multitasking support Return, Isolate, and graph-based drift recovery? | Intent coherence is a core differentiator and needs disciplined justification. | Deeper mechanism and empirical evidence for task resumption, drift chains, media multitasking, exploration versus drift, and graph/offloading behavior. |
+| RQ-002 | answered | high | Intent coherence | Does evidence around attention residue, task switching, and media multitasking support Return, Isolate, and graph-based drift recovery? | Intent coherence is a core differentiator and needs disciplined justification. | Recoverability model for drift chains, including resumption delay, prompt timing, tab-as-memory, legitimate orienteering, actionable graph design, and modifier-only media pressure. |
 | RQ-003 | revisit | high | Autonomy and reactance | How can DaD enforce precommitted protection without creating reactance, shame, or hostile UX? | Strong defense must preserve trust and avoid becoming coercive. | Deeper evidence on reactance thresholds, autonomy-support mechanisms, digital self-control failure modes, bypass behavior, and measured intervention acceptance. |
 | RQ-004 | backlog | high | Digital self-control | Which digital self-control interventions work best: blocking, friction, timers, usage stats, prompts, rewards, or environmental modification? | DaD uses multiple intervention types and needs an evidence-informed ladder. | Intervention ladder and severity mapping. |
 | RQ-005 | backlog | high | Scoring signals | Which local browser signals are plausible indicators of passive drift or vulnerable state, and which should be avoided? | DaD collects bounded local signals and needs scoring discipline. | Signal table: core, modifier, diagnostic-only, avoid. |
@@ -49,7 +49,7 @@ When a question is answered, link the synthesis file here:
 | ID | Answer |
 | --- | --- |
 | RQ-001 | [Commitment devices and lock calibration](answers/RQ-001-commitment-devices-and-locked-schedules.md) - answered under the revised quality bar |
-| RQ-002 | [First pass: intent drift and attention residue](answers/RQ-002-intent-drift-and-attention-residue.md) - revisit under the new quality bar |
+| RQ-002 | [Intent drift and trajectory recoverability](answers/RQ-002-intent-drift-and-attention-residue.md) - answered under the revised quality bar |
 | RQ-003 | [First pass: autonomy and reactance](answers/RQ-003-autonomy-and-reactance.md) - revisit under the new quality bar |
 | RQ-004 | Not started |
 | RQ-005 | Not started |
