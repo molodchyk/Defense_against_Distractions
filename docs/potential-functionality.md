@@ -51,6 +51,8 @@ This section preserves the original phrasing of ideas before they are clarified 
 - grayscale on websites
 - establish research pipeline
 
+Research pipeline infrastructure now lives in [`../research`](../research/README.md). Use it to turn broad research needs into bounded questions, evidence cards, synthesis notes, and implementation handoffs.
+
 
 - the line that goes at the current day and time at this graph for easy understanding where we are right now in the graph is also needed
 schedule should not be enabled or disabled. The plan itself has enabled disabled option. Every schedule should show up on that graph, but if you define start and end times yourself, it won't show up. The option to choose to run it every second week or any whatever week. That schedule graph should be expandable by default, working with a window 1/6 of the size is viscerally painful. Why if you click somewhere two times they disappear and appear again? It is all very painful to use all around. Add time block is like horizontally taking all the space, and is red? Ugly. Add plan is red, refresh export json clear are red too, Configuration at the bottom also has this crazy horizontal fill in line that is ugly.
