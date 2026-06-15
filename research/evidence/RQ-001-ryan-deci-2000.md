@@ -21,6 +21,16 @@ Self-determination theory describes autonomy, competence, and relatedness as imp
 
 Motivation and well-being are supported when people experience autonomy rather than purely external control. This does not mean no structure; it means structure should be meaningfully connected to the person's own goals and values.
 
+## Empirical Detail
+
+- Source type: theory/review paper in motivation psychology.
+- Core constructs: autonomy, competence, and relatedness as psychological needs.
+- DaD-relevant construct: autonomy support, especially when rules are self-endorsed, understandable, and connected to personal goals.
+
+## Non-Obvious Mechanism
+
+Autonomy does not require unlimited immediate choice. A self-authored constraint can remain autonomy-compatible if the system preserves clarity, competence, and connection to the user's earlier values.
+
 ## Limitations
 
 This source is broad motivational theory, not a study of commitment devices or browser extensions. It should guide design principles, not directly determine lock thresholds.
@@ -33,9 +43,13 @@ moderate for DaD UX design.
 
 DaD can enforce strong restrictions while still being autonomy-supportive if the restrictions are user-chosen, transparent, scoped, and connected to the user's own plan. The extension becomes more autonomy-threatening when rules are opaque, surprising, permanent, or framed as judgment.
 
-## Product Implication
+## Design Consequence
 
 DaD should make locked protection feel like "my earlier plan is active" rather than "the software owns me." UI should preserve competence by explaining what is happening and what options remain.
+
+## What Changes
+
+This defines the autonomy boundary for locks: enforcement is more acceptable when scoped, transparent, chosen in advance, and connected to the user's own plan. It also argues against hidden permanent escalations.
 
 ## Notes
 

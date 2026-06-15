@@ -21,6 +21,16 @@ The paper organizes self-control strategies by when they intervene in the unfold
 
 Self-control is not only response inhibition. People can support self-control by choosing or changing situations before temptation fully develops. Earlier-stage strategies can reduce reliance on brute force willpower.
 
+## Empirical Detail
+
+- Source type: conceptual review and organizing framework.
+- Strategy sequence: situation selection, situation modification, attentional deployment, cognitive change, and response modulation.
+- DaD-relevant placement: locked schedules and UI cleanup are earlier-stage interventions; "resist this page now" is later-stage response modulation.
+
+## Non-Obvious Mechanism
+
+The timing of intervention changes the burden on the user. Earlier situation-level design can prevent conflict from reaching the point where the user needs acute inhibition.
+
 ## Limitations
 
 The paper is a conceptual review, not a direct test of browser extension locks. It supports DaD's design philosophy more than a specific threshold or schedule rule.
@@ -35,11 +45,15 @@ Locked schedules are situation modification. Instead of expecting the user to re
 
 The "stricter allowed, relaxation blocked" rule also fits this model: changes that reduce temptation are allowed, while changes that reintroduce temptation are delayed until the user is outside the high-risk situation.
 
-## Product Implication
+## Design Consequence
 
 DaD should frame locked schedules as environmental design, not moral discipline. The UI should say roughly:
 
 "This schedule is active. You can add protection now, but relaxing this plan waits until the protected period ends."
+
+## What Changes
+
+This moves DaD away from response-inhibition framing. The product should prioritize pre-arranged environment shaping: schedules, UI cleanup, blocked surfaces, and stricter edits that reduce temptation before the acute conflict.
 
 ## Notes
 

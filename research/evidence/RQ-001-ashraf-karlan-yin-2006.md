@@ -16,35 +16,44 @@ DOI: https://doi.org/10.1162/qjec.2006.121.2.635
 
 ## Research Context
 
-The authors designed and evaluated a commitment savings product for bank clients who wanted to restrict access to their savings. The product was intended for people who anticipated future temptation and wanted to commit in advance.
+The authors designed a savings account that restricted access to deposits until a self-selected goal date or balance threshold. The product was offered to Philippine bank clients as a voluntary self-binding device.
 
 ## Main Finding
 
-The study provides field evidence that a voluntary commitment product can change real behavior. The intervention increased savings for offered clients relative to control.
+Voluntary commitment can change real behavior. A meaningful subset accepted the restriction, and assignment to the offer increased savings balances after one year.
+
+## Empirical Detail
+
+- Baseline survey: 1,777 existing or former bank clients.
+- Offer group: 710 clients.
+- Take-up: 202 clients, or 28.4 percent of those offered the product.
+- Outcome: after 12 months, average savings balances increased by 81 percentage points for the treatment group relative to control.
+- Time horizon: one year after the commitment product was offered.
+
+## Non-Obvious Mechanism
+
+The point is not simply "restriction helps." The product works because the earlier self removes a specific future option: liquid access to money. It is not motivational content, advice, or a reminder. The mechanism is a binding change in the choice architecture.
 
 ## Limitations
 
-Financial savings and browser distraction are different domains. Savings products have measurable deposits; DaD's target is attention and browsing coherence, which is harder to measure. The source supports the structure of self-binding more than any specific DaD UI rule.
+Savings and browser behavior differ. Savings has a clear numeric target; attention defense has noisier outcomes and higher false-positive risk. The study also does not show how to calibrate lock strength.
 
 ## Evidence Grade
 
-moderate for DaD; strong for field evidence that voluntary commitment can alter behavior.
+strong for voluntary commitment changing behavior; moderate for DaD locked schedules.
 
 ## Relevance To DaD
 
-The "Odysseus" frame maps directly to DaD's locked schedules: a calmer self restricts future access to tempting choices. The study strengthens the argument that self-binding can be rational and welfare-improving when the user knowingly chooses it.
+DaD's locked schedules use the same self-binding structure: the user configures protection before a vulnerable future state and later cannot relax that protection during the protected interval.
 
-## Product Implication
+## Design Consequence
 
-DaD should preserve the voluntary nature of the lock:
+DaD should keep locked schedules as a legitimate defense layer, but only when the lock is explicit, scoped, and chosen before enforcement. Setup must show what future choices are being removed.
 
-- the user chooses the plan and schedule before enforcement;
-- the lock is transparent;
-- the UI explains what future choices will be unavailable;
-- later restrictions are framed as execution of an earlier decision.
+## What Changes
 
-This supports strong enforcement during a lock, but only for the chosen scope.
+This supports the current strictness rule: during an active lock, changes that preserve or strengthen the earlier commitment can be allowed, while changes that relax it should be delayed, blocked, or routed through an emergency path.
 
 ## Notes
 
-Useful for public explanation: "precommitment" is less hostile than "the extension does not trust you."
+This is the positive anchor for self-binding. It does not justify uncalibrated hard locks.
