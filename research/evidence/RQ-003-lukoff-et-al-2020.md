@@ -43,16 +43,6 @@ DaD should design protection surfaces as containers:
 - keep the user oriented;
 - avoid making the block feel like a blank wall.
 
-## Claim Boundary
-
-What DaD may safely say:
-
-DaD creates local browser boundaries that help protect intentional use.
-
-What DaD must not claim:
-
-DaD must not claim that all bounded contexts are beneficial or that container design is already validated for DaD's full intervention stack.
-
 ## Notes
 
 Useful for product philosophy and UI design.

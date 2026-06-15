@@ -44,16 +44,6 @@ Even when relaxation is blocked during a locked schedule, DaD can preserve auton
 
 DaD's locked-state UI should avoid a dead end. If the user cannot relax the plan now, the interface should still show useful, safe actions.
 
-## Claim Boundary
-
-What DaD may safely say:
-
-DaD preserves user agency during locked protection by showing safe choices and explaining when relaxation can be changed.
-
-What DaD must not claim:
-
-DaD must not claim that any choice menu fully removes reactance or makes enforcement universally acceptable.
-
 ## Notes
 
 This is a practical UI source: if there is enforcement, keep some action space.

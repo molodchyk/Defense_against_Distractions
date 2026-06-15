@@ -37,16 +37,6 @@ DaD can enforce strong restrictions while still being autonomy-supportive if the
 
 DaD should make locked protection feel like "my earlier plan is active" rather than "the software owns me." UI should preserve competence by explaining what is happening and what options remain.
 
-## Claim Boundary
-
-What DaD may safely say:
-
-DaD supports user-owned structure and precommitted protection.
-
-What DaD must not claim:
-
-DaD must not claim that reducing user choice is automatically autonomy-supportive merely because the user installed the extension.
-
 ## Notes
 
 This source supports the boundary between defense and coercion.

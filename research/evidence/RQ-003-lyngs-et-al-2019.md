@@ -42,16 +42,6 @@ DaD should keep proportionality:
 - hard enforcement mainly when precommitted or clearly high-risk;
 - reflection and recovery actions rather than only denial.
 
-## Claim Boundary
-
-What DaD may safely say:
-
-DaD uses established categories of digital self-control design, including blocking, friction, feedback, and reflective prompts.
-
-What DaD must not claim:
-
-DaD must not claim that the literature validates every DaD intervention threshold.
-
 ## Notes
 
 This source supports the intervention ladder and proportionality.

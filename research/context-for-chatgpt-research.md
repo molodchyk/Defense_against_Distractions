@@ -6,7 +6,9 @@ This document is a handoff prompt for ChatGPT Research. It is not the final rese
 
 You are preparing a comprehensive scientific research guideline for a browser extension called Defense against Distractions, abbreviated DaD.
 
-The goal is not to produce marketing copy. The goal is to build a rigorous research foundation for product decisions, scoring models, intervention design, privacy limits, and public claims. Use peer-reviewed papers, systematic reviews, meta-analyses, primary sources, and reputable academic sources. Avoid pop-science overclaims. Clearly separate strong evidence, plausible but uncertain mechanisms, weak evidence, and open research questions.
+The goal is not to produce marketing copy, generic safety guardrails, or obvious UX advice. The goal is to build a rigorous research foundation for product decisions, scoring models, intervention design, privacy limits, and product hypotheses. Use peer-reviewed papers, systematic reviews, meta-analyses, primary sources, and reputable academic sources. Prioritize non-obvious mechanisms, empirical details, measured behavior, effect sizes, base rates, boundary conditions, contradictions, and design consequences that would not be obvious from common sense.
+
+Do not fill the answer with lists of claims nobody intended to make. Mention public-claim limits only when a source is commonly misused or when a specific public claim depends on the research. The core output should teach the product team something they did not know.
 
 ## Product Context
 
@@ -335,31 +337,38 @@ Produce a comprehensive research guideline that Codex can use later. It should i
 1. Executive summary of the scientific basis for DaD.
 2. Evidence map by research area.
 3. Annotated bibliography with links, DOI where available, and evidence strength.
-4. A claims table:
-   - claim DaD may make
-   - evidence supporting it
-   - caveats
-   - forbidden overclaim
-5. A signal table:
+4. A non-obvious findings table:
+   - finding
+   - source
+   - empirical detail or mechanism
+   - why it is not obvious
+   - what it changes in DaD
+5. A mechanism table:
+   - mechanism
+   - evidence
+   - likely signal
+   - likely intervention
+   - boundary condition
+6. A signal table:
    - signal
    - evidence or rationale
    - likely usefulness
    - false-positive risk
    - privacy risk
    - recommended weight: core / modifier / diagnostic-only / avoid
-6. An intervention table:
+7. An intervention table:
    - intervention
    - mechanism
    - evidence
    - appropriate severity level
    - risks
-   - UI wording guidance
-7. A locked-schedule and commitment-device policy section.
-8. An intent-coherence research section explaining trajectory decay, objective amnesia, attention residue, and proportional recovery.
-9. A privacy and ethics section with local-first constraints.
-10. A public-communication section for safe YouTube/store listing language.
+   - measured or plausible failure mode
+8. A locked-schedule and commitment-device policy section.
+9. An intent-coherence research section explaining trajectory decay, objective amnesia, attention residue, and proportional recovery.
+10. A privacy and ethics section with local-first constraints.
 11. Open questions and local validation plan.
 12. Practical implementation recommendations for the next DaD versions.
+13. Optional public-communication caveats only where research creates a real risk of overclaiming.
 
 ## Evidence Standards
 

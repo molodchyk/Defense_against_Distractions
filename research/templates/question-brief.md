@@ -38,6 +38,20 @@ Excluded:
 - HCI or digital wellbeing research.
 - Ethics/privacy/autonomy sources where relevant.
 
+## Novelty Target
+
+What kind of non-obvious information would make this research pass valuable?
+
+Examples:
+
+- measured behavior rates;
+- mechanisms;
+- contradictory findings;
+- boundary conditions;
+- failure modes;
+- effect sizes;
+- design implications we would not infer ourselves.
+
 ## Product Decisions This Could Change
 
 - Decision 1.
@@ -63,4 +77,4 @@ If evidence is weak:
 
 If evidence is negative:
 
-- What not to build or claim.
+- What not to build, what to downgrade, or what to test locally before relying on.

@@ -43,16 +43,6 @@ DaD should communicate ownership:
 
 It should preserve competence by making recovery options legible.
 
-## Claim Boundary
-
-What DaD may safely say:
-
-DaD supports user-owned structure, not third-party control.
-
-What DaD must not claim:
-
-DaD must not claim that any restriction is autonomy-supportive just because the user installed the extension.
-
 ## Notes
 
 This source defines the positive target: not merely less reactance, but more self-endorsed structure.

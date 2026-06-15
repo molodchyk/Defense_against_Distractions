@@ -47,16 +47,6 @@ Intent coherence should keep modeling:
 
 This source also supports keeping Continue and Isolate. Because transitions can be useful or harmful depending on goals, the system should allow users to mark a legitimate shift rather than treating every divergence as failure.
 
-## Claim Boundary
-
-What DaD may safely say:
-
-DaD treats browsing transitions in relation to the user's current goal trajectory, because interruptions and transitions depend on goal context.
-
-What DaD must not claim:
-
-DaD must not claim it knows the user's true goal with certainty.
-
 ## Notes
 
 This source supports the whole intent-coherence frame more than any single button.

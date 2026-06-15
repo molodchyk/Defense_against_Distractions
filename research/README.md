@@ -16,6 +16,7 @@ The goal is to answer product-relevant scientific questions one at a time, then 
 ## Directory Map
 
 - [`context-for-chatgpt-research.md`](context-for-chatgpt-research.md): full handoff prompt for ChatGPT Research.
+- [`quality-bar.md`](quality-bar.md): novelty, depth, and evidence standards for useful research.
 - [`pipeline.md`](pipeline.md): step-by-step process for running research.
 - [`questions.md`](questions.md): research question registry and recommended sequence.
 - [`briefs/`](briefs/README.md): scoped briefs for individual research questions.
@@ -28,6 +29,8 @@ The goal is to answer product-relevant scientific questions one at a time, then 
 Each research cycle should answer one bounded question.
 
 Do not try to prove the whole philosophy of DaD in one pass. Start with a specific question, gather evidence, grade it, synthesize it, then translate it into product constraints or design guidance.
+
+Research must pass the novelty standard in [`quality-bar.md`](quality-bar.md). The point is not to collect obvious statements. The point is to find mechanisms, numbers, failure modes, and design-changing information that neither the developer nor the product owner would have confidently inferred from common sense.
 
 ## Research Cycle
 
@@ -63,10 +66,11 @@ Research should preserve these constraints unless a future decision explicitly c
 
 A good research answer ends with:
 
-- what the evidence supports;
-- what remains uncertain;
-- what DaD may safely claim;
-- what DaD must not claim;
-- which signals should be core, modifiers, diagnostics-only, or avoided;
-- which interventions fit which severity levels;
-- what implementation should do next.
+- non-obvious findings from the literature;
+- mechanisms that explain behavior;
+- empirical details such as effect sizes, sample sizes, base rates, or measured differences where available;
+- counterintuitive or assumption-breaking findings;
+- scoring, intervention, UI, and data implications;
+- local validation metrics;
+- what implementation should do next;
+- what still needs deeper research.

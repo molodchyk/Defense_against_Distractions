@@ -43,16 +43,6 @@ DaD should avoid an automatic "media = bad" rule. Media pressure should matter m
 - the page is passive and low-agency;
 - the user is in a locked or work phase.
 
-## Claim Boundary
-
-What DaD may safely say:
-
-Media multitasking research motivates caution around passive, multi-stream browsing during protected work.
-
-What DaD must not claim:
-
-DaD must not claim to infer long-term cognitive ability from media behavior.
-
 ## Notes
 
 This source supplies the caveat that should accompany all media-multitasking claims.

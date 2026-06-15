@@ -43,16 +43,6 @@ DaD should keep its layered intervention design:
 - avoid pretending that usage stats alone are enough;
 - evaluate mechanisms: what problem does this lock solve?
 
-## Claim Boundary
-
-What DaD may safely say:
-
-DaD uses established digital self-control patterns such as blocking, friction, scheduling, and local feedback.
-
-What DaD must not claim:
-
-DaD must not claim that its exact combination has already been validated by the HCI literature.
-
 ## Notes
 
 Useful bridge source between behavioral economics and Chrome-extension design.

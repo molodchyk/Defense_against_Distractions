@@ -8,15 +8,35 @@ Question ID and exact wording.
 
 Answer in one to three paragraphs.
 
-## Evidence Summary
+## Non-Obvious Findings
+
+List only findings that taught us something not obvious from product intuition.
+
+| Finding | Source | Why It Is Non-Obvious | DaD Consequence |
+| --- | --- | --- | --- |
+| Finding | Source | Reason | Product change |
+
+## Mechanisms
+
+Explain the mechanism-level model that should guide DaD.
+
+## Empirical Details
+
+Summarize numbers where available.
+
+| Source | Sample / Context | Measure | Result | Caveat |
+| --- | --- | --- | --- |
+| Source | Detail | Detail | Detail | Caveat |
+
+## Evidence Map
 
 | Evidence | Grade | Relevance | Caveat |
 | --- | --- | --- | --- |
 | Source or finding | strong/moderate/weak/speculative | How it applies | Important limit |
 
-## What The Evidence Supports
+## Assumptions Updated
 
-- Supported point.
+- What changed in our model of DaD?
 
 ## What Remains Uncertain
 
@@ -45,18 +65,11 @@ Answer in one to three paragraphs.
 - Risky data:
 - Data to avoid by default:
 
-## Autonomy And Reactance Implications
+## Local Validation Metrics
 
-- How to preserve user trust.
-- How to avoid hostile UX.
-
-## Safe Claims
-
-- Claim DaD may make.
-
-## Forbidden Overclaims
-
-- Claim DaD must not make.
+- Metric:
+- Why it matters:
+- Privacy boundary:
 
 ## Implementation Handoff
 
@@ -64,6 +77,14 @@ Answer in one to three paragraphs.
 - Minimum viable change:
 - Tests needed:
 - Rollout risk:
+
+## Revisit Triggers
+
+- What evidence or local data would change this answer?
+
+## Optional Claim Boundaries
+
+Include only if public/store claims depend on this research.
 
 ## Open Questions
 

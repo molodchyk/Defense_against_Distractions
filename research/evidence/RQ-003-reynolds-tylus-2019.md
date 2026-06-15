@@ -44,16 +44,6 @@ DaD's enforcement surfaces should include:
 - no moral accusation;
 - no hidden state.
 
-## Claim Boundary
-
-What DaD may safely say:
-
-DaD's UI is designed to explain protection rather than shame the user.
-
-What DaD must not claim:
-
-DaD must not claim that resistance to DaD means the user is in denial or low-lucidity.
-
 ## Notes
 
 This card overlaps RQ-001, but RQ-003 uses it specifically for UI and intervention design.

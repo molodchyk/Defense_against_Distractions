@@ -41,16 +41,6 @@ DaD should frame locked schedules as environmental design, not moral discipline.
 
 "This schedule is active. You can add protection now, but relaxing this plan waits until the protected period ends."
 
-## Claim Boundary
-
-What DaD may safely say:
-
-DaD helps users modify their browsing environment in advance so they do not need to rely only on in-the-moment willpower.
-
-What DaD must not claim:
-
-DaD must not claim that willpower is irrelevant or that environmental controls solve all self-control problems.
-
 ## Notes
 
 This is the strongest psychology source for DaD's general defense model.

@@ -45,16 +45,6 @@ Even when DaD cannot offer the forbidden option, it can offer safe choices:
 
 DaD should avoid dead-end screens. A blocked relaxation attempt should still leave the user with meaningful next actions.
 
-## Claim Boundary
-
-What DaD may safely say:
-
-DaD preserves agency by showing safe options during enforcement.
-
-What DaD must not claim:
-
-DaD must not claim that merely offering buttons fully preserves autonomy.
-
 ## Notes
 
 This supports choice within protection, not choice to bypass every protection.

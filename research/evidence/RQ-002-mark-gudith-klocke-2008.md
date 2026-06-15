@@ -42,16 +42,6 @@ DaD should keep proportional intervention levels:
 - prompt when user choice is useful;
 - hard quarantine only for locked or drift-descendant contexts.
 
-## Claim Boundary
-
-What DaD may safely say:
-
-Interruptions can impose stress and effort, so DaD uses proportional interventions rather than interrupting every weak signal.
-
-What DaD must not claim:
-
-DaD must not claim that every prompt is beneficial simply because drift may exist.
-
 ## Notes
 
 This is a design caution: intervention frequency is part of the safety model.

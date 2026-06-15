@@ -26,6 +26,21 @@ Population, setting, intervention, or phenomenon studied.
 
 What the source actually shows.
 
+## Empirical Detail
+
+Capture concrete details where available:
+
+- sample size;
+- population;
+- task or intervention;
+- measures;
+- effect size, rate, frequency, or direction of effect;
+- time horizon.
+
+## Non-Obvious Mechanism
+
+What did this source explain that common sense would not reliably provide?
+
 ## Limitations
 
 What the source does not show, or why it may not generalize to DaD.
@@ -41,15 +56,13 @@ What the source does not show, or why it may not generalize to DaD.
 
 How this source relates to DaD features or philosophy.
 
-## Product Implication
+## Design Consequence
 
 What DaD should do, avoid, or test because of this source.
 
-## Claim Boundary
+## What Changes
 
-What DaD may safely say:
-
-What DaD must not claim:
+Which design assumption, scoring idea, threshold, intervention, or research question changes because of this source?
 
 ## Notes
 

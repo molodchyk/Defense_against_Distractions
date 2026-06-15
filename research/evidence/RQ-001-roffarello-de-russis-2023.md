@@ -46,16 +46,6 @@ DaD should build local validation loops:
 
 These should stay local-first and aggregate by default.
 
-## Claim Boundary
-
-What DaD may safely say:
-
-DaD is research-informed and uses patterns studied in digital self-control tools.
-
-What DaD must not claim:
-
-DaD must not claim full empirical validation without DaD-specific studies or local evidence.
-
 ## Notes
 
 This source supports humility in store listing and public explanation.

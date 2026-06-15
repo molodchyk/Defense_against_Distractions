@@ -1,5 +1,9 @@
 # Research Synthesis
 
+## Quality Status
+
+First pass only. This answer predates the stricter research quality bar and is now marked `revisit`. It identifies relevant research areas, but the next pass must extract deeper empirical details: effect sizes, reactance moderators, intervention acceptance rates, bypass behavior, and non-obvious design implications.
+
 ## Question
 
 `RQ-003`: How can DaD enforce precommitted protection without creating reactance, shame, or hostile UX?
@@ -189,23 +193,17 @@ The user should always be able to answer:
 
 This converts enforcement from a mysterious restriction into a legible boundary. A boundary can still be frustrating, but it is less likely to feel like contempt.
 
-## Safe Claims
+## Research Gaps For Revisit
 
-- DaD uses user-owned plans and schedules to support precommitted protection.
-- DaD tries to explain strong interventions instead of shaming the user.
-- DaD keeps safe recovery actions available during protection.
-- DaD treats strong enforcement as a scoped boundary, not a judgment of the user.
-- DaD is research-informed by reactance, autonomy-support, and digital self-control literature.
+The next pass should replace broad autonomy guidance with deeper findings:
 
-## Forbidden Overclaims
-
-- "DaD knows when you are lying."
-- "If you resist the extension, that proves it is working."
-- "Strong blocking is always good for you."
-- "DaD can infer your true intention."
-- "Reactance means the user is irrational."
-- "Autonomy support means every action must always remain available."
-- "DaD is clinically validated to treat compulsive use."
+- reactance effect sizes and moderators from meta-analyses;
+- differences between self-chosen restriction and externally imposed restriction;
+- which message features measurably increase resistance;
+- how choice overload differs from meaningful safe choice;
+- measured bypass or abandonment patterns in digital self-control tools;
+- whether autonomy-supportive framing changes persistence, not only stated acceptance;
+- how users with high trait reactance respond to lockouts and friction.
 
 ## Implementation Handoff
 
@@ -222,17 +220,13 @@ Affected files or docs:
 
 Minimum viable future changes:
 
-- Add a shared enforcement-copy checklist in docs or code comments near prompt rendering.
-- Replace any accusatory copy with rule-based copy.
 - Ensure locked-edit rejections show active lock end time when known.
 - Add "queue for after lock" design notes for relaxation changes.
 - Ensure hard quarantine always shows reason, recovery action, and scope.
-- Add tests that prompt rendering uses uncertain language such as "appears" instead of certainty language such as "is".
 
 Tests needed:
 
 - Locked edit refusal includes active rule context.
-- Prompt copy does not use "trust", "lying", "failed", "wasting", or similar hostile terms except in research docs.
 - Hard quarantine includes Return or equivalent recovery path.
 - Continue is unavailable only where plan policy explicitly removes it.
 - Show graph and diagnostics do not expose raw sensitive content.

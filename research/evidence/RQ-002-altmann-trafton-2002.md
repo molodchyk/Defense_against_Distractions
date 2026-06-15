@@ -43,16 +43,6 @@ DaD should keep recovery targets concrete:
 - make Return one click;
 - avoid vague "focus better" messages.
 
-## Claim Boundary
-
-What DaD may safely say:
-
-Concrete cues can support goal resumption; DaD exposes local browsing cues to help users recover a prior trajectory.
-
-What DaD must not claim:
-
-DaD must not claim it reads or stores the user's mental goals.
-
 ## Notes
 
 This source gives a cognitive basis for why "last coherent" is more useful than a generic warning.

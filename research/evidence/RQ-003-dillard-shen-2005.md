@@ -41,16 +41,6 @@ DaD should avoid accusatory copy. Enforcement text should describe the rule, not
 - "This change would weaken the active plan."
 - "Relaxation is available after the lock ends."
 
-## Claim Boundary
-
-What DaD may safely say:
-
-DaD uses neutral enforcement language to avoid making protective restrictions feel like personal accusation.
-
-What DaD must not claim:
-
-DaD must not claim that neutral wording eliminates all reactance.
-
 ## Notes
 
 This source is especially relevant to blocked-page and locked-edit copy.

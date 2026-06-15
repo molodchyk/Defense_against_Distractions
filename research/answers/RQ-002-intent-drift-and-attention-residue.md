@@ -1,5 +1,9 @@
 # Research Synthesis
 
+## Quality Status
+
+First pass only. This answer predates the stricter research quality bar and is now marked `revisit`. It contains useful source scaffolding, but the next pass must extract deeper empirical details, mechanisms, and non-obvious design consequences.
+
 ## Question
 
 `RQ-002`: Does evidence around attention residue, task switching, and media multitasking support Return, Isolate, and graph-based drift recovery?
@@ -163,44 +167,16 @@ Data to avoid by default:
 - long-term personality or cognitive ability profiles;
 - cloud-uploaded trajectory graphs.
 
-## Autonomy And Reactance Implications
+## Research Gaps For Revisit
 
-Intent coherence should stay humble. The system estimates drift; it does not know the user's mind.
+The next pass should replace broad guidance with deeper findings:
 
-Good UI framing:
-
-- "This browsing chain appears to have drifted."
-- "Last coherent: [target]."
-- "Current: [target]."
-- "Return, start a new chain, continue, or inspect."
-
-Bad UI framing:
-
-- "You are distracted."
-- "You failed."
-- "This is objectively useless."
-- "DaD knows your real intent."
-
-Continue and Isolate preserve autonomy. Return preserves protection. Show graph preserves explainability.
-
-## Safe Claims
-
-- DaD models browsing as a local trajectory rather than judging only the current site.
-- Research on attention residue and task transitions supports the idea that unfinished shifts can make it harder to stay coherent.
-- DaD offers recovery actions such as returning to the last coherent page or starting a new local chain.
-- DaD uses local signals such as tab lineage, transition type, similarity, switching, and passive media pressure to estimate drift.
-- DaD's graph makes the browsing chain visible for local inspection.
-
-## Forbidden Overclaims
-
-- "DaD measures attention residue."
-- "DaD knows your true intention."
-- "Media multitasking causes permanent attention damage."
-- "Every low-similarity page is distraction."
-- "The graph proves the page is bad."
-- "Isolate makes a site safe."
-- "Continue means the system was wrong."
-- "Intent coherence is a clinical mental-state detector."
+- measured size and duration of attention-residue effects;
+- conditions under which ready-to-resume plans work or fail;
+- whether external graph-like representations measurably change resumption, memory load, or self-regulation;
+- what media-multitasking studies actually measure and how strong the associations are;
+- how often interruptions create stress versus useful task switching;
+- empirical distinctions between productive exploration and fragmentation.
 
 ## Implementation Handoff
 
@@ -217,7 +193,6 @@ Minimum viable future changes:
 
 - Rename or explain Isolate as "Start new chain here" where space allows.
 - Ensure Return target is always visibly identified before action.
-- Add graph copy that frames it as local trajectory inspection, not proof.
 - Track local outcomes of Continue, Isolate, Return, and Show graph without raw content.
 - Add a short post-action diagnostic: "Returned to last coherent page" or "Started new chain here."
 
@@ -227,7 +202,6 @@ Tests needed:
 - Isolate creates a new chain/baseline without globally trusting a domain.
 - Continue reason remains local and bounded.
 - Show graph does not require raw page text.
-- Prompt copy avoids certainty and shame language.
 - Weak single signals do not trigger hard quarantine.
 
 Rollout risk:

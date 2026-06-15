@@ -1,5 +1,9 @@
 # Research Synthesis
 
+## Quality Status
+
+First pass only. This answer predates the stricter research quality bar and is now marked `revisit`. It identifies useful source scaffolding, but the next pass must extract deeper empirical detail: take-up rates, default rates, commitment calibration failures, escape design, and measured behavior change.
+
 ## Question
 
 `RQ-001`: When do locked schedules, precommitment, and stricter-only configuration edits help self-control, and when do they backfire?
@@ -157,40 +161,17 @@ Good locked-state language:
 - "This change would weaken the active plan."
 - "Queue this change for review after the lock."
 
-Bad locked-state language:
+## Research Gaps For Revisit
 
-- "You are not allowed."
-- "You cannot be trusted."
-- "You are trying to bypass protection."
-- "DaD detected that you are lying."
-- "For your own good."
+The next pass should extract deeper findings:
 
-The user should remain competent inside the UI. They should understand:
-
-- what rule is active;
-- who created it;
-- when it ends;
-- what can be changed now;
-- what can be changed later;
-- how to handle real mistakes.
-
-## Safe Claims
-
-- DaD supports user-chosen precommitment.
-- DaD can make protection harder to relax during a scheduled protected period.
-- DaD allows protection-increasing changes during locked schedules.
-- DaD is research-informed by commitment-device, self-control, and digital wellbeing literature.
-- DaD changes the browsing environment so the user does not rely only on in-the-moment willpower.
-
-## Forbidden Overclaims
-
-- "DaD scientifically proves you will focus."
-- "Locked schedules fix addiction."
-- "Users are irrational during locks."
-- "DaD detects lies."
-- "Stronger locks are always better."
-- "The optimal lock can be inferred automatically from browsing behavior."
-- "Any user who wants to relax protection is in a low-lucidity state."
+- how often people voluntarily choose commitment devices when offered;
+- how often commitment users default, bypass, or regret the commitment;
+- whether failures come from overconfidence, underconfidence, liquidity/real-life shocks, or bad contract design;
+- how hard versus soft commitments differ in measured outcomes;
+- when escape clauses preserve welfare versus destroy the commitment;
+- what timing, duration, penalty, and review structures perform best;
+- how commitment demand differs between sophisticated and naive self-control profiles.
 
 ## Implementation Handoff
 

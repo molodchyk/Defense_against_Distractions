@@ -39,16 +39,6 @@ DaD should keep graph view as diagnostic and metacognitive support. It should be
 
 The graph should not be the only way to recover; Return and Isolate should remain available directly.
 
-## Claim Boundary
-
-What DaD may safely say:
-
-DaD can externalize the browsing chain so users can inspect and reason about drift.
-
-What DaD must not claim:
-
-DaD must not claim graph inspection automatically restores focus.
-
 ## Notes
 
 This source supports Show graph as an assistive representation rather than an enforcement mechanism.

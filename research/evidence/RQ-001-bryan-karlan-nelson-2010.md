@@ -43,16 +43,6 @@ DaD should keep locked schedules as a first-class protection mechanism. The rule
 
 DaD should not treat all commitment as equally good. The tool needs clear setup, visible lock boundaries, and delayed review after the locked period.
 
-## Claim Boundary
-
-What DaD may safely say:
-
-DaD supports user-chosen precommitment: protection can be locked in advance so it is harder to relax during a vulnerable period.
-
-What DaD must not claim:
-
-DaD must not claim that locked schedules are universally beneficial, clinically validated for addiction, or guaranteed to improve self-control for every user.
-
 ## Notes
 
 This is the anchor source for treating locked schedules as self-binding rather than arbitrary paternalism.

@@ -40,16 +40,6 @@ DaD should strengthen the "last coherent" and "first drift" surfaces. They are n
 
 Continue should remain possible in non-hard interventions, but requiring a short reason is consistent with a lightweight planning step rather than a punishment.
 
-## Claim Boundary
-
-What DaD may safely say:
-
-Briefly planning how to resume a prior task can reduce attention residue in interruption research, so DaD exposes return targets and recovery choices.
-
-What DaD must not claim:
-
-DaD must not claim its current prompt has been experimentally proven to reduce attention residue.
-
 ## Notes
 
 This is the strongest source for Return and for the general idea that recovery affordances should be concrete, not abstract.

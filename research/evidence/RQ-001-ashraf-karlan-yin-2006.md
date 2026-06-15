@@ -45,16 +45,6 @@ DaD should preserve the voluntary nature of the lock:
 
 This supports strong enforcement during a lock, but only for the chosen scope.
 
-## Claim Boundary
-
-What DaD may safely say:
-
-Voluntary precommitment has field evidence in other domains and can help people follow through on earlier goals.
-
-What DaD must not claim:
-
-DaD must not imply that financial commitment results directly prove attention outcomes.
-
 ## Notes
 
 Useful for public explanation: "precommitment" is less hostile than "the extension does not trust you."

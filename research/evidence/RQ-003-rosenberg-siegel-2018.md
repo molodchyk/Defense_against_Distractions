@@ -43,16 +43,6 @@ DaD should treat unexplained or moralizing enforcement as a product risk. Strong
 - visible end condition;
 - safe remaining actions.
 
-## Claim Boundary
-
-What DaD may safely say:
-
-DaD is designed to reduce resistance by making strong protection transparent, user-owned, and bounded.
-
-What DaD must not claim:
-
-DaD must not claim that user resistance proves the user is irrational, lying, or defective.
-
 ## Notes
 
 This is the anchor source for reactance risk.

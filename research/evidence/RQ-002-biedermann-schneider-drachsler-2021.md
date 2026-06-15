@@ -43,16 +43,6 @@ DaD combines several digital self-control mechanisms:
 
 DaD should keep Show graph and diagnostics as part of the intervention ladder, but should not treat visualization alone as sufficient. Graph view should be paired with actions: Return, Isolate, Continue, or Mark coherent.
 
-## Claim Boundary
-
-What DaD may safely say:
-
-DaD uses intervention patterns studied in digital self-control research, including blocking, reflection, and visual feedback.
-
-What DaD must not claim:
-
-DaD must not claim that the exact DaD graph or scoring model is validated by this review.
-
 ## Notes
 
 This source links RQ-002 to the broader digital self-control intervention literature.

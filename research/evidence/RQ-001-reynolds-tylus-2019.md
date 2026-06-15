@@ -44,16 +44,6 @@ DaD should:
 - offer safe alternatives such as adding protection, returning, isolating, or waiting until the lock ends;
 - keep emergency semantics explicit.
 
-## Claim Boundary
-
-What DaD may safely say:
-
-DaD is designed to reduce in-the-moment conflict by making lock rules clear and precommitted.
-
-What DaD must not claim:
-
-DaD must not imply that resistance proves the user is irrational, lying, or defective.
-
 ## Notes
 
 This source should influence wording more than scoring.

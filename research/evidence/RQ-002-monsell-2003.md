@@ -37,16 +37,6 @@ DaD should treat rapid tab switching, A/B loops, repeated navigation loops, and 
 
 Task-switching signals should remain modifiers unless they combine with other drift evidence such as low origin similarity, passive media pressure, recommender clicks, or stale control.
 
-## Claim Boundary
-
-What DaD may safely say:
-
-Frequent switching can carry cognitive costs, so DaD uses bounded switching and loop signals as part of local drift diagnostics.
-
-What DaD must not claim:
-
-DaD must not claim all switching is bad or that task-switch costs prove a user is distracted.
-
 ## Notes
 
 This source supports signals, not hard blocking by itself.

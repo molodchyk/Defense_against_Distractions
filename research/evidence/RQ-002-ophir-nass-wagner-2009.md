@@ -37,16 +37,6 @@ Media-heavy, multi-stream browsing can be a plausible risk context, especially w
 
 DaD can keep media/recommender/feed pressure as a scoring modifier. It should require converging evidence before escalating to prompt or block.
 
-## Claim Boundary
-
-What DaD may safely say:
-
-Heavy media multitasking is associated with differences in attention and cognitive control, so DaD treats media-multitasking contexts as possible drift pressure.
-
-What DaD must not claim:
-
-DaD must not claim media multitasking damages the brain, causes attention disorders, or proves the user is impaired.
-
 ## Notes
 
 Use as a cautionary signal source, not as a hard-block justification.

@@ -45,16 +45,6 @@ DaD should locally track non-sensitive outcomes:
 - post-lock adjustment;
 - false-positive feedback.
 
-## Claim Boundary
-
-What DaD may safely say:
-
-DaD is research-informed and locally evaluable.
-
-What DaD must not claim:
-
-DaD must not claim that its full defensive system is clinically or experimentally proven.
-
 ## Notes
 
 This source keeps RQ-003 from becoming too confident.

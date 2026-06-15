@@ -47,16 +47,6 @@ Show graph should be designed as a compact external representation:
 
 It should not overload the user with raw history.
 
-## Claim Boundary
-
-What DaD may safely say:
-
-Graph view helps make the local browsing trajectory visible for inspection.
-
-What DaD must not claim:
-
-DaD must not claim that graph view has been directly validated as a clinical or productivity intervention.
-
 ## Notes
 
 This supports the design grammar of Show graph.

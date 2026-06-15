@@ -43,16 +43,6 @@ DaD should make active restrictions feel self-endorsed:
 - use neutral language;
 - offer safe choices.
 
-## Claim Boundary
-
-What DaD may safely say:
-
-Autonomy-supportive framing can matter for self-control, so DaD treats wording and user ownership as functional design, not decoration.
-
-What DaD must not claim:
-
-DaD must not claim autonomy framing removes all burden or makes every restriction easy.
-
 ## Notes
 
 Useful for explaining why UI copy is part of the defense system.

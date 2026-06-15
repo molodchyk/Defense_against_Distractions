@@ -46,16 +46,6 @@ DaD should:
 
 The current "stricter edits allowed" rule is reasonable because it does not undermine the original deadline-like commitment.
 
-## Claim Boundary
-
-What DaD may safely say:
-
-Precommitted deadlines and restrictions can help people reduce procrastination, but they need careful setup.
-
-What DaD must not claim:
-
-DaD must not claim that user-set locks will always be optimal or that stricter defaults are always better.
-
 ## Notes
 
 This source is especially important for UI design: the setup screen should help the user choose the commitment while calm.
