@@ -16,7 +16,7 @@ This order is practical because these questions affect already-implemented or re
 
 | ID | Status | Priority | Area | Research Question | Why DaD Needs It | Expected Output |
 | --- | --- | --- | --- | --- | --- | --- |
-| RQ-001 | briefed | high | Commitment devices | When do locked schedules and stricter-only edits help self-control, and when do they backfire? | DaD blocks relaxation during locked schedules but allows stricter changes such as enabling Pomodoro. | Locked-schedule policy, escape-valve guidance, claim limits. |
+| RQ-001 | answered | high | Commitment devices | When do locked schedules and stricter-only edits help self-control, and when do they backfire? | DaD blocks relaxation during locked schedules but allows stricter changes such as enabling Pomodoro. | Locked-schedule policy, escape-valve guidance, claim limits. |
 | RQ-002 | backlog | high | Intent coherence | Does evidence around attention residue, task switching, and media multitasking support Return, Isolate, and graph-based drift recovery? | Intent coherence is a core differentiator and needs disciplined justification. | Intervention guidance for Continue, Isolate, Return, Show graph. |
 | RQ-003 | backlog | high | Autonomy and reactance | How can DaD enforce precommitted protection without creating reactance, shame, or hostile UX? | Strong defense must preserve trust and avoid becoming coercive. | UI wording rules, enforcement boundaries, autonomy safeguards. |
 | RQ-004 | backlog | high | Digital self-control | Which digital self-control interventions work best: blocking, friction, timers, usage stats, prompts, rewards, or environmental modification? | DaD uses multiple intervention types and needs an evidence-informed ladder. | Intervention ladder and severity mapping. |
@@ -48,7 +48,7 @@ When a question is answered, link the synthesis file here:
 
 | ID | Answer |
 | --- | --- |
-| RQ-001 | Not started |
+| RQ-001 | [Commitment devices and locked schedules](answers/RQ-001-commitment-devices-and-locked-schedules.md) |
 | RQ-002 | Not started |
 | RQ-003 | Not started |
 | RQ-004 | Not started |
