@@ -6,6 +6,7 @@ Use one synthesis file per research question:
 
 - `RQ-001-commitment-devices-and-locked-schedules.md`
 - `RQ-002-intent-drift-and-attention-residue.md`
+- `RQ-003-autonomy-and-reactance.md`
 
 Evidence cards can live beside the synthesis when they are specific to one question.
 
@@ -13,4 +14,4 @@ Do not paste full copyrighted papers here. Store citations, links, short excerpt
 
 ## Current Quality Note
 
-`RQ-003` was created before the stricter novelty/depth standard in [`../quality-bar.md`](../quality-bar.md). It is retained as source scaffolding and first-pass orientation, but the registry marks it `revisit` until it is deepened with non-obvious findings, empirical details, mechanisms, and product-changing consequences.
+`RQ-001`, `RQ-002`, and `RQ-003` have revised answers under the stricter novelty/depth standard in [`../quality-bar.md`](../quality-bar.md). User review flagged `RQ-001` as potentially still not novel enough; treat it as a likely future repair pass even though it remains linked as answered in the registry.

@@ -1,253 +1,317 @@
 # Research Synthesis
 
-## Quality Status
-
-First pass only. This answer predates the stricter research quality bar and is now marked `revisit`. It identifies relevant research areas, but the next pass must extract deeper empirical details: effect sizes, reactance moderators, intervention acceptance rates, bypass behavior, and non-obvious design implications.
-
 ## Question
 
-`RQ-003`: How can DaD enforce precommitted protection without creating reactance, shame, or hostile UX?
+`RQ-003`: How can DaD enforce precommitted protection without creating reactance, bypass pressure, abandonment, or a system the user experiences as hostile?
 
 ## Short Answer
 
-DaD can enforce strong protection without becoming hostile if enforcement is experienced as user-owned structure rather than external domination. The research does not say "never restrict." It says restrictions are risky when they feel like unexpected, illegitimate freedom threats. DaD's strongest interventions are most defensible when they are precommitted, scoped, transparent, time-bounded, explained, and paired with safe choices.
+DaD should not treat "autonomy" as softness. The stronger answer from the literature is that effective self-protection needs **legitimate constraint**: a restriction that is strong enough to change behavior, but still experienced as executing the user's earlier self-authored rule rather than as a mysterious external authority.
 
-Reactance research warns that controlling or antifreedom language can create anger, counterarguing, source rejection, and attempts to restore the restricted behavior. Self-determination and autonomy-support research adds the positive target: the user should feel that the protection is connected to their own earlier goals and that they still have competence inside the system.
+The non-obvious part is that weaker is not always better. Smartphone lockout studies found that even tiny friction discouraged use, and heavier friction discouraged much more. GoalKeeper found restrictive mechanisms were more effective than warnings. But the same evidence also shows the failure mode: rigid restriction creates frustration and pressure when context changes and the system cannot represent why the user now needs something different.
 
-The design rule is: enforce the rule, not a moral judgment. DaD should say what active plan or schedule triggered, what action would weaken protection, what the user can still do, and when review or relaxation becomes available. It should never imply that the user is bad, lying, broken, or incapable of choice.
+So the product problem is not "avoid enforcement." It is:
 
-## Evidence Summary
+- make the lock strong enough to matter;
+- make its source, scope, and end visible enough to preserve legitimacy;
+- keep choices real but bounded so the user can recover, defer, branch, or inspect without immediately dissolving the commitment;
+- treat bypass and repeated softening as diagnostics of a misfit, not as moral failure.
 
-| Evidence | Grade | Relevance | Caveat |
+## Non-Obvious Findings
+
+| Finding | Source | Why It Is Non-Obvious | DaD Consequence |
 | --- | --- | --- | --- |
-| Rosenberg & Siegel (2018) review psychological reactance theory. | strong / moderate for DaD | Explains why perceived freedom threats can provoke resistance. | Broad theory, not DaD-specific. |
-| Dillard & Shen (2005) study anger and negative cognitions in reactance. | moderate | Supports avoiding accusatory enforcement copy. | Persuasive health communication context. |
-| Rains (2013) meta-analysis of reactance. | strong / moderate for DaD | Supports perceived freedom threat as central. | Mostly communication studies. |
-| Reynolds-Tylus (2019) reactance review. | moderate | Guides non-shaming explanations and safe choices. | Health communication context. |
-| Li & Shi (2026) meta-analysis of antifreedom messages. | strong / moderate for DaD | Supports avoiding controlling language. | Message effects, not lockout thresholds. |
-| Ryan & Deci (2000) self-determination theory. | moderate | Defines autonomy-supportive structure. | Broad motivation theory. |
-| Muraven, Gagne, & Rosman (2008) autonomy support and self-control. | moderate | Suggests framing affects self-control cost. | Not digital self-control. |
-| Bol et al. (2019) digital autonomy-supportive messaging. | weak / moderate | Supports offering safe choices. | Digital health messaging, not enforcement. |
-| Lukoff et al. (2020) digital container design. | weak / moderate | Supports bounded intentional contexts. | Mindfulness app context. |
-| Lyngs et al. (2019) digital self-control tool review. | moderate | Supports intervention ladders and self-control tool categories. | Does not validate every DaD action. |
-| Roffarello & De Russis (2023) DSCT review/meta-analysis. | strong / moderate for DaD | Supports humility, ethics, and local validation. | Broad field-level evidence. |
+| A pause-only lockout discouraged 13.1% of app launches; a 30-digit task discouraged 47.5%. | Kim et al. 2019, LocknType | Very small access costs can change behavior measurably; friction does not need to be dramatic to matter. | DaD should tune friction as a dose, not jump from warning to total block. |
+| Restrictive mechanisms outperformed warnings in a four-week field study, but increased frustration and pressure because real usage contexts varied. | Kim et al. 2019, GoalKeeper | "Strong is hostile" is too simple. Strong works, but fails when context-legibility is poor. | Locked schedules can be strict, but they need review windows, queued changes, and emergency escape semantics. |
+| Rotating web interventions reduced time on site but increased uninstall attrition; a just-in-time explanation about rotation cut attrition roughly in half. | Kovacs et al. 2018 | More effective intervention can reduce retention if the system violates the user's mental model. | DaD should explain unexpected escalation or changed intervention mode at the moment it happens. |
+| HabitLab users gradually weakened interventions while repeatedly asking to be asked again next visit, rather than saving the easy setting. | Kovacs et al. 2021 | The "future self will re-strengthen it" pattern is measurable, not just a metaphor. | During locks, relaxation should often queue or expire rather than become permanent immediately. |
+| In digital health messaging, provision of choice improved evaluation; autonomy-supportive language did not significantly affect outcomes. | Smit et al. 2019 | Nice wording did less than actual choice. | DaD cannot solve reactance with copy alone; it must offer meaningful bounded actions. |
+| High freedom-threatening language increased anger, negative cognitions, and reactance; gain/loss framing did not reliably matter. | Li & Shi 2026 | The dangerous copy feature is not "negative framing" in general but perceived freedom threat. | DaD copy should focus on rule execution and available actions, not persuasion or scolding. |
+| Reactance is best modeled as intertwined anger and counterarguing, not just dislike. | Dillard & Shen 2005; Rains 2013 | Users may become motivated to restore the restricted freedom, including through bypass or source rejection. | DaD should instrument bypass pressure and source rejection signals locally. |
+| Choice can deplete or help depending on whether it feels autonomous or controlled; controlled choice is more costly. | Moller et al. 2006; Muraven et al. 2008 | "More choice" can be an additional cognitive load if it feels forced. | Enforcement prompts should offer a few decisive actions, not a large menu. |
+| The average choice-overload effect across 50 experiments was near zero, with large heterogeneity. | Scheibehenne et al. 2010 | The simple rule "fewer choices are always better" is false. Choice overload depends on context, preference clarity, and decision structure. | DaD should use small action sets because intervention moments are high-pressure, not because choice is universally bad. |
+| Facebook self-control interventions produced cross-device shifts: 86% in the goal-reminder condition and 57% in the no-feed condition reported changed smartphone-vs-laptop use. | Lyngs et al. 2020 | Users may route around a local intervention while still using it constructively. | DaD should treat bypass as ambiguous: sometimes evasion, sometimes deliberate context separation. |
 
-## What The Evidence Supports
+## Mechanisms
 
-- Strong enforcement is not automatically hostile if it executes a user's own prior commitment.
-- Strong enforcement becomes risky when it is surprising, opaque, permanent, moralizing, or impossible to inspect.
-- Antifreedom language increases reactance risk.
-- Neutral rule-based copy is safer than person-judging copy.
-- Autonomy support can coexist with structure when the structure is self-endorsed.
-- Safe choices matter, but safe choice does not mean every forbidden action must remain immediately available.
-- Proportional intervention is important because the intervention itself can become a burden.
-- DaD should validate strong interventions locally rather than assume they help every user.
+### 1. Legitimacy, Not Niceness
 
-## What Remains Uncertain
+Reactance starts when a restriction is experienced as a threat to a freedom the person believes they have. This is not the same as dislike. It can become a motivational state that drives freedom restoration, source derogation, or indirect substitution.
 
-- Which DaD users prefer hard enforcement versus delayed relaxation.
-- Whether "Continue with reason" reduces drift or becomes performative friction.
-- Whether hard quarantine feels protective or punitive in real use.
-- What emergency escape design best balances trust and bypass resistance.
-- Whether users understand locked schedules as self-binding without extra education.
-- How much explanation is enough before it becomes clutter.
+For DaD, the dangerous condition is not "a page was blocked." It is "a page was blocked and the user cannot reconstruct why this restriction is a valid execution of their own plan." A lock can be strict and still legitimate if the user sees:
+
+- the active rule or schedule;
+- when it was chosen or last edited;
+- what action is currently forbidden;
+- what actions remain available;
+- when ordinary relaxation becomes available;
+- how a real mistake is handled.
+
+### 2. Friction Dose
+
+LocknType suggests access friction can be dose-shaped. A pause-only action changed behavior; heavier typing changed more. This supports an intervention ladder with measurable severity instead of only two states: passive warning or hard block.
+
+DaD implication: "Continue with reason," cooldown, delayed Continue, queued relaxation, and hard quarantine are different doses. They should be selected by policy strength and evidence strength, not by vague annoyance.
+
+### 3. Context Collision
+
+GoalKeeper is the central warning for DaD. Restriction worked better than warning, but frustration came from diversity of contexts and needs. The product failure is not restriction itself; it is restriction that cannot understand legitimate exceptions.
+
+DaD implication: locked schedules can forbid relaxation now, but should support:
+
+- queued relaxation after the lock;
+- emergency escape distinct from normal relaxation;
+- a visible reason why the locked schedule overrides the attempted change;
+- later review of repeated emergency or queued-change events.
+
+### 4. Real Bounded Choice
+
+Smit et al. found that actual choice affected intervention evaluation, while autonomy-supportive language did not. This means DaD should not rely on "friendly wording" as the autonomy layer. The autonomy layer is the action set.
+
+Bounded choice during enforcement means the user can still do something consequential without weakening the active commitment:
+
+- Return to the protected target;
+- Isolate into a new chain when policy allows;
+- Show graph;
+- queue a relaxation;
+- add a stricter rule;
+- wait until a visible unlock time;
+- use a configured emergency path.
+
+### 5. Temporary Weakening Is A Behavior Pattern
+
+HabitLab users weakening interventions over time while asking to be asked again later maps directly onto DaD's locked-schedule philosophy. The user may sincerely want a weaker setting now and sincerely want the system not to treat that as the new baseline.
+
+DaD implication: during a locked schedule, a relaxation attempt should usually become a **future-dated proposal**, not an immediate permanent settings change. Conversely, stricter changes can apply immediately because they align with the active commitment.
+
+### 6. Explanation Prevents Attrition When The System Changes
+
+The HabitLab rotation study is especially relevant because rotating interventions increased effectiveness but also uninstall attrition. The mitigation was not simply a weaker intervention; it was a just-in-time explanation that improved the user's mental model.
+
+DaD implication: when DaD escalates from warning to prompt, prompt to quarantine, or normal prompt to locked policy, it should show the reason at the point of escalation. Hidden escalation is a trust cost.
+
+### 7. Bypass Is Ambiguous Evidence
+
+The Facebook intervention study showed cross-device shifts. Some participants used a phone to access features blocked or disrupted on the laptop, but sometimes described this as making use more deliberate. That means bypass is not always "the user defeated the tool."
+
+DaD implication: local bypass-like behavior should be interpreted by pattern:
+
+- immediate repeated escape into the same feed after a lock is a protection failure;
+- phone/laptop separation may be intentional context partitioning;
+- repeated emergency escape is a mismatch signal;
+- repeated queued relaxation is a setup-review signal;
+- repeated uninstall/disable patterns are a legitimacy failure.
+
+## Empirical Details
+
+| Source | Sample / Scope | Measured Result | Product Reversal |
+| --- | --- | --- | --- |
+| Kim et al. 2019, LocknType | 40 participants, three-week in-situ smartphone study | pause-only discouraged 13.1% of app use; 30-digit input discouraged 47.5% | Use friction dose, not only binary blocking. |
+| Kim et al. 2019, GoalKeeper | 36 participants, four-week field experiment | restrictive mechanisms more effective than warnings; also more frustration and pressure | Strong locks need context and review, not weaker default policy. |
+| Kovacs et al. 2018 | three in-the-wild HabitLab experiments | rotating interventions reduced time on site but increased uninstall attrition; explanation reduced attrition roughly by half | Effectiveness and retention can move in opposite directions. |
+| Kovacs et al. 2021 | logs from 8,000+ HabitLab users | users weakened intervention challenge over time but often requested being asked again next visit | Make relaxation temporary or queued under lock. |
+| Lyngs et al. 2020 | Facebook browser intervention study | goal reminders reduced daily visits from median 29.4 to 10.6 during intervention; cross-device shifts reported by 86% goal-reminder and 57% no-feed participants | Bypass-like routing can coexist with successful self-control. |
+| Smit et al. 2019 | 525 Dutch adults in a Web-based 2x2 experiment | choice improved overall evaluation (b=.12, P=.003); language had no significant effects | Bounded choices matter more than autonomy-flavored copy. |
+| Li & Shi 2026 | meta-analyses of 28 articles, 33 studies, 146 effect sizes | high freedom-threatening language increased anger (r=.21), negative cognitions (r=.17), and reactance (r=.20); gain/loss framing near zero | Avoid controlling language; do not over-optimize generic positive/negative framing. |
+| Rains 2013 | meta-analysis, K=20, N=4,942 | intertwined anger plus counterarguing model best fit reactance | Track bypass/rejection pressure, not only satisfaction. |
+| Moller et al. 2006 | three experiments | controlled choice depleted; autonomous choice did not show the same depletion pattern | Too many forced decisions inside a prompt can become part of the burden. |
+| Muraven et al. 2008 | three experiments | autonomy support during self-control improved later self-control performance; effects not explained by stress, anxiety, unpleasantness, or lower motivation | The same restriction can cost less when self-endorsed. |
+| Scheibehenne et al. 2010 | 63 conditions from 50 experiments, N=5,036 | mean choice-overload effect virtually zero with high variance | Use bounded choice because of prompt context, not a universal anti-choice doctrine. |
+
+## Assumptions Updated
+
+- Old assumption: Reactance mainly means the UI should sound less harsh.
+- Updated: Reactance is a freedom-restoration system. The important product signals are bypass pressure, source rejection, repeated emergency escape, and settings weakening.
+
+- Old assumption: Strong intervention risks hostility, so softer is safer.
+- Updated: Restrictive mechanisms can outperform warnings. The safety issue is whether the restriction remains context-legible and reviewable.
+
+- Old assumption: Autonomy support mostly lives in wording.
+- Updated: Real bounded choices matter more than autonomy-supportive phrasing in at least one digital experiment.
+
+- Old assumption: If the user weakens a tool, that is their stable preference.
+- Updated: Users may weaken now while wanting to be asked to re-strengthen soon. This supports queued and expiring relaxation.
+
+- Old assumption: Bypass is always defeat.
+- Updated: Bypass-like routing can be context partitioning. DaD should classify patterns before escalating.
+
+- Old assumption: More options preserve autonomy.
+- Updated: Forced or poorly structured choice can increase self-control cost; intervention moments need a small set of high-leverage choices.
 
 ## DaD Design Implications
 
-1. Strong interventions must satisfy the enforcement contract:
+1. Define a legitimacy contract for every strong intervention:
 
-   - user-owned: tied to a plan, schedule, or chosen rule;
-   - scoped: clear target and affected page/action;
-   - transparent: reason visible;
-   - time-bounded where possible: lock end or cooldown visible;
-   - action-preserving: safe choices remain;
-   - reviewable: the user can inspect diagnostics or later adjust;
-   - non-moralizing: no shame or identity judgment.
+   - `source`: plan, locked schedule, Pomodoro strict break, explicit block rule, hard quarantine policy;
+   - `scope`: current page, domain, tab chain, plan, schedule window;
+   - `strength`: warning, friction, prompt, temporary block, hard block;
+   - `end`: cooldown, Pomodoro phase end, schedule unlock, manual review time;
+   - `safe actions`: return, graph, queue change, emergency escape, stricter edit;
+   - `review`: where this rule can be changed after the lock.
 
-2. Enforcement copy should describe state, not character:
+2. During a locked schedule:
 
-   Good:
+   - permit changes that make protection stricter;
+   - reject or queue changes that make protection weaker;
+   - allow Pomodoro enablement if it adds strict work/rest structure rather than loosening protection;
+   - expose the lock end or review time;
+   - separate emergency escape from normal relaxation.
 
-   - "Locked schedule active."
-   - "This change would weaken the active plan."
-   - "Relaxing protection is available after 18:00."
-   - "Return to the last coherent page or start a new chain."
+3. Replace dead ends with bounded action sets:
 
-   Bad:
+   - For drift prompt: `Return`, `Isolate`, `Show graph`, and policy-gated `Continue`.
+   - For hard quarantine: `Return`, `Show graph`, `Emergency escape` if configured, and `Wait`.
+   - For locked settings: `Queue for after lock`, `Make stricter now`, `Inspect active lock`.
 
-   - "You are trying to bypass protection."
-   - "You cannot be trusted."
-   - "DaD knows this is not intentional."
-   - "Stop wasting time."
+4. Treat explanation as part of enforcement:
 
-3. Safe choices should be present even during enforcement:
+   - show why the intervention escalated;
+   - show why the user cannot relax it now;
+   - show why the same action is allowed after the lock;
+   - show when an unexpected intervention mode changed.
 
-   - Return.
-   - Inspect graph.
-   - Add protection.
-   - Queue relaxation for after lock.
-   - Start a new chain if policy allows.
-   - Emergency escape if configured.
+5. Track bypass pressure locally without moral labels:
 
-4. Enforcement should be strongest when precommitted:
-
-   Hard blocking is most defensible inside locked schedules, explicit block rules, strict breaks, or active hard-quarantine plan policy. Outside precommitment, prefer lower-friction interventions unless multiple strong signals converge.
-
-5. Do not make shame a mechanism:
-
-   Shame may create short-term friction, but it damages trust. DaD should protect, clarify, and redirect.
+   - repeated Continue followed by deeper drift;
+   - repeated emergency escape;
+   - repeated queued relaxation;
+   - immediate return to blocked domain after escape;
+   - extension disable/re-enable if detectable;
+   - repeated isolate into same feed-like domain.
 
 ## Scoring Implications
 
-Core signal candidates:
+Signals that increase intervention strength:
 
-- Active locked schedule.
-- Explicit block rule.
-- Explicit plan intervention policy.
-- User-selected strict break.
-- Active hard-quarantine policy.
-- Repeated failed return from a drift-descendant chain.
+- active locked schedule or strict Pomodoro phase;
+- explicit high-risk rule triggered;
+- repeated drift descendants after Continue;
+- repeated emergency escape in the same schedule window;
+- repeated queued relaxation of the same rule;
+- intervention mode previously explained but repeatedly rejected;
+- low recoverability from RQ-002 plus locked context.
 
-Modifier candidates:
+Signals that should lower immediate escalation or trigger review instead:
 
-- Recent blocked relaxation attempts.
-- Repeated Continue after failed outcomes.
-- High intent-drift score.
-- Passive media or recommender pressure during protected work.
-- Repeated same-chain drift descendants.
-
-Diagnostic-only candidates:
-
-- How often a prompt caused Continue, Return, Isolate, or graph view.
-- Whether users later adjusted the lock.
-- Whether emergency escape was used.
-- Whether intervention frequency is increasing.
+- first-time emergency escape;
+- repeated queued relaxation across multiple days;
+- repeated Isolate into the same work-relevant host;
+- bypass-like cross-device pattern that might be intentional context separation;
+- high false-positive feedback;
+- prompt shown during active input or high-cost task moment.
 
 Avoid:
 
-- "lying" score;
-- "untrustworthy" state;
-- shame score;
-- inferred diagnosis;
-- hidden punishment escalation;
-- hard enforcement from a single weak signal.
+- treating every bypass as failure;
+- treating every Continue as proof the system was wrong;
+- making relaxation permanent during locked context by default;
+- escalating only because the user sounds annoyed;
+- hiding stronger future behavior behind generic labels.
 
 ## Intervention Implications
 
-| Intervention | Appropriate Use | Reactance Risk | Guidance |
-| --- | --- | --- | --- |
-| Warning | weak or ambiguous signal | Low if non-moralizing. | Use uncertain language. |
-| Grayscale / reduce-noise | moderate drift, reversible cleanup | Medium if unexplained. | Show that it is page-local and reversible. |
-| Continue with reason | prompt-level drift | Medium; can feel accusatory. | Ask what makes the page intentional now, not why the user failed. |
-| Isolate | legitimate branch | Medium; can become bypass. | Frame as new chain, not global trust. |
-| Return | drift recovery | Low to medium if target is wrong. | Show target before action. |
-| Show graph | explanation and offloading | Low, privacy-sensitive if too detailed. | Keep local and compact. |
-| Locked-edit rejection | active lock relaxation | High if abrupt. | Show active lock and when relaxation is available. |
-| Queued relaxation | active lock non-emergency | Lower than hard denial. | Make pending change visible. |
-| Hard quarantine | precommitted or locked high-risk context | High. | Use only with visible reason, Return, end/cooldown, and policy explanation. |
-| Emergency escape | real mistake or safety need | Bypass risk. | Separate from ordinary relaxation; log locally and review. |
+| Intervention | Evidence Fit | Good Use | Failure Mode | Requirement |
+| --- | --- | --- | --- | --- |
+| Warning | weak evidence or first encounter | preserve flow | ignored over time | low burden, no false precision |
+| Continue with reason | medium drift, not locked hard | pause automaticity | becomes rote bypass | short, local, outcome-tracked |
+| Delay / cooldown | repeated drift or strict phase | friction dose | feels arbitrary | visible timer and source |
+| Return | drift recovery | restores trajectory | wrong target breaks trust | show target |
+| Isolate | legitimate branch | preserves autonomy without weakening plan | domain trust bypass | local branch only |
+| Show graph | mental model repair | explains chain and target | surveillance feel | compact host-level graph |
+| Queue relaxation | locked schedule relaxation attempt | preserves future self-binding | queue clutter | visible pending state |
+| Make stricter now | locked schedule | aligns with active commitment | accidental over-tightening | confirm scope |
+| Emergency escape | real mistake/safety case | preserves trust | becomes ordinary bypass | separate, logged locally, reviewed |
+| Hard quarantine | precommitted high-risk state | strong protection | context collision | source, scope, end, recovery action |
 
 ## Privacy Implications
 
-Safe local data:
+The useful measurement is not raw content. It is local evidence of legitimacy and fit.
 
-- active rule or plan id;
-- lock state and end time;
+Safe local metrics:
+
 - intervention type;
-- user action selected: Continue, Isolate, Return, Show graph;
+- active rule/schedule id;
+- lock source and end time;
+- action selected;
 - queued relaxation count;
 - emergency escape count;
-- aggregate false-positive feedback.
+- repeated same-domain isolation;
+- whether Continue was followed by deeper drift;
+- whether Show graph preceded Return;
+- false-positive feedback category.
 
-Risky data:
+Avoid by default:
 
-- long free-text reasons;
-- hidden emotional-state inference;
-- raw browsing history;
+- raw reason text retained long term;
 - raw page text;
 - raw typed input;
-- cloud-uploaded intervention history.
+- hidden "willpower" or "honesty" labels;
+- cross-device inference unless explicitly designed and consented;
+- cloud upload of intervention history.
 
-Data to avoid by default:
+## Local Validation Metrics
 
-- shame labels;
-- honesty labels;
-- personality labels;
-- mental-health guesses;
-- "low-lucidity" as a hidden punitive state.
-
-Low-lucidity can be a private design concept for protection, but the UI should usually talk about active plans, locked schedules, and protection state.
-
-## Autonomy And Reactance Implications
-
-DaD should preserve autonomy through structure, not by abandoning enforcement.
-
-The user should always be able to answer:
-
-- What is happening?
-- Which rule did I configure?
-- Why did DaD act now?
-- What choices remain?
-- When can I change this?
-- How do I handle a real mistake?
-
-This converts enforcement from a mysterious restriction into a legible boundary. A boundary can still be frustrating, but it is less likely to feel like contempt.
-
-## Research Gaps For Revisit
-
-The next pass should replace broad autonomy guidance with deeper findings:
-
-- reactance effect sizes and moderators from meta-analyses;
-- differences between self-chosen restriction and externally imposed restriction;
-- which message features measurably increase resistance;
-- how choice overload differs from meaningful safe choice;
-- measured bypass or abandonment patterns in digital self-control tools;
-- whether autonomy-supportive framing changes persistence, not only stated acceptance;
-- how users with high trait reactance respond to lockouts and friction.
+- `strictChangeAllowedDuringLock`: stricter edits accepted while weaker edits are queued/rejected.
+- `queuedRelaxationAppliedAfterLock`: queued changes are offered after schedule unlock.
+- `emergencyEscapeRepeatRate`: repeated escape rate per schedule and per rule.
+- `continueThenDriftDeeper`: Continue followed by deeper same-chain drift.
+- `isolateRepeatSameHost`: repeated isolate into the same host/category.
+- `interventionModeExplained`: whether escalation included source/scope/end.
+- `hardBlockReturnRate`: hard intervention followed by Return versus escape/disable.
+- `lockFrustrationProxy`: repeated settings open, queued relaxation, emergency escape, and disable attempts within a lock window.
+- `falsePositiveAfterStrictMode`: feedback after stricter policies.
+- `postLockReviewAccepted`: whether users accept, discard, or modify queued relaxations.
 
 ## Implementation Handoff
 
-Affected files or docs:
+Affected areas:
 
 - `docs/protection-model.md`
 - `docs/dad_intent_coherence_system.md`
-- blocked-page UI copy
-- intent prompt copy
-- locked-edit refusal copy
-- Pomodoro strict-break copy
-- localization keys for enforcement messages
-- tests around protected-plan strictness and prompt rendering
+- locked schedule settings guard
+- Pomodoro enablement during locks
+- blocked page / hard quarantine actions
+- intent drift prompt actions
+- local diagnostics
+- future onboarding for lock semantics
 
-Minimum viable future changes:
+Minimum next product changes:
 
-- Ensure locked-edit rejections show active lock end time when known.
-- Add "queue for after lock" design notes for relaxation changes.
-- Ensure hard quarantine always shows reason, recovery action, and scope.
+- Model locked edit attempts as `stricter`, `same`, or `weaker`.
+- Allow stricter locked edits immediately.
+- Queue or reject weaker locked edits with visible lock source and unlock time.
+- Treat Pomodoro enablement as stricter when it adds work/rest enforcement.
+- Give hard quarantine at least one recovery action and one explanation action.
+- Add local counters for repeated Continue, Isolate, queued relaxation, and emergency escape.
 
 Tests needed:
 
-- Locked edit refusal includes active rule context.
-- Hard quarantine includes Return or equivalent recovery path.
-- Continue is unavailable only where plan policy explicitly removes it.
-- Show graph and diagnostics do not expose raw sensitive content.
+- locked schedule allows stricter setting changes;
+- locked schedule blocks or queues weaker setting changes;
+- enabling Pomodoro is permitted when it increases strictness;
+- hard quarantine shows source, scope, and recovery;
+- Continue is unavailable only when policy explicitly removes it;
+- queued relaxation does not apply until unlock;
+- emergency escape is separate from ordinary Continue;
+- local diagnostics do not store raw browsing content.
 
-Rollout risk:
+## Revisit Triggers
 
-- Too much enforcement without explanation creates reactance.
-- Too much choice during a lock turns precommitment into theater.
-- Too much explanation creates clutter and prompt fatigue.
-- Emergency escape can become a bypass if it is ordinary and frictionless.
-- Shame copy can damage trust even if the enforcement decision is correct.
+- Users repeatedly weaken locks and keep those weaker settings after unlock.
+- Emergency escape becomes a common path rather than a rare exception.
+- Users repeatedly queue the same relaxation, suggesting the lock is overbroad.
+- Hard quarantine causes extension disable/uninstall.
+- Users repeatedly isolate the same sites, suggesting legitimate recurring branches.
+- Prompt burden rises while Return rates do not improve.
 
 ## Open Questions
 
-- Should DaD define soft lock and hard lock modes explicitly?
-- Should emergency escape be global, per plan, or disabled by default?
-- Should relaxation changes be queued automatically or only on request?
-- Should the UI say "locked by your schedule" instead of just "locked"?
-- Should all enforcement surfaces have a "why?" affordance?
-- Should local feedback ask "protective or too rigid?" after hard interventions?
+- Should queued relaxation be automatic after unlock or require confirmation?
+- Should emergency escape have a cooldown, note, or later review screen?
+- Should DaD expose "strictness changed now" versus "strictness queued" as a general settings pattern?
+- Should lock legitimacy be surfaced in the popup status card?
+- Should repeated bypass pressure open a plan review rather than escalating enforcement?
 
 ## Current Answer Status
 
-Initial answer complete. Strong conclusion: enforce as user-owned, scoped, transparent structure; never enforce through shame or hidden authority. Revisit after implementation surfaces have been audited for wording and after local false-positive/reactance feedback exists.
+Answered under the revised quality bar. The product-changing conclusion is that DaD should enforce strong self-authored constraints, but every strong intervention needs a visible legitimacy contract, bounded real choices, and local diagnostics for bypass pressure and context mismatch.
