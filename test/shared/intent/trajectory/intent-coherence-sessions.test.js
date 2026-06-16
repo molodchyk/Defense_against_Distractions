@@ -6,7 +6,7 @@ import { describe, it } from 'node:test';
 import {
   getActiveIntentSession,
   recordIntentPageVisit
-} from '../../../src/js/shared/intentCoherence.js';
+} from '../../../../src/js/shared/intentCoherence.js';
 
 describe('intent coherence sessions', () => {
   function pageSignal(overrides = {}) {

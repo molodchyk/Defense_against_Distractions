@@ -49,6 +49,7 @@ Current focus:
 - Completed checkpoint: the blocked-page bootstrap now lives at `src/app/blocked/index.js`, keeping root `src/js` limited to the classic content-script entry.
 - Completed checkpoint: the content-script bootstrap now lives at `src/app/content/index.js`; root `src/js` no longer contains runtime entries.
 - Completed checkpoint: blocked-page implementation modules now live under `src/features/content-blocking/blocked-page/`.
+- Completed checkpoint: the shared page-signal collector model now lives under `src/features/page-signals/core/`, with the old shared path kept as a compatibility barrel.
 - Completed checkpoint: global Blocked UI options have been split into constants/messages, formatting, storage/quota, rule-card rendering, and a thin list/sync entry.
 - Completed checkpoint: shared usage stats have been split into constants, utils, metrics, state, record, and summary modules under `src/js/shared/usage-stats/` while preserving the public barrel API.
 - Completed checkpoint: background intent coherence has been split into Chrome API, storage, policy, page-signal recording, tab lineage, diagnostics, message routing, and initializer modules under `src/js/background/intent/` while preserving the public initializer barrel.
@@ -65,6 +66,8 @@ Codex currently owns:
 - `src/app/content/index.js`
 - `src/js/content/**`
 - `src/features/content-blocking/blocked-page/**`
+- `src/features/page-signals/**`
+- `test/features/page-signals/**`
 - `src/js/shared/intentCoherence.js`
 - `src/js/shared/intent/**`
 - `src/js/shared/pomodoro.js`
@@ -170,7 +173,7 @@ Release-facing changes:
 - `src/js/content/ui-blocking/controller.js` is below the hard file-size limit after extracting `pickerStyle.js` and `pickerPanel.js`.
 - `src/js/content/intentIntervention.js` is below the hard file-size limit after extracting `src/js/content/intent/` constants, messages, style, theme, and prompt modules.
 - `src/css/style.css` and `src/css/popup.css` are thin stylesheet entry barrels. Surface styles live under `src/css/options/` and `src/css/popup/`.
-- The test suite is now feature-owned under `test/shared/`; `test/shared/intent/intent-coherence-tabs.test.js` is still over the soft file-size target and should not grow.
+- The test suite is now feature-owned under `test/shared/` and `test/features/`; intent tests are split under `test/shared/intent/scoring/`, `test/shared/intent/trajectory/`, and `test/shared/intent/interventions/`.
 - `src/js/shared/intentCoherence.js` is now a small compatibility barrel. The shared intent implementation lives under `src/js/shared/intent/`.
 - `src/js/shared/pomodoro.js` is now a small compatibility barrel. The shared Pomodoro implementation lives under `src/js/shared/pomodoro/`.
 - Shared schedule helpers now live under `src/js/shared/schedules/`.

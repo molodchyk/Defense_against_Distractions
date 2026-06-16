@@ -16,7 +16,7 @@ import {
   recordIntentPageVisit,
   shouldFreezeIntentNewTabs,
   summarizeIntentFeedback
-} from '../../../src/js/shared/intentCoherence.js';
+} from '../../../../src/js/shared/intentCoherence.js';
 
 describe('intent coherence interventions', () => {
   function pageSignal(overrides = {}) {

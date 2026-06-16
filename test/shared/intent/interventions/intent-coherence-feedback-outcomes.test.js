@@ -9,7 +9,7 @@ import {
   recordIntentFeedback,
   recordIntentPageVisit,
   summarizeIntentFeedback
-} from '../../../src/js/shared/intentCoherence.js';
+} from '../../../../src/js/shared/intentCoherence.js';
 
 describe('intent coherence feedback outcomes', () => {
   function pageSignal(overrides = {}) {

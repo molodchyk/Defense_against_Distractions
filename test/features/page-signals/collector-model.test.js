@@ -6,7 +6,7 @@ import { describe, it } from 'node:test';
 import {
   collectPageSignals,
   extractTopTextTokens
-} from '../../../src/js/shared/pageSignals.js';
+} from '../../../src/features/page-signals/core/collectorModel.js';
 
 describe('page signal helpers', () => {
   function createFakeRoot(counts, text = '') {

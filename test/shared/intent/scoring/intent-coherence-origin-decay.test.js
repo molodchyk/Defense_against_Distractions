@@ -7,9 +7,9 @@ import {
   getActiveIntentSession,
   getIntentInterventionDecision,
   recordIntentPageVisit
-} from '../../../src/js/shared/intentCoherence.js';
+} from '../../../../src/js/shared/intentCoherence.js';
 
-describe('intent coherence media chains', () => {
+describe('intent coherence origin decay', () => {
   function pageSignal(overrides = {}) {
     return {
       url: 'https://search.example.com/search?q=pde5+inhibitor+mechanism',
@@ -97,7 +97,7 @@ describe('intent coherence media chains', () => {
     });
   }
 
-  it('raises pressure for repeated passive media chains with drift context', () => {
+  it('raises sustained origin-decay pressure for passive low-overlap chains', () => {
     let state = recordIntentPageVisit(null, pageSignal(), { now: () => 1000 });
     [
       passiveVideoSignal('PDE5 mechanism explained', ['pde5', 'mechanism', 'explained']),
@@ -111,51 +111,54 @@ describe('intent coherence media chains', () => {
     const activeSession = getActiveIntentSession(state);
     const reasonLines = getIntentInterventionDecision(activeSession).reasonLines;
 
-    assert.equal(activeSession.metrics.consecutiveMediaVisitCount, 4);
-    assert.equal(activeSession.metrics.recentMediaVisitCount, 4);
-    assert.ok(activeSession.metrics.mediaChainLoad >= 0.55);
-    assert.ok(reasonLines.includes('Repeated passive media chain'));
+    assert.ok(activeSession.metrics.originAnchorStrength >= 0.45);
+    assert.ok(activeSession.metrics.recentOriginSimilarity < 0.55);
+    assert.ok(activeSession.metrics.originDecayLoad >= 0.55);
+    assert.ok(reasonLines.includes('Sustained decay from the session origin'));
   });
 
-  it('does not treat a single coherent tutorial video as a media chain', () => {
+  it('does not raise origin-decay pressure for connected low-passive reading', () => {
     let state = recordIntentPageVisit(null, pageSignal(), { now: () => 1000 });
-    state = recordIntentPageVisit(state, pageSignal({
-      url: 'https://video.example.com/watch/pde5-mechanism-tutorial',
-      hostname: 'video.example.com',
-      title: 'PDE5 mechanism tutorial',
-      text: {
-        sampleLength: 1200,
-        wordCount: 180,
-        emojiCount: 0,
-        topTokens: ['pde5', 'mechanism', 'sildenafil']
-      },
-      media: {
-        imageCount: 4,
-        videoCount: 1,
-        audioCount: 0,
-        gifCount: 0,
-        iframeCount: 1
-      },
-      activity: {
-        pageAgeMs: 300_000,
-        activePageMs: 280_000,
-        mediaPlaybackMs: 240_000,
-        mediaPlayEvents: 1,
-        scrollEvents: 2,
-        clickEvents: 1,
-        recommenderClickEvents: 0,
-        keyEvents: 0,
-        inputEvents: 0,
-        recommenderClickRatePerMinute: 0,
-        maxScrollDepthRatio: 0.3
-      }
-    }), { now: () => 2000 });
+    [
+      ['https://docs.example.com/pde5-mechanism', 'PDE5 mechanism reference', ['pde5', 'mechanism', 'sildenafil']],
+      ['https://docs.example.com/sildenafil-dosage', 'Sildenafil dosage reference', ['sildenafil', 'dosage', 'clinical']],
+      ['https://docs.example.com/pulmonary-hypertension', 'Pulmonary hypertension reference', ['pulmonary', 'hypertension', 'clinical']],
+      ['https://docs.example.com/adverse-effects', 'Adverse effects reference', ['adverse', 'effects', 'clinical']]
+    ].forEach(([url, title, topTokens], index) => {
+      state = recordIntentPageVisit(state, pageSignal({
+        url,
+        hostname: 'docs.example.com',
+        title,
+        text: {
+          sampleLength: 2000,
+          wordCount: 700,
+          emojiCount: 0,
+          topTokens
+        },
+        interaction: {
+          linkCount: 18,
+          buttonCount: 2,
+          inputCount: 0,
+          formCount: 0
+        },
+        activity: {
+          pageAgeMs: 240_000,
+          activePageMs: 220_000,
+          scrollEvents: 3,
+          clickEvents: 1,
+          recommenderClickEvents: 0,
+          keyEvents: 0,
+          inputEvents: 0,
+          recommenderClickRatePerMinute: 0,
+          maxScrollDepthRatio: 0.55
+        }
+      }), { now: () => 2000 + index });
+    });
 
     const activeSession = getActiveIntentSession(state);
     const reasonLines = getIntentInterventionDecision(activeSession).reasonLines;
 
-    assert.equal(activeSession.metrics.consecutiveMediaVisitCount, 1);
-    assert.equal(activeSession.metrics.mediaChainLoad, 0);
-    assert.ok(!reasonLines.includes('Repeated passive media chain'));
+    assert.equal(activeSession.metrics.originDecayLoad, 0);
+    assert.ok(!reasonLines.includes('Sustained decay from the session origin'));
   });
 });

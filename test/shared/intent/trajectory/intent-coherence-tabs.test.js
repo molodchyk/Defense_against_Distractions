@@ -17,7 +17,7 @@ import {
   recordIntentTabActivation,
   recordIntentTabCreated,
   recordIntentTabRemoved
-} from '../../../src/js/shared/intentCoherence.js';
+} from '../../../../src/js/shared/intentCoherence.js';
 
 describe('intent coherence tab lineage', () => {
   function pageSignal(overrides = {}) {

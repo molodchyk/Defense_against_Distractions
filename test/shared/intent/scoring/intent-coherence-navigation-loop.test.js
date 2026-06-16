@@ -6,11 +6,11 @@ import { describe, it } from 'node:test';
 import {
   getActiveIntentSession,
   getIntentInterventionDecision,
-  recordIntentPageVisit,
-  recordIntentTabActivation
-} from '../../../src/js/shared/intentCoherence.js';
+  recordIntentNavigationTransition,
+  recordIntentPageVisit
+} from '../../../../src/js/shared/intentCoherence.js';
 
-describe('intent coherence tab activity', () => {
+describe('intent coherence navigation loopiness', () => {
   function pageSignal(overrides = {}) {
     return {
       url: 'https://docs.example.com/pde5-mechanism',
@@ -54,36 +54,36 @@ describe('intent coherence tab activity', () => {
     };
   }
 
-  it('tracks rapid tab switching and short loops as coherence pressure', () => {
-    let state = recordIntentPageVisit(null, pageSignal(), {
+  it('tracks repeated reloads and same-page loops as coherence pressure', () => {
+    const loopUrl = 'https://docs.example.com/pde5-mechanism';
+    let state = recordIntentPageVisit(null, pageSignal({ url: loopUrl }), {
       now: () => 1000,
       tabId: 1
     });
 
-    [1, 2, 1, 2, 1, 2, 1, 2].forEach((tabId, index) => {
-      state = recordIntentTabActivation(state, tabId, {
-        now: () => 2000 + index * 10_000
-      });
-    });
+    [2000, 3000, 4000].forEach(timestamp => {
+      state = recordIntentNavigationTransition(state, {
+        tabId: 1,
+        frameId: 0,
+        url: loopUrl,
+        transitionType: 'reload'
+      }, { now: () => timestamp });
 
-    state = recordIntentPageVisit(state, pageSignal({
-      url: 'https://docs.example.com/pde5-followup',
-      hostname: 'docs.example.com',
-      title: 'PDE5 follow-up notes'
-    }), {
-      now: () => 90_000,
-      tabId: 2
+      state = recordIntentPageVisit(state, pageSignal({ url: loopUrl }), {
+        now: () => timestamp + 100,
+        tabId: 1
+      });
     });
 
     const activeSession = getActiveIntentSession(state);
     const reasonLines = getIntentInterventionDecision(activeSession).reasonLines;
 
-    assert.equal(activeSession.metrics.tabSwitchCount, 7);
-    assert.equal(activeSession.metrics.tabSwitchLoopCount, 6);
-    assert.equal(activeSession.metrics.tabSwitchRatePerMinute, 3.5);
-    assert.ok(activeSession.metrics.tabSwitchLoad >= 0.5);
+    assert.equal(activeSession.metrics.samePageRepeatCount, 3);
+    assert.equal(activeSession.metrics.immediatePageRepeatCount, 3);
+    assert.equal(activeSession.metrics.reloadTransitionCount, 3);
+    assert.equal(activeSession.metrics.navigationLoopLoad, 0.85);
+    assert.equal(activeSession.metrics.latestTransitionType, 'reload');
     assert.ok(activeSession.coherenceScore < 100);
-    assert.ok(reasonLines.includes('Rapid recent tab switching'));
-    assert.ok(reasonLines.includes('Short tab-switch loop detected'));
+    assert.ok(reasonLines.includes('Repeated reload or same-page loop'));
   });
 });

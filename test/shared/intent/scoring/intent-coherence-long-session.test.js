@@ -8,7 +8,7 @@ import {
   getActiveIntentSession,
   getIntentInterventionDecision,
   recordIntentPageVisit
-} from '../../../src/js/shared/intentCoherence.js';
+} from '../../../../src/js/shared/intentCoherence.js';
 
 function pageSignal(overrides = {}) {
   return {

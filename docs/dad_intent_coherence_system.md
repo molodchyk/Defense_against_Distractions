@@ -1760,7 +1760,7 @@ The first diagnostic layer and the first low-friction intervention are now imple
 Implemented:
 
 - top-frame page signal reporting from `src/js/content/page-signals/` and the thin `src/js/content/pageSignals.js` controller on navigation, throttled DOM changes, summarized scroll/click/input/editable-focus activity, and bounded interaction velocity
-- tested page-signal shape in `src/js/shared/pageSignals.js`
+- tested page-signal shape in `src/features/page-signals/core/collectorModel.js`, exported through the compatibility barrel at `src/js/shared/pageSignals.js`
 - tested trajectory/session model in `src/js/shared/intentCoherence.js`
 - local background recording in `src/js/background/intentCoherence.js`
 - bounded storage under `chrome.storage.local` key `intentTrajectoryState`

@@ -12,6 +12,8 @@ The detailed modularization target, dependency rules, file-size budgets, and mig
 
 `src/features/content-blocking/background/runtime.js` owns background message routing and tab lifecycle hooks for page blocking, including badge updates, top-frame block requests, and mute-state delegation. `src/features/content-blocking/background/tabMute.js` owns blocked-page tab mute state for that runtime. `src/features/content-blocking/blocked-page/` owns the extension blocked-page modules for Chrome API wrappers, localization including right-to-left document direction, theme sync, custom message rendering, and Pomodoro timer rendering.
 
+`src/features/page-signals/core/collectorModel.js` owns the tested ES-module page-signal collector model, including bounded visible-text, heading, meta-description, clicked-link, and selected-text topic tokens, passive recommendation/comment/short-form region counts, plus summarized activity signals. `src/js/shared/pageSignals.js` is a compatibility barrel for current imports.
+
 The root `src/js` folder should stay empty of runtime entries and helper modules. Content-script feature modules still live under `src/js/content/` while the classic manifest-loaded entry is `src/app/content/index.js`.
 
 `src/js/background` contains background/service-worker adapters and compatibility barrels for existing background feature modules. New background behavior should go into a feature-owned module first, with `src/app/background/index.js` or a narrow background adapter only registering listeners and routing messages.
@@ -78,8 +80,11 @@ Node tests live under `test/shared/` by product area:
 - `test/shared/schedules/`: schedule time, validation, form, and weekly-grid model tests.
 - `test/shared/plans/`: plan model, legacy migration, and group-rule tests.
 - `test/shared/pomodoro/`: Pomodoro shared runtime and history model tests.
-- `test/shared/signals/`: page-signal and usage-stat model tests.
-- `test/shared/intent/`: intent coherence scoring, sessions, diagnostics, interventions, and tab-lineage tests.
+- `test/features/page-signals/`: page-signal collector model tests.
+- `test/shared/signals/`: content page-signal activity and usage-stat model tests.
+- `test/shared/intent/scoring/`: intent coherence scoring and signal-pressure tests.
+- `test/shared/intent/trajectory/`: intent sessions, diagnostics, graph, and tab-lineage tests.
+- `test/shared/intent/interventions/`: intent feedback, prompts, Continue, and intervention-scope tests.
 - `test/shared/self-state/`: local user-state signals that affect protection conservatively.
 
 Do not recreate a broad `test/shared.test.js` file. New tests should be added to the smallest matching feature folder, and new folders should be created before a folder becomes hard to scan.
@@ -191,7 +196,7 @@ New protection features should avoid becoming one large content script again. Pr
 
 The first local signal collector is split by runtime:
 
-- `src/js/shared/pageSignals.js` is the tested ES-module collector shape, including bounded visible-text, heading, meta-description, clicked-link, and selected-text topic tokens, passive recommendation/comment/short-form region counts, plus summarized activity signals.
+- `src/features/page-signals/core/collectorModel.js` is the tested ES-module collector shape. `src/js/shared/pageSignals.js` remains the compatibility barrel for existing imports.
 - `src/js/content/page-signals/contextTokens.js` owns bounded clicked-link and selected-text token extraction for transient click context.
 - `src/js/content/page-signals/recommenderZones.js` owns generic, conservative repeated-card/grid, and site-specific recommendation/feed/comment zone classification for page activity signals.
 - `src/js/content/page-signals/activityScroll.js` owns bounded scroll counts, distance in viewport units, direction reversals, depth, and recent-scroll timing.

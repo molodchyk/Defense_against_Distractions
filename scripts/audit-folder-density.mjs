@@ -95,7 +95,7 @@ const budgets = [
     max: 12,
     hard: 18,
     matches(relativeDir) {
-      return relativeDir === 'test';
+      return relativeDir === 'test' || relativeDir.startsWith('test/');
     }
   }
 ];

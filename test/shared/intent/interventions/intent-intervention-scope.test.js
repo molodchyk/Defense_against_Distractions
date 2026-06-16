@@ -5,10 +5,10 @@ import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 import {
   attachIntentInterventionTabScope
-} from '../../../src/js/background/intent/diagnostics.js';
+} from '../../../../src/js/background/intent/diagnostics.js';
 import {
   INTENT_INTERVENTION_ACTIONS
-} from '../../../src/js/shared/intentCoherence.js';
+} from '../../../../src/js/shared/intentCoherence.js';
 
 describe('intent intervention tab scope', () => {
   it('adds count-only same-chain drift tab scope to hard-chain interventions', () => {

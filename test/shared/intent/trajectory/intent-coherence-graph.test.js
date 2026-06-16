@@ -7,7 +7,7 @@ import {
   createIntentLineageGraph,
   getIntentCoherentHostSummary,
   getIntentDriftDescendantHostSummary
-} from '../../../src/js/shared/intentCoherence.js';
+} from '../../../../src/js/shared/intentCoherence.js';
 
 describe('intent coherence graph', () => {
   it('labels coherent opener chains and preserves sequence/opener edges', () => {

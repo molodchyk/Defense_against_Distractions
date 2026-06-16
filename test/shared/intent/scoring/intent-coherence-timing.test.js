@@ -7,7 +7,7 @@ import {
   getActiveIntentSession,
   getIntentInterventionDecision,
   recordIntentPageVisit
-} from '../../../src/js/shared/intentCoherence.js';
+} from '../../../../src/js/shared/intentCoherence.js';
 
 describe('intent coherence timing signals', () => {
   function pageSignal(overrides = {}) {
