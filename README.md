@@ -69,6 +69,7 @@ Chrome Web Store API release helpers are documented in [Chrome Web Store API](do
 - `src/app/popup/index.js` contains the popup entry point.
 - `src/app/options/index.js` contains the options page entry point.
 - `src/app/instructions/index.js` contains the instructions page entry point.
+- `src/app/blocked/index.js` contains the blocked page entry point.
 - `src/js/content.js` scans pages and triggers blocking.
 - `src/js/shared/` contains shared parsing, URL, storage, and schedule helpers.
 - `src/css/` contains extension styles.

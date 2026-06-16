@@ -6,13 +6,13 @@ The detailed modularization target, dependency rules, file-size budgets, and mig
 
 ## Runtime Areas
 
-`src/app` contains extension runtime entries. `src/app/background/index.js` is the MV3 service-worker entry: it registers Chrome listeners and initializes feature/background runtimes, but it should not own product behavior. `src/app/popup/index.js` is the popup page entry: it initializes popup shell state, panel modules, refresh loops, storage listeners, and event bindings. `src/app/options/index.js` is the options page entry: it initializes language/theme state, the password gate, migrations, plans, diagnostics, settings, storage transfer, and lock-state polling. `src/app/instructions/index.js` is the instructions page entry: it applies the shared language and theme helpers to the static guide page.
+`src/app` contains extension runtime entries. `src/app/background/index.js` is the MV3 service-worker entry: it registers Chrome listeners and initializes feature/background runtimes, but it should not own product behavior. `src/app/popup/index.js` is the popup page entry: it initializes popup shell state, panel modules, refresh loops, storage listeners, and event bindings. `src/app/options/index.js` is the options page entry: it initializes language/theme state, the password gate, migrations, plans, diagnostics, settings, storage transfer, and lock-state polling. `src/app/instructions/index.js` is the instructions page entry: it applies the shared language and theme helpers to the static guide page. `src/app/blocked/index.js` is the blocked page entry: it wires blocked-page localization, theme, custom message, and Pomodoro status modules.
 
 `src/features` contains feature-owned source modules that are not runtime entry points. New cross-surface product behavior should move here when it can be imported by extension pages or the MV3 module service worker without depending on manifest content-script order.
 
 `src/features/content-blocking/background/runtime.js` owns background message routing and tab lifecycle hooks for page blocking, including badge updates, top-frame block requests, and mute-state delegation. `src/features/content-blocking/background/tabMute.js` owns blocked-page tab mute state for that runtime.
 
-The root `src/js` folder should contain only legacy runtime entries that are still loaded directly by manifest or extension HTML constraints. At this point those are `src/js/content.js` and `src/js/blockedScript.js`; do not add new helper modules there.
+The root `src/js` folder should contain only legacy runtime entries that are still loaded directly by manifest or extension HTML constraints. At this point only `src/js/content.js` remains there because content scripts are still classic manifest-loaded scripts; do not add new helper modules there.
 
 `src/js/background` contains background/service-worker adapters and compatibility barrels for existing background feature modules. New background behavior should go into a feature-owned module first, with `src/app/background/index.js` or a narrow background adapter only registering listeners and routing messages.
 
@@ -283,5 +283,5 @@ Pomodoro is split across plan configuration, runtime, and local activity:
 - `src/js/content/pomodoro/miniPanel.js` is the thin optional on-page Pomodoro mini-panel controller opened from the popup. It wires DOM construction, refresh, close/open behavior, and the public content-script API.
 - `src/js/content/content-blocking/siteCheck.js` applies strict-break blocking when a Pomodoro break is active for the current plan.
 - `src/js/content/content-blocking/overlayPomodoro.js`, `src/js/content/content-blocking/overlay.js`, and `src/blocked.html` render Pomodoro timer status on blocked pages.
-- `src/js/blockedScript.js` is the blocked-page module entry. Blocked-page Chrome API wrappers, localization including right-to-left document direction, theme sync, custom message rendering, and Pomodoro timer rendering live under `src/js/blocked/`.
+- `src/app/blocked/index.js` is the blocked-page module entry. Blocked-page Chrome API wrappers, localization including right-to-left document direction, theme sync, custom message rendering, and Pomodoro timer rendering live under `src/js/blocked/`.
 - `src/js/options/settings/blockedPageSettings.js` owns the options-page Settings card for the local custom blocked-page note.

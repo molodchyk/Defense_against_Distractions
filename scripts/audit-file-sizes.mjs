@@ -29,7 +29,7 @@ const budgets = [
         'src/app/popup/index.js',
         'src/app/options/index.js',
         'src/app/instructions/index.js',
-        'src/js/blockedScript.js'
+        'src/app/blocked/index.js'
       ].includes(relativePath.replaceAll('\\', '/'));
     }
   },

@@ -306,6 +306,8 @@ Status: completed for options password ownership. Password behavior now lives un
 
 Status: completed for the instructions-page bootstrap move. `src/app/instructions/index.js` is now the instructions page entry that wires shared language and theme helpers into the static guide page.
 
+Status: completed for the blocked-page bootstrap move. `src/app/blocked/index.js` is now the blocked page entry that wires blocked-page localization, theme, custom message, and Pomodoro status modules.
+
 ### Phase 3: Plans Options Split
 
 Move plan-specific options modules into `src/js/options/plans/` and continue splitting the plan controller by plan page:
@@ -465,7 +467,7 @@ Recent checkpoint:
 - Shared usage stats now live under `src/js/shared/usage-stats/` for constants, sanitizers, metric aggregation, state normalization, page-signal recording, summaries, and export payloads. `src/js/shared/usageStats.js` remains the compatibility barrel for current callers and tests.
 - Background intent coherence now lives under `src/js/background/intent/` for Chrome API wrappers, storage mutation, effective-policy lookup, page-signal recording, tab lineage, diagnostics, runtime messages, and listener registration. `src/js/background/intentCoherence.js` remains the compatibility barrel for `src/app/background/index.js`.
 - Shared plan helpers now live under `src/js/shared/plans/` for constants, normalization, schedule activity, effective group/UI-rule selection, and intent-policy combination. `src/js/shared/plans.js` remains the compatibility barrel for current callers and tests.
-- Blocked-page runtime behavior now lives under `src/js/blocked/` for Chrome API wrappers, localization, UI-mode theme sync, and Pomodoro timer rendering. `src/js/blockedScript.js` remains the `src/blocked.html` module entry.
+- Blocked-page runtime behavior now lives under `src/js/blocked/` for Chrome API wrappers, localization, UI-mode theme sync, and Pomodoro timer rendering. `src/app/blocked/index.js` is the `src/blocked.html` module entry.
 - Shared Pomodoro runtime helpers now live in focused modules for runtime state, phase durations, rest credit, and transitions. `src/js/shared/pomodoro/runtime.js` remains the compatibility barrel for current callers and tests.
 - Pomodoro mini-panel style behavior now lives in focused content scripts for constants, CSS text generation, and a thin injection facade. `src/js/content/pomodoro/miniPanelStyle.js` remains the public content-script style API.
 - Options and popup CSS now use thin entry barrels with focused surface files under `src/css/options/` and `src/css/popup/`.

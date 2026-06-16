@@ -97,7 +97,7 @@
   ],
   "web_accessible_resources": [
     {
-      "resources": ["src/blocked.html", "src/js/blockedScript.js"],
+      "resources": ["src/blocked.html", "src/app/blocked/index.js"],
       "matches": ["<all_urls>"]
     }
   ],
