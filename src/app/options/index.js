@@ -1,21 +1,21 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
-import { localizeOptionsPage } from './options/localization.js';
-import { initializeBillingPanel } from './options/billing.js';
-import { initializeElementRulesSync, renderElementRules } from './options/elementRules.js';
-import { initializeIntentDiagnosticsPanel } from './options/intentDiagnostics.js';
-import { migrateLegacyWebsiteGroupsStorage } from './options/legacyMigration.js';
-import { initializePlans, renderPlans } from './options/plans/controller.js';
-import { initializeReleaseBackupNotice } from './options/releaseNotice.js';
-import { initializeStorageTransfer } from './options/storageTransfer.js';
-import { initializeBlockedPageSettings } from './options/settings/blockedPageSettings.js';
-import { initializeThemeModeControl } from './options/theme.js';
-import { initializeUiLanguageControl } from './options/uiLanguage.js';
-import { initializeUsageStatsPanel } from './options/usageStats.js';
-import { getSync } from './shared/storage/chromeStorage.js';
-import { initializeUiLanguage } from './shared/ui/uiLanguage.js';
-import { isInProtectedSchedule } from './shared/plans.js';
+import { localizeOptionsPage } from '../../js/options/localization.js';
+import { initializeBillingPanel } from '../../js/options/billing.js';
+import { initializeElementRulesSync, renderElementRules } from '../../js/options/elementRules.js';
+import { initializeIntentDiagnosticsPanel } from '../../js/options/intentDiagnostics.js';
+import { migrateLegacyWebsiteGroupsStorage } from '../../js/options/legacyMigration.js';
+import { initializePlans, renderPlans } from '../../js/options/plans/controller.js';
+import { initializeReleaseBackupNotice } from '../../js/options/releaseNotice.js';
+import { initializeStorageTransfer } from '../../js/options/storageTransfer.js';
+import { initializeBlockedPageSettings } from '../../js/options/settings/blockedPageSettings.js';
+import { initializeThemeModeControl } from '../../js/options/theme.js';
+import { initializeUiLanguageControl } from '../../js/options/uiLanguage.js';
+import { initializeUsageStatsPanel } from '../../js/options/usageStats.js';
+import { getSync } from '../../js/shared/storage/chromeStorage.js';
+import { initializeUiLanguage } from '../../js/shared/ui/uiLanguage.js';
+import { isInProtectedSchedule } from '../../js/shared/plans.js';
 
 let lastProtectedScheduleState = null;
 

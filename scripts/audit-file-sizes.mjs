@@ -27,6 +27,7 @@ const budgets = [
         'src/app/background/index.js',
         'src/js/content.js',
         'src/app/popup/index.js',
+        'src/app/options/index.js',
         'src/js/blockedScript.js'
       ].includes(relativePath.replaceAll('\\', '/'));
     }

@@ -300,6 +300,8 @@ The split separates:
 
 The popup entry file is now an initializer that wires modules together. New popup features should not grow `src/app/popup/index.js`; add or extend the smallest focused popup module.
 
+Status: completed for the options-page bootstrap move. `src/app/options/index.js` is now the options page entry that wires localization, migrations, plans, diagnostics, settings, storage transfer, and lock-state polling. New options behavior should go into the narrowest `src/js/options/` feature module or a future feature-owned options module, not into the app entry.
+
 ### Phase 3: Plans Options Split
 
 Move plan-specific options modules into `src/js/options/plans/` and continue splitting the plan controller by plan page:

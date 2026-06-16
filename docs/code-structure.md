@@ -6,7 +6,7 @@ The detailed modularization target, dependency rules, file-size budgets, and mig
 
 ## Runtime Areas
 
-`src/app` contains extension runtime entries. `src/app/background/index.js` is the MV3 service-worker entry: it registers Chrome listeners and initializes feature/background runtimes, but it should not own product behavior. `src/app/popup/index.js` is the popup page entry: it initializes popup shell state, panel modules, refresh loops, storage listeners, and event bindings.
+`src/app` contains extension runtime entries. `src/app/background/index.js` is the MV3 service-worker entry: it registers Chrome listeners and initializes feature/background runtimes, but it should not own product behavior. `src/app/popup/index.js` is the popup page entry: it initializes popup shell state, panel modules, refresh loops, storage listeners, and event bindings. `src/app/options/index.js` is the options page entry: it initializes language/theme state, migrations, plans, diagnostics, settings, storage transfer, and lock-state polling.
 
 `src/features` contains feature-owned source modules that are not runtime entry points. New cross-surface product behavior should move here when it can be imported by extension pages or the MV3 module service worker without depending on manifest content-script order.
 
@@ -18,7 +18,7 @@ The detailed modularization target, dependency rules, file-size budgets, and mig
 
 `src/js/content/uiLanguage.js` owns the classic content-script localization bridge, including selected-locale message loading and right-to-left attributes for extension-owned injected UI. It must not change the host page's document direction.
 
-`src/js/options` contains options-page-only UI helpers and page behavior. Feature-specific option modules should live in a feature subfolder instead of adding more files directly to this folder.
+`src/js/options` contains options-page-only feature modules used by the app entry `src/app/options/index.js`. Feature-specific option modules should live in a feature subfolder instead of adding more files directly to this folder.
 
 `src/js/options/storage-transfer/model.js` owns the pure full-settings export/import schema and the narrower shareable ruleset schema. Full settings export uses `dad.settings.v1`; ruleset export uses `dad.ruleset.v1` and deliberately excludes local UI preferences, custom blocked-page notes, passwords, billing state, runtime state, usage stats, and diagnostics.
 

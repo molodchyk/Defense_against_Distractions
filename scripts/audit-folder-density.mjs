@@ -23,7 +23,34 @@ const budgets = [
     max: 10,
     hard: 16,
     matches(relativeDir) {
-      return relativeDir === 'src/js';
+      return [
+        'src/app',
+        'src/js'
+      ].includes(relativeDir);
+    }
+  },
+  {
+    name: 'app runtime surface',
+    max: 12,
+    hard: 18,
+    matches(relativeDir) {
+      return relativeDir.startsWith('src/app/');
+    }
+  },
+  {
+    name: 'feature root',
+    max: 12,
+    hard: 18,
+    matches(relativeDir) {
+      return relativeDir === 'src/features';
+    }
+  },
+  {
+    name: 'feature surface',
+    max: 15,
+    hard: 24,
+    matches(relativeDir) {
+      return relativeDir.startsWith('src/features/');
     }
   },
   {
