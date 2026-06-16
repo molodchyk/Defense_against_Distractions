@@ -74,6 +74,7 @@ Upload the generated extension ZIP:
 
 ```powershell
 npm run package
+npm run verify:package
 npm run verify:release
 npm run cws:upload
 ```

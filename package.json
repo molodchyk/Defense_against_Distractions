@@ -12,6 +12,7 @@
     "verify:manifest": "node scripts/check-manifest-references.mjs",
     "verify:imports": "node scripts/check-relative-imports.mjs",
     "verify:locales": "node scripts/check-locale-coverage.mjs",
+    "verify:package": "node scripts/check-package-output.mjs",
     "audit:folder-density": "node scripts/audit-folder-density.mjs",
     "audit:folder-density:strict": "node scripts/audit-folder-density.mjs --fail",
     "audit:file-sizes": "node scripts/audit-file-sizes.mjs",

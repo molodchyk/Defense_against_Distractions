@@ -13,6 +13,7 @@ $packagePath = Join-Path $projectRoot "package.json"
 $packageJson = Get-Content -LiteralPath $packagePath -Raw | ConvertFrom-Json
 
 $distPath = Join-Path $projectRoot $OutputDirectory
+$extensionStagePath = Join-Path $distPath "extension"
 $extensionZipPath = Join-Path $distPath "$releaseName-extension.zip"
 $sourceZipPath = Join-Path $distPath "$releaseName-source.zip"
 
@@ -140,6 +141,8 @@ Push-Location $projectRoot
 try {
   node scripts/check-locale-coverage.mjs
   Assert-Condition ($LASTEXITCODE -eq 0) "Locale coverage verification failed"
+  node scripts/check-package-output.mjs --package-root $extensionStagePath --project-root $projectRoot
+  Assert-Condition ($LASTEXITCODE -eq 0) "Package output verification failed"
 }
 finally {
   Pop-Location
@@ -223,6 +226,7 @@ $requiredSourceEntries = @(
   "manifest.json",
   "package.json",
   "README.md",
+  "scripts/check-package-output.mjs",
   "scripts/package-extension.ps1",
   "scripts/verify-release.ps1",
   "src/store-assets/store-listing/en.txt",

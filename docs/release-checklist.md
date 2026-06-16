@@ -8,6 +8,7 @@ Use this checklist before publishing a new extension release.
 - Run `npm test`.
 - Run `npm run verify:locales`.
 - Run `npm run package`.
+- Run `npm run verify:package`.
 - Run `npm run verify:release`.
 - Confirm `dist/Defense_against_Distractions-vX.Y.Z-extension.zip` exists.
 - Confirm `dist/Defense_against_Distractions-vX.Y.Z-source.zip` exists.

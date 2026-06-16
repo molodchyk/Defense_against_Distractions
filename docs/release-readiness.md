@@ -11,7 +11,18 @@ Run these from the project root:
 - `npm run audit:file-sizes`
 - `npm run audit:folder-density`
 - `npm run package`
+- `npm run verify:package`
 - `npm run verify:release`
+
+The package verifier checks:
+
+- The generated runtime output has a valid MV3 manifest.
+- Manifest-referenced popup, options, background, content-script, icon, and web-accessible resource paths exist inside the package output.
+- The background service worker is emitted as a module service worker.
+- The runtime output does not contain source maps unless explicitly allowed.
+- The runtime output does not contain remote executable JavaScript, remote script tags, remote worker scripts, or remote WebAssembly streaming loads.
+- The runtime output excludes source-only folders such as docs, research, tests, scripts, screenshots, promo images, and store listing text.
+- The generated manifest version and name match the project manifest and package version.
 
 The release verifier checks:
 
