@@ -4,7 +4,7 @@ This document collects product and implementation ideas for future versions of D
 
 See [DaD Protection Model](protection-model.md) for the product model that connects signals, risk scoring, interventions, plans, and locked protection.
 
-## Original Wording
+## Original Wording (not to be edited)
 
 This section preserves the original phrasing of ideas before they are clarified or grouped below.
 
@@ -65,6 +65,15 @@ time away (idle time) should go into rest (pause time). Meaning that if you were
 
 if 5 minute rest is already satisfied, the session will start anew once the user comes back, right? Also, popup timer could make it all crystal clear. When it started how much pause already happened, when next pause and so on. So that I don't have to guess right now if it is even correctly implemented or do like secret tests by turning computer off and looking up if it got it all correctly
 
+now what generalizable feature I want: right now we can detect a keyword and then block a page right. But sometimes a keyword just stays. And what we might want, instead of blocking the page, is getting rid of the source or anything else. So if we were able to detect a specific keyword and then click UI button, for example trash can icon, and maybe then also blocking the page just to make sure, that would make it much better.
+
+So because it should be general, it is basically a feature to be able to choose a keyword, set one or several different actions, either press something or whatever, or block the whole page. Be able to also choose the order of actions. Be able to choose the element to be clicked, element to be filled in, or any other action. Now the note I wrote today on morning:
+
+
+Make a block perform an action (or several) on trigger. For example, detect text in GMail, press delete email button, go to bin and press delete again? And what if it's us who make the email, how do we differentiate against those two scenarios? Be able to do several types - press (perform action) and block page too.
+
+So what I meant by that, let's say we block name surname. But we set the block to remove the received message in one case - and remove the email that we started typing in in another - we should be able to do an action that corresponds with the elements available. So that it recognizes when the email is received, and when to remove the email that we type.
+
 ## Blocking Capabilities
 
 - Make blocking resilient against leave-page, unsaved-changes, and similar browser or site warnings that can interrupt navigation away from a blocked page.
@@ -73,6 +82,8 @@ if 5 minute rest is already satisfied, the session will start anew once the user
 - Detect and block video elements.
 - Detect and block audio elements.
 - Add automatic script actions, such as automatically clicking, hiding, or dismissing something on a page.
+
+Clarified future design: [Triggered action chains](triggered-actions.md) generalize keyword blocking and UI cleanup. A block trigger should be able to run one or more bounded ordered actions, such as click once, clear field, pause media, hide element, or block page, with scenario guards that distinguish received content from content the user is composing. This should reuse the existing picker and bounded action model rather than introducing arbitrary JavaScript automation.
 
 Initial implementation note: blocked pages now install general navigation guards while the block overlay is active. The guard clears page-owned `onbeforeunload` handlers, suppresses later `beforeunload` prompt handlers without calling `preventDefault`, and immediately reasserts the block overlay and media suspension on focus, visibility, pageshow, popstate, and hashchange. This is the first general slice of leave-page / unsaved-change warning resilience and is not tied to any single website.
 
