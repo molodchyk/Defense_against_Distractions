@@ -281,7 +281,7 @@ Use compatibility wrappers and move one feature surface at a time.
 
 ### Phase 2: Popup Split
 
-Status: completed for the entry-file split. `src/js/popup.js` is now a bootstrap/wiring file, and popup responsibilities live under `src/js/popup/`.
+Status: completed for the entry-file split. `src/app/popup/index.js` is now a bootstrap/wiring file, and popup responsibilities live under `src/js/popup/`.
 
 The popup is the safest first UI split because it is a single page and already imports ES modules.
 
@@ -298,7 +298,7 @@ The split separates:
 - intent diagnostics and recovery cards under `src/js/popup/intent/`
 - diagnostics export
 
-The popup entry file is now an initializer that wires modules together. New popup features should not grow `src/js/popup.js`; add or extend the smallest focused popup module.
+The popup entry file is now an initializer that wires modules together. New popup features should not grow `src/app/popup/index.js`; add or extend the smallest focused popup module.
 
 ### Phase 3: Plans Options Split
 

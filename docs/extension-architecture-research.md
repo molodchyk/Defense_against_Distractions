@@ -262,7 +262,7 @@ The roadmap's feature-first structure is still the right direction, with these r
 
 1. Add a file-size audit script and report threshold breaches.
 2. Add a manifest-file reference check for content scripts and web-accessible resources.
-3. Split `src/js/popup.js` into modules:
+3. Keep `src/app/popup/index.js` as a thin bootstrap after the completed popup split:
    - bootstrap,
    - Chrome message helpers,
    - protection summary,

@@ -73,7 +73,7 @@ Codex currently owns:
 - `src/js/background/pomodoro/**`
 - `src/js/background/intentCoherence.js`
 - `src/js/background/intent/**`
-- `src/js/popup.js`
+- `src/app/popup/index.js`
 - `src/js/popup/**`
 - `test/shared/**`
 - `docs/code-structure.md`
@@ -147,7 +147,7 @@ Release-facing changes:
 - `src/js/content/pomodoro/miniPanelStyle.js` is now a thin style facade after extracting mini-panel constants and CSS text generation.
 - `src/js/content/content-blocking/overlay.js` is now a thin controller after extracting blocked-overlay message, style, theme, diagnostics, Pomodoro, and event modules.
 - `src/js/content/pageSignals.js` is now a thin controller after extracting page-signal activity, collector, and reporter modules.
-- `src/js/popup.js` is now a thin popup bootstrap after extracting panel construction, UI picker launch, diagnostics export, event binding, and refresh-loop modules.
+- `src/app/popup/index.js` is now a thin popup bootstrap after extracting panel construction, UI picker launch, diagnostics export, event binding, and refresh-loop modules.
 - `src/js/options/elementRules.js` is now a thin global Blocked UI list/sync entry after extracting storage/quota, formatting, and rule-item rendering modules.
 - `src/js/shared/usageStats.js` is now a small compatibility barrel. The bounded local usage-stats implementation lives under `src/js/shared/usage-stats/`.
 - `src/js/background/intentCoherence.js` is now a small compatibility barrel. Background intent runtime responsibilities live under `src/js/background/intent/`.

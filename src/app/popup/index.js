@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
-import { PLANS_STORAGE_KEY } from './shared/plans.js';
+import { PLANS_STORAGE_KEY } from '../../js/shared/plans.js';
 import {
   UI_LANGUAGE_STORAGE_KEY,
   initializeUiLanguage
-} from './shared/ui/uiLanguage.js';
+} from '../../js/shared/ui/uiLanguage.js';
 import {
   getActiveTab,
   getSyncStorage,
@@ -16,26 +16,26 @@ import {
   sendRuntimeMessage,
   sendTabMessage,
   updateTabUrl
-} from './popup/chrome.js';
-import { getMessage, localizePopup } from './popup/i18n.js';
+} from '../../js/popup/chrome.js';
+import { getMessage, localizePopup } from '../../js/popup/i18n.js';
 import {
   createPopupPanelSet
-} from './popup/panelSet.js';
+} from '../../js/popup/panelSet.js';
 import {
   createElementPickerLauncher
-} from './popup/elementPickerLauncher.js';
+} from '../../js/popup/elementPickerLauncher.js';
 import {
   createPopupDiagnosticsExporter
-} from './popup/diagnosticsExport.js';
+} from '../../js/popup/diagnosticsExport.js';
 import {
   bindPopupEvents
-} from './popup/events.js';
+} from '../../js/popup/events.js';
 import {
   createPopupRefreshLoop
-} from './popup/refreshLoop.js';
+} from '../../js/popup/refreshLoop.js';
 import {
   createPopupShell
-} from './popup/shell.js';
+} from '../../js/popup/shell.js';
 
 const popupShell = createPopupShell();
 const panels = createPopupPanelSet({
