@@ -7,11 +7,12 @@ import {
     exportKeyToBase64,
     generatePasswordKey,
     importPasswordKey
-} from './options/passwordCrypto.js';
-import { isInProtectedSchedule } from './shared/plans.js';
+} from './crypto.js';
+import { isInProtectedSchedule } from '../../shared/plans.js';
 
 const MAX_ATTEMPTS = 5;
 const LOCKOUT_INTERVAL = 30 * 1000; // 30 seconds
+let isPasswordManagerInitialized = false;
 
 async function setPassword(password) {
     try {
@@ -212,13 +213,6 @@ async function validateOverlayPassword() {
 }
 
 
-// Event listener for the password overlay form submission
-document.getElementById('passwordForm').addEventListener('submit', async (event) => {
-    event.preventDefault();
-    await validateOverlayPassword();
-});
-document.getElementById('deletePasswordButton').addEventListener('click', deletePassword);
-
 export function updateButtonStates() {
     chrome.storage.sync.get(null, function(data) {
         const hasPassword = !!data.password;
@@ -244,8 +238,35 @@ export function updateButtonStates() {
     });
 }
 
+export async function initializePasswordManager() {
+    if (isPasswordManagerInitialized) {
+        return;
+    }
+    isPasswordManagerInitialized = true;
 
-document.addEventListener('DOMContentLoaded', async () => {
+    document.getElementById('passwordForm').addEventListener('submit', async (event) => {
+        event.preventDefault();
+        await validateOverlayPassword();
+    });
+    document.getElementById('deletePasswordButton').addEventListener('click', deletePassword);
+    document.getElementById('setPasswordButton').addEventListener('click', async () => {
+        await confirmPassword();
+    });
+
+    document.getElementById('passwordInputField').addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            document.getElementById('confirmPasswordInputField').focus();
+        }
+    });
+
+    document.getElementById('confirmPasswordInputField').addEventListener('keydown', async (event) => {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            await confirmPassword();
+        }
+    });
+
     // Check if password is set
     const passwordIsSet = await isPasswordSet();
     if (passwordIsSet) {
@@ -256,7 +277,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     updateButtonStates();
-});
+}
 
 async function isPasswordSet() {
     return new Promise((resolve, reject) => {
@@ -272,28 +293,3 @@ async function isPasswordSet() {
         });
     });
 }
-
-
-
-document.getElementById('setPasswordButton').addEventListener('click', async () => {
-    await confirmPassword();
-});
-
-
-
-// Add an event listener for passwordInputField
-document.getElementById('passwordInputField').addEventListener('keydown', (event) => {
-    if (event.key === 'Enter') {
-        event.preventDefault(); // Prevent the default form submission
-        document.getElementById('confirmPasswordInputField').focus();
-    }
-});
-
-// Add an event listener for confirmPasswordInputField
-document.getElementById('confirmPasswordInputField').addEventListener('keydown', async (event) => {
-    if (event.key === 'Enter') {
-        event.preventDefault(); // Prevent the default form submission
-        await confirmPassword();
-    }
-});
-

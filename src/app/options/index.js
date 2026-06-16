@@ -6,6 +6,7 @@ import { initializeBillingPanel } from '../../js/options/billing.js';
 import { initializeElementRulesSync, renderElementRules } from '../../js/options/elementRules.js';
 import { initializeIntentDiagnosticsPanel } from '../../js/options/intentDiagnostics.js';
 import { migrateLegacyWebsiteGroupsStorage } from '../../js/options/legacyMigration.js';
+import { initializePasswordManager, updateButtonStates } from '../../js/options/password/manager.js';
 import { initializePlans, renderPlans } from '../../js/options/plans/controller.js';
 import { initializeReleaseBackupNotice } from '../../js/options/releaseNotice.js';
 import { initializeStorageTransfer } from '../../js/options/storageTransfer.js';
@@ -30,6 +31,7 @@ async function initializeOptionsPage() {
   localizeOptionsPage();
   initializeThemeModeControl();
   initializeUiLanguageControl(refreshLocalizedOptionsUi);
+  await initializePasswordManager();
   await migrateLegacyWebsiteGroupsStorage();
   initializePlans();
   renderElementRules();
@@ -72,6 +74,7 @@ async function refreshProtectionLockState() {
 
     if (lastProtectedScheduleState !== isProtected) {
       lastProtectedScheduleState = isProtected;
+      updateButtonStates();
       await Promise.all([
         renderPlans(),
         renderElementRules()
