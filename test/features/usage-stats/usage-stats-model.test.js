@@ -9,7 +9,7 @@ import {
   normalizeUsageStats,
   recordUsagePageSignal,
   summarizeUsageStats
-} from '../../../src/js/shared/usageStats.js';
+} from '../../../src/features/usage-stats/core/index.js';
 
 describe('usage stats helpers', () => {
   const baseNow = Date.parse('2026-06-09T08:00:00.000Z');

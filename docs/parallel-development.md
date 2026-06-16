@@ -51,7 +51,7 @@ Current focus:
 - Completed checkpoint: blocked-page implementation modules now live under `src/features/content-blocking/blocked-page/`.
 - Completed checkpoint: the shared page-signal collector model now lives under `src/features/page-signals/core/`, with the old shared path kept as a compatibility barrel.
 - Completed checkpoint: global Blocked UI options have been split into constants/messages, formatting, storage/quota, rule-card rendering, and a thin list/sync entry.
-- Completed checkpoint: shared usage stats have been split into constants, utils, metrics, state, record, and summary modules under `src/js/shared/usage-stats/` while preserving the public barrel API.
+- Completed checkpoint: shared usage stats have moved into feature ownership under `src/features/usage-stats/core/`, while preserving the public shared barrel API.
 - Completed checkpoint: background intent coherence has been split into Chrome API, storage, policy, page-signal recording, tab lineage, diagnostics, message routing, and initializer modules under `src/js/background/intent/` while preserving the public initializer barrel.
 - Completed checkpoint: Pomodoro mini-panel style behavior has been split into constants, CSS generation, and a thin style-injection facade while preserving the public `PomodoroMiniPanelStyle` API.
 - Completed checkpoint: options and popup CSS are split into thin entry barrels plus focused surface stylesheets.
@@ -75,8 +75,9 @@ Codex currently owns:
 - `src/js/shared/schedules/**`
 - `src/js/shared/storage/**`
 - `src/js/shared/ui/**`
+- `src/features/usage-stats/**`
+- `test/features/usage-stats/**`
 - `src/js/shared/usageStats.js`
-- `src/js/shared/usage-stats/**`
 - `src/js/options/schedules/**`
 - `src/js/options/password/**`
 - `src/js/options/elementRules.js`
@@ -168,7 +169,7 @@ Release-facing changes:
 - `src/js/options/password/manager.js` owns options password controls and the overlay gate; `src/options.html` now has a single app-entry module script.
 - Root `src/js` no longer contains runtime entries; classic content-script feature adapters remain under `src/js/content/`.
 - `src/js/options/elementRules.js` is now a thin global Blocked UI list/sync entry after extracting storage/quota, formatting, and rule-item rendering modules.
-- `src/js/shared/usageStats.js` is now a small compatibility barrel. The bounded local usage-stats implementation lives under `src/js/shared/usage-stats/`.
+- `src/js/shared/usageStats.js` is now a small compatibility barrel. The bounded local usage-stats implementation lives under `src/features/usage-stats/core/`.
 - `src/js/background/intentCoherence.js` is now a small compatibility barrel. Background intent runtime responsibilities live under `src/js/background/intent/`.
 - `src/js/content/ui-blocking/controller.js` is below the hard file-size limit after extracting `pickerStyle.js` and `pickerPanel.js`.
 - `src/js/content/intentIntervention.js` is below the hard file-size limit after extracting `src/js/content/intent/` constants, messages, style, theme, and prompt modules.

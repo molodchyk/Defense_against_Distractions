@@ -5,10 +5,16 @@ export {
   DEFAULT_USAGE_STATS_RETENTION_DAYS,
   USAGE_STATS_EXPORT_SCHEMA,
   USAGE_STATS_SCHEMA_VERSION,
-  USAGE_STATS_STORAGE_KEY,
+  USAGE_STATS_STORAGE_KEY
+} from './constants.js';
+export {
   createUsageStatsState,
+  normalizeUsageStats
+} from './state.js';
+export {
+  recordUsagePageSignal
+} from './record.js';
+export {
   buildUsageStatsExportPayload,
-  normalizeUsageStats,
-  recordUsagePageSignal,
   summarizeUsageStats
-} from '../../features/usage-stats/core/index.js';
+} from './summary.js';

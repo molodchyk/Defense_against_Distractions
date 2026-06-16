@@ -81,7 +81,8 @@ Node tests live under `test/shared/` by product area:
 - `test/shared/plans/`: plan model, legacy migration, and group-rule tests.
 - `test/shared/pomodoro/`: Pomodoro shared runtime and history model tests.
 - `test/features/page-signals/`: page-signal collector model tests.
-- `test/shared/signals/`: content page-signal activity and usage-stat model tests.
+- `test/features/usage-stats/`: bounded usage-stats model tests.
+- `test/shared/signals/`: content page-signal activity tests.
 - `test/shared/intent/scoring/`: intent coherence scoring and signal-pressure tests.
 - `test/shared/intent/trajectory/`: intent sessions, diagnostics, graph, and tab-lineage tests.
 - `test/shared/intent/interventions/`: intent feedback, prompts, Continue, and intervention-scope tests.
@@ -229,7 +230,7 @@ The first local signal collector is split by runtime:
 - `src/js/shared/intent/trajectory.js` owns public page-visit, navigation, tab-lifecycle, feedback, and active-session recording functions.
 - `src/js/shared/intent/interventions.js` owns recovery-visit selection, user-facing reason lines, intervention decisions, and chain-block metadata.
 - `src/js/shared/intent/graph.js` owns the bounded intent chain graph model, coherent/uncertain/drift labels, and capped coherent-host/drift-descendant host summaries used by diagnostics UI.
-- `src/js/shared/usageStats.js` is the compatibility barrel for tested bounded hostname-level usage aggregates. The implementation lives under `src/js/shared/usage-stats/`: constants and retention limits, timestamp/hostname sanitizers, metric bucket aggregation, state normalization, page-signal recording, summaries, derived blocked outcome shares, and local JSON export payloads. It stores counts, timing summaries, page word counts, coarse tab/window pressure maxima, passive region maxima, and blocked/allowed aggregate outcome counters only, not raw page text, full URLs, titles, topic tokens, tab URLs, tab titles, or tab identities.
+- `src/features/usage-stats/core/` owns tested bounded hostname-level usage aggregates: constants and retention limits, timestamp/hostname sanitizers, metric bucket aggregation, state normalization, page-signal recording, summaries, derived blocked outcome shares, and local JSON export payloads. It stores counts, timing summaries, page word counts, coarse tab/window pressure maxima, passive region maxima, and blocked/allowed aggregate outcome counters only, not raw page text, full URLs, titles, topic tokens, tab URLs, tab titles, or tab identities. `src/js/shared/usageStats.js` is the compatibility barrel for current imports.
 - `src/js/background/intentCoherence.js` is the background intent compatibility barrel imported by `src/app/background/index.js`.
 - `src/js/background/intent/chromeApi.js` owns Chrome storage, tab pressure, open-tab enumeration, tab URL update, tab-discard, tab window moving, and tab-removal wrappers used by background intent runtime.
 - `src/js/background/intent/storage.js` owns `intentTrajectoryState` and `usageStats` local-storage read/update helpers.
