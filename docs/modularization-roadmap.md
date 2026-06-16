@@ -20,7 +20,7 @@ Current pressure points:
 
 ## Architectural Direction
 
-Use a hybrid feature-first structure with thin runtime entry points.
+Use feature-first source modules with thin runtime entry points.
 
 Runtime entry points should only bootstrap:
 
@@ -30,18 +30,18 @@ Runtime entry points should only bootstrap:
 - blocked page
 - content script bootstrap
 
-Product behavior should live in feature folders. Shared browser wrappers should live in platform folders. Pure logic should stay independent from Chrome and DOM APIs.
+Product behavior should live in feature folders. Shared browser wrappers should live in platform folders. Pure logic should stay independent from Chrome and DOM APIs. New feature-owned source should move toward `src/features/`; existing `src/js/` modules are migration inventory unless they are true runtime entries or compatibility adapters.
 
 ## Target Folder Structure
 
 ```text
-src/js/
+src/
   app/
     background/
       index.js
       messageRouter.js
     content/
-      index.global.js
+      index.js
       manifestScripts.js
     options/
       index.js
@@ -65,7 +65,7 @@ src/js/
         PlanPomodoro.js
         PlanIntent.js
       content/
-        planMatcher.global.js
+        planMatcher.js
 
     schedules/
       core/
@@ -87,13 +87,13 @@ src/js/
       background/
         pomodoroRuntime.js
       content/
-        activityReporter.global.js
+        activityReporter.js
         mini-panel/
-          MiniPanel.global.js
-          MiniPanelState.global.js
-          MiniPanelDragResize.global.js
-          MiniPanelRenderer.global.js
-          MiniPanelStyles.global.js
+          MiniPanel.js
+          MiniPanelState.js
+          MiniPanelDragResize.js
+          MiniPanelRenderer.js
+          MiniPanelStyles.js
       popup/
         PomodoroCard.js
       options/
@@ -109,7 +109,7 @@ src/js/
       background/
         intentRuntime.js
       content/
-        intentIntervention.global.js
+        intentIntervention.js
       options/
         IntentDiagnostics.js
         IntentSettings.js
@@ -121,11 +121,13 @@ src/js/
         keywordScoring.js
         matchDiagnostics.js
       content/
-        blockPage.global.js
-        overlay.global.js
-        mediaSuspension.global.js
-        keywordScanner.global.js
-        siteCheck.global.js
+        blockPage.js
+        overlay.js
+        mediaSuspension.js
+        keywordScanner.js
+        siteCheck.js
+      background/
+        tabMute.js
 
     ui-blocking/
       core/
@@ -135,11 +137,11 @@ src/js/
         storageModel.js
       content/
         picker/
-          PickerController.global.js
-          PickerPanel.global.js
-          PickerPreview.global.js
-          PickerStyles.global.js
-        applyRules.global.js
+          PickerController.js
+          PickerPanel.js
+          PickerPreview.js
+          PickerStyles.js
+        applyRules.js
       options/
         ElementRulesList.js
         ElementRuleEditor.js
@@ -171,7 +173,7 @@ src/js/
         messages.js
         localeSupport.js
       content/
-        uiLanguage.global.js
+        uiLanguage.js
       options/
         UiLanguageControl.js
 
@@ -199,9 +201,17 @@ src/js/
       legacyGroups.js
       legacySchedules.js
       legacyWhitelist.js
+
+dist/
+  extension/
+    manifest.json
+    background.js
+    content.js
+    popup.html
+    options.html
 ```
 
-The exact filenames can change during implementation. The boundaries should not.
+The exact filenames can change during implementation. The boundaries should not. Content-script source can still compile or copy into manifest-loadable output; manifest load order is an output constraint, not the source architecture.
 
 ## Dependency Rules
 
@@ -225,10 +235,11 @@ Runtime and UI modules:
 
 Content scripts:
 
-- Can remain classic scripts while there is no bundler.
+- Should be authored as feature-owned source modules.
+- May compile or copy into manifest-loadable output when Chrome content-script constraints require it.
 - Must attach only a small public API to `window.DAD`.
 - Should treat `window.DAD` as the compatibility boundary, not as shared application state.
-- Must have load order documented next to the manifest list.
+- Must have output load order documented next to the manifest list.
 
 ## File Size Budgets
 

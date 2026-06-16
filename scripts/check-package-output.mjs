@@ -9,6 +9,8 @@ const DEFAULT_PACKAGE_ROOT = 'dist/extension';
 const DEFAULT_PROJECT_ROOT = '.';
 
 const TEXT_EXTENSIONS = new Set(['.html', '.htm', '.js', '.mjs']);
+const STATIC_RELATIVE_IMPORT_PATTERN = /\b(?:import|export)\s+(?:[^'"]+\s+from\s+)?['"](\.{1,2}\/[^'"]+)['"]/g;
+const DYNAMIC_RELATIVE_IMPORT_PATTERN = /\bimport\s*\(\s*['"](\.{1,2}\/[^'"]+)['"]\s*\)/g;
 const FORBIDDEN_PACKAGE_PREFIXES = [
   '.git/',
   'docs/',
@@ -300,6 +302,32 @@ function scanRemoteExecutableCode(relativePath, text) {
     .map((pattern) => `${relativePath}: ${pattern.label}`);
 }
 
+function getRelativeImportSpecifiers(source) {
+  return [
+    ...source.matchAll(STATIC_RELATIVE_IMPORT_PATTERN),
+    ...source.matchAll(DYNAMIC_RELATIVE_IMPORT_PATTERN)
+  ].map((match) => match[1]);
+}
+
+function stripImportSuffix(specifier) {
+  return specifier.split(/[?#]/, 1)[0];
+}
+
+async function assertPackageImportExists({ absolutePath, issues, packageRoot, specifier }) {
+  const normalizedSpecifier = stripImportSuffix(specifier);
+  const targetPath = path.resolve(path.dirname(absolutePath), normalizedSpecifier);
+  const sourcePath = normalizeRelativePath(packageRoot, absolutePath);
+
+  if (!isSubPath(packageRoot, targetPath)) {
+    issues.push(`${sourcePath} imports outside the package output: ${specifier}`);
+    return;
+  }
+
+  if (!await exists(targetPath)) {
+    issues.push(`${sourcePath} imports a missing package file: ${specifier}`);
+  }
+}
+
 async function assertPackageFiles({ allowSourceMaps, files, issues, packageRoot }) {
   for (const absolutePath of files) {
     const relativePath = normalizeRelativePath(packageRoot, absolutePath);
@@ -327,6 +355,17 @@ async function assertPackageFiles({ allowSourceMaps, files, issues, packageRoot 
 
     for (const issue of scanRemoteExecutableCode(relativePath, text)) {
       issues.push(`Remote executable code detected: ${issue}`);
+    }
+
+    if (extension === '.js' || extension === '.mjs') {
+      for (const specifier of getRelativeImportSpecifiers(text)) {
+        await assertPackageImportExists({
+          absolutePath,
+          issues,
+          packageRoot,
+          specifier
+        });
+      }
     }
   }
 }

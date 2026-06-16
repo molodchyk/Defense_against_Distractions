@@ -6,7 +6,11 @@ The detailed modularization target, dependency rules, file-size budgets, and mig
 
 ## Runtime Areas
 
-`src/js/background` contains extension background/service-worker behavior.
+`src/features` contains feature-owned source modules that are not runtime entry points. New cross-surface product behavior should move here when it can be imported by extension pages or the MV3 module service worker without depending on manifest content-script order.
+
+`src/features/content-blocking/background/tabMute.js` owns blocked-page tab mute state for the background service worker. `src/js/background.js` wires the Chrome message and tab lifecycle events to that feature controller.
+
+`src/js/background` contains background/service-worker adapters and compatibility barrels for existing background feature modules. New background behavior should go into a feature-owned module first, with `src/js/background.js` or a narrow background adapter only registering listeners and routing messages.
 
 `src/js/content` contains page-injected content scripts. These files are loaded by `manifest.json` in order and are not ES modules, so shared content-script APIs attach to `window.DAD`. Feature-specific content scripts should live in subfolders while preserving the manifest order.
 

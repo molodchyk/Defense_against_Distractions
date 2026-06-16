@@ -51,7 +51,7 @@ Run `npm run package` to generate release archives in `dist/`:
 - `Defense_against_Distractions-vX.Y.Z-extension.zip` contains only the runtime extension files for loading or store upload.
 - `Defense_against_Distractions-vX.Y.Z-source.zip` contains the source tree, tests, docs, scripts, screenshots, and promotional assets.
 
-Run `npm run verify:package` after packaging to check the generated runtime output for manifest consistency, source-map policy, and remote executable code. Run `npm run verify:release` to check the generated archives and the package gate together. See [Release Readiness](docs/release-readiness.md) for the full automated and manual release gates.
+Run `npm run verify:package` after packaging to check the generated runtime output for manifest/import consistency, source-map policy, and remote executable code. Run `npm run verify:release` to check the generated archives and the package gate together. See [Release Readiness](docs/release-readiness.md) for the full automated and manual release gates.
 
 The `dist/` directory is generated output and is not the source of truth. If a file in `dist/source/` looks stale, rerun `npm run package` instead of editing the generated copy directly.
 
@@ -63,6 +63,7 @@ Chrome Web Store API release helpers are documented in [Chrome Web Store API](do
 - `src/options.html` contains the options page.
 - `src/instructions.html` contains the in-extension guide.
 - `src/blocked.html` contains the block page.
+- `src/features/` contains feature-owned source modules that can be imported by runtime entries.
 - `src/js/background.js` contains the service worker entry point.
 - `src/js/content.js` scans pages and triggers blocking.
 - `src/js/shared/` contains shared parsing, URL, storage, and schedule helpers.

@@ -6,73 +6,13 @@ import { initializeIntentCoherence } from './background/intentCoherence.js';
 import { initializePomodoroRuntime } from './background/pomodoro.js';
 import { initializeReleaseBackupNoticeEligibility } from './background/releaseNotice.js';
 import { initializeScheduleMonitor } from './background/scheduleMonitor.js';
+import { createBlockedTabMuteController } from '../features/content-blocking/background/tabMute.js';
 
-const extensionMutedTabs = new Map();
-const extensionMutedTabEvents = new Map();
+const blockedTabMuteController = createBlockedTabMuteController(chrome);
 
 chrome.action.onClicked.addListener(() => {
   chrome.tabs.create({ url: chrome.runtime.getURL('src/options.html') });
 });
-
-function muteBlockedTab(tabId) {
-  chrome.tabs.get(tabId, tab => {
-    if (chrome.runtime.lastError || !tab) {
-      return;
-    }
-
-    const originalMuted = extensionMutedTabs.has(tabId)
-      ? extensionMutedTabs.get(tabId)
-      : Boolean(tab.mutedInfo?.muted);
-
-    extensionMutedTabs.set(tabId, originalMuted);
-    extensionMutedTabEvents.set(tabId, {
-      originalMuted,
-      mutedAt: new Date().toISOString(),
-      restoredAt: extensionMutedTabEvents.get(tabId)?.restoredAt || null,
-      lastAction: 'muted'
-    });
-    chrome.tabs.update(tabId, { muted: true });
-  });
-}
-
-function restoreTabMuteState(tabId) {
-  if (!extensionMutedTabs.has(tabId)) {
-    extensionMutedTabEvents.set(tabId, {
-      ...(extensionMutedTabEvents.get(tabId) || {}),
-      restoredAt: new Date().toISOString(),
-      lastAction: 'restoreSkipped'
-    });
-    return;
-  }
-
-  const wasMuted = extensionMutedTabs.get(tabId);
-  extensionMutedTabs.delete(tabId);
-  extensionMutedTabEvents.set(tabId, {
-    ...(extensionMutedTabEvents.get(tabId) || {}),
-    restoredAt: new Date().toISOString(),
-    restoredMutedState: wasMuted,
-    lastAction: 'restored'
-  });
-  chrome.tabs.update(tabId, { muted: wasMuted });
-}
-
-function getBlockedTabMuteDebugState(tabId) {
-  if (tabId === undefined) {
-    return {
-      tracked: false,
-      tabId: null,
-      reason: 'No sender tab.'
-    };
-  }
-
-  const eventState = extensionMutedTabEvents.get(tabId) || {};
-  return {
-    tracked: extensionMutedTabs.has(tabId),
-    tabId,
-    originalMuted: extensionMutedTabs.has(tabId) ? extensionMutedTabs.get(tabId) : eventState.originalMuted ?? null,
-    ...eventState
-  };
-}
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === 'updateBadge') {
@@ -87,19 +27,19 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === 'muteBlockedTab') {
     const tabId = sender.tab?.id;
     if (tabId !== undefined) {
-      muteBlockedTab(tabId);
+      blockedTabMuteController.muteBlockedTab(tabId);
     }
   }
 
   if (message.action === 'restoreBlockedTabMute') {
     const tabId = sender.tab?.id;
     if (tabId !== undefined) {
-      restoreTabMuteState(tabId);
+      blockedTabMuteController.restoreBlockedTabMuteState(tabId);
     }
   }
 
   if (message.action === 'getBlockedTabMuteDebugState') {
-    sendResponse(getBlockedTabMuteDebugState(sender.tab?.id));
+    sendResponse(blockedTabMuteController.getBlockedTabMuteDebugState(sender.tab?.id));
   }
 
   if (message.action === 'blockTopFrame') {
@@ -121,13 +61,12 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
 chrome.tabs.onUpdated.addListener((tabId, changeInfo) => {
   if (changeInfo.status === 'loading') {
-    restoreTabMuteState(tabId);
+    blockedTabMuteController.restoreBlockedTabMuteState(tabId);
   }
 });
 
 chrome.tabs.onRemoved.addListener(tabId => {
-  extensionMutedTabs.delete(tabId);
-  extensionMutedTabEvents.delete(tabId);
+  blockedTabMuteController.forgetBlockedTabMuteState(tabId);
 });
 
 initializeDefaultSettings();

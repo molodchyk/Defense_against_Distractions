@@ -47,7 +47,10 @@ async function writeFixtureFile(root, relativePath, contents = '') {
   await writeFile(absolutePath, contents);
 }
 
-async function createPackageFixture({ popupHtml = '<script type="module" src="popup.js"></script>' } = {}) {
+async function createPackageFixture({
+  popupHtml = '<script type="module" src="popup.js"></script>',
+  popupJs = 'export const popupReady = true;\n'
+} = {}) {
   const projectRoot = await mkdtemp(path.join(tmpdir(), 'dad-package-check-'));
   const packageRoot = path.join(projectRoot, 'dist', 'extension');
   const manifestText = `${JSON.stringify(manifest, null, 2)}\n`;
@@ -56,7 +59,7 @@ async function createPackageFixture({ popupHtml = '<script type="module" src="po
   await writeFixtureFile(projectRoot, 'package.json', `${JSON.stringify({ name: 'fixture', version: manifest.version }, null, 2)}\n`);
   await writeFixtureFile(packageRoot, 'manifest.json', manifestText);
   await writeFixtureFile(packageRoot, 'popup.html', popupHtml);
-  await writeFixtureFile(packageRoot, 'popup.js', 'export const popupReady = true;\n');
+  await writeFixtureFile(packageRoot, 'popup.js', popupJs);
   await writeFixtureFile(packageRoot, 'options.html', '<script type="module" src="options.js"></script>\n');
   await writeFixtureFile(packageRoot, 'options.js', 'export const optionsReady = true;\n');
   await writeFixtureFile(packageRoot, 'background.js', 'export const backgroundReady = true;\n');
@@ -109,6 +112,22 @@ describe('package output verifier', () => {
 
       assert.equal(result.status, 1);
       assert.match(result.stderr, /Remote executable code detected: popup\.html: remote script tag/);
+    } finally {
+      await rm(projectRoot, { force: true, recursive: true });
+    }
+  });
+
+  it('rejects relative imports that are missing from package output', async () => {
+    const missingImportFixture = ['import', '"./missing-feature.js";\n'].join(' ');
+    const { packageRoot, projectRoot } = await createPackageFixture({
+      popupJs: missingImportFixture
+    });
+
+    try {
+      const result = runPackageCheck(projectRoot, packageRoot);
+
+      assert.equal(result.status, 1);
+      assert.match(result.stderr, /popup\.js imports a missing package file: \.\/missing-feature\.js/);
     } finally {
       await rm(projectRoot, { force: true, recursive: true });
     }

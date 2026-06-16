@@ -196,7 +196,7 @@ foreach ($entry in $requiredExtensionEntries) {
   Assert-ZipContains -Entries $extensionEntries -EntryName $entry -ArchiveName "Extension archive"
 }
 
-foreach ($prefix in @("_locales/", "src/css/", "src/js/")) {
+foreach ($prefix in @("_locales/", "src/css/", "src/features/", "src/js/")) {
   Assert-ZipContainsPrefix -Entries $extensionEntries -Prefix $prefix -ArchiveName "Extension archive"
 }
 

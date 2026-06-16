@@ -18,6 +18,7 @@ The package verifier checks:
 
 - The generated runtime output has a valid MV3 manifest.
 - Manifest-referenced popup, options, background, content-script, icon, and web-accessible resource paths exist inside the package output.
+- Relative JavaScript imports inside the generated package resolve to files inside the package output.
 - The background service worker is emitted as a module service worker.
 - The runtime output does not contain source maps unless explicitly allowed.
 - The runtime output does not contain remote executable JavaScript, remote script tags, remote worker scripts, or remote WebAssembly streaming loads.
