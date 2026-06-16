@@ -6,13 +6,13 @@ The detailed modularization target, dependency rules, file-size budgets, and mig
 
 ## Runtime Areas
 
-`src/app` contains extension runtime entries. `src/app/background/index.js` is the MV3 service-worker entry: it registers Chrome listeners and initializes feature/background runtimes, but it should not own product behavior. `src/app/popup/index.js` is the popup page entry: it initializes popup shell state, panel modules, refresh loops, storage listeners, and event bindings. `src/app/options/index.js` is the options page entry: it initializes language/theme state, the password gate, migrations, plans, diagnostics, settings, storage transfer, and lock-state polling. `src/app/instructions/index.js` is the instructions page entry: it applies the shared language and theme helpers to the static guide page. `src/app/blocked/index.js` is the blocked page entry: it wires blocked-page localization, theme, custom message, and Pomodoro status modules.
+`src/app` contains extension runtime entries. `src/app/background/index.js` is the MV3 service-worker entry: it registers Chrome listeners and initializes feature/background runtimes, but it should not own product behavior. `src/app/content/index.js` is the classic manifest-loaded content-script entry: it runs after the ordered content-script adapters and wires site checks, runtime messages, diagnostics, and BFCache handling. `src/app/popup/index.js` is the popup page entry: it initializes popup shell state, panel modules, refresh loops, storage listeners, and event bindings. `src/app/options/index.js` is the options page entry: it initializes language/theme state, the password gate, migrations, plans, diagnostics, settings, storage transfer, and lock-state polling. `src/app/instructions/index.js` is the instructions page entry: it applies the shared language and theme helpers to the static guide page. `src/app/blocked/index.js` is the blocked page entry: it wires blocked-page localization, theme, custom message, and Pomodoro status modules.
 
 `src/features` contains feature-owned source modules that are not runtime entry points. New cross-surface product behavior should move here when it can be imported by extension pages or the MV3 module service worker without depending on manifest content-script order.
 
 `src/features/content-blocking/background/runtime.js` owns background message routing and tab lifecycle hooks for page blocking, including badge updates, top-frame block requests, and mute-state delegation. `src/features/content-blocking/background/tabMute.js` owns blocked-page tab mute state for that runtime.
 
-The root `src/js` folder should contain only legacy runtime entries that are still loaded directly by manifest or extension HTML constraints. At this point only `src/js/content.js` remains there because content scripts are still classic manifest-loaded scripts; do not add new helper modules there.
+The root `src/js` folder should stay empty of runtime entries and helper modules. Content-script feature modules still live under `src/js/content/` while the classic manifest-loaded entry is `src/app/content/index.js`.
 
 `src/js/background` contains background/service-worker adapters and compatibility barrels for existing background feature modules. New background behavior should go into a feature-owned module first, with `src/app/background/index.js` or a narrow background adapter only registering listeners and routing messages.
 
@@ -166,7 +166,7 @@ Main page blocking is also split into ordered content-script modules:
 - `src/js/content/content-blocking/structuralTriggers.js`: explicit `has:*` keyword conditions that turn page media, currently audible playback, feed/recommendation/comment/short-form surfaces, links, and bounded page/active seconds into normal score contributions.
 - `src/js/content/content-blocking/keywords.js`: keyword context extraction, text-node scanning, score updates, badge updates, and mutation observation.
 - `src/js/content/content-blocking/siteCheck.js`: storage lookup, plan allowed-site checks, matching plan-owned or legacy website groups, and starting scans.
-- `content.js`: bootstrap, runtime message handling, and BFCache/pageshow reinitialization.
+- `src/app/content/index.js`: classic content-script bootstrap, runtime message handling, and BFCache/pageshow reinitialization.
 
 Blocking diagnostics start in `content-blocking/keywords.js`, where score contributions are recorded into local page state. `content-blocking/overlayDiagnostics.js` renders the concise reason on the blocked overlay. Future diagnostic expansion should stay near `content-blocking/keywords.js` and `content-blocking/siteCheck.js`, because those modules know which keyword or group caused risk to rise. Future intervention work should start near `content-blocking/blocker.js` and `content-blocking/media.js`.
 

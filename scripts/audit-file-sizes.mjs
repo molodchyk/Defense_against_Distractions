@@ -25,7 +25,7 @@ const budgets = [
     matches(relativePath) {
       return [
         'src/app/background/index.js',
-        'src/js/content.js',
+        'src/app/content/index.js',
         'src/app/popup/index.js',
         'src/app/options/index.js',
         'src/app/instructions/index.js',

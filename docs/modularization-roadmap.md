@@ -308,6 +308,8 @@ Status: completed for the instructions-page bootstrap move. `src/app/instruction
 
 Status: completed for the blocked-page bootstrap move. `src/app/blocked/index.js` is now the blocked page entry that wires blocked-page localization, theme, custom message, and Pomodoro status modules.
 
+Status: completed for the content-script bootstrap move. `src/app/content/index.js` is now the classic manifest-loaded content-script entry while ordered feature adapters remain under `src/js/content/`.
+
 ### Phase 3: Plans Options Split
 
 Move plan-specific options modules into `src/js/options/plans/` and continue splitting the plan controller by plan page:

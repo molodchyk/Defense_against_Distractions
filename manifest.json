@@ -91,7 +91,7 @@
         "src/js/content/content-blocking/structuralTriggers.js",
         "src/js/content/content-blocking/keywords.js",
         "src/js/content/content-blocking/siteCheck.js",
-        "src/js/content.js"
+        "src/app/content/index.js"
       ]
     }
   ],
