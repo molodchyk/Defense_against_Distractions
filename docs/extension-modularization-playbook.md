@@ -2,6 +2,8 @@
 
 This playbook captures the reusable architecture discipline learned from Defense against Distractions. It is written so Codex can apply the same structure to other browser extensions without needing the full DaD product context.
 
+This is a prescriptive target, not a description of whatever structure a current extension happens to have. When existing code differs from this playbook, treat the existing shape as migration inventory and move it toward this architecture in small verified steps.
+
 The goal is not prettier folders. The goal is to keep an extension maintainable as it grows: small reviewable modules, explicit ownership, testable core logic, bounded browser permissions, and safe migration around user data.
 
 ## Core Principle
@@ -17,6 +19,8 @@ The best default is:
 1. group by feature or product responsibility;
 2. split by runtime surface inside that feature when needed;
 3. keep runtime entry files thin when manifest, CSP, or browser-extension loading rules require them.
+
+Do not organize a mature extension primarily by file type. Folders named `html`, `css`, and `js` can appear at entry/build boundaries, but they should not be the main architecture. Product behavior should be discoverable by feature, not by hunting across global type folders.
 
 ## Why This Matters For Codex
 
@@ -117,7 +121,7 @@ dist/
     options.html
 ```
 
-This is a target shape, not a required first commit. Existing projects can keep their current paths while moving toward the boundaries.
+This is the target shape. Existing projects may reach it gradually, but gradual migration is a delivery tactic, not a competing architecture.
 
 ## Module And Build Target
 
@@ -135,6 +139,8 @@ Best-practice target:
 - Build output is audited before release.
 
 The build step is not the architecture. The architecture is feature ownership and explicit boundaries. The build step exists to preserve that architecture while satisfying browser-extension loading rules.
+
+Use native ES modules directly where Chrome extension surfaces support them cleanly: extension pages, tests, shared pure modules, and MV3 module service workers. Add a build step when it improves the architecture rather than merely changing syntax: content-script module composition, colocated feature styles/templates, TypeScript contracts, package-size control, release artifact determinism, or remote-code compliance scanning. A no-build extension can still be disciplined, but no-build constraints should not define the best-practice source shape.
 
 Tooling should support:
 
@@ -187,6 +193,7 @@ Avoid:
 
 - putting unrelated helpers into a broad `utils.js`;
 - placing new behavior in a root `content.js`, `popup.js`, or `options.js`;
+- treating global `html/`, `css/`, and `js/` folders as the primary design;
 - sending all tests to a broad `test/` tree without feature ownership;
 - duplicating the same rule in UI and background code;
 - hiding storage migrations inside UI rendering files.
@@ -494,11 +501,12 @@ When Codex edits a growing extension:
 1. Read the local architecture docs first.
 2. Identify the owning feature folder before editing.
 3. If no owner exists, create a narrow feature folder rather than adding to a root runtime folder.
-4. Keep behavior changes separate from broad file moves.
-5. Add or update tests in the feature's test area.
-6. Run the narrowest relevant checks.
-7. Update code-structure docs when ownership changes.
-8. Commit small checkpoints when the repo is stable.
+4. Prefer ES-module feature boundaries before adding new runtime or global helper files.
+5. Keep behavior changes separate from broad file moves.
+6. Add or update tests in the feature's test area.
+7. Run the narrowest relevant checks.
+8. Update code-structure docs when ownership changes.
+9. Commit small checkpoints when the repo is stable.
 
 Default decision:
 
@@ -589,6 +597,7 @@ Avoid:
 - one giant `background.js`;
 - one giant `content.js`;
 - one giant `options.js`;
+- primary source organization by global file type folders;
 - broad `utils.js` modules;
 - tests collected into a single huge file;
 - storage mutations hidden in render functions;
