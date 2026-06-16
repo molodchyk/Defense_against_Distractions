@@ -67,6 +67,7 @@ $runtimeFiles = @(
   "src\instructions.html",
   "src\options.html",
   "src\popup.html",
+  "src\app",
   "src\css",
   "src\features",
   "src\js",

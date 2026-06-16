@@ -16,7 +16,7 @@ Use this checklist before publishing a new extension release.
 ## Extension Package
 
 - Inspect the extension zip contents.
-- Confirm it includes `manifest.json`, `_locales/`, `src/blocked.html`, `src/instructions.html`, `src/options.html`, `src/css/`, `src/js/`, and `src/store-assets/icons/`.
+- Confirm it includes `manifest.json`, `_locales/`, `src/blocked.html`, `src/instructions.html`, `src/options.html`, `src/app/`, `src/css/`, `src/features/`, `src/js/`, and `src/store-assets/icons/`.
 - Confirm it excludes docs, tests, scripts, screenshots, promotional images, store listing text, source-only files, and `src/img`.
 
 ## Manual QA

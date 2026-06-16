@@ -6,11 +6,13 @@ The detailed modularization target, dependency rules, file-size budgets, and mig
 
 ## Runtime Areas
 
+`src/app` contains extension runtime entries. `src/app/background/index.js` is the MV3 service-worker entry: it registers Chrome listeners and initializes feature/background runtimes, but it should not own product behavior.
+
 `src/features` contains feature-owned source modules that are not runtime entry points. New cross-surface product behavior should move here when it can be imported by extension pages or the MV3 module service worker without depending on manifest content-script order.
 
 `src/features/content-blocking/background/runtime.js` owns background message routing and tab lifecycle hooks for page blocking, including badge updates, top-frame block requests, and mute-state delegation. `src/features/content-blocking/background/tabMute.js` owns blocked-page tab mute state for that runtime.
 
-`src/js/background` contains background/service-worker adapters and compatibility barrels for existing background feature modules. New background behavior should go into a feature-owned module first, with `src/js/background.js` or a narrow background adapter only registering listeners and routing messages.
+`src/js/background` contains background/service-worker adapters and compatibility barrels for existing background feature modules. New background behavior should go into a feature-owned module first, with `src/app/background/index.js` or a narrow background adapter only registering listeners and routing messages.
 
 `src/js/content` contains page-injected content scripts. These files are loaded by `manifest.json` in order and are not ES modules, so shared content-script APIs attach to `window.DAD`. Feature-specific content scripts should live in subfolders while preserving the manifest order.
 
@@ -219,7 +221,7 @@ The first local signal collector is split by runtime:
 - `src/js/shared/intent/interventions.js` owns recovery-visit selection, user-facing reason lines, intervention decisions, and chain-block metadata.
 - `src/js/shared/intent/graph.js` owns the bounded intent chain graph model, coherent/uncertain/drift labels, and capped coherent-host/drift-descendant host summaries used by diagnostics UI.
 - `src/js/shared/usageStats.js` is the compatibility barrel for tested bounded hostname-level usage aggregates. The implementation lives under `src/js/shared/usage-stats/`: constants and retention limits, timestamp/hostname sanitizers, metric bucket aggregation, state normalization, page-signal recording, summaries, derived blocked outcome shares, and local JSON export payloads. It stores counts, timing summaries, page word counts, coarse tab/window pressure maxima, passive region maxima, and blocked/allowed aggregate outcome counters only, not raw page text, full URLs, titles, topic tokens, tab URLs, tab titles, or tab identities.
-- `src/js/background/intentCoherence.js` is the background intent compatibility barrel imported by `src/js/background.js`.
+- `src/js/background/intentCoherence.js` is the background intent compatibility barrel imported by `src/app/background/index.js`.
 - `src/js/background/intent/chromeApi.js` owns Chrome storage, tab pressure, open-tab enumeration, tab URL update, tab-discard, tab window moving, and tab-removal wrappers used by background intent runtime.
 - `src/js/background/intent/storage.js` owns `intentTrajectoryState` and `usageStats` local-storage read/update helpers.
 - `src/js/background/intent/policy.js` owns plan-owned intent-policy lookup, Pomodoro runtime influence, feedback summaries, and local feedback calibration.
@@ -256,7 +258,7 @@ Pomodoro is split across plan configuration, runtime, and local activity:
 - `src/js/shared/pomodoro/history.js` owns local Pomodoro history normalization, daily reset behavior, recent event bounding, and local aggregate counters.
 - `src/js/shared/pomodoro/runtime.js` is the compatibility barrel for runtime helpers. `runtimeState.js` owns runtime normalization, remaining time, and active checks. `runtimeDurations.js` owns phase duration and required-rest calculations. `runtimeRestCredit.js` owns system away/locked rest credit. `runtimeTransitions.js` owns start, pause, resume, reset, and phase completion.
 - `src/js/shared/pomodoro/status.js` owns display-oriented Pomodoro status summaries, required-rest/rest-credit/rest-still-needed fields, and duration formatting.
-- `src/js/background/pomodoro.js` is the background Pomodoro entry barrel imported by `src/js/background.js`.
+- `src/js/background/pomodoro.js` is the background Pomodoro entry barrel imported by `src/app/background/index.js`.
 - `src/js/background/pomodoro/constants.js` owns background-only alarm, suppression, and protected-schedule message constants.
 - `src/js/background/pomodoro/chromeStorage.js` owns Chrome sync/local storage wrappers, runtime/activity/history persistence, and alarm scheduling.
 - `src/js/background/pomodoro/autoStartSuppression.js` owns manual-reset auto-start suppression state.

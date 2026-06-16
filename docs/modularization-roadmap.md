@@ -206,7 +206,7 @@ src/
 dist/
   extension/
     manifest.json
-    background.js
+    app/background/index.js
     content.js
     popup.html
     options.html
@@ -347,7 +347,7 @@ Completed first steps:
 - Shared Pomodoro core now lives under `src/js/shared/pomodoro/` for constants, settings, activity, history, runtime transitions, and status formatting. `src/js/shared/pomodoro.js` remains the compatibility barrel for current callers.
 - Shared schedule helpers now live under `src/js/shared/schedules/` for form, grid, rules, summary, and time helpers. Options code and tests import the subfolder directly so `src/js/shared` no longer exceeds the folder-density hard limit.
 - Shared storage helpers now live under `src/js/shared/storage/`, and shared UI helpers now live under `src/js/shared/ui/`. `src/js/shared` is now within the folder-density budget.
-- Background Pomodoro now lives under `src/js/background/pomodoro/` for Chrome storage/alarms, auto-start suppression, plan selection, transition history, runtime reconciliation, notifications, and event listener registration. `src/js/background/pomodoro.js` remains the compatibility entry imported by `background.js`.
+- Background Pomodoro now lives under `src/js/background/pomodoro/` for Chrome storage/alarms, auto-start suppression, plan selection, transition history, runtime reconciliation, notifications, and event listener registration. `src/js/background/pomodoro.js` remains the compatibility entry imported by `src/app/background/index.js`.
 - `src/js/content/pomodoro/miniPanelState.js` owns local UI-state persistence.
 - `src/js/content/pomodoro/miniPanelStyleConstants.js` owns mini-panel IDs, layout constants, and resize directions.
 - `src/js/content/pomodoro/miniPanelStyleCss.js` owns the generated mini-panel CSS text.
@@ -385,7 +385,7 @@ The split separates:
 
 Do not put new intent behavior back into the barrel file. Add it to the smallest fitting `src/js/shared/intent/` module and export it through the barrel only when it is part of the public shared API.
 
-The background intent runtime is also split. `src/js/background/intentCoherence.js` remains the initializer barrel imported by `background.js`, while Chrome API wrappers, storage mutation, effective-policy lookup, page-signal recording, tab lineage, diagnostics, runtime messages, and listener registration live under `src/js/background/intent/`.
+The background intent runtime is also split. `src/js/background/intentCoherence.js` remains the initializer barrel imported by `src/app/background/index.js`, while Chrome API wrappers, storage mutation, effective-policy lookup, page-signal recording, tab lineage, diagnostics, runtime messages, and listener registration live under `src/js/background/intent/`.
 
 ### Phase 7: CSS Split
 
@@ -457,7 +457,7 @@ Recent checkpoint:
 
 - Global Blocked UI options behavior now lives under `src/js/options/element-rules/` for constants/messages, formatting, storage/quota, and rule-card rendering. `src/js/options/elementRules.js` remains the thin list/sync entry.
 - Shared usage stats now live under `src/js/shared/usage-stats/` for constants, sanitizers, metric aggregation, state normalization, page-signal recording, summaries, and export payloads. `src/js/shared/usageStats.js` remains the compatibility barrel for current callers and tests.
-- Background intent coherence now lives under `src/js/background/intent/` for Chrome API wrappers, storage mutation, effective-policy lookup, page-signal recording, tab lineage, diagnostics, runtime messages, and listener registration. `src/js/background/intentCoherence.js` remains the compatibility barrel for `background.js`.
+- Background intent coherence now lives under `src/js/background/intent/` for Chrome API wrappers, storage mutation, effective-policy lookup, page-signal recording, tab lineage, diagnostics, runtime messages, and listener registration. `src/js/background/intentCoherence.js` remains the compatibility barrel for `src/app/background/index.js`.
 - Shared plan helpers now live under `src/js/shared/plans/` for constants, normalization, schedule activity, effective group/UI-rule selection, and intent-policy combination. `src/js/shared/plans.js` remains the compatibility barrel for current callers and tests.
 - Blocked-page runtime behavior now lives under `src/js/blocked/` for Chrome API wrappers, localization, UI-mode theme sync, and Pomodoro timer rendering. `src/js/blockedScript.js` remains the `src/blocked.html` module entry.
 - Shared Pomodoro runtime helpers now live in focused modules for runtime state, phase durations, rest credit, and transitions. `src/js/shared/pomodoro/runtime.js` remains the compatibility barrel for current callers and tests.

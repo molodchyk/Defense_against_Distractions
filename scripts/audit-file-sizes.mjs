@@ -24,7 +24,7 @@ const budgets = [
     hard: 300,
     matches(relativePath) {
       return [
-        'src/js/background.js',
+        'src/app/background/index.js',
         'src/js/content.js',
         'src/js/popup.js',
         'src/js/blockedScript.js'

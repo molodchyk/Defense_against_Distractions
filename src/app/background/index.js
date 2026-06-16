@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
-import { initializeDefaultSettings } from './background/defaults.js';
-import { initializeIntentCoherence } from './background/intentCoherence.js';
-import { initializePomodoroRuntime } from './background/pomodoro.js';
-import { initializeReleaseBackupNoticeEligibility } from './background/releaseNotice.js';
-import { initializeScheduleMonitor } from './background/scheduleMonitor.js';
-import { createContentBlockingBackgroundRuntime } from '../features/content-blocking/background/runtime.js';
+import { createContentBlockingBackgroundRuntime } from '../../features/content-blocking/background/runtime.js';
+import { initializeDefaultSettings } from '../../js/background/defaults.js';
+import { initializeIntentCoherence } from '../../js/background/intentCoherence.js';
+import { initializePomodoroRuntime } from '../../js/background/pomodoro.js';
+import { initializeReleaseBackupNoticeEligibility } from '../../js/background/releaseNotice.js';
+import { initializeScheduleMonitor } from '../../js/background/scheduleMonitor.js';
 
 const contentBlockingRuntime = createContentBlockingBackgroundRuntime(chrome);
 

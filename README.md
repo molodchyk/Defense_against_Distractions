@@ -63,8 +63,9 @@ Chrome Web Store API release helpers are documented in [Chrome Web Store API](do
 - `src/options.html` contains the options page.
 - `src/instructions.html` contains the in-extension guide.
 - `src/blocked.html` contains the block page.
+- `src/app/` contains runtime entry points such as the MV3 background service worker.
 - `src/features/` contains feature-owned source modules that can be imported by runtime entries.
-- `src/js/background.js` contains the service worker entry point.
+- `src/app/background/index.js` contains the service worker entry point.
 - `src/js/content.js` scans pages and triggers blocking.
 - `src/js/shared/` contains shared parsing, URL, storage, and schedule helpers.
 - `src/css/` contains extension styles.

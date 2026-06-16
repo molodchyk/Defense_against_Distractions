@@ -24,7 +24,7 @@
   },
   "options_page": "src/options.html",
   "background": {
-    "service_worker": "src/js/background.js",
+    "service_worker": "src/app/background/index.js",
     "type": "module"
   },
   "content_scripts": [
