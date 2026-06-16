@@ -4,6 +4,8 @@ This document defines the target structure for the extension as it grows from a 
 
 The goal is not cosmetic folder movement. The goal is to make future work cheaper, safer, and easier to review.
 
+The reusable cross-extension version of this architecture discipline lives in [Extension Modularization Playbook](extension-modularization-playbook.md). Use that document when applying the same Codex-maintainable structure to other browser extensions.
+
 The source-backed Chrome extension constraints behind this roadmap are summarized in [Extension Architecture Research](extension-architecture-research.md). When more than one developer is active, ownership and handoff rules live in [Parallel Development Coordination](parallel-development.md).
 
 ## Problems To Fix
