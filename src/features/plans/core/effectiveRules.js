@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
-import { normalizeUrl } from '../url.js';
+import { normalizeUrl } from '../../../js/shared/url.js';
 import { PLANS_STORAGE_KEY } from './constants.js';
 import {
   getStoredGroupMap,

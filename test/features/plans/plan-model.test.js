@@ -15,7 +15,7 @@ import {
   isPlanActive,
   normalizePlans,
   sanitizePlansForStorage
-} from '../../../src/js/shared/plans.js';
+} from '../../../src/features/plans/core/index.js';
 import {
   DEFAULT_INTENT_SETTINGS,
   INTENT_INTERVENTION_ACTIONS,

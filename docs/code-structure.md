@@ -48,9 +48,11 @@ Shared schedule helpers live under `src/js/shared/schedules/`:
 
 New schedule behavior should go into this subfolder instead of adding files directly to `src/js/shared`.
 
-Shared plan helpers live under `src/js/shared/plans/`:
+Plan core helpers live under `src/features/plans/core/`:
 
-- `src/js/shared/plans/protectedScheduleChanges.js` owns the pure strictness policy for plan edits during locked schedules. Options UI should call through this shared comparator instead of duplicating protected-schedule edit rules.
+- `src/features/plans/core/model.js` owns the tested plan model, normalization, default plan creation, allowed-site checks, and next-name generation used by options and background code.
+- `src/features/plans/core/protectedScheduleChanges.js` owns the pure strictness policy for plan edits during locked schedules. Options UI should call through this shared comparator instead of duplicating protected-schedule edit rules.
+- `src/js/shared/plans.js` is the compatibility barrel for current imports.
 
 Shared storage helpers live under `src/js/shared/storage/`:
 
@@ -78,7 +80,8 @@ Node tests live under `test/shared/` by product area:
 
 - `test/shared/core/`: small shared primitives such as keywords, URLs, themes, UI language, release notice, and billing entitlement helpers.
 - `test/shared/schedules/`: schedule time, validation, form, and weekly-grid model tests.
-- `test/shared/plans/`: plan model, legacy migration, and group-rule tests.
+- `test/features/plans/`: plan model and protected-schedule strictness tests.
+- `test/shared/plans/`: legacy migration and group-rule tests.
 - `test/shared/pomodoro/`: Pomodoro shared runtime and history model tests.
 - `test/features/page-signals/`: page-signal collector model tests.
 - `test/features/usage-stats/`: bounded usage-stats model tests.
@@ -92,7 +95,7 @@ Do not recreate a broad `test/shared.test.js` file. New tests should be added to
 
 Plan behavior is split by runtime and feature folder:
 
-- `src/js/shared/plans.js` owns the tested ES-module plan model used by options code.
+- `src/features/plans/core/` owns the tested ES-module plan model used by options and background code. `src/js/shared/plans.js` remains the compatibility barrel for current imports.
 - `src/js/options/plans/controller.js` owns the options-page plan UI controller, storage mutation, and protected-schedule checks.
 - `src/js/options/plans/dom.js` owns reusable plan-editor DOM controls, destructive confirmation dialogs, and guarded action dispatch.
 - `src/js/options/plans/collections.js` owns small plan-editor collection helpers shared by migration and editing flows.

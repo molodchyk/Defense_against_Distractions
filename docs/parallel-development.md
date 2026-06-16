@@ -52,6 +52,7 @@ Current focus:
 - Completed checkpoint: the shared page-signal collector model now lives under `src/features/page-signals/core/`, with the old shared path kept as a compatibility barrel.
 - Completed checkpoint: global Blocked UI options have been split into constants/messages, formatting, storage/quota, rule-card rendering, and a thin list/sync entry.
 - Completed checkpoint: shared usage stats have moved into feature ownership under `src/features/usage-stats/core/`, while preserving the public shared barrel API.
+- Completed checkpoint: shared plan helpers have moved into feature ownership under `src/features/plans/core/`, while preserving the public shared barrel API.
 - Completed checkpoint: background intent coherence has been split into Chrome API, storage, policy, page-signal recording, tab lineage, diagnostics, message routing, and initializer modules under `src/js/background/intent/` while preserving the public initializer barrel.
 - Completed checkpoint: Pomodoro mini-panel style behavior has been split into constants, CSS generation, and a thin style-injection facade while preserving the public `PomodoroMiniPanelStyle` API.
 - Completed checkpoint: options and popup CSS are split into thin entry barrels plus focused surface stylesheets.
@@ -99,8 +100,7 @@ Codex currently owns:
 Next active-developer tasks after this checkpoint:
 
 - Split remaining large content adapters as they appear in `npm run audit:file-sizes`.
-- Split soft shared modules when they are touched for behavior:
-  - `src/js/shared/plans.js`
+- Split soft shared modules when they are touched for behavior.
 - Keep shared-root density under budget; new shared behavior should go into a feature subfolder instead of `src/js/shared`.
 - Keep tests in feature folders under `test/shared/`; do not recreate a broad omnibus test file.
 

@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
-import { normalizeUrl } from '../url.js';
-import { normalizePomodoroSettings } from '../pomodoro.js';
-import { normalizeIntentSettings } from '../intentCoherence.js';
+import { normalizeUrl } from '../../../js/shared/url.js';
+import { normalizePomodoroSettings } from '../../../js/shared/pomodoro.js';
+import { normalizeIntentSettings } from '../../../js/shared/intentCoherence.js';
 import {
   DEFAULT_PLAN_ID,
   PLANS_STORAGE_KEY

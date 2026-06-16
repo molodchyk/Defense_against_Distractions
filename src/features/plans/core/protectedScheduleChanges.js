@@ -5,9 +5,9 @@ import {
   areKeywordChangesValid,
   areWebsiteChangesValid,
   validateKeywordEntry
-} from '../groupRules.js';
-import { isIntentSettingsAtLeastAsStrict } from '../intentCoherence.js';
-import { isPomodoroSettingsAtLeastAsStrict } from '../pomodoro.js';
+} from '../../../js/shared/groupRules.js';
+import { isIntentSettingsAtLeastAsStrict } from '../../../js/shared/intentCoherence.js';
+import { isPomodoroSettingsAtLeastAsStrict } from '../../../js/shared/pomodoro.js';
 import { normalizePlan } from './model.js';
 
 function indexGroupsById(groups = []) {

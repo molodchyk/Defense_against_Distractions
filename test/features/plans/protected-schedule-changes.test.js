@@ -3,7 +3,7 @@
 
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { isPlanChangeAllowedDuringProtectedSchedule } from '../../../src/js/shared/plans.js';
+import { isPlanChangeAllowedDuringProtectedSchedule } from '../../../src/features/plans/core/index.js';
 import {
   DEFAULT_INTENT_SETTINGS,
   INTENT_INTERVENTION_ACTIONS,
