@@ -12,11 +12,11 @@ Runtime entry points should bootstrap and wire. They should not own business log
 
 Feature modules should own product behavior and nearby UI assets. Shared core modules should be pure and testable. Platform modules should own browser APIs and permission-specific behavior.
 
-Do not organize a mature extension primarily by file type. A global split such as `html/`, `css/`, and `js/` is a workable early/no-build convention, but it is a weak architecture because related behavior changes across distant folders. The best default is:
+The best default is:
 
 1. group by feature or product responsibility;
 2. split by runtime surface inside that feature when needed;
-3. split by file type only at entry points, build boundaries, or manifest/CSP constraints.
+3. keep runtime entry files thin when manifest, CSP, or browser-extension loading rules require them.
 
 ## Why This Matters For Codex
 
@@ -111,8 +111,6 @@ src/
 
 This is a target shape, not a required first commit. Existing projects can keep their current paths while moving toward the boundaries.
 
-If the extension has no build step, CSS and HTML may still need entry files in `app/<surface>/` or `src/css/`. Treat those files as import/entry barrels. The feature still owns the actual style and UI behavior.
-
 ## Runtime Entry Rules
 
 Runtime entry files include:
@@ -148,7 +146,6 @@ Avoid:
 
 - putting unrelated helpers into a broad `utils.js`;
 - placing new behavior in a root `content.js`, `popup.js`, or `options.js`;
-- sending all styling to a global `css/` tree when the style belongs to one feature;
 - sending all tests to a broad `test/` tree without feature ownership;
 - duplicating the same rule in UI and background code;
 - hiding storage migrations inside UI rendering files.
@@ -352,16 +349,6 @@ features/
       scheduleStrictness.test.js
 ```
 
-over:
-
-```text
-js/options/plans/PlanSchedule.js
-css/options/plans.css
-test/shared/plans.test.js
-```
-
-The second shape can be an acceptable migration state, especially in a no-build extension, but it should not be the ideal. The ideal is change-coupling: files that change together should be close enough that Codex and humans see them together.
-
 ## CSS And HTML Structure
 
 Use feature-owned styles with thin entry stylesheets.
@@ -400,7 +387,6 @@ Rules:
 - HTML entry files belong to runtime surfaces such as popup/options/blocked pages.
 - HTML templates that belong to one feature should live with that feature if the toolchain supports it.
 - Content-script CSS may stay injected by content modules when page isolation or manifest compatibility requires it.
-- A no-build extension may keep CSS in `src/css/<surface>/`; when it does, the CSS file should still be named and scoped by feature responsibility, not by generic type alone.
 
 ## Test Structure
 
@@ -480,7 +466,7 @@ Default decision:
 - New Chrome API access: `platform/chrome` or a background feature adapter.
 - New persistent data: feature storage model plus migration note.
 - New diagnostics: feature diagnostics module plus privacy boundary.
-- New CSS: colocated feature/component stylesheet where possible; otherwise the narrowest surface stylesheet, never a broad root stylesheet.
+- New CSS: colocated feature/component stylesheet.
 
 ## Required Checks By Change Type
 
@@ -560,12 +546,10 @@ Avoid:
 - one giant `background.js`;
 - one giant `content.js`;
 - one giant `options.js`;
-- architecture organized primarily as `html/`, `css/`, and `js/` once the project has grown beyond entry files;
 - broad `utils.js` modules;
 - tests collected into a single huge file;
 - storage mutations hidden in render functions;
 - raw `chrome.*` calls scattered everywhere;
-- CSS added to a global stylesheet because it is convenient;
 - content scripts that own core business rules;
 - background handlers that trust content-script messages;
 - large path moves mixed with behavior changes;
