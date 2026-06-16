@@ -304,6 +304,8 @@ Status: completed for the options-page bootstrap move. `src/app/options/index.js
 
 Status: completed for options password ownership. Password behavior now lives under `src/js/options/password/`, and `src/options.html` has a single module script for the options app entry.
 
+Status: completed for the instructions-page bootstrap move. `src/app/instructions/index.js` is now the instructions page entry that wires shared language and theme helpers into the static guide page.
+
 ### Phase 3: Plans Options Split
 
 Move plan-specific options modules into `src/js/options/plans/` and continue splitting the plan controller by plan page:

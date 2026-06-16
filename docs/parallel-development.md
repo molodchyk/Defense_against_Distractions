@@ -45,6 +45,7 @@ Current focus:
 - Completed checkpoint: the popup entry file has been split into panel construction, UI picker launching, diagnostics export, event binding, refresh loops, and a thin bootstrap.
 - Completed checkpoint: the options-page bootstrap now lives at `src/app/options/index.js`, keeping `src/js/options` focused on options feature modules.
 - Completed checkpoint: options password management now lives under `src/js/options/password/` and is initialized by the options app entry instead of a second root module script.
+- Completed checkpoint: the instructions-page bootstrap now lives at `src/app/instructions/index.js`; the dead root `ScheduleState.js` module was removed.
 - Completed checkpoint: global Blocked UI options have been split into constants/messages, formatting, storage/quota, rule-card rendering, and a thin list/sync entry.
 - Completed checkpoint: shared usage stats have been split into constants, utils, metrics, state, record, and summary modules under `src/js/shared/usage-stats/` while preserving the public barrel API.
 - Completed checkpoint: background intent coherence has been split into Chrome API, storage, policy, page-signal recording, tab lineage, diagnostics, message routing, and initializer modules under `src/js/background/intent/` while preserving the public initializer barrel.
@@ -78,6 +79,7 @@ Codex currently owns:
 - `src/js/background/intent/**`
 - `src/app/popup/index.js`
 - `src/app/options/index.js`
+- `src/app/instructions/index.js`
 - `src/js/popup/**`
 - `test/shared/**`
 - `docs/code-structure.md`
@@ -153,7 +155,9 @@ Release-facing changes:
 - `src/js/content/pageSignals.js` is now a thin controller after extracting page-signal activity, collector, and reporter modules.
 - `src/app/popup/index.js` is now a thin popup bootstrap after extracting panel construction, UI picker launch, diagnostics export, event binding, and refresh-loop modules.
 - `src/app/options/index.js` is now the options-page bootstrap; options feature behavior remains under `src/js/options/`.
+- `src/app/instructions/index.js` is now the instructions-page bootstrap for guide localization and theme setup.
 - `src/js/options/password/manager.js` owns options password controls and the overlay gate; `src/options.html` now has a single app-entry module script.
+- Root `src/js` now contains only the remaining direct runtime entries: `content.js` and `blockedScript.js`.
 - `src/js/options/elementRules.js` is now a thin global Blocked UI list/sync entry after extracting storage/quota, formatting, and rule-item rendering modules.
 - `src/js/shared/usageStats.js` is now a small compatibility barrel. The bounded local usage-stats implementation lives under `src/js/shared/usage-stats/`.
 - `src/js/background/intentCoherence.js` is now a small compatibility barrel. Background intent runtime responsibilities live under `src/js/background/intent/`.
