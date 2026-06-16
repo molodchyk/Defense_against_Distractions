@@ -168,6 +168,7 @@ Release-facing changes:
 - `src/js/content/content-blocking/overlay.js` is now a thin controller after extracting blocked-overlay message, style, theme, diagnostics, Pomodoro, and event modules.
 - `src/js/content/pageSignals.js` is now a thin controller after extracting page-signal activity, collector, and reporter modules.
 - `src/app/popup/index.js` is now a thin popup bootstrap after extracting panel construction, UI picker launch, diagnostics export, event binding, and refresh-loop modules.
+- Popup sync/local storage access now uses `src/platform/chrome/storage.js`; popup-specific tab/runtime helpers remain under `src/js/popup/chrome.js`.
 - `src/app/options/index.js` is now the options-page bootstrap; options feature behavior remains under `src/js/options/`.
 - `src/app/instructions/index.js` is now the instructions-page bootstrap for guide localization and theme setup.
 - `src/js/options/password/manager.js` owns options password controls and the overlay gate; `src/options.html` now has a single app-entry module script.

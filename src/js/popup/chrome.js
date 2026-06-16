@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
+import { getSync } from '../../platform/chrome/storage.js';
+
 export function getActiveTab() {
   return new Promise(resolve => {
     chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
@@ -9,17 +11,12 @@ export function getActiveTab() {
   });
 }
 
-export function getSyncStorage(keys) {
-  return new Promise(resolve => {
-    chrome.storage.sync.get(keys, result => {
-      if (chrome.runtime.lastError) {
-        resolve(null);
-        return;
-      }
-
-      resolve(result);
-    });
-  });
+export async function getSyncStorage(keys) {
+  try {
+    return await getSync(keys);
+  } catch (error) {
+    return null;
+  }
 }
 
 export function isExtensionPage(url) {

@@ -7,6 +7,11 @@ import {
   normalizeThemeMode,
   resolveThemeMode
 } from '../shared/ui/theme.js';
+import {
+  getLocal,
+  getSync,
+  setLocal
+} from '../../platform/chrome/storage.js';
 
 export const POPUP_PANE_NAMES = Object.freeze(['actions', 'diagnostics']);
 export const POPUP_PANE_STORAGE_KEY = 'popupActivePane';
@@ -50,11 +55,10 @@ export function createPopupShell() {
   let userSelectedPane = false;
 
   function persistPane(paneName) {
-    chrome.storage.local.set({ [POPUP_PANE_STORAGE_KEY]: normalizeStoredPopupPane(paneName) }, () => {
-      if (chrome.runtime.lastError) {
-        console.warn('Failed to persist popup pane:', chrome.runtime.lastError);
-      }
-    });
+    setLocal({ [POPUP_PANE_STORAGE_KEY]: normalizeStoredPopupPane(paneName) })
+      .catch(error => {
+        console.warn('Failed to persist popup pane:', error);
+      });
   }
 
   function setPane(paneName, options = {}) {
@@ -108,13 +112,17 @@ export function createPopupShell() {
       });
     });
 
-    chrome.storage.local.get({ [POPUP_PANE_STORAGE_KEY]: POPUP_PANE_NAMES[0] }, result => {
-      if (userSelectedPane) {
-        return;
-      }
+    getLocal({ [POPUP_PANE_STORAGE_KEY]: POPUP_PANE_NAMES[0] })
+      .then(result => {
+        if (userSelectedPane) {
+          return;
+        }
 
-      setPane(normalizeStoredPopupPane(result?.[POPUP_PANE_STORAGE_KEY]), { persist: false });
-    });
+        setPane(normalizeStoredPopupPane(result?.[POPUP_PANE_STORAGE_KEY]), { persist: false });
+      })
+      .catch(error => {
+        console.warn('Failed to restore popup pane:', error);
+      });
   }
 
   function applyTheme(mode) {
@@ -122,9 +130,14 @@ export function createPopupShell() {
   }
 
   function loadTheme() {
-    chrome.storage.sync.get({ [THEME_STORAGE_KEY]: DEFAULT_THEME_MODE }, result => {
-      applyTheme(normalizeThemeMode(result[THEME_STORAGE_KEY]));
-    });
+    getSync({ [THEME_STORAGE_KEY]: DEFAULT_THEME_MODE })
+      .then(result => {
+        applyTheme(normalizeThemeMode(result[THEME_STORAGE_KEY]));
+      })
+      .catch(error => {
+        console.warn('Failed to load popup theme:', error);
+        applyTheme(DEFAULT_THEME_MODE);
+      });
   }
 
   function initializeThemeListener() {
