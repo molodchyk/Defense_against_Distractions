@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
-import { isCurrentTimeInAnySchedule } from '../../../js/shared/schedules/scheduleTime.js';
+import { isCurrentTimeInAnySchedule } from '../../schedules/core/scheduleTime.js';
 import { PLANS_STORAGE_KEY } from './constants.js';
 import { normalizePlan, normalizePlans } from './model.js';
 

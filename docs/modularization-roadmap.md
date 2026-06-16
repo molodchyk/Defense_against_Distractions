@@ -357,7 +357,7 @@ Status: completed for the controller split. `src/js/content/pomodoro/miniPanel.j
 Completed first steps:
 
 - Shared Pomodoro core now lives under `src/js/shared/pomodoro/` for constants, settings, activity, history, runtime transitions, and status formatting. `src/js/shared/pomodoro.js` remains the compatibility barrel for current callers.
-- Shared schedule helpers now live under `src/js/shared/schedules/` for form, grid, rules, summary, and time helpers. Options code and tests import the subfolder directly so `src/js/shared` no longer exceeds the folder-density hard limit.
+- Schedule core helpers now live under `src/features/schedules/core/` for form, grid, rules, summary, and time helpers. Options code and tests import the feature owner directly.
 - Shared storage helpers now live under `src/js/shared/storage/`, and shared UI helpers now live under `src/js/shared/ui/`. `src/js/shared` is now within the folder-density budget.
 - Background Pomodoro now lives under `src/js/background/pomodoro/` for Chrome storage/alarms, auto-start suppression, plan selection, transition history, runtime reconciliation, notifications, and event listener registration. `src/js/background/pomodoro.js` remains the compatibility entry imported by `src/app/background/index.js`.
 - `src/js/content/pomodoro/miniPanelState.js` owns local UI-state persistence.

@@ -36,7 +36,7 @@ Current focus:
 - Completed checkpoint: `src/js/shared/intentCoherence.js` has been split into feature-owned modules under `src/js/shared/intent/` while preserving the public barrel API.
 - Completed checkpoint: `src/js/shared/pomodoro.js` has been split into feature-owned modules under `src/js/shared/pomodoro/` while preserving the public barrel API.
 - Completed checkpoint: `src/js/background/pomodoro.js` has been split into feature-owned modules under `src/js/background/pomodoro/` while preserving the public background initializer export.
-- Completed checkpoint: shared schedule helpers have been moved from the shared root into `src/js/shared/schedules/`, reducing `src/js/shared` from hard folder-density debt to soft folder-density debt.
+- Completed checkpoint: schedule core helpers have moved into feature ownership under `src/features/schedules/core/`.
 - Completed checkpoint: reusable options schedule-board modules have been moved from the options root into `src/js/options/schedules/`, bringing `src/js/options` back within the folder-density budget.
 - Completed checkpoint: shared storage helpers now live under `src/js/shared/storage/`, and shared UI helpers now live under `src/js/shared/ui/`, bringing `src/js/shared` back within the folder-density budget.
 - Completed checkpoint: the on-page Pomodoro mini-panel has been split into state, style, theme, layout, render, and controller content scripts while preserving manifest load order.
@@ -73,7 +73,8 @@ Codex currently owns:
 - `src/js/shared/intent/**`
 - `src/js/shared/pomodoro.js`
 - `src/js/shared/pomodoro/**`
-- `src/js/shared/schedules/**`
+- `src/features/schedules/**`
+- `test/features/schedules/**`
 - `src/js/shared/storage/**`
 - `src/js/shared/ui/**`
 - `src/features/usage-stats/**`
@@ -177,7 +178,7 @@ Release-facing changes:
 - The test suite is now feature-owned under `test/shared/` and `test/features/`; intent tests are split under `test/shared/intent/scoring/`, `test/shared/intent/trajectory/`, and `test/shared/intent/interventions/`.
 - `src/js/shared/intentCoherence.js` is now a small compatibility barrel. The shared intent implementation lives under `src/js/shared/intent/`.
 - `src/js/shared/pomodoro.js` is now a small compatibility barrel. The shared Pomodoro implementation lives under `src/js/shared/pomodoro/`.
-- Shared schedule helpers now live under `src/js/shared/schedules/`.
+- Schedule core helpers now live under `src/features/schedules/core/`.
 - Shared storage helpers now live under `src/js/shared/storage/`, and shared UI helpers now live under `src/js/shared/ui/`.
 - `src/js/background/pomodoro.js` is now a small compatibility barrel. The background Pomodoro implementation lives under `src/js/background/pomodoro/`.
 - `npm run audit:file-sizes` currently reports no hard JS file-size violations. Remaining file-size issues are soft warnings.

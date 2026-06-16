@@ -3,8 +3,8 @@
 
 import { INTENT_INTERVENTION_ACTIONS } from '../../shared/intentCoherence.js';
 import { isPlanActive } from '../../shared/plans.js';
-import { formatScheduleActivitySummary } from '../../shared/schedules/scheduleSummary.js';
-import { getScheduleActivityCounts } from '../../shared/schedules/scheduleTime.js';
+import { formatScheduleActivitySummary } from '../../../features/schedules/core/scheduleSummary.js';
+import { getScheduleActivityCounts } from '../../../features/schedules/core/scheduleTime.js';
 import { getPlanMessage } from './messages.js';
 
 export function createPlanFactList(plan) {

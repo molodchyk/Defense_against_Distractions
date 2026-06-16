@@ -14,7 +14,7 @@ import {
   moveScheduleRange,
   resizeScheduleRange,
   snapMinutes
-} from '../../../src/js/shared/schedules/scheduleGrid.js';
+} from '../../../src/features/schedules/core/scheduleGrid.js';
 
 describe('schedule grid helpers', () => {
   it('requires a selected day and valid time range before saving a draft', () => {

@@ -6,6 +6,8 @@ This is a prescriptive target, not a description of whatever structure a current
 
 Treat this playbook as the architecture standard. Project-specific roadmaps describe how a real extension is migrating toward the standard; code-structure documents describe the current tree; coordination docs describe who owns which files during active work. Those documents can record temporary compromises, but they should not redefine the target architecture.
 
+The playbook should be opinionated. If guidance only explains a weaker compatibility shape, move that explanation into a project-specific migration roadmap. This document should preserve the best target design Codex should bias toward when creating or reshaping an extension.
+
 Do not copy transitional folders such as a broad `src/js` tree, classic manifest script chains, or global CSS folders into a new project merely because an existing extension still has them. Preserve them only when they are required compatibility boundaries, then shrink them over time.
 
 The goal is not prettier folders. The goal is to keep an extension maintainable as it grows: small reviewable modules, explicit ownership, testable core logic, bounded browser permissions, and safe migration around user data.
@@ -22,9 +24,10 @@ The best default is:
 
 1. group by feature or product responsibility;
 2. split by runtime surface inside that feature when needed;
-3. keep runtime entry files thin when manifest, CSP, or browser-extension loading rules require them.
+3. keep runtime entry files thin;
+4. use generated output to satisfy manifest, CSP, or browser-extension loading rules instead of letting those rules define the source tree.
 
-Do not organize a mature extension primarily by file type. Folders named `html`, `css`, and `js` can appear at entry/build boundaries, but they should not be the main architecture. Product behavior should be discoverable by feature, not by hunting across global type folders.
+Do not organize a mature extension primarily by file type. Product behavior should be discoverable by feature, not by hunting across global type folders. File-type folders are build artifacts or runtime-entry surfaces only; they are not architectural owners.
 
 ## Why This Matters For Codex
 
@@ -127,7 +130,7 @@ dist/
 
 This is the target shape. Existing projects may reach it gradually, but gradual migration is a delivery tactic, not a competing architecture.
 
-## Module And Build Target
+## ES Modules And Build Target
 
 Author source as ES modules by default.
 
@@ -144,7 +147,7 @@ Best-practice target:
 
 The build step is not the architecture. The architecture is feature ownership and explicit boundaries. The build step exists to preserve that architecture while satisfying browser-extension loading rules.
 
-Use native ES modules directly where Chrome extension surfaces support them cleanly: extension pages, tests, shared pure modules, and MV3 module service workers. Add a build step when it improves the architecture rather than merely changing syntax: content-script module composition, colocated feature styles/templates, TypeScript contracts, package-size control, release artifact determinism, or remote-code compliance scanning. A no-build extension can still be disciplined, but no-build constraints should not define the best-practice source shape.
+Do not let native-support gaps decide source organization. Use native ES modules directly where extension surfaces support them cleanly: extension pages, tests, shared pure modules, and MV3 module service workers. Compile or bundle manifest-loaded content scripts from modular source when the browser cannot load the source graph directly. Source architecture stays feature-owned; generated output satisfies Chrome.
 
 Tooling should support:
 
@@ -160,7 +163,7 @@ Avoid dynamic import in MV3 extension service workers. Use static imports or hav
 
 Avoid remote executable code. Dependencies may be bundled, but executable JavaScript and WebAssembly used by the extension must be included in the extension package.
 
-TypeScript is a strong candidate when the extension has growing schemas, runtime messages, storage records, and cross-surface contracts. It is not required for the architecture, but the best mature design should either use TypeScript or maintain equivalent schema validation and tests.
+TypeScript is the strongest default once the extension has growing schemas, runtime messages, storage records, and cross-surface contracts. If a project keeps JavaScript, it should maintain equivalent schema validation and tests so the architecture still has explicit contracts.
 
 ## Runtime Entry Rules
 
@@ -489,7 +492,7 @@ Preferred migration:
 Good refactor commits say what responsibility moved:
 
 - `Split popup diagnostics panel`
-- `Move schedule time helpers into shared schedules`
+- `Move schedule time helpers into schedules core`
 - `Extract content blocking overlay style`
 
 Weak commit messages hide risk:
@@ -601,7 +604,7 @@ Avoid:
 - one giant `background.js`;
 - one giant `content.js`;
 - one giant `options.js`;
-- primary source organization by global file type folders;
+- primary source organization by file-type folders;
 - broad `utils.js` modules;
 - tests collected into a single huge file;
 - storage mutations hidden in render functions;

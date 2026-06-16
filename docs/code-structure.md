@@ -38,15 +38,15 @@ The root `src/js` folder should stay empty of runtime entries and helper modules
 
 - `src/js/shared/keywords.js` owns shared keyword parsing helpers, including structural/time/passive-surface keyword parsing, explicit 100-point keyword score authoring tokens, and normalized 0-100 diagnostics score helpers.
 
-Shared schedule helpers live under `src/js/shared/schedules/`:
+Schedule core helpers live under `src/features/schedules/core/`:
 
-- `src/js/shared/schedules/scheduleForm.js` owns schedule form defaults, display formatting, typed time normalization, and unnamed schedule naming.
-- `src/js/shared/schedules/scheduleGrid.js` owns weekly-grid constants, the current-time marker model, and pure range helpers for click, drag, move, and resize interactions.
-- `src/js/shared/schedules/scheduleRules.js` owns overlap, minimum-unlocked-time, and strictness validation.
-- `src/js/shared/schedules/scheduleSummary.js` owns compact schedule count and activity summary text.
-- `src/js/shared/schedules/scheduleTime.js` owns time conversion, active-schedule checks, recurrence matching, and schedule activity counts.
+- `src/features/schedules/core/scheduleForm.js` owns schedule form defaults, display formatting, typed time normalization, and unnamed schedule naming.
+- `src/features/schedules/core/scheduleGrid.js` owns weekly-grid constants, the current-time marker model, and pure range helpers for click, drag, move, and resize interactions.
+- `src/features/schedules/core/scheduleRules.js` owns overlap, minimum-unlocked-time, and strictness validation.
+- `src/features/schedules/core/scheduleSummary.js` owns compact schedule count and activity summary text.
+- `src/features/schedules/core/scheduleTime.js` owns time conversion, active-schedule checks, recurrence matching, and schedule activity counts.
 
-New schedule behavior should go into this subfolder instead of adding files directly to `src/js/shared`.
+New schedule behavior should go into this feature folder instead of adding files to `src/js/shared`.
 
 Plan core helpers live under `src/features/plans/core/`:
 
@@ -79,7 +79,7 @@ Shared self-state helpers live under `src/js/shared/self-state/`:
 Node tests live under `test/shared/` by product area:
 
 - `test/shared/core/`: small shared primitives such as keywords, URLs, themes, UI language, release notice, and billing entitlement helpers.
-- `test/shared/schedules/`: schedule time, validation, form, and weekly-grid model tests.
+- `test/features/schedules/`: schedule time, validation, form, and weekly-grid model tests.
 - `test/features/plans/`: plan model and protected-schedule strictness tests.
 - `test/shared/plans/`: legacy migration and group-rule tests.
 - `test/shared/pomodoro/`: Pomodoro shared runtime and history model tests.

@@ -7,7 +7,7 @@ import {
   doSchedulesOverlap,
   hasMinimumUnlockedTime,
   isScheduleMoreStrict
-} from '../../../src/js/shared/schedules/scheduleRules.js';
+} from '../../../src/features/schedules/core/scheduleRules.js';
 
 describe('schedule rules', () => {
   it('detects overlapping schedules on the same day', () => {

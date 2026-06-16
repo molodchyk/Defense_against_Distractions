@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
-import { formatScheduleActivitySummary } from '../../shared/schedules/scheduleSummary.js';
-import { getScheduleActivityCounts } from '../../shared/schedules/scheduleTime.js';
+import { formatScheduleActivitySummary } from '../../../features/schedules/core/scheduleSummary.js';
+import { getScheduleActivityCounts } from '../../../features/schedules/core/scheduleTime.js';
 
 export function summarizeSchedules(currentSchedules, getMessage) {
   if (currentSchedules.length === 0) {
