@@ -7,7 +7,7 @@ import {
   getBlockedPageSettingsStorageDefaults,
   normalizeBlockedPageSettings
 } from '../../shared/blocked-page/settings.js';
-import { getSync, setSync } from '../../../platform/chrome/storage.js';
+import { addStorageChangeListener, getSync, setSync } from '../../../platform/chrome/storage.js';
 import { getUiMessage } from '../../shared/ui/uiLanguage.js';
 
 const ELEMENT_IDS = {
@@ -89,7 +89,7 @@ async function saveBlockedPageSettings(rawCustomMessage, statusKey = 'blockedPag
 
 function installStorageSyncListener() {
   try {
-    chrome.storage.onChanged.addListener((changes, areaName) => {
+    addStorageChangeListener((changes, areaName) => {
       if (areaName !== 'sync' || !changes[BLOCKED_PAGE_SETTINGS_STORAGE_KEY]) {
         return;
       }

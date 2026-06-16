@@ -358,7 +358,7 @@ Completed first steps:
 
 - Shared Pomodoro core now lives under `src/js/shared/pomodoro/` for constants, settings, activity, history, runtime transitions, and status formatting. `src/js/shared/pomodoro.js` remains the compatibility barrel for current callers.
 - Schedule core helpers now live under `src/features/schedules/core/` for form, grid, rules, summary, and time helpers. Options code and tests import the feature owner directly.
-- Chrome sync/local storage wrappers now live under `src/platform/chrome/`, plan-critical storage priority lives under `src/features/plans/storage/`, and `src/js/shared/storage/` remains compatibility barrels. Shared UI helpers live under `src/js/shared/ui/`. `src/js/shared` is now within the folder-density budget.
+- Chrome sync/local storage wrappers and extension-page/background storage-change listener registration now live under `src/platform/chrome/`, plan-critical storage priority lives under `src/features/plans/storage/`, and `src/js/shared/storage/` remains compatibility barrels. Shared UI helpers live under `src/js/shared/ui/`. `src/js/shared` is now within the folder-density budget.
 - Background Pomodoro now lives under `src/js/background/pomodoro/` for Chrome storage/alarms, auto-start suppression, plan selection, transition history, runtime reconciliation, notifications, and event listener registration. `src/js/background/pomodoro.js` remains the compatibility entry imported by `src/app/background/index.js`.
 - `src/js/content/pomodoro/miniPanelState.js` owns local UI-state persistence.
 - `src/js/content/pomodoro/miniPanelStyleConstants.js` owns mini-panel IDs, layout constants, and resize directions.

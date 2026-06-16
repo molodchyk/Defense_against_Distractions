@@ -1,6 +1,14 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
+export function addStorageChangeListener(listener) {
+  chrome.storage.onChanged.addListener(listener);
+
+  return () => {
+    chrome.storage.onChanged.removeListener(listener);
+  };
+}
+
 export function getSync(keys) {
   return new Promise((resolve, reject) => {
     chrome.storage.sync.get(keys, result => {

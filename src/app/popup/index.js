@@ -2,6 +2,7 @@
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
 import { PLANS_STORAGE_KEY } from '../../js/shared/plans.js';
+import { addStorageChangeListener } from '../../platform/chrome/storage.js';
 import {
   UI_LANGUAGE_STORAGE_KEY,
   initializeUiLanguage
@@ -127,7 +128,7 @@ async function initializePopup() {
   panels.pomodoroPanel.refresh();
   refreshLoop.start();
   popupShell.initializeThemeListener();
-  chrome.storage.onChanged.addListener(handleStorageChange);
+  addStorageChangeListener(handleStorageChange);
   bindPopupEvents({
     startElementPicker,
     openFeedback,

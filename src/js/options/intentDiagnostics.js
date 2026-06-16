@@ -3,6 +3,7 @@
 import {
   createIntentLineageGraph
 } from '../shared/intentCoherence.js';
+import { addStorageChangeListener } from '../../platform/chrome/storage.js';
 import {
   formatChainBlock,
   formatCoherentHosts,
@@ -351,7 +352,7 @@ export function initializeIntentDiagnosticsPanel() {
   refreshButton.addEventListener('click', refreshIntentDiagnosticsPanel);
   exportButton.addEventListener('click', exportIntentDiagnosticsPanel);
   clearButton.addEventListener('click', clearIntentDiagnosticsPanel);
-  chrome.storage.onChanged.addListener((changes, areaName) => {
+  addStorageChangeListener((changes, areaName) => {
     if (
       (areaName === 'local' && changes.intentTrajectoryState)
         || (areaName === 'sync' && changes.plans)

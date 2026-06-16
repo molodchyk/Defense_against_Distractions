@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
-import { getSync, setSync } from '../../../platform/chrome/storage.js';
+import { addStorageChangeListener, getSync, setSync } from '../../../platform/chrome/storage.js';
 import { savePlansWithPriority } from '../../../features/plans/storage/criticalScheduleStorage.js';
 import {
   getNextPlanName,
@@ -49,7 +49,7 @@ export function initializePlans() {
     console.error('Failed to initialize plans:', error);
   });
 
-  chrome.storage.onChanged.addListener((changes, areaName) => {
+  addStorageChangeListener((changes, areaName) => {
     if (areaName !== 'sync') return;
 
     const shouldRender = Boolean(

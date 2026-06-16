@@ -2,6 +2,7 @@
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
 import { PLANS_STORAGE_KEY } from '../../shared/plans.js';
+import { addStorageChangeListener } from '../../../platform/chrome/storage.js';
 import { POMODORO_IDLE_DETECTION_SECONDS } from '../../shared/pomodoro.js';
 import { POMODORO_ALARM_NAME } from './constants.js';
 import {
@@ -104,7 +105,7 @@ export function initializePomodoroRuntime() {
     });
   });
 
-  chrome.storage.onChanged.addListener((changes, areaName) => {
+  addStorageChangeListener((changes, areaName) => {
     if (areaName !== 'sync' || !changes[PLANS_STORAGE_KEY]) {
       return;
     }

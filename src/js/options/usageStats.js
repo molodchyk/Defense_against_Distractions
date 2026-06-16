@@ -2,6 +2,7 @@
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
 import { buildUsageStatsExportPayload } from '../shared/usageStats.js';
+import { addStorageChangeListener } from '../../platform/chrome/storage.js';
 
 const MAX_VISIBLE_DOMAINS = 8;
 
@@ -213,7 +214,7 @@ export function initializeUsageStatsPanel() {
   refreshButton.addEventListener('click', refreshUsageStatsPanel);
   exportButton.addEventListener('click', exportUsageStatsPanel);
   clearButton.addEventListener('click', clearUsageStatsPanel);
-  chrome.storage.onChanged.addListener((changes, areaName) => {
+  addStorageChangeListener((changes, areaName) => {
     if (areaName === 'local' && changes.usageStats) {
       refreshUsageStatsPanel().catch(error => {
         console.error('Failed to refresh usage stats:', error);

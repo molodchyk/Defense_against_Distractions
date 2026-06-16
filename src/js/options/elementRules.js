@@ -7,6 +7,7 @@ import {
   PLANS_STORAGE_KEY
 } from '../shared/plans.js';
 import {
+  addStorageChangeListener,
   getSync
 } from '../../platform/chrome/storage.js';
 import {
@@ -79,7 +80,7 @@ export async function renderElementRules() {
 }
 
 export function initializeElementRulesSync() {
-  chrome.storage.onChanged.addListener((changes, areaName) => {
+  addStorageChangeListener((changes, areaName) => {
     const hasElementRuleChange = Boolean(
       changes[ELEMENT_RULES_STORAGE_KEY]
         || changes[ELEMENT_RULE_IDS_STORAGE_KEY]

@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
-import { getSync } from '../../platform/chrome/storage.js';
+import { addStorageChangeListener, getSync } from '../../platform/chrome/storage.js';
 import {
   BILLING_CONFIG_STORAGE_KEY,
   BILLING_ENTITLEMENT_STORAGE_KEY,
@@ -29,7 +29,7 @@ export function initializeBillingPanel() {
     console.error('Failed to initialize billing panel:', error);
   });
 
-  chrome.storage.onChanged.addListener((changes, areaName) => {
+  addStorageChangeListener((changes, areaName) => {
     if (areaName !== 'sync') return;
 
     if (changes[BILLING_CONFIG_STORAGE_KEY] || changes[BILLING_ENTITLEMENT_STORAGE_KEY]) {

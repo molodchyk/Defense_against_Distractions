@@ -243,6 +243,7 @@ Examples:
 Rules:
 
 - Promise-wrap callback APIs.
+- Wrap browser listener registration when the listener is a cross-surface platform event, and return an unsubscribe function for cleanup-capable surfaces.
 - Normalize errors in one place.
 - Keep permission-specific behavior visible.
 - Do not scatter raw `chrome.tabs`, `chrome.storage`, or `chrome.runtime.sendMessage` calls through feature modules unless the project is still in early migration.
