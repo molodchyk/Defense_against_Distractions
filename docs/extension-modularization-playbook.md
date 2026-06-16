@@ -10,7 +10,13 @@ Use feature-first modules with thin runtime entry points.
 
 Runtime entry points should bootstrap and wire. They should not own business logic.
 
-Feature modules should own product behavior. Shared core modules should be pure and testable. Platform modules should own browser APIs and permission-specific behavior.
+Feature modules should own product behavior and nearby UI assets. Shared core modules should be pure and testable. Platform modules should own browser APIs and permission-specific behavior.
+
+Do not organize a mature extension primarily by file type. A global split such as `html/`, `css/`, and `js/` is a workable early/no-build convention, but it is a weak architecture because related behavior changes across distant folders. The best default is:
+
+1. group by feature or product responsibility;
+2. split by runtime surface inside that feature when needed;
+3. split by file type only at entry points, build boundaries, or manifest/CSP constraints.
 
 ## Why This Matters For Codex
 
@@ -18,83 +24,94 @@ Codex tends to follow the shape it finds. If a project has broad files, broad fo
 
 - new behavior goes to the narrowest existing owner;
 - broad files become compatibility barrels or controllers;
+- HTML, CSS, tests, and UI helpers stay near the feature they serve where the toolchain allows it;
 - storage and browser APIs stay behind explicit boundaries;
 - tests are placed by feature instead of in omnibus files;
 - file-size and folder-density audits detect structural decay early.
 
 ## Recommended Source Shape
 
-A mature extension can use this shape as a target, even if it migrates gradually:
+A mature extension can use this shape as a target, even if it migrates gradually. This is intentionally more feature-co-located than the current DaD tree.
 
 ```text
 src/
-  js/
-    app/
-      background/
-        index.js
-        messageRouter.js
-      content/
-        index.global.js
-        manifestScripts.js
-      options/
-        index.js
-      popup/
-        index.js
-      blocked/
-        index.js
-
-    features/
-      feature-name/
-        core/
-          model.js
-          storageModel.js
-          validation.js
-        background/
-          runtime.js
-          messages.js
-        content/
-          adapter.global.js
-          effects.global.js
-        options/
-          FeatureSettings.js
-          FeaturePanel.js
-        popup/
-          FeatureCard.js
-        tests/
-          feature-name.test.js
-
-    platform/
-      chrome/
-        storage.js
-        runtimeMessages.js
-        tabs.js
-        alarms.js
-        idle.js
-      dom/
-        createElement.js
-        formControls.js
-        theme.js
-      time/
-        clock.js
-        duration.js
-      diagnostics/
-        logger.js
-
-    shared/
-      compatibility-barrels.js
-
-    legacy/
-      migration/
-        oldStorageKeys.js
-        oldSettings.js
-
-  css/
-    popup/
-    options/
+  app/
+    background/
+      index.js
+      messageRouter.js
     content/
+      index.global.js
+      manifestScripts.js
+    popup/
+      popup.html
+      index.js
+      popup.css
+    options/
+      options.html
+      index.js
+      options.css
+    blocked/
+      blocked.html
+      index.js
+      blocked.css
+
+  features/
+    feature-name/
+      README.md
+      core/
+        model.js
+        storageModel.js
+        validation.js
+        validation.test.js
+      background/
+        runtime.js
+        messages.js
+      content/
+        adapter.global.js
+        effects.global.js
+        effects.css
+      ui/
+        FeaturePanel.js
+        FeaturePanel.css
+        FeaturePanel.test.js
+      popup/
+        FeatureCard.js
+        FeatureCard.css
+      options/
+        FeatureSettings.js
+        FeatureSettings.css
+      i18n/
+        messages.js
+
+  platform/
+    chrome/
+      storage.js
+      runtimeMessages.js
+      tabs.js
+      alarms.js
+      idle.js
+    dom/
+      createElement.js
+      formControls.js
+      theme.js
+    time/
+      clock.js
+      duration.js
+    diagnostics/
+      logger.js
+
+  shared/
+    compatibility-barrels.js
+
+  legacy/
+    migration/
+      oldStorageKeys.js
+      oldSettings.js
 ```
 
 This is a target shape, not a required first commit. Existing projects can keep their current paths while moving toward the boundaries.
+
+If the extension has no build step, CSS and HTML may still need entry files in `app/<surface>/` or `src/css/`. Treat those files as import/entry barrels. The feature still owns the actual style and UI behavior.
 
 ## Runtime Entry Rules
 
@@ -124,11 +141,15 @@ Good feature ownership examples:
 - `ui-blocking/content/matcher.global.js` owns page element matching.
 - `intent/core/scoring.js` owns coherence scoring.
 - `pomodoro/background/runtime.js` owns alarm/runtime reconciliation.
+- `plans/options/PlanSchedule.css` owns plan-schedule styling if that styling changes with the plan-schedule UI.
+- `ui-blocking/content/picker.css` owns picker styling if the picker is feature-owned and bundled/imported from there.
 
 Avoid:
 
 - putting unrelated helpers into a broad `utils.js`;
 - placing new behavior in a root `content.js`, `popup.js`, or `options.js`;
+- sending all styling to a global `css/` tree when the style belongs to one feature;
+- sending all tests to a broad `test/` tree without feature ownership;
 - duplicating the same rule in UI and background code;
 - hiding storage migrations inside UI rendering files.
 
@@ -284,7 +305,7 @@ Suggested targets:
 - Pure core module: 100 to 300 lines.
 - UI module/component: 150 to 450 lines.
 - Content-script adapter: 100 to 350 lines.
-- CSS file per surface or feature: under 500 lines.
+- CSS file per feature/surface/component: under 500 lines.
 - Test file per feature: under 500 lines.
 
 Escalation:
@@ -300,7 +321,7 @@ Flat folders become hard to scan even when every file is small.
 
 Suggested targets:
 
-- Root runtime folders such as `src/js/options`, `src/js/content`, `src/js/shared`, and `src/js/background`: 12 files or fewer.
+- Root runtime folders such as `src/app/options`, `src/app/content`, `src/app/background`, `src/features`, and `src/platform`: 12 files or fewer at each flat level before splitting by feature or surface.
 - Feature subfolders: 15 files or fewer.
 - If a folder crosses the target, split by surface or responsibility:
   - `core`;
@@ -313,56 +334,101 @@ Suggested targets:
 
 Folder-density audits are valuable because they catch the "everything goes here" failure before individual files become huge.
 
-## CSS Structure
+## Co-Location Rule
 
-Use thin stylesheet entry files and focused surface stylesheets.
+The strongest design is to put files near the thing they serve.
+
+Prefer:
+
+```text
+features/
+  plans/
+    options/
+      PlanSchedule.js
+      PlanSchedule.css
+      PlanSchedule.test.js
+    core/
+      scheduleStrictness.js
+      scheduleStrictness.test.js
+```
+
+over:
+
+```text
+js/options/plans/PlanSchedule.js
+css/options/plans.css
+test/shared/plans.test.js
+```
+
+The second shape can be an acceptable migration state, especially in a no-build extension, but it should not be the ideal. The ideal is change-coupling: files that change together should be close enough that Codex and humans see them together.
+
+## CSS And HTML Structure
+
+Use feature-owned styles with thin entry stylesheets.
 
 Example:
 
 ```text
-src/css/
-  popup.css
-  popup/
+src/
+  app/
+    popup/
+      popup.html
+      index.js
+      popup.css
+  features/
+    popup-shell/
+      ui/
+        PopupShell.js
+        PopupShell.css
+    pomodoro/
+      popup/
+        PomodoroCard.js
+        PomodoroCard.css
+    intent/
+      popup/
+        IntentRecoveryCard.js
+        IntentRecoveryCard.css
+  styles/
     tokens.css
-    layout.css
-    controls.css
-    status.css
-  options.css
-  options/
-    tokens.css
-    layout.css
-    settings.css
-    dialogs.css
 ```
 
 Rules:
 
-- Entry stylesheets should mostly import.
-- Put styles in the narrowest surface file.
-- Keep design tokens separate from layout and feature styles.
+- Entry stylesheets should mostly import feature styles or define surface-level layout.
+- Put styles in the narrowest feature/surface/component file.
+- Keep design tokens separate from feature styles.
+- HTML entry files belong to runtime surfaces such as popup/options/blocked pages.
+- HTML templates that belong to one feature should live with that feature if the toolchain supports it.
 - Content-script CSS may stay injected by content modules when page isolation or manifest compatibility requires it.
+- A no-build extension may keep CSS in `src/css/<surface>/`; when it does, the CSS file should still be named and scoped by feature responsibility, not by generic type alone.
 
 ## Test Structure
 
-Tests should mirror product ownership.
+Best target: tests live next to the feature logic they verify, or in a mirrored feature test folder when packaging constraints require tests outside `src`.
 
 Example:
 
 ```text
-test/
-  shared/
+features/
+  schedules/
     core/
-    schedules/
-    plans/
-    pomodoro/
-    signals/
-    intent/
+      time.js
+      time.test.js
+  intent/
+    core/
+      scoring.js
+      scoring.test.js
+
+test/
+  extension-e2e/
+    popup.test.js
+    options.test.js
 ```
 
 Rules:
 
 - Do not create one broad `shared.test.js`.
-- Add tests to the smallest matching feature folder.
+- Add tests to the smallest matching feature folder or mirrored test folder.
 - If a feature grows, create a test subfolder before the test file becomes hard to scan.
 - Keep most behavioral rules in pure modules so Node tests can cover them.
 - Add browser E2E tests for extension-page, popup, content-script, and service-worker behavior when a change depends on real Chrome behavior.
@@ -409,12 +475,12 @@ When Codex edits a growing extension:
 
 Default decision:
 
-- New UI behavior: feature `options`, `popup`, or `content` module.
+- New UI behavior: feature-owned `ui`, `options`, `popup`, or `content` module.
 - New scoring/validation behavior: feature `core` module.
 - New Chrome API access: `platform/chrome` or a background feature adapter.
 - New persistent data: feature storage model plus migration note.
 - New diagnostics: feature diagnostics module plus privacy boundary.
-- New CSS: narrow surface stylesheet, not a broad root stylesheet.
+- New CSS: colocated feature/component stylesheet where possible; otherwise the narrowest surface stylesheet, never a broad root stylesheet.
 
 ## Required Checks By Change Type
 
@@ -494,6 +560,7 @@ Avoid:
 - one giant `background.js`;
 - one giant `content.js`;
 - one giant `options.js`;
+- architecture organized primarily as `html/`, `css/`, and `js/` once the project has grown beyond entry files;
 - broad `utils.js` modules;
 - tests collected into a single huge file;
 - storage mutations hidden in render functions;
@@ -509,6 +576,7 @@ Avoid:
 A healthy extension codebase has:
 
 - feature-owned modules;
+- colocated feature UI, styles, and tests where the toolchain allows it;
 - thin runtime entries;
 - pure tested core logic;
 - explicit platform/browser wrappers;
