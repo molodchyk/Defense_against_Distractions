@@ -127,6 +127,7 @@ src/
         keywordScanner.js
         siteCheck.js
       background/
+        runtime.js
         tabMute.js
 
     ui-blocking/

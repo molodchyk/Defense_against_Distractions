@@ -8,7 +8,7 @@ The detailed modularization target, dependency rules, file-size budgets, and mig
 
 `src/features` contains feature-owned source modules that are not runtime entry points. New cross-surface product behavior should move here when it can be imported by extension pages or the MV3 module service worker without depending on manifest content-script order.
 
-`src/features/content-blocking/background/tabMute.js` owns blocked-page tab mute state for the background service worker. `src/js/background.js` wires the Chrome message and tab lifecycle events to that feature controller.
+`src/features/content-blocking/background/runtime.js` owns background message routing and tab lifecycle hooks for page blocking, including badge updates, top-frame block requests, and mute-state delegation. `src/features/content-blocking/background/tabMute.js` owns blocked-page tab mute state for that runtime.
 
 `src/js/background` contains background/service-worker adapters and compatibility barrels for existing background feature modules. New background behavior should go into a feature-owned module first, with `src/js/background.js` or a narrow background adapter only registering listeners and routing messages.
 
