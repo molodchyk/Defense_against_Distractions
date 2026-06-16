@@ -4,6 +4,10 @@ This playbook captures the reusable architecture discipline learned from Defense
 
 This is a prescriptive target, not a description of whatever structure a current extension happens to have. When existing code differs from this playbook, treat the existing shape as migration inventory and move it toward this architecture in small verified steps.
 
+Treat this playbook as the architecture standard. Project-specific roadmaps describe how a real extension is migrating toward the standard; code-structure documents describe the current tree; coordination docs describe who owns which files during active work. Those documents can record temporary compromises, but they should not redefine the target architecture.
+
+Do not copy transitional folders such as a broad `src/js` tree, classic manifest script chains, or global CSS folders into a new project merely because an existing extension still has them. Preserve them only when they are required compatibility boundaries, then shrink them over time.
+
 The goal is not prettier folders. The goal is to keep an extension maintainable as it grows: small reviewable modules, explicit ownership, testable core logic, bounded browser permissions, and safe migration around user data.
 
 ## Core Principle

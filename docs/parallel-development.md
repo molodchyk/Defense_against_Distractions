@@ -48,6 +48,7 @@ Current focus:
 - Completed checkpoint: the instructions-page bootstrap now lives at `src/app/instructions/index.js`; the dead root `ScheduleState.js` module was removed.
 - Completed checkpoint: the blocked-page bootstrap now lives at `src/app/blocked/index.js`, keeping root `src/js` limited to the classic content-script entry.
 - Completed checkpoint: the content-script bootstrap now lives at `src/app/content/index.js`; root `src/js` no longer contains runtime entries.
+- Completed checkpoint: blocked-page implementation modules now live under `src/features/content-blocking/blocked-page/`.
 - Completed checkpoint: global Blocked UI options have been split into constants/messages, formatting, storage/quota, rule-card rendering, and a thin list/sync entry.
 - Completed checkpoint: shared usage stats have been split into constants, utils, metrics, state, record, and summary modules under `src/js/shared/usage-stats/` while preserving the public barrel API.
 - Completed checkpoint: background intent coherence has been split into Chrome API, storage, policy, page-signal recording, tab lineage, diagnostics, message routing, and initializer modules under `src/js/background/intent/` while preserving the public initializer barrel.
@@ -63,6 +64,7 @@ Codex currently owns:
 - `manifest.json`
 - `src/app/content/index.js`
 - `src/js/content/**`
+- `src/features/content-blocking/blocked-page/**`
 - `src/js/shared/intentCoherence.js`
 - `src/js/shared/intent/**`
 - `src/js/shared/pomodoro.js`

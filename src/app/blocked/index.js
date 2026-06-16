@@ -5,11 +5,11 @@ import {
   safeRuntimeSendMessage,
   safeStorageOnChangedAddListener,
   safeSyncStorageGet
-} from '../../js/blocked/chromeApi.js';
-import { initBlockedPageLocalization } from '../../js/blocked/localization.js';
-import { initBlockedPageCustomMessage } from '../../js/blocked/customMessage.js';
-import { initBlockedPageTheme } from '../../js/blocked/theme.js';
-import { initBlockedPomodoroPanel } from '../../js/blocked/pomodoroPanel.js';
+} from '../../features/content-blocking/blocked-page/chromeApi.js';
+import { initBlockedPageLocalization } from '../../features/content-blocking/blocked-page/localization.js';
+import { initBlockedPageCustomMessage } from '../../features/content-blocking/blocked-page/customMessage.js';
+import { initBlockedPageTheme } from '../../features/content-blocking/blocked-page/theme.js';
+import { initBlockedPomodoroPanel } from '../../features/content-blocking/blocked-page/pomodoroPanel.js';
 
 const localizer = initBlockedPageLocalization({
   safeSyncStorageGet,

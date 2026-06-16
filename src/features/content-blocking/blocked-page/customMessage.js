@@ -5,7 +5,7 @@ import {
   BLOCKED_PAGE_SETTINGS_STORAGE_KEY,
   getBlockedPageSettingsStorageDefaults,
   normalizeBlockedPageSettings
-} from '../shared/blocked-page/settings.js';
+} from '../../../js/shared/blocked-page/settings.js';
 
 export function initBlockedPageCustomMessage({
   safeSyncStorageGet,

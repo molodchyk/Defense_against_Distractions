@@ -308,6 +308,8 @@ Status: completed for the instructions-page bootstrap move. `src/app/instruction
 
 Status: completed for the blocked-page bootstrap move. `src/app/blocked/index.js` is now the blocked page entry that wires blocked-page localization, theme, custom message, and Pomodoro status modules.
 
+Status: completed for blocked-page feature ownership. Blocked-page implementation modules now live under `src/features/content-blocking/blocked-page/`; the app entry only wires them.
+
 Status: completed for the content-script bootstrap move. `src/app/content/index.js` is now the classic manifest-loaded content-script entry while ordered feature adapters remain under `src/js/content/`.
 
 ### Phase 3: Plans Options Split
@@ -373,7 +375,7 @@ Completed first steps:
 - `src/js/content/ui-blocking/builtInRules.js` owns narrow built-in cosmetic cleanup rules separately from user-saved structural rules.
 - Page blocking content scripts now live under `src/js/content/content-blocking/`.
 - Blocked-overlay content responsibilities now live in focused modules for messages, style, theme, diagnostics, Pomodoro strict-break status, event guards, navigation guards, and a thin overlay controller.
-- Blocked-page customization uses a pure shared settings model under `src/js/shared/blocked-page/`, an options Settings card under `src/js/options/settings/`, an ES-module renderer under `src/js/blocked/`, and a classic content-script adapter in `src/js/content/content-blocking/overlayCustomization.js`.
+- Blocked-page customization uses a pure shared settings model under `src/js/shared/blocked-page/`, an options Settings card under `src/js/options/settings/`, an ES-module renderer under `src/features/content-blocking/blocked-page/`, and a classic content-script adapter in `src/js/content/content-blocking/overlayCustomization.js`.
 - Page-signal content responsibilities now live under `src/js/content/page-signals/` for activity tracking, signal collection, and reporting, with `src/js/content/pageSignals.js` kept as the thin public controller.
 - Intent content intervention modules now live under `src/js/content/intent/` for constants, messages, CSS injection, theme sync, prompt rendering, reversible element reduction, visual-effect application, and media pause/restore. `src/js/content/intentIntervention.js` remains the controller for polling, feedback, dismissal state, and action wiring.
 
@@ -469,7 +471,7 @@ Recent checkpoint:
 - Shared usage stats now live under `src/js/shared/usage-stats/` for constants, sanitizers, metric aggregation, state normalization, page-signal recording, summaries, and export payloads. `src/js/shared/usageStats.js` remains the compatibility barrel for current callers and tests.
 - Background intent coherence now lives under `src/js/background/intent/` for Chrome API wrappers, storage mutation, effective-policy lookup, page-signal recording, tab lineage, diagnostics, runtime messages, and listener registration. `src/js/background/intentCoherence.js` remains the compatibility barrel for `src/app/background/index.js`.
 - Shared plan helpers now live under `src/js/shared/plans/` for constants, normalization, schedule activity, effective group/UI-rule selection, and intent-policy combination. `src/js/shared/plans.js` remains the compatibility barrel for current callers and tests.
-- Blocked-page runtime behavior now lives under `src/js/blocked/` for Chrome API wrappers, localization, UI-mode theme sync, and Pomodoro timer rendering. `src/app/blocked/index.js` is the `src/blocked.html` module entry.
+- Blocked-page runtime behavior now lives under `src/features/content-blocking/blocked-page/` for Chrome API wrappers, localization, UI-mode theme sync, and Pomodoro timer rendering. `src/app/blocked/index.js` is the `src/blocked.html` module entry.
 - Shared Pomodoro runtime helpers now live in focused modules for runtime state, phase durations, rest credit, and transitions. `src/js/shared/pomodoro/runtime.js` remains the compatibility barrel for current callers and tests.
 - Pomodoro mini-panel style behavior now lives in focused content scripts for constants, CSS text generation, and a thin injection facade. `src/js/content/pomodoro/miniPanelStyle.js` remains the public content-script style API.
 - Options and popup CSS now use thin entry barrels with focused surface files under `src/css/options/` and `src/css/popup/`.

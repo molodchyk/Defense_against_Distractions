@@ -79,6 +79,15 @@ const budgets = [
     }
   },
   {
+    name: 'feature module',
+    max: 450,
+    hard: 900,
+    matches(relativePath) {
+      const normalized = relativePath.replaceAll('\\', '/');
+      return normalized.startsWith('src/features/') && normalized.endsWith('.js');
+    }
+  },
+  {
     name: 'CSS surface',
     max: 500,
     hard: 900,

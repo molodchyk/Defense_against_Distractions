@@ -10,7 +10,7 @@ The detailed modularization target, dependency rules, file-size budgets, and mig
 
 `src/features` contains feature-owned source modules that are not runtime entry points. New cross-surface product behavior should move here when it can be imported by extension pages or the MV3 module service worker without depending on manifest content-script order.
 
-`src/features/content-blocking/background/runtime.js` owns background message routing and tab lifecycle hooks for page blocking, including badge updates, top-frame block requests, and mute-state delegation. `src/features/content-blocking/background/tabMute.js` owns blocked-page tab mute state for that runtime.
+`src/features/content-blocking/background/runtime.js` owns background message routing and tab lifecycle hooks for page blocking, including badge updates, top-frame block requests, and mute-state delegation. `src/features/content-blocking/background/tabMute.js` owns blocked-page tab mute state for that runtime. `src/features/content-blocking/blocked-page/` owns the extension blocked-page modules for Chrome API wrappers, localization including right-to-left document direction, theme sync, custom message rendering, and Pomodoro timer rendering.
 
 The root `src/js` folder should stay empty of runtime entries and helper modules. Content-script feature modules still live under `src/js/content/` while the classic manifest-loaded entry is `src/app/content/index.js`.
 
@@ -283,5 +283,5 @@ Pomodoro is split across plan configuration, runtime, and local activity:
 - `src/js/content/pomodoro/miniPanel.js` is the thin optional on-page Pomodoro mini-panel controller opened from the popup. It wires DOM construction, refresh, close/open behavior, and the public content-script API.
 - `src/js/content/content-blocking/siteCheck.js` applies strict-break blocking when a Pomodoro break is active for the current plan.
 - `src/js/content/content-blocking/overlayPomodoro.js`, `src/js/content/content-blocking/overlay.js`, and `src/blocked.html` render Pomodoro timer status on blocked pages.
-- `src/app/blocked/index.js` is the blocked-page module entry. Blocked-page Chrome API wrappers, localization including right-to-left document direction, theme sync, custom message rendering, and Pomodoro timer rendering live under `src/js/blocked/`.
+- `src/app/blocked/index.js` is the blocked-page module entry. Blocked-page Chrome API wrappers, localization including right-to-left document direction, theme sync, custom message rendering, and Pomodoro timer rendering live under `src/features/content-blocking/blocked-page/`.
 - `src/js/options/settings/blockedPageSettings.js` owns the options-page Settings card for the local custom blocked-page note.
