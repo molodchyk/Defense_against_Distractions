@@ -1,44 +1,9 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
-export function getSync(keys) {
-  return new Promise((resolve, reject) => {
-    chrome.storage.sync.get(keys, result => {
-      if (chrome.runtime.lastError) {
-        reject(chrome.runtime.lastError);
-        return;
-      }
+import { getLocal, getSync, setLocal } from '../../../platform/chrome/storage.js';
 
-      resolve(result);
-    });
-  });
-}
-
-export function getLocal(keys) {
-  return new Promise((resolve, reject) => {
-    chrome.storage.local.get(keys, result => {
-      if (chrome.runtime.lastError) {
-        reject(chrome.runtime.lastError);
-        return;
-      }
-
-      resolve(result);
-    });
-  });
-}
-
-export function setLocal(items) {
-  return new Promise((resolve, reject) => {
-    chrome.storage.local.set(items, () => {
-      if (chrome.runtime.lastError) {
-        reject(chrome.runtime.lastError);
-        return;
-      }
-
-      resolve();
-    });
-  });
-}
+export { getLocal, getSync, setLocal };
 
 export function openIntentDiagnosticsPage() {
   const url = chrome.runtime.getURL('src/options.html#intentDiagnosticsPanel');

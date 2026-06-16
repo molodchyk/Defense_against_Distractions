@@ -65,3 +65,68 @@ export function getBytesInUseSync(keys = null) {
     });
   });
 }
+
+export function getLocal(keys) {
+  return new Promise((resolve, reject) => {
+    chrome.storage.local.get(keys, result => {
+      if (chrome.runtime.lastError) {
+        reject(chrome.runtime.lastError);
+        return;
+      }
+
+      resolve(result);
+    });
+  });
+}
+
+export function setLocal(items) {
+  return new Promise((resolve, reject) => {
+    chrome.storage.local.set(items, () => {
+      if (chrome.runtime.lastError) {
+        reject(chrome.runtime.lastError);
+        return;
+      }
+
+      resolve();
+    });
+  });
+}
+
+export function removeLocal(keys) {
+  return new Promise((resolve, reject) => {
+    chrome.storage.local.remove(keys, () => {
+      if (chrome.runtime.lastError) {
+        reject(chrome.runtime.lastError);
+        return;
+      }
+
+      resolve();
+    });
+  });
+}
+
+export function clearLocal() {
+  return new Promise((resolve, reject) => {
+    chrome.storage.local.clear(() => {
+      if (chrome.runtime.lastError) {
+        reject(chrome.runtime.lastError);
+        return;
+      }
+
+      resolve();
+    });
+  });
+}
+
+export function getBytesInUseLocal(keys = null) {
+  return new Promise((resolve, reject) => {
+    chrome.storage.local.getBytesInUse(keys, bytesInUse => {
+      if (chrome.runtime.lastError) {
+        reject(chrome.runtime.lastError);
+        return;
+      }
+
+      resolve(bytesInUse);
+    });
+  });
+}

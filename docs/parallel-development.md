@@ -38,7 +38,7 @@ Current focus:
 - Completed checkpoint: `src/js/background/pomodoro.js` has been split into feature-owned modules under `src/js/background/pomodoro/` while preserving the public background initializer export.
 - Completed checkpoint: schedule core helpers have moved into feature ownership under `src/features/schedules/core/`.
 - Completed checkpoint: reusable options schedule-board modules have been moved from the options root into `src/js/options/schedules/`, bringing `src/js/options` back within the folder-density budget.
-- Completed checkpoint: Chrome sync storage wrappers now live under `src/platform/chrome/`, plan-critical storage priority lives under `src/features/plans/storage/`, and old shared storage paths are compatibility barrels.
+- Completed checkpoint: Chrome sync/local storage wrappers now live under `src/platform/chrome/`, plan-critical storage priority lives under `src/features/plans/storage/`, and old shared storage paths are compatibility barrels.
 - Completed checkpoint: shared UI helpers now live under `src/js/shared/ui/`, bringing `src/js/shared` back within the folder-density budget.
 - Completed checkpoint: the on-page Pomodoro mini-panel has been split into state, style, theme, layout, render, and controller content scripts while preserving manifest load order.
 - Completed checkpoint: the blocked-page overlay has been split into messages, style, theme, diagnostics, Pomodoro status, event guards, and a thin controller while preserving manifest load order.
@@ -182,7 +182,7 @@ Release-facing changes:
 - `src/js/shared/intentCoherence.js` is now a small compatibility barrel. The shared intent implementation lives under `src/js/shared/intent/`.
 - `src/js/shared/pomodoro.js` is now a small compatibility barrel. The shared Pomodoro implementation lives under `src/js/shared/pomodoro/`.
 - Schedule core helpers now live under `src/features/schedules/core/`.
-- Chrome sync storage wrappers now live under `src/platform/chrome/`, plan-critical storage priority lives under `src/features/plans/storage/`, and shared storage paths are compatibility barrels. Shared UI helpers live under `src/js/shared/ui/`.
+- Chrome sync/local storage wrappers now live under `src/platform/chrome/`, plan-critical storage priority lives under `src/features/plans/storage/`, and shared storage paths are compatibility barrels. Shared UI helpers live under `src/js/shared/ui/`.
 - `src/js/background/pomodoro.js` is now a small compatibility barrel. The background Pomodoro implementation lives under `src/js/background/pomodoro/`.
 - `npm run audit:file-sizes` currently reports no hard JS file-size violations. Remaining file-size issues are soft warnings.
 

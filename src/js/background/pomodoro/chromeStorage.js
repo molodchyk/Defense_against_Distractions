@@ -17,47 +17,11 @@ import {
   isInProtectedSchedule,
   normalizePlans
 } from '../../shared/plans.js';
+import { getLocal, getSync, setLocal } from '../../../platform/chrome/storage.js';
 import { POMODORO_ALARM_NAME } from './constants.js';
 import { isPastDueWorkWaitingForSystemReturn } from './runtimeReconciliation.js';
 
-export function getSync(keys) {
-  return new Promise((resolve, reject) => {
-    chrome.storage.sync.get(keys, result => {
-      if (chrome.runtime.lastError) {
-        reject(chrome.runtime.lastError);
-        return;
-      }
-
-      resolve(result);
-    });
-  });
-}
-
-export function getLocal(keys) {
-  return new Promise((resolve, reject) => {
-    chrome.storage.local.get(keys, result => {
-      if (chrome.runtime.lastError) {
-        reject(chrome.runtime.lastError);
-        return;
-      }
-
-      resolve(result);
-    });
-  });
-}
-
-export function setLocal(items) {
-  return new Promise((resolve, reject) => {
-    chrome.storage.local.set(items, () => {
-      if (chrome.runtime.lastError) {
-        reject(chrome.runtime.lastError);
-        return;
-      }
-
-      resolve();
-    });
-  });
-}
+export { getLocal, getSync, setLocal };
 
 export function clearPomodoroAlarm() {
   return new Promise(resolve => {

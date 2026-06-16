@@ -14,7 +14,7 @@ The detailed modularization target, dependency rules, file-size budgets, and mig
 
 `src/features/page-signals/core/collectorModel.js` owns the tested ES-module page-signal collector model, including bounded visible-text, heading, meta-description, clicked-link, and selected-text topic tokens, passive recommendation/comment/short-form region counts, plus summarized activity signals. `src/js/shared/pageSignals.js` is a compatibility barrel for current imports.
 
-`src/platform` contains browser/platform adapters that are not product features. `src/platform/chrome/storage.js` owns Promise wrappers around `chrome.storage.sync` and is the default import for extension pages, options modules, shared UI helpers, and feature storage policies that need sync storage.
+`src/platform` contains browser/platform adapters that are not product features. `src/platform/chrome/storage.js` owns Promise wrappers around `chrome.storage.sync` and `chrome.storage.local`; it is the default import for extension pages, options modules, background modules, shared UI helpers, and feature storage policies that need Chrome storage.
 
 The root `src/js` folder should stay empty of runtime entries and helper modules. Content-script feature modules still live under `src/js/content/` while the classic manifest-loaded entry is `src/app/content/index.js`.
 
@@ -58,7 +58,7 @@ Plan core helpers live under `src/features/plans/core/`:
 
 Chrome storage helpers now have explicit owners:
 
-- `src/platform/chrome/storage.js` owns Promise wrappers around `chrome.storage.sync`.
+- `src/platform/chrome/storage.js` owns Promise wrappers around `chrome.storage.sync` and `chrome.storage.local`.
 - `src/features/plans/storage/criticalScheduleStorage.js` owns priority saving for plan data when forced schedule data must be preserved; it uses the platform wrapper instead of raw `chrome.storage` calls.
 - `src/js/shared/storage/chromeStorage.js` and `src/js/shared/storage/criticalScheduleStorage.js` are compatibility barrels for older imports.
 
@@ -238,7 +238,7 @@ The first local signal collector is split by runtime:
 - `src/js/shared/intent/graph.js` owns the bounded intent chain graph model, coherent/uncertain/drift labels, and capped coherent-host/drift-descendant host summaries used by diagnostics UI.
 - `src/features/usage-stats/core/` owns tested bounded hostname-level usage aggregates: constants and retention limits, timestamp/hostname sanitizers, metric bucket aggregation, state normalization, page-signal recording, summaries, derived blocked outcome shares, and local JSON export payloads. It stores counts, timing summaries, page word counts, coarse tab/window pressure maxima, passive region maxima, and blocked/allowed aggregate outcome counters only, not raw page text, full URLs, titles, topic tokens, tab URLs, tab titles, or tab identities. `src/js/shared/usageStats.js` is the compatibility barrel for current imports.
 - `src/js/background/intentCoherence.js` is the background intent compatibility barrel imported by `src/app/background/index.js`.
-- `src/js/background/intent/chromeApi.js` owns Chrome storage, tab pressure, open-tab enumeration, tab URL update, tab-discard, tab window moving, and tab-removal wrappers used by background intent runtime.
+- `src/js/background/intent/chromeApi.js` imports storage wrappers from `src/platform/chrome/storage.js` and owns tab pressure, open-tab enumeration, tab URL update, tab-discard, tab window moving, and tab-removal wrappers used by background intent runtime.
 - `src/js/background/intent/storage.js` owns `intentTrajectoryState` and `usageStats` local-storage read/update helpers.
 - `src/js/background/intent/policy.js` owns plan-owned intent-policy lookup, Pomodoro runtime influence, feedback summaries, and local feedback calibration.
 - `src/js/background/intent/pageSignals.js` owns background recording of page-signal messages into intent trajectory and bounded usage stats.
@@ -276,7 +276,7 @@ Pomodoro is split across plan configuration, runtime, and local activity:
 - `src/js/shared/pomodoro/status.js` owns display-oriented Pomodoro status summaries, required-rest/rest-credit/rest-still-needed fields, and duration formatting.
 - `src/js/background/pomodoro.js` is the background Pomodoro entry barrel imported by `src/app/background/index.js`.
 - `src/js/background/pomodoro/constants.js` owns background-only alarm, suppression, and protected-schedule message constants.
-- `src/js/background/pomodoro/chromeStorage.js` owns Chrome sync/local storage wrappers, runtime/activity/history persistence, and alarm scheduling.
+- `src/js/background/pomodoro/chromeStorage.js` uses `src/platform/chrome/storage.js` for Chrome storage access and owns Pomodoro runtime/activity/history persistence plus alarm scheduling.
 - `src/js/background/pomodoro/autoStartSuppression.js` owns manual-reset auto-start suppression state.
 - `src/js/background/pomodoro/planSelection.js` owns active/startable/runtime plan selection helpers.
 - `src/js/background/pomodoro/history.js` owns background transition-history event emission.
