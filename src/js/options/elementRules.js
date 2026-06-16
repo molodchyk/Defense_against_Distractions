@@ -8,7 +8,7 @@ import {
 } from '../shared/plans.js';
 import {
   getSync
-} from '../shared/storage/chromeStorage.js';
+} from '../../platform/chrome/storage.js';
 import {
   ELEMENT_RULE_IDS_STORAGE_KEY,
   ELEMENT_RULE_ITEM_PREFIX,

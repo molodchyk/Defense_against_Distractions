@@ -7,7 +7,7 @@ import {
   getBlockedPageSettingsStorageDefaults,
   normalizeBlockedPageSettings
 } from '../../shared/blocked-page/settings.js';
-import { getSync, setSync } from '../../shared/storage/chromeStorage.js';
+import { getSync, setSync } from '../../../platform/chrome/storage.js';
 import { getUiMessage } from '../../shared/ui/uiLanguage.js';
 
 const ELEMENT_IDS = {

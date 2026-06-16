@@ -65,13 +65,14 @@ Chrome Web Store API release helpers are documented in [Chrome Web Store API](do
 - `src/blocked.html` contains the block page.
 - `src/app/` contains runtime entry points such as the MV3 background service worker.
 - `src/features/` contains feature-owned source modules that can be imported by runtime entries.
+- `src/platform/` contains browser API wrappers and platform adapters.
 - `src/app/background/index.js` contains the service worker entry point.
 - `src/app/popup/index.js` contains the popup entry point.
 - `src/app/options/index.js` contains the options page entry point.
 - `src/app/instructions/index.js` contains the instructions page entry point.
 - `src/app/blocked/index.js` contains the blocked page entry point.
 - `src/app/content/index.js` contains the classic content-script entry point.
-- `src/js/shared/` contains shared parsing, URL, storage, and compatibility barrels; feature-owned models live under `src/features/`.
+- `src/js/shared/` contains shared parsing, URL, UI helpers, and compatibility barrels; feature-owned models live under `src/features/`, and Chrome API wrappers live under `src/platform/`.
 - `src/css/` contains extension styles.
 
 Runtime extension files are the files that must ship inside the extension ZIP. Source-only project files such as docs, tests, scripts, screenshots, promotional images, and store listing text are kept in the repository and source ZIP, but are intentionally excluded from the runtime extension package.

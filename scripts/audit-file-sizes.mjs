@@ -88,6 +88,15 @@ const budgets = [
     }
   },
   {
+    name: 'platform module',
+    max: 300,
+    hard: 600,
+    matches(relativePath) {
+      const normalized = relativePath.replaceAll('\\', '/');
+      return normalized.startsWith('src/platform/') && normalized.endsWith('.js');
+    }
+  },
+  {
     name: 'CSS surface',
     max: 500,
     hard: 900,

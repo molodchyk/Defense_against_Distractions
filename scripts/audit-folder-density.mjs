@@ -54,6 +54,22 @@ const budgets = [
     }
   },
   {
+    name: 'platform root',
+    max: 12,
+    hard: 18,
+    matches(relativeDir) {
+      return relativeDir === 'src/platform';
+    }
+  },
+  {
+    name: 'platform surface',
+    max: 15,
+    hard: 24,
+    matches(relativeDir) {
+      return relativeDir.startsWith('src/platform/');
+    }
+  },
+  {
     name: 'runtime surface',
     max: 12,
     hard: 18,

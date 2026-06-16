@@ -71,6 +71,7 @@ $runtimeFiles = @(
   "src\css",
   "src\features",
   "src\js",
+  "src\platform",
   "src\store-assets\icons\extension-icon-16.png",
   "src\store-assets\icons\extension-icon-32.png",
   "src\store-assets\icons\extension-icon-48.png",

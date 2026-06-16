@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
-import { getSync } from '../shared/storage/chromeStorage.js';
+import { getSync } from '../../platform/chrome/storage.js';
 import {
   BILLING_CONFIG_STORAGE_KEY,
   BILLING_ENTITLEMENT_STORAGE_KEY,

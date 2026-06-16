@@ -14,6 +14,8 @@ The detailed modularization target, dependency rules, file-size budgets, and mig
 
 `src/features/page-signals/core/collectorModel.js` owns the tested ES-module page-signal collector model, including bounded visible-text, heading, meta-description, clicked-link, and selected-text topic tokens, passive recommendation/comment/short-form region counts, plus summarized activity signals. `src/js/shared/pageSignals.js` is a compatibility barrel for current imports.
 
+`src/platform` contains browser/platform adapters that are not product features. `src/platform/chrome/storage.js` owns Promise wrappers around `chrome.storage.sync` and is the default import for extension pages, options modules, shared UI helpers, and feature storage policies that need sync storage.
+
 The root `src/js` folder should stay empty of runtime entries and helper modules. Content-script feature modules still live under `src/js/content/` while the classic manifest-loaded entry is `src/app/content/index.js`.
 
 `src/js/background` contains background/service-worker adapters and compatibility barrels for existing background feature modules. New background behavior should go into a feature-owned module first, with `src/app/background/index.js` or a narrow background adapter only registering listeners and routing messages.
@@ -54,17 +56,18 @@ Plan core helpers live under `src/features/plans/core/`:
 - `src/features/plans/core/protectedScheduleChanges.js` owns the pure strictness policy for plan edits during locked schedules. Options UI should call through this shared comparator instead of duplicating protected-schedule edit rules.
 - `src/js/shared/plans.js` is the compatibility barrel for current imports.
 
-Shared storage helpers live under `src/js/shared/storage/`:
+Chrome storage helpers now have explicit owners:
 
-- `src/js/shared/storage/chromeStorage.js` owns Promise wrappers around `chrome.storage.sync`.
-- `src/js/shared/storage/criticalScheduleStorage.js` owns priority saving for plan data when forced schedule data must be preserved.
+- `src/platform/chrome/storage.js` owns Promise wrappers around `chrome.storage.sync`.
+- `src/features/plans/storage/criticalScheduleStorage.js` owns priority saving for plan data when forced schedule data must be preserved; it uses the platform wrapper instead of raw `chrome.storage` calls.
+- `src/js/shared/storage/chromeStorage.js` and `src/js/shared/storage/criticalScheduleStorage.js` are compatibility barrels for older imports.
 
 Shared UI helpers live under `src/js/shared/ui/`:
 
 - `src/js/shared/ui/theme.js` owns UI-mode normalization and system-mode resolution.
 - `src/js/shared/ui/uiLanguage.js` owns UI-language normalization, Chrome-locale fallback, right-to-left direction resolution, document language/direction attributes, and message formatting.
 
-New storage or UI helpers should go into these subfolders instead of adding files directly to `src/js/shared`.
+New browser API wrappers should go under `src/platform/`; new product persistence policy should go under the owning feature. New UI helpers should go into the UI subfolder instead of adding files directly to `src/js/shared`.
 
 Shared blocked-page helpers live under `src/js/shared/blocked-page/`:
 

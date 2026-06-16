@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
-import { getSync } from '../../shared/storage/chromeStorage.js';
-import { savePlansWithPriority } from '../../shared/storage/criticalScheduleStorage.js';
+import { getSync } from '../../../platform/chrome/storage.js';
+import { savePlansWithPriority } from '../../../features/plans/storage/criticalScheduleStorage.js';
 import { createDefaultSchedule, formatScheduleTime, getNextUnnamedScheduleName } from '../../../features/schedules/core/scheduleForm.js';
 import { createScheduleRangeFromStart, SCHEDULE_GRID_DAYS } from '../../../features/schedules/core/scheduleGrid.js';
 import { doSchedulesOverlap, hasMinimumUnlockedTime, isScheduleMoreStrict } from '../../../features/schedules/core/scheduleRules.js';

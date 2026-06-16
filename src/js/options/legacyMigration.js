@@ -2,7 +2,7 @@
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
 import { createLegacyWebsiteGroupsMigration } from '../shared/legacyMigration.js';
-import { getSync, removeSync, setSync } from '../shared/storage/chromeStorage.js';
+import { getSync, removeSync, setSync } from '../../platform/chrome/storage.js';
 import { debugLog } from '../shared/logger.js';
 
 export async function migrateLegacyWebsiteGroupsStorage() {

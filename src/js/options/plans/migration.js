@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
-import { getSync, removeSync, setSync } from '../../shared/storage/chromeStorage.js';
-import { savePlansWithPriority } from '../../shared/storage/criticalScheduleStorage.js';
+import { getSync, removeSync, setSync } from '../../../platform/chrome/storage.js';
+import { savePlansWithPriority } from '../../../features/plans/storage/criticalScheduleStorage.js';
 import {
   createDefaultPlanFromItems,
   getStoredGroupMap,

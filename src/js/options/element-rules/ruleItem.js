@@ -3,10 +3,10 @@
 
 import {
   savePlansWithPriority
-} from '../../shared/storage/criticalScheduleStorage.js';
+} from '../../../features/plans/storage/criticalScheduleStorage.js';
 import {
   getSync
-} from '../../shared/storage/chromeStorage.js';
+} from '../../../platform/chrome/storage.js';
 import {
   isInProtectedSchedule,
   normalizePlans,

@@ -14,7 +14,7 @@ import { initializeBlockedPageSettings } from '../../js/options/settings/blocked
 import { initializeThemeModeControl } from '../../js/options/theme.js';
 import { initializeUiLanguageControl } from '../../js/options/uiLanguage.js';
 import { initializeUsageStatsPanel } from '../../js/options/usageStats.js';
-import { getSync } from '../../js/shared/storage/chromeStorage.js';
+import { getSync } from '../../platform/chrome/storage.js';
 import { initializeUiLanguage } from '../../js/shared/ui/uiLanguage.js';
 import { isInProtectedSchedule } from '../../js/shared/plans.js';
 

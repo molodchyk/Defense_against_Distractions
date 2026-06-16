@@ -2,7 +2,7 @@
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
 import { isInProtectedSchedule } from '../shared/plans.js';
-import { getSync, removeSync, setSync } from '../shared/storage/chromeStorage.js';
+import { getSync, removeSync, setSync } from '../../platform/chrome/storage.js';
 import { getUiMessage } from '../shared/ui/uiLanguage.js';
 import {
   buildRulesetExportPayload,
