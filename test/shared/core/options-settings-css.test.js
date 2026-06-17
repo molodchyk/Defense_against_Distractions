@@ -27,4 +27,19 @@ describe('options settings CSS', () => {
     assert.match(selectRule, /max-width:\s*100%/);
     assert.match(selectRule, /min-width:\s*0/);
   });
+
+  it('exposes the reset extension data path as a separated destructive settings action', () => {
+    const html = readFileSync('src/options.html', 'utf8');
+    const css = readFileSync('src/css/options/settings.css', 'utf8');
+
+    assert.match(html, /id="resetExtensionButton"[^>]*class="delete-button"/);
+    assert.match(html, /id="resetExtensionHint"/);
+    assert.match(html, /id="resetExtensionStatus"[^>]*aria-live="polite"/);
+
+    const dangerZoneRule = getCssRule(css, '.settings-danger-zone');
+    assert.match(dangerZoneRule, /border-top:\s*1px\s+solid\s+var\(--border\)/);
+
+    const resetButtonRule = getCssRule(css, '.settings-danger-zone .delete-button');
+    assert.match(resetButtonRule, /justify-self:\s*start/);
+  });
 });

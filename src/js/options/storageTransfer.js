@@ -2,7 +2,7 @@
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
 import { isInProtectedSchedule } from '../shared/plans.js';
-import { getSync, removeSync, setSync } from '../../platform/chrome/storage.js';
+import { clearLocal, clearSync, getSync, removeSync, setSync } from '../../platform/chrome/storage.js';
 import { getUiMessage } from '../shared/ui/uiLanguage.js';
 import {
   buildRulesetExportPayload,
@@ -16,13 +16,18 @@ const FALLBACK_MESSAGES = {
   importRulesetConfirm: 'Import $1 shared ruleset items from this file? Current plans, groups, schedules, allowed sites, and UI cleanup rules will be replaced. Local UI settings, passwords, billing, runtime state, and diagnostics stay unchanged.',
   importSettingsLockedError: 'Cannot import settings during an active protected schedule.',
   importSettingsFailed: 'Could not import settings. Check that the file is a DaD settings or ruleset export.',
-  lockedScheduleErrorMessage: 'Cannot weaken protection during an active protected schedule.'
+  lockedScheduleErrorMessage: 'Cannot weaken protection during an active protected schedule.',
+  resetExtensionConfirm: 'Reset all DaD settings, rules, schedules, local diagnostics, timers, and runtime state? Export first if you want a backup. This cannot be undone.',
+  resetExtensionLockedError: 'Cannot reset extension data during an active protected schedule.',
+  resetExtensionFailed: 'Could not reset extension data.',
+  resetExtensionStatus: 'Extension data reset. Reloading.'
 };
 
 export function initializeStorageTransfer() {
   const exportButton = document.getElementById('exportButton');
   const exportRulesetButton = document.getElementById('exportRulesetButton');
   const importButton = document.getElementById('importButton');
+  const resetButton = document.getElementById('resetExtensionButton');
   const fileInput = document.getElementById('fileInput');
 
   if (!exportButton || !importButton || !fileInput) {
@@ -34,6 +39,7 @@ export function initializeStorageTransfer() {
   exportRulesetButton?.addEventListener('click', exportRuleset);
   fileInput.addEventListener('change', importSettings);
   importButton.addEventListener('click', () => fileInput.click());
+  resetButton?.addEventListener('click', resetExtensionData);
 }
 
 export async function exportSettings() {
@@ -91,6 +97,43 @@ async function importSettings(event) {
     alert(getMessage('importSettingsFailed'));
   } finally {
     input.value = '';
+  }
+}
+
+async function resetExtensionData() {
+  const resetButton = document.getElementById('resetExtensionButton');
+  const status = document.getElementById('resetExtensionStatus');
+
+  try {
+    if (resetButton) {
+      resetButton.disabled = true;
+    }
+    const currentItems = await getSync(null);
+    if (isInProtectedSchedule(currentItems)) {
+      alert(getMessage('resetExtensionLockedError'));
+      return;
+    }
+
+    if (!confirm(getMessage('resetExtensionConfirm'))) {
+      return;
+    }
+
+    await Promise.all([
+      clearSync(),
+      clearLocal()
+    ]);
+
+    if (status) {
+      status.textContent = getMessage('resetExtensionStatus');
+    }
+    window.location.reload();
+  } catch (error) {
+    console.error('Failed to reset extension data:', error);
+    alert(getMessage('resetExtensionFailed'));
+  } finally {
+    if (resetButton) {
+      resetButton.disabled = false;
+    }
   }
 }
 

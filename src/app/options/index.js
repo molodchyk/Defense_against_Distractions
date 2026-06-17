@@ -15,7 +15,7 @@ import { initializeThemeModeControl } from '../../js/options/theme.js';
 import { initializeUiLanguageControl } from '../../js/options/uiLanguage.js';
 import { initializeUsageStatsPanel } from '../../js/options/usageStats.js';
 import { getSync } from '../../platform/chrome/storage.js';
-import { initializeUiLanguage } from '../../js/shared/ui/uiLanguage.js';
+import { getUiMessage, initializeUiLanguage } from '../../js/shared/ui/uiLanguage.js';
 import { isInProtectedSchedule } from '../../js/shared/plans.js';
 
 let lastProtectedScheduleState = null;
@@ -65,6 +65,13 @@ async function refreshProtectionLockState() {
     const importButton = document.getElementById('importButton');
     if (importButton) {
       importButton.disabled = isProtected;
+    }
+    const resetButton = document.getElementById('resetExtensionButton');
+    if (resetButton) {
+      resetButton.disabled = isProtected;
+      resetButton.title = isProtected
+        ? getUiMessage('resetExtensionLockedError', 'Cannot reset extension data during an active protected schedule.')
+        : '';
     }
 
     if (lastProtectedScheduleState === null) {

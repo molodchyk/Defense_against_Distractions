@@ -42,7 +42,7 @@ Defense Against Distractions does not use analytics, ads, tracking pixels, or te
 
 ## User Control
 
-Users can export and import their own extension configuration. Users can delete or change stored rules from the extension options page, subject to any locked schedules they configured. Users can also clear local usage stats, clear local intent-coherence diagnostics, and export local diagnostics JSON snapshots from the options page.
+Users can export and import their own extension configuration. Users can delete or change stored rules from the extension options page, subject to any locked schedules they configured. Users can also clear local usage stats, clear local intent-coherence diagnostics, export local diagnostics JSON snapshots, and reset all extension storage from the options page before uninstalling or starting over. Reset is unavailable during an active protected schedule.
 
 ## Contact
 

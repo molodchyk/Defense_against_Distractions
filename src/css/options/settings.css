@@ -42,6 +42,18 @@
     max-width: 520px;
 }
 
+.settings-danger-zone {
+    display: grid;
+    gap: 8px;
+    max-width: 620px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+}
+
+.settings-danger-zone .delete-button {
+    justify-self: start;
+}
+
 .blocked-page-message-control {
     display: grid;
     gap: 8px;

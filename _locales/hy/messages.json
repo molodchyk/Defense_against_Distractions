@@ -599,6 +599,9 @@
     "configurationSettingsHeading": {
         "message": "Configuration"
     },
+    "configurationSettingsIntro": {
+        "message": "Export a backup, restore from a DaD JSON file, or reset local extension data before uninstall."
+    },
     "description": {
         "message": "Թույլ է տալիս արգելափակել կայքերը՝ հիմնվելով դրանց էջերում հայտնված տեքստի վրա:"
     },
@@ -613,6 +616,24 @@
     },
     "importButton": {
         "message": "Ներմուծում"
+    },
+    "resetExtensionButton": {
+        "message": "Reset extension data"
+    },
+    "resetExtensionHint": {
+        "message": "Clears DaD settings, rules, schedules, local diagnostics, timers, and runtime state. Export first if you want a backup."
+    },
+    "resetExtensionConfirm": {
+        "message": "Reset all DaD settings, rules, schedules, local diagnostics, timers, and runtime state? Export first if you want a backup. This cannot be undone."
+    },
+    "resetExtensionLockedError": {
+        "message": "Cannot reset extension data during an active protected schedule."
+    },
+    "resetExtensionFailed": {
+        "message": "Could not reset extension data."
+    },
+    "resetExtensionStatus": {
+        "message": "Extension data reset. Reloading."
     },
     "importSettingsConfirm": {
         "message": "Import $COUNT$ configuration items from this file? Current DaD configuration will be replaced.",

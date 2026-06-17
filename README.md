@@ -14,6 +14,7 @@ Instead of only blocking entire domains, you can define plan entries with websit
 - Protect the options page with a password.
 - Hide distracting UI elements with a popup-based element picker. See [UI Element Blocking](docs/ui-element-blocking.md).
 - Export and import extension settings.
+- Reset extension data from Settings before uninstalling or starting over.
 - Localized UI through Chrome extension locales.
 
 ## How It Works

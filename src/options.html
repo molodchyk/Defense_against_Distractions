@@ -231,11 +231,17 @@
 
                 <section class="settings-card settings-card-wide">
                     <h3 id="configurationSettingsHeading">Configuration</h3>
+                    <p id="configurationSettingsIntro" class="muted-text">Export a backup, restore from a DaD JSON file, or reset local extension data before uninstall.</p>
                     <div id="exportImportButtons" class="action-bar">
                         <button id="exportButton" type="button" data-i18n="exportButton">Export</button>
                         <button id="exportRulesetButton" type="button" class="secondary-button" data-i18n="exportRulesetButton">Export ruleset</button>
                         <button id="importButton" type="button" disabled data-i18n="importButton">Import</button>
                         <input type="file" id="fileInput" accept="application/json,.json" style="display: none;">
+                    </div>
+                    <div class="settings-danger-zone">
+                        <button id="resetExtensionButton" type="button" class="delete-button">Reset extension data</button>
+                        <p id="resetExtensionHint" class="muted-text">Clears DaD settings, rules, schedules, local diagnostics, timers, and runtime state. Export first if you want a backup.</p>
+                        <p id="resetExtensionStatus" class="muted-text" aria-live="polite"></p>
                     </div>
                 </section>
             </div>

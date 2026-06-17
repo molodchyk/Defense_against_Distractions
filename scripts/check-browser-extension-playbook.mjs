@@ -86,13 +86,15 @@ assertCondition(!(await exists('LICENSE.txt')), 'Use standard LICENSE filename, 
 
 assertCondition(await exists('docs/reviewer-notes.md'), 'Missing reviewer notes document.');
 
-const [manifest, packageJson, readme, privacy, licenseText, reviewerNotes] = await Promise.all([
+const [manifest, packageJson, readme, privacy, licenseText, reviewerNotes, optionsHtml, englishMessages] = await Promise.all([
   readJson('manifest.json'),
   readJson('package.json'),
   readText('README.md'),
   readText('PRIVACY.md'),
   readText('LICENSE'),
-  readText('docs/reviewer-notes.md')
+  readText('docs/reviewer-notes.md'),
+  readText('src/options.html'),
+  readJson('_locales/en/messages.json')
 ]);
 
 assertCondition(packageJson.version === manifest.version, 'package.json version must match manifest.json version.');
@@ -109,6 +111,7 @@ assertCondition(
     /npm run verify:release/i,
     /PRIVACY\.md/,
     /GPL-3\.0-only/,
+    /Reset extension data/i,
     /assets\/icons/,
     /store\/store-listing/,
     new RegExp(repositoryUrl.replaceAll('/', '\\/')),
@@ -151,6 +154,16 @@ assertCondition(/does not transfer user data to third parties/i.test(privacy), '
 assertCondition(/does not require a remote server/i.test(privacy), 'PRIVACY.md must state core behavior does not require a remote server.');
 assertCondition(/does not use remote JavaScript or WebAssembly/i.test(privacy), 'PRIVACY.md must state remote executable code is not used.');
 assertCondition(/does not use analytics, ads, tracking pixels, or telemetry/i.test(privacy), 'PRIVACY.md must state analytics, ads, tracking pixels, and telemetry are not used.');
+assertCondition(/reset all extension storage/i.test(privacy), 'PRIVACY.md must explain the reset-storage path.');
+
+assertCondition(
+  /id="resetExtensionButton"/.test(optionsHtml)
+    && /id="resetExtensionHint"/.test(optionsHtml)
+    && englishMessages.resetExtensionButton?.message
+    && englishMessages.resetExtensionConfirm?.message
+    && englishMessages.resetExtensionLockedError?.message,
+  'Options UI must expose a localized reset extension data control.'
+);
 
 assertCondition(
   hasAll(reviewerNotes, [
