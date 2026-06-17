@@ -13,6 +13,7 @@ Use this checklist before publishing a new extension release.
 - Run `npm run audit:file-sizes`.
 - Run `npm run audit:folder-density`.
 - Run `npm run package`.
+- Run `npm run verify:browser-load`.
 - Run `npm run verify:package`.
 - Run `npm run verify:release`.
 - Confirm `dist/Defense_against_Distractions-vX.Y.Z-extension.zip` exists.

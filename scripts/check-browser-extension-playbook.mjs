@@ -85,6 +85,7 @@ assertCondition(await exists('store/screenshots'), 'Missing Chrome Web Store scr
 assertCondition(!(await exists('LICENSE.txt')), 'Use standard LICENSE filename, not LICENSE.txt.');
 
 assertCondition(await exists('docs/reviewer-notes.md'), 'Missing reviewer notes document.');
+assertCondition(await exists('scripts/check-unpacked-extension-load.ps1'), 'Missing unpacked extension browser-load smoke script.');
 
 const [manifest, packageJson, readme, privacy, licenseText, reviewerNotes, optionsHtml, englishMessages] = await Promise.all([
   readJson('manifest.json'),
@@ -108,6 +109,7 @@ assertCondition(
   hasAll(readme, [
     /Defense Against Distractions/i,
     /Load unpacked/i,
+    /npm run verify:browser-load/i,
     /npm run verify:release/i,
     /PRIVACY\.md/,
     /GPL-3\.0-only/,
@@ -131,6 +133,11 @@ for (const permission of manifestPermissions) {
     `PRIVACY.md must explain manifest permission: ${permission}`
   );
 }
+
+assertCondition(
+  packageJson.scripts?.['verify:browser-load']?.includes('scripts/check-unpacked-extension-load.ps1'),
+  'package.json must expose npm run verify:browser-load for the unpacked browser-load smoke check.'
+);
 
 for (const iconPath of Object.values(manifest.icons || {})) {
   assertCondition(

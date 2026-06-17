@@ -14,6 +14,7 @@ Run these from the project root:
 - `npm run audit:file-sizes`
 - `npm run audit:folder-density`
 - `npm run package`
+- `npm run verify:browser-load`
 - `npm run verify:package`
 - `npm run verify:release`
 
@@ -40,6 +41,8 @@ The release verifier checks:
 - The changelog in the source archive matches the root `CHANGELOG.md`.
 - The store listing remains plain text instead of Markdown.
 - The default locale includes `description.message`.
+
+The browser-load smoke check prefers `dist/extension` after packaging and falls back to the project root for development checks. If Chrome, Edge, or Chromium is not discoverable, set `DAD_CHROME_PATH` or pass `-BrowserPath` to `scripts/check-unpacked-extension-load.ps1`.
 
 ## Manual Gates
 
