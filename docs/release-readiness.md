@@ -17,6 +17,8 @@ Run these from the project root:
 - `npm run verify:package`
 - `npm run verify:release`
 
+Reviewer-facing browser limitations are documented in [Reviewer Notes](reviewer-notes.md). Recheck that file before publishing if file URL, incognito, permissions, package contents, or browser-controlled behavior changes.
+
 The package verifier checks:
 
 - The generated runtime output has a valid MV3 manifest.

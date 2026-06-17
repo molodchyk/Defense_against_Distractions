@@ -84,7 +84,7 @@ Release-facing assets use the shared browser-extension playbook shape:
 - `store/screenshots/` contains Chrome Web Store screenshots.
 - `store/store-listing/` contains plain text Chrome Web Store listing copy.
 
-Architecture and release notes live in `docs/`. The current future-facing product model is documented in [Protection Model](docs/protection-model.md), the planned user-facing plan structure is documented in [Plans Architecture](docs/plans-architecture.md), and release gates are documented in [Release Readiness](docs/release-readiness.md).
+Architecture and release notes live in `docs/`. The current future-facing product model is documented in [Protection Model](docs/protection-model.md), the planned user-facing plan structure is documented in [Plans Architecture](docs/plans-architecture.md), reviewer-facing browser limitations are documented in [Reviewer Notes](docs/reviewer-notes.md), and release gates are documented in [Release Readiness](docs/release-readiness.md).
 
 ## Privacy
 

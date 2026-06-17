@@ -84,12 +84,15 @@ assertCondition(await exists('store/promo'), 'Missing Chrome Web Store promotion
 assertCondition(await exists('store/screenshots'), 'Missing Chrome Web Store screenshot folder.');
 assertCondition(!(await exists('LICENSE.txt')), 'Use standard LICENSE filename, not LICENSE.txt.');
 
-const [manifest, packageJson, readme, privacy, licenseText] = await Promise.all([
+assertCondition(await exists('docs/reviewer-notes.md'), 'Missing reviewer notes document.');
+
+const [manifest, packageJson, readme, privacy, licenseText, reviewerNotes] = await Promise.all([
   readJson('manifest.json'),
   readJson('package.json'),
   readText('README.md'),
   readText('PRIVACY.md'),
-  readText('LICENSE')
+  readText('LICENSE'),
+  readText('docs/reviewer-notes.md')
 ]);
 
 assertCondition(packageJson.version === manifest.version, 'package.json version must match manifest.json version.');
@@ -148,6 +151,17 @@ assertCondition(/does not transfer user data to third parties/i.test(privacy), '
 assertCondition(/does not require a remote server/i.test(privacy), 'PRIVACY.md must state core behavior does not require a remote server.');
 assertCondition(/does not use remote JavaScript or WebAssembly/i.test(privacy), 'PRIVACY.md must state remote executable code is not used.');
 assertCondition(/does not use analytics, ads, tracking pixels, or telemetry/i.test(privacy), 'PRIVACY.md must state analytics, ads, tracking pixels, and telemetry are not used.');
+
+assertCondition(
+  hasAll(reviewerNotes, [
+    /file:\/\/.+Allow access to file URLs/is,
+    /incognito.+explicitly allow/is,
+    /browser-controlled behavior/i,
+    /Manifest V3 service workers can sleep and restart/i,
+    /runtime package excludes docs, tests, scripts, screenshots, promo images, store listing text, and source-only icon files/i
+  ]),
+  'Reviewer notes must cover file URLs, incognito, browser-controlled behavior, MV3 restart behavior, and package contents.'
+);
 
 const locales = await getLocaleDirectories();
 for (const locale of locales) {
