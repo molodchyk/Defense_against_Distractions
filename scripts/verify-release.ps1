@@ -140,6 +140,8 @@ Assert-Condition ($packageJson.license -eq "GPL-3.0-only") "package.json license
 
 Push-Location $projectRoot
 try {
+  node scripts/check-browser-extension-playbook.mjs
+  Assert-Condition ($LASTEXITCODE -eq 0) "Browser extension playbook verification failed"
   node scripts/check-locale-coverage.mjs
   Assert-Condition ($LASTEXITCODE -eq 0) "Locale coverage verification failed"
   node scripts/check-package-output.mjs --package-root $extensionStagePath --project-root $projectRoot

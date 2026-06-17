@@ -38,4 +38,11 @@ describe('audit scripts', () => {
     assert.match(output, /Locale coverage check passed:/);
     assert.match(output, /\d+ locales match \d+ en message keys\./);
   });
+
+  it('verifies browser extension playbook metadata', () => {
+    const output = runNodeScript('scripts/check-browser-extension-playbook.mjs');
+
+    assert.match(output, /Browser extension playbook check passed:/);
+    assert.match(output, /\d+ localized store listings verified\./);
+  });
 });
