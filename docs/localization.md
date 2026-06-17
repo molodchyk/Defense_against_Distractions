@@ -2,27 +2,6 @@
 
 This document records the current Chrome Web Store locale knowledge for DaD.
 
-## Practical Rule
-
-Chrome locale folder names must use Chrome-style locale codes. Region variants use underscores, not hyphens.
-
-Correct:
-
-- `en_AU`
-- `en_GB`
-- `en_US`
-- `pt_BR`
-- `pt_PT`
-- `zh_CN`
-- `zh_TW`
-
-Incorrect:
-
-- `pt-BR`
-- `pt-PT`
-- `zh-CN`
-- `zh-TW`
-
 Do not use the old public Chrome extension i18n locale list as the only source of truth for Chrome Web Store language support. The Store can expose more languages than that list suggests. Australian English (`en_AU`), Persian (`fa`), and Urdu (`ur`) should be kept; Persian is supported.
 
 UI direction is part of localization. Arabic (`ar`), Persian (`fa`), Hebrew (`he`), and Urdu (`ur`) are right-to-left locales. DaD applies `dir="rtl"` and a matching `lang` attribute on extension pages, mirrors fixed-inline controls such as the plan schedule board and compact Pomodoro metadata, and mirrors fixed injected panels such as the intent prompt and UI picker. Injected extension-owned surfaces such as the block overlay, intent prompt, UI picker, and Pomodoro mini panel get their own direction without changing the host page direction.
