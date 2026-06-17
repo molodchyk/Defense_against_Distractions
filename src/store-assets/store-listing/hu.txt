@@ -21,4 +21,5 @@ A szigorú szünetblokkolás most a blokk vége után visszaállítja a médiát
 A blokkolt oldal diagnosztikája most megmutatja a média felfüggesztését és a bővítmény által kezelt lapnémítást.
 
 A Defense Against Distractions nyílt forráskódú:
+GPL-3.0 license:
 https://github.com/molodchyk/Defense_against_Distractions

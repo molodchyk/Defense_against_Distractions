@@ -21,4 +21,5 @@ Ibinabalik na ngayon ng strict-break blocking ang media at mute state ng tab pag
 Ipinapakita na ngayon ng blocked-page diagnostics ang media suspension at tab mute state na hawak ng extension.
 
 Ang Defense Against Distractions ay open source:
+GPL-3.0 license:
 https://github.com/molodchyk/Defense_against_Distractions

@@ -21,4 +21,5 @@ Range pausiblokeering taastab nüüd meedia ja vahekaardi vaigistuse oleku pära
 Blokeeritud lehe diagnostika näitab nüüd meedia peatamist ja laienduse juhitud vahekaardi vaigistust.
 
 Defense Against Distractions on avatud lähtekoodiga:
+GPL-3.0 license:
 https://github.com/molodchyk/Defense_against_Distractions

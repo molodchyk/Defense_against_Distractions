@@ -21,4 +21,5 @@ El bloqueig estricte de descans ara restaura els mitjans i l’estat de silenci 
 Els diagnòstics de la pàgina bloquejada ara mostren la suspensió de mitjans i el silenci de pestanya controlat per l’extensió.
 
 Defense Against Distractions és de codi obert:
+GPL-3.0 license:
 https://github.com/molodchyk/Defense_against_Distractions

@@ -21,4 +21,5 @@ El bloqueo estricto de descanso ahora restaura los medios y el estado de silenci
 Los diagnósticos de la página bloqueada ahora muestran la suspensión de medios y el silencio de pestaña controlado por la extensión.
 
 Defense Against Distractions es de código abierto:
+GPL-3.0 license:
 https://github.com/molodchyk/Defense_against_Distractions

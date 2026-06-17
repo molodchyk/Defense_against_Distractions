@@ -21,4 +21,5 @@
 Τα διαγνωστικά της αποκλεισμένης σελίδας δείχνουν πλέον την αναστολή μέσων και τη σίγαση καρτέλας από την επέκταση.
 
 Το Defense Against Distractions είναι ανοιχτού κώδικα:
+GPL-3.0 license:
 https://github.com/molodchyk/Defense_against_Distractions

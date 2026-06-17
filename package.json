@@ -2,6 +2,7 @@
   "name": "defense-against-distractions",
   "version": "1.6.1",
   "private": true,
+  "license": "GPL-3.0-only",
   "type": "module",
   "scripts": {
     "cws:status": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/chrome-web-store-api.ps1 -Action status",

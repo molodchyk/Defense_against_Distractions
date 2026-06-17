@@ -85,7 +85,7 @@ $sourceFiles = @(
   "ABOUT.md",
   "CHANGELOG.md",
   "docs",
-  "LICENSE.txt",
+  "LICENSE",
   "README.md",
   "manifest.json",
   "package.json",

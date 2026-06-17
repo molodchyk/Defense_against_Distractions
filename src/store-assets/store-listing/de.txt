@@ -21,4 +21,5 @@ Strenges Pausen-Blocking stellt Medien und den Stummschaltungsstatus des Tabs na
 Die Diagnose der blockierten Seite zeigt jetzt Medienunterbrechung und von der Erweiterung gesetzte Tab-Stummschaltung.
 
 Defense Against Distractions ist Open Source:
+GPL-3.0 license:
 https://github.com/molodchyk/Defense_against_Distractions

@@ -21,4 +21,5 @@ Ströng hléblokkun endurheimtir nú miðla og hljóðstillingu flipa þegar blo
 Greining á blokkaðri síðu sýnir nú miðlastöðvun og flipahljóðstillingu sem viðbótin stjórnar.
 
 Defence Against Distractions er opinn uppspretta:
+GPL-3.0 license:
 https://github.com/molodchyk/Defense_against_Distractions

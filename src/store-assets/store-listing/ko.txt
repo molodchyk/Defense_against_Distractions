@@ -21,4 +21,5 @@ Pomodoro가 이제 유휴 시간과 잠금 시간을 필요한 휴식 시간으�
 차단된 페이지 진단이 이제 미디어 일시 중지와 확장 프로그램이 설정한 탭 음소거 상태를 표시합니다.
 
 Defense Against Distractions는 오픈 소스입니다:
+GPL-3.0 license:
 https://github.com/molodchyk/Defense_against_Distractions

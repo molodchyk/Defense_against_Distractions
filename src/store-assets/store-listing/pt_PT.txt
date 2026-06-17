@@ -20,4 +20,5 @@ O bloqueio rigoroso de pausa repõe agora os média e o estado de silêncio do s
 Os diagnósticos da página bloqueada mostram agora a suspensão de média e o silêncio do separador controlado pela extensão.
 
 Defense Against Distractions é open source:
+GPL-3.0 license:
 https://github.com/molodchyk/Defense_against_Distractions

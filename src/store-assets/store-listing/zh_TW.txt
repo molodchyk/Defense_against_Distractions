@@ -20,4 +20,6 @@ Pomodoro 現在會將閒置和鎖定時間計入所需休息時間。
 被封鎖頁面的診斷現在會顯示媒體暫停和擴充功能控制的分頁靜音狀態。
 
 Defense Against Distractions 是開源專案：
+
+GPL-3.0 license:
 https://github.com/molodchyk/Defense_against_Distractions

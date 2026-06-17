@@ -21,4 +21,5 @@ Přísné blokování přestávky nyní po skončení bloku obnoví média i sta
 Diagnostika blokované stránky nyní ukazuje pozastavení médií a ztlumení karty řízené rozšířením.
 
 Defense Against Distractions je open source:
+GPL-3.0 license:
 https://github.com/molodchyk/Defense_against_Distractions

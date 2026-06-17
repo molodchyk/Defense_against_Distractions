@@ -21,4 +21,5 @@ Griežtas pertraukos blokavimas dabar atkuria mediją ir skirtuko nutildymo būs
 Užblokuoto puslapio diagnostika dabar rodo medijos sustabdymą ir plėtinio valdomą skirtuko nutildymą.
 
 Defense Against Distractions yra atviro kodo:
+GPL-3.0 license:
 https://github.com/molodchyk/Defense_against_Distractions

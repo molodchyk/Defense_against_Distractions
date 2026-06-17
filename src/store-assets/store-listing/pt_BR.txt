@@ -20,4 +20,5 @@ O bloqueio estrito de pausa agora restaura mídia e o estado de mudo da aba apó
 Os diagnósticos da página bloqueada agora mostram a suspensão de mídia e o mudo da aba controlado pela extensão.
 
 Defense Against Distractions é open source:
+GPL-3.0 license:
 https://github.com/molodchyk/Defense_against_Distractions

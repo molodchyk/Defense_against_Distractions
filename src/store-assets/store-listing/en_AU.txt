@@ -21,4 +21,5 @@ Strict-break blocking now restores media and tab mute state after the block ends
 Blocked-page diagnostics now show media suspension and extension-owned tab mute state.
 
 Defense Against Distractions is open source:
+GPL-3.0 license:
 https://github.com/molodchyk/Defense_against_Distractions

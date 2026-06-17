@@ -21,4 +21,5 @@ Pemblokiran istirahat ketat sekarang memulihkan media dan status mute tab setela
 Diagnostik halaman yang diblokir sekarang menampilkan penangguhan media dan mute tab yang dimiliki ekstensi.
 
 Defense Against Distractions bersifat open source:
+GPL-3.0 license:
 https://github.com/molodchyk/Defense_against_Distractions

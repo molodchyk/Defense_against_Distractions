@@ -86,6 +86,10 @@ Store-facing assets live together:
 
 Architecture and release notes live in `docs/`. The current future-facing product model is documented in [Protection Model](docs/protection-model.md), the planned user-facing plan structure is documented in [Plans Architecture](docs/plans-architecture.md), and release gates are documented in [Release Readiness](docs/release-readiness.md).
 
+## Privacy
+
+Defense Against Distractions is local-first. It stores configuration and bounded diagnostics in Chrome extension storage, does not use analytics, ads, tracking pixels, telemetry, or remote executable code, and does not require a server for core blocking behavior. See [PRIVACY.md](PRIVACY.md).
+
 ## Contributing
 
 Bug reports, ideas, and pull requests are welcome. If you find an issue, please open a GitHub issue with the browser version, extension version, steps to reproduce, and what you expected to happen.
@@ -101,4 +105,6 @@ If this extension saves you time and you want to support its development:
 
 ## License
 
-Licensed under GPL-3.0-or-later. See [LICENSE.txt](LICENSE.txt).
+Licensed under GPL-3.0-only. See [LICENSE](LICENSE).
+
+Source: https://github.com/molodchyk/Defense_against_Distractions

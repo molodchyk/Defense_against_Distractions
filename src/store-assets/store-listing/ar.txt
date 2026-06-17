@@ -21,4 +21,5 @@
 تعرض تشخيصات صفحة الحظر الآن تعليق الوسائط وحالة كتم التبويب التي تملكها الإضافة.
 
 Defense Against Distractions مفتوح المصدر:
+GPL-3.0 license:
 https://github.com/molodchyk/Defense_against_Distractions

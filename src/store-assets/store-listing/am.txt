@@ -21,4 +21,6 @@ Pomodoro አሁን የዝምታ እና የተቆለፈ ጊዜን እንደ አ�
 የታገደ ገጽ ምርመራ አሁን የሚዲያ እገዳን እና በቅጥያው የተያዘ የትር ድምጸ-ከል ሁኔታን ያሳያል።
 
 ትኩረትን የሚከፋፍል መከላከል ክፍት ምንጭ ነው፡-
+
+GPL-3.0 license:
 https://github.com/molodchyk/Defense_against_Distractions

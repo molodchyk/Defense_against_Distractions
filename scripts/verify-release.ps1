@@ -136,6 +136,7 @@ function Normalize-ZipPath {
 Add-Type -AssemblyName System.Drawing
 
 Assert-Condition ($packageJson.version -eq $manifest.version) "package.json version does not match manifest.json version"
+Assert-Condition ($packageJson.license -eq "GPL-3.0-only") "package.json license must be GPL-3.0-only"
 
 Push-Location $projectRoot
 try {
@@ -222,7 +223,7 @@ Assert-Condition (!($extensionEntries -contains "src/store-assets/icons/extensio
 $requiredSourceEntries = @(
   "ABOUT.md",
   "CHANGELOG.md",
-  "LICENSE.txt",
+  "LICENSE",
   "manifest.json",
   "package.json",
   "README.md",
@@ -256,6 +257,7 @@ foreach ($localeDirectory in $localeDirectories) {
   $storeListing = Get-Content -LiteralPath $localeListingPath -Raw
   Assert-Condition ($storeListing -notmatch "[#*\[\]]") "Store listing should stay plain text, not Markdown-formatted text: $($localeDirectory.Name).txt"
   Assert-Condition ($storeListing -match "https://github.com/molodchyk/Defense_against_Distractions") "Store listing is missing project URL: $($localeDirectory.Name).txt"
+  Assert-Condition ($storeListing -match "GPL-3\.0") "Store listing is missing GPL-3.0 license disclosure: $($localeDirectory.Name).txt"
 }
 
 foreach ($screenshotPath in Get-ChildItem -LiteralPath (Join-Path $projectRoot "src\store-assets\screenshots") -Filter "*.png") {

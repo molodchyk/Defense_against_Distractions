@@ -20,5 +20,5 @@ Popup və plan Pomodoro səhifəsi indi daha aydın iş vaxtı diaqnostikası g�
 Sərt fasilə bloklaması blok bitdikdən sonra medianı və tabın səssiz vəziyyətini bərpa edir.
 Bloklanmış səhifə diaqnostikası indi media dayandırılmasını və genişlənmənin idarə etdiyi tab səssizliyini göstərir.
 
-https://github.com/molodchyk/Defense_against_Disttractions
+GPL-3.0 license:
 https://github.com/molodchyk/Defense_against_Distractions

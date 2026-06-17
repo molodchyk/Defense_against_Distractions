@@ -20,4 +20,6 @@ Pomodoro 现在会将空闲和锁定时间计入所需休息时间。
 被阻止页面诊断现在会显示媒体暂停和扩展控制的标签页静音状态。
 
 Defense Against Distractions 是开源项目：
+
+GPL-3.0 license:
 https://github.com/molodchyk/Defense_against_Distractions

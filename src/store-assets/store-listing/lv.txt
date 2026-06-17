@@ -21,4 +21,5 @@ Stingrā pārtraukuma bloķēšana tagad pēc bloka beigām atjauno multividi un
 Bloķētās lapas diagnostika tagad rāda multivides apturēšanu un paplašinājuma pārvaldītu cilnes skaņas izslēgšanu.
 
 Defense Against Distractions ir atvērtais avots:
+GPL-3.0 license:
 https://github.com/molodchyk/Defense_against_Distractions

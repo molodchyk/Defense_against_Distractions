@@ -20,4 +20,5 @@ Uzuiaji mkali wa mapumziko sasa hurejesha media na hali ya kunyamazisha kichupo 
 Uchunguzi wa ukurasa uliozuiwa sasa unaonyesha kusimamishwa kwa media na kunyamazisha kichupo kunakodhibitiwa na kiendelezi.
 
 Ulinzi dhidi ya usumbufu ni chanzo wazi:
+GPL-3.0 license:
 https://github.com/molodchyk/Defense_against_Distractions

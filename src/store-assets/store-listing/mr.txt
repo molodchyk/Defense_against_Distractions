@@ -21,4 +21,5 @@ Strict-break blocking आता block संपल्यावर media आण�
 Blocked-page diagnostics आता media suspension आणि extension-owned tab mute state दाखवतात.
 
 डिस्ट्रक्शन्स अगेन्स्ट डिफेन्स हे ओपन सोर्स आहे:
+GPL-3.0 license:
 https://github.com/molodchyk/Defense_against_Distractions

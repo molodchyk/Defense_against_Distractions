@@ -21,4 +21,5 @@ Strict-break blocking अब block समाप्त होने के बा
 Blocked-page diagnostics अब media suspension और extension-owned tab mute state दिखाते हैं।
 
 Defense Against Distractions open source है:
+GPL-3.0 license:
 https://github.com/molodchyk/Defense_against_Distractions

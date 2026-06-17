@@ -21,4 +21,5 @@ Sekatan rehat ketat kini memulihkan media dan status mute tab selepas blok tamat
 Diagnostik halaman disekat kini menunjukkan penggantungan media dan status mute tab yang dikawal oleh sambungan.
 
 Defense Against Distractions ialah sumber terbuka:
+GPL-3.0 license:
 https://github.com/molodchyk/Defense_against_Distractions

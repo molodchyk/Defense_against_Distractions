@@ -20,4 +20,5 @@ Strikte pauzeblokkering herstelt nu media en de dempstatus van het tabblad nadat
 Diagnostiek van geblokkeerde pagina’s toont nu media-onderbreking en door de extensie beheerde tabdemping.
 
 Defense Against Distractions is open source:
+GPL-3.0 license:
 https://github.com/molodchyk/Defense_against_Distractions

@@ -20,4 +20,5 @@ Bllokimi strikt i pushimit tani rikthen mediat dhe gjendjen mute të skedës pas
 Diagnostika e faqes së bllokuar tani shfaq pezullimin e mediave dhe mute të skedës të kontrolluar nga shtesa.
 
 Mbrojtja kundër shpërqendrimeve është me burim të hapur:
+GPL-3.0 license:
 https://github.com/molodchyk/Defense_against_Distractions

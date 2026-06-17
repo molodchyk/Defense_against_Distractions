@@ -21,4 +21,5 @@ Pomodoro は、アイドル時間とロック中の時間を必要な休憩時�
 ブロックページの診断で、メディア停止と拡張機能が管理するタブミュート状態を表示するようになりました。
 
 Defense Against Distractions はオープンソースです:
+GPL-3.0 license:
 https://github.com/molodchyk/Defense_against_Distractions

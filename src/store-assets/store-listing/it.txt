@@ -21,4 +21,5 @@ Il blocco rigoroso delle pause ora ripristina media e stato di silenziamento del
 La diagnostica della pagina bloccata ora mostra la sospensione dei media e il silenziamento della scheda gestito dall’estensione.
 
 Defense Against Distractions è open source:
+GPL-3.0 license:
 https://github.com/molodchyk/Defense_against_Distractions

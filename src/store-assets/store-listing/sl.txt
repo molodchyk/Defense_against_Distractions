@@ -20,4 +20,5 @@ Strogo blokiranje odmora zdaj po koncu blokade obnovi medije in stanje utišanja
 Diagnostika blokirane strani zdaj prikazuje prekinitev medijev in utišanje zavihka, ki ga upravlja razširitev.
 
 Defense Against Distractions je odprtokoden:
+GPL-3.0 license:
 https://github.com/molodchyk/Defense_against_Distractions

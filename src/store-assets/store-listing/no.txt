@@ -20,4 +20,5 @@ Streng pauseblokkering gjenoppretter nå medier og fanens dempestatus når blokk
 Diagnostikk for blokkerte sider viser nå mediesuspensjon og fanedemping styrt av utvidelsen.
 
 Defense Against Distractions er åpen kildekode:
+GPL-3.0 license:
 https://github.com/molodchyk/Defense_against_Distractions

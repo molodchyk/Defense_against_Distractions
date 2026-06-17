@@ -20,4 +20,5 @@ Strict-break blocking اب block ختم ہونے کے بعد media اور tab mu
 Blocked-page diagnostics اب media suspension اور extension-owned tab mute state دکھاتے ہیں۔
 
 خلفشار کے خلاف دفاع کھلا ذریعہ ہے:
+GPL-3.0 license:
 https://github.com/molodchyk/Defense_against_Distractions

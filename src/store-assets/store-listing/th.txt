@@ -20,4 +20,5 @@ Pomodoro นับเวลาที่ไม่ได้ใช้งานแ�
 การวินิจฉัยหน้าที่ถูกบล็อกจะแสดงการระงับสื่อและสถานะปิดเสียงแท็บที่ส่วนขยายควบคุม
 
 Defense Against Distractions เป็น open source:
+GPL-3.0 license:
 https://github.com/molodchyk/Defense_against_Distractions

@@ -20,4 +20,5 @@ Strict-break blocking ਹੁਣ block ਖਤਮ ਹੋਣ ਤੋਂ ਬਾਅਦ
 Blocked-page diagnostics ਹੁਣ media suspension ਅਤੇ extension-owned tab mute state ਦਿਖਾਉਂਦੇ ਹਨ।
 
 ਭਟਕਣਾ ਦੇ ਵਿਰੁੱਧ ਰੱਖਿਆ ਓਪਨ ਸੋਰਸ ਹੈ:
+GPL-3.0 license:
 https://github.com/molodchyk/Defense_against_Distractions

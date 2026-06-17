@@ -20,4 +20,5 @@ Katı mola engellemesi artık engel bittikten sonra medyayı ve sekme sessiz dur
 Engellenen sayfa tanıları artık medya askıya alma ve eklentinin yönettiği sekme sessiz durumunu gösterir.
 
 Defense Against Distractions açık kaynaklıdır:
+GPL-3.0 license:
 https://github.com/molodchyk/Defense_against_Distractions

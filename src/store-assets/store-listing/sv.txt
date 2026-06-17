@@ -20,4 +20,5 @@ Strikt pausblockering återställer nu media och flikens ljud av-status när blo
 Diagnostik för blockerade sidor visar nu medieavstängning och flikljud av som ägs av tillägget.
 
 Defense Against Distractions är open source:
+GPL-3.0 license:
 https://github.com/molodchyk/Defense_against_Distractions

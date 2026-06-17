@@ -20,4 +20,5 @@ Popup и Pomodoro страница плана сада приказују јас
 Дијагностика блокиране странице сада приказује суспензију медија и утишавање картице којим управља екстензија.
 
 Defense Against Distractions је отвореног кода:
+GPL-3.0 license:
 https://github.com/molodchyk/Defense_against_Distractions

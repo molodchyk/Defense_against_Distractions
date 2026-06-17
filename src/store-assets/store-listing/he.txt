@@ -21,4 +21,5 @@ Pomodoro מחשב כעת זמן לא פעיל וזמן נעול כחלק מהמ�
 אבחון הדף החסום מציג כעת השעיית מדיה והשתקת כרטיסייה שבוצעה על ידי התוסף.
 
 Defense Against Distractions הוא קוד פתוח:
+GPL-3.0 license:
 https://github.com/molodchyk/Defense_against_Distractions

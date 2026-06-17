@@ -19,5 +19,5 @@ Popup va rejaning Pomodoro sahifasi endi aniqroq runtime diagnostikasini ko‘rs
 Qattiq tanaffus blokirovkasi blok tugagach media va tab ovozsiz holatini tiklaydi.
 Bloklangan sahifa diagnostikasi endi media to‘xtatilishi va kengaytma boshqaradigan tab ovozsizligini ko‘rsatadi.
 
-https://github.com/molodchyk/Defense_against_Disttractions
+GPL-3.0 license:
 https://github.com/molodchyk/Defense_against_Distractions

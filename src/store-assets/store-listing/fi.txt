@@ -21,4 +21,5 @@ Tiukka taukoblokkaus palauttaa nyt median ja v채lilehden mykistystilan blokin p�
 Blokatun sivun diagnostiikka n채ytt채채 nyt median keskeytyksen ja laajennuksen hallitseman v채lilehden mykistyksen.
 
 Defense Against Distractions on avointa l채hdekoodia:
+GPL-3.0 license:
 https://github.com/molodchyk/Defense_against_Distractions

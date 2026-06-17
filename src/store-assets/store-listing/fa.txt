@@ -21,4 +21,5 @@ Pomodoro اکنون زمان بیکاری و قفل بودن را به عنوا�
 تشخیص‌های صفحه مسدودشده اکنون تعلیق رسانه و بی‌صدایی برگه توسط افزونه را نشان می‌دهند.
 
 Defense Against Distractions منبع باز است:
+GPL-3.0 license:
 https://github.com/molodchyk/Defense_against_Distractions

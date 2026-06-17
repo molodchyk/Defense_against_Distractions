@@ -20,4 +20,5 @@ Strict-break blocking දැන් block අවසන් වූ පසු media 
 Blocked-page diagnostics දැන් media suspension සහ extension-owned tab mute state පෙන්වයි.
 
 අවධානය වෙනතකට යොමු කිරීමට එරෙහිව ආරක්ෂාව විවෘත මූලාශ්‍රයකි:
+GPL-3.0 license:
 https://github.com/molodchyk/Defense_against_Distractions

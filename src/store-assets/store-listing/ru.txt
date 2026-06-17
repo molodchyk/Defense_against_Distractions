@@ -20,4 +20,5 @@ Pomodoro теперь засчитывает время простоя и бло
 Диагностика заблокированной страницы теперь показывает приостановку медиа и отключение звука вкладки, выполненное расширением.
 
 Defense Against Distractions имеет открытый исходный код:
+GPL-3.0 license:
 https://github.com/molodchyk/Defense_against_Distractions

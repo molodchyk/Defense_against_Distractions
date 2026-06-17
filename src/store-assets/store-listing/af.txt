@@ -21,4 +21,5 @@ Streng pouse-blokkering herstel nou media en die oortjie se dempstatus nadat die
 Geblokkeerde-bladsy-diagnostiek wys nou media-onderbreking en dempstatus wat deur die uitbreiding beheer word.
 
 Defence Against Distractions is oopbron:
+GPL-3.0 license:
 https://github.com/molodchyk/Defense_against_Distractions

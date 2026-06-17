@@ -20,4 +20,5 @@ Chặn nghỉ nghiêm ngặt hiện khôi phục media và trạng thái tắt t
 Chẩn đoán trang bị chặn hiện hiển thị trạng thái tạm dừng media và tắt tiếng tab do tiện ích kiểm soát.
 
 Defense Against Distractions là mã nguồn mở:
+GPL-3.0 license:
 https://github.com/molodchyk/Defense_against_Distractions

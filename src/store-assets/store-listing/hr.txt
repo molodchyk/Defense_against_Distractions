@@ -21,4 +21,5 @@ Strogo blokiranje pauze sada vraća medije i stanje utišavanja kartice nakon za
 Dijagnostika blokirane stranice sada prikazuje obustavu medija i utišavanje kartice kojim upravlja proširenje.
 
 Defense Against Distractions je otvorenog koda:
+GPL-3.0 license:
 https://github.com/molodchyk/Defense_against_Distractions

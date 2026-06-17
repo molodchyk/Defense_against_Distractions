@@ -21,4 +21,5 @@ Pomodoro вече отчита неактивното и заключеното 
 Диагностиката на блокираната страница вече показва спирането на медиите и заглушаването, управлявано от разширението.
 
 Defense Against Distractions е с отворен код:
+GPL-3.0 license:
 https://github.com/molodchyk/Defense_against_Distractions

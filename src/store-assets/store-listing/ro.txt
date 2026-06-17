@@ -20,4 +20,5 @@ Blocarea strictă a pauzei restaurează acum media și starea de mut a filei dup
 Diagnosticele paginii blocate afișează acum suspendarea media și starea de mut a filei controlată de extensie.
 
 Defense Against Distractions este open source:
+GPL-3.0 license:
 https://github.com/molodchyk/Defense_against_Distractions
