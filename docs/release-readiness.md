@@ -8,6 +8,9 @@ Run these from the project root:
 
 - `npm test`
 - `npm run verify:manifest`
+- `npm run verify:imports`
+- `npm run verify:locales`
+- `npm run verify:playbook`
 - `npm run audit:file-sizes`
 - `npm run audit:folder-density`
 - `npm run package`
@@ -63,4 +66,4 @@ Do not add features during release prep unless they remove a release blocker. If
 
 - UI element blocking is powerful but sensitive to page structure. Manual QA should include both narrow and broader ancestor settings.
 - Page blocking changed from navigation-first behavior to overlay-first behavior. Manual QA should confirm media is stopped and diagnostics remain visible.
-- Store assets moved to `src/store-assets/`. Packaging and manifest path checks should catch broken references, but manual inspection of the generated ZIP is still useful.
+- Store assets are split between packaged icons in `assets/icons/` and source-only Chrome Web Store material in `store/`. Packaging and manifest path checks should catch broken references, but manual inspection of the generated ZIP is still useful.

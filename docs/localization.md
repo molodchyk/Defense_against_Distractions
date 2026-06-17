@@ -96,7 +96,7 @@ Keep these unless there is a concrete reason to remove them. They should not blo
 
 Before release:
 
-- Confirm every `_locales/<locale>/messages.json` has a matching `src/store-assets/store-listing/<locale>.txt`.
+- Confirm every `_locales/<locale>/messages.json` has a matching `store/store-listing/<locale>.txt`.
 - Confirm `npm run verify:locales` passes after any UI string change.
 - Confirm Arabic, Persian, Hebrew, and Urdu render extension UI surfaces with right-to-left direction.
 - Run `npm run verify:release`.

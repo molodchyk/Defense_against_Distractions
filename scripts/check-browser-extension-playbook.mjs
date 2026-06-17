@@ -23,7 +23,9 @@ const requiredRootEntries = [
   'manifest.json',
   'package.json',
   'src',
+  'assets',
   'docs',
+  'store',
   'scripts',
   'test',
   '_locales'
@@ -76,7 +78,10 @@ for (const entry of requiredRootEntries) {
   assertCondition(await exists(entry), `Missing required playbook entry: ${entry}`);
 }
 
-assertCondition(await exists('src/store-assets/store-listing'), 'Missing store listing source folder.');
+assertCondition(await exists('store/store-listing'), 'Missing store listing source folder.');
+assertCondition(await exists('assets/icons'), 'Missing packaged icon asset folder.');
+assertCondition(await exists('store/promo'), 'Missing Chrome Web Store promotional image folder.');
+assertCondition(await exists('store/screenshots'), 'Missing Chrome Web Store screenshot folder.');
 assertCondition(!(await exists('LICENSE.txt')), 'Use standard LICENSE filename, not LICENSE.txt.');
 
 const [manifest, packageJson, readme, privacy, licenseText] = await Promise.all([
@@ -101,6 +106,8 @@ assertCondition(
     /npm run verify:release/i,
     /PRIVACY\.md/,
     /GPL-3\.0-only/,
+    /assets\/icons/,
+    /store\/store-listing/,
     new RegExp(repositoryUrl.replaceAll('/', '\\/')),
     /Buy Me a Coffee/i,
     /Patreon/i
@@ -119,6 +126,20 @@ for (const permission of manifestPermissions) {
   );
 }
 
+for (const iconPath of Object.values(manifest.icons || {})) {
+  assertCondition(
+    typeof iconPath === 'string' && iconPath.startsWith('assets/icons/'),
+    `Manifest icon path should live under assets/icons/: ${iconPath}`
+  );
+}
+
+for (const iconPath of Object.values(manifest.action?.default_icon || {})) {
+  assertCondition(
+    typeof iconPath === 'string' && iconPath.startsWith('assets/icons/'),
+    `Action icon path should live under assets/icons/: ${iconPath}`
+  );
+}
+
 assertCondition(/Host access through content scripts/i.test(privacy), 'PRIVACY.md must explain host/content-script access.');
 assertCondition(/chrome\.storage\.sync/.test(privacy), 'PRIVACY.md must mention sync storage.');
 assertCondition(/chrome\.storage\.local/.test(privacy), 'PRIVACY.md must mention local storage.');
@@ -130,7 +151,7 @@ assertCondition(/does not use analytics, ads, tracking pixels, or telemetry/i.te
 
 const locales = await getLocaleDirectories();
 for (const locale of locales) {
-  const listingPath = `src/store-assets/store-listing/${locale}.txt`;
+  const listingPath = `store/store-listing/${locale}.txt`;
   assertCondition(await exists(listingPath), `Missing store listing for locale: ${locale}`);
 
   if (!(await exists(listingPath))) {

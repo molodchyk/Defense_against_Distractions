@@ -72,11 +72,11 @@ $runtimeFiles = @(
   "src\features",
   "src\js",
   "src\platform",
-  "src\store-assets\icons\extension-icon-16.png",
-  "src\store-assets\icons\extension-icon-32.png",
-  "src\store-assets\icons\extension-icon-48.png",
-  "src\store-assets\icons\extension-icon-64.png",
-  "src\store-assets\icons\extension-icon-128.png",
+  "assets\icons\extension-icon-16.png",
+  "assets\icons\extension-icon-32.png",
+  "assets\icons\extension-icon-48.png",
+  "assets\icons\extension-icon-64.png",
+  "assets\icons\extension-icon-128.png",
   "_locales"
 )
 
@@ -84,12 +84,14 @@ $sourceFiles = @(
   ".gitignore",
   "ABOUT.md",
   "CHANGELOG.md",
+  "assets",
   "docs",
   "LICENSE",
   "README.md",
   "manifest.json",
   "package.json",
   "scripts",
+  "store",
   "src",
   "test",
   "_locales"

@@ -16,6 +16,12 @@ The detailed modularization target, dependency rules, file-size budgets, and mig
 
 `src/platform` contains browser/platform adapters that are not product features. `src/platform/chrome/storage.js` owns Promise wrappers around `chrome.storage.sync` and `chrome.storage.local`, plus storage-change listener registration for extension pages, options modules, and background modules; it is the default import for extension pages, options modules, background modules, shared UI helpers, and feature storage policies that need Chrome storage.
 
+## Release Assets
+
+`assets/icons/` contains packaged extension icons referenced by `manifest.json`. Only the generated PNG icon files ship in the runtime extension archive; `assets/icons/extension-icon-source.svg` is source-only and belongs in the source archive.
+
+`store/` contains Chrome Web Store material that should not ship in the runtime extension archive. `store/store-listing/` owns plain-text localized listing copy, `store/screenshots/` owns store screenshots, and `store/promo/` owns promotional images. Packaging and release verification keep these files in the source archive while excluding them from the extension ZIP.
+
 The root `src/js` folder should stay empty of runtime entries and helper modules. Content-script feature modules still live under `src/js/content/` while the classic manifest-loaded entry is `src/app/content/index.js`.
 
 `src/js/background` contains background/service-worker adapters and compatibility barrels for existing background feature modules. New background behavior should go into a feature-owned module first, with `src/app/background/index.js` or a narrow background adapter only registering listeners and routing messages.

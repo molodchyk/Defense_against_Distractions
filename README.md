@@ -77,12 +77,12 @@ Chrome Web Store API release helpers are documented in [Chrome Web Store API](do
 
 Runtime extension files are the files that must ship inside the extension ZIP. Source-only project files such as docs, tests, scripts, screenshots, promotional images, and store listing text are kept in the repository and source ZIP, but are intentionally excluded from the runtime extension package.
 
-Store-facing assets live together:
+Release-facing assets use the shared browser-extension playbook shape:
 
-- `src/store-assets/icons/` contains extension icons referenced by the manifest.
-- `src/store-assets/promo/` contains Chrome Web Store promotional images.
-- `src/store-assets/screenshots/` contains Chrome Web Store screenshots.
-- `src/store-assets/store-listing/` contains plain text Chrome Web Store listing copy.
+- `assets/icons/` contains packaged extension icons referenced by the manifest.
+- `store/promo/` contains Chrome Web Store promotional images.
+- `store/screenshots/` contains Chrome Web Store screenshots.
+- `store/store-listing/` contains plain text Chrome Web Store listing copy.
 
 Architecture and release notes live in `docs/`. The current future-facing product model is documented in [Protection Model](docs/protection-model.md), the planned user-facing plan structure is documented in [Plans Architecture](docs/plans-architecture.md), and release gates are documented in [Release Readiness](docs/release-readiness.md).
 

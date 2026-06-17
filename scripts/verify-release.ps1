@@ -159,6 +159,19 @@ foreach ($relativePath in ($manifestIconPaths | Select-Object -Unique)) {
   Assert-ProjectFileExists -RelativePath $relativePath
 }
 
+$expectedIconDimensions = @{
+  "assets/icons/extension-icon-16.png" = 16
+  "assets/icons/extension-icon-32.png" = 32
+  "assets/icons/extension-icon-48.png" = 48
+  "assets/icons/extension-icon-64.png" = 64
+  "assets/icons/extension-icon-128.png" = 128
+}
+
+foreach ($iconPath in $expectedIconDimensions.Keys) {
+  $expectedSize = $expectedIconDimensions[$iconPath]
+  Assert-ImageDimensions -RelativePath $iconPath -ExpectedWidth $expectedSize -ExpectedHeight $expectedSize
+}
+
 Assert-ProjectFileExists -RelativePath $manifest.action.default_popup
 Assert-ProjectFileExists -RelativePath $manifest.options_page
 Assert-ProjectFileExists -RelativePath $manifest.background.service_worker
@@ -188,11 +201,11 @@ $requiredExtensionEntries = @(
   "src/instructions.html",
   "src/options.html",
   "src/popup.html",
-  "src/store-assets/icons/extension-icon-16.png",
-  "src/store-assets/icons/extension-icon-32.png",
-  "src/store-assets/icons/extension-icon-48.png",
-  "src/store-assets/icons/extension-icon-64.png",
-  "src/store-assets/icons/extension-icon-128.png"
+  "assets/icons/extension-icon-16.png",
+  "assets/icons/extension-icon-32.png",
+  "assets/icons/extension-icon-48.png",
+  "assets/icons/extension-icon-64.png",
+  "assets/icons/extension-icon-128.png"
 )
 
 foreach ($entry in $requiredExtensionEntries) {
@@ -211,16 +224,14 @@ $forbiddenExtensionPrefixes = @(
   "docs/",
   "test/",
   "scripts/",
-  "src/store-assets/promo/",
-  "src/store-assets/screenshots/",
-  "src/store-assets/store-listing/"
+  "store/"
 )
 
 foreach ($prefix in $forbiddenExtensionPrefixes) {
   Assert-ZipExcludesPrefix -Entries $extensionEntries -Prefix $prefix -ArchiveName "Extension archive"
 }
 
-Assert-Condition (!($extensionEntries -contains "src/store-assets/icons/extension-icon-source.svg")) "Extension archive should not contain the source SVG icon"
+Assert-Condition (!($extensionEntries -contains "assets/icons/extension-icon-source.svg")) "Extension archive should not contain the source SVG icon"
 
 $requiredSourceEntries = @(
   "ABOUT.md",
@@ -232,15 +243,15 @@ $requiredSourceEntries = @(
   "scripts/check-package-output.mjs",
   "scripts/package-extension.ps1",
   "scripts/verify-release.ps1",
-  "src/store-assets/store-listing/en.txt",
-  "src/store-assets/icons/extension-icon-source.svg"
+  "store/store-listing/en.txt",
+  "assets/icons/extension-icon-source.svg"
 )
 
 foreach ($entry in $requiredSourceEntries) {
   Assert-ZipContains -Entries $sourceEntries -EntryName $entry -ArchiveName "Source archive"
 }
 
-foreach ($prefix in @("docs/", "test/")) {
+foreach ($prefix in @("assets/", "docs/", "store/", "test/")) {
   Assert-ZipContainsPrefix -Entries $sourceEntries -Prefix $prefix -ArchiveName "Source archive"
 }
 
@@ -248,7 +259,7 @@ $rootChangelog = Get-Content -LiteralPath (Join-Path $projectRoot "CHANGELOG.md"
 $sourceChangelog = Get-ZipTextEntry -ZipPath $sourceZipPath -EntryName "CHANGELOG.md"
 Assert-Condition ($rootChangelog -eq $sourceChangelog) "Source archive CHANGELOG.md does not match the root CHANGELOG.md"
 
-$storeListingRoot = Join-Path $projectRoot "src\store-assets\store-listing"
+$storeListingRoot = Join-Path $projectRoot "store\store-listing"
 $localeDirectories = Get-ChildItem -LiteralPath (Join-Path $projectRoot "_locales") -Directory
 foreach ($localeDirectory in $localeDirectories) {
   Assert-Condition ($localeDirectory.Name -notmatch "-") "Locale directory must use Chrome underscore locale codes, not hyphens: $($localeDirectory.Name)"
@@ -262,16 +273,16 @@ foreach ($localeDirectory in $localeDirectories) {
   Assert-Condition ($storeListing -match "GPL-3\.0") "Store listing is missing GPL-3.0 license disclosure: $($localeDirectory.Name).txt"
 }
 
-foreach ($screenshotPath in Get-ChildItem -LiteralPath (Join-Path $projectRoot "src\store-assets\screenshots") -Filter "*.png") {
-  $relativeScreenshotPath = "src/store-assets/screenshots/$($screenshotPath.Name)"
+foreach ($screenshotPath in Get-ChildItem -LiteralPath (Join-Path $projectRoot "store\screenshots") -Filter "*.png") {
+  $relativeScreenshotPath = "store/screenshots/$($screenshotPath.Name)"
   Assert-ImageDimensions -RelativePath $relativeScreenshotPath -ExpectedWidth 1280 -ExpectedHeight 800
 }
 
-$screenshotCount = @(Get-ChildItem -LiteralPath (Join-Path $projectRoot "src\store-assets\screenshots") -Filter "*.png").Count
+$screenshotCount = @(Get-ChildItem -LiteralPath (Join-Path $projectRoot "store\screenshots") -Filter "*.png").Count
 Assert-Condition ($screenshotCount -eq 5) "Store screenshots folder should contain exactly 5 PNG screenshots"
 
-Assert-ImageDimensions -RelativePath "src/store-assets/promo/small-promo-440x280.png" -ExpectedWidth 440 -ExpectedHeight 280
-Assert-ImageDimensions -RelativePath "src/store-assets/promo/marquee-promo-1400x560.png" -ExpectedWidth 1400 -ExpectedHeight 560
+Assert-ImageDimensions -RelativePath "store/promo/small-promo-440x280.png" -ExpectedWidth 440 -ExpectedHeight 280
+Assert-ImageDimensions -RelativePath "store/promo/marquee-promo-1400x560.png" -ExpectedWidth 1400 -ExpectedHeight 560
 
 $defaultLocale = $manifest.default_locale
 $defaultLocalePath = Join-Path $projectRoot "_locales\$defaultLocale\messages.json"

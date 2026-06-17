@@ -18,9 +18,8 @@ const FORBIDDEN_PACKAGE_PREFIXES = [
   'research/',
   'scripts/',
   'test/',
-  'src/store-assets/promo/',
-  'src/store-assets/screenshots/',
-  'src/store-assets/store-listing/'
+  'store/',
+  'assets/icons/extension-icon-source.svg'
 ];
 
 const JS_REMOTE_EXECUTABLE_PATTERNS = [

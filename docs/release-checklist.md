@@ -6,7 +6,12 @@ Use this checklist before publishing a new extension release.
 
 - Confirm `manifest.json` has the intended version.
 - Run `npm test`.
+- Run `npm run verify:manifest`.
+- Run `npm run verify:imports`.
 - Run `npm run verify:locales`.
+- Run `npm run verify:playbook`.
+- Run `npm run audit:file-sizes`.
+- Run `npm run audit:folder-density`.
 - Run `npm run package`.
 - Run `npm run verify:package`.
 - Run `npm run verify:release`.
@@ -16,7 +21,7 @@ Use this checklist before publishing a new extension release.
 ## Extension Package
 
 - Inspect the extension zip contents.
-- Confirm it includes `manifest.json`, `_locales/`, `src/blocked.html`, `src/instructions.html`, `src/options.html`, `src/app/`, `src/css/`, `src/features/`, `src/js/`, `src/platform/`, and `src/store-assets/icons/`.
+- Confirm it includes `manifest.json`, `_locales/`, `src/blocked.html`, `src/instructions.html`, `src/options.html`, `src/app/`, `src/css/`, `src/features/`, `src/js/`, `src/platform/`, and `assets/icons/`.
 - Confirm it excludes docs, tests, scripts, screenshots, promotional images, store listing text, source-only files, and `src/img`.
 
 ## Manual QA
@@ -89,14 +94,14 @@ Use this checklist before publishing a new extension release.
 
 ## Store Assets
 
-- Use the English store listing from `src/store-assets/store-listing/en.txt`.
-- Confirm every `_locales` language has a matching plain-text store listing in `src/store-assets/store-listing/`.
+- Use the English store listing from `store/store-listing/en.txt`.
+- Confirm every `_locales` language has a matching plain-text store listing in `store/store-listing/`.
 - Confirm every locale `messages.json` has the same keys and placeholders as `_locales/en/messages.json`.
 - Review `docs/localization.md` before changing locale folders or store listing locale files.
-- Use screenshots from `src/store-assets/screenshots/`.
+- Use screenshots from `store/screenshots/`.
 - Confirm screenshots do not expose personal accounts, private conversations, real rules, real domains, or other user-specific configuration.
-- Use promotional images from `src/store-assets/promo/`.
-- Use extension icons from `src/store-assets/icons/`.
+- Use promotional images from `store/promo/`.
+- Use extension icons from `assets/icons/`.
 
 ## Publish
 
