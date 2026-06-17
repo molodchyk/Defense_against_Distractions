@@ -29,33 +29,52 @@ host_permission:
 The extension needs host access for pages the user may want to protect. Content scripts scan page text for configured keywords, summarize local page signals, record coarse local activity pings for Pomodoro timing, apply page blocking when the configured score is reached, stop or mute media on blocked pages, and apply user-created UI element hiding rules. Because users can configure any website as a protected site, the extension needs broad host access instead of a fixed website list. Without this access, the extension cannot detect distracting content, maintain page-local timing context, or show the blocking overlay on the pages users configure.
 
 remote_code:
-No. Defense Against Distractions does not use remote JavaScript or WebAssembly code. All extension code is included in the packaged extension.
+no
 
 privacy_policy_url:
 https://github.com/molodchyk/Defense_against_Distractions/blob/main/PRIVACY.md
 
-## Data Use Disclosure
+data_usage.personally_identifiable_information:
+no
 
-Recommended selections:
+data_usage.health_information:
+no
 
-- Websitecontent
-- Authentifizierungsdaten
-- Nutzeraktivität
+data_usage.financial_payment_information:
+no
 
-Reasoning:
+data_usage.authentication_information:
+no
 
-- Websitecontent: the extension processes page text, URLs, media presence, and page UI structure locally to detect configured keywords, block pages, hide selected UI elements, and apply bounded user-configured UI cleanup actions.
-- Authentifizierungsdaten: the extension can store an optional password for access to the options page. This is user-configured extension password data, not a website account password.
-- Nutzeraktivität: the extension stores coarse local activity summaries such as recent interaction time, local system active/idle/locked state, active-time totals, active editable-field duration summaries, bounded recommendation/feed/comment interaction counts, hostname-level usage aggregates with aggregate blocked/allowed outcome counters and page word counts, open-tab/window count summaries, active-tab switch summaries, top-frame navigation transition summaries, and local intervention feedback summaries for Pomodoro timing, usage stats, intent-coherence diagnostics, and local auto-calibration. This data stays local and is not sent to a server.
+data_usage.personal_communications:
+no
 
-Do not select these unless future features change the data model:
+data_usage.location:
+no
 
-- Personenidentifizierbare Informationen
-- Gesundheitsinformationen
-- Finanzdaten und Zahlungsinformationen
-- Persönliche Kommunikation
-- Ort
-- Webprotokoll
+data_usage.web_history:
+no
+
+data_usage.user_activity:
+no
+
+data_usage.website_content:
+no
+
+certification.no_sell_or_transfer:
+yes
+
+certification.no_unrelated_use:
+yes
+
+certification.no_creditworthiness:
+yes
+
+## Data Use Notes
+
+StorePilot keys above use the Chrome Web Store disclosure meaning of "collect": data that leaves local-only browser/device processing and becomes available to the developer, a backend, analytics, support, or a third party.
+
+DaD processes website content, optional extension password data, and local activity summaries on the user's device for blocking, UI cleanup, Pomodoro timing, usage stats, and intent-coherence diagnostics. Those values are not sent to the developer or a third party, so the canonical `data_usage.*` dashboard answers are `no`.
 
 Current privacy position:
 
@@ -63,4 +82,5 @@ Current privacy position:
 - User data is not transferred to third parties except user-initiated export/import.
 - User data is not used for unrelated purposes.
 - User data is not used for creditworthiness or lending.
+- The extension does not use remote JavaScript or WebAssembly code; all executable code is included in the packaged extension.
 - The dormant billing entitlement layer does not currently collect or process payment data. If billing is activated later, the Chrome Web Store privacy fields and privacy policy must be updated before release.

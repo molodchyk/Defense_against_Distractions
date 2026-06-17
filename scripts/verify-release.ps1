@@ -236,6 +236,9 @@ Assert-Condition (!($extensionEntries -contains "assets/icons/extension-icon-sou
 $requiredSourceEntries = @(
   "ABOUT.md",
   "CHANGELOG.md",
+  "docs/chrome-web-store-additional-fields.md",
+  "docs/chrome-web-store-category.md",
+  "docs/chrome-web-store-privacy-form.md",
   "LICENSE",
   "manifest.json",
   "package.json",

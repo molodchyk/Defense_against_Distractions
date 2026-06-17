@@ -38,6 +38,7 @@ The release verifier checks:
 - The extension archive contains runtime files required by the manifest.
 - The extension archive excludes docs, tests, scripts, screenshots, promo images, store listing text, and source-only icon files.
 - The source archive contains docs, tests, scripts, source files, store assets, README, license, about file, and changelog.
+- The source archive contains StorePilot privacy, category, and additional-field automation documents.
 - The changelog in the source archive matches the root `CHANGELOG.md`.
 - The store listing remains plain text instead of Markdown.
 - The default locale includes `description.message`.

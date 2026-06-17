@@ -16,6 +16,42 @@ const manifestPermissions = [
   'idle',
   'webNavigation'
 ];
+const privacyDataUsageKeys = [
+  'data_usage.personally_identifiable_information',
+  'data_usage.health_information',
+  'data_usage.financial_payment_information',
+  'data_usage.authentication_information',
+  'data_usage.personal_communications',
+  'data_usage.location',
+  'data_usage.web_history',
+  'data_usage.user_activity',
+  'data_usage.website_content'
+];
+const privacyCertificationKeys = [
+  'certification.no_sell_or_transfer',
+  'certification.no_unrelated_use',
+  'certification.no_creditworthiness'
+];
+const storeCategories = [
+  'Communication',
+  'Developer Tools',
+  'Education',
+  'Tools',
+  'Workflow and planning',
+  'Art & Design',
+  'Entertainment',
+  'Games',
+  'Household',
+  'Just for fun',
+  'News & Weather',
+  'Shopping',
+  'Social Networking',
+  'Travel',
+  'Wellbeing',
+  'Accessibility',
+  'Functionality and UI',
+  'Privacy & Security'
+];
 const requiredRootEntries = [
   'README.md',
   'LICENSE',
@@ -74,6 +110,30 @@ function hasAll(text, patterns) {
   return patterns.every(pattern => pattern.test(text));
 }
 
+function getBracketBlock(text, blockName) {
+  const blockMarker = `[${blockName}]`;
+  const start = text.indexOf(blockMarker);
+  if (start === -1) {
+    return '';
+  }
+
+  const afterMarker = text.slice(start + blockMarker.length);
+  const nextHeading = afterMarker.search(/^##\s+/m);
+  return nextHeading === -1 ? afterMarker : afterMarker.slice(0, nextHeading);
+}
+
+function parseKeyedBlock(text, blockName) {
+  const block = getBracketBlock(text, blockName);
+  const fields = new Map();
+  const fieldPattern = /^([A-Za-z0-9_.-]+):[ \t]*\r?\n([\s\S]*?)(?=^[A-Za-z0-9_.-]+:[ \t]*\r?\n|\s*$)/gm;
+
+  for (const match of block.matchAll(fieldPattern)) {
+    fields.set(match[1], match[2].trim());
+  }
+
+  return fields;
+}
+
 for (const entry of requiredRootEntries) {
   assertCondition(await exists(entry), `Missing required playbook entry: ${entry}`);
 }
@@ -85,9 +145,24 @@ assertCondition(await exists('store/screenshots'), 'Missing Chrome Web Store scr
 assertCondition(!(await exists('LICENSE.txt')), 'Use standard LICENSE filename, not LICENSE.txt.');
 
 assertCondition(await exists('docs/reviewer-notes.md'), 'Missing reviewer notes document.');
+assertCondition(await exists('docs/chrome-web-store-privacy-form.md'), 'Missing StorePilot privacy form document.');
+assertCondition(await exists('docs/chrome-web-store-additional-fields.md'), 'Missing StorePilot additional-fields document.');
+assertCondition(await exists('docs/chrome-web-store-category.md'), 'Missing StorePilot category document.');
 assertCondition(await exists('scripts/check-unpacked-extension-load.ps1'), 'Missing unpacked extension browser-load smoke script.');
 
-const [manifest, packageJson, readme, privacy, licenseText, reviewerNotes, optionsHtml, englishMessages] = await Promise.all([
+const [
+  manifest,
+  packageJson,
+  readme,
+  privacy,
+  licenseText,
+  reviewerNotes,
+  optionsHtml,
+  englishMessages,
+  storePrivacyForm,
+  storeAdditionalFields,
+  storeCategory
+] = await Promise.all([
   readJson('manifest.json'),
   readJson('package.json'),
   readText('README.md'),
@@ -95,7 +170,10 @@ const [manifest, packageJson, readme, privacy, licenseText, reviewerNotes, optio
   readText('LICENSE'),
   readText('docs/reviewer-notes.md'),
   readText('src/options.html'),
-  readJson('_locales/en/messages.json')
+  readJson('_locales/en/messages.json'),
+  readText('docs/chrome-web-store-privacy-form.md'),
+  readText('docs/chrome-web-store-additional-fields.md'),
+  readText('docs/chrome-web-store-category.md')
 ]);
 
 assertCondition(packageJson.version === manifest.version, 'package.json version must match manifest.json version.');
@@ -137,6 +215,46 @@ for (const permission of manifestPermissions) {
 assertCondition(
   packageJson.scripts?.['verify:browser-load']?.includes('scripts/check-unpacked-extension-load.ps1'),
   'package.json must expose npm run verify:browser-load for the unpacked browser-load smoke check.'
+);
+
+const storePrivacyFields = parseKeyedBlock(storePrivacyForm, 'privacy');
+for (const field of ['single_purpose', 'host_permission', 'remote_code', 'privacy_policy_url']) {
+  assertCondition(storePrivacyFields.has(field), `StorePilot privacy form is missing ${field}.`);
+}
+
+for (const permission of manifestPermissions) {
+  assertCondition(
+    storePrivacyFields.has(`permission.${permission}`),
+    `StorePilot privacy form is missing permission.${permission}.`
+  );
+}
+
+for (const field of privacyDataUsageKeys) {
+  assertCondition(storePrivacyFields.get(field) === 'no', `StorePilot privacy form must set ${field}: no.`);
+}
+
+for (const field of privacyCertificationKeys) {
+  assertCondition(storePrivacyFields.get(field) === 'yes', `StorePilot privacy form must set ${field}: yes.`);
+}
+
+assertCondition(storePrivacyFields.get('remote_code') === 'no', 'StorePilot privacy form must set remote_code: no.');
+assertCondition(!storePrivacyFields.has('remote_code_justification'), 'StorePilot privacy form should omit remote_code_justification when remote_code is no.');
+assertCondition(
+  storePrivacyFields.get('privacy_policy_url') === 'https://github.com/molodchyk/Defense_against_Distractions/blob/main/PRIVACY.md',
+  'StorePilot privacy form must point to the repository privacy policy.'
+);
+
+const additionalFields = parseKeyedBlock(storeAdditionalFields, 'additional_fields');
+assertCondition(additionalFields.get('official_url') === 'none', 'StorePilot additional fields must set official_url: none.');
+assertCondition(additionalFields.get('homepage_url') === repositoryUrl, 'StorePilot additional fields must set homepage_url to the repository URL.');
+assertCondition(additionalFields.get('support_url') === `${repositoryUrl}/issues`, 'StorePilot additional fields must set support_url to repository issues.');
+assertCondition(additionalFields.get('mature_content') === 'no', 'StorePilot additional fields must set mature_content: no.');
+
+const categoryMatch = storeCategory.match(/^Selected category:\s*(.+)$/m);
+assertCondition(Boolean(categoryMatch), 'StorePilot category document must include a Selected category line.');
+assertCondition(
+  categoryMatch ? storeCategories.includes(categoryMatch[1].trim()) : false,
+  'StorePilot category document must use a visible Chrome Web Store category label.'
 );
 
 for (const iconPath of Object.values(manifest.icons || {})) {
