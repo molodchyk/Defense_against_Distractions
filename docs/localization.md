@@ -8,6 +8,9 @@ Chrome locale folder names must use Chrome-style locale codes. Region variants u
 
 Correct:
 
+- `en_AU`
+- `en_GB`
+- `en_US`
 - `pt_BR`
 - `pt_PT`
 - `zh_CN`
@@ -20,18 +23,20 @@ Incorrect:
 - `zh-CN`
 - `zh-TW`
 
-Do not use the old public Chrome extension i18n locale list as the only source of truth for Chrome Web Store language support. The Store can expose more languages than that list suggests. Persian (`fa`) and Urdu (`ur`) should be kept; Persian is supported.
+Do not use the old public Chrome extension i18n locale list as the only source of truth for Chrome Web Store language support. The Store can expose more languages than that list suggests. Australian English (`en_AU`), Persian (`fa`), and Urdu (`ur`) should be kept; Persian is supported.
 
 UI direction is part of localization. Arabic (`ar`), Persian (`fa`), Hebrew (`he`), and Urdu (`ur`) are right-to-left locales. DaD applies `dir="rtl"` and a matching `lang` attribute on extension pages, mirrors fixed-inline controls such as the plan schedule board and compact Pomodoro metadata, and mirrors fixed injected panels such as the intent prompt and UI picker. Injected extension-owned surfaces such as the block overlay, intent prompt, UI picker, and Pomodoro mini panel get their own direction without changing the host page direction.
 
 ## Chrome Web Store Visible Languages
 
-The Chrome Web Store has been observed showing a 64-language hover list on another extension listing. That list is:
+The Chrome Web Store has been observed showing broad language hover lists on extension listings. DaD tracks the following visible or supported locale codes for extension locale folders and store listing text:
 
 - `de` - Deutsch
 - `en` - English
+- `en_AU` - English (Australia)
 - `en_GB` - English (United Kingdom)
 - `en_US` - English (United States)
+- `fa` - Persian
 - `fil` - Filipino
 - `id` - Indonesia
 - `sw` - Kiswahili
@@ -95,13 +100,13 @@ The Chrome Web Store has been observed showing a 64-language hover list on anoth
 
 ## CWS-Visible Locale Coverage
 
-DaD currently has locale folders and matching store listing files for every locale in the observed 64-language Chrome Web Store hover list.
+DaD currently has locale folders and matching store listing files for every locale in the tracked Chrome Web Store visible-language set above.
 
 All locale `messages.json` files must contain the same message keys and placeholder names as `_locales/en/messages.json`. Existing translated strings should be preserved, but newly added UI keys may be copied from English as explicit fallback text until a translation pass updates them. Run `node scripts/sync-locale-messages.mjs` after adding English keys, then run `npm run verify:locales`.
 
 ## Extra Prepared Locales
 
-DaD also has prepared translations that were not seen in the 64-language Chrome Web Store hover list:
+DaD also has prepared translations outside the tracked Chrome Web Store visible-language set:
 
 - `af` - Afrikaans
 - `is` - Icelandic
