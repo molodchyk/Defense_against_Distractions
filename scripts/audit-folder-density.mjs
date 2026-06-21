@@ -113,6 +113,14 @@ const budgets = [
     matches(relativeDir) {
       return relativeDir === 'test' || relativeDir.startsWith('test/');
     }
+  },
+  {
+    name: 'project scripts',
+    max: 15,
+    hard: 24,
+    matches(relativeDir) {
+      return relativeDir === 'scripts';
+    }
   }
 ];
 

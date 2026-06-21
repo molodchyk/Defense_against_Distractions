@@ -167,6 +167,8 @@ try {
   Assert-Condition ($LASTEXITCODE -eq 0) "Browser extension playbook verification failed"
   node scripts/check-locale-coverage.mjs
   Assert-Condition ($LASTEXITCODE -eq 0) "Locale coverage verification failed"
+  node scripts/check-static-localization.mjs
+  Assert-Condition ($LASTEXITCODE -eq 0) "Static localization verification failed"
 }
 finally {
   Pop-Location
@@ -303,6 +305,7 @@ $requiredSourceEntries = @(
   "package.json",
   "README.md",
   "scripts/check-package-output.mjs",
+  "scripts/check-static-localization.mjs",
   "scripts/package-extension.ps1",
   "scripts/verify-package-output.ps1",
   "scripts/verify-release.ps1",

@@ -4,6 +4,7 @@
 import { applyUiLanguageAttributes, getUiMessage } from '../shared/ui/uiLanguage.js';
 
 const LOCALIZED_TEXT = {
+  optionsBrandName: 'popupBrandName',
   title: 'optionsTitle',
   appTitle: 'optionsTitle',
   optionsNavPlansLink: 'plansHeading',
@@ -14,12 +15,37 @@ const LOCALIZED_TEXT = {
   plansHeading: 'plansHeading',
   intentDiagnosticsHeading: 'intentDiagnosticsHeading',
   intentDiagnosticsIntroText: 'intentDiagnosticsIntroText',
+  refreshIntentDiagnosticsButton: 'refreshButtonLabel',
+  exportIntentDiagnosticsButton: 'exportJsonButtonLabel',
+  clearIntentDiagnosticsButton: 'clearButtonLabel',
+  optionsIntentStateLabel: 'optionsIntentStateLabel',
+  optionsIntentState: 'popupNoDataLabel',
+  optionsIntentCoherenceLabel: 'popupCoherenceLabel',
+  optionsIntentOriginLabel: 'popupOriginLabel',
+  optionsIntentLineageLabel: 'popupLineageLabel',
+  intentReasonsHeading: 'intentReasonsHeading',
+  intentScoreSignalsHeading: 'intentScoreSignalsHeading',
   intentGraphHeading: 'intentGraphHeading',
+  intentRecentTrajectoryHeading: 'intentRecentTrajectoryHeading',
   usageStatsHeading: 'usageStatsHeading',
   usageStatsIntroText: 'usageStatsIntroText',
+  usageStatsStatus: 'popupLoadingLabel',
   refreshUsageStatsButton: 'refreshButtonLabel',
   exportUsageStatsButton: 'exportJsonButtonLabel',
   clearUsageStatsButton: 'clearButtonLabel',
+  usageStatsTodayVisitsLabel: 'usageStatsTodayVisitsLabel',
+  usageStatsTodayActiveLabel: 'usageStatsTodayActiveLabel',
+  usageStatsTodayBlockedActiveLabel: 'usageStatsTodayBlockedActiveLabel',
+  usageStatsTodayAllowedActiveLabel: 'usageStatsTodayAllowedActiveLabel',
+  usageStatsTodayBlockedShareLabel: 'usageStatsTodayBlockedShareLabel',
+  usageStatsTodayBlockedWordsLabel: 'usageStatsTodayBlockedWordsLabel',
+  usageStatsTodayAllowedWordsLabel: 'usageStatsTodayAllowedWordsLabel',
+  usageStatsTodayDomainsLabel: 'usageStatsTodayDomainsLabel',
+  usageStatsTodayBlockedVisitsLabel: 'usageStatsTodayBlockedVisitsLabel',
+  usageStatsTodayAllowedVisitsLabel: 'usageStatsTodayAllowedVisitsLabel',
+  usageStatsTodayTabMaxLabel: 'usageStatsTodayTabMaxLabel',
+  usageStatsTotalSamplesLabel: 'usageStatsTotalSamplesLabel',
+  usageStatsTopDomainsHeading: 'usageStatsTopDomainsHeading',
   settingsHeading: 'settingsHeading',
   settingsIntroText: 'settingsIntroText',
   appearanceSettingsHeading: 'appearanceSettingsHeading',
@@ -46,6 +72,10 @@ const LOCALIZED_TEXT = {
   themeModeLightOption: 'themeModeLightOption',
   uiLanguageLabel: 'uiLanguageLabel',
   uiLanguageHint: 'uiLanguageHint',
+  billingHeading: 'billingHeading',
+  supporterMonthlyButton: 'supporterMonthlyButton',
+  lifetimeSupportButton: 'lifetimeSupportButton',
+  manageBillingButton: 'manageBillingButton',
   elementRulesHeading: 'elementRulesLabel'
 };
 
@@ -57,17 +87,50 @@ const LOCALIZED_PLACEHOLDERS = {
   passwordInput: 'enterPasswordPlaceholder'
 };
 
+const LOCALIZED_ATTRIBUTES = {
+  optionsSidebarNav: {
+    'aria-label': 'optionsSectionsAriaLabel'
+  },
+  planNameInput: {
+    'aria-label': 'planNamePlaceholder'
+  },
+  themeModeSelect: {
+    'aria-label': 'themeModeLabel'
+  },
+  uiLanguageSelect: {
+    'aria-label': 'uiLanguageLabel'
+  }
+};
+
 const FALLBACK_MESSAGES = {
+  optionsSectionsAriaLabel: 'Options sections',
   plansHeading: 'Plans',
   addPlanButton: 'Add Plan',
   planNamePlaceholder: 'Plan name',
   intentDiagnosticsNavLabel: 'Intent',
   intentDiagnosticsHeading: 'Intent diagnostics',
   intentDiagnosticsIntroText: 'Local trajectory state used by intent coherence. No raw typed input is stored.',
+  optionsIntentStateLabel: 'State',
+  intentReasonsHeading: 'Reasons',
+  intentScoreSignalsHeading: 'Score signals',
   intentGraphHeading: 'Intent chain graph',
+  intentRecentTrajectoryHeading: 'Recent trajectory',
   usageStatsNavLabel: 'Usage',
   usageStatsHeading: 'Usage stats',
   usageStatsIntroText: 'Local hostname-level aggregates. No raw text, full URLs, titles, or tokens are stored.',
+  usageStatsTodayVisitsLabel: 'Today visits',
+  usageStatsTodayActiveLabel: 'Today active time',
+  usageStatsTodayBlockedActiveLabel: 'Blocked active today',
+  usageStatsTodayAllowedActiveLabel: 'Allowed active today',
+  usageStatsTodayBlockedShareLabel: 'Blocked share today',
+  usageStatsTodayBlockedWordsLabel: 'Blocked page words',
+  usageStatsTodayAllowedWordsLabel: 'Allowed page words',
+  usageStatsTodayDomainsLabel: 'Today domains',
+  usageStatsTodayBlockedVisitsLabel: 'Blocked visits today',
+  usageStatsTodayAllowedVisitsLabel: 'Allowed visits today',
+  usageStatsTodayTabMaxLabel: 'Max tabs today',
+  usageStatsTotalSamplesLabel: 'Stored samples',
+  usageStatsTopDomainsHeading: 'Top local domains',
   refreshButtonLabel: 'Refresh',
   exportJsonButtonLabel: 'Export JSON',
   clearButtonLabel: 'Clear',
@@ -115,6 +178,17 @@ export function localizeOptionsPage() {
     if (element) {
       element.placeholder = getMessage(messageKey);
     }
+  });
+
+  Object.entries(LOCALIZED_ATTRIBUTES).forEach(([id, attributes]) => {
+    const element = document.getElementById(id);
+    if (!element) {
+      return;
+    }
+
+    Object.entries(attributes).forEach(([attributeName, messageKey]) => {
+      element.setAttribute(attributeName, getMessage(messageKey));
+    });
   });
 
   const passwordHeading = document.querySelector('[data-i18n="passwordManagementHeader"]');

@@ -111,6 +111,15 @@ const budgets = [
     matches(relativePath) {
       return relativePath.replaceAll('\\', '/').startsWith('test/') && relativePath.endsWith('.js');
     }
+  },
+  {
+    name: 'project script',
+    max: 700,
+    hard: 1000,
+    matches(relativePath) {
+      const normalized = relativePath.replaceAll('\\', '/');
+      return normalized.startsWith('scripts/') && normalized.endsWith('.mjs');
+    }
   }
 ];
 

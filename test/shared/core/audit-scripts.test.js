@@ -39,6 +39,13 @@ describe('audit scripts', () => {
     assert.match(output, /\d+ locales match \d+ en message keys\./);
   });
 
+  it('verifies static extension surface localization coverage', () => {
+    const output = runNodeScript('scripts/check-static-localization.mjs');
+
+    assert.match(output, /Static localization check passed:/);
+    assert.match(output, /\d+ extension HTML surfaces scanned\./);
+  });
+
   it('verifies browser extension playbook metadata', () => {
     const output = runNodeScript('scripts/check-browser-extension-playbook.mjs');
 

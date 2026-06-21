@@ -9,13 +9,13 @@
 <body>
     <header class="app-header">
         <div>
-            <p class="eyebrow">Defense Against Distractions</p>
+            <p id="optionsBrandName" class="eyebrow">Defense Against Distractions</p>
             <h1 id="appTitle">Defense Panel</h1>
         </div>
     </header>
 
     <div class="options-layout">
-        <nav class="options-sidebar" aria-label="Options sections">
+        <nav id="optionsSidebarNav" class="options-sidebar" aria-label="Options sections">
             <a href="#plansPanel" id="optionsNavPlansLink">Plans</a>
             <a href="#elementRulesPanel" id="optionsNavBlockedUiLink">Blocked UI</a>
             <a href="#intentDiagnosticsPanel" id="optionsNavIntentLink">Intent</a>
@@ -53,33 +53,33 @@
             </div>
             <div class="intent-diagnostics-grid">
                 <article class="intent-diagnostic-card">
-                    <span class="intent-diagnostic-label">State</span>
+                    <span id="optionsIntentStateLabel" class="intent-diagnostic-label">State</span>
                     <strong id="optionsIntentState">No data</strong>
                     <small id="optionsIntentPlan">--</small>
                 </article>
                 <article class="intent-diagnostic-card">
-                    <span class="intent-diagnostic-label">Coherence</span>
+                    <span id="optionsIntentCoherenceLabel" class="intent-diagnostic-label">Coherence</span>
                     <strong id="optionsIntentScore">--</strong>
                     <small id="optionsIntentAction">--</small>
                 </article>
                 <article class="intent-diagnostic-card">
-                    <span class="intent-diagnostic-label">Origin</span>
+                    <span id="optionsIntentOriginLabel" class="intent-diagnostic-label">Origin</span>
                     <strong id="optionsIntentOrigin">--</strong>
                     <small id="optionsIntentCurrent">--</small>
                 </article>
                 <article class="intent-diagnostic-card">
-                    <span class="intent-diagnostic-label">Lineage</span>
+                    <span id="optionsIntentLineageLabel" class="intent-diagnostic-label">Lineage</span>
                     <strong id="optionsIntentLineage">--</strong>
                     <small id="optionsIntentLineageDetail">--</small>
                 </article>
             </div>
             <div class="intent-debug-layout">
                 <section>
-                    <h3>Reasons</h3>
+                    <h3 id="intentReasonsHeading">Reasons</h3>
                     <ul id="optionsIntentReasons" class="intent-debug-list"></ul>
                 </section>
                 <section>
-                    <h3>Score signals</h3>
+                    <h3 id="intentScoreSignalsHeading">Score signals</h3>
                     <dl id="optionsIntentMetrics" class="intent-metric-grid"></dl>
                 </section>
             </div>
@@ -88,7 +88,7 @@
                 <ol id="optionsIntentGraph" class="intent-graph-list"></ol>
             </section>
             <section>
-                <h3>Recent trajectory</h3>
+                <h3 id="intentRecentTrajectoryHeading">Recent trajectory</h3>
                 <ol id="optionsIntentVisits" class="intent-trajectory-list"></ol>
             </section>
         </section>
@@ -108,56 +108,56 @@
             <p id="usageStatsStatus" class="muted-text" aria-live="polite">Loading</p>
             <div class="usage-stats-grid">
                 <article class="usage-stat-card">
-                    <span>Today visits</span>
+                    <span id="usageStatsTodayVisitsLabel">Today visits</span>
                     <strong id="usageStatsTodayVisits">0</strong>
                 </article>
                 <article class="usage-stat-card">
-                    <span>Today active time</span>
+                    <span id="usageStatsTodayActiveLabel">Today active time</span>
                     <strong id="usageStatsTodayActive">0s</strong>
                 </article>
                 <article class="usage-stat-card">
-                    <span>Blocked active today</span>
+                    <span id="usageStatsTodayBlockedActiveLabel">Blocked active today</span>
                     <strong id="usageStatsTodayBlockedActive">0s</strong>
                 </article>
                 <article class="usage-stat-card">
-                    <span>Allowed active today</span>
+                    <span id="usageStatsTodayAllowedActiveLabel">Allowed active today</span>
                     <strong id="usageStatsTodayAllowedActive">0s</strong>
                 </article>
                 <article class="usage-stat-card">
-                    <span>Blocked share today</span>
+                    <span id="usageStatsTodayBlockedShareLabel">Blocked share today</span>
                     <strong id="usageStatsTodayBlockedShare">0% active / 0% visits</strong>
                 </article>
                 <article class="usage-stat-card">
-                    <span>Blocked page words</span>
+                    <span id="usageStatsTodayBlockedWordsLabel">Blocked page words</span>
                     <strong id="usageStatsTodayBlockedWords">0</strong>
                 </article>
                 <article class="usage-stat-card">
-                    <span>Allowed page words</span>
+                    <span id="usageStatsTodayAllowedWordsLabel">Allowed page words</span>
                     <strong id="usageStatsTodayAllowedWords">0</strong>
                 </article>
                 <article class="usage-stat-card">
-                    <span>Today domains</span>
+                    <span id="usageStatsTodayDomainsLabel">Today domains</span>
                     <strong id="usageStatsTodayDomains">0</strong>
                 </article>
                 <article class="usage-stat-card">
-                    <span>Blocked visits today</span>
+                    <span id="usageStatsTodayBlockedVisitsLabel">Blocked visits today</span>
                     <strong id="usageStatsTodayBlockedVisits">0</strong>
                 </article>
                 <article class="usage-stat-card">
-                    <span>Allowed visits today</span>
+                    <span id="usageStatsTodayAllowedVisitsLabel">Allowed visits today</span>
                     <strong id="usageStatsTodayAllowedVisits">0</strong>
                 </article>
                 <article class="usage-stat-card">
-                    <span>Max tabs today</span>
+                    <span id="usageStatsTodayTabMaxLabel">Max tabs today</span>
                     <strong id="usageStatsTodayTabMax">0</strong>
                 </article>
                 <article class="usage-stat-card">
-                    <span>Stored samples</span>
+                    <span id="usageStatsTotalSamplesLabel">Stored samples</span>
                     <strong id="usageStatsTotalSamples">0</strong>
                 </article>
             </div>
             <section class="usage-domain-section">
-                <h3>Top local domains</h3>
+                <h3 id="usageStatsTopDomainsHeading">Top local domains</h3>
                 <ol id="usageStatsDomainList" class="usage-domain-list"></ol>
             </section>
         </section>

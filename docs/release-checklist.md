@@ -9,6 +9,7 @@ Use this checklist before publishing a new extension release.
 - Run `npm run verify:manifest`.
 - Run `npm run verify:imports`.
 - Run `npm run verify:locales`.
+- Run `npm run verify:static-localization`.
 - Run `npm run verify:playbook`.
 - Run `npm run audit:file-sizes`.
 - Run `npm run audit:folder-density`.

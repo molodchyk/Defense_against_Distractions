@@ -533,6 +533,9 @@
     "instructionGuideLink": {
         "message": "Instrukcijų vadovas"
     },
+    "optionsSectionsAriaLabel": {
+        "message": "Options sections"
+    },
     "settingsHeading": {
         "message": "Settings"
     },
@@ -545,8 +548,20 @@
     "intentDiagnosticsIntroText": {
         "message": "Local trajectory state used by intent coherence. No raw typed input is stored."
     },
+    "optionsIntentStateLabel": {
+        "message": "State"
+    },
+    "intentReasonsHeading": {
+        "message": "Reasons"
+    },
+    "intentScoreSignalsHeading": {
+        "message": "Score signals"
+    },
     "intentGraphHeading": {
         "message": "Intent chain graph"
+    },
+    "intentRecentTrajectoryHeading": {
+        "message": "Recent trajectory"
     },
     "usageStatsNavLabel": {
         "message": "Usage"
@@ -556,6 +571,45 @@
     },
     "usageStatsIntroText": {
         "message": "Local hostname-level aggregates. No raw text, full URLs, titles, or tokens are stored."
+    },
+    "usageStatsTodayVisitsLabel": {
+        "message": "Today visits"
+    },
+    "usageStatsTodayActiveLabel": {
+        "message": "Today active time"
+    },
+    "usageStatsTodayBlockedActiveLabel": {
+        "message": "Blocked active today"
+    },
+    "usageStatsTodayAllowedActiveLabel": {
+        "message": "Allowed active today"
+    },
+    "usageStatsTodayBlockedShareLabel": {
+        "message": "Blocked share today"
+    },
+    "usageStatsTodayBlockedWordsLabel": {
+        "message": "Blocked page words"
+    },
+    "usageStatsTodayAllowedWordsLabel": {
+        "message": "Allowed page words"
+    },
+    "usageStatsTodayDomainsLabel": {
+        "message": "Today domains"
+    },
+    "usageStatsTodayBlockedVisitsLabel": {
+        "message": "Blocked visits today"
+    },
+    "usageStatsTodayAllowedVisitsLabel": {
+        "message": "Allowed visits today"
+    },
+    "usageStatsTodayTabMaxLabel": {
+        "message": "Max tabs today"
+    },
+    "usageStatsTotalSamplesLabel": {
+        "message": "Stored samples"
+    },
+    "usageStatsTopDomainsHeading": {
+        "message": "Top local domains"
     },
     "refreshButtonLabel": {
         "message": "Refresh"

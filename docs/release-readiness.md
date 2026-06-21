@@ -10,6 +10,7 @@ Run these from the project root:
 - `npm run verify:manifest`
 - `npm run verify:imports`
 - `npm run verify:locales`
+- `npm run verify:static-localization`
 - `npm run verify:playbook`
 - `npm run audit:file-sizes`
 - `npm run audit:folder-density`
@@ -41,6 +42,7 @@ The release verifier checks:
 - `package.json` and `manifest.json` versions match.
 - Manifest icon, popup, options, background, content-script, and web-accessible resource paths exist.
 - Manifest permissions are present in the permission audit, privacy policy, and StorePilot privacy form.
+- Static extension HTML surfaces have a localization path for visible text and accessible labels.
 - The extension archive contains runtime files required by the manifest.
 - The extension archive excludes docs, tests, scripts, screenshots, promo images, store listing text, and source-only icon files.
 - The `dist/` folder contains only current manifest-version package zips, with no stale zips or staging directories.

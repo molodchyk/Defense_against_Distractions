@@ -2,6 +2,7 @@
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
 import { access, readFile, readdir, stat } from 'node:fs/promises';
+import { spawnSync } from 'node:child_process';
 import path from 'node:path';
 import process from 'node:process';
 
@@ -213,6 +214,7 @@ assertCondition(await exists('docs/permission-audit.md'), 'Missing permission au
 assertCondition(await exists('docs/release-notes.md'), 'Missing release notes document.');
 assertCondition(await exists('docs/store-media-review.md'), 'Missing store media review document.');
 assertCondition(await exists('docs/decision-records.md'), 'Missing decision records document.');
+assertCondition(await exists('scripts/check-static-localization.mjs'), 'Missing static localization verification script.');
 assertCondition(await exists('scripts/check-unpacked-extension-load.ps1'), 'Missing unpacked extension browser-load smoke script.');
 
 const [
@@ -396,6 +398,10 @@ for (const permission of manifest.permissions) {
 assertCondition(
   packageJson.scripts?.['verify:browser-load']?.includes('scripts/check-unpacked-extension-load.ps1'),
   'package.json must expose npm run verify:browser-load for the unpacked browser-load smoke check.'
+);
+assertCondition(
+  packageJson.scripts?.['verify:static-localization'] === 'node scripts/check-static-localization.mjs',
+  'package.json must expose npm run verify:static-localization for extension HTML localization checks.'
 );
 
 const storePrivacyFields = parseKeyedBlock(storePrivacyForm, 'privacy');
@@ -666,6 +672,16 @@ for (const locale of locales) {
       !/create groups of websites|website and keyword groups|whitelists/i.test(listing),
       `${listingPath} must not use retired group or whitelist wording.`
     );
+  }
+}
+
+if (failures.length === 0) {
+  const staticLocalizationCheck = spawnSync(process.execPath, ['scripts/check-static-localization.mjs'], {
+    cwd: rootDir,
+    encoding: 'utf8'
+  });
+  if (staticLocalizationCheck.status !== 0) {
+    failures.push(`Static localization verification failed:\n${staticLocalizationCheck.stdout}${staticLocalizationCheck.stderr}`.trim());
   }
 }
 

@@ -18,6 +18,7 @@ Release gates:
 - `npm run verify:manifest`
 - `npm run verify:imports`
 - `npm run verify:locales`
+- `npm run verify:static-localization`
 - `npm run verify:playbook`
 - `npm run audit:file-sizes`
 - `npm run audit:folder-density`
