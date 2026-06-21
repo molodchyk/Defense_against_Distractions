@@ -8,7 +8,7 @@ import process from 'node:process';
 const DEFAULT_PACKAGE_ROOT = 'dist/extension';
 const DEFAULT_PROJECT_ROOT = '.';
 
-const TEXT_EXTENSIONS = new Set(['.html', '.htm', '.js', '.mjs']);
+const TEXT_EXTENSIONS = new Set(['.css', '.html', '.htm', '.js', '.mjs']);
 const STATIC_RELATIVE_IMPORT_PATTERN = /\b(?:import|export)\s+(?:[^'"]+\s+from\s+)?['"](\.{1,2}\/[^'"]+)['"]/g;
 const DYNAMIC_RELATIVE_IMPORT_PATTERN = /\bimport\s*\(\s*['"](\.{1,2}\/[^'"]+)['"]\s*\)/g;
 const FORBIDDEN_PACKAGE_PREFIXES = [
@@ -69,6 +69,59 @@ const HTML_REMOTE_EXECUTABLE_PATTERNS = [
   {
     label: 'remote module import map entry',
     regex: /<script\b[^>]*\btype\s*=\s*["']importmap["'][^>]*>[\s\S]*["']https?:\/\//i
+  }
+];
+const ALLOWED_FETCH_ARGUMENT_PATTERNS = [
+  /^runtimeUrl\b/,
+  /^localeUrl\b/,
+  /^chrome\.runtime\.getURL\s*\(/,
+  /^global\.chrome\.runtime\.getURL\s*\(/,
+  /^globalThis\.chrome\.runtime\.getURL\s*\(/
+];
+const JS_REMOTE_NETWORK_PATTERNS = [
+  {
+    label: 'XMLHttpRequest usage',
+    regex: /\bXMLHttpRequest\b/i
+  },
+  {
+    label: 'sendBeacon usage',
+    regex: /\b(?:navigator\.)?sendBeacon\s*\(/i
+  },
+  {
+    label: 'WebSocket usage',
+    regex: /\bnew\s+WebSocket\s*\(/i
+  },
+  {
+    label: 'EventSource usage',
+    regex: /\bnew\s+EventSource\s*\(/i
+  }
+];
+const HTML_REMOTE_NETWORK_PATTERNS = [
+  {
+    label: 'remote image request',
+    regex: /<img\b[^>]*\bsrc\s*=\s*["']https?:\/\//i
+  },
+  {
+    label: 'remote iframe request',
+    regex: /<iframe\b[^>]*\bsrc\s*=\s*["']https?:\/\//i
+  },
+  {
+    label: 'remote stylesheet request',
+    regex: /<link\b[^>]*\brel\s*=\s*["'][^"']*\bstylesheet\b[^"']*["'][^>]*\bhref\s*=\s*["']https?:\/\//i
+  },
+  {
+    label: 'remote stylesheet request',
+    regex: /<link\b[^>]*\bhref\s*=\s*["']https?:\/\/[^"']+["'][^>]*\brel\s*=\s*["'][^"']*\bstylesheet\b/i
+  }
+];
+const CSS_REMOTE_NETWORK_PATTERNS = [
+  {
+    label: 'remote CSS import',
+    regex: /@import\s+(?:url\(\s*)?["']?https?:\/\//i
+  },
+  {
+    label: 'remote CSS URL',
+    regex: /url\(\s*["']?https?:\/\//i
   }
 ];
 
@@ -301,6 +354,51 @@ function scanRemoteExecutableCode(relativePath, text) {
     .map((pattern) => `${relativePath}: ${pattern.label}`);
 }
 
+function summarizeCallArgument(value) {
+  const normalized = value.replace(/\s+/g, ' ').trim();
+  return normalized.length > 80 ? `${normalized.slice(0, 77)}...` : normalized;
+}
+
+function scanRemoteNetworkAccess(relativePath, text) {
+  const extension = path.extname(relativePath).toLowerCase();
+  const issues = [];
+
+  if (extension === '.js' || extension === '.mjs') {
+    for (const match of text.matchAll(/\bfetch\s*\(\s*([^)\r\n]+)/g)) {
+      const argument = match[1].trim();
+      const isAllowedLocalFetch = ALLOWED_FETCH_ARGUMENT_PATTERNS.some(pattern => pattern.test(argument));
+
+      if (!isAllowedLocalFetch) {
+        issues.push(`${relativePath}: unexpected fetch call (${summarizeCallArgument(argument)})`);
+      }
+    }
+
+    for (const pattern of JS_REMOTE_NETWORK_PATTERNS) {
+      if (pattern.regex.test(text)) {
+        issues.push(`${relativePath}: ${pattern.label}`);
+      }
+    }
+  }
+
+  if (extension === '.html' || extension === '.htm') {
+    for (const pattern of HTML_REMOTE_NETWORK_PATTERNS) {
+      if (pattern.regex.test(text)) {
+        issues.push(`${relativePath}: ${pattern.label}`);
+      }
+    }
+  }
+
+  if (extension === '.css') {
+    for (const pattern of CSS_REMOTE_NETWORK_PATTERNS) {
+      if (pattern.regex.test(text)) {
+        issues.push(`${relativePath}: ${pattern.label}`);
+      }
+    }
+  }
+
+  return issues;
+}
+
 function getRelativeImportSpecifiers(source) {
   return [
     ...source.matchAll(STATIC_RELATIVE_IMPORT_PATTERN),
@@ -354,6 +452,10 @@ async function assertPackageFiles({ allowSourceMaps, files, issues, packageRoot 
 
     for (const issue of scanRemoteExecutableCode(relativePath, text)) {
       issues.push(`Remote executable code detected: ${issue}`);
+    }
+
+    for (const issue of scanRemoteNetworkAccess(relativePath, text)) {
+      issues.push(`Remote network access detected: ${issue}`);
     }
 
     if (extension === '.js' || extension === '.mjs') {

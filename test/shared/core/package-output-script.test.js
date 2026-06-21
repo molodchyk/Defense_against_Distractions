@@ -48,6 +48,7 @@ async function writeFixtureFile(root, relativePath, contents = '') {
 }
 
 async function createPackageFixture({
+  contentCss = 'html { color-scheme: dark; }\n',
   popupHtml = '<script type="module" src="popup.js"></script>',
   popupJs = 'export const popupReady = true;\n'
 } = {}) {
@@ -64,7 +65,7 @@ async function createPackageFixture({
   await writeFixtureFile(packageRoot, 'options.js', 'export const optionsReady = true;\n');
   await writeFixtureFile(packageRoot, 'background.js', 'export const backgroundReady = true;\n');
   await writeFixtureFile(packageRoot, 'content.js', 'globalThis.__fixtureContentLoaded = true;\n');
-  await writeFixtureFile(packageRoot, 'content.css', 'html { color-scheme: dark; }\n');
+  await writeFixtureFile(packageRoot, 'content.css', contentCss);
   await writeFixtureFile(packageRoot, 'blocked.html', '<main>Blocked</main>\n');
   await writeFixtureFile(packageRoot, 'icons/icon-16.png', 'not-a-real-png');
 
@@ -112,6 +113,36 @@ describe('package output verifier', () => {
 
       assert.equal(result.status, 1);
       assert.match(result.stderr, /Remote executable code detected: popup\.html: remote script tag/);
+    } finally {
+      await rm(projectRoot, { force: true, recursive: true });
+    }
+  });
+
+  it('rejects remote network access in package output', async () => {
+    const { packageRoot, projectRoot } = await createPackageFixture({
+      popupJs: 'fetch("https://analytics.example.com/pixel");\n'
+    });
+
+    try {
+      const result = runPackageCheck(projectRoot, packageRoot);
+
+      assert.equal(result.status, 1);
+      assert.match(result.stderr, /Remote network access detected: popup\.js: unexpected fetch call/);
+    } finally {
+      await rm(projectRoot, { force: true, recursive: true });
+    }
+  });
+
+  it('rejects remote stylesheet network access in package output', async () => {
+    const { packageRoot, projectRoot } = await createPackageFixture({
+      contentCss: '.pixel { background-image: url("https://analytics.example.com/pixel.gif"); }\n'
+    });
+
+    try {
+      const result = runPackageCheck(projectRoot, packageRoot);
+
+      assert.equal(result.status, 1);
+      assert.match(result.stderr, /Remote network access detected: content\.css: remote CSS URL/);
     } finally {
       await rm(projectRoot, { force: true, recursive: true });
     }
