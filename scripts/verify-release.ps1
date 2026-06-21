@@ -294,6 +294,8 @@ $requiredSourceEntries = @(
   "docs/chrome-web-store-additional-fields.md",
   "docs/chrome-web-store-category.md",
   "docs/chrome-web-store-privacy-form.md",
+  "docs/decision-records.md",
+  "docs/release-notes.md",
   "LICENSE",
   "manifest.json",
   "package.json",
@@ -315,6 +317,9 @@ foreach ($prefix in @("assets/", "docs/", "store/", "test/")) {
 }
 
 $rootChangelog = Get-Content -LiteralPath (Join-Path $projectRoot "CHANGELOG.md") -Raw
+$escapedVersion = [System.Text.RegularExpressions.Regex]::Escape($version)
+$versionHeadingPattern = "Version\s+{0}:" -f $escapedVersion
+Assert-Condition ($rootChangelog -match $versionHeadingPattern) "Root CHANGELOG.md is missing an entry for version $version"
 $sourceChangelog = Get-ZipTextEntry -ZipPath $sourceZipPath -EntryName "CHANGELOG.md"
 Assert-Condition ($rootChangelog -eq $sourceChangelog) "Source archive CHANGELOG.md does not match the root CHANGELOG.md"
 

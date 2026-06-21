@@ -28,6 +28,7 @@ The package verifier checks:
 - The background service worker is emitted as a module service worker.
 - The runtime output does not contain source maps unless explicitly allowed.
 - The runtime output does not contain remote executable JavaScript, remote script tags, remote worker scripts, or remote WebAssembly streaming loads.
+- The runtime output does not contain unexpected remote network access such as remote fetches, beacon/WebSocket/EventSource calls, remote HTML passive requests, or remote CSS URLs.
 - The runtime output excludes source-only folders such as docs, research, tests, scripts, screenshots, promo images, and store listing text.
 - The generated manifest version and name match the project manifest and package version.
 

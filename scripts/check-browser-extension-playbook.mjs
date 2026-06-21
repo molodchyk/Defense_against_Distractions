@@ -200,11 +200,14 @@ assertCondition(await exists('docs/chrome-web-store-privacy-form.md'), 'Missing 
 assertCondition(await exists('docs/chrome-web-store-additional-fields.md'), 'Missing StorePilot additional-fields document.');
 assertCondition(await exists('docs/chrome-web-store-category.md'), 'Missing StorePilot category document.');
 assertCondition(await exists('docs/storage-ownership.md'), 'Missing storage ownership document.');
+assertCondition(await exists('docs/release-notes.md'), 'Missing release notes document.');
+assertCondition(await exists('docs/decision-records.md'), 'Missing decision records document.');
 assertCondition(await exists('scripts/check-unpacked-extension-load.ps1'), 'Missing unpacked extension browser-load smoke script.');
 
 const [
   manifest,
   packageJson,
+  changelog,
   readme,
   privacy,
   licenseText,
@@ -214,10 +217,13 @@ const [
   storePrivacyForm,
   storeAdditionalFields,
   storeCategory,
-  storageOwnership
+  storageOwnership,
+  releaseNotes,
+  decisionRecords
 ] = await Promise.all([
   readJson('manifest.json'),
   readJson('package.json'),
+  readText('CHANGELOG.md'),
   readText('README.md'),
   readText('PRIVACY.md'),
   readText('LICENSE'),
@@ -227,11 +233,17 @@ const [
   readText('docs/chrome-web-store-privacy-form.md'),
   readText('docs/chrome-web-store-additional-fields.md'),
   readText('docs/chrome-web-store-category.md'),
-  readText('docs/storage-ownership.md')
+  readText('docs/storage-ownership.md'),
+  readText('docs/release-notes.md'),
+  readText('docs/decision-records.md')
 ]);
 
 assertCondition(packageJson.version === manifest.version, 'package.json version must match manifest.json version.');
 assertCondition(packageJson.license === licenseId, `package.json license must be ${licenseId}.`);
+assertCondition(
+  new RegExp(`Version\\s+${manifest.version.replaceAll('.', '\\.')}:`).test(changelog),
+  `CHANGELOG.md must include an entry for the current manifest version ${manifest.version}.`
+);
 assertCondition(
   licenseText.includes('GNU GENERAL PUBLIC LICENSE') && licenseText.includes('Version 3'),
   'LICENSE must contain GPLv3 text.'
@@ -291,6 +303,8 @@ assertCondition(
     /Reset extension data/i,
     /assets\/icons/,
     /store\/store-listing/,
+    /docs\/release-notes\.md/,
+    /docs\/decision-records\.md/,
     new RegExp(repositoryUrl.replaceAll('/', '\\/')),
     /Buy Me a Coffee/i,
     /Patreon/i
@@ -433,6 +447,34 @@ assertCondition(
     /chrome\.storage\.local/
   ]),
   'Storage ownership document must cover the modularization playbook storage fields.'
+);
+
+assertCondition(
+  hasAll(releaseNotes, [
+    /# Release Notes/,
+    /CHANGELOG\.md/,
+    new RegExp(`\\b${manifest.version.replaceAll('.', '\\.')}\\b`),
+    /npm run verify:release/,
+    /source archive/i,
+    /remote network access/i,
+    /screenshots/i,
+    /promo/i
+  ]),
+  'Release notes document must cover the current version, changelog source, release gate, source archive, media, and network posture.'
+);
+
+assertCondition(
+  hasAll(decisionRecords, [
+    /# Decision Records/,
+    /DR-001/,
+    /Local-First/i,
+    /Plan-First/i,
+    /Feature-First/i,
+    /StorePilot/i,
+    /Bounded Intent/i,
+    /UI Element Actions/i
+  ]),
+  'Decision records document must index the durable local-first, plan-first, feature-first, StorePilot, intent, and UI action decisions.'
 );
 
 const storageKeyFamilies = [

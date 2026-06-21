@@ -1,5 +1,14 @@
 Changelog
 
+Version 1.6.1:
+
+- added Chrome Web Store release assets for the current Defense Panel, plans, intent prompt, blocked page, and UI picker flows
+- added Australian English locale and matching store listing text
+- updated manifest and English store copy around the current plan-based protection model, including schedules, Pomodoro, intent coherence, and optional UI cleanup
+- added StorePilot-compatible privacy justifications for idle and webNavigation permissions
+- added package verification for screenshot and promotional image dimensions, runtime archive contents, and unexpected remote network access
+- added release and source archive verification for store listing format, localized descriptions, changelog consistency, and browser-load smoke checks
+
 Version 1.6.0:
 
 - added Pomodoro rest-credit behavior so idle and locked time can satisfy required rest
