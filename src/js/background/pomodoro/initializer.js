@@ -15,6 +15,11 @@ import {
   addStartupListener
 } from '../../../platform/chrome/runtime.js';
 import { addStorageChangeListener } from '../../../platform/chrome/storage.js';
+import { addTabActivatedListener } from '../../../platform/chrome/tabs.js';
+import {
+  addWindowFocusChangedListener,
+  getNoFocusedWindowId
+} from '../../../platform/chrome/windows.js';
 import { POMODORO_IDLE_DETECTION_SECONDS } from '../../shared/pomodoro.js';
 import { POMODORO_ALARM_NAME } from './constants.js';
 import {
@@ -127,21 +132,19 @@ export function initializePomodoroRuntime() {
     });
   });
 
-  chrome.tabs.onActivated.addListener(() => {
+  addTabActivatedListener(() => {
     recordActivity({ reason: 'tabActivated' }).catch(error => {
       console.error('Failed to record Pomodoro tab activity:', error);
     });
   });
 
-  if (chrome.windows?.onFocusChanged) {
-    chrome.windows.onFocusChanged.addListener(windowId => {
-      if (windowId === chrome.windows.WINDOW_ID_NONE) {
-        return;
-      }
+  addWindowFocusChangedListener(windowId => {
+    if (windowId === getNoFocusedWindowId()) {
+      return;
+    }
 
-      recordActivity({ reason: 'windowFocus' }).catch(error => {
-        console.error('Failed to record Pomodoro window activity:', error);
-      });
+    recordActivity({ reason: 'windowFocus' }).catch(error => {
+      console.error('Failed to record Pomodoro window activity:', error);
     });
-  }
+  });
 }

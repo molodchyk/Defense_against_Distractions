@@ -154,12 +154,9 @@ assertCondition(await exists('docs/store-media-review.md'), 'Missing store media
 assertCondition(await exists('docs/decision-records.md'), 'Missing decision records document.');
 assertCondition(await exists('scripts/check-static-localization.mjs'), 'Missing static localization verification script.');
 assertCondition(await exists('scripts/check-unpacked-extension-load.ps1'), 'Missing unpacked extension browser-load smoke script.');
-assertCondition(await exists('src/platform/chrome/alarms.js'), 'Missing Chrome alarms platform wrapper.');
-assertCondition(await exists('src/platform/chrome/downloads.js'), 'Missing Chrome downloads platform wrapper.');
-assertCondition(await exists('src/platform/chrome/idle.js'), 'Missing Chrome idle platform wrapper.');
-assertCondition(await exists('src/platform/chrome/runtime.js'), 'Missing Chrome runtime platform wrapper.');
-assertCondition(await exists('src/platform/chrome/runtimeMessages.js'), 'Missing Chrome runtime-message platform wrapper.');
-assertCondition(await exists('src/platform/chrome/tabs.js'), 'Missing Chrome tabs platform wrapper.');
+for (const platformWrapper of ['action', 'alarms', 'downloads', 'idle', 'navigation', 'runtime', 'runtimeMessages', 'tabs', 'windows']) {
+  assertCondition(await exists(`src/platform/chrome/${platformWrapper}.js`), `Missing Chrome ${platformWrapper} platform wrapper.`);
+}
 const [
   manifest,
   packageJson,
@@ -178,14 +175,18 @@ const [
   releaseNotes,
   storeMediaReview,
   decisionRecords,
+  actionWrapper,
   alarmsWrapper,
   downloadsWrapper,
   idleWrapper,
+  navigationWrapper,
   runtimeWrapper,
   runtimeMessagesWrapper,
   tabsWrapper,
+  windowsWrapper,
   appBackgroundModule,
   backgroundDefaultsModule,
+  intentInitializerModule,
   pomodoroChromeStorageModule,
   pomodoroInitializerModule,
   pomodoroNotificationsModule,
@@ -219,14 +220,18 @@ const [
   readText('docs/release-notes.md'),
   readText('docs/store-media-review.md'),
   readText('docs/decision-records.md'),
+  readText('src/platform/chrome/action.js'),
   readText('src/platform/chrome/alarms.js'),
   readText('src/platform/chrome/downloads.js'),
   readText('src/platform/chrome/idle.js'),
+  readText('src/platform/chrome/navigation.js'),
   readText('src/platform/chrome/runtime.js'),
   readText('src/platform/chrome/runtimeMessages.js'),
   readText('src/platform/chrome/tabs.js'),
+  readText('src/platform/chrome/windows.js'),
   readText('src/app/background/index.js'),
   readText('src/js/background/defaults.js'),
+  readText('src/js/background/intent/initializer.js'),
   readText('src/js/background/pomodoro/chromeStorage.js'),
   readText('src/js/background/pomodoro/initializer.js'),
   readText('src/js/background/pomodoro/notifications.js'),
@@ -243,7 +248,6 @@ const [
   readText('src/js/options/intentDiagnostics.js'),
   readText('src/js/options/plans/pomodoroEditor.js')
 ]);
-
 assertCondition(packageJson.version === manifest.version, 'package.json version must match manifest.json version.');
 assertCondition(packageJson.license === licenseId, `package.json license must be ${licenseId}.`);
 assertCondition(
@@ -254,7 +258,6 @@ assertCondition(
   licenseText.includes('GNU GENERAL PUBLIC LICENSE') && licenseText.includes('Version 3'),
   'LICENSE must contain GPLv3 text.'
 );
-
 const englishDescription = englishMessages.description?.message || '';
 assertCondition(manifest.description === '__MSG_description__', 'Manifest description must use the localized description message.');
 assertCondition(
@@ -273,7 +276,6 @@ assertCondition(
   !/block websites|websites based on the text|whole websites/i.test(englishDescription),
   'English manifest description must not use retired website-only wording.'
 );
-
 if (await exists('dist')) {
   const distEntries = await getDirectoryEntries('dist');
   const distDirectories = distEntries.filter((entry) => entry.isDirectory);
@@ -284,20 +286,16 @@ if (await exists('dist')) {
   const actualZipNames = distEntries
     .filter((entry) => entry.isFile && entry.name.endsWith('.zip'))
     .map((entry) => entry.name);
-
   assertCondition(distDirectories.length === 0, `dist must not contain staging directories: ${distDirectories.map((entry) => entry.name).join(', ')}`);
-
   for (const zipName of actualZipNames) {
     assertCondition(expectedZipNames.includes(zipName), `dist contains a stale or unexpected package zip: ${zipName}`);
   }
-
   if (actualZipNames.length > 0) {
     for (const zipName of expectedZipNames) {
       assertCondition(actualZipNames.includes(zipName), `dist is missing expected current package zip: ${zipName}`);
     }
   }
 }
-
 assertCondition(
   hasAll(readme, [
     /Defense Against Distractions/i,
@@ -328,7 +326,6 @@ assertCondition(
   !/redirects?\s+(it|matching pages|pages|the page)\s+to\s+a\s+block(?:ed)?\s+page|redirect-first|navigation-first/i.test(readme),
   'README must describe current overlay-first blocking instead of retired redirect-first behavior.'
 );
-
 const privacySectionIndex = readme.search(/^## Privacy$/m);
 const licenseSectionIndex = readme.search(/^## License$/m);
 const sourceLineIndex = readme.indexOf(`Source: ${repositoryUrl}`);
@@ -340,7 +337,6 @@ assertCondition(
     && supportSectionIndex > sourceLineIndex,
   'README Support block must appear after the Privacy and License/source sections.'
 );
-
 for (const permission of manifestPermissions) {
   assertCondition(
     manifest.permissions.includes(permission),
@@ -351,7 +347,6 @@ for (const permission of manifestPermissions) {
     `PRIVACY.md must explain manifest permission: ${permission}`
   );
 }
-
 assertCondition(
   hasAll(permissionAudit, [
     /# Permission Audit/,
@@ -370,18 +365,23 @@ assertCondition(
 );
 assertCondition(/src\/platform\/chrome\/downloads\.js/.test(permissionAudit), 'Permission audit must point downloads permission API evidence at the platform wrapper.');
 assertCondition(/src\/platform\/chrome\/alarms\.js/.test(permissionAudit), 'Permission audit must point alarms permission API evidence at the platform wrapper.');
+assertCondition(/src\/platform\/chrome\/navigation\.js/.test(permissionAudit), 'Permission audit must point webNavigation permission API evidence at the platform wrapper.');
+assertCondition(/chrome\.action\.onClicked/.test(actionWrapper), 'Chrome action platform wrapper must own toolbar action click listener registration.');
 assertCondition(/chrome\.alarms\.create/.test(alarmsWrapper) && /chrome\.alarms\.clear/.test(alarmsWrapper) && /chrome\.alarms\.onAlarm/.test(alarmsWrapper) && /runtime\.lastError/.test(alarmsWrapper), 'Chrome alarms platform wrapper must own chrome.alarms create/clear/listener and runtime.lastError handling.');
 assertCondition([pomodoroChromeStorageModule, pomodoroInitializerModule, scheduleMonitorModule].every(text => /platform\/chrome\/alarms\.js/.test(text) && !/chrome\.alarms\./.test(text)), 'Background Pomodoro and schedule monitor modules must use the alarms platform wrapper instead of raw chrome.alarms callbacks.');
 assertCondition(/chrome\.idle/.test(idleWrapper) && /setDetectionInterval/.test(idleWrapper) && /onStateChanged/.test(idleWrapper) && /queryState/.test(idleWrapper), 'Chrome idle platform wrapper must own idle detection interval, listener, and initial state query.');
 assertCondition(/platform\/chrome\/idle\.js/.test(pomodoroInitializerModule) && !/chrome\.idle/.test(pomodoroInitializerModule), 'Background Pomodoro initializer must use the idle platform wrapper instead of raw chrome.idle calls.');
+assertCondition(/chrome\.webNavigation\.onCommitted/.test(navigationWrapper) && /chrome\.webNavigation\.onHistoryStateUpdated/.test(navigationWrapper), 'Chrome navigation platform wrapper must own webNavigation committed and history-state listener registration.');
 assertCondition(/chrome\.downloads\.download/.test(downloadsWrapper) && /runtime\.lastError/.test(downloadsWrapper), 'Chrome downloads platform wrapper must own chrome.downloads.download and runtime.lastError handling.');
 assertCondition(/platform\/chrome\/downloads\.js/.test(storageTransferModule) && !/chrome\.downloads\.download/.test(storageTransferModule), 'Options storage transfer must use the downloads platform wrapper instead of raw chrome.downloads.download.');
 assertCondition(/chrome\.runtime\.onInstalled/.test(runtimeWrapper) && /chrome\.runtime\.onStartup/.test(runtimeWrapper) && /chrome\.runtime\.onMessage/.test(runtimeWrapper) && /chrome\.runtime\.getManifest/.test(runtimeWrapper) && /chrome\.runtime\.getURL/.test(runtimeWrapper) && /chrome\.runtime\.openOptionsPage/.test(runtimeWrapper), 'Chrome runtime platform wrapper must own lifecycle listeners, message listeners, manifest, extension URL, and options-page helpers.');
 assertCondition([appBackgroundModule, backgroundDefaultsModule, pomodoroInitializerModule, releaseNoticeModule, scheduleMonitorModule, intentMessagesModule, popupIndexModule, popupChromeModule, popupDiagnosticsExportModule].every(text => /platform\/chrome\/runtime\.js/.test(text) && !/chrome\.runtime\.(?:onInstalled|onStartup|onMessage|getManifest|getURL|openOptionsPage)/.test(text)), 'Migrated background and popup modules must use the runtime platform wrapper instead of raw chrome.runtime lifecycle/helpers.');
 assertCondition(/chrome\.runtime\.sendMessage/.test(runtimeMessagesWrapper) && /runtime\.lastError/.test(runtimeMessagesWrapper), 'Chrome runtime-message platform wrapper must own chrome.runtime.sendMessage and runtime.lastError handling.');
-assertCondition(/chrome\.tabs\.query/.test(tabsWrapper) && /chrome\.tabs\.create/.test(tabsWrapper) && /chrome\.tabs\.sendMessage/.test(tabsWrapper) && /chrome\.tabs\.update/.test(tabsWrapper) && /runtime\.lastError/.test(tabsWrapper), 'Chrome tabs platform wrapper must own popup tab query/create/message/update and runtime.lastError handling.');
+assertCondition(/chrome\.tabs\.query/.test(tabsWrapper) && /chrome\.tabs\.create/.test(tabsWrapper) && /chrome\.tabs\.sendMessage/.test(tabsWrapper) && /chrome\.tabs\.update/.test(tabsWrapper) && /chrome\.tabs\.onActivated/.test(tabsWrapper) && /chrome\.tabs\.onCreated/.test(tabsWrapper) && /chrome\.tabs\.onRemoved/.test(tabsWrapper) && /chrome\.tabs\.onUpdated/.test(tabsWrapper) && /runtime\.lastError/.test(tabsWrapper), 'Chrome tabs platform wrapper must own tab query/create/message/update plus lifecycle listener registration.');
 assertCondition([popupChromeModule, elementPickerLauncherModule].every(text => /platform\/chrome\/tabs\.js/.test(text) && !/chrome\.tabs\./.test(text) && !/chrome\.runtime\.lastError/.test(text)), 'Popup tab helpers must use the tabs platform wrapper instead of raw chrome.tabs callbacks.');
 assertCondition(/platform\/chrome\/tabs\.js/.test(pomodoroNotificationsModule) && !/chrome\.tabs\./.test(pomodoroNotificationsModule) && !/chrome\.runtime\.lastError/.test(pomodoroNotificationsModule), 'Background Pomodoro notifications must use the tabs platform wrapper instead of raw chrome.tabs callbacks.');
+assertCondition(/chrome\.windows\.onFocusChanged/.test(windowsWrapper) && /WINDOW_ID_NONE/.test(windowsWrapper), 'Chrome windows platform wrapper must own focus-change listener registration and no-focused-window id access.');
+assertCondition([appBackgroundModule, intentInitializerModule, pomodoroInitializerModule].every(text => /platform\/chrome\/(?:action|navigation|tabs|windows)\.js/.test(text) && !/chrome\.(?:action\.onClicked|tabs\.on(?:Activated|Created|Removed|Updated)|webNavigation|windows\.(?:onFocusChanged|WINDOW_ID_NONE))/.test(text)), 'Migrated background event modules must use platform wrappers instead of raw action/tab/navigation/window listener registration.');
 assertCondition(
   [usageStatsModule, intentDiagnosticsModule, planPomodoroEditorModule].every(text =>
     /platform\/chrome\/runtimeMessages\.js/.test(text) && !/chrome\.runtime\.sendMessage/.test(text)
@@ -393,7 +393,6 @@ const passwordManagerUsesStorageWrapper = /platform\/chrome\/storage\.js/.test(p
   && !/chrome\.runtime\.lastError/.test(passwordManagerModule);
 assertCondition(passwordManagerUsesStorageWrapper, 'Options password manager must use the Chrome storage platform wrapper instead of raw chrome.storage callbacks.');
 assertCondition(/platform\/chrome\/storage\.js/.test(scheduleMonitorModule) && !/chrome\.storage\.sync\.(?:get|set|remove|clear|getBytesInUse)/.test(scheduleMonitorModule), 'Background schedule monitor must use the Chrome storage platform wrapper instead of raw chrome.storage callbacks.');
-
 for (const permission of manifest.permissions) {
   const escapedPermission = permission.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   assertCondition(new RegExp(`###\\s+\`${escapedPermission}\``).test(permissionAudit), `Permission audit must include a section for manifest permission: ${permission}.`);

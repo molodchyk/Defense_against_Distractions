@@ -4,11 +4,37 @@
 import assert from 'node:assert/strict';
 import { afterEach, describe, it } from 'node:test';
 import {
+  addTabActivatedListener,
+  addTabCreatedListener,
+  addTabRemovedListener,
+  addTabUpdatedListener,
   createTab,
   getActiveCurrentWindowTab,
   sendTabMessage,
   updateTab
 } from '../../../src/platform/chrome/tabs.js';
+
+function createEvent() {
+  let listener = null;
+  let removedListener = null;
+
+  return {
+    event: {
+      addListener(callback) {
+        listener = callback;
+      },
+      removeListener(callback) {
+        removedListener = callback;
+      }
+    },
+    get listener() {
+      return listener;
+    },
+    get removedListener() {
+      return removedListener;
+    }
+  };
+}
 
 describe('Chrome tabs platform wrapper', () => {
   const originalChrome = globalThis.chrome;
@@ -91,5 +117,40 @@ describe('Chrome tabs platform wrapper', () => {
 
     assert.equal(await sendTabMessage(7, { action: 'ping' }), null);
     assert.equal(await updateTab(7, { url: 'https://example.test/' }), null);
+  });
+
+  it('adds and removes tab lifecycle listeners', () => {
+    const activated = createEvent();
+    const created = createEvent();
+    const removed = createEvent();
+    const updated = createEvent();
+
+    globalThis.chrome = {
+      tabs: {
+        onActivated: activated.event,
+        onCreated: created.event,
+        onRemoved: removed.event,
+        onUpdated: updated.event
+      }
+    };
+
+    const onActivated = () => {};
+    const onCreated = () => {};
+    const onRemoved = () => {};
+    const onUpdated = () => {};
+
+    addTabActivatedListener(onActivated)();
+    addTabCreatedListener(onCreated)();
+    addTabRemovedListener(onRemoved)();
+    addTabUpdatedListener(onUpdated)();
+
+    assert.equal(activated.listener, onActivated);
+    assert.equal(activated.removedListener, onActivated);
+    assert.equal(created.listener, onCreated);
+    assert.equal(created.removedListener, onCreated);
+    assert.equal(removed.listener, onRemoved);
+    assert.equal(removed.removedListener, onRemoved);
+    assert.equal(updated.listener, onUpdated);
+    assert.equal(updated.removedListener, onUpdated);
   });
 });

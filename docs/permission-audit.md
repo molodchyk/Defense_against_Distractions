@@ -42,7 +42,7 @@ This document records why each current manifest permission and broad content-scr
 ### `webNavigation`
 
 - Feature owner: local intent-coherence lineage, transition diagnostics, and drift recovery.
-- API evidence: `src/js/background/intent/initializer.js`, `src/js/background/intent/tabs.js`, `src/js/shared/intent/loadMetrics.js`.
+- API evidence: `src/platform/chrome/navigation.js`, used by `src/js/background/intent/initializer.js`; intent transition consumers live in `src/js/background/intent/tabs.js` and `src/js/shared/intent/loadMetrics.js`.
 - Why retained: top-frame navigation transition types and history updates are needed to distinguish link clicks, typed navigation, reloads, redirects, and history-state loops in a browsing chain.
 - Removal trigger: remove if intent coherence no longer uses navigation ancestry or transition qualifiers.
 

@@ -5,6 +5,26 @@ export function canCreateTab() {
   return Boolean(chrome.tabs?.create);
 }
 
+export function addTabActivatedListener(listener) {
+  chrome.tabs.onActivated.addListener(listener);
+  return () => chrome.tabs.onActivated.removeListener(listener);
+}
+
+export function addTabCreatedListener(listener) {
+  chrome.tabs.onCreated.addListener(listener);
+  return () => chrome.tabs.onCreated.removeListener(listener);
+}
+
+export function addTabRemovedListener(listener) {
+  chrome.tabs.onRemoved.addListener(listener);
+  return () => chrome.tabs.onRemoved.removeListener(listener);
+}
+
+export function addTabUpdatedListener(listener) {
+  chrome.tabs.onUpdated.addListener(listener);
+  return () => chrome.tabs.onUpdated.removeListener(listener);
+}
+
 export function queryTabs(queryInfo) {
   return new Promise((resolve, reject) => {
     chrome.tabs.query(queryInfo, tabs => {

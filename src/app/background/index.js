@@ -7,18 +7,23 @@ import { initializeIntentCoherence } from '../../js/background/intentCoherence.j
 import { initializePomodoroRuntime } from '../../js/background/pomodoro.js';
 import { initializeReleaseBackupNoticeEligibility } from '../../js/background/releaseNotice.js';
 import { initializeScheduleMonitor } from '../../js/background/scheduleMonitor.js';
+import { addActionClickedListener } from '../../platform/chrome/action.js';
 import { addRuntimeMessageListener, getExtensionUrl } from '../../platform/chrome/runtime.js';
-import { createTab } from '../../platform/chrome/tabs.js';
+import {
+  addTabRemovedListener,
+  addTabUpdatedListener,
+  createTab
+} from '../../platform/chrome/tabs.js';
 
 const contentBlockingRuntime = createContentBlockingBackgroundRuntime(chrome);
 
-chrome.action.onClicked.addListener(() => {
+addActionClickedListener(() => {
   createTab({ url: getExtensionUrl('src/options.html') }).catch(() => {});
 });
 
 addRuntimeMessageListener(contentBlockingRuntime.handleRuntimeMessage);
-chrome.tabs.onUpdated.addListener(contentBlockingRuntime.handleTabUpdated);
-chrome.tabs.onRemoved.addListener(contentBlockingRuntime.handleTabRemoved);
+addTabUpdatedListener(contentBlockingRuntime.handleTabUpdated);
+addTabRemovedListener(contentBlockingRuntime.handleTabRemoved);
 
 initializeDefaultSettings();
 initializeIntentCoherence();

@@ -12,6 +12,7 @@ Version 1.6.1:
 - moved Pomodoro idle-state detection behind a Chrome idle platform wrapper
 - moved background Pomodoro tab notifications behind the Chrome tabs platform wrapper
 - moved background and popup runtime lifecycle/helpers behind a Chrome runtime platform wrapper
+- moved toolbar, tab lifecycle, webNavigation, and window-focus listener registration behind Chrome platform wrappers
 - moved user-triggered export downloads behind a Chrome platform wrapper and added a playbook guard against raw `chrome.downloads` use in the options export flow
 - moved options-page background diagnostic and Pomodoro messages behind a Chrome runtime-message platform wrapper
 - moved popup tab query, tab messaging, tab update, and tab creation through a Chrome tabs platform wrapper

@@ -10,41 +10,46 @@ import {
   recordNavigationTransition,
   recordRemovedTab
 } from './tabs.js';
+import {
+  addCommittedNavigationListener,
+  addHistoryStateUpdatedNavigationListener
+} from '../../../platform/chrome/navigation.js';
+import {
+  addTabActivatedListener,
+  addTabCreatedListener,
+  addTabRemovedListener
+} from '../../../platform/chrome/tabs.js';
 
 export function initializeIntentCoherence() {
   registerIntentRuntimeMessages();
 
-  chrome.tabs.onActivated.addListener(activeInfo => {
+  addTabActivatedListener(activeInfo => {
     recordActiveTab(activeInfo.tabId).catch(error => {
       console.error('Failed to record active tab:', error);
     });
   });
 
-  chrome.tabs.onCreated.addListener(tab => {
+  addTabCreatedListener(tab => {
     recordCreatedTab(tab).catch(error => {
       console.error('Failed to record created tab lineage:', error);
     });
   });
 
-  chrome.tabs.onRemoved.addListener(tabId => {
+  addTabRemovedListener(tabId => {
     recordRemovedTab(tabId).catch(error => {
       console.error('Failed to remove tab lineage:', error);
     });
   });
 
-  if (chrome.webNavigation?.onCommitted) {
-    chrome.webNavigation.onCommitted.addListener(details => {
-      recordNavigationTransition(details, 'committed').catch(error => {
-        console.error('Failed to record navigation transition:', error);
-      });
+  addCommittedNavigationListener(details => {
+    recordNavigationTransition(details, 'committed').catch(error => {
+      console.error('Failed to record navigation transition:', error);
     });
-  }
+  });
 
-  if (chrome.webNavigation?.onHistoryStateUpdated) {
-    chrome.webNavigation.onHistoryStateUpdated.addListener(details => {
-      recordNavigationTransition(details, 'historyState').catch(error => {
-        console.error('Failed to record history navigation transition:', error);
-      });
+  addHistoryStateUpdatedNavigationListener(details => {
+    recordNavigationTransition(details, 'historyState').catch(error => {
+      console.error('Failed to record history navigation transition:', error);
     });
-  }
+  });
 }
