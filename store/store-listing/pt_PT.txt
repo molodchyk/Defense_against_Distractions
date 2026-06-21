@@ -1,5 +1,3 @@
-Defense Against Distractions ajuda-o a manter o foco quando o bloqueio simples de websites não é suficiente.
-
 A maioria das extensões de foco bloqueia websites inteiros. Isso é útil, mas a internet é mais complexa. O mesmo website pode ser útil num momento e distrair noutro. Uma página de pesquisa, ferramenta de chat, fórum, site de vídeos ou assistente de IA pode apoiar trabalho real, mas também pode tornar-se uma porta para notícias, jogos, drama, vídeos e outras armadilhas de atenção.
 
 Defense Against Distractions dá-lhe controlo mais preciso.

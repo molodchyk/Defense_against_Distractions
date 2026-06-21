@@ -1,5 +1,3 @@
-Defense Against Distractions, basit web sitesi engellemenin yeterli olmadığı durumlarda odaklanmanıza yardımcı olur.
-
 Çoğu odak eklentisi tüm web sitelerini engeller. Bu faydalıdır, ancak internet bundan daha karmaşıktır. Aynı site bir anda yararlı, başka bir anda dikkat dağıtıcı olabilir. Bir arama sayfası, sohbet aracı, forum, video sitesi veya AI asistanı gerçek çalışmayı destekleyebilir, ama aynı zamanda haberler, oyunlar, drama, videolar ve diğer dikkat tuzaklarına açılan bir kapı da olabilir.
 
 Defense Against Distractions size daha hassas kontrol sağlar.

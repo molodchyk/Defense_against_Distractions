@@ -1,5 +1,3 @@
-La defensa contra les distraccions us ajuda a mantenir-vos concentrat quan no n'hi ha prou amb un simple bloqueig de llocs web.
-
 La majoria de les extensions de focus bloquegen llocs web sencers. Això és útil, però Internet és més desordenat que això. El mateix lloc web pot ser útil en un moment i distreure en un altre. Una pàgina de cerca, una eina de xat, un fòrum, un lloc de vídeos o un assistent d'IA poden donar suport al treball real, però també pot esdevenir una porta a notícies, jocs, drama, vídeos i altres trampes d'atenció.
 
 La defensa contra les distraccions us ofereix un control més precís.

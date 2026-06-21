@@ -1,5 +1,3 @@
-Defense Against Distractions hjälper dig att hålla fokus när enkel webbplatsblockering inte räcker.
-
 De flesta fokus-tillägg blockerar hela webbplatser. Det är användbart, men internet är stökigare än så. Samma webbplats kan vara hjälpsam i ett ögonblick och distraherande i ett annat. En söksida, ett chattverktyg, ett forum, en videosajt eller en AI-assistent kan stödja riktigt arbete, men också bli en väg in till nyheter, spel, drama, videor och andra uppmärksamhetsfällor.
 
 Defense Against Distractions ger dig mer exakt kontroll.

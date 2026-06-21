@@ -1,5 +1,3 @@
-Defense Against Distractions pomaga zachować skupienie, gdy proste blokowanie stron internetowych nie wystarcza.
-
 Większość rozszerzeń do skupienia blokuje całe witryny. To przydatne, ale internet jest bardziej złożony. Ta sama strona może w jednej chwili pomagać, a w innej rozpraszać. Strona wyszukiwania, narzędzie czatu, forum, serwis wideo lub asystent AI mogą wspierać prawdziwą pracę, ale mogą też stać się wejściem do wiadomości, gier, dram, filmów i innych pułapek uwagi.
 
 Defense Against Distractions daje bardziej precyzyjną kontrolę.

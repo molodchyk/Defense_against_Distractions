@@ -18,6 +18,7 @@ Use this checklist before publishing a new extension release.
 - Run `npm run verify:release`.
 - Confirm `dist/Defense_against_Distractions-vX.Y.Z-extension.zip` exists.
 - Confirm `dist/Defense_against_Distractions-vX.Y.Z-source.zip` exists.
+- Confirm `dist/` does not contain package zips for older versions.
 
 ## Extension Package
 
@@ -98,6 +99,7 @@ Use this checklist before publishing a new extension release.
 
 - Use the English store listing from `store/store-listing/en.txt`.
 - Confirm every `_locales` language has a matching plain-text store listing in `store/store-listing/`.
+- Confirm store listing files are direct body text and do not start with a title, field label, or extension name.
 - Confirm every locale `messages.json` has the same keys and placeholders as `_locales/en/messages.json`.
 - Review `docs/localization.md` before changing locale folders or store listing locale files.
 - Use screenshots from `store/screenshots/`.

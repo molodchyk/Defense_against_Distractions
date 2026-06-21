@@ -1,5 +1,3 @@
-Defense Against Distractions pomaže vam ostati usredotočeni kada jednostavno blokiranje web stranica nije dovoljno.
-
 Većina proširenja za fokus blokira cijele web stranice. To je korisno, ali internet je složeniji. Ista stranica može u jednom trenutku biti korisna, a u drugom ometajuća. Stranica za pretraživanje, chat alat, forum, video stranica ili AI asistent mogu podržati stvaran rad, ali mogu postati i ulaz u vijesti, igre, dramu, videozapise i druge zamke za pažnju.
 
 Defense Against Distractions daje vam precizniju kontrolu.

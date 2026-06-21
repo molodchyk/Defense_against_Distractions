@@ -1,5 +1,3 @@
-Tinutulungan ka ng Defense Against Distractions na manatiling nakatutok kapag hindi sapat ang simpleng pag-block sa website.
-
 Bina-block ng karamihan sa mga extension ng focus ang buong website. Iyan ay kapaki-pakinabang, ngunit ang internet ay mas magulo kaysa doon. Ang parehong website ay maaaring makatulong sa isang sandali at nakakagambala sa isa pa. Maaaring suportahan ng page sa paghahanap, tool sa pakikipag-chat, forum, video site, o AI assistant ang totoong trabaho, ngunit maaari rin itong maging pintuan sa mga balita, laro, drama, video, at iba pang mga bitag ng atensyon.
 
 Ang Defense Against Distractions ay nagbibigay sa iyo ng mas tumpak na kontrol.

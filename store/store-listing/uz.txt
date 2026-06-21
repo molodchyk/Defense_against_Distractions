@@ -1,5 +1,3 @@
-Chalg'itadigan narsalarga qarshi himoya veb-saytni oddiy blokirovka qilish etarli bo'lmaganda diqqatni jamlashga yordam beradi.
-
 Aksariyat fokusli kengaytmalar butun veb-saytlarni bloklaydi. Bu foydali, lekin internet bundan ham chalkashroq. Xuddi shu veb-sayt bir lahzada foydali bo'lishi mumkin va boshqasida chalg'itishi mumkin. Qidiruv sahifasi, chat vositasi, forum, video sayti yoki AI yordamchisi haqiqiy ishni qo'llab-quvvatlashi mumkin, ammo u yangiliklar, o'yinlar, dramalar, videolar va boshqa diqqatni jalb qilish uchun eshik bo'lishi mumkin.
 
 Chalg'itadigan narsalarga qarshi himoya sizga aniqroq nazoratni beradi.

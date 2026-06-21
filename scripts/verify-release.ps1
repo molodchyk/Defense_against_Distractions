@@ -195,6 +195,18 @@ foreach ($resourceGroup in $manifest.web_accessible_resources) {
 $extensionEntries = Get-ZipEntries -ZipPath $extensionZipPath
 $sourceEntries = Get-ZipEntries -ZipPath $sourceZipPath
 
+$expectedZipNames = @(
+  "$releaseName-extension.zip",
+  "$releaseName-source.zip"
+)
+$actualZipNames = @(Get-ChildItem -LiteralPath $distPath -File -Filter "*.zip" | ForEach-Object { $_.Name })
+foreach ($zipName in $actualZipNames) {
+  Assert-Condition ($expectedZipNames -contains $zipName) "dist contains a stale or unexpected package zip: $zipName"
+}
+foreach ($zipName in $expectedZipNames) {
+  Assert-Condition ($actualZipNames -contains $zipName) "dist is missing expected package zip: $zipName"
+}
+
 $requiredExtensionEntries = @(
   "manifest.json",
   "src/blocked.html",
@@ -271,7 +283,11 @@ foreach ($localeDirectory in $localeDirectories) {
   Assert-Condition (Test-Path -LiteralPath $localeListingPath) "Missing store listing for locale: $($localeDirectory.Name)"
 
   $storeListing = Get-Content -LiteralPath $localeListingPath -Raw
+  $firstStoreListingLine = ($storeListing -split "\r?\n" | ForEach-Object { $_.Trim() } | Where-Object { $_ } | Select-Object -First 1)
   Assert-Condition ($storeListing -notmatch "[#*\[\]]") "Store listing should stay plain text, not Markdown-formatted text: $($localeDirectory.Name).txt"
+  Assert-Condition ($null -ne $firstStoreListingLine -and $firstStoreListingLine.Length -gt 0) "Store listing should not be empty: $($localeDirectory.Name).txt"
+  Assert-Condition ($firstStoreListingLine -notmatch "^(?i:defen[sc]e against distractions)\b") "Store listing should not start with the extension name: $($localeDirectory.Name).txt"
+  Assert-Condition ($firstStoreListingLine -notmatch "^(?i:name|summary|description|detailed description)\s*:") "Store listing should not start with a Chrome Web Store field label: $($localeDirectory.Name).txt"
   Assert-Condition ($storeListing -match "https://github.com/molodchyk/Defense_against_Distractions") "Store listing is missing project URL: $($localeDirectory.Name).txt"
   Assert-Condition ($storeListing -match "GPL-3\.0") "Store listing is missing GPL-3.0 license disclosure: $($localeDirectory.Name).txt"
 }

@@ -1,5 +1,3 @@
-Diqqəti yayındırmağa qarşı müdafiə veb saytın sadə bloklanması kifayət etmədikdə diqqətinizi cəmləşdirməyə kömək edir.
-
 Əksər fokus uzantıları bütün veb saytları bloklayır. Bu faydalıdır, amma internet bundan daha qarışıqdır. Eyni veb sayt bir anda faydalı ola bilər, digərində diqqəti yayındıra bilər. Axtarış səhifəsi, söhbət aləti, forum, video saytı və ya süni intellekt köməkçisi real işi dəstəkləyə bilər, eyni zamanda xəbərlərə, oyunlara, dramlara, videolara və digər diqqət tələlərinə qapı ola bilər.
 
 Diqqət yayındıranlara qarşı müdafiə sizə daha dəqiq nəzarət imkanı verir.

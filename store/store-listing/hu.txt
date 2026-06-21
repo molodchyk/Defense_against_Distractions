@@ -1,5 +1,3 @@
-A Defense Against Distractions segít fókuszban maradni, amikor az egyszerű webhelyblokkolás már nem elég.
-
 A legtöbb fókuszáló bővítmény teljes webhelyeket blokkol. Ez hasznos, de az internet ennél bonyolultabb. Ugyanaz a webhely az egyik pillanatban hasznos, a másikban zavaró lehet. Egy keresőoldal, csevegőeszköz, fórum, videóoldal vagy AI-asszisztens támogathatja a valódi munkát, de átjáróvá is válhat hírekhez, játékokhoz, drámához, videókhoz és más figyelemcsapdákhoz.
 
 A Defense Against Distractions pontosabb irányítást ad.

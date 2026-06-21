@@ -1,5 +1,3 @@
-Defense Against Distractions vám pomůže zůstat soustředění, když jednoduché blokování webů nestačí.
-
 Většina rozšíření pro soustředění blokuje celé weby. To je užitečné, ale internet je složitější. Stejný web může být v jednu chvíli užitečný a jindy rušivý. Vyhledávání, chatovací nástroj, fórum, video web nebo AI asistent mohou podporovat skutečnou práci, ale mohou se také stát branou ke zprávám, hrám, dramatu, videím a dalším pastem na pozornost.
 
 Defense Against Distractions vám dává přesnější kontrolu.

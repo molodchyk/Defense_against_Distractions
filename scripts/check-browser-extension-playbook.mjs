@@ -110,6 +110,13 @@ function hasAll(text, patterns) {
   return patterns.every(pattern => pattern.test(text));
 }
 
+function getFirstNonEmptyLine(text) {
+  return text
+    .split(/\r?\n/)
+    .map(line => line.trim())
+    .find(Boolean) || '';
+}
+
 function getBracketBlock(text, blockName) {
   const blockMarker = `[${blockName}]`;
   const start = text.indexOf(blockMarker);
@@ -311,7 +318,19 @@ for (const locale of locales) {
   }
 
   const listing = await readText(listingPath);
+  const firstLine = getFirstNonEmptyLine(listing);
+
   assertCondition(!/[#*\[\]]/.test(listing), `${listingPath} must remain plain text, not Markdown.`);
+  assertCondition(firstLine.length > 0, `${listingPath} must not be empty.`);
+  assertCondition(!/^#/.test(firstLine), `${listingPath} must not start with a Markdown heading.`);
+  assertCondition(
+    !/^(name|summary|description|detailed description)\s*:/i.test(firstLine),
+    `${listingPath} must not start with a Chrome Web Store field label.`
+  );
+  assertCondition(
+    !/^(defen[sc]e against distractions)\b/i.test(firstLine),
+    `${listingPath} must not start with the extension name.`
+  );
   assertCondition(listing.includes(repositoryUrl), `${listingPath} must include the GitHub URL.`);
   assertCondition(/GPL-3\.0/.test(listing), `${listingPath} must include GPL-3.0 license disclosure.`);
   assertCondition(!/buymeacoffee|patreon/i.test(listing), `${listingPath} must not include donation links.`);

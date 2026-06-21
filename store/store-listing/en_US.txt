@@ -1,5 +1,3 @@
-Defense Against Distractions helps you stay focused when simple website blocking is not enough.
-
 Most focus extensions block whole websites. That is useful, but the internet is messier than that. The same website can be helpful in one moment and distracting in another. A search page, chat tool, forum, video site, or AI assistant can support real work, but it can also become a doorway into news, games, drama, videos, and other attention traps.
 
 Defense Against Distractions gives you more precise control.

@@ -1,5 +1,3 @@
-Distrakzioen aurkako defentsak arreta jartzen laguntzen dizu webguneen blokeo soila nahikoa ez denean.
-
 Foku-luzapen gehienek webgune osoak blokeatzen dituzte. Hori erabilgarria da, baina Internet hori baino nahasiagoa da. Webgune bera lagungarria izan daiteke une batean eta beste batean distraitzen duena. Bilaketa-orri batek, txat-tresnak, foroak, bideo-guneak edo AI-ren laguntzaileak benetako lana onar dezake, baina albiste, joko, drama, bideo eta beste arreta-tranpa batzuetarako ate bihur daiteke.
 
 Distrakzioen aurkako defentsak kontrol zehatzagoa ematen dizu.

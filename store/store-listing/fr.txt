@@ -1,5 +1,3 @@
-Defense Against Distractions vous aide à rester concentré lorsque le simple blocage de sites web ne suffit pas.
-
 La plupart des extensions de concentration bloquent des sites entiers. C’est utile, mais Internet est plus compliqué que cela. Le même site peut être utile à un moment et distrayant à un autre. Une page de recherche, un outil de chat, un forum, un site vidéo ou un assistant IA peut soutenir un vrai travail, mais aussi devenir une porte d’entrée vers les actualités, les jeux, les drames, les vidéos et d’autres pièges à attention.
 
 Defense Against Distractions vous donne un contrôle plus précis.
