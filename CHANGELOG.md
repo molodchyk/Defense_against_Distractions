@@ -9,6 +9,7 @@ Version 1.6.1:
 - added a manifest permission audit that maps each permission and host-access surface to its feature owner and removal trigger
 - added static extension-surface localization verification for visible HTML text and accessible labels
 - moved background schedule and Pomodoro alarm handling behind a Chrome alarms platform wrapper
+- moved Pomodoro idle-state detection behind a Chrome idle platform wrapper
 - moved user-triggered export downloads behind a Chrome platform wrapper and added a playbook guard against raw `chrome.downloads` use in the options export flow
 - moved options-page background diagnostic and Pomodoro messages behind a Chrome runtime-message platform wrapper
 - moved popup tab query, tab messaging, tab update, and tab creation through a Chrome tabs platform wrapper

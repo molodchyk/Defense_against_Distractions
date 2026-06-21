@@ -156,6 +156,7 @@ assertCondition(await exists('scripts/check-static-localization.mjs'), 'Missing 
 assertCondition(await exists('scripts/check-unpacked-extension-load.ps1'), 'Missing unpacked extension browser-load smoke script.');
 assertCondition(await exists('src/platform/chrome/alarms.js'), 'Missing Chrome alarms platform wrapper.');
 assertCondition(await exists('src/platform/chrome/downloads.js'), 'Missing Chrome downloads platform wrapper.');
+assertCondition(await exists('src/platform/chrome/idle.js'), 'Missing Chrome idle platform wrapper.');
 assertCondition(await exists('src/platform/chrome/runtimeMessages.js'), 'Missing Chrome runtime-message platform wrapper.');
 assertCondition(await exists('src/platform/chrome/tabs.js'), 'Missing Chrome tabs platform wrapper.');
 
@@ -179,6 +180,7 @@ const [
   decisionRecords,
   alarmsWrapper,
   downloadsWrapper,
+  idleWrapper,
   runtimeMessagesWrapper,
   tabsWrapper,
   pomodoroChromeStorageModule,
@@ -211,6 +213,7 @@ const [
   readText('docs/decision-records.md'),
   readText('src/platform/chrome/alarms.js'),
   readText('src/platform/chrome/downloads.js'),
+  readText('src/platform/chrome/idle.js'),
   readText('src/platform/chrome/runtimeMessages.js'),
   readText('src/platform/chrome/tabs.js'),
   readText('src/js/background/pomodoro/chromeStorage.js'),
@@ -360,6 +363,8 @@ assertCondition(
 
 assertCondition(/chrome\.alarms\.create/.test(alarmsWrapper) && /chrome\.alarms\.clear/.test(alarmsWrapper) && /chrome\.alarms\.onAlarm/.test(alarmsWrapper) && /runtime\.lastError/.test(alarmsWrapper), 'Chrome alarms platform wrapper must own chrome.alarms create/clear/listener and runtime.lastError handling.');
 assertCondition([pomodoroChromeStorageModule, pomodoroInitializerModule, scheduleMonitorModule].every(text => /platform\/chrome\/alarms\.js/.test(text) && !/chrome\.alarms\./.test(text)), 'Background Pomodoro and schedule monitor modules must use the alarms platform wrapper instead of raw chrome.alarms callbacks.');
+assertCondition(/chrome\.idle/.test(idleWrapper) && /setDetectionInterval/.test(idleWrapper) && /onStateChanged/.test(idleWrapper) && /queryState/.test(idleWrapper), 'Chrome idle platform wrapper must own idle detection interval, listener, and initial state query.');
+assertCondition(/platform\/chrome\/idle\.js/.test(pomodoroInitializerModule) && !/chrome\.idle/.test(pomodoroInitializerModule), 'Background Pomodoro initializer must use the idle platform wrapper instead of raw chrome.idle calls.');
 assertCondition(
   /chrome\.downloads\.download/.test(downloadsWrapper)
     && /runtime\.lastError/.test(downloadsWrapper),

@@ -3,6 +3,12 @@
 
 import { PLANS_STORAGE_KEY } from '../../shared/plans.js';
 import { addAlarmListener } from '../../../platform/chrome/alarms.js';
+import {
+  addIdleStateChangeListener,
+  hasIdleApi,
+  queryIdleState,
+  setIdleDetectionInterval
+} from '../../../platform/chrome/idle.js';
 import { addStorageChangeListener } from '../../../platform/chrome/storage.js';
 import { POMODORO_IDLE_DETECTION_SECONDS } from '../../shared/pomodoro.js';
 import { POMODORO_ALARM_NAME } from './constants.js';
@@ -23,13 +29,13 @@ function handleSystemStateChange(systemState) {
 }
 
 function initializeSystemIdleDetection() {
-  if (!chrome.idle) {
+  if (!hasIdleApi()) {
     return;
   }
 
-  chrome.idle.setDetectionInterval(POMODORO_IDLE_DETECTION_SECONDS);
-  chrome.idle.onStateChanged.addListener(handleSystemStateChange);
-  chrome.idle.queryState(POMODORO_IDLE_DETECTION_SECONDS, handleSystemStateChange);
+  setIdleDetectionInterval(POMODORO_IDLE_DETECTION_SECONDS);
+  addIdleStateChangeListener(handleSystemStateChange);
+  queryIdleState(POMODORO_IDLE_DETECTION_SECONDS, handleSystemStateChange);
 }
 
 function respondAsync(sendResponse, action) {

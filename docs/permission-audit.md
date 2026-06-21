@@ -35,7 +35,7 @@ This document records why each current manifest permission and broad content-scr
 ### `idle`
 
 - Feature owner: plan-owned Pomodoro rest-credit timing.
-- API evidence: `src/js/background/pomodoro/initializer.js`.
+- API evidence: `src/platform/chrome/idle.js`, used by `src/js/background/pomodoro/initializer.js`.
 - Why retained: DaD needs local active/idle/locked state to distinguish screen work from away time and to credit locked or idle time toward required rest.
 - Removal trigger: remove if Pomodoro rest credit stops using browser idle/locked state.
 
