@@ -237,6 +237,25 @@ assertCondition(
   'LICENSE must contain GPLv3 text.'
 );
 
+const englishDescription = englishMessages.description?.message || '';
+assertCondition(manifest.description === '__MSG_description__', 'Manifest description must use the localized description message.');
+assertCondition(
+  englishDescription.length > 0 && englishDescription.length <= 132,
+  'English manifest description must be present and fit Chrome Web Store summary length.'
+);
+assertCondition(
+  /plans/i.test(englishDescription)
+    && /block pages/i.test(englishDescription)
+    && /Pomodoro/i.test(englishDescription)
+    && /intent coherence/i.test(englishDescription)
+    && /UI cleanup/i.test(englishDescription),
+  'English manifest description must summarize the current plan-based protection model.'
+);
+assertCondition(
+  !/block websites|websites based on the text|whole websites/i.test(englishDescription),
+  'English manifest description must not use retired website-only wording.'
+);
+
 if (await exists('dist')) {
   const distEntries = await getDirectoryEntries('dist');
   const distDirectories = distEntries.filter((entry) => entry.isDirectory);
