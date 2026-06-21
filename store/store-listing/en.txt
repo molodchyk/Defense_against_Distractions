@@ -2,15 +2,15 @@ Most focus extensions block whole websites. That is useful, but the internet is 
 
 Defense Against Distractions gives you more precise control.
 
-Instead of only blocking by URL, you can block pages based on the words and phrases that appear on them. Create groups of websites, add keywords or phrases, assign scores, and let the extension block the page when the distraction score crosses your configured threshold.
+Instead of only blocking by URL, you can create plans with website entries, keywords or phrases, weighted scores, allowed websites, schedules, Pomodoro rules, intent-coherence settings, and optional UI cleanup. When a matching page crosses the configured distraction score, the extension blocks it.
 
 You can use it to protect study sessions, work blocks, exam preparation, research time, or any situation where you want the browser to stay useful without becoming a detour.
 
 Main features:
 
 Block pages by keywords, phrases, and weighted scores.
-Organize different focus rules into website and keyword groups.
-Use locked schedules, whitelists, password protection, export/import, UI modes, and UI element hiding to keep the setup practical.
+Organize different focus contexts into plans.
+Use locked schedules, allowed websites, password protection, export/import, UI modes, Pomodoro, intent coherence, and UI element hiding to keep the setup practical.
 
 What is new in version 1.6:
 Pomodoro now counts idle and locked time toward required rest.

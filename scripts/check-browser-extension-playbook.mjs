@@ -451,6 +451,7 @@ const storageKeyFamilies = [
   'lastAttempt',
   'debugLogging'
 ];
+const englishStoreListingLocales = new Set(['en', 'en_AU', 'en_GB', 'en_US']);
 
 for (const storageKeyFamily of storageKeyFamilies) {
   assertCondition(
@@ -505,6 +506,17 @@ for (const locale of locales) {
   assertCondition(listing.includes(repositoryUrl), `${listingPath} must include the GitHub URL.`);
   assertCondition(/GPL-3\.0/.test(listing), `${listingPath} must include GPL-3.0 license disclosure.`);
   assertCondition(!/buymeacoffee|patreon/i.test(listing), `${listingPath} must not include donation links.`);
+
+  if (englishStoreListingLocales.has(locale)) {
+    assertCondition(
+      /plans/i.test(listing) && /allowed websites/i.test(listing) && /intent coherence/i.test(listing),
+      `${listingPath} must describe the current plan-based UI model.`
+    );
+    assertCondition(
+      !/create groups of websites|website and keyword groups|whitelists/i.test(listing),
+      `${listingPath} must not use retired group or whitelist wording.`
+    );
+  }
 }
 
 if (failures.length === 0) {
