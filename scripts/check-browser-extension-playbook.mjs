@@ -208,6 +208,18 @@ assertCondition(
   'README must cover product goal, load-unpacked steps, checks, privacy, support, license, and source URL.'
 );
 
+const privacySectionIndex = readme.search(/^## Privacy$/m);
+const licenseSectionIndex = readme.search(/^## License$/m);
+const sourceLineIndex = readme.indexOf(`Source: ${repositoryUrl}`);
+const supportSectionIndex = readme.search(/^## Support$/m);
+assertCondition(
+  privacySectionIndex !== -1
+    && licenseSectionIndex > privacySectionIndex
+    && sourceLineIndex > licenseSectionIndex
+    && supportSectionIndex > sourceLineIndex,
+  'README Support block must appear after the Privacy and License/source sections.'
+);
+
 for (const permission of manifestPermissions) {
   assertCondition(
     manifest.permissions.includes(permission),

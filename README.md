@@ -97,15 +97,15 @@ Bug reports, ideas, and pull requests are welcome. If you find an issue, please 
 
 For code changes, keep the extension behavior focused: improve clarity, reliability, and maintainability without expanding permissions unless there is a strong reason.
 
+## License
+
+Licensed under GPL-3.0-only. See [LICENSE](LICENSE).
+
+Source: https://github.com/molodchyk/Defense_against_Distractions
+
 ## Support
 
 If this extension saves you time and you want to support its development:
 
 [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-support-FFDD00?logo=buymeacoffee&logoColor=000)](https://buymeacoffee.com/molodchyk)
 [![Patreon](https://img.shields.io/badge/Patreon-support-F96854?logo=patreon&logoColor=fff)](https://www.patreon.com/OMolodchyk)
-
-## License
-
-Licensed under GPL-3.0-only. See [LICENSE](LICENSE).
-
-Source: https://github.com/molodchyk/Defense_against_Distractions
