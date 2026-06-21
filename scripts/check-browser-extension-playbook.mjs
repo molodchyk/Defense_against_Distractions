@@ -117,6 +117,39 @@ async function getDirectoryEntries(relativePath) {
   }));
 }
 
+async function getPngDimensions(relativePath) {
+  try {
+    const buffer = await readFile(path.join(rootDir, relativePath));
+    const pngSignature = Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]);
+    const hasPngSignature = buffer.length >= 24 && buffer.subarray(0, 8).equals(pngSignature);
+
+    if (!hasPngSignature) {
+      failures.push(`${relativePath} must be a valid PNG file.`);
+      return null;
+    }
+
+    return {
+      width: buffer.readUInt32BE(16),
+      height: buffer.readUInt32BE(20)
+    };
+  } catch {
+    failures.push(`Missing or unreadable PNG file: ${relativePath}`);
+    return null;
+  }
+}
+
+async function assertPngDimensions(relativePath, expectedWidth, expectedHeight) {
+  const dimensions = await getPngDimensions(relativePath);
+  if (!dimensions) {
+    return;
+  }
+
+  assertCondition(
+    dimensions.width === expectedWidth && dimensions.height === expectedHeight,
+    `${relativePath} must be ${expectedWidth}x${expectedHeight}, got ${dimensions.width}x${dimensions.height}.`
+  );
+}
+
 function hasAll(text, patterns) {
   return patterns.every(pattern => pattern.test(text));
 }
@@ -327,6 +360,32 @@ for (const iconPath of Object.values(manifest.action?.default_icon || {})) {
     `Action icon path should live under assets/icons/: ${iconPath}`
   );
 }
+
+const expectedIconDimensions = new Map([
+  ['assets/icons/extension-icon-16.png', 16],
+  ['assets/icons/extension-icon-32.png', 32],
+  ['assets/icons/extension-icon-48.png', 48],
+  ['assets/icons/extension-icon-64.png', 64],
+  ['assets/icons/extension-icon-128.png', 128]
+]);
+
+for (const [iconPath, expectedSize] of expectedIconDimensions) {
+  await assertPngDimensions(iconPath, expectedSize, expectedSize);
+}
+
+const screenshotEntries = await getDirectoryEntries('store/screenshots');
+const screenshotPngs = screenshotEntries
+  .filter((entry) => entry.isFile && entry.name.endsWith('.png'))
+  .map((entry) => `store/screenshots/${entry.name}`)
+  .sort((left, right) => left.localeCompare(right));
+
+assertCondition(screenshotPngs.length === 5, 'Store screenshots folder must contain exactly 5 PNG screenshots.');
+for (const screenshotPath of screenshotPngs) {
+  await assertPngDimensions(screenshotPath, 1280, 800);
+}
+
+await assertPngDimensions('store/promo/small-promo-440x280.png', 440, 280);
+await assertPngDimensions('store/promo/marquee-promo-1400x560.png', 1400, 560);
 
 assertCondition(/Host access through content scripts/i.test(privacy), 'PRIVACY.md must explain host/content-script access.');
 assertCondition(/chrome\.storage\.sync/.test(privacy), 'PRIVACY.md must mention sync storage.');
