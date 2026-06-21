@@ -11,13 +11,52 @@ $version = $manifest.version
 $releaseName = "Defense_against_Distractions-v$version"
 
 $distPath = Join-Path $projectRoot $OutputDirectory
-$extensionStagePath = Join-Path $distPath "extension"
-$sourceStagePath = Join-Path $distPath "source"
 $extensionZipPath = Join-Path $distPath "$releaseName-extension.zip"
 $sourceZipPath = Join-Path $distPath "$releaseName-source.zip"
+$stageRootPath = Join-Path ([System.IO.Path]::GetTempPath()) "dad-package-stage-$([System.Guid]::NewGuid().ToString("N"))"
+$extensionStagePath = Join-Path $stageRootPath "extension"
+$sourceStagePath = Join-Path $stageRootPath "source"
+
+function Assert-GeneratedProjectPath {
+  param([string]$Path)
+
+  $resolvedProjectRoot = [System.IO.Path]::GetFullPath("$projectRoot\")
+  $resolvedPath = [System.IO.Path]::GetFullPath($Path)
+
+  if (!$resolvedPath.StartsWith($resolvedProjectRoot, [System.StringComparison]::OrdinalIgnoreCase)) {
+    throw "Refusing to reset a generated path outside the project root: $resolvedPath"
+  }
+}
+
+function Remove-TemporaryDirectory {
+  param(
+    [string]$Path,
+    [string]$ExpectedPrefix
+  )
+
+  if (!(Test-Path -LiteralPath $Path)) {
+    return
+  }
+
+  $tempRoot = [System.IO.Path]::GetFullPath([System.IO.Path]::GetTempPath())
+  $resolvedPath = [System.IO.Path]::GetFullPath($Path)
+  $leaf = Split-Path -Leaf $resolvedPath
+
+  if (!$resolvedPath.StartsWith($tempRoot, [System.StringComparison]::OrdinalIgnoreCase)) {
+    throw "Refusing to remove a temporary directory outside the system temp directory: $resolvedPath"
+  }
+
+  if ($leaf -notlike "$ExpectedPrefix*") {
+    throw "Refusing to remove an unexpected temporary directory: $resolvedPath"
+  }
+
+  Remove-Item -LiteralPath $resolvedPath -Recurse -Force
+}
 
 function Reset-Directory {
   param([string]$Path)
+
+  Assert-GeneratedProjectPath -Path $Path
 
   if (Test-Path -LiteralPath $Path) {
     Remove-Item -LiteralPath $Path -Recurse -Force
@@ -58,8 +97,8 @@ function New-ZipFromDirectory {
 }
 
 Reset-Directory $distPath
-Reset-Directory $extensionStagePath
-Reset-Directory $sourceStagePath
+New-Item -ItemType Directory -Force -Path $extensionStagePath | Out-Null
+New-Item -ItemType Directory -Force -Path $sourceStagePath | Out-Null
 
 $runtimeFiles = @(
   "manifest.json",
@@ -97,16 +136,21 @@ $sourceFiles = @(
   "_locales"
 )
 
-foreach ($item in $runtimeFiles) {
-  Copy-ProjectItem -RelativePath $item -DestinationRoot $extensionStagePath
-}
+try {
+  foreach ($item in $runtimeFiles) {
+    Copy-ProjectItem -RelativePath $item -DestinationRoot $extensionStagePath
+  }
 
-foreach ($item in $sourceFiles) {
-  Copy-ProjectItem -RelativePath $item -DestinationRoot $sourceStagePath
-}
+  foreach ($item in $sourceFiles) {
+    Copy-ProjectItem -RelativePath $item -DestinationRoot $sourceStagePath
+  }
 
-New-ZipFromDirectory -SourceDirectory $extensionStagePath -DestinationZip $extensionZipPath
-New-ZipFromDirectory -SourceDirectory $sourceStagePath -DestinationZip $sourceZipPath
+  New-ZipFromDirectory -SourceDirectory $extensionStagePath -DestinationZip $extensionZipPath
+  New-ZipFromDirectory -SourceDirectory $sourceStagePath -DestinationZip $sourceZipPath
+}
+finally {
+  Remove-TemporaryDirectory -Path $stageRootPath -ExpectedPrefix "dad-package-stage-"
+}
 
 Write-Output "Created $extensionZipPath"
 Write-Output "Created $sourceZipPath"

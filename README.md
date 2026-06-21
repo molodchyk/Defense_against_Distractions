@@ -52,9 +52,9 @@ Run `npm run package` to generate release archives in `dist/`:
 - `Defense_against_Distractions-vX.Y.Z-extension.zip` contains only the runtime extension files for loading or store upload.
 - `Defense_against_Distractions-vX.Y.Z-source.zip` contains the source tree, tests, docs, scripts, screenshots, and promotional assets.
 
-Run `npm run verify:playbook` to check README, privacy, license, package metadata, and store-listing alignment against the shared browser-extension playbook. Run `npm run verify:browser-load` after packaging to smoke-test loading the generated unpacked extension in Chrome, Edge, or Chromium. Run `npm run verify:package` after packaging to check the generated runtime output for manifest/import consistency, source-map policy, and remote executable code. Run `npm run verify:release` to check the generated archives and the package gate together. See [Release Readiness](docs/release-readiness.md) for the full automated and manual release gates.
+Run `npm run verify:playbook` to check README, privacy, license, package metadata, and store-listing alignment against the shared browser-extension playbook. Run `npm run verify:browser-load` after packaging to smoke-test loading the generated extension archive in Chrome, Edge, or Chromium. Run `npm run verify:package` after packaging to check the generated runtime archive for manifest/import consistency, source-map policy, and remote executable code. Run `npm run verify:release` to check the generated archives and the package gate together. See [Release Readiness](docs/release-readiness.md) for the full automated and manual release gates.
 
-The `dist/` directory is generated output and is not the source of truth. If a file in `dist/source/` looks stale, rerun `npm run package` instead of editing the generated copy directly.
+The `dist/` directory is generated output and is not the source of truth. It should contain only the current extension and source archive zips after packaging.
 
 Chrome Web Store API release helpers are documented in [Chrome Web Store API](docs/chrome-web-store-api.md). They use environment variables for OAuth credentials and never store CWS secrets in the repository.
 

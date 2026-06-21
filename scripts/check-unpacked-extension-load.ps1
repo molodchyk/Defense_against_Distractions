@@ -31,6 +31,15 @@ function Get-DefaultExtensionPath {
   return $projectRoot
 }
 
+function Get-DefaultExtensionZipPath {
+  $manifestPath = Join-Path $projectRoot "manifest.json"
+  Assert-Condition (Test-Path -LiteralPath $manifestPath) "Project manifest is missing: $manifestPath"
+
+  $manifest = Get-Content -LiteralPath $manifestPath -Raw | ConvertFrom-Json
+  $releaseName = "Defense_against_Distractions-v$($manifest.version)"
+  return Join-Path $projectRoot "dist\$releaseName-extension.zip"
+}
+
 function Resolve-ExtensionRoot {
   param([string]$RequestedPath)
 
@@ -51,6 +60,27 @@ function Resolve-ExtensionRoot {
     Name = $manifest.name
     Version = $manifest.version
   }
+}
+
+function Remove-TemporaryExtensionDirectory {
+  param([string]$Path)
+
+  if ([string]::IsNullOrWhiteSpace($Path) -or !(Test-Path -LiteralPath $Path)) {
+    return
+  }
+
+  $tempRoot = [System.IO.Path]::GetFullPath([System.IO.Path]::GetTempPath())
+  $resolvedPath = [System.IO.Path]::GetFullPath($Path)
+  $leaf = Split-Path -Leaf $resolvedPath
+
+  Assert-Condition `
+    ($resolvedPath.StartsWith($tempRoot, [System.StringComparison]::OrdinalIgnoreCase)) `
+    "Refusing to remove a temporary extension directory outside the system temp directory: $resolvedPath"
+  Assert-Condition `
+    ($leaf -like "dad-unpacked-extension-*") `
+    "Refusing to remove an unexpected temporary extension directory: $resolvedPath"
+
+  Remove-Item -LiteralPath $resolvedPath -Recurse -Force
 }
 
 function Get-BrowserExecutable {
@@ -176,7 +206,29 @@ function Remove-TemporaryProfile {
   throw $lastError
 }
 
-$extension = Resolve-ExtensionRoot -RequestedPath $ExtensionPath
+$extensionPathToLoad = $ExtensionPath
+$temporaryExtensionPath = ""
+
+if ([string]::IsNullOrWhiteSpace($extensionPathToLoad)) {
+  $packagedExtensionPath = Join-Path $projectRoot "dist\extension"
+  $packagedManifestPath = Join-Path $packagedExtensionPath "manifest.json"
+
+  if (Test-Path -LiteralPath $packagedManifestPath) {
+    $extensionPathToLoad = $packagedExtensionPath
+  }
+  else {
+    $extensionZipPath = Get-DefaultExtensionZipPath
+
+    if (Test-Path -LiteralPath $extensionZipPath) {
+      $temporaryExtensionPath = Join-Path ([System.IO.Path]::GetTempPath()) "dad-unpacked-extension-$([System.Guid]::NewGuid().ToString("N"))"
+      New-Item -ItemType Directory -Force -Path $temporaryExtensionPath | Out-Null
+      Expand-Archive -LiteralPath $extensionZipPath -DestinationPath $temporaryExtensionPath -Force
+      $extensionPathToLoad = $temporaryExtensionPath
+    }
+  }
+}
+
+$extension = Resolve-ExtensionRoot -RequestedPath $extensionPathToLoad
 $browser = Get-BrowserExecutable -RequestedPath $BrowserPath
 $profilePath = Join-Path ([System.IO.Path]::GetTempPath()) "dad-unpacked-load-$([System.Guid]::NewGuid().ToString("N"))"
 $profileLeaf = Split-Path -Leaf $profilePath
@@ -224,4 +276,6 @@ finally {
   else {
     Write-Output "Kept temporary browser profile: $profilePath"
   }
+
+  Remove-TemporaryExtensionDirectory -Path $temporaryExtensionPath
 }

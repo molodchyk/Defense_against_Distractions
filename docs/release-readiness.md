@@ -37,7 +37,7 @@ The release verifier checks:
 - Manifest icon, popup, options, background, content-script, and web-accessible resource paths exist.
 - The extension archive contains runtime files required by the manifest.
 - The extension archive excludes docs, tests, scripts, screenshots, promo images, store listing text, and source-only icon files.
-- The `dist/` package zips match the current manifest version and do not include stale version zips.
+- The `dist/` folder contains only current manifest-version package zips, with no stale zips or staging directories.
 - The source archive contains docs, tests, scripts, source files, store assets, README, license, about file, and changelog.
 - The source archive contains StorePilot privacy, category, and additional-field automation documents.
 - The changelog in the source archive matches the root `CHANGELOG.md`.
@@ -45,7 +45,7 @@ The release verifier checks:
 - StorePilot direct listing files do not start with a title, field label, or extension name.
 - The default locale includes `description.message`.
 
-The browser-load smoke check prefers `dist/extension` after packaging and falls back to the project root for development checks. If Chrome, Edge, or Chromium is not discoverable, set `DAD_CHROME_PATH` or pass `-BrowserPath` to `scripts/check-unpacked-extension-load.ps1`.
+The package verifier and browser-load smoke check extract the current extension archive into temporary folders when needed. If Chrome, Edge, or Chromium is not discoverable for browser-load, set `DAD_CHROME_PATH` or pass `-BrowserPath` to `scripts/check-unpacked-extension-load.ps1`.
 
 ## Manual Gates
 

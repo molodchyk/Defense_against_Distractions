@@ -106,6 +106,17 @@ async function getLocaleDirectories() {
   return locales.sort((left, right) => left.localeCompare(right));
 }
 
+async function getDirectoryEntries(relativePath) {
+  const absolutePath = path.join(rootDir, relativePath);
+  const entries = await readdir(absolutePath, { withFileTypes: true });
+
+  return entries.map((entry) => ({
+    isDirectory: entry.isDirectory(),
+    isFile: entry.isFile(),
+    name: entry.name
+  }));
+}
+
 function hasAll(text, patterns) {
   return patterns.every(pattern => pattern.test(text));
 }
@@ -189,6 +200,30 @@ assertCondition(
   licenseText.includes('GNU GENERAL PUBLIC LICENSE') && licenseText.includes('Version 3'),
   'LICENSE must contain GPLv3 text.'
 );
+
+if (await exists('dist')) {
+  const distEntries = await getDirectoryEntries('dist');
+  const distDirectories = distEntries.filter((entry) => entry.isDirectory);
+  const expectedZipNames = [
+    `Defense_against_Distractions-v${manifest.version}-extension.zip`,
+    `Defense_against_Distractions-v${manifest.version}-source.zip`
+  ];
+  const actualZipNames = distEntries
+    .filter((entry) => entry.isFile && entry.name.endsWith('.zip'))
+    .map((entry) => entry.name);
+
+  assertCondition(distDirectories.length === 0, `dist must not contain staging directories: ${distDirectories.map((entry) => entry.name).join(', ')}`);
+
+  for (const zipName of actualZipNames) {
+    assertCondition(expectedZipNames.includes(zipName), `dist contains a stale or unexpected package zip: ${zipName}`);
+  }
+
+  if (actualZipNames.length > 0) {
+    for (const zipName of expectedZipNames) {
+      assertCondition(actualZipNames.includes(zipName), `dist is missing expected current package zip: ${zipName}`);
+    }
+  }
+}
 
 assertCondition(
   hasAll(readme, [

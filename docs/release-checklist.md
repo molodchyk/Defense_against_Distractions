@@ -18,7 +18,7 @@ Use this checklist before publishing a new extension release.
 - Run `npm run verify:release`.
 - Confirm `dist/Defense_against_Distractions-vX.Y.Z-extension.zip` exists.
 - Confirm `dist/Defense_against_Distractions-vX.Y.Z-source.zip` exists.
-- Confirm `dist/` does not contain package zips for older versions.
+- Confirm `dist/` does not contain package zips for older versions or staging directories.
 
 ## Extension Package
 

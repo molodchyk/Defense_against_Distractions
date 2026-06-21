@@ -13,7 +13,6 @@ $packagePath = Join-Path $projectRoot "package.json"
 $packageJson = Get-Content -LiteralPath $packagePath -Raw | ConvertFrom-Json
 
 $distPath = Join-Path $projectRoot $OutputDirectory
-$extensionStagePath = Join-Path $distPath "extension"
 $extensionZipPath = Join-Path $distPath "$releaseName-extension.zip"
 $sourceZipPath = Join-Path $distPath "$releaseName-source.zip"
 
@@ -28,6 +27,30 @@ function Assert-Condition {
   if (!$Condition) {
     throw $Message
   }
+}
+
+function Remove-TemporaryDirectory {
+  param(
+    [string]$Path,
+    [string]$ExpectedPrefix
+  )
+
+  if (!(Test-Path -LiteralPath $Path)) {
+    return
+  }
+
+  $tempRoot = [System.IO.Path]::GetFullPath([System.IO.Path]::GetTempPath())
+  $resolvedPath = [System.IO.Path]::GetFullPath($Path)
+  $leaf = Split-Path -Leaf $resolvedPath
+
+  Assert-Condition `
+    ($resolvedPath.StartsWith($tempRoot, [System.StringComparison]::OrdinalIgnoreCase)) `
+    "Refusing to remove a temporary directory outside the system temp directory: $resolvedPath"
+  Assert-Condition `
+    ($leaf -like "$ExpectedPrefix*") `
+    "Refusing to remove an unexpected temporary directory: $resolvedPath"
+
+  Remove-Item -LiteralPath $resolvedPath -Recurse -Force
 }
 
 function Get-ZipEntries {
@@ -144,8 +167,6 @@ try {
   Assert-Condition ($LASTEXITCODE -eq 0) "Browser extension playbook verification failed"
   node scripts/check-locale-coverage.mjs
   Assert-Condition ($LASTEXITCODE -eq 0) "Locale coverage verification failed"
-  node scripts/check-package-output.mjs --package-root $extensionStagePath --project-root $projectRoot
-  Assert-Condition ($LASTEXITCODE -eq 0) "Package output verification failed"
 }
 finally {
   Pop-Location
@@ -207,6 +228,28 @@ foreach ($zipName in $expectedZipNames) {
   Assert-Condition ($actualZipNames -contains $zipName) "dist is missing expected package zip: $zipName"
 }
 
+$unexpectedDistDirectories = @(Get-ChildItem -LiteralPath $distPath -Directory)
+Assert-Condition ($unexpectedDistDirectories.Count -eq 0) `
+  "dist should contain only current package zip files, but found directory: $($unexpectedDistDirectories[0].Name)"
+
+$temporaryPackageRoot = Join-Path ([System.IO.Path]::GetTempPath()) "dad-release-package-check-$([System.Guid]::NewGuid().ToString("N"))"
+try {
+  New-Item -ItemType Directory -Force -Path $temporaryPackageRoot | Out-Null
+  Expand-Archive -LiteralPath $extensionZipPath -DestinationPath $temporaryPackageRoot -Force
+
+  Push-Location $projectRoot
+  try {
+    node scripts/check-package-output.mjs --package-root $temporaryPackageRoot --project-root $projectRoot
+    Assert-Condition ($LASTEXITCODE -eq 0) "Package output verification failed"
+  }
+  finally {
+    Pop-Location
+  }
+}
+finally {
+  Remove-TemporaryDirectory -Path $temporaryPackageRoot -ExpectedPrefix "dad-release-package-check-"
+}
+
 $requiredExtensionEntries = @(
   "manifest.json",
   "src/blocked.html",
@@ -257,6 +300,7 @@ $requiredSourceEntries = @(
   "README.md",
   "scripts/check-package-output.mjs",
   "scripts/package-extension.ps1",
+  "scripts/verify-package-output.ps1",
   "scripts/verify-release.ps1",
   "store/store-listing/en.txt",
   "assets/icons/extension-icon-source.svg"
