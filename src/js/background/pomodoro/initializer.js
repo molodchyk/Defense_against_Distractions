@@ -9,6 +9,11 @@ import {
   queryIdleState,
   setIdleDetectionInterval
 } from '../../../platform/chrome/idle.js';
+import {
+  addInstalledListener,
+  addRuntimeMessageListener,
+  addStartupListener
+} from '../../../platform/chrome/runtime.js';
 import { addStorageChangeListener } from '../../../platform/chrome/storage.js';
 import { POMODORO_IDLE_DETECTION_SECONDS } from '../../shared/pomodoro.js';
 import { POMODORO_ALARM_NAME } from './constants.js';
@@ -88,7 +93,7 @@ function handlePomodoroMessage(message, sender, sendResponse) {
 export function initializePomodoroRuntime() {
   initializeSystemIdleDetection();
 
-  chrome.runtime.onMessage.addListener(handlePomodoroMessage);
+  addRuntimeMessageListener(handlePomodoroMessage);
 
   addAlarmListener(alarm => {
     if (alarm.name !== POMODORO_ALARM_NAME) {
@@ -100,13 +105,13 @@ export function initializePomodoroRuntime() {
     });
   });
 
-  chrome.runtime.onStartup.addListener(() => {
+  addStartupListener(() => {
     getPomodoroPayload().catch(error => {
       console.error('Failed to restore Pomodoro alarm on startup:', error);
     });
   });
 
-  chrome.runtime.onInstalled.addListener(() => {
+  addInstalledListener(() => {
     getPomodoroPayload().catch(error => {
       console.error('Failed to restore Pomodoro alarm on install:', error);
     });

@@ -2,6 +2,7 @@
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
 import { getSync } from '../../platform/chrome/storage.js';
+import { getExtensionUrl, openOptionsPage } from '../../platform/chrome/runtime.js';
 import { sendRuntimeMessage as sendChromeRuntimeMessage } from '../../platform/chrome/runtimeMessages.js';
 import {
   canCreateTab,
@@ -28,7 +29,7 @@ export async function getSyncStorage(keys) {
 }
 
 export function isExtensionPage(url) {
-  return Boolean(url && url.startsWith(chrome.runtime.getURL('')));
+  return Boolean(url && url.startsWith(getExtensionUrl('')));
 }
 
 export function getOptionsPagePath(panelId = '') {
@@ -37,17 +38,17 @@ export function getOptionsPagePath(panelId = '') {
 }
 
 export function openOptions() {
-  chrome.runtime.openOptionsPage();
+  openOptionsPage();
   window.close();
 }
 
 export function openOptionsPanel(panelId) {
   if (canCreateTab()) {
     createTab({
-      url: chrome.runtime.getURL(getOptionsPagePath(panelId))
-    }).catch(() => chrome.runtime.openOptionsPage());
+      url: getExtensionUrl(getOptionsPagePath(panelId))
+    }).catch(openOptionsPage);
   } else {
-    chrome.runtime.openOptionsPage();
+    openOptionsPage();
   }
   window.close();
 }

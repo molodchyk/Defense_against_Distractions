@@ -4,6 +4,7 @@
 import {
   copyTextToClipboard
 } from './dom.js';
+import { getManifest } from '../../platform/chrome/runtime.js';
 
 export function createPopupDiagnosticsExporter({
   getMessage,
@@ -21,7 +22,7 @@ export function createPopupDiagnosticsExporter({
 
     return {
       generatedAt: new Date().toISOString(),
-      extensionVersion: chrome.runtime.getManifest().version,
+      extensionVersion: getManifest().version,
       activeTab: protectionSnapshot.activeTab,
       protection: protectionSnapshot.protection,
       block: blockDiagnosticsPanel.getDebugState(),

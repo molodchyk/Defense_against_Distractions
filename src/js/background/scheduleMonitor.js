@@ -3,13 +3,14 @@
 
 import { debugLog } from '../shared/logger.js';
 import { createAlarm, addAlarmListener } from '../../platform/chrome/alarms.js';
+import { addInstalledListener, addStartupListener } from '../../platform/chrome/runtime.js';
 import { getSync } from '../../platform/chrome/storage.js';
 
 const SCHEDULE_CHECK_ALARM_NAME = 'scheduleCheck';
 
 export function initializeScheduleMonitor() {
-  chrome.runtime.onStartup.addListener(runScheduleCheck);
-  chrome.runtime.onInstalled.addListener(runScheduleCheck);
+  addStartupListener(runScheduleCheck);
+  addInstalledListener(runScheduleCheck);
   createAlarm(SCHEDULE_CHECK_ALARM_NAME, { periodInMinutes: 1 });
 
   addAlarmListener(alarm => {

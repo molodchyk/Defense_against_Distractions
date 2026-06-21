@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
+import { addInstalledListener, getManifest } from '../../platform/chrome/runtime.js';
 import { getSync, setSync } from '../../platform/chrome/storage.js';
 import {
   RELEASE_BACKUP_NOTICE_ELIGIBLE_KEY,
@@ -10,8 +11,8 @@ import {
 } from '../shared/releaseBackupNotice.js';
 
 export function initializeReleaseBackupNoticeEligibility() {
-  chrome.runtime.onInstalled.addListener(async details => {
-    const currentVersion = chrome.runtime.getManifest().version;
+  addInstalledListener(async details => {
+    const currentVersion = getManifest().version;
     if (details.reason !== 'update' || currentVersion !== RELEASE_BACKUP_NOTICE_VERSION) {
       return;
     }

@@ -157,6 +157,7 @@ assertCondition(await exists('scripts/check-unpacked-extension-load.ps1'), 'Miss
 assertCondition(await exists('src/platform/chrome/alarms.js'), 'Missing Chrome alarms platform wrapper.');
 assertCondition(await exists('src/platform/chrome/downloads.js'), 'Missing Chrome downloads platform wrapper.');
 assertCondition(await exists('src/platform/chrome/idle.js'), 'Missing Chrome idle platform wrapper.');
+assertCondition(await exists('src/platform/chrome/runtime.js'), 'Missing Chrome runtime platform wrapper.');
 assertCondition(await exists('src/platform/chrome/runtimeMessages.js'), 'Missing Chrome runtime-message platform wrapper.');
 assertCondition(await exists('src/platform/chrome/tabs.js'), 'Missing Chrome tabs platform wrapper.');
 const [
@@ -180,14 +181,21 @@ const [
   alarmsWrapper,
   downloadsWrapper,
   idleWrapper,
+  runtimeWrapper,
   runtimeMessagesWrapper,
   tabsWrapper,
+  appBackgroundModule,
+  backgroundDefaultsModule,
   pomodoroChromeStorageModule,
   pomodoroInitializerModule,
   pomodoroNotificationsModule,
+  releaseNoticeModule,
   scheduleMonitorModule,
+  intentMessagesModule,
   passwordManagerModule,
+  popupIndexModule,
   popupChromeModule,
+  popupDiagnosticsExportModule,
   elementPickerLauncherModule,
   storageTransferModule,
   usageStatsModule,
@@ -214,14 +222,21 @@ const [
   readText('src/platform/chrome/alarms.js'),
   readText('src/platform/chrome/downloads.js'),
   readText('src/platform/chrome/idle.js'),
+  readText('src/platform/chrome/runtime.js'),
   readText('src/platform/chrome/runtimeMessages.js'),
   readText('src/platform/chrome/tabs.js'),
+  readText('src/app/background/index.js'),
+  readText('src/js/background/defaults.js'),
   readText('src/js/background/pomodoro/chromeStorage.js'),
   readText('src/js/background/pomodoro/initializer.js'),
   readText('src/js/background/pomodoro/notifications.js'),
+  readText('src/js/background/releaseNotice.js'),
   readText('src/js/background/scheduleMonitor.js'),
+  readText('src/js/background/intent/messages.js'),
   readText('src/js/options/password/manager.js'),
+  readText('src/app/popup/index.js'),
   readText('src/js/popup/chrome.js'),
+  readText('src/js/popup/diagnosticsExport.js'),
   readText('src/js/popup/elementPickerLauncher.js'),
   readText('src/js/options/storageTransfer.js'),
   readText('src/js/options/usageStats.js'),
@@ -353,29 +368,16 @@ assertCondition(
   ]),
   'Permission audit must explain host access, removal triggers, and deliberately unrequested broad permissions.'
 );
-assertCondition(
-  /src\/platform\/chrome\/downloads\.js/.test(permissionAudit),
-  'Permission audit must point downloads permission API evidence at the platform wrapper.'
-);
-assertCondition(
-  /src\/platform\/chrome\/alarms\.js/.test(permissionAudit),
-  'Permission audit must point alarms permission API evidence at the platform wrapper.'
-);
-
+assertCondition(/src\/platform\/chrome\/downloads\.js/.test(permissionAudit), 'Permission audit must point downloads permission API evidence at the platform wrapper.');
+assertCondition(/src\/platform\/chrome\/alarms\.js/.test(permissionAudit), 'Permission audit must point alarms permission API evidence at the platform wrapper.');
 assertCondition(/chrome\.alarms\.create/.test(alarmsWrapper) && /chrome\.alarms\.clear/.test(alarmsWrapper) && /chrome\.alarms\.onAlarm/.test(alarmsWrapper) && /runtime\.lastError/.test(alarmsWrapper), 'Chrome alarms platform wrapper must own chrome.alarms create/clear/listener and runtime.lastError handling.');
 assertCondition([pomodoroChromeStorageModule, pomodoroInitializerModule, scheduleMonitorModule].every(text => /platform\/chrome\/alarms\.js/.test(text) && !/chrome\.alarms\./.test(text)), 'Background Pomodoro and schedule monitor modules must use the alarms platform wrapper instead of raw chrome.alarms callbacks.');
 assertCondition(/chrome\.idle/.test(idleWrapper) && /setDetectionInterval/.test(idleWrapper) && /onStateChanged/.test(idleWrapper) && /queryState/.test(idleWrapper), 'Chrome idle platform wrapper must own idle detection interval, listener, and initial state query.');
 assertCondition(/platform\/chrome\/idle\.js/.test(pomodoroInitializerModule) && !/chrome\.idle/.test(pomodoroInitializerModule), 'Background Pomodoro initializer must use the idle platform wrapper instead of raw chrome.idle calls.');
-assertCondition(
-  /chrome\.downloads\.download/.test(downloadsWrapper)
-    && /runtime\.lastError/.test(downloadsWrapper),
-  'Chrome downloads platform wrapper must own chrome.downloads.download and runtime.lastError handling.'
-);
-assertCondition(
-  /platform\/chrome\/downloads\.js/.test(storageTransferModule)
-    && !/chrome\.downloads\.download/.test(storageTransferModule),
-  'Options storage transfer must use the downloads platform wrapper instead of raw chrome.downloads.download.'
-);
+assertCondition(/chrome\.downloads\.download/.test(downloadsWrapper) && /runtime\.lastError/.test(downloadsWrapper), 'Chrome downloads platform wrapper must own chrome.downloads.download and runtime.lastError handling.');
+assertCondition(/platform\/chrome\/downloads\.js/.test(storageTransferModule) && !/chrome\.downloads\.download/.test(storageTransferModule), 'Options storage transfer must use the downloads platform wrapper instead of raw chrome.downloads.download.');
+assertCondition(/chrome\.runtime\.onInstalled/.test(runtimeWrapper) && /chrome\.runtime\.onStartup/.test(runtimeWrapper) && /chrome\.runtime\.onMessage/.test(runtimeWrapper) && /chrome\.runtime\.getManifest/.test(runtimeWrapper) && /chrome\.runtime\.getURL/.test(runtimeWrapper) && /chrome\.runtime\.openOptionsPage/.test(runtimeWrapper), 'Chrome runtime platform wrapper must own lifecycle listeners, message listeners, manifest, extension URL, and options-page helpers.');
+assertCondition([appBackgroundModule, backgroundDefaultsModule, pomodoroInitializerModule, releaseNoticeModule, scheduleMonitorModule, intentMessagesModule, popupIndexModule, popupChromeModule, popupDiagnosticsExportModule].every(text => /platform\/chrome\/runtime\.js/.test(text) && !/chrome\.runtime\.(?:onInstalled|onStartup|onMessage|getManifest|getURL|openOptionsPage)/.test(text)), 'Migrated background and popup modules must use the runtime platform wrapper instead of raw chrome.runtime lifecycle/helpers.');
 assertCondition(/chrome\.runtime\.sendMessage/.test(runtimeMessagesWrapper) && /runtime\.lastError/.test(runtimeMessagesWrapper), 'Chrome runtime-message platform wrapper must own chrome.runtime.sendMessage and runtime.lastError handling.');
 assertCondition(/chrome\.tabs\.query/.test(tabsWrapper) && /chrome\.tabs\.create/.test(tabsWrapper) && /chrome\.tabs\.sendMessage/.test(tabsWrapper) && /chrome\.tabs\.update/.test(tabsWrapper) && /runtime\.lastError/.test(tabsWrapper), 'Chrome tabs platform wrapper must own popup tab query/create/message/update and runtime.lastError handling.');
 assertCondition([popupChromeModule, elementPickerLauncherModule].every(text => /platform\/chrome\/tabs\.js/.test(text) && !/chrome\.tabs\./.test(text) && !/chrome\.runtime\.lastError/.test(text)), 'Popup tab helpers must use the tabs platform wrapper instead of raw chrome.tabs callbacks.');
@@ -680,10 +682,7 @@ for (const locale of locales) {
 }
 
 if (failures.length === 0) {
-  const staticLocalizationCheck = spawnSync(process.execPath, ['scripts/check-static-localization.mjs'], {
-    cwd: rootDir,
-    encoding: 'utf8'
-  });
+  const staticLocalizationCheck = spawnSync(process.execPath, ['scripts/check-static-localization.mjs'], { cwd: rootDir, encoding: 'utf8' });
   if (staticLocalizationCheck.status !== 0) {
     failures.push(`Static localization verification failed:\n${staticLocalizationCheck.stdout}${staticLocalizationCheck.stderr}`.trim());
   }
@@ -692,7 +691,6 @@ if (failures.length === 0) {
   console.log(`Browser extension playbook check passed: ${locales.length} localized store listings verified.`);
   process.exit(0);
 }
-
 console.error('Browser extension playbook check failed.');
 console.error('');
 failures.forEach(failure => console.error(`- ${failure}`));

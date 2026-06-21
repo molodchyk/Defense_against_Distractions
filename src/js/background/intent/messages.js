@@ -38,9 +38,10 @@ import {
   returnIntentDriftDescendantTabs,
   suspendIntentDriftDescendantTabs
 } from './tabs.js';
+import { addRuntimeMessageListener } from '../../../platform/chrome/runtime.js';
 
 export function registerIntentRuntimeMessages() {
-  chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  addRuntimeMessageListener((message, sender, sendResponse) => {
     if (message.action === 'recordIntentPageSignals') {
       recordPageSignals(message, sender)
         .then(({ state, intentPolicy }) => {

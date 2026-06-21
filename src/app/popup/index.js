@@ -2,6 +2,7 @@
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
 import { PLANS_STORAGE_KEY } from '../../js/shared/plans.js';
+import { openOptionsPage } from '../../platform/chrome/runtime.js';
 import { addStorageChangeListener } from '../../platform/chrome/storage.js';
 import {
   UI_LANGUAGE_STORAGE_KEY,
@@ -73,7 +74,7 @@ async function redirectExtensionTabsToOptions() {
   panels.setProtectionActiveTab(activeTab);
 
   if (isExtensionPage(activeTab?.url)) {
-    chrome.runtime.openOptionsPage();
+    openOptionsPage();
     window.close();
     return;
   }
