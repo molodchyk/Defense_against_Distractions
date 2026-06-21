@@ -205,6 +205,7 @@ const [
   decisionRecords,
   downloadsWrapper,
   runtimeMessagesWrapper,
+  passwordManagerModule,
   storageTransferModule,
   usageStatsModule,
   intentDiagnosticsModule,
@@ -229,6 +230,7 @@ const [
   readText('docs/decision-records.md'),
   readText('src/platform/chrome/downloads.js'),
   readText('src/platform/chrome/runtimeMessages.js'),
+  readText('src/js/options/password/manager.js'),
   readText('src/js/options/storageTransfer.js'),
   readText('src/js/options/usageStats.js'),
   readText('src/js/options/intentDiagnostics.js'),
@@ -381,20 +383,16 @@ assertCondition(
   ),
   'Options usage, intent diagnostics, and plan Pomodoro modules must use the runtime-message platform wrapper.'
 );
+const passwordManagerUsesStorageWrapper = /platform\/chrome\/storage\.js/.test(passwordManagerModule)
+  && !/chrome\.storage\.(?:sync|local)\.(?:get|set|remove|clear|getBytesInUse)/.test(passwordManagerModule)
+  && !/chrome\.runtime\.lastError/.test(passwordManagerModule);
+assertCondition(passwordManagerUsesStorageWrapper, 'Options password manager must use the Chrome storage platform wrapper instead of raw chrome.storage callbacks.');
 
 for (const permission of manifest.permissions) {
-  assertCondition(
-    new RegExp(`###\\s+\`${permission.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\``).test(permissionAudit),
-    `Permission audit must include a section for manifest permission: ${permission}.`
-  );
-  assertCondition(
-    new RegExp(`permission\\.${permission.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`).test(storePrivacyForm),
-    `StorePilot privacy form must include permission.${permission}.`
-  );
-  assertCondition(
-    new RegExp(`\`${permission.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\``).test(privacy),
-    `PRIVACY.md must include manifest permission: ${permission}.`
-  );
+  const escapedPermission = permission.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  assertCondition(new RegExp(`###\\s+\`${escapedPermission}\``).test(permissionAudit), `Permission audit must include a section for manifest permission: ${permission}.`);
+  assertCondition(new RegExp(`permission\\.${escapedPermission}`).test(storePrivacyForm), `StorePilot privacy form must include permission.${permission}.`);
+  assertCondition(new RegExp(`\`${escapedPermission}\``).test(privacy), `PRIVACY.md must include manifest permission: ${permission}.`);
 }
 
 assertCondition(

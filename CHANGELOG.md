@@ -10,6 +10,7 @@ Version 1.6.1:
 - added static extension-surface localization verification for visible HTML text and accessible labels
 - moved user-triggered export downloads behind a Chrome platform wrapper and added a playbook guard against raw `chrome.downloads` use in the options export flow
 - moved options-page background diagnostic and Pomodoro messages behind a Chrome runtime-message platform wrapper
+- moved options-page password storage and attempt tracking behind the Chrome storage platform wrapper
 - routed remaining Options page Chrome i18n calls through the selected UI-language helper and added a static localization guard
 - sanitized Chrome Web Store screenshots and added a checked store media review artifact
 - synchronized localized store listing version references with the current package version

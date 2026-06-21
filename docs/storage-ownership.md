@@ -67,6 +67,7 @@ Chrome sync storage is reserved for compact user configuration and mission-criti
 - Keys: `password`.
 - Storage area: `chrome.storage.sync`.
 - Owner feature: `src/js/options/password/manager.js` and `src/js/options/password/crypto.js`.
+- Storage access boundary: `src/js/options/password/manager.js` calls `src/platform/chrome/storage.js` instead of raw Chrome storage callbacks.
 - Data shape/version: encrypted Base64 password payload. The encryption key is local-only and stored separately under `key`.
 - Migration path: no current rename. Password changes and deletion are blocked during protected schedules when they would relax protection.
 - Retention or pruning: durable until the user deletes the password or resets extension data. Full settings export/import deliberately excludes it.
@@ -170,6 +171,7 @@ Chrome local storage is used for local-only runtime state, diagnostics, history,
 - Keys: `key`, `attempts`, `lastAttempt`.
 - Storage area: `chrome.storage.local`.
 - Owner feature: `src/js/options/password/manager.js` and `src/js/options/password/crypto.js`.
+- Storage access boundary: `src/js/options/password/manager.js` calls `src/platform/chrome/storage.js` instead of raw Chrome storage callbacks.
 - Data shape/version: exported WebCrypto key as Base64, failed-attempt count, and last-attempt timestamp.
 - Migration path: no current rename. Missing key makes password verification fail closed.
 - Retention or pruning: retained until password deletion/reset; failed attempts reset after the lockout interval or successful verification.

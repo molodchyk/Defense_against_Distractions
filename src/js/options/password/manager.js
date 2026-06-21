@@ -10,6 +10,7 @@ import {
 } from './crypto.js';
 import { isInProtectedSchedule } from '../../shared/plans.js';
 import { getUiMessage } from '../../shared/ui/uiLanguage.js';
+import { getLocal, getSync, removeSync, setLocal, setSync } from '../../../platform/chrome/storage.js';
 
 const MAX_ATTEMPTS = 5;
 const LOCKOUT_INTERVAL = 30 * 1000; // 30 seconds
@@ -25,24 +26,22 @@ async function setPassword(password) {
         const key = await generatePasswordKey();
         const keyBase64 = await exportKeyToBase64(key);
 
-        chrome.storage.local.set({ key: keyBase64 }, async function() {
-            if (chrome.runtime.lastError) {
-                console.error("Error storing the key:", chrome.runtime.lastError);
-                return;
-            }
+        try {
+            await setLocal({ key: keyBase64 });
+        } catch (error) {
+            console.error("Error storing the key:", error);
+            return;
+        }
 
-            // Encrypt the password
-            const encryptedPasswordBase64 = await encryptPassword(password, key);
+        const encryptedPasswordBase64 = await encryptPassword(password, key);
 
-            // Store the encrypted password in chrome.storage.sync
-            chrome.storage.sync.set({ password: encryptedPasswordBase64 }, function() {
-                if (chrome.runtime.lastError) {
-                    alert("Error storing the password");
-                } else {
-                    updateButtonStates(); // Update UI state
-                }
-            });
-        });
+        try {
+            await setSync({ password: encryptedPasswordBase64 });
+            updateButtonStates();
+        } catch (error) {
+            console.error("Error storing the password:", error);
+            alert("Error storing the password");
+        }
     } catch (error) {
         console.error("Error setting the password:", error);
     }
@@ -61,14 +60,13 @@ function editPassword(oldPassword, newPassword) {
 }
 
 // Function to delete the password
-function deletePassword() {
-    chrome.storage.sync.remove('password', function() {
-        if (chrome.runtime.lastError) {
-            console.error('Error deleting password:', chrome.runtime.lastError);
-        } else {
-            updateButtonStates(); // Update UI state
-        }
-    });
+async function deletePassword() {
+    try {
+        await removeSync('password');
+        updateButtonStates();
+    } catch (error) {
+        console.error('Error deleting password:', error);
+    }
 }
 
 
@@ -98,60 +96,52 @@ async function verifyPassword(inputPassword, callback) {
 
 
     try {
-        // Retrieve the stored encryption key securely from chrome.storage.local
-        chrome.storage.local.get('key', async function(data) {
-            if (chrome.runtime.lastError || !data.key) {
-                console.error('Error retrieving the key:', chrome.runtime.lastError);
+        const keyData = await getLocal('key');
+        if (!keyData.key) {
+            console.error('Error retrieving the key:', new Error('Missing password key.'));
+            callback(false);
+            return;
+        }
+
+        const key = await importPasswordKey(keyData.key);
+        if (!key) {
+            callback(false);
+            return;
+        }
+
+        const passwordData = await getSync('password');
+        if (!passwordData.password) {
+            console.error('Error retrieving the password:', new Error('Missing password.'));
+            callback(false);
+            return;
+        }
+
+        const encryptedPasswordBase64 = passwordData.password;
+
+        if (typeof encryptedPasswordBase64 !== 'string') {
+            console.error('Expected a Base64 string, got:', typeof encryptedPasswordBase64);
+            callback(false);
+            return;
+        }
+
+        try {
+            const decryptedPassword = await decryptPassword(encryptedPasswordBase64, key);
+
+            if (decryptedPassword === null || inputPassword !== decryptedPassword) {
+                await updateAttemptData(attemptData.attempts + 1);
+                const attemptsLeftAlert = getPasswordMessage("incorrectPassword", [(MAX_ATTEMPTS - attemptData.attempts).toString()]);
+                alert(attemptsLeftAlert);
+
                 callback(false);
                 return;
             }
 
-            const key = await importPasswordKey(data.key);
-            if (!key) {
-                callback(false);
-                return;
-            }
-
-            // Retrieve the stored encrypted password
-            chrome.storage.sync.get('password', async function(data) {
-                if (chrome.runtime.lastError || !data.password) {
-                    console.error('Error retrieving the password:', chrome.runtime.lastError);
-                    callback(false);
-                    return;
-                }
-
-                const encryptedPasswordBase64 = data.password;
-
-                // Add a check here to ensure the data type
-                if (typeof encryptedPasswordBase64 !== 'string') {
-                    console.error('Expected a Base64 string, got:', typeof encryptedPasswordBase64);
-                    callback(false);
-                    return;
-                }
-
-                 // Pass the Base64 string directly to decryptPassword
-                try {
-                    const decryptedPassword = await decryptPassword(encryptedPasswordBase64, key);
-
-                    // After updating attempt count
-                    if (decryptedPassword === null || inputPassword !== decryptedPassword) {
-                        await updateAttemptData(attemptData.attempts + 1);
-                        const attemptsLeftAlert = getPasswordMessage("incorrectPassword", [(MAX_ATTEMPTS - attemptData.attempts).toString()]);
-                        alert(attemptsLeftAlert);
-
-                        callback(false);
-                        return;
-                    }
-
-                    // Continue with the password verification
-                    await updateAttemptData(0);
-                    callback(inputPassword === decryptedPassword);
-                } catch (decryptError) {
-                    console.error('Error decrypting the password:', decryptError);
-                    callback(false);
-                }
-            });
-        });
+            await updateAttemptData(0);
+            callback(inputPassword === decryptedPassword);
+        } catch (decryptError) {
+            console.error('Error decrypting the password:', decryptError);
+            callback(false);
+        }
     } catch (error) {
         console.error("Error verifying the password:", error);
         callback(false);
@@ -162,14 +152,19 @@ async function verifyPassword(inputPassword, callback) {
 
 // Function to get attempt data from storage
 async function getAttemptData() {
-    return new Promise((resolve) => {
-        chrome.storage.local.get(['attempts', 'lastAttempt'], function(data) {
-            resolve({
-                attempts: data.attempts || 0,
-                lastAttempt: data.lastAttempt || 0
-            });
-        });
-    });
+    try {
+        const data = await getLocal(['attempts', 'lastAttempt']);
+        return {
+            attempts: data.attempts || 0,
+            lastAttempt: data.lastAttempt || 0
+        };
+    } catch (error) {
+        console.error('Error retrieving password attempt data:', error);
+        return {
+            attempts: 0,
+            lastAttempt: 0
+        };
+    }
 }
 
 // Function to update attempt data in storage
@@ -178,9 +173,11 @@ async function updateAttemptData(attempts) {
         attempts: attempts,
         lastAttempt: new Date().getTime()
     };
-    return new Promise((resolve) => {
-        chrome.storage.local.set(data, resolve);
-    });
+    try {
+        await setLocal(data);
+    } catch (error) {
+        console.error('Error updating password attempt data:', error);
+    }
 }
 
 
@@ -219,8 +216,9 @@ async function validateOverlayPassword() {
 }
 
 
-export function updateButtonStates() {
-    chrome.storage.sync.get(null, function(data) {
+export async function updateButtonStates() {
+    try {
+        const data = await getSync(null);
         const hasPassword = !!data.password;
 
         if (isInProtectedSchedule(data)) {
@@ -241,7 +239,9 @@ export function updateButtonStates() {
 
         const deleteButton = document.getElementById('deletePasswordButton');
         deleteButton.className = hasPassword ? 'enabled' : 'disabled';
-    });
+    } catch (error) {
+        console.error('Error updating password button states:', error);
+    }
 }
 
 export async function initializePasswordManager() {
@@ -286,18 +286,13 @@ export async function initializePasswordManager() {
 }
 
 async function isPasswordSet() {
-    return new Promise((resolve, reject) => {
-        chrome.storage.sync.get('password', function(data) {
-            if (chrome.runtime.lastError) {
-                console.error('Error checking if password is set:', chrome.runtime.lastError);
-                resolve(false);
-                return;
-            }
-
-            const passwordExists = data.hasOwnProperty('password') && data.password !== null;
-            resolve(passwordExists);
-        });
-    });
+    try {
+        const data = await getSync('password');
+        return Object.prototype.hasOwnProperty.call(data, 'password') && data.password !== null;
+    } catch (error) {
+        console.error('Error checking if password is set:', error);
+        return false;
+    }
 }
 
 function getPasswordMessage(key, substitutions) {

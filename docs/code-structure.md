@@ -32,7 +32,7 @@ The root `src/js` folder should stay empty of runtime entries and helper modules
 
 `src/js/options` contains options-page-only feature modules used by the app entry `src/app/options/index.js`. Feature-specific option modules should live in a feature subfolder instead of adding more files directly to this folder.
 
-`src/js/options/password/manager.js` owns options-page password management, the password overlay gate, password button state, and protected-schedule disabling of password changes. `src/js/options/password/crypto.js` owns the WebCrypto helpers used by that module.
+`src/js/options/password/manager.js` owns options-page password management, the password overlay gate, password button state, local failed-attempt tracking, and protected-schedule disabling of password changes. It uses `src/platform/chrome/storage.js` for sync/local storage access instead of raw Chrome storage callbacks. `src/js/options/password/crypto.js` owns the WebCrypto helpers used by that module.
 
 `src/js/options/storage-transfer/model.js` owns the pure full-settings export/import schema and the narrower shareable ruleset schema. Full settings export uses `dad.settings.v1`; ruleset export uses `dad.ruleset.v1` and deliberately excludes local UI preferences, custom blocked-page notes, passwords, billing state, runtime state, usage stats, and diagnostics. `src/js/options/storageTransfer.js` owns the options-page export/import actions and the visible reset-all-extension-data path, including the protected-schedule guard before clearing sync and local storage. It calls `src/platform/chrome/downloads.js` for user-triggered settings and ruleset export downloads instead of calling `chrome.downloads` directly.
 
@@ -68,6 +68,7 @@ Chrome storage helpers now have explicit owners:
 - `src/platform/chrome/downloads.js` owns the Promise wrapper around `chrome.downloads.download` for user-triggered export files.
 - `src/platform/chrome/runtimeMessages.js` owns Promise-based `chrome.runtime.sendMessage` access for options modules that request background diagnostics, usage summaries, or Pomodoro runtime state.
 - `src/features/plans/storage/criticalScheduleStorage.js` owns priority saving for plan data when forced schedule data must be preserved; it uses the platform wrapper instead of raw `chrome.storage` calls.
+- `src/js/options/password/manager.js` uses the platform storage wrapper for password sync state and local lockout-attempt state.
 - `src/js/shared/storage/chromeStorage.js` and `src/js/shared/storage/criticalScheduleStorage.js` are compatibility barrels for older imports.
 
 Shared UI helpers live under `src/js/shared/ui/`:
