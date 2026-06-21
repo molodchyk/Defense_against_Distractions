@@ -7,7 +7,7 @@ This document is the release-facing index for the current Chrome Web Store packa
 Release focus:
 
 - Current plan-based protection model: plans, schedules, allowed websites, keywords, locked-schedule rules, Pomodoro, intent coherence, and optional UI cleanup.
-- Store-ready media: five 1280x800 screenshots, a 440x280 small promo, and a 1400x560 marquee promo verified by the package checks.
+- Store-ready media: five 1280x800 screenshots, a 440x280 small promo, and a 1400x560 marquee promo verified by the package checks and documented in [Store Media Review](store-media-review.md).
 - StorePilot preparation: localized listing text, privacy form answers, category selection, additional fields, and permission justifications for the current manifest.
 - Privacy and package posture: local-first behavior, no analytics, no remote executable code, and no unexpected remote network access in the runtime package.
 - Release automation: manifest, import, locale, playbook, package, source archive, browser-load, file-size, and folder-density checks are part of the release gate.

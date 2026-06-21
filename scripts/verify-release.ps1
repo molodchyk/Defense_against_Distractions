@@ -297,6 +297,7 @@ $requiredSourceEntries = @(
   "docs/decision-records.md",
   "docs/permission-audit.md",
   "docs/release-notes.md",
+  "docs/store-media-review.md",
   "LICENSE",
   "manifest.json",
   "package.json",

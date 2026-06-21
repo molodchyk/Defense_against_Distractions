@@ -7,6 +7,7 @@ Version 1.6.1:
 - updated manifest and English store copy around the current plan-based protection model, including schedules, Pomodoro, intent coherence, and optional UI cleanup
 - added StorePilot-compatible privacy justifications for idle and webNavigation permissions
 - added a manifest permission audit that maps each permission and host-access surface to its feature owner and removal trigger
+- sanitized Chrome Web Store screenshots and added a checked store media review artifact
 - synchronized localized store listing version references with the current package version
 - aligned README blocking copy with the current overlay-first page blocking behavior
 - added package verification for screenshot and promotional image dimensions, runtime archive contents, and unexpected remote network access

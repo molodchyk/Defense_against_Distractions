@@ -66,6 +66,15 @@ const requiredRootEntries = [
   'test',
   '_locales'
 ];
+const storeMediaAssetPaths = [
+  'store/screenshots/01-popup-protection-status.png',
+  'store/screenshots/02-plan-pomodoro-controls.png',
+  'store/screenshots/03-intent-drift-recovery.png',
+  'store/screenshots/04-blocked-page.png',
+  'store/screenshots/05-ui-element-picker.png',
+  'store/promo/small-promo-440x280.png',
+  'store/promo/marquee-promo-1400x560.png'
+];
 
 const failures = [];
 
@@ -202,6 +211,7 @@ assertCondition(await exists('docs/chrome-web-store-category.md'), 'Missing Stor
 assertCondition(await exists('docs/storage-ownership.md'), 'Missing storage ownership document.');
 assertCondition(await exists('docs/permission-audit.md'), 'Missing permission audit document.');
 assertCondition(await exists('docs/release-notes.md'), 'Missing release notes document.');
+assertCondition(await exists('docs/store-media-review.md'), 'Missing store media review document.');
 assertCondition(await exists('docs/decision-records.md'), 'Missing decision records document.');
 assertCondition(await exists('scripts/check-unpacked-extension-load.ps1'), 'Missing unpacked extension browser-load smoke script.');
 
@@ -221,6 +231,7 @@ const [
   storageOwnership,
   permissionAudit,
   releaseNotes,
+  storeMediaReview,
   decisionRecords
 ] = await Promise.all([
   readJson('manifest.json'),
@@ -238,6 +249,7 @@ const [
   readText('docs/storage-ownership.md'),
   readText('docs/permission-audit.md'),
   readText('docs/release-notes.md'),
+  readText('docs/store-media-review.md'),
   readText('docs/decision-records.md')
 ]);
 
@@ -312,6 +324,7 @@ assertCondition(
     /assets\/icons/,
     /store\/store-listing/,
     /docs\/permission-audit\.md/,
+    /docs\/store-media-review\.md/,
     /docs\/release-notes\.md/,
     /docs\/decision-records\.md/,
     new RegExp(repositoryUrl.replaceAll('/', '\\/')),
@@ -465,6 +478,29 @@ for (const screenshotPath of screenshotPngs) {
 await assertPngDimensions('store/promo/small-promo-440x280.png', 440, 280);
 await assertPngDimensions('store/promo/marquee-promo-1400x560.png', 1400, 560);
 
+for (const assetPath of storeMediaAssetPaths) {
+  assertCondition(
+    storeMediaReview.includes(`\`${assetPath}\``),
+    `Store media review must cover ${assetPath}.`
+  );
+}
+
+assertCondition(
+  hasAll(storeMediaReview, [
+    /# Store Media Review/,
+    /Chrome Web Store/i,
+    /screenshots/i,
+    /promo images/i,
+    /personal accounts/i,
+    /private conversations/i,
+    /real rules/i,
+    /real domains/i,
+    /user-specific configuration/i,
+    /example\.test/i
+  ]),
+  'Store media review must document screenshot and promo privacy boundaries.'
+);
+
 assertCondition(/Host access through content scripts/i.test(privacy), 'PRIVACY.md must explain host/content-script access.');
 assertCondition(/chrome\.storage\.sync/.test(privacy), 'PRIVACY.md must mention sync storage.');
 assertCondition(/chrome\.storage\.local/.test(privacy), 'PRIVACY.md must mention local storage.');
@@ -503,7 +539,8 @@ assertCondition(
     /source archive/i,
     /remote network access/i,
     /screenshots/i,
-    /promo/i
+    /promo/i,
+    /Store Media Review/i
   ]),
   'Release notes document must cover the current version, changelog source, release gate, source archive, media, and network posture.'
 );

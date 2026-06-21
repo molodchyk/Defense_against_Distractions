@@ -105,6 +105,7 @@ Use this checklist before publishing a new extension release.
 - Use screenshots from `store/screenshots/`.
 - Confirm screenshots do not expose personal accounts, private conversations, real rules, real domains, or other user-specific configuration.
 - Use promotional images from `store/promo/`.
+- Review `docs/store-media-review.md` after changing any screenshot or promotional image.
 - Use extension icons from `assets/icons/`.
 
 ## Publish

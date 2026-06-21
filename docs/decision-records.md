@@ -38,9 +38,9 @@ Consequence: large follow-up work should move toward feature ownership maps and 
 
 Status: accepted.
 
-Decision: Chrome Web Store fields, privacy answers, category selection, listing text, screenshots, promo images, packaging, and release verification are maintained in the repository as source artifacts.
+Decision: Chrome Web Store fields, privacy answers, category selection, listing text, screenshots, promo images, media review, packaging, and release verification are maintained in the repository as source artifacts.
 
-Evidence: [Release Readiness](release-readiness.md), [Chrome Web Store Privacy Form](chrome-web-store-privacy-form.md), [Chrome Web Store Additional Fields](chrome-web-store-additional-fields.md), [Chrome Web Store Category](chrome-web-store-category.md).
+Evidence: [Release Readiness](release-readiness.md), [Store Media Review](store-media-review.md), [Chrome Web Store Privacy Form](chrome-web-store-privacy-form.md), [Chrome Web Store Additional Fields](chrome-web-store-additional-fields.md), [Chrome Web Store Category](chrome-web-store-category.md).
 
 Consequence: release claims must be updated in docs and automated checks together, not only in the browser dashboard.
 

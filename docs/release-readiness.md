@@ -22,6 +22,8 @@ Reviewer-facing browser limitations are documented in [Reviewer Notes](reviewer-
 
 Manifest permission rationale and broad host-access boundaries are documented in [Permission Audit](permission-audit.md). Recheck that file before publishing if any permission, content-script match, or web-accessible resource match changes.
 
+Store screenshots and promotional assets are documented in [Store Media Review](store-media-review.md). Recheck that file before publishing if any screenshot or promo image changes.
+
 The package verifier checks:
 
 - The generated runtime output has a valid MV3 manifest.
@@ -43,6 +45,7 @@ The release verifier checks:
 - The extension archive excludes docs, tests, scripts, screenshots, promo images, store listing text, and source-only icon files.
 - The `dist/` folder contains only current manifest-version package zips, with no stale zips or staging directories.
 - The source archive contains docs, tests, scripts, source files, store assets, README, license, about file, and changelog.
+- The source archive contains the store media review for screenshots and promotional images.
 - The source archive contains StorePilot privacy, category, and additional-field automation documents.
 - The changelog in the source archive matches the root `CHANGELOG.md`.
 - The store listing remains plain text instead of Markdown.
