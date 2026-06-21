@@ -166,6 +166,7 @@ assertCondition(await exists('docs/reviewer-notes.md'), 'Missing reviewer notes 
 assertCondition(await exists('docs/chrome-web-store-privacy-form.md'), 'Missing StorePilot privacy form document.');
 assertCondition(await exists('docs/chrome-web-store-additional-fields.md'), 'Missing StorePilot additional-fields document.');
 assertCondition(await exists('docs/chrome-web-store-category.md'), 'Missing StorePilot category document.');
+assertCondition(await exists('docs/storage-ownership.md'), 'Missing storage ownership document.');
 assertCondition(await exists('scripts/check-unpacked-extension-load.ps1'), 'Missing unpacked extension browser-load smoke script.');
 
 const [
@@ -179,7 +180,8 @@ const [
   englishMessages,
   storePrivacyForm,
   storeAdditionalFields,
-  storeCategory
+  storeCategory,
+  storageOwnership
 ] = await Promise.all([
   readJson('manifest.json'),
   readJson('package.json'),
@@ -191,7 +193,8 @@ const [
   readJson('_locales/en/messages.json'),
   readText('docs/chrome-web-store-privacy-form.md'),
   readText('docs/chrome-web-store-additional-fields.md'),
-  readText('docs/chrome-web-store-category.md')
+  readText('docs/chrome-web-store-category.md'),
+  readText('docs/storage-ownership.md')
 ]);
 
 assertCondition(packageJson.version === manifest.version, 'package.json version must match manifest.json version.');
@@ -334,6 +337,68 @@ assertCondition(/does not require a remote server/i.test(privacy), 'PRIVACY.md m
 assertCondition(/does not use remote JavaScript or WebAssembly/i.test(privacy), 'PRIVACY.md must state remote executable code is not used.');
 assertCondition(/does not use analytics, ads, tracking pixels, or telemetry/i.test(privacy), 'PRIVACY.md must state analytics, ads, tracking pixels, and telemetry are not used.');
 assertCondition(/reset all extension storage/i.test(privacy), 'PRIVACY.md must explain the reset-storage path.');
+
+assertCondition(
+  hasAll(storageOwnership, [
+    /# Storage Ownership/,
+    /storage area/i,
+    /owner feature/i,
+    /data shape\/version/i,
+    /migration path/i,
+    /retention or pruning/i,
+    /quota risk/i,
+    /user configuration/i,
+    /runtime state/i,
+    /diagnostics/i,
+    /cache data/i,
+    /chrome\.storage\.sync/,
+    /chrome\.storage\.local/
+  ]),
+  'Storage ownership document must cover the modularization playbook storage fields.'
+);
+
+const storageKeyFamilies = [
+  'plans',
+  'planCounter',
+  'planMigrationState',
+  'websiteGroups',
+  'group_<id>',
+  'schedules',
+  'whitelistedSites',
+  'elementBlockRuleIds',
+  'elementBlockRule.<id>',
+  'elementBlockRules',
+  'uiThemeMode',
+  'uiLanguage',
+  'blockedPageSettings',
+  'password',
+  'billingIntegration',
+  'billingIdentity',
+  'billingEntitlement',
+  'releaseBackupNoticeEligible.<version>',
+  'releaseBackupNoticeSeen.<version>',
+  'intentTrajectoryState',
+  'usageStats',
+  'pomodoroRuntimeState',
+  'pomodoroActivityState',
+  'pomodoroHistoryState',
+  'pomodoroAutoStartSuppressedUntil',
+  'pomodoroAutoStartSuppressedPlanId',
+  'pomodoroMiniPanelUiState',
+  'focusStateSignal',
+  'popupActivePane',
+  'key',
+  'attempts',
+  'lastAttempt',
+  'debugLogging'
+];
+
+for (const storageKeyFamily of storageKeyFamilies) {
+  assertCondition(
+    storageOwnership.includes(`\`${storageKeyFamily}\``),
+    `Storage ownership document must cover ${storageKeyFamily}.`
+  );
+}
 
 assertCondition(
   /id="resetExtensionButton"/.test(optionsHtml)

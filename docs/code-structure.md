@@ -2,7 +2,7 @@
 
 DaD is moving toward small modules grouped by runtime surface and product responsibility.
 
-The detailed modularization target, dependency rules, file-size budgets, and migration phases live in [DaD Modularization Roadmap](modularization-roadmap.md). The reusable cross-extension version lives in [Extension Modularization Playbook](extension-modularization-playbook.md). Ownership and coordination rules live in [Development Coordination](parallel-development.md). The external Chrome extension architecture constraints behind that roadmap are summarized in [Extension Architecture Research](extension-architecture-research.md).
+The detailed modularization target, dependency rules, file-size budgets, and migration phases live in [DaD Modularization Roadmap](modularization-roadmap.md). The reusable cross-extension version lives in [Extension Modularization Playbook](extension-modularization-playbook.md). Persistent storage ownership lives in [Storage Ownership](storage-ownership.md). Ownership and coordination rules live in [Development Coordination](parallel-development.md). The external Chrome extension architecture constraints behind that roadmap are summarized in [Extension Architecture Research](extension-architecture-research.md).
 
 ## Runtime Areas
 
