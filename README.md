@@ -2,7 +2,7 @@
 
 Defense Against Distractions is a local-first browser extension for creating protection plans that block distracting pages by keywords, schedules, Pomodoro state, intent coherence, and optional UI cleanup.
 
-Instead of only blocking entire domains, you can define plan entries with websites and keywords. When a matching page reaches the configured distraction score, the extension redirects it to a block page.
+Instead of only blocking entire domains, you can define plan entries with websites and keywords. When a matching page reaches the configured distraction score, the extension blocks it with an extension-owned overlay and local diagnostics.
 
 ## Features
 
@@ -65,7 +65,7 @@ Chrome Web Store API release helpers are documented in [Chrome Web Store API](do
 - `_locales/` contains translated extension messages.
 - `src/options.html` contains the options page.
 - `src/instructions.html` contains the in-extension guide.
-- `src/blocked.html` contains the block page.
+- `src/blocked.html` contains the extension-owned blocked page surface.
 - `src/app/` contains runtime entry points such as the MV3 background service worker.
 - `src/features/` contains feature-owned source modules that can be imported by runtime entries.
 - `src/platform/` contains browser API wrappers and platform adapters.

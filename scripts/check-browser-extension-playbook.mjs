@@ -305,6 +305,7 @@ assertCondition(
     /Pomodoro/i,
     /intent coherence/i,
     /UI cleanup/i,
+    /extension-owned overlay/i,
     /assets\/icons/,
     /store\/store-listing/,
     /docs\/release-notes\.md/,
@@ -314,6 +315,10 @@ assertCondition(
     /Patreon/i
   ]),
   'README must cover product goal, load-unpacked steps, checks, privacy, support, license, and source URL.'
+);
+assertCondition(
+  !/redirects?\s+(it|matching pages|pages|the page)\s+to\s+a\s+block(?:ed)?\s+page|redirect-first|navigation-first/i.test(readme),
+  'README must describe current overlay-first blocking instead of retired redirect-first behavior.'
 );
 
 const privacySectionIndex = readme.search(/^## Privacy$/m);
