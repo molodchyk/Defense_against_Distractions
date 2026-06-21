@@ -21,9 +21,9 @@ This document records why each current manifest permission and broad content-scr
 ### `downloads`
 
 - Feature owner: user-triggered settings, ruleset, usage, and intent-diagnostics export.
-- API evidence: `src/js/options/storageTransfer.js`.
+- API evidence: `src/platform/chrome/downloads.js`, used by `src/js/options/storageTransfer.js`.
 - Why retained: DaD creates local files only when the user explicitly exports configuration or diagnostics.
-- Removal trigger: remove if every export path is replaced by clipboard-only or browser-native save flows that do not call `chrome.downloads.download`.
+- Removal trigger: remove if every export path is replaced by clipboard-only or browser-native save flows that do not call the downloads platform wrapper.
 
 ### `activeTab`
 

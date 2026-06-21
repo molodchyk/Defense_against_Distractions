@@ -2,6 +2,7 @@
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
 import { isInProtectedSchedule } from '../shared/plans.js';
+import { download } from '../../platform/chrome/downloads.js';
 import { clearLocal, clearSync, getSync, removeSync, setSync } from '../../platform/chrome/storage.js';
 import { getUiMessage } from '../shared/ui/uiLanguage.js';
 import {
@@ -143,16 +144,7 @@ function downloadJsonPayload(payload, filenamePrefix) {
   const dateString = new Date().toISOString().split('T')[0];
   const filename = `${filenamePrefix}-${dateString}.json`;
 
-  return new Promise((resolve, reject) => {
-    chrome.downloads.download({ url, filename }, downloadId => {
-      if (chrome.runtime.lastError) {
-        reject(chrome.runtime.lastError);
-        return;
-      }
-
-      resolve(downloadId);
-    });
-  });
+  return download({ url, filename });
 }
 
 function readTextFile(file) {

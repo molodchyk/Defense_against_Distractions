@@ -5,6 +5,7 @@ import { access, readFile, readdir, stat } from 'node:fs/promises';
 import { spawnSync } from 'node:child_process';
 import path from 'node:path';
 import process from 'node:process';
+import { getFirstNonEmptyLine, hasAll, parseKeyedBlock } from './playbook-utils.mjs';
 
 const rootDir = process.cwd();
 const repositoryUrl = 'https://github.com/molodchyk/Defense_against_Distractions';
@@ -160,41 +161,6 @@ async function assertPngDimensions(relativePath, expectedWidth, expectedHeight) 
   );
 }
 
-function hasAll(text, patterns) {
-  return patterns.every(pattern => pattern.test(text));
-}
-
-function getFirstNonEmptyLine(text) {
-  return text
-    .split(/\r?\n/)
-    .map(line => line.trim())
-    .find(Boolean) || '';
-}
-
-function getBracketBlock(text, blockName) {
-  const blockMarker = `[${blockName}]`;
-  const start = text.indexOf(blockMarker);
-  if (start === -1) {
-    return '';
-  }
-
-  const afterMarker = text.slice(start + blockMarker.length);
-  const nextHeading = afterMarker.search(/^##\s+/m);
-  return nextHeading === -1 ? afterMarker : afterMarker.slice(0, nextHeading);
-}
-
-function parseKeyedBlock(text, blockName) {
-  const block = getBracketBlock(text, blockName);
-  const fields = new Map();
-  const fieldPattern = /^([A-Za-z0-9_.-]+):[ \t]*\r?\n([\s\S]*?)(?=^[A-Za-z0-9_.-]+:[ \t]*\r?\n|\s*$)/gm;
-
-  for (const match of block.matchAll(fieldPattern)) {
-    fields.set(match[1], match[2].trim());
-  }
-
-  return fields;
-}
-
 for (const entry of requiredRootEntries) {
   assertCondition(await exists(entry), `Missing required playbook entry: ${entry}`);
 }
@@ -216,6 +182,7 @@ assertCondition(await exists('docs/store-media-review.md'), 'Missing store media
 assertCondition(await exists('docs/decision-records.md'), 'Missing decision records document.');
 assertCondition(await exists('scripts/check-static-localization.mjs'), 'Missing static localization verification script.');
 assertCondition(await exists('scripts/check-unpacked-extension-load.ps1'), 'Missing unpacked extension browser-load smoke script.');
+assertCondition(await exists('src/platform/chrome/downloads.js'), 'Missing Chrome downloads platform wrapper.');
 
 const [
   manifest,
@@ -234,7 +201,9 @@ const [
   permissionAudit,
   releaseNotes,
   storeMediaReview,
-  decisionRecords
+  decisionRecords,
+  downloadsWrapper,
+  storageTransferModule
 ] = await Promise.all([
   readJson('manifest.json'),
   readJson('package.json'),
@@ -252,7 +221,9 @@ const [
   readText('docs/permission-audit.md'),
   readText('docs/release-notes.md'),
   readText('docs/store-media-review.md'),
-  readText('docs/decision-records.md')
+  readText('docs/decision-records.md'),
+  readText('src/platform/chrome/downloads.js'),
+  readText('src/js/options/storageTransfer.js')
 ]);
 
 assertCondition(packageJson.version === manifest.version, 'package.json version must match manifest.json version.');
@@ -378,6 +349,21 @@ assertCondition(
     /`webRequest`/
   ]),
   'Permission audit must explain host access, removal triggers, and deliberately unrequested broad permissions.'
+);
+assertCondition(
+  /src\/platform\/chrome\/downloads\.js/.test(permissionAudit),
+  'Permission audit must point downloads permission API evidence at the platform wrapper.'
+);
+
+assertCondition(
+  /chrome\.downloads\.download/.test(downloadsWrapper)
+    && /runtime\.lastError/.test(downloadsWrapper),
+  'Chrome downloads platform wrapper must own chrome.downloads.download and runtime.lastError handling.'
+);
+assertCondition(
+  /platform\/chrome\/downloads\.js/.test(storageTransferModule)
+    && !/chrome\.downloads\.download/.test(storageTransferModule),
+  'Options storage transfer must use the downloads platform wrapper instead of raw chrome.downloads.download.'
 );
 
 for (const permission of manifest.permissions) {
