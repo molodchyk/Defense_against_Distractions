@@ -5,7 +5,7 @@ import { access, readFile, readdir, stat } from 'node:fs/promises';
 import { spawnSync } from 'node:child_process';
 import path from 'node:path';
 import process from 'node:process';
-import { getFirstNonEmptyLine, hasAll, parseKeyedBlock } from './playbook-utils.mjs';
+import { getFirstNonEmptyLine, getPngDimensionFailure, hasAll, parseKeyedBlock } from './playbook-utils.mjs';
 
 const rootDir = process.cwd();
 const repositoryUrl = 'https://github.com/molodchyk/Defense_against_Distractions';
@@ -128,37 +128,9 @@ async function getDirectoryEntries(relativePath) {
   }));
 }
 
-async function getPngDimensions(relativePath) {
-  try {
-    const buffer = await readFile(path.join(rootDir, relativePath));
-    const pngSignature = Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]);
-    const hasPngSignature = buffer.length >= 24 && buffer.subarray(0, 8).equals(pngSignature);
-
-    if (!hasPngSignature) {
-      failures.push(`${relativePath} must be a valid PNG file.`);
-      return null;
-    }
-
-    return {
-      width: buffer.readUInt32BE(16),
-      height: buffer.readUInt32BE(20)
-    };
-  } catch {
-    failures.push(`Missing or unreadable PNG file: ${relativePath}`);
-    return null;
-  }
-}
-
 async function assertPngDimensions(relativePath, expectedWidth, expectedHeight) {
-  const dimensions = await getPngDimensions(relativePath);
-  if (!dimensions) {
-    return;
-  }
-
-  assertCondition(
-    dimensions.width === expectedWidth && dimensions.height === expectedHeight,
-    `${relativePath} must be ${expectedWidth}x${expectedHeight}, got ${dimensions.width}x${dimensions.height}.`
-  );
+  const failure = await getPngDimensionFailure(rootDir, relativePath, expectedWidth, expectedHeight);
+  if (failure) failures.push(failure);
 }
 
 for (const entry of requiredRootEntries) {
@@ -184,6 +156,7 @@ assertCondition(await exists('scripts/check-static-localization.mjs'), 'Missing 
 assertCondition(await exists('scripts/check-unpacked-extension-load.ps1'), 'Missing unpacked extension browser-load smoke script.');
 assertCondition(await exists('src/platform/chrome/downloads.js'), 'Missing Chrome downloads platform wrapper.');
 assertCondition(await exists('src/platform/chrome/runtimeMessages.js'), 'Missing Chrome runtime-message platform wrapper.');
+assertCondition(await exists('src/platform/chrome/tabs.js'), 'Missing Chrome tabs platform wrapper.');
 
 const [
   manifest,
@@ -205,7 +178,10 @@ const [
   decisionRecords,
   downloadsWrapper,
   runtimeMessagesWrapper,
+  tabsWrapper,
   passwordManagerModule,
+  popupChromeModule,
+  elementPickerLauncherModule,
   storageTransferModule,
   usageStatsModule,
   intentDiagnosticsModule,
@@ -230,7 +206,10 @@ const [
   readText('docs/decision-records.md'),
   readText('src/platform/chrome/downloads.js'),
   readText('src/platform/chrome/runtimeMessages.js'),
+  readText('src/platform/chrome/tabs.js'),
   readText('src/js/options/password/manager.js'),
+  readText('src/js/popup/chrome.js'),
+  readText('src/js/popup/elementPickerLauncher.js'),
   readText('src/js/options/storageTransfer.js'),
   readText('src/js/options/usageStats.js'),
   readText('src/js/options/intentDiagnostics.js'),
@@ -377,6 +356,8 @@ assertCondition(
   'Options storage transfer must use the downloads platform wrapper instead of raw chrome.downloads.download.'
 );
 assertCondition(/chrome\.runtime\.sendMessage/.test(runtimeMessagesWrapper) && /runtime\.lastError/.test(runtimeMessagesWrapper), 'Chrome runtime-message platform wrapper must own chrome.runtime.sendMessage and runtime.lastError handling.');
+assertCondition(/chrome\.tabs\.query/.test(tabsWrapper) && /chrome\.tabs\.create/.test(tabsWrapper) && /chrome\.tabs\.sendMessage/.test(tabsWrapper) && /chrome\.tabs\.update/.test(tabsWrapper) && /runtime\.lastError/.test(tabsWrapper), 'Chrome tabs platform wrapper must own popup tab query/create/message/update and runtime.lastError handling.');
+assertCondition([popupChromeModule, elementPickerLauncherModule].every(text => /platform\/chrome\/tabs\.js/.test(text) && !/chrome\.tabs\./.test(text) && !/chrome\.runtime\.lastError/.test(text)), 'Popup tab helpers must use the tabs platform wrapper instead of raw chrome.tabs callbacks.');
 assertCondition(
   [usageStatsModule, intentDiagnosticsModule, planPomodoroEditorModule].every(text =>
     /platform\/chrome\/runtimeMessages\.js/.test(text) && !/chrome\.runtime\.sendMessage/.test(text)

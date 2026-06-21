@@ -2,13 +2,21 @@
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
 import { getSync } from '../../platform/chrome/storage.js';
+import { sendRuntimeMessage as sendChromeRuntimeMessage } from '../../platform/chrome/runtimeMessages.js';
+import {
+  canCreateTab,
+  createTab,
+  getActiveCurrentWindowTab,
+  sendTabMessage as sendChromeTabMessage,
+  updateTab
+} from '../../platform/chrome/tabs.js';
 
-export function getActiveTab() {
-  return new Promise(resolve => {
-    chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
-      resolve(tabs[0]);
-    });
-  });
+export async function getActiveTab() {
+  try {
+    return await getActiveCurrentWindowTab();
+  } catch {
+    return null;
+  }
 }
 
 export async function getSyncStorage(keys) {
@@ -34,10 +42,10 @@ export function openOptions() {
 }
 
 export function openOptionsPanel(panelId) {
-  if (chrome.tabs?.create) {
-    chrome.tabs.create({
+  if (canCreateTab()) {
+    createTab({
       url: chrome.runtime.getURL(getOptionsPagePath(panelId))
-    });
+    }).catch(() => chrome.runtime.openOptionsPage());
   } else {
     chrome.runtime.openOptionsPage();
   }
@@ -49,50 +57,26 @@ export function openIntentDiagnostics() {
 }
 
 export function openFeedback() {
-  chrome.tabs.create({
+  createTab({
     url: 'https://github.com/molodchyk/Defense_against_Distractions/issues'
-  });
+  }).catch(() => {});
   window.close();
 }
 
 export function sendRuntimeMessage(message) {
-  return new Promise(resolve => {
-    chrome.runtime.sendMessage(message, response => {
-      if (chrome.runtime.lastError) {
-        resolve(null);
-        return;
-      }
-
-      resolve(response);
-    });
-  });
+  return sendChromeRuntimeMessage(message);
 }
 
 export function sendTabMessage(tabId, message) {
-  return new Promise(resolve => {
-    chrome.tabs.sendMessage(tabId, message, { frameId: 0 }, response => {
-      if (chrome.runtime.lastError) {
-        resolve(null);
-        return;
-      }
-
-      resolve(response);
-    });
-  });
+  return sendChromeTabMessage(tabId, message, { frameId: 0 });
 }
 
-export function updateTabUrl(tabId, url) {
-  return new Promise(resolve => {
-    chrome.tabs.update(tabId, { url }, tab => {
-      if (chrome.runtime.lastError) {
-        resolve(null);
-        return;
-      }
-
-      resolve({
+export async function updateTabUrl(tabId, url) {
+  const tab = await updateTab(tabId, { url });
+  return tab
+    ? {
         status: 'updated',
         tab
-      });
-    });
-  });
+      }
+    : null;
 }

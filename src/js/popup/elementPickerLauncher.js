@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
+import { sendTabMessage } from '../../platform/chrome/tabs.js';
+
 function readPickerSettings() {
   return {
     strategy: document.getElementById('matchStrategySelect').value,
@@ -13,6 +15,7 @@ function readPickerSettings() {
 export function createElementPickerLauncher({
   getActiveTab,
   getMessage,
+  sendMessageToTab = sendTabMessage,
   setStatus
 }) {
   return async function startElementPicker() {
@@ -24,17 +27,17 @@ export function createElementPickerLauncher({
       return;
     }
 
-    chrome.tabs.sendMessage(activeTab.id, {
+    const response = await sendMessageToTab(activeTab.id, {
       action: 'startElementPicker',
       ...settings
-    }, response => {
-      if (chrome.runtime.lastError) {
-        setStatus(getMessage('popupReloadBeforePicking'));
-        return;
-      }
-
-      setStatus(response?.status || getMessage('popupElementPickerStarted'));
-      window.close();
     });
+
+    if (response === null) {
+      setStatus(getMessage('popupReloadBeforePicking'));
+      return;
+    }
+
+    setStatus(response?.status || getMessage('popupElementPickerStarted'));
+    window.close();
   };
 }

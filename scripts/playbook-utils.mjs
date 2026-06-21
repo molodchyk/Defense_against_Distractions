@@ -1,6 +1,9 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
+import { readFile } from 'node:fs/promises';
+import path from 'node:path';
+
 export function hasAll(text, patterns) {
   return patterns.every(pattern => pattern.test(text));
 }
@@ -34,4 +37,25 @@ export function parseKeyedBlock(text, blockName) {
   }
 
   return fields;
+}
+
+export async function getPngDimensionFailure(rootDir, relativePath, expectedWidth, expectedHeight) {
+  try {
+    const buffer = await readFile(path.join(rootDir, relativePath));
+    const pngSignature = Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]);
+    const hasPngSignature = buffer.length >= 24 && buffer.subarray(0, 8).equals(pngSignature);
+
+    if (!hasPngSignature) {
+      return `${relativePath} must be a valid PNG file.`;
+    }
+
+    const width = buffer.readUInt32BE(16);
+    const height = buffer.readUInt32BE(20);
+
+    return width === expectedWidth && height === expectedHeight
+      ? null
+      : `${relativePath} must be ${expectedWidth}x${expectedHeight}, got ${width}x${height}.`;
+  } catch {
+    return `Missing or unreadable PNG file: ${relativePath}`;
+  }
 }

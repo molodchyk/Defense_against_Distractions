@@ -28,7 +28,7 @@ This document records why each current manifest permission and broad content-scr
 ### `activeTab`
 
 - Feature owner: popup current-tab tools such as UI picker launch, page signals, block diagnostics, Pomodoro mini panel, and intent recovery actions.
-- API evidence: `src/js/popup/chrome.js`, `src/js/popup/elementPickerLauncher.js`, `src/js/popup/pageSignalsPanel.js`, `src/js/popup/blockDiagnosticsPanel.js`, `src/js/popup/intent/intentRecoveryPanel.js`.
+- API evidence: `src/platform/chrome/tabs.js`, used by `src/js/popup/chrome.js`, `src/js/popup/elementPickerLauncher.js`, `src/js/popup/pageSignalsPanel.js`, `src/js/popup/blockDiagnosticsPanel.js`, and `src/js/popup/intent/intentRecoveryPanel.js`.
 - Why retained: popup actions are user-invoked and operate on the currently active tab. Keeping `activeTab` makes that temporary current-tab capability explicit without adding the broader `tabs` permission.
 - Removal trigger: remove only after popup current-tab actions are proven to work without activeTab in Chrome Web Store review contexts and without adding `tabs`.
 
