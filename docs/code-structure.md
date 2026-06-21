@@ -294,7 +294,7 @@ Pomodoro is split across plan configuration, runtime, and local activity:
 - `src/js/background/pomodoro/history.js` owns background transition-history event emission.
 - `src/js/background/pomodoro/runtimeReconciliation.js` owns background runtime transition helpers for away-rest credit, return-time phase resolution, and runtime-change detection.
 - `src/js/background/pomodoro/engine.js` owns timer truth, auto-start, strict-break protected command guards, system idle/locked reconciliation, and popup/options payloads.
-- `src/js/background/pomodoro/notifications.js` owns best-effort tab notifications for runtime changes and strict-break reset clearing.
+- `src/js/background/pomodoro/notifications.js` owns best-effort tab notifications for runtime changes and strict-break reset clearing through `src/platform/chrome/tabs.js`.
 - `src/js/background/pomodoro/initializer.js` owns Pomodoro background startup, idle detection startup through `src/platform/chrome/idle.js`, alarm wakeups through `src/platform/chrome/alarms.js`, and runtime message routing.
 - `src/js/content/pomodoro/activity.js` sends throttled top-frame activity pings for local active/away status.
 - `src/js/content/pomodoro/miniPanelState.js` owns local-only mini-panel UI-state persistence and normalization.

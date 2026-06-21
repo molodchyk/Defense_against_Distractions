@@ -10,6 +10,7 @@ Version 1.6.1:
 - added static extension-surface localization verification for visible HTML text and accessible labels
 - moved background schedule and Pomodoro alarm handling behind a Chrome alarms platform wrapper
 - moved Pomodoro idle-state detection behind a Chrome idle platform wrapper
+- moved background Pomodoro tab notifications behind the Chrome tabs platform wrapper
 - moved user-triggered export downloads behind a Chrome platform wrapper and added a playbook guard against raw `chrome.downloads` use in the options export flow
 - moved options-page background diagnostic and Pomodoro messages behind a Chrome runtime-message platform wrapper
 - moved popup tab query, tab messaging, tab update, and tab creation through a Chrome tabs platform wrapper

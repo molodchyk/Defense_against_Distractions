@@ -159,7 +159,6 @@ assertCondition(await exists('src/platform/chrome/downloads.js'), 'Missing Chrom
 assertCondition(await exists('src/platform/chrome/idle.js'), 'Missing Chrome idle platform wrapper.');
 assertCondition(await exists('src/platform/chrome/runtimeMessages.js'), 'Missing Chrome runtime-message platform wrapper.');
 assertCondition(await exists('src/platform/chrome/tabs.js'), 'Missing Chrome tabs platform wrapper.');
-
 const [
   manifest,
   packageJson,
@@ -185,6 +184,7 @@ const [
   tabsWrapper,
   pomodoroChromeStorageModule,
   pomodoroInitializerModule,
+  pomodoroNotificationsModule,
   scheduleMonitorModule,
   passwordManagerModule,
   popupChromeModule,
@@ -218,6 +218,7 @@ const [
   readText('src/platform/chrome/tabs.js'),
   readText('src/js/background/pomodoro/chromeStorage.js'),
   readText('src/js/background/pomodoro/initializer.js'),
+  readText('src/js/background/pomodoro/notifications.js'),
   readText('src/js/background/scheduleMonitor.js'),
   readText('src/js/options/password/manager.js'),
   readText('src/js/popup/chrome.js'),
@@ -378,6 +379,7 @@ assertCondition(
 assertCondition(/chrome\.runtime\.sendMessage/.test(runtimeMessagesWrapper) && /runtime\.lastError/.test(runtimeMessagesWrapper), 'Chrome runtime-message platform wrapper must own chrome.runtime.sendMessage and runtime.lastError handling.');
 assertCondition(/chrome\.tabs\.query/.test(tabsWrapper) && /chrome\.tabs\.create/.test(tabsWrapper) && /chrome\.tabs\.sendMessage/.test(tabsWrapper) && /chrome\.tabs\.update/.test(tabsWrapper) && /runtime\.lastError/.test(tabsWrapper), 'Chrome tabs platform wrapper must own popup tab query/create/message/update and runtime.lastError handling.');
 assertCondition([popupChromeModule, elementPickerLauncherModule].every(text => /platform\/chrome\/tabs\.js/.test(text) && !/chrome\.tabs\./.test(text) && !/chrome\.runtime\.lastError/.test(text)), 'Popup tab helpers must use the tabs platform wrapper instead of raw chrome.tabs callbacks.');
+assertCondition(/platform\/chrome\/tabs\.js/.test(pomodoroNotificationsModule) && !/chrome\.tabs\./.test(pomodoroNotificationsModule) && !/chrome\.runtime\.lastError/.test(pomodoroNotificationsModule), 'Background Pomodoro notifications must use the tabs platform wrapper instead of raw chrome.tabs callbacks.');
 assertCondition(
   [usageStatsModule, intentDiagnosticsModule, planPomodoroEditorModule].every(text =>
     /platform\/chrome\/runtimeMessages\.js/.test(text) && !/chrome\.runtime\.sendMessage/.test(text)
@@ -686,7 +688,6 @@ if (failures.length === 0) {
     failures.push(`Static localization verification failed:\n${staticLocalizationCheck.stdout}${staticLocalizationCheck.stderr}`.trim());
   }
 }
-
 if (failures.length === 0) {
   console.log(`Browser extension playbook check passed: ${locales.length} localized store listings verified.`);
   process.exit(0);
