@@ -11,7 +11,7 @@ Belangrijkste functies:
 Blokkeer pagina’s op trefwoorden, zinnen en gewogen scores.
 Organiseer verschillende focusregels in website- en trefwoordgroepen.
 Gebruik vergrendelde schema’s, whitelists, wachtwoordbeveiliging, export/import, UI-modi en het verbergen van UI-elementen om de setup praktisch te houden.
-Nieuw in versie 1.6:
+Nieuw in versie 1.6.1:
 Pomodoro telt nu inactieve en vergrendelde tijd mee als vereiste rust.
 De popup en de Pomodoro-pagina van het plan tonen nu duidelijkere runtime-diagnostiek.
 Strikte pauzeblokkering herstelt nu media en de dempstatus van het tabblad nadat de blokkering eindigt.

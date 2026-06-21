@@ -54,7 +54,7 @@ Manual QA still matters because the extension interacts with live websites and b
 
 Before release, verify:
 
-- Options page loads and saves groups, websites, keywords, schedules, whitelist, password, UI mode, and UI element rules.
+- Options page loads and saves plans, plan entries, websites, keywords, schedules, allowed websites, Pomodoro settings, intent settings, password, UI mode, and UI element rules.
 - Popup loads, uses the selected UI mode, opens options, and starts the UI picker.
 - Blocking overlay appears on a known keyword match, displays diagnostic text, and allows the text to be selected.
 - Blocked pages stop or mute video and audio instead of only covering the page visually.

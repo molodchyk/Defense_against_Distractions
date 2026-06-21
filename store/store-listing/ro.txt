@@ -11,7 +11,7 @@ Funcții principale:
 Blochează pagini după cuvinte-cheie, expresii și scoruri ponderate.
 Organizează reguli diferite de focus în grupuri de site-uri și cuvinte-cheie.
 Folosește programe blocate, whitelists, protecție cu parolă, export/import, moduri UI și ascunderea elementelor UI pentru a păstra configurarea practică.
-Ce este nou în versiunea 1.6:
+Ce este nou în versiunea 1.6.1:
 Pomodoro contează acum timpul inactiv și blocat ca parte din odihna necesară.
 Popup-ul și pagina Pomodoro a planului afișează acum diagnostice de rulare mai clare.
 Blocarea strictă a pauzei restaurează acum media și starea de mut a filei după terminarea blocării.

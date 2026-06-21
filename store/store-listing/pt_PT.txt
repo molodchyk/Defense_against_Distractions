@@ -11,7 +11,7 @@ Funcionalidades principais:
 Bloquear páginas por palavras-chave, frases e pontuações ponderadas.
 Organizar diferentes regras de foco em grupos de websites e palavras-chave.
 Usar horários bloqueados, whitelists, proteção por palavra-passe, exportação/importação, modos de UI e ocultação de elementos de UI para manter a configuração prática.
-Novidades da versão 1.6:
+Novidades da versão 1.6.1:
 O Pomodoro passa a contar tempo inativo e bloqueado como parte do descanso necessário.
 O pop-up e a página Pomodoro do plano mostram agora diagnósticos de execução mais claros.
 O bloqueio rigoroso de pausa repõe agora os média e o estado de silêncio do separador após o fim do bloqueio.

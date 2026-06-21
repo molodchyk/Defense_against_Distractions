@@ -11,7 +11,7 @@ Główne funkcje:
 Blokowanie stron według słów kluczowych, fraz i ważonych wyników.
 Organizowanie różnych zasad skupienia w grupy stron i słów kluczowych.
 Używanie zablokowanych harmonogramów, whitelist, ochrony hasłem, eksportu/importu, trybów UI i ukrywania elementów UI, aby konfiguracja była praktyczna.
-Nowości w wersji 1.6:
+Nowości w wersji 1.6.1:
 Pomodoro teraz zalicza czas bezczynności i zablokowania do wymaganego odpoczynku.
 Popup i strona Pomodoro planu pokazują teraz czytelniejszą diagnostykę działania.
 Ścisłe blokowanie przerwy przywraca teraz media i stan wyciszenia karty po zakończeniu blokady.

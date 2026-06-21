@@ -11,7 +11,7 @@ Asosiy xususiyatlar:
 Kalit so'zlar, iboralar va vaznli ballar bo'yicha sahifalarni bloklang.
 Turli fokus qoidalarini veb-sayt va kalit so'z guruhlariga ajrating.
 Qulflangan jadvallar, oq roʻyxatlar, parolni himoyalash, eksport/import, UI rejimlari va foydalanuvchi interfeysi elementlarini yashirishdan foydalaning.
-1.6 versiyasida nima yangilik:
+1.6.1 versiyasida nima yangilik:
 Pomodoro endi bekor va qulflangan vaqtni zarur dam olishga qo‘shadi.
 Popup va rejaning Pomodoro sahifasi endi aniqroq runtime diagnostikasini ko‘rsatadi.
 Qattiq tanaffus blokirovkasi blok tugagach media va tab ovozsiz holatini tiklaydi.

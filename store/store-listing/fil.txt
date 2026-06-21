@@ -12,7 +12,7 @@ I-block ang mga pahina sa pamamagitan ng mga keyword, parirala, at may timbang n
 Ayusin ang iba't ibang panuntunan sa pagtutok sa mga pangkat ng website at keyword.
 Gumamit ng mga naka-lock na iskedyul, mga whitelist, proteksyon ng password, pag-export/pag-import, mga mode ng UI, at pagtatago ng elemento ng UI upang panatilihing praktikal ang setup.
 
-Ano ang bago sa bersyon 1.6:
+Ano ang bago sa bersyon 1.6.1:
 Binibilang na ngayon ng Pomodoro ang idle at locked na oras bilang bahagi ng kinakailangang pahinga.
 Mas malinaw na ngayon ang runtime diagnostics sa popup at plan Pomodoro page.
 Ibinabalik na ngayon ng strict-break blocking ang media at mute state ng tab pagkatapos matapos ang block.

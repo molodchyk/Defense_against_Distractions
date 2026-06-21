@@ -1,6 +1,6 @@
 # Defense Against Distractions
 
-Defense Against Distractions is a browser extension that helps you avoid procrastination by blocking pages when distracting words or phrases appear in their text.
+Defense Against Distractions is a local-first browser extension for creating protection plans that block distracting pages by keywords, schedules, Pomodoro state, intent coherence, and optional UI cleanup.
 
 Instead of only blocking entire domains, you can define plan entries with websites and keywords. When a matching page reaches the configured distraction score, the extension redirects it to a block page.
 
@@ -8,9 +8,11 @@ Instead of only blocking entire domains, you can define plan entries with websit
 
 - Block pages based on keywords, phrases, and weighted keyword scores.
 - Organize websites and keywords inside enableable plans.
-- Give plans their own allowed websites, schedules, and optional UI cleanup assignments.
+- Give plans their own allowed websites, schedules, Pomodoro rules, intent-coherence settings, and optional UI cleanup assignments.
 - Use locked schedules to make focus rules harder to relax during chosen time windows.
 - Allow websites inside a plan so that plan does not scan them.
+- Use Pomodoro work/rest timing that can credit idle or locked time as rest.
+- Detect possible browsing-chain drift locally and show recovery choices.
 - Protect the options page with a password.
 - Hide distracting UI elements with a popup-based element picker. See [UI Element Blocking](docs/ui-element-blocking.md).
 - Export and import extension settings.

@@ -11,7 +11,7 @@ Hlavné funkcie:
 Blokovanie stránok podľa kľúčových slov, fráz a vážených skóre.
 Organizovanie rôznych pravidiel sústredenia do skupín webov a kľúčových slov.
 Používanie uzamknutých plánov, whitelistov, ochrany heslom, exportu/importu, režimov UI a skrývania prvkov UI, aby nastavenie zostalo praktické.
-Novinky vo verzii 1.6:
+Novinky vo verzii 1.6.1:
 Pomodoro teraz započítava nečinný a uzamknutý čas do potrebného oddychu.
 Popup a stránka Pomodoro plánu teraz zobrazujú jasnejšiu diagnostiku časovača.
 Prísne blokovanie prestávky teraz po skončení bloku obnoví médiá aj stav stlmenia karty.

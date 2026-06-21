@@ -11,7 +11,7 @@ Vipengele kuu:
 Zuia kurasa kwa maneno muhimu, misemo na alama zilizopimwa.
 Panga sheria tofauti za kuzingatia katika vikundi vya tovuti na maneno muhimu.
 Tumia ratiba zilizofungwa, orodha zilizoidhinishwa, ulinzi wa nenosiri, kuhamisha/kuagiza, modi za kiolesura na kipengele cha UI kujificha ili kuweka usanidi kuwa wa vitendo.
-Ni nini kipya katika toleo la 1.6:
+Ni nini kipya katika toleo la 1.6.1:
 Pomodoro sasa huhesabu muda wa kutokuwa na shughuli na muda uliofungwa kama sehemu ya mapumziko yanayohitajika.
 Popup na ukurasa wa Pomodoro wa mpango sasa zinaonyesha uchunguzi wa runtime ulio wazi zaidi.
 Uzuiaji mkali wa mapumziko sasa hurejesha media na hali ya kunyamazisha kichupo baada ya kizuizi kuisha.

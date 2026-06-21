@@ -12,7 +12,7 @@ Bloquer des pages par mots-clés, expressions et scores pondérés.
 Organiser différentes règles de concentration en groupes de sites web et de mots-clés.
 Utiliser des horaires verrouillés, des listes blanches, une protection par mot de passe, l’export/import, les modes d’interface et le masquage d’éléments UI pour garder une configuration pratique.
 
-Nouveautés de la version 1.6:
+Nouveautés de la version 1.6.1:
 Pomodoro compte maintenant le temps inactif et verrouillé comme repos requis.
 Le popup et la page Pomodoro du plan affichent désormais des diagnostics d’exécution plus clairs.
 Le blocage strict des pauses restaure désormais les médias et l’état muet de l’onglet après la fin du blocage.

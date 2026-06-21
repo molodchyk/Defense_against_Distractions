@@ -11,7 +11,7 @@ Hovedfunksjoner:
 Blokker sider etter nøkkelord, fraser og vektede scorer.
 Organiser ulike fokusregler i grupper for nettsteder og nøkkelord.
 Bruk låste tidsplaner, whitelists, passordbeskyttelse, eksport/import, UI-moduser og skjuling av UI-elementer for å holde oppsettet praktisk.
-Nytt i versjon 1.6:
+Nytt i versjon 1.6.1:
 Pomodoro teller nå inaktiv og låst tid som del av nødvendig hvile.
 Popupen og planens Pomodoro-side viser nå tydeligere kjøretidsdiagnostikk.
 Streng pauseblokkering gjenoppretter nå medier og fanens dempestatus når blokkeringen slutter.

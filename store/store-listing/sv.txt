@@ -11,7 +11,7 @@ Huvudfunktioner:
 Blockera sidor efter nyckelord, fraser och viktade poäng.
 Organisera olika fokusregler i grupper för webbplatser och nyckelord.
 Använd låsta scheman, whitelists, lösenordsskydd, export/import, UI-lägen och döljning av UI-element för att hålla inställningen praktisk.
-Nytt i version 1.6:
+Nytt i version 1.6.1:
 Pomodoro räknar nu inaktiv och låst tid som del av den nödvändiga vilan.
 Popupen och planens Pomodoro-sida visar nu tydligare körningsdiagnostik.
 Strikt pausblockering återställer nu media och flikens ljud av-status när blockeringen slutar.

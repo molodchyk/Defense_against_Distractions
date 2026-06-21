@@ -12,7 +12,7 @@ Blokir halaman berdasarkan kata kunci, frasa, dan skor berbobot.
 Atur berbagai aturan fokus ke dalam grup situs web dan kata kunci.
 Gunakan jadwal terkunci, whitelist, perlindungan kata sandi, ekspor/impor, mode UI, dan penyembunyian elemen UI agar pengaturan tetap praktis.
 
-Yang baru di versi 1.6:
+Yang baru di versi 1.6.1:
 Pomodoro sekarang menghitung waktu idle dan terkunci sebagai bagian dari istirahat yang diperlukan.
 Popup dan halaman Pomodoro pada plan sekarang menampilkan diagnostik runtime yang lebih jelas.
 Pemblokiran istirahat ketat sekarang memulihkan media dan status mute tab setelah blok berakhir.

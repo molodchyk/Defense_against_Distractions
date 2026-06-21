@@ -12,7 +12,7 @@ Blokuokite puslapius pagal raktinius žodžius, frazes ir įvertintus balus.
 Suskirstykite skirtingas fokusavimo taisykles į svetainių ir raktinių žodžių grupes.
 Naudokite užrakintus tvarkaraščius, baltuosius sąrašus, apsaugą slaptažodžiu, eksportavimą / importavimą, vartotojo sąsajos režimus ir vartotojo sąsajos elementų slėpimą, kad sąranka būtų praktiška.
 
-Kas naujo 1.6 versijoje:
+Kas naujo 1.6.1 versijoje:
 Pomodoro dabar įskaito neveikos ir užrakintą laiką į būtiną poilsį.
 Iššokantis langas ir plano Pomodoro puslapis dabar rodo aiškesnę veikimo diagnostiką.
 Griežtas pertraukos blokavimas dabar atkuria mediją ir skirtuko nutildymo būseną pasibaigus blokui.

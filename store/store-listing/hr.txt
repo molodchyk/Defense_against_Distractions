@@ -12,7 +12,7 @@ Blokiranje stranica prema ključnim riječima, frazama i ponderiranim rezultatim
 Organiziranje različitih pravila fokusa u grupe web stranica i ključnih riječi.
 Korištenje zaključanih rasporeda, whitelistova, zaštite lozinkom, izvoza/uvoza, UI načina i skrivanja UI elemenata kako bi postavke ostale praktične.
 
-Novo u verziji 1.6:
+Novo u verziji 1.6.1:
 Pomodoro sada računa neaktivno i zaključano vrijeme kao dio potrebnog odmora.
 Popup i stranica Pomodoro plana sada prikazuju jasniju dijagnostiku vremena izvođenja.
 Strogo blokiranje pauze sada vraća medije i stanje utišavanja kartice nakon završetka blokade.

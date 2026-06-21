@@ -12,7 +12,7 @@ Block pages by keywords, phrases, and weighted scores.
 Organize different focus contexts into plans.
 Use locked schedules, allowed websites, password protection, export/import, UI modes, Pomodoro, intent coherence, and UI element hiding to keep the setup practical.
 
-What is new in version 1.6:
+What is new in version 1.6.1:
 Pomodoro now counts idle and locked time toward required rest.
 The popup and plan Pomodoro page now show clearer runtime diagnostics.
 Strict-break blocking now restores media and tab mute state after the block ends.

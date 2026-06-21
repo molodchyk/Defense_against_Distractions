@@ -12,7 +12,7 @@ Lehtede blokeerimine märksõnade, fraaside ja kaalutud skooride järgi.
 Korraldage erinevad fookusreeglid veebisaitide ja märksõnarühmadesse.
 Kasutage lukustatud ajakavasid, valgeid loendeid, paroolikaitset, eksporti/importi, kasutajaliidese režiime ja kasutajaliidese elementide peitmist, et seadistus oleks praktiline.
 
-Mis on uut versioonis 1.6:
+Mis on uut versioonis 1.6.1:
 Pomodoro arvestab nüüd jõudeoleku ja lukustatud aja vajaliku puhkeaja hulka.
 Hüpikaken ja plaani Pomodoro leht näitavad nüüd selgemaid taimeri diagnostikaandmeid.
 Range pausiblokeering taastab nüüd meedia ja vahekaardi vaigistuse oleku pärast blokeeringu lõppu.

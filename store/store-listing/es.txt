@@ -12,7 +12,7 @@ Bloquea páginas por palabras clave, frases y puntuaciones ponderadas.
 Organiza distintas reglas de enfoque en grupos de sitios web y palabras clave.
 Usa horarios bloqueados, listas blancas, protección con contraseña, exportación/importación, modos de interfaz y ocultación de elementos de UI para mantener la configuración práctica.
 
-Novedades de la versión 1.6:
+Novedades de la versión 1.6.1:
 Pomodoro ahora cuenta el tiempo inactivo y bloqueado como parte del descanso requerido.
 El popup y la página Pomodoro del plan ahora muestran diagnósticos del temporizador más claros.
 El bloqueo estricto de descanso ahora restaura los medios y el estado de silencio de la pestaña al terminar el bloqueo.

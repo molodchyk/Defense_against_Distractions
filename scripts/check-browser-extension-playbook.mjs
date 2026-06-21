@@ -301,6 +301,10 @@ assertCondition(
     /PRIVACY\.md/,
     /GPL-3\.0-only/,
     /Reset extension data/i,
+    /plans/i,
+    /Pomodoro/i,
+    /intent coherence/i,
+    /UI cleanup/i,
     /assets\/icons/,
     /store\/store-listing/,
     /docs\/release-notes\.md/,
@@ -552,6 +556,9 @@ for (const locale of locales) {
 
   const listing = await readText(listingPath);
   const firstLine = getFirstNonEmptyLine(listing);
+  const listingVersionMentions = [...listing.matchAll(/\b\d+\.\d+(?:\.\d+)?\b/g)]
+    .map((match) => match[0])
+    .filter((version) => version !== manifest.version && version !== '3.0');
 
   assertCondition(!/[#*\[\]]/.test(listing), `${listingPath} must remain plain text, not Markdown.`);
   assertCondition(firstLine.length > 0, `${listingPath} must not be empty.`);
@@ -567,6 +574,10 @@ for (const locale of locales) {
   assertCondition(listing.includes(repositoryUrl), `${listingPath} must include the GitHub URL.`);
   assertCondition(/GPL-3\.0/.test(listing), `${listingPath} must include GPL-3.0 license disclosure.`);
   assertCondition(!/buymeacoffee|patreon/i.test(listing), `${listingPath} must not include donation links.`);
+  assertCondition(
+    listingVersionMentions.length === 0,
+    `${listingPath} mentions stale or unsynchronized version numbers: ${listingVersionMentions.join(', ')}.`
+  );
 
   if (englishStoreListingLocales.has(locale)) {
     assertCondition(

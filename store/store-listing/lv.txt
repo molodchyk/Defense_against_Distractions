@@ -12,7 +12,7 @@ Bloķējiet lapas pēc atslēgvārdiem, frāzēm un svērtajiem rādītājiem.
 Sakārtojiet dažādus fokusa noteikumus vietņu un atslēgvārdu grupās.
 Izmantojiet bloķētus grafikus, baltos sarakstus, paroles aizsardzību, eksportēšanu/importēšanu, lietotāja interfeisa režīmus un lietotāja interfeisa elementu slēpšanu, lai iestatīšana būtu praktiska.
 
-Kas jauns versijā 1.6:
+Kas jauns versijā 1.6.1:
 Pomodoro tagad ieskaita dīkstāves un bloķēto laiku nepieciešamajā atpūtā.
 Uznirstošais logs un plāna Pomodoro lapa tagad rāda skaidrāku darbības diagnostiku.
 Stingrā pārtraukuma bloķēšana tagad pēc bloka beigām atjauno multividi un cilnes skaņas izslēgšanas stāvokli.

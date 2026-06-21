@@ -12,7 +12,7 @@ Oldalak blokkolása kulcsszavak, kifejezések és súlyozott pontszámok alapjá
 Különböző fókuszszabályok rendezése webhely- és kulcsszócsoportokba.
 Zárolt ütemezések, whitelistek, jelszóvédelem, export/import, UI módok és UI elemek elrejtése a praktikus beállításért.
 
-Újdonságok az 1.6-os verzióban:
+Újdonságok az 1.6.1-os verzióban:
 A Pomodoro mostantól a tétlen és zárolt időt is beszámítja a szükséges pihenőbe.
 A felugró ablak és a terv Pomodoro oldala most egyértelműbb futási diagnosztikát mutat.
 A szigorú szünetblokkolás most a blokk vége után visszaállítja a médiát és a lap némítási állapotát.

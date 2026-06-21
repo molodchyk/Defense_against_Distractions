@@ -12,7 +12,7 @@ Sekat halaman berdasarkan kata kunci, frasa dan skor berwajaran.
 Susun peraturan fokus yang berbeza ke dalam kumpulan laman web dan kata kunci.
 Gunakan jadual berkunci, whitelist, perlindungan kata laluan, eksport/import, mod UI dan penyembunyian elemen UI supaya tetapan kekal praktikal.
 
-Apa yang baharu dalam versi 1.6:
+Apa yang baharu dalam versi 1.6.1:
 Pomodoro kini mengira masa melahu dan terkunci sebagai sebahagian daripada rehat yang diperlukan.
 Popup dan halaman Pomodoro pelan kini menunjukkan diagnostik runtime yang lebih jelas.
 Sekatan rehat ketat kini memulihkan media dan status mute tab selepas blok tamat.

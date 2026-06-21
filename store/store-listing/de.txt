@@ -12,7 +12,7 @@ Seiten nach Schlüsselwörtern, Phrasen und gewichteten Scores blockieren.
 Verschiedene Fokusregeln in Website- und Schlüsselwortgruppen organisieren.
 Gesperrte Zeitpläne, Whitelists, Passwortschutz, Export/Import, UI-Modi und das Ausblenden von UI-Elementen nutzen, damit die Einrichtung praktisch bleibt.
 
-Neu in Version 1.6:
+Neu in Version 1.6.1:
 Pomodoro zählt jetzt Leerlaufzeit und gesperrte Zeit als erforderliche Ruhezeit.
 Popup und Plan-Pomodoro-Seite zeigen jetzt klarere Laufzeitdiagnosen.
 Strenges Pausen-Blocking stellt Medien und den Stummschaltungsstatus des Tabs nach dem Block wieder her.

@@ -12,7 +12,7 @@ Bloqueja pàgines per paraules clau, frases i puntuacions ponderades.
 Organitzeu diferents regles d'enfocament en llocs web i grups de paraules clau.
 Utilitzeu horaris bloquejats, llistes blanques, protecció de contrasenya, exportació/importació, modes d'interfície d'usuari i amagat d'elements d'IU per mantenir la configuració pràctica.
 
-Què hi ha de nou a la versió 1.6:
+Què hi ha de nou a la versió 1.6.1:
 Pomodoro ara compta el temps inactiu i bloquejat com a part del descans requerit.
 El popup i la pàgina Pomodoro del pla mostren diagnòstics del temporitzador més clars.
 El bloqueig estricte de descans ara restaura els mitjans i l’estat de silenci de la pestanya quan acaba el bloqueig.

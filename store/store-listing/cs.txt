@@ -12,7 +12,7 @@ Blokování stránek podle klíčových slov, frází a vážených skóre.
 Organizace různých pravidel soustředění do skupin webů a klíčových slov.
 Uzamčené rozvrhy, whitelisty, ochrana heslem, export/import, režimy UI a skrývání prvků UI pro praktické nastavení.
 
-Co je nového ve verzi 1.6:
+Co je nového ve verzi 1.6.1:
 Pomodoro nyní započítává nečinnost a uzamčení systému do povinného odpočinku.
 Popup a stránka Pomodoro v plánu nyní zobrazují jasnější diagnostiku časovače.
 Přísné blokování přestávky nyní po skončení bloku obnoví média i stav ztlumení karty.

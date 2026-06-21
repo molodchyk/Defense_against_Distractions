@@ -12,7 +12,7 @@ Estä sivuja avainsanojen, lauseiden ja painotettujen pisteiden perusteella.
 Järjestä eri keskittymissäännöt verkkosivusto- ja avainsanaryhmiin.
 Käytä lukittuja aikatauluja, sallittujen listoja, salasanasuojausta, vientiä/tuontia, käyttöliittymätiloja ja UI-elementtien piilotusta, jotta asetukset pysyvät käytännöllisinä.
 
-Uutta versiossa 1.6:
+Uutta versiossa 1.6.1:
 Pomodoro laskee nyt käyttämättömän ja lukitun ajan osaksi vaadittua lepoa.
 Ponnahdusikkuna ja suunnitelman Pomodoro-sivu näyttävät nyt selkeämmät ajastimen diagnostiikat.
 Tiukka taukoblokkaus palauttaa nyt median ja välilehden mykistystilan blokin päätyttyä.

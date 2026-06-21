@@ -12,7 +12,7 @@ Lokaðu síðum eftir leitarorðum, orðasamböndum og vegnum stigum.
 Skipuleggðu mismunandi áherslureglur í vefsíðu- og leitarorðahópa.
 Notaðu læstar áætlanir, hvítlista, lykilorðsvörn, útflutning/innflutning, notendastillingar og felu notendahluti til að halda uppsetningunni hagnýtri.
 
-Hvað er nýtt í útgáfu 1.6:
+Hvað er nýtt í útgáfu 1.6.1:
 Pomodoro telur nú aðgerðalausan og læstan tíma með nauðsynlegri hvíld.
 Sprettiglugginn og Pomodoro-síða áætlunarinnar sýna nú skýrari keyrslugreiningu.
 Ströng hléblokkun endurheimtir nú miðla og hljóðstillingu flipa þegar blokkun lýkur.

@@ -12,7 +12,7 @@ Blocca pagine per parole chiave, frasi e punteggi ponderati.
 Organizza diverse regole di concentrazione in gruppi di siti web e parole chiave.
 Usa pianificazioni bloccate, whitelist, protezione con password, esportazione/importazione, modalità UI e occultamento di elementi UI per mantenere la configurazione pratica.
 
-Novità nella versione 1.6:
+Novità nella versione 1.6.1:
 Pomodoro ora conta il tempo inattivo e bloccato come parte del riposo richiesto.
 Il popup e la pagina Pomodoro del piano mostrano ora diagnostiche di runtime più chiare.
 Il blocco rigoroso delle pause ora ripristina media e stato di silenziamento della scheda dopo la fine del blocco.

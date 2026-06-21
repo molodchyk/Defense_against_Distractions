@@ -12,7 +12,7 @@ Səhifələri açar sözlər, ifadələr və ölçülmüş ballarla bloklayın.
 Veb sayt və açar söz qruplarına fərqli diqqət qaydalarını təşkil edin.
 Quraşdırmanı praktik saxlamaq üçün kilidlənmiş cədvəllər, ağ siyahılar, parol qorunması, ixrac/idxal, UI rejimləri və UI elementinin gizlədilməsindən istifadə edin.
 
-1.6 versiyasında yeniliklər:
+1.6.1 versiyasında yeniliklər:
 Pomodoro artıq boş və kilidli vaxtı tələb olunan istirahətə daxil edir.
 Popup və plan Pomodoro səhifəsi indi daha aydın iş vaxtı diaqnostikası göstərir.
 Sərt fasilə bloklaması blok bitdikdən sonra medianı və tabın səssiz vəziyyətini bərpa edir.

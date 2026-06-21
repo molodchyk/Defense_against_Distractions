@@ -11,7 +11,7 @@ Glavne značilnosti:
 Blokirajte strani s ključnimi besedami, frazami in tehtanimi rezultati.
 Organizirajte različna pravila osredotočanja v skupine spletnih mest in ključnih besed.
 Uporabite zaklenjene urnike, sezname dovoljenih, zaščito z geslom, izvoz/uvoz, načine uporabniškega vmesnika in skrivanje elementov uporabniškega vmesnika, da bo nastavitev praktična.
-Kaj je novega v različici 1.6:
+Kaj je novega v različici 1.6.1:
 Pomodoro zdaj šteje nedejaven in zaklenjen čas kot del potrebnega počitka.
 Pojavno okno in stran Pomodoro načrta zdaj prikazujeta jasnejšo diagnostiko delovanja.
 Strogo blokiranje odmora zdaj po koncu blokade obnovi medije in stanje utišanja zavihka.

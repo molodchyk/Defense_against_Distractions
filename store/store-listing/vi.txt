@@ -11,7 +11,7 @@ Tính năng chính:
 Chặn trang theo từ khóa, cụm từ và điểm có trọng số.
 Tổ chức các quy tắc tập trung khác nhau thành nhóm website và từ khóa.
 Sử dụng lịch khóa, whitelist, bảo vệ bằng mật khẩu, export/import, chế độ UI và ẩn phần tử UI để giữ cấu hình thực tế.
-Điểm mới trong phiên bản 1.6:
+Điểm mới trong phiên bản 1.6.1:
 Pomodoro hiện tính thời gian rảnh và thời gian bị khóa vào phần nghỉ bắt buộc.
 Popup và trang Pomodoro của kế hoạch hiện hiển thị chẩn đoán runtime rõ hơn.
 Chặn nghỉ nghiêm ngặt hiện khôi phục media và trạng thái tắt tiếng tab sau khi kết thúc chặn.
