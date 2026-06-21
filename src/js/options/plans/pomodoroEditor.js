@@ -7,6 +7,7 @@ import {
   formatDuration,
   normalizePomodoroSettings
 } from '../../shared/pomodoro.js';
+import { sendRuntimeMessage } from '../../../platform/chrome/runtimeMessages.js';
 import {
   createButton,
   createCheckboxInput,
@@ -303,21 +304,8 @@ function renderPlanPomodoroTimeline(panel, payload, ownsRuntime) {
   list.replaceChildren(...rows);
 }
 
-function sendPlanRuntimeMessage(message) {
-  return new Promise(resolve => {
-    chrome.runtime.sendMessage(message, response => {
-      if (chrome.runtime.lastError) {
-        resolve(null);
-        return;
-      }
-
-      resolve(response);
-    });
-  });
-}
-
 async function runPlanPomodoroCommand(action, planId) {
-  const response = await sendPlanRuntimeMessage({ action, planId });
+  const response = await sendRuntimeMessage({ action, planId });
   if (response?.status === 'error') {
     alert(response.reason || 'Pomodoro action failed.');
   }
@@ -330,7 +318,7 @@ async function refreshVisiblePlanPomodoroStatus(planId) {
     return;
   }
 
-  const payload = await sendPlanRuntimeMessage({ action: 'getPomodoroState' });
+  const payload = await sendRuntimeMessage({ action: 'getPomodoroState' });
   renderPlanPomodoroRuntimePanel(panel, payload, planId);
 }
 

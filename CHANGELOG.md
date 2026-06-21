@@ -9,6 +9,7 @@ Version 1.6.1:
 - added a manifest permission audit that maps each permission and host-access surface to its feature owner and removal trigger
 - added static extension-surface localization verification for visible HTML text and accessible labels
 - moved user-triggered export downloads behind a Chrome platform wrapper and added a playbook guard against raw `chrome.downloads` use in the options export flow
+- moved options-page background diagnostic and Pomodoro messages behind a Chrome runtime-message platform wrapper
 - sanitized Chrome Web Store screenshots and added a checked store media review artifact
 - synchronized localized store listing version references with the current package version
 - aligned README blocking copy with the current overlay-first page blocking behavior

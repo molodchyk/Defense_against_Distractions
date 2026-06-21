@@ -14,7 +14,7 @@ The detailed modularization target, dependency rules, file-size budgets, and mig
 
 `src/features/page-signals/core/collectorModel.js` owns the tested ES-module page-signal collector model, including bounded visible-text, heading, meta-description, clicked-link, and selected-text topic tokens, passive recommendation/comment/short-form region counts, plus summarized activity signals. `src/js/shared/pageSignals.js` is a compatibility barrel for current imports.
 
-`src/platform` contains browser/platform adapters that are not product features. `src/platform/chrome/storage.js` owns Promise wrappers around `chrome.storage.sync` and `chrome.storage.local`, plus storage-change listener registration for extension pages, options modules, and background modules; it is the default import for extension pages, options modules, background modules, shared UI helpers, and feature storage policies that need Chrome storage. `src/platform/chrome/downloads.js` owns the Promise wrapper around `chrome.downloads.download` for user-triggered export flows.
+`src/platform` contains browser/platform adapters that are not product features. `src/platform/chrome/storage.js` owns Promise wrappers around `chrome.storage.sync` and `chrome.storage.local`, plus storage-change listener registration for extension pages, options modules, and background modules; it is the default import for extension pages, options modules, background modules, shared UI helpers, and feature storage policies that need Chrome storage. `src/platform/chrome/downloads.js` owns the Promise wrapper around `chrome.downloads.download` for user-triggered export flows. `src/platform/chrome/runtimeMessages.js` owns Promise-based `chrome.runtime.sendMessage` access for extension pages that ask the background runtime for diagnostics or timer state.
 
 ## Release Assets
 
@@ -66,6 +66,7 @@ Chrome storage helpers now have explicit owners:
 
 - `src/platform/chrome/storage.js` owns Promise wrappers around `chrome.storage.sync` and `chrome.storage.local`, plus storage-change listener registration for extension pages, options modules, and background modules.
 - `src/platform/chrome/downloads.js` owns the Promise wrapper around `chrome.downloads.download` for user-triggered export files.
+- `src/platform/chrome/runtimeMessages.js` owns Promise-based `chrome.runtime.sendMessage` access for options modules that request background diagnostics, usage summaries, or Pomodoro runtime state.
 - `src/features/plans/storage/criticalScheduleStorage.js` owns priority saving for plan data when forced schedule data must be preserved; it uses the platform wrapper instead of raw `chrome.storage` calls.
 - `src/js/shared/storage/chromeStorage.js` and `src/js/shared/storage/criticalScheduleStorage.js` are compatibility barrels for older imports.
 

@@ -183,6 +183,7 @@ assertCondition(await exists('docs/decision-records.md'), 'Missing decision reco
 assertCondition(await exists('scripts/check-static-localization.mjs'), 'Missing static localization verification script.');
 assertCondition(await exists('scripts/check-unpacked-extension-load.ps1'), 'Missing unpacked extension browser-load smoke script.');
 assertCondition(await exists('src/platform/chrome/downloads.js'), 'Missing Chrome downloads platform wrapper.');
+assertCondition(await exists('src/platform/chrome/runtimeMessages.js'), 'Missing Chrome runtime-message platform wrapper.');
 
 const [
   manifest,
@@ -203,7 +204,11 @@ const [
   storeMediaReview,
   decisionRecords,
   downloadsWrapper,
-  storageTransferModule
+  runtimeMessagesWrapper,
+  storageTransferModule,
+  usageStatsModule,
+  intentDiagnosticsModule,
+  planPomodoroEditorModule
 ] = await Promise.all([
   readJson('manifest.json'),
   readJson('package.json'),
@@ -223,7 +228,11 @@ const [
   readText('docs/store-media-review.md'),
   readText('docs/decision-records.md'),
   readText('src/platform/chrome/downloads.js'),
-  readText('src/js/options/storageTransfer.js')
+  readText('src/platform/chrome/runtimeMessages.js'),
+  readText('src/js/options/storageTransfer.js'),
+  readText('src/js/options/usageStats.js'),
+  readText('src/js/options/intentDiagnostics.js'),
+  readText('src/js/options/plans/pomodoroEditor.js')
 ]);
 
 assertCondition(packageJson.version === manifest.version, 'package.json version must match manifest.json version.');
@@ -364,6 +373,13 @@ assertCondition(
   /platform\/chrome\/downloads\.js/.test(storageTransferModule)
     && !/chrome\.downloads\.download/.test(storageTransferModule),
   'Options storage transfer must use the downloads platform wrapper instead of raw chrome.downloads.download.'
+);
+assertCondition(/chrome\.runtime\.sendMessage/.test(runtimeMessagesWrapper) && /runtime\.lastError/.test(runtimeMessagesWrapper), 'Chrome runtime-message platform wrapper must own chrome.runtime.sendMessage and runtime.lastError handling.');
+assertCondition(
+  [usageStatsModule, intentDiagnosticsModule, planPomodoroEditorModule].every(text =>
+    /platform\/chrome\/runtimeMessages\.js/.test(text) && !/chrome\.runtime\.sendMessage/.test(text)
+  ),
+  'Options usage, intent diagnostics, and plan Pomodoro modules must use the runtime-message platform wrapper.'
 );
 
 for (const permission of manifest.permissions) {

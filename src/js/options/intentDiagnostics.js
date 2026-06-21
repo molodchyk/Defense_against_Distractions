@@ -3,6 +3,7 @@
 import {
   createIntentLineageGraph
 } from '../shared/intentCoherence.js';
+import { sendRuntimeMessage } from '../../platform/chrome/runtimeMessages.js';
 import { addStorageChangeListener } from '../../platform/chrome/storage.js';
 import {
   formatChainBlock,
@@ -21,19 +22,6 @@ import {
 } from './intent-diagnostics/format.js';
 const MAX_VISITS = 10;
 const MAX_GRAPH_NODES = 12;
-
-function sendRuntimeMessage(message) {
-  return new Promise(resolve => {
-    chrome.runtime.sendMessage(message, response => {
-      if (chrome.runtime.lastError) {
-        resolve(null);
-        return;
-      }
-
-      resolve(response);
-    });
-  });
-}
 
 function getElement(id) {
   return document.getElementById(id);

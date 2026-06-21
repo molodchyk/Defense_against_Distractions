@@ -2,22 +2,10 @@
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
 import { buildUsageStatsExportPayload } from '../shared/usageStats.js';
+import { sendRuntimeMessage } from '../../platform/chrome/runtimeMessages.js';
 import { addStorageChangeListener } from '../../platform/chrome/storage.js';
 
 const MAX_VISIBLE_DOMAINS = 8;
-
-function sendRuntimeMessage(message) {
-  return new Promise(resolve => {
-    chrome.runtime.sendMessage(message, response => {
-      if (chrome.runtime.lastError) {
-        resolve(null);
-        return;
-      }
-
-      resolve(response);
-    });
-  });
-}
 
 function getElement(id) {
   return document.getElementById(id);
