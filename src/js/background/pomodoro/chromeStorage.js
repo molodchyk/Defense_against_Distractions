@@ -17,16 +17,19 @@ import {
   isInProtectedSchedule,
   normalizePlans
 } from '../../shared/plans.js';
+import { clearAlarm, createAlarm } from '../../../platform/chrome/alarms.js';
 import { getLocal, getSync, setLocal } from '../../../platform/chrome/storage.js';
 import { POMODORO_ALARM_NAME } from './constants.js';
 import { isPastDueWorkWaitingForSystemReturn } from './runtimeReconciliation.js';
 
 export { getLocal, getSync, setLocal };
 
-export function clearPomodoroAlarm() {
-  return new Promise(resolve => {
-    chrome.alarms.clear(POMODORO_ALARM_NAME, () => resolve());
-  });
+export async function clearPomodoroAlarm() {
+  try {
+    await clearAlarm(POMODORO_ALARM_NAME);
+  } catch (error) {
+    console.error('Failed to clear Pomodoro alarm:', error);
+  }
 }
 
 export async function schedulePomodoroAlarm(runtime) {
@@ -42,7 +45,7 @@ export async function schedulePomodoroAlarm(runtime) {
   }
 
   if (Number.isFinite(when)) {
-    chrome.alarms.create(POMODORO_ALARM_NAME, { when: Math.max(when, Date.now() + 1000) });
+    createAlarm(POMODORO_ALARM_NAME, { when: Math.max(when, Date.now() + 1000) });
   }
 }
 

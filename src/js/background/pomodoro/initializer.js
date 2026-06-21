@@ -2,6 +2,7 @@
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
 import { PLANS_STORAGE_KEY } from '../../shared/plans.js';
+import { addAlarmListener } from '../../../platform/chrome/alarms.js';
 import { addStorageChangeListener } from '../../../platform/chrome/storage.js';
 import { POMODORO_IDLE_DETECTION_SECONDS } from '../../shared/pomodoro.js';
 import { POMODORO_ALARM_NAME } from './constants.js';
@@ -83,7 +84,7 @@ export function initializePomodoroRuntime() {
 
   chrome.runtime.onMessage.addListener(handlePomodoroMessage);
 
-  chrome.alarms.onAlarm.addListener(alarm => {
+  addAlarmListener(alarm => {
     if (alarm.name !== POMODORO_ALARM_NAME) {
       return;
     }

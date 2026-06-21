@@ -14,7 +14,7 @@ This document records why each current manifest permission and broad content-scr
 ### `alarms`
 
 - Feature owner: locked schedule monitoring and plan-owned Pomodoro timing.
-- API evidence: `src/js/background/scheduleMonitor.js`, `src/js/background/pomodoro/initializer.js`, `src/js/background/pomodoro/chromeStorage.js`.
+- API evidence: `src/platform/chrome/alarms.js`, used by `src/js/background/scheduleMonitor.js`, `src/js/background/pomodoro/initializer.js`, and `src/js/background/pomodoro/chromeStorage.js`.
 - Why retained: Manifest V3 background workers can sleep; alarms provide browser-owned wakeups so schedule locks and Pomodoro phase changes are reconciled without a persistent background page.
 - Removal trigger: remove only if schedules and Pomodoro timing no longer need background wakeups.
 

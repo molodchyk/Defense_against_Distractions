@@ -14,7 +14,7 @@ The detailed modularization target, dependency rules, file-size budgets, and mig
 
 `src/features/page-signals/core/collectorModel.js` owns the tested ES-module page-signal collector model, including bounded visible-text, heading, meta-description, clicked-link, and selected-text topic tokens, passive recommendation/comment/short-form region counts, plus summarized activity signals. `src/js/shared/pageSignals.js` is a compatibility barrel for current imports.
 
-`src/platform` contains browser/platform adapters that are not product features. `src/platform/chrome/storage.js` owns Promise wrappers around `chrome.storage.sync` and `chrome.storage.local`, plus storage-change listener registration for extension pages, options modules, and background modules; it is the default import for extension pages, options modules, background modules, shared UI helpers, and feature storage policies that need Chrome storage. `src/platform/chrome/downloads.js` owns the Promise wrapper around `chrome.downloads.download` for user-triggered export flows. `src/platform/chrome/runtimeMessages.js` owns Promise-based `chrome.runtime.sendMessage` access for extension pages that ask the background runtime for diagnostics or timer state. `src/platform/chrome/tabs.js` owns Promise-based popup tab query, tab creation, tab messaging, and tab URL update helpers.
+`src/platform` contains browser/platform adapters that are not product features. `src/platform/chrome/storage.js` owns Promise wrappers around `chrome.storage.sync` and `chrome.storage.local`, plus storage-change listener registration for extension pages, options modules, and background modules; it is the default import for extension pages, options modules, background modules, shared UI helpers, and feature storage policies that need Chrome storage. `src/platform/chrome/alarms.js` owns Chrome alarm creation, clearing, and alarm listener registration for background timer wakeups. `src/platform/chrome/downloads.js` owns the Promise wrapper around `chrome.downloads.download` for user-triggered export flows. `src/platform/chrome/runtimeMessages.js` owns Promise-based `chrome.runtime.sendMessage` access for extension pages that ask the background runtime for diagnostics or timer state. `src/platform/chrome/tabs.js` owns Promise-based popup tab query, tab creation, tab messaging, and tab URL update helpers.
 
 ## Release Assets
 
@@ -65,6 +65,7 @@ Plan core helpers live under `src/features/plans/core/`:
 Chrome storage helpers now have explicit owners:
 
 - `src/platform/chrome/storage.js` owns Promise wrappers around `chrome.storage.sync` and `chrome.storage.local`, plus storage-change listener registration for extension pages, options modules, and background modules.
+- `src/platform/chrome/alarms.js` owns Chrome alarm creation, clearing, and alarm listener registration for schedule and Pomodoro background wakeups.
 - `src/platform/chrome/downloads.js` owns the Promise wrapper around `chrome.downloads.download` for user-triggered export files.
 - `src/platform/chrome/runtimeMessages.js` owns Promise-based `chrome.runtime.sendMessage` access for options modules that request background diagnostics, usage summaries, or Pomodoro runtime state.
 - `src/platform/chrome/tabs.js` owns popup tab query, creation, messaging, and URL update helpers; popup modules call it instead of raw `chrome.tabs` callbacks.
@@ -286,7 +287,7 @@ Pomodoro is split across plan configuration, runtime, and local activity:
 - `src/js/shared/pomodoro/status.js` owns display-oriented Pomodoro status summaries, required-rest/rest-credit/rest-still-needed fields, and duration formatting.
 - `src/js/background/pomodoro.js` is the background Pomodoro entry barrel imported by `src/app/background/index.js`.
 - `src/js/background/pomodoro/constants.js` owns background-only alarm, suppression, and protected-schedule message constants.
-- `src/js/background/pomodoro/chromeStorage.js` uses `src/platform/chrome/storage.js` for Chrome storage access and owns Pomodoro runtime/activity/history persistence plus alarm scheduling.
+- `src/js/background/pomodoro/chromeStorage.js` uses `src/platform/chrome/storage.js` for Chrome storage access and `src/platform/chrome/alarms.js` for alarm scheduling. It owns Pomodoro runtime/activity/history persistence.
 - `src/js/background/pomodoro/autoStartSuppression.js` owns manual-reset auto-start suppression state.
 - `src/js/background/pomodoro/planSelection.js` owns active/startable/runtime plan selection helpers.
 - `src/js/background/pomodoro/history.js` owns background transition-history event emission.

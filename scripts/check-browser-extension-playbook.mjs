@@ -154,6 +154,7 @@ assertCondition(await exists('docs/store-media-review.md'), 'Missing store media
 assertCondition(await exists('docs/decision-records.md'), 'Missing decision records document.');
 assertCondition(await exists('scripts/check-static-localization.mjs'), 'Missing static localization verification script.');
 assertCondition(await exists('scripts/check-unpacked-extension-load.ps1'), 'Missing unpacked extension browser-load smoke script.');
+assertCondition(await exists('src/platform/chrome/alarms.js'), 'Missing Chrome alarms platform wrapper.');
 assertCondition(await exists('src/platform/chrome/downloads.js'), 'Missing Chrome downloads platform wrapper.');
 assertCondition(await exists('src/platform/chrome/runtimeMessages.js'), 'Missing Chrome runtime-message platform wrapper.');
 assertCondition(await exists('src/platform/chrome/tabs.js'), 'Missing Chrome tabs platform wrapper.');
@@ -176,9 +177,13 @@ const [
   releaseNotes,
   storeMediaReview,
   decisionRecords,
+  alarmsWrapper,
   downloadsWrapper,
   runtimeMessagesWrapper,
   tabsWrapper,
+  pomodoroChromeStorageModule,
+  pomodoroInitializerModule,
+  scheduleMonitorModule,
   passwordManagerModule,
   popupChromeModule,
   elementPickerLauncherModule,
@@ -204,9 +209,13 @@ const [
   readText('docs/release-notes.md'),
   readText('docs/store-media-review.md'),
   readText('docs/decision-records.md'),
+  readText('src/platform/chrome/alarms.js'),
   readText('src/platform/chrome/downloads.js'),
   readText('src/platform/chrome/runtimeMessages.js'),
   readText('src/platform/chrome/tabs.js'),
+  readText('src/js/background/pomodoro/chromeStorage.js'),
+  readText('src/js/background/pomodoro/initializer.js'),
+  readText('src/js/background/scheduleMonitor.js'),
   readText('src/js/options/password/manager.js'),
   readText('src/js/popup/chrome.js'),
   readText('src/js/popup/elementPickerLauncher.js'),
@@ -344,7 +353,13 @@ assertCondition(
   /src\/platform\/chrome\/downloads\.js/.test(permissionAudit),
   'Permission audit must point downloads permission API evidence at the platform wrapper.'
 );
+assertCondition(
+  /src\/platform\/chrome\/alarms\.js/.test(permissionAudit),
+  'Permission audit must point alarms permission API evidence at the platform wrapper.'
+);
 
+assertCondition(/chrome\.alarms\.create/.test(alarmsWrapper) && /chrome\.alarms\.clear/.test(alarmsWrapper) && /chrome\.alarms\.onAlarm/.test(alarmsWrapper) && /runtime\.lastError/.test(alarmsWrapper), 'Chrome alarms platform wrapper must own chrome.alarms create/clear/listener and runtime.lastError handling.');
+assertCondition([pomodoroChromeStorageModule, pomodoroInitializerModule, scheduleMonitorModule].every(text => /platform\/chrome\/alarms\.js/.test(text) && !/chrome\.alarms\./.test(text)), 'Background Pomodoro and schedule monitor modules must use the alarms platform wrapper instead of raw chrome.alarms callbacks.');
 assertCondition(
   /chrome\.downloads\.download/.test(downloadsWrapper)
     && /runtime\.lastError/.test(downloadsWrapper),
@@ -368,6 +383,7 @@ const passwordManagerUsesStorageWrapper = /platform\/chrome\/storage\.js/.test(p
   && !/chrome\.storage\.(?:sync|local)\.(?:get|set|remove|clear|getBytesInUse)/.test(passwordManagerModule)
   && !/chrome\.runtime\.lastError/.test(passwordManagerModule);
 assertCondition(passwordManagerUsesStorageWrapper, 'Options password manager must use the Chrome storage platform wrapper instead of raw chrome.storage callbacks.');
+assertCondition(/platform\/chrome\/storage\.js/.test(scheduleMonitorModule) && !/chrome\.storage\.sync\.(?:get|set|remove|clear|getBytesInUse)/.test(scheduleMonitorModule), 'Background schedule monitor must use the Chrome storage platform wrapper instead of raw chrome.storage callbacks.');
 
 for (const permission of manifest.permissions) {
   const escapedPermission = permission.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');

@@ -2,31 +2,40 @@
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
 import { debugLog } from '../shared/logger.js';
+import { createAlarm, addAlarmListener } from '../../platform/chrome/alarms.js';
+import { getSync } from '../../platform/chrome/storage.js';
+
+const SCHEDULE_CHECK_ALARM_NAME = 'scheduleCheck';
 
 export function initializeScheduleMonitor() {
-  chrome.runtime.onStartup.addListener(checkCurrentSchedule);
-  chrome.runtime.onInstalled.addListener(checkCurrentSchedule);
-  chrome.alarms.create('scheduleCheck', { periodInMinutes: 1 });
+  chrome.runtime.onStartup.addListener(runScheduleCheck);
+  chrome.runtime.onInstalled.addListener(runScheduleCheck);
+  createAlarm(SCHEDULE_CHECK_ALARM_NAME, { periodInMinutes: 1 });
 
-  chrome.alarms.onAlarm.addListener(alarm => {
-    if (alarm.name === 'scheduleCheck') {
-      checkCurrentSchedule();
+  addAlarmListener(alarm => {
+    if (alarm.name === SCHEDULE_CHECK_ALARM_NAME) {
+      runScheduleCheck();
     }
   });
 }
 
-function checkCurrentSchedule() {
-  chrome.storage.sync.get('schedule', data => {
-    const now = new Date();
-    const day = now.toLocaleString('en-US', { weekday: 'short' });
-    const currentTime = now.toTimeString().substring(0, 5);
-
-    if (data.schedule && data.schedule.days.includes(day)) {
-      if (currentTime >= data.schedule.start && currentTime <= data.schedule.end) {
-        debugLog('Restrictions are active.');
-      } else {
-        debugLog('No restrictions currently.');
-      }
-    }
+function runScheduleCheck() {
+  checkCurrentSchedule().catch(error => {
+    console.error('Failed to check current schedule:', error);
   });
+}
+
+export async function checkCurrentSchedule() {
+  const data = await getSync('schedule');
+  const now = new Date();
+  const day = now.toLocaleString('en-US', { weekday: 'short' });
+  const currentTime = now.toTimeString().substring(0, 5);
+
+  if (data.schedule && data.schedule.days.includes(day)) {
+    if (currentTime >= data.schedule.start && currentTime <= data.schedule.end) {
+      debugLog('Restrictions are active.');
+    } else {
+      debugLog('No restrictions currently.');
+    }
+  }
 }
