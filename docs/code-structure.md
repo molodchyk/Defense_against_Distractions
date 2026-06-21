@@ -73,7 +73,7 @@ Chrome storage helpers now have explicit owners:
 Shared UI helpers live under `src/js/shared/ui/`:
 
 - `src/js/shared/ui/theme.js` owns UI-mode normalization and system-mode resolution.
-- `src/js/shared/ui/uiLanguage.js` owns UI-language normalization, Chrome-locale fallback, right-to-left direction resolution, document language/direction attributes, and message formatting.
+- `src/js/shared/ui/uiLanguage.js` owns UI-language normalization, Chrome-locale fallback, right-to-left direction resolution, document language/direction attributes, and message formatting. Options-page modules use `getUiMessage` from this helper instead of raw `chrome.i18n.getMessage` so the selected UI language is respected.
 
 New browser API wrappers should go under `src/platform/`; new product persistence policy should go under the owning feature. New UI helpers should go into the UI subfolder instead of adding files directly to `src/js/shared`.
 

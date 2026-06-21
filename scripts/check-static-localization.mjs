@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
-import { readFile } from 'node:fs/promises';
+import { readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
 
@@ -19,6 +19,23 @@ const failures = [];
 
 async function readText(relativePath) {
   return readFile(path.join(rootDir, relativePath), 'utf8');
+}
+
+async function getJsFiles(relativeDir) {
+  const absoluteDir = path.join(rootDir, relativeDir);
+  const entries = await readdir(absoluteDir, { withFileTypes: true });
+  const files = [];
+
+  for (const entry of entries) {
+    const relativePath = `${relativeDir}/${entry.name}`;
+    if (entry.isDirectory()) {
+      files.push(...await getJsFiles(relativePath));
+    } else if (entry.isFile() && entry.name.endsWith('.js')) {
+      files.push(relativePath);
+    }
+  }
+
+  return files;
 }
 
 function stripHtmlComments(html) {
@@ -215,6 +232,17 @@ function scanHtmlFile(file, html, config) {
   }
 }
 
+async function scanOptionsSourceFiles() {
+  const optionsSourceFiles = await getJsFiles('src/js/options');
+
+  for (const file of optionsSourceFiles) {
+    const source = await readText(file);
+    if (/chrome\.i18n\.getMessage/.test(source)) {
+      failures.push(`${file}: use getUiMessage instead of raw chrome.i18n.getMessage so selected UI language is respected.`);
+    }
+  }
+}
+
 const [
   optionsLocalization,
   instructionsEntry,
@@ -237,6 +265,7 @@ for (const messageKey of config.referencedMessageKeys) {
 }
 
 htmlFiles.forEach((file, index) => scanHtmlFile(file, htmlTexts[index], config));
+await scanOptionsSourceFiles();
 
 if (failures.length === 0) {
   console.log(`Static localization check passed: ${htmlFiles.length} extension HTML surfaces scanned.`);

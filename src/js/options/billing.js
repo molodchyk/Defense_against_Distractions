@@ -11,6 +11,7 @@ import {
   normalizeBillingConfig,
   normalizeBillingEntitlement
 } from '../shared/billing.js';
+import { getUiMessage } from '../shared/ui/uiLanguage.js';
 
 const BILLING_MESSAGES = {
   billingHeading: 'Supporter Access',
@@ -90,7 +91,7 @@ function setText(id, text) {
 }
 
 function getMessage(key) {
-  return chrome.i18n.getMessage(key) || BILLING_MESSAGES[key] || key;
+  return getUiMessage(key, BILLING_MESSAGES[key] || key);
 }
 
 function isSafeExternalUrl(url) {

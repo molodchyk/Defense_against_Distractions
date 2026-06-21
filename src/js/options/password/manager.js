@@ -9,10 +9,16 @@ import {
     importPasswordKey
 } from './crypto.js';
 import { isInProtectedSchedule } from '../../shared/plans.js';
+import { getUiMessage } from '../../shared/ui/uiLanguage.js';
 
 const MAX_ATTEMPTS = 5;
 const LOCKOUT_INTERVAL = 30 * 1000; // 30 seconds
 let isPasswordManagerInitialized = false;
+const PASSWORD_MESSAGES = {
+    tooManyAttempts: 'Too many attempts. Please try again in $1 seconds.',
+    incorrectPassword: 'Incorrect password. $1 attempts left.',
+    passwordMismatchAlert: 'Passwords do not match.'
+};
 
 async function setPassword(password) {
     try {
@@ -75,7 +81,7 @@ async function verifyPassword(inputPassword, callback) {
 
     // Check if the lockout period is active
     if (attemptData.attempts >= MAX_ATTEMPTS && timeSinceLastAttempt < LOCKOUT_INTERVAL) {
-        const timeRemainingAlert = chrome.i18n.getMessage("tooManyAttempts", [Math.ceil(timeRemaining / 1000).toString()]);
+        const timeRemainingAlert = getPasswordMessage("tooManyAttempts", [Math.ceil(timeRemaining / 1000).toString()]);
         alert(timeRemainingAlert);
 
         if (timeSinceLastAttempt >= LOCKOUT_INTERVAL) {
@@ -130,7 +136,7 @@ async function verifyPassword(inputPassword, callback) {
                     // After updating attempt count
                     if (decryptedPassword === null || inputPassword !== decryptedPassword) {
                         await updateAttemptData(attemptData.attempts + 1);
-                        const attemptsLeftAlert = chrome.i18n.getMessage("incorrectPassword", [(MAX_ATTEMPTS - attemptData.attempts).toString()]);
+                        const attemptsLeftAlert = getPasswordMessage("incorrectPassword", [(MAX_ATTEMPTS - attemptData.attempts).toString()]);
                         alert(attemptsLeftAlert);
 
                         callback(false);
@@ -199,7 +205,7 @@ async function confirmPassword() {
         await setPassword(password); // This is now an async call
     }
     else {
-        alert(chrome.i18n.getMessage("passwordMismatchAlert"));
+        alert(getPasswordMessage("passwordMismatchAlert"));
     }
 }
 
@@ -292,4 +298,8 @@ async function isPasswordSet() {
             resolve(passwordExists);
         });
     });
+}
+
+function getPasswordMessage(key, substitutions) {
+    return getUiMessage(key, PASSWORD_MESSAGES[key] || key, substitutions);
 }
