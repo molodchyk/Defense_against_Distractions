@@ -295,6 +295,7 @@ $requiredSourceEntries = @(
   "docs/chrome-web-store-category.md",
   "docs/chrome-web-store-privacy-form.md",
   "docs/decision-records.md",
+  "docs/permission-audit.md",
   "docs/release-notes.md",
   "LICENSE",
   "manifest.json",

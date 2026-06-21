@@ -200,6 +200,7 @@ assertCondition(await exists('docs/chrome-web-store-privacy-form.md'), 'Missing 
 assertCondition(await exists('docs/chrome-web-store-additional-fields.md'), 'Missing StorePilot additional-fields document.');
 assertCondition(await exists('docs/chrome-web-store-category.md'), 'Missing StorePilot category document.');
 assertCondition(await exists('docs/storage-ownership.md'), 'Missing storage ownership document.');
+assertCondition(await exists('docs/permission-audit.md'), 'Missing permission audit document.');
 assertCondition(await exists('docs/release-notes.md'), 'Missing release notes document.');
 assertCondition(await exists('docs/decision-records.md'), 'Missing decision records document.');
 assertCondition(await exists('scripts/check-unpacked-extension-load.ps1'), 'Missing unpacked extension browser-load smoke script.');
@@ -218,6 +219,7 @@ const [
   storeAdditionalFields,
   storeCategory,
   storageOwnership,
+  permissionAudit,
   releaseNotes,
   decisionRecords
 ] = await Promise.all([
@@ -234,6 +236,7 @@ const [
   readText('docs/chrome-web-store-additional-fields.md'),
   readText('docs/chrome-web-store-category.md'),
   readText('docs/storage-ownership.md'),
+  readText('docs/permission-audit.md'),
   readText('docs/release-notes.md'),
   readText('docs/decision-records.md')
 ]);
@@ -308,6 +311,7 @@ assertCondition(
     /extension-owned overlay/i,
     /assets\/icons/,
     /store\/store-listing/,
+    /docs\/permission-audit\.md/,
     /docs\/release-notes\.md/,
     /docs\/decision-records\.md/,
     new RegExp(repositoryUrl.replaceAll('/', '\\/')),
@@ -341,6 +345,38 @@ for (const permission of manifestPermissions) {
   assertCondition(
     new RegExp(`\`${permission}\``).test(privacy),
     `PRIVACY.md must explain manifest permission: ${permission}`
+  );
+}
+
+assertCondition(
+  hasAll(permissionAudit, [
+    /# Permission Audit/,
+    /minimal and explainable/i,
+    /Host Access Through Content Scripts/,
+    /Permissions Deliberately Not Requested/,
+    /Removal trigger/i,
+    /content_scripts\.matches/,
+    /<all_urls>/,
+    /not requested/i,
+    /`tabs`/,
+    /`scripting`/,
+    /`webRequest`/
+  ]),
+  'Permission audit must explain host access, removal triggers, and deliberately unrequested broad permissions.'
+);
+
+for (const permission of manifest.permissions) {
+  assertCondition(
+    new RegExp(`###\\s+\`${permission.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\``).test(permissionAudit),
+    `Permission audit must include a section for manifest permission: ${permission}.`
+  );
+  assertCondition(
+    new RegExp(`permission\\.${permission.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`).test(storePrivacyForm),
+    `StorePilot privacy form must include permission.${permission}.`
+  );
+  assertCondition(
+    new RegExp(`\`${permission.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\``).test(privacy),
+    `PRIVACY.md must include manifest permission: ${permission}.`
   );
 }
 

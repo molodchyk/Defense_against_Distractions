@@ -20,6 +20,8 @@ Run these from the project root:
 
 Reviewer-facing browser limitations are documented in [Reviewer Notes](reviewer-notes.md). Recheck that file before publishing if file URL, incognito, permissions, package contents, or browser-controlled behavior changes.
 
+Manifest permission rationale and broad host-access boundaries are documented in [Permission Audit](permission-audit.md). Recheck that file before publishing if any permission, content-script match, or web-accessible resource match changes.
+
 The package verifier checks:
 
 - The generated runtime output has a valid MV3 manifest.
@@ -36,6 +38,7 @@ The release verifier checks:
 
 - `package.json` and `manifest.json` versions match.
 - Manifest icon, popup, options, background, content-script, and web-accessible resource paths exist.
+- Manifest permissions are present in the permission audit, privacy policy, and StorePilot privacy form.
 - The extension archive contains runtime files required by the manifest.
 - The extension archive excludes docs, tests, scripts, screenshots, promo images, store listing text, and source-only icon files.
 - The `dist/` folder contains only current manifest-version package zips, with no stale zips or staging directories.
