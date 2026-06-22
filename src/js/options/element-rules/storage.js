@@ -35,7 +35,13 @@ export function isElementRuleRemovalAllowedDuringProtectedSchedule(rule = {}) {
 }
 
 function createLockedScheduleError() {
-  return new Error(ELEMENT_RULE_MESSAGES.lockedScheduleErrorMessage);
+  return createElementRuleError('lockedScheduleErrorMessage');
+}
+
+function createElementRuleError(messageKey) {
+  const error = new Error(ELEMENT_RULE_MESSAGES[messageKey] || messageKey);
+  error.messageKey = messageKey;
+  return error;
 }
 
 export function getElementRuleStorageKey(ruleId) {
@@ -67,7 +73,7 @@ async function ensureElementRuleStorageBudget(items, replacingKeys) {
   const projectedBytes = totalBytes - replacingBytes + estimateSyncItemBytes(items);
 
   if (projectedBytes > protectedLimit && projectedBytes > totalBytes) {
-    throw new Error('Cannot save this UI rule: sync storage reserve for locked schedules would be exceeded.');
+    throw createElementRuleError('elementRuleProtectedReserveError');
   }
 }
 

@@ -43,6 +43,12 @@
     return global.DAD.ChromePlatform?.getSyncQuotaBytes?.(SYNC_QUOTA_BYTES_FALLBACK) || SYNC_QUOTA_BYTES_FALLBACK;
   }
 
+  function createElementPickerStorageError(messageKey, fallback) {
+    const error = new Error(fallback || messageKey);
+    error.messageKey = messageKey;
+    return error;
+  }
+
   function loadElementRules(callback) {
     global.DAD.safeSyncStorageGet({ [ELEMENT_RULES_STORAGE_KEY]: [], [ELEMENT_RULE_IDS_STORAGE_KEY]: [] }, result => {
       if (!result) {
@@ -102,32 +108,47 @@
 
       global.DAD.safeSyncStorageGetBytesInUse(null, totalBytes => {
         if (totalBytes === null) {
-          reject(new Error('Cannot save this UI rule because extension storage is unavailable.'));
+          reject(createElementPickerStorageError(
+            'elementPickerStorageUnavailableError',
+            'Cannot save this UI rule because extension storage is unavailable.'
+          ));
           return;
         }
 
         global.DAD.safeSyncStorageGetBytesInUse(replacingKeys, replacingBytes => {
           if (replacingBytes === null) {
-            reject(new Error('Cannot save this UI rule because extension storage is unavailable.'));
+            reject(createElementPickerStorageError(
+              'elementPickerStorageUnavailableError',
+              'Cannot save this UI rule because extension storage is unavailable.'
+            ));
             return;
           }
 
           const projectedBytes = totalBytes - replacingBytes + estimateSyncItemBytes(items);
 
           if (projectedBytes > protectedLimit && projectedBytes > totalBytes) {
-            reject(new Error('Cannot save this UI rule: sync storage reserve for locked schedules would be exceeded.'));
+            reject(createElementPickerStorageError(
+              'elementPickerProtectedReserveError',
+              'Cannot save this UI rule: sync storage reserve for locked schedules would be exceeded.'
+            ));
             return;
           }
 
           global.DAD.safeSyncStorageSet(items, didSave => {
             if (!didSave) {
-              reject(new Error('Cannot save this UI rule because extension storage is unavailable.'));
+              reject(createElementPickerStorageError(
+                'elementPickerStorageUnavailableError',
+                'Cannot save this UI rule because extension storage is unavailable.'
+              ));
               return;
             }
 
             global.DAD.safeSyncStorageRemove(ELEMENT_RULES_STORAGE_KEY, didRemove => {
               if (!didRemove) {
-                reject(new Error('Cannot remove legacy UI rule storage after saving.'));
+                reject(createElementPickerStorageError(
+                  'elementPickerLegacyRemoveError',
+                  'Cannot remove legacy UI rule storage after saving.'
+                ));
                 return;
               }
 

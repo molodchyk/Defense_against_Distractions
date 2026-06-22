@@ -1082,6 +1082,198 @@
     "noElementRulesLabel": {
         "message": "Ez dago blokeatutako UI elementurik"
     },
+    "elementRuleActionClearField": {
+        "message": "Clear field"
+    },
+    "elementRuleActionClearSummary": {
+        "message": "clear field"
+    },
+    "elementRuleActionClickOnce": {
+        "message": "Click once"
+    },
+    "elementRuleActionClickSummary": {
+        "message": "click once"
+    },
+    "elementRuleActionHideElement": {
+        "message": "Hide element"
+    },
+    "elementRuleActionHideSummary": {
+        "message": "hide"
+    },
+    "elementRuleActionLabel": {
+        "message": "Action"
+    },
+    "elementRuleActionPauseMedia": {
+        "message": "Pause media"
+    },
+    "elementRuleActionPauseSummary": {
+        "message": "pause media"
+    },
+    "elementRuleAncestorDepthLabel": {
+        "message": "Ancestor depth"
+    },
+    "elementRuleCurrentSiteValue": {
+        "message": "current site"
+    },
+    "elementRuleDefaultName": {
+        "message": "UI element"
+    },
+    "elementRuleDepthSummary": {
+        "message": "depth $1"
+    },
+    "elementRuleDiagnosticsHeading": {
+        "message": "Diagnostics"
+    },
+    "elementRuleDisabledPlanName": {
+        "message": "$1 (disabled)"
+    },
+    "elementRuleDisabledSummary": {
+        "message": "disabled"
+    },
+    "elementRuleEnabledLabel": {
+        "message": "Enabled"
+    },
+    "elementRuleEnabledSummary": {
+        "message": "enabled"
+    },
+    "elementRuleGlobalPlanAssignment": {
+        "message": "Global rule. Create a plan to scope it."
+    },
+    "elementRuleGlobalScope": {
+        "message": "global"
+    },
+    "elementRuleLabelIgnore": {
+        "message": "Ignore label"
+    },
+    "elementRuleLabelMatchLabel": {
+        "message": "Label match"
+    },
+    "elementRuleLabelPrefer": {
+        "message": "Prefer label"
+    },
+    "elementRuleLabelRequire": {
+        "message": "Require label"
+    },
+    "elementRuleMinimumScoreLabel": {
+        "message": "Minimum score"
+    },
+    "elementRuleNameLabel": {
+        "message": "Name"
+    },
+    "elementRulePatternValue": {
+        "message": "pattern"
+    },
+    "elementRulePlanAssignmentLabel": {
+        "message": "Plan assignment"
+    },
+    "elementRulePlanScope": {
+        "message": "plans: $1"
+    },
+    "elementRuleScoreSummary": {
+        "message": "score $1"
+    },
+    "elementRuleStorageCountPlural": {
+        "message": "$1 UI rules"
+    },
+    "elementRuleStorageCountSingular": {
+        "message": "$1 UI rule"
+    },
+    "elementRuleStorageReserveLabel": {
+        "message": "Locked schedule reserve $1"
+    },
+    "elementRuleStorageReserveLow": {
+        "message": "$1 low"
+    },
+    "elementRuleStorageRuleBytes": {
+        "message": "UI rules $1"
+    },
+    "elementRuleStorageSyncUsage": {
+        "message": "Sync $1 / $2"
+    },
+    "elementRuleStrategyClosest": {
+        "message": "Closest match"
+    },
+    "elementRuleStrategyLabel": {
+        "message": "Strategy"
+    },
+    "elementRuleStrategySamePosition": {
+        "message": "Same position"
+    },
+    "elementRuleStrategySameText": {
+        "message": "Same text or label"
+    },
+    "elementRuleStrategySimilar": {
+        "message": "Similar structure"
+    },
+    "elementRuleUpdateFailedMessage": {
+        "message": "Could not update this UI rule."
+    },
+    "elementRuleUrlPatternLabel": {
+        "message": "URL pattern"
+    },
+    "elementRuleUseDomainButton": {
+        "message": "Use domain"
+    },
+    "elementRuleUnknownValue": {
+        "message": "unknown"
+    },
+    "elementRuleMetaCreated": {
+        "message": "Created"
+    },
+    "elementRuleMetaPlanScope": {
+        "message": "Plan scope"
+    },
+    "elementRuleMetaRuleId": {
+        "message": "Rule ID"
+    },
+    "elementRuleMetaUrlPattern": {
+        "message": "URL pattern"
+    },
+    "elementRuleMetaUrlScope": {
+        "message": "URL scope"
+    },
+    "elementRuleFingerprintAncestors": {
+        "message": "Ancestors"
+    },
+    "elementRuleFingerprintChildCount": {
+        "message": "Child count"
+    },
+    "elementRuleFingerprintChildren": {
+        "message": "Children"
+    },
+    "elementRuleFingerprintClassTokens": {
+        "message": "Class tokens"
+    },
+    "elementRuleFingerprintDirectTextTokens": {
+        "message": "Direct text tokens"
+    },
+    "elementRuleFingerprintInputType": {
+        "message": "Input type"
+    },
+    "elementRuleFingerprintLabelTokens": {
+        "message": "Label tokens"
+    },
+    "elementRuleFingerprintParentRole": {
+        "message": "Parent role"
+    },
+    "elementRuleFingerprintParentTag": {
+        "message": "Parent tag"
+    },
+    "elementRuleFingerprintPositionPath": {
+        "message": "Position path"
+    },
+    "elementRuleFingerprintRole": {
+        "message": "Role"
+    },
+    "elementRuleFingerprintTag": {
+        "message": "Tag"
+    },
+    "elementRuleFingerprintTagIndex": {
+        "message": "Tag index"
+    },
+    "elementRuleProtectedReserveError": {
+        "message": "Cannot save this UI rule: sync storage reserve for locked schedules would be exceeded."
+    },
     "plansHeading": {
         "message": "Plans"
     },
@@ -2004,6 +2196,15 @@
     },
     "elementPickerSaveErrorMessage": {
         "message": "Could not save this rule. Try again."
+    },
+    "elementPickerStorageUnavailableError": {
+        "message": "Cannot save this UI rule because extension storage is unavailable."
+    },
+    "elementPickerProtectedReserveError": {
+        "message": "Cannot save this UI rule: sync storage reserve for locked schedules would be exceeded."
+    },
+    "elementPickerLegacyRemoveError": {
+        "message": "Cannot remove legacy UI rule storage after saving."
     },
     "intentPromptDriftChainBlockedTitle": {
         "message": "Drift chain blocked"

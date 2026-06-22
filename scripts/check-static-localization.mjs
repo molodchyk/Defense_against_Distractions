@@ -182,6 +182,22 @@ function getLocalizedSurfaceConfig(optionsLocalization, instructionsEntry) {
   };
 }
 
+function assertMessageKeysExist(messageKeys, englishMessages, sourceLabel) {
+  for (const messageKey of messageKeys) {
+    if (!Object.hasOwn(englishMessages, messageKey)) {
+      failures.push(`_locales/en/messages.json is missing ${sourceLabel} localization key: ${messageKey}`);
+    }
+  }
+}
+
+function assertPlaceholderMessages(englishMessages, messageKeys) {
+  for (const messageKey of messageKeys) {
+    if (!/\$1/.test(englishMessages[messageKey]?.message || '')) {
+      failures.push(`_locales/en/messages.json localization key must contain $1: ${messageKey}`);
+    }
+  }
+}
+
 function isLocalizedText({ file, attributes, id, config }) {
   if (hasAttribute(attributes, 'data-i18n')) {
     return true;
@@ -243,6 +259,80 @@ async function scanOptionsSourceFiles() {
   }
 }
 
+async function scanElementRuleSourceFiles(englishMessages) {
+  const [
+    elementRuleConstants,
+    elementRules,
+    elementRuleItem,
+    elementRuleStorage,
+    pickerPanel,
+    pickerController
+  ] = await Promise.all([
+    readText('src/js/options/element-rules/constants.js'),
+    readText('src/js/options/elementRules.js'),
+    readText('src/js/options/element-rules/ruleItem.js'),
+    readText('src/js/options/element-rules/storage.js'),
+    readText('src/js/content/ui-blocking/pickerPanel.js'),
+    readText('src/js/content/ui-blocking/controller.js')
+  ]);
+  const elementRuleMessageKeys = getObjectKeys(elementRuleConstants, 'ELEMENT_RULE_MESSAGES');
+  const pickerMessageKeys = getObjectKeys(pickerPanel, 'PICKER_MESSAGES');
+  const requiredElementRuleRenderKeys = [
+    'elementRuleStorageReserveLabel',
+    'elementRuleStorageCountPlural',
+    'elementRulePlanAssignmentLabel',
+    'elementRuleGlobalPlanAssignment',
+    'elementRuleDiagnosticsHeading',
+    'elementRuleMetaRuleId',
+    'elementRuleDefaultName',
+    'elementRuleScoreSummary',
+    'elementRuleUseDomainButton'
+  ];
+  const requiredPickerErrorKeys = [
+    'elementPickerSaveErrorMessage',
+    'elementPickerStorageUnavailableError',
+    'elementPickerProtectedReserveError',
+    'elementPickerLegacyRemoveError'
+  ];
+  const placeholderKeys = [
+    'elementRuleDepthSummary',
+    'elementRuleDisabledPlanName',
+    'elementRulePlanScope',
+    'elementRuleScoreSummary',
+    'elementRuleStorageCountPlural',
+    'elementRuleStorageCountSingular',
+    'elementRuleStorageReserveLabel',
+    'elementRuleStorageReserveLow',
+    'elementRuleStorageRuleBytes',
+    'elementRuleStorageSyncUsage'
+  ];
+  const combinedElementRuleRenderSource = `${elementRules}\n${elementRuleItem}\n${elementRuleStorage}`;
+
+  assertMessageKeysExist(elementRuleMessageKeys, englishMessages, 'element-rule');
+  assertMessageKeysExist(pickerMessageKeys, englishMessages, 'element-picker');
+  assertPlaceholderMessages(englishMessages, placeholderKeys);
+
+  for (const messageKey of requiredElementRuleRenderKeys) {
+    if (!combinedElementRuleRenderSource.includes(messageKey)) {
+      failures.push(`Element-rule options UI must render through localized message key: ${messageKey}`);
+    }
+  }
+
+  for (const messageKey of requiredPickerErrorKeys) {
+    if (!pickerPanel.includes(messageKey) && !pickerController.includes(messageKey)) {
+      failures.push(`Element picker must expose localized save-error key: ${messageKey}`);
+    }
+  }
+
+  if (/['"`](?:Locked schedule reserve|Plan assignment|Global rule\. Create a plan|Diagnostics|Rule ID|Use domain)['"`]/.test(combinedElementRuleRenderSource)) {
+    failures.push('Element-rule options UI must not render hardcoded English labels for storage, plan assignment, diagnostics, or actions.');
+  }
+
+  if (/pickerPanel\.setMessage\(error\?\.message/.test(pickerController) || /alert\(error\?\.message/.test(elementRuleItem)) {
+    failures.push('Element-rule picker and options alerts must render localized error keys instead of raw Error.message text.');
+  }
+}
+
 const [
   optionsLocalization,
   instructionsEntry,
@@ -266,6 +356,7 @@ for (const messageKey of config.referencedMessageKeys) {
 
 htmlFiles.forEach((file, index) => scanHtmlFile(file, htmlTexts[index], config));
 await scanOptionsSourceFiles();
+await scanElementRuleSourceFiles(englishMessages);
 
 if (failures.length === 0) {
   console.log(`Static localization check passed: ${htmlFiles.length} extension HTML surfaces scanned.`);

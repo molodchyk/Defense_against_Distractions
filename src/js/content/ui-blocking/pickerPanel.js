@@ -4,18 +4,9 @@
 (function(global) {
   global.DAD = global.DAD || {};
   const elementBlocking = global.DAD.ElementBlocking = global.DAD.ElementBlocking || {};
-  const {
-    PICKER_PANEL_ID,
-    DEFAULT_THEME_MODE,
-    THEME_STORAGE_KEY
-  } = elementBlocking.constants;
-  const {
-    describeElement,
-    normalizeNumber
-  } = elementBlocking.fingerprint;
-  const {
-    ensurePickerStyle
-  } = elementBlocking.pickerStyle;
+  const { PICKER_PANEL_ID, DEFAULT_THEME_MODE, THEME_STORAGE_KEY } = elementBlocking.constants;
+  const { describeElement, normalizeNumber } = elementBlocking.fingerprint;
+  const { ensurePickerStyle } = elementBlocking.pickerStyle;
 
   const PICKER_MESSAGES = {
     elementPickerTitle: 'DaD UI picker',
@@ -65,7 +56,10 @@
     elementPickerChooseAgainMessage: 'Hover an element and click to preview the rule.',
     elementPickerClickPageModeMessage: 'Click page mode is active. Use the page normally, then hover Mode and scroll back to pick an element.',
     elementPickerPickModeMessage: 'Hover an element and click it to preview the rule.',
-    elementPickerSaveErrorMessage: 'Could not save this rule. Try again.'
+    elementPickerSaveErrorMessage: 'Could not save this rule. Try again.',
+    elementPickerStorageUnavailableError: 'Cannot save this UI rule because extension storage is unavailable.',
+    elementPickerProtectedReserveError: 'Cannot save this UI rule: sync storage reserve for locked schedules would be exceeded.',
+    elementPickerLegacyRemoveError: 'Cannot remove legacy UI rule storage after saving.'
   };
 
   function getPickerMessage(key, fallbackOrSubstitutions, maybeSubstitutions) {

@@ -26,7 +26,8 @@ import {
   formatList
 } from './format.js';
 import {
-  getElementRuleMessage
+  getElementRuleMessage,
+  getElementRuleOptionLabel
 } from './messages.js';
 import {
   removeRule,
@@ -36,10 +37,11 @@ import {
 function createSelect(options, selectedValue, onChange) {
   const select = document.createElement('select');
 
-  options.forEach(([value, label]) => {
+  options.forEach((optionData) => {
+    const [value] = optionData;
     const option = document.createElement('option');
     option.value = value;
-    option.textContent = label;
+    option.textContent = getElementRuleOptionLabel(optionData);
     select.appendChild(option);
   });
 
@@ -113,7 +115,10 @@ function createButton(text, onClick, className) {
 }
 
 function handleProtectedRuleError(error, onRefresh) {
-  alert(error?.message || getElementRuleMessage('lockedScheduleErrorMessage'));
+  const messageKey = typeof error?.messageKey === 'string'
+    ? error.messageKey
+    : 'elementRuleUpdateFailedMessage';
+  alert(getElementRuleMessage(messageKey));
   onRefresh?.();
 }
 
@@ -140,32 +145,44 @@ function getAssignedPlans(rule, plans) {
   return plans.filter(plan => plan.uiRuleIds.includes(rule.id));
 }
 
+function formatPlanName(plan) {
+  return plan.enabled
+    ? plan.name
+    : getElementRuleMessage('elementRuleDisabledPlanName', [plan.name]);
+}
+
 function formatPlanScope(rule, plans) {
   const assignedPlans = getAssignedPlans(rule, plans);
 
   if (assignedPlans.length === 0) {
-    return 'global';
+    return getElementRuleMessage('elementRuleGlobalScope');
   }
 
-  return `plans: ${assignedPlans.map(plan => {
-    return plan.enabled ? plan.name : `${plan.name} (disabled)`;
-  }).join(', ')}`;
+  return getElementRuleMessage('elementRulePlanScope', [
+    assignedPlans.map(formatPlanName).join(', ')
+  ]);
 }
 
 function formatRuleAction(action) {
   if (action === 'click') {
-    return 'click once';
+    return getElementRuleMessage('elementRuleActionClickSummary');
   }
 
   if (action === 'clear') {
-    return 'clear field';
+    return getElementRuleMessage('elementRuleActionClearSummary');
   }
 
   if (action === 'pauseMedia') {
-    return 'pause media';
+    return getElementRuleMessage('elementRuleActionPauseSummary');
   }
 
-  return 'hide';
+  return getElementRuleMessage('elementRuleActionHideSummary');
+}
+
+function formatOptionLabel(options, value, fallbackValue) {
+  const selectedValue = value || fallbackValue;
+  const option = options.find(([optionValue]) => optionValue === selectedValue);
+  return option ? getElementRuleOptionLabel(option) : String(selectedValue || '');
 }
 
 async function updateRulePlanAssignment(ruleId, planId, assigned, onRefresh) {
@@ -205,13 +222,13 @@ function createRulePlanAssignment(rule, plans, isLocked, onRefresh) {
   wrapper.className = 'element-rule-control element-rule-control-wide';
 
   const label = document.createElement('span');
-  label.textContent = 'Plan assignment';
+  label.textContent = getElementRuleMessage('elementRulePlanAssignmentLabel');
   wrapper.appendChild(label);
 
   if (plans.length === 0) {
     const empty = document.createElement('p');
     empty.className = 'element-rule-plan-empty';
-    empty.textContent = 'Global rule. Create a plan to scope it.';
+    empty.textContent = getElementRuleMessage('elementRuleGlobalPlanAssignment');
     wrapper.appendChild(empty);
     return wrapper;
   }
@@ -235,7 +252,7 @@ function createRulePlanAssignment(rule, plans, isLocked, onRefresh) {
     );
 
     const text = document.createElement('span');
-    text.textContent = plan.enabled ? plan.name : `${plan.name} (disabled)`;
+    text.textContent = formatPlanName(plan);
 
     row.appendChild(checkbox);
     row.appendChild(text);
@@ -251,19 +268,28 @@ function createDiagnostics(rule, plans) {
   details.className = 'element-rule-diagnostics';
 
   const summary = document.createElement('summary');
-  summary.textContent = 'Diagnostics';
+  summary.textContent = getElementRuleMessage('elementRuleDiagnosticsHeading');
   details.appendChild(summary);
 
   const body = document.createElement('div');
   body.className = 'element-rule-diagnostics-body';
-  body.appendChild(createMetaLine('Rule ID', rule.id || 'unknown'));
-  body.appendChild(createMetaLine('Created', formatDate(rule.createdAt)));
-  body.appendChild(createMetaLine('URL scope', rule.urlScope || 'pattern'));
-  body.appendChild(createMetaLine('URL pattern', rule.urlPattern || 'current site'));
-  body.appendChild(createMetaLine('Plan scope', formatPlanScope(rule, plans)));
+  body.appendChild(createMetaLine(
+    getElementRuleMessage('elementRuleMetaRuleId'),
+    rule.id || getElementRuleMessage('elementRuleUnknownValue')
+  ));
+  body.appendChild(createMetaLine(getElementRuleMessage('elementRuleMetaCreated'), formatDate(rule.createdAt)));
+  body.appendChild(createMetaLine(
+    getElementRuleMessage('elementRuleMetaUrlScope'),
+    rule.urlScope || getElementRuleMessage('elementRulePatternValue')
+  ));
+  body.appendChild(createMetaLine(
+    getElementRuleMessage('elementRuleMetaUrlPattern'),
+    rule.urlPattern || getElementRuleMessage('elementRuleCurrentSiteValue')
+  ));
+  body.appendChild(createMetaLine(getElementRuleMessage('elementRuleMetaPlanScope'), formatPlanScope(rule, plans)));
 
-  FINGERPRINT_FIELDS.forEach(([key, label]) => {
-    body.appendChild(createMetaLine(label, rule.fingerprint?.[key]));
+  FINGERPRINT_FIELDS.forEach(([key, messageKey, fallback]) => {
+    body.appendChild(createMetaLine(getElementRuleMessage(messageKey, fallback), rule.fingerprint?.[key]));
   });
 
   details.appendChild(body);
@@ -276,26 +302,28 @@ export function createRuleItem(rule, plans, isLocked, { onRefresh } = {}) {
 
   const title = document.createElement('div');
   title.className = 'element-rule-title';
-  title.textContent = rule.name || 'UI element';
+  title.textContent = rule.name || getElementRuleMessage('elementRuleDefaultName');
 
   const summary = document.createElement('div');
   summary.className = 'element-rule-summary';
   summary.textContent = [
-    rule.enabled === false ? 'disabled' : 'enabled',
+    rule.enabled === false
+      ? getElementRuleMessage('elementRuleDisabledSummary')
+      : getElementRuleMessage('elementRuleEnabledSummary'),
     formatPlanScope(rule, plans),
-    rule.urlPattern || 'current site',
+    rule.urlPattern || getElementRuleMessage('elementRuleCurrentSiteValue'),
     formatRuleAction(rule.action),
-    rule.strategy || rule.mode || 'samePosition',
-    `score ${rule.minScore || 12}`,
-    `depth ${rule.ancestorDepth ?? 2}`,
-    rule.labelMatch || 'prefer'
+    formatOptionLabel(STRATEGIES, rule.strategy || rule.mode, 'samePosition'),
+    getElementRuleMessage('elementRuleScoreSummary', [String(rule.minScore || 12)]),
+    getElementRuleMessage('elementRuleDepthSummary', [String(rule.ancestorDepth ?? 2)]),
+    formatOptionLabel(LABEL_MATCHES, rule.labelMatch, 'prefer')
   ].join(' · ');
 
   const controls = document.createElement('div');
   controls.className = 'element-rule-controls';
 
   controls.appendChild(createControl(
-    'Enabled',
+    getElementRuleMessage('elementRuleEnabledLabel'),
     createCheckbox(rule.enabled !== false, value => {
       updateRule(rule.id, { enabled: value }).catch(error => {
         console.error('Failed to update UI rule enabled state:', error);
@@ -305,16 +333,16 @@ export function createRuleItem(rule, plans, isLocked, { onRefresh } = {}) {
   ));
 
   controls.appendChild(createControl(
-    'Name',
+    getElementRuleMessage('elementRuleNameLabel'),
     createTextInput(rule.name || '', value => {
-      updateRule(rule.id, { name: value || 'UI element' }).catch(error => {
+      updateRule(rule.id, { name: value || getElementRuleMessage('elementRuleDefaultName') }).catch(error => {
         console.error('Failed to update UI rule name:', error);
       });
     })
   ));
 
   controls.appendChild(createControl(
-    'URL pattern',
+    getElementRuleMessage('elementRuleUrlPatternLabel'),
     createTextInput(rule.urlPattern || '', value => {
       updateRule(rule.id, { urlPattern: value, urlScope: 'pattern' }).catch(error => {
         console.error('Failed to update UI rule URL pattern:', error);
@@ -323,7 +351,7 @@ export function createRuleItem(rule, plans, isLocked, { onRefresh } = {}) {
   ));
 
   controls.appendChild(createControl(
-    'Action',
+    getElementRuleMessage('elementRuleActionLabel'),
     createSelect(ELEMENT_RULE_ACTIONS, rule.action || 'hide', value => {
       updateRule(rule.id, { action: value }).catch(error => {
         console.error('Failed to update UI rule action:', error);
@@ -332,7 +360,7 @@ export function createRuleItem(rule, plans, isLocked, { onRefresh } = {}) {
   ));
 
   controls.appendChild(createControl(
-    'Strategy',
+    getElementRuleMessage('elementRuleStrategyLabel'),
     createSelect(STRATEGIES, rule.strategy || rule.mode || 'samePosition', value => {
       updateRule(rule.id, { strategy: value }).catch(error => {
         console.error('Failed to update UI rule strategy:', error);
@@ -341,7 +369,7 @@ export function createRuleItem(rule, plans, isLocked, { onRefresh } = {}) {
   ));
 
   controls.appendChild(createControl(
-    'Minimum score',
+    getElementRuleMessage('elementRuleMinimumScoreLabel'),
     createNumberInput(rule.minScore || 12, 6, 24, value => {
       updateRule(rule.id, { minScore: value }).catch(error => {
         console.error('Failed to update UI rule score:', error);
@@ -350,7 +378,7 @@ export function createRuleItem(rule, plans, isLocked, { onRefresh } = {}) {
   ));
 
   controls.appendChild(createControl(
-    'Ancestor depth',
+    getElementRuleMessage('elementRuleAncestorDepthLabel'),
     createNumberInput(rule.ancestorDepth ?? 2, 0, 6, value => {
       updateRule(rule.id, { ancestorDepth: value }).catch(error => {
         console.error('Failed to update UI rule ancestor depth:', error);
@@ -359,7 +387,7 @@ export function createRuleItem(rule, plans, isLocked, { onRefresh } = {}) {
   ));
 
   controls.appendChild(createControl(
-    'Label match',
+    getElementRuleMessage('elementRuleLabelMatchLabel'),
     createSelect(LABEL_MATCHES, rule.labelMatch || 'prefer', value => {
       updateRule(rule.id, { labelMatch: value }).catch(error => {
         console.error('Failed to update UI rule label match:', error);
@@ -369,7 +397,7 @@ export function createRuleItem(rule, plans, isLocked, { onRefresh } = {}) {
 
   controls.appendChild(createRulePlanAssignment(rule, plans, isLocked, onRefresh));
 
-  const domainButton = createButton('Use domain', () => {
+  const domainButton = createButton(getElementRuleMessage('elementRuleUseDomainButton'), () => {
     const domainPattern = getDomainPattern(rule.urlPattern);
     if (!domainPattern) return;
 

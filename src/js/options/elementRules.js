@@ -36,13 +36,19 @@ async function renderStorageUsage(rules) {
 
   const { quotaBytes, ruleBytes, totalBytes } = await getElementRuleStorageUsage(rules);
   const protectedLimit = quotaBytes - PROTECTED_SYNC_RESERVE_BYTES;
-  const reserveLabel = `Locked schedule reserve ${formatBytes(PROTECTED_SYNC_RESERVE_BYTES)}`;
-  const reserveStatus = totalBytes > protectedLimit ? `${reserveLabel} low` : reserveLabel;
+  const reserveLabel = getElementRuleMessage('elementRuleStorageReserveLabel', [
+    formatBytes(PROTECTED_SYNC_RESERVE_BYTES)
+  ]);
+  const reserveStatus = totalBytes > protectedLimit
+    ? getElementRuleMessage('elementRuleStorageReserveLow', [reserveLabel])
+    : reserveLabel;
 
   storageUsage.textContent = [
-    `${rules.length} UI ${rules.length === 1 ? 'rule' : 'rules'}`,
-    `UI rules ${formatBytes(ruleBytes)}`,
-    `Sync ${formatBytes(totalBytes)} / ${formatBytes(quotaBytes)}`,
+    getElementRuleMessage(rules.length === 1 ? 'elementRuleStorageCountSingular' : 'elementRuleStorageCountPlural', [
+      String(rules.length)
+    ]),
+    getElementRuleMessage('elementRuleStorageRuleBytes', [formatBytes(ruleBytes)]),
+    getElementRuleMessage('elementRuleStorageSyncUsage', [formatBytes(totalBytes), formatBytes(quotaBytes)]),
     reserveStatus
   ].join(' · ');
 }

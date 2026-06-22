@@ -326,7 +326,8 @@
       onSave: () => {
         saveSelection().catch(error => {
           console.error('Failed to save element blocking rule:', error);
-          pickerPanel.setMessage(error?.message || getPickerMessage('elementPickerSaveErrorMessage'));
+          const messageKey = typeof error?.messageKey === 'string' ? error.messageKey : 'elementPickerSaveErrorMessage';
+          pickerPanel.setMessage(getPickerMessage(messageKey));
         });
       },
       onChooseAgain: chooseAgain,
