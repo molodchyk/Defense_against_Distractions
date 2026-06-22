@@ -332,6 +332,7 @@ const supportSectionIndex = readme.search(/^## Support$/m);
 assertCondition(privacySectionIndex !== -1 && licenseSectionIndex > privacySectionIndex && sourceLineIndex > licenseSectionIndex && supportSectionIndex > sourceLineIndex, 'README Support block must appear after the Privacy and License/source sections.');
 assertCondition(readme.includes(canonicalReadmeSupportBlock), 'README Support block must match the canonical donation wording and links.');
 assertCondition(hasAll(popupHtml, [/Protection status/, /Current page/, /role="tablist"/, /data-popup-pane="actions"/, /data-popup-pane="diagnostics"/, /focusStateCalmButton/, /startPomodoroButton/, /intentRecoveryTitle/, /pickElementButton/, /role="status"/]) && !/welcome|get started|learn more|hero|tagline/i.test(popupHtml), 'Popup first screen must stay an operational status/control surface, not a marketing page.');
+assertCondition(hasAll(optionsHtml, [/id="optionsSidebarNav"/, /id="plansPanel"/, /id="planNameInput"/, /id="addPlanButton"/, /id="elementRulesPanel"/, /id="intentDiagnosticsPanel"/, /id="usageStatsPanel"/, /id="settingsPanel"/]) && optionsHtml.indexOf('id="plansPanel"') < optionsHtml.indexOf('id="elementRulesPanel"') && !/welcome|get started|hero|tagline/i.test(optionsHtml), 'Options page must expose plan creation first and stay a settings surface, not a landing page.');
 for (const permission of manifestPermissions) {
   assertCondition(
     manifest.permissions.includes(permission),
