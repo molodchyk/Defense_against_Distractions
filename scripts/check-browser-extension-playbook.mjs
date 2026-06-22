@@ -148,6 +148,7 @@ const [
   permissionAudit,
   releaseNotes,
   releaseChecklist,
+  releaseVerifier,
   storeMediaReview,
   decisionRecords,
   actionWrapper,
@@ -201,6 +202,7 @@ const [
   readText('docs/permission-audit.md'),
   readText('docs/release-notes.md'),
   readText('docs/release-checklist.md'),
+  readText('scripts/verify-release.ps1'),
   readText('docs/store-media-review.md'),
   readText('docs/decision-records.md'),
   readText('src/platform/chrome/action.js'),
@@ -545,6 +547,7 @@ assertCondition(
 );
 assertCondition(/Run `npm run verify:browser-load` only in an isolated browser environment[\s\S]+Load the extension zip or unpacked project in an isolated Chromium-based browser\/profile/i.test(releaseChecklist), 'Release checklist must isolate browser-load and manual browser QA from active user sessions.');
 assertCondition(/localized store listings preserve the current plan, allowed-website, Pomodoro, intent-coherence, and browser-limitation wording/i.test(releaseChecklist), 'Release checklist must require localized store listings to stay aligned with the current product model.');
+assertCondition(hasAll(releaseVerifier, [/check-manifest-references\.mjs/, /check-relative-imports\.mjs/, /check-browser-extension-playbook\.mjs/, /check-locale-coverage\.mjs/, /check-static-localization\.mjs/, /check-package-output\.mjs/]), 'Release verifier must run manifest, import, playbook, locale, static-localization, and package-output gates.');
 
 assertCondition(
   hasAll(decisionRecords, [

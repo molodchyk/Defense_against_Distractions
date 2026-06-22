@@ -163,6 +163,10 @@ Assert-Condition ($packageJson.license -eq "GPL-3.0-only") "package.json license
 
 Push-Location $projectRoot
 try {
+  node scripts/check-manifest-references.mjs
+  Assert-Condition ($LASTEXITCODE -eq 0) "Manifest reference verification failed"
+  node scripts/check-relative-imports.mjs
+  Assert-Condition ($LASTEXITCODE -eq 0) "Relative import verification failed"
   node scripts/check-browser-extension-playbook.mjs
   Assert-Condition ($LASTEXITCODE -eq 0) "Browser extension playbook verification failed"
   node scripts/check-locale-coverage.mjs
@@ -304,7 +308,11 @@ $requiredSourceEntries = @(
   "manifest.json",
   "package.json",
   "README.md",
+  "scripts/check-browser-extension-playbook.mjs",
+  "scripts/check-locale-coverage.mjs",
+  "scripts/check-manifest-references.mjs",
   "scripts/check-package-output.mjs",
+  "scripts/check-relative-imports.mjs",
   "scripts/check-static-localization.mjs",
   "scripts/package-extension.ps1",
   "scripts/verify-package-output.ps1",
