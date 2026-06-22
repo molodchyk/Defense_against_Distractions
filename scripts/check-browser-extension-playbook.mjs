@@ -8,6 +8,7 @@ import process from 'node:process';
 import {
   allowedManifestKeys,
   canonicalReadmeSupportBlock,
+  chromeWebStoreFieldLimit,
   englishStoreListingLocales,
   licenseId,
   manifestPermissions,
@@ -391,6 +392,12 @@ assertCondition(
 const storePrivacyFields = parseKeyedBlock(storePrivacyForm, 'privacy');
 const duplicateStorePrivacyFields = getDuplicateKeyedBlockFields(storePrivacyForm, 'privacy');
 assertCondition(duplicateStorePrivacyFields.length === 0, `StorePilot privacy form has duplicate keys: ${duplicateStorePrivacyFields.join(', ')}.`);
+for (const [field, value] of storePrivacyFields) {
+  assertCondition(
+    value.length <= chromeWebStoreFieldLimit,
+    `StorePilot privacy field ${field} is ${value.length} characters; Chrome Web Store fields must be ${chromeWebStoreFieldLimit} characters or fewer.`
+  );
+}
 for (const field of ['single_purpose', 'host_permission', 'remote_code', 'privacy_policy_url']) {
   assertCondition(storePrivacyFields.has(field), `StorePilot privacy form is missing ${field}.`);
 }
