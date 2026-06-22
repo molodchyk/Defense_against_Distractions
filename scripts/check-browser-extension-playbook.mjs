@@ -662,6 +662,7 @@ for (const locale of locales) {
     `${listingPath} mentions stale or unsynchronized version numbers: ${listingVersionMentions.join(', ')}.`
   );
   assertCondition(/Pomodoro/i.test(listing) && /intent coherence/i.test(listing) && /incognito/i.test(listing) && /file URL/i.test(listing) && /DaD/i.test(listing), `${listingPath} must keep localized listing copy aligned with Pomodoro, intent coherence, and browser-controlled access limitations.`);
+  assertCondition(!/\b(guarantee[sd]?|perfect|scientifically proven|clinically proven|cure[sd]?|ADHD|medical|therapy|therapeutic|mental health|knows your true intent|true intention|attention residue|permanent attention damage|objectively useless)\b/i.test(listing), `${listingPath} must avoid inflated, medical, or mind-reading claims.`);
 
   if (englishStoreListingLocales.has(locale)) {
     assertCondition(
@@ -672,7 +673,6 @@ for (const locale of locales) {
       !/create groups of websites|website and keyword groups|whitelists/i.test(listing),
       `${listingPath} must not use retired group or whitelist wording.`
     );
-    assertCondition(!/\b(guarantee[sd]?|perfect|scientifically proven|clinically proven|cure[sd]?|ADHD|medical|therapy|therapeutic|mental health|knows your true intent|true intention|attention residue|permanent attention damage|objectively useless)\b/i.test(listing), `${listingPath} must avoid inflated, medical, or mind-reading claims.`);
   }
 }
 
