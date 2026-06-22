@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
-import { readdir } from 'node:fs/promises';
+import { readdir, stat } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
 
@@ -27,6 +27,14 @@ const budgets = [
         'src/app',
         'src/js'
       ].includes(relativeDir);
+    }
+  },
+  {
+    name: 'root extension HTML shells',
+    max: 8,
+    hard: 12,
+    matches(relativeDir) {
+      return relativeDir === 'src';
     }
   },
   {
@@ -130,16 +138,19 @@ async function collectFolders(directory) {
   let sourceFileCount = 0;
 
   for (const entry of entries) {
+    const entryPath = path.join(directory, entry.name);
+
     if (entry.isDirectory()) {
       if (ignoredDirs.has(entry.name)) {
         auditStats.ignoredDirectories += 1;
         continue;
       }
-      folders.push(...await collectFolders(path.join(directory, entry.name)));
+      folders.push(...await collectFolders(entryPath));
       continue;
     }
 
-    if (entry.isFile() && sourceExtensions.has(path.extname(entry.name))) {
+    const isFileEntry = entry.isFile() || (entry.isSymbolicLink() && (await stat(entryPath)).isFile());
+    if (isFileEntry && sourceExtensions.has(path.extname(entry.name))) {
       sourceFileCount += 1;
     }
   }

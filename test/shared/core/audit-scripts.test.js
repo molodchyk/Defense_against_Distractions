@@ -22,6 +22,7 @@ describe('audit scripts', () => {
     assert.match(output, /File-size audit/);
     assert.match(output, /Scope: \.js, \.mjs, \.css, \.html files outside \.git, dist, node_modules\./);
     assert.match(output, /Coverage: \d+ budgeted \/ \d+ matching files; \d+ matching files are outside configured budgets; \d+ ignored directories\./);
+    assert.match(output, /0 matching files are outside configured budgets/);
   });
 
   it('reports folder-density audit scope and budget coverage', () => {
@@ -30,6 +31,7 @@ describe('audit scripts', () => {
     assert.match(output, /Folder-density audit/);
     assert.match(output, /Scope: folders containing \.css, \.html, \.js, \.mjs files outside \.git, dist, node_modules\./);
     assert.match(output, /Coverage: \d+ budgeted \/ \d+ matching folders; \d+ matching folders are outside configured budgets; \d+ ignored directories\./);
+    assert.match(output, /0 matching folders are outside configured budgets/);
   });
 
   it('verifies locale message key coverage', () => {

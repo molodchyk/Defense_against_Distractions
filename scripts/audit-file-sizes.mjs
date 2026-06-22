@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
-import { readdir, readFile } from 'node:fs/promises';
+import { readdir, readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
 
@@ -105,6 +105,15 @@ const budgets = [
     }
   },
   {
+    name: 'root extension HTML shell',
+    max: 450,
+    hard: 900,
+    matches(relativePath) {
+      const normalized = relativePath.replaceAll('\\', '/');
+      return normalized.startsWith('src/') && !normalized.slice(4).includes('/') && normalized.endsWith('.html');
+    }
+  },
+  {
     name: 'test file',
     max: 500,
     hard: 900,
@@ -128,17 +137,20 @@ async function collectFiles(directory) {
   const files = [];
 
   for (const entry of entries) {
+    const entryPath = path.join(directory, entry.name);
+
     if (entry.isDirectory()) {
       if (ignoredDirs.has(entry.name)) {
         auditStats.ignoredDirectories += 1;
         continue;
       }
-      files.push(...await collectFiles(path.join(directory, entry.name)));
+      files.push(...await collectFiles(entryPath));
       continue;
     }
 
-    if (entry.isFile() && extensions.has(path.extname(entry.name))) {
-      files.push(path.join(directory, entry.name));
+    const isFileEntry = entry.isFile() || (entry.isSymbolicLink() && (await stat(entryPath)).isFile());
+    if (isFileEntry && extensions.has(path.extname(entry.name))) {
+      files.push(entryPath);
     }
   }
 
