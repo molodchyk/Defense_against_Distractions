@@ -9,6 +9,7 @@ import { getFirstNonEmptyLine, getPngDimensionFailure, hasAll, parseKeyedBlock }
 
 const rootDir = process.cwd();
 const repositoryUrl = 'https://github.com/molodchyk/Defense_against_Distractions';
+const canonicalReadmeSupportBlock = '## Support\n\nIf this extension saves you time and you want to support its development:\n\n[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-support-FFDD00?logo=buymeacoffee&logoColor=000)](https://buymeacoffee.com/molodchyk)\n[![Patreon](https://img.shields.io/badge/Patreon-support-F96854?logo=patreon&logoColor=fff)](https://www.patreon.com/OMolodchyk)';
 const licenseId = 'GPL-3.0-only';
 const manifestPermissions = [
   'storage',
@@ -340,6 +341,7 @@ assertCondition(
     && supportSectionIndex > sourceLineIndex,
   'README Support block must appear after the Privacy and License/source sections.'
 );
+assertCondition(readme.includes(canonicalReadmeSupportBlock), 'README Support block must match the canonical donation wording and links.');
 for (const permission of manifestPermissions) {
   assertCondition(
     manifest.permissions.includes(permission),
@@ -443,7 +445,6 @@ assertCondition(additionalFields.get('official_url') === 'none', 'StorePilot add
 assertCondition(additionalFields.get('homepage_url') === repositoryUrl, 'StorePilot additional fields must set homepage_url to the repository URL.');
 assertCondition(additionalFields.get('support_url') === `${repositoryUrl}/issues`, 'StorePilot additional fields must set support_url to repository issues.');
 assertCondition(additionalFields.get('mature_content') === 'no', 'StorePilot additional fields must set mature_content: no.');
-
 const categoryMatch = storeCategory.match(/^Selected category:\s*(.+)$/m);
 assertCondition(Boolean(categoryMatch), 'StorePilot category document must include a Selected category line.');
 assertCondition(
@@ -483,7 +484,6 @@ for (const screenshotPath of screenshotPngs) {
 }
 await assertPngDimensions('store/promo/small-promo-440x280.png', 440, 280);
 await assertPngDimensions('store/promo/marquee-promo-1400x560.png', 1400, 560);
-
 for (const assetPath of storeMediaAssetPaths) {
   assertCondition(
     storeMediaReview.includes(`\`${assetPath}\``),
