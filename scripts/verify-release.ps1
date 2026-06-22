@@ -70,13 +70,14 @@ function Get-ZipEntries {
 function Get-ZipByteEntry {
   param(
     [string]$ZipPath,
-    [string]$EntryName
+    [string]$EntryName,
+    [string]$ArchiveName
   )
 
   $zip = [System.IO.Compression.ZipFile]::OpenRead($ZipPath)
   try {
     $entry = $zip.Entries | Where-Object { $_.FullName -eq $EntryName } | Select-Object -First 1
-    Assert-Condition ($null -ne $entry) "Missing source archive entry: $EntryName"
+    Assert-Condition ($null -ne $entry) "$ArchiveName is missing $EntryName"
 
     $entryStream = $entry.Open()
     $memoryStream = New-Object System.IO.MemoryStream
@@ -94,21 +95,39 @@ function Get-ZipByteEntry {
   }
 }
 
-function Assert-SourceZipEntryMatchesProjectFile {
-  param([string]$EntryName)
+function Assert-ZipEntryMatchesProjectFile {
+  param(
+    [string]$ZipPath,
+    [string]$ArchiveName,
+    [string]$EntryName
+  )
 
   $rootEntryPath = Join-Path $projectRoot $EntryName.Replace("/", "\")
+  Assert-Condition (Test-Path -LiteralPath $rootEntryPath -PathType Leaf) "$ArchiveName contains an entry with no root project file: $EntryName"
+
   $rootEntryBytes = [System.IO.File]::ReadAllBytes($rootEntryPath)
-  $sourceEntryBytes = Get-ZipByteEntry -ZipPath $sourceZipPath -EntryName $EntryName
-  $bytesMatch = $rootEntryBytes.Length -eq $sourceEntryBytes.Length
+  $archiveEntryBytes = Get-ZipByteEntry -ZipPath $ZipPath -EntryName $EntryName -ArchiveName $ArchiveName
+  $bytesMatch = $rootEntryBytes.Length -eq $archiveEntryBytes.Length
 
   for ($index = 0; $bytesMatch -and $index -lt $rootEntryBytes.Length; $index++) {
-    if ($rootEntryBytes[$index] -ne $sourceEntryBytes[$index]) {
+    if ($rootEntryBytes[$index] -ne $archiveEntryBytes[$index]) {
       $bytesMatch = $false
     }
   }
 
-  Assert-Condition $bytesMatch "Source archive $EntryName does not match the root $EntryName"
+  Assert-Condition $bytesMatch "$ArchiveName $EntryName does not match the root $EntryName"
+}
+
+function Assert-ZipFileEntriesMatchProjectFiles {
+  param(
+    [string]$ZipPath,
+    [string]$ArchiveName,
+    [string[]]$Entries
+  )
+
+  foreach ($entry in ($Entries | Where-Object { !$_.EndsWith("/") })) {
+    Assert-ZipEntryMatchesProjectFile -ZipPath $ZipPath -ArchiveName $ArchiveName -EntryName $entry
+  }
 }
 
 function Assert-ZipContains {
@@ -242,10 +261,6 @@ foreach ($resourceGroup in $manifest.web_accessible_resources) {
 $extensionEntries = Get-ZipEntries -ZipPath $extensionZipPath
 $sourceEntries = Get-ZipEntries -ZipPath $sourceZipPath
 
-foreach ($iconPath in $expectedIconDimensions.Keys) {
-  Assert-SourceZipEntryMatchesProjectFile -EntryName $iconPath
-}
-
 $expectedZipNames = @(
   "$releaseName-extension.zip",
   "$releaseName-source.zip"
@@ -318,6 +333,7 @@ foreach ($prefix in $forbiddenExtensionPrefixes) {
 }
 
 Assert-Condition (!($extensionEntries -contains "assets/icons/extension-icon-source.svg")) "Extension archive should not contain the source SVG icon"
+Assert-ZipFileEntriesMatchProjectFiles -ZipPath $extensionZipPath -ArchiveName "Extension archive" -Entries $extensionEntries
 
 $requiredSourceEntries = @(
   "ABOUT.md",
@@ -359,12 +375,12 @@ $requiredSourceEntries = @(
 
 foreach ($entry in $requiredSourceEntries) {
   Assert-ZipContains -Entries $sourceEntries -EntryName $entry -ArchiveName "Source archive"
-  Assert-SourceZipEntryMatchesProjectFile -EntryName $entry
 }
 
 foreach ($prefix in @("assets/", "docs/", "store/", "test/", "_locales/", "scripts/", "src/")) {
   Assert-ZipContainsPrefix -Entries $sourceEntries -Prefix $prefix -ArchiveName "Source archive"
 }
+Assert-ZipFileEntriesMatchProjectFiles -ZipPath $sourceZipPath -ArchiveName "Source archive" -Entries $sourceEntries
 
 $rootChangelog = Get-Content -LiteralPath (Join-Path $projectRoot "CHANGELOG.md") -Raw
 $escapedVersion = [System.Text.RegularExpressions.Regex]::Escape($version)
@@ -381,7 +397,6 @@ foreach ($localeDirectory in $localeDirectories) {
   Assert-Condition (Test-Path -LiteralPath $localeListingPath) "Missing store listing for locale: $($localeDirectory.Name)"
 
   $storeListing = Get-Content -LiteralPath $localeListingPath -Raw
-  Assert-SourceZipEntryMatchesProjectFile -EntryName $relativeLocaleListingPath
   $firstStoreListingLine = ($storeListing -split "\r?\n" | ForEach-Object { $_.Trim() } | Where-Object { $_ } | Select-Object -First 1)
   Assert-Condition ($storeListing -notmatch "[#*\[\]]") "Store listing should stay plain text, not Markdown-formatted text: $($localeDirectory.Name).txt"
   Assert-Condition ($null -ne $firstStoreListingLine -and $firstStoreListingLine.Length -gt 0) "Store listing should not be empty: $($localeDirectory.Name).txt"
@@ -394,7 +409,6 @@ foreach ($localeDirectory in $localeDirectories) {
 foreach ($screenshotPath in Get-ChildItem -LiteralPath (Join-Path $projectRoot "store\screenshots") -Filter "*.png") {
   $relativeScreenshotPath = "store/screenshots/$($screenshotPath.Name)"
   Assert-ImageDimensions -RelativePath $relativeScreenshotPath -ExpectedWidth 1280 -ExpectedHeight 800
-  Assert-SourceZipEntryMatchesProjectFile -EntryName $relativeScreenshotPath
 }
 
 $screenshotCount = @(Get-ChildItem -LiteralPath (Join-Path $projectRoot "store\screenshots") -Filter "*.png").Count
@@ -405,7 +419,6 @@ foreach ($promoAsset in @(
   @{ Path = "store/promo/marquee-promo-1400x560.png"; Width = 1400; Height = 560 }
 )) {
   Assert-ImageDimensions -RelativePath $promoAsset.Path -ExpectedWidth $promoAsset.Width -ExpectedHeight $promoAsset.Height
-  Assert-SourceZipEntryMatchesProjectFile -EntryName $promoAsset.Path
 }
 
 $defaultLocale = $manifest.default_locale
