@@ -20,6 +20,7 @@ Use this checklist before publishing a new extension release.
 - Confirm `dist/Defense_against_Distractions-vX.Y.Z-extension.zip` exists.
 - Confirm `dist/Defense_against_Distractions-vX.Y.Z-source.zip` exists.
 - Confirm `dist/` does not contain package zips for older versions or staging directories.
+- Record the final static-gate, browser-load, and manual-QA status in `docs/release-verification-record.md`.
 
 ## Extension Package
 

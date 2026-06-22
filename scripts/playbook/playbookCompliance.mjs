@@ -25,6 +25,7 @@ export function getPlaybookComplianceFailures({ playbookCompliance }) {
     /scripts\/check-package-output\.mjs/,
     /docs\/release-readiness\.md/,
     /docs\/release-checklist\.md/,
+    /docs\/release-verification-record\.md/,
     /not fully browser-verified/i,
     /isolated Chromium-based browser\/profile/i
   ])) {

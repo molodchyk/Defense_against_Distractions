@@ -20,8 +20,15 @@ export function getBrowserLoadTriggerFailures(scriptEntries) {
 
 export async function getReleaseSafetyFailures(rootDir, packageJson) {
   const releaseReadiness = await readFile(path.join(rootDir, 'docs/release-readiness.md'), 'utf8');
+  const releaseVerificationRecord = await readFile(path.join(rootDir, 'docs/release-verification-record.md'), 'utf8').catch(() => '');
   const failures = [];
 
+  if (!releaseVerificationRecord) {
+    failures.push('Missing release verification record document.');
+  }
+  if (!/Release Verification Record/i.test(releaseReadiness) || !/browser-load and manual browser QA marked as pending/i.test(releaseReadiness)) {
+    failures.push('Release readiness must link the release verification record and preserve pending browser-only status until isolated verification.');
+  }
   if (!/automated gates are static repository and archive checks[\s\S]+must not invoke `npm run verify:browser-load`/i.test(releaseReadiness)) {
     failures.push('Release readiness must state automated gates do not invoke browser-load smoke checks.');
   }
@@ -33,6 +40,12 @@ export async function getReleaseSafetyFailures(rootDir, packageJson) {
   }
   if (!/## Release Archive Policy[\s\S]+`dist\/` folder is disposable release output[\s\S]+`npm run package` resets it before packaging[\s\S]+Defense_against_Distractions-vX\.Y\.Z-extension\.zip[\s\S]+Chrome Web Store upload package[\s\S]+Defense_against_Distractions-vX\.Y\.Z-source\.zip[\s\S]+matching source archive[\s\S]+No staging folders[\s\S]+stale version ZIPs/i.test(releaseReadiness)) {
     failures.push('Release readiness must document the explicit dist archive policy for the current extension and source ZIP outputs.');
+  }
+  if (!/## Browser-Only Evidence[\s\S]+`npm run verify:browser-load`[\s\S]+Not fully browser-verified[\s\S]+isolated Chromium-based browser\/profile[\s\S]+Manual QA from `docs\/release-checklist\.md`[\s\S]+Pending/i.test(releaseVerificationRecord)) {
+    failures.push('Release verification record must keep browser-load and manual QA separate from static gates until isolated browser evidence exists.');
+  }
+  if (!/## Static Gate Evidence[\s\S]+`npm run verify:release`[\s\S]+Full static release gate passes for the current version/i.test(releaseVerificationRecord)) {
+    failures.push('Release verification record must list the static release gate evidence to record for the current package.');
   }
 
   failures.push(...getBrowserLoadTriggerFailures(

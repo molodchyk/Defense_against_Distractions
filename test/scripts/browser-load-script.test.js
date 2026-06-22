@@ -38,8 +38,18 @@ describe('unpacked extension browser-load smoke script', () => {
   it('keeps browser-load required but isolated in release readiness', () => {
     const releaseReadiness = readFileSync('docs/release-readiness.md', 'utf8');
 
+    assert.match(releaseReadiness, /Release Verification Record/i);
+    assert.match(releaseReadiness, /browser-load and manual browser QA marked as pending/i);
     assert.match(releaseReadiness, /automated gates are static repository and archive checks[\s\S]+must not invoke `npm run verify:browser-load`/i);
     assert.match(releaseReadiness, /`npm run verify:browser-load` is not an automated gate[\s\S]+isolated target-browser smoke check is required before publishing[\s\S]+not fully browser-verified/i);
+  });
+
+  it('keeps browser-only verification pending until isolated evidence exists', () => {
+    const releaseRecord = readFileSync('docs/release-verification-record.md', 'utf8');
+
+    assert.match(releaseRecord, /## Static Gate Evidence[\s\S]+`npm run verify:release`[\s\S]+Full static release gate passes for the current version/i);
+    assert.match(releaseRecord, /## Browser-Only Evidence[\s\S]+`npm run verify:browser-load`[\s\S]+Not fully browser-verified[\s\S]+isolated Chromium-based browser\/profile/i);
+    assert.match(releaseRecord, /Manual QA from `docs\/release-checklist\.md`[\s\S]+Pending/i);
   });
 
   it('documents the explicit dist archive policy', () => {

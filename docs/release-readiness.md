@@ -2,6 +2,8 @@
 
 This document tracks what must be true before publishing the current update.
 
+Use [Release Verification Record](release-verification-record.md) as the short evidence log for the current package. Keep browser-load and manual browser QA marked as pending until they are verified in an isolated browser environment.
+
 ## Current Verification State
 
 - Automated static and archive gates are covered by `npm run verify:release` after `npm run package`.

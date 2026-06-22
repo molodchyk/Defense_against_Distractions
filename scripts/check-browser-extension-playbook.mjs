@@ -88,6 +88,7 @@ assertCondition(await exists('docs/storage-ownership.md'), 'Missing storage owne
 assertCondition(await exists('docs/permission-audit.md'), 'Missing permission audit document.');
 assertCondition(await exists('docs/release-notes.md'), 'Missing release notes document.');
 assertCondition(await exists('docs/release-checklist.md'), 'Missing release checklist document.');
+assertCondition(await exists('docs/release-verification-record.md'), 'Missing release verification record document.');
 assertCondition(await exists('docs/store-media-review.md'), 'Missing store media review document.');
 assertCondition(await exists('docs/decision-records.md'), 'Missing decision records document.');
 assertCondition(await exists('docs/browser-extension-playbook-compliance.md'), 'Missing browser extension playbook compliance document.');
@@ -299,6 +300,7 @@ assertCondition(
     /docs\/store-media-review\.md/,
     /docs\/release-notes\.md/,
     /docs\/decision-records\.md/,
+    /docs\/release-verification-record\.md/,
     /docs\/code-structure\.md/,
     /docs\/content-script-load-order\.md/,
     /docs\/extension-modularization-playbook\.md/,
