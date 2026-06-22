@@ -157,9 +157,9 @@ Local data can support:
 - Diagnostics.
 - Trigger explanations.
 - Personal risk scoring.
-- Product feedback chosen by the user.
+- Product feedback explicitly exported or shared by the user.
 
-Product telemetry should be explicit, transparent, and opt-out or opt-in depending on the final business model. If telemetry exists, users need to know what is collected, why, and how to disable it.
+Product telemetry is not part of the default direction. The current extension should not add analytics, tracking, remote feedback uploads, or remote network behavior for ordinary protection work. If a future release deliberately adds remote feedback or telemetry, it must be opt-in, transparent, documented before release, and reflected in the manifest, privacy policy, StorePilot privacy answers, package verifier expectations, release notes, and store listing copy.
 
 Sensitive content such as detected page text needs special care. The product should prefer derived stats and local processing unless there is a deliberate research reason and clear user consent.
 

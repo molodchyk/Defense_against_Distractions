@@ -1,6 +1,5 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
-
 import { access, readFile, readdir, stat } from 'node:fs/promises';
 import { spawnSync } from 'node:child_process';
 import path from 'node:path';
@@ -19,6 +18,7 @@ import {
 import { getManifestAuditFailures } from './playbook/manifestAudit.mjs';
 import { getInstructionGuideFailures } from './playbook/instructionGuide.mjs';
 import { getIntentDiagnosticsLocalizationFailures, getUsageStatsLocalizationFailures } from './playbook/localization.mjs';
+import { getProductModelFailures } from './playbook/productModel.mjs';
 import { getReleaseSafetyFailures } from './playbook/releaseSafety.mjs';
 import { getStoreAutomationFailures } from './playbook/storeAutomation.mjs';
 import { verifyReviewedStoreMediaHashes } from './playbook/storeMediaReview.mjs';
@@ -116,7 +116,7 @@ const [
   releaseVerifier,
   storeMediaReview,
   decisionRecords,
-  codeStructure,
+  codeStructure, protectionModel,
   localizationDoc,
   contentScriptLoadOrderDoc,
   actionWrapper,
@@ -173,7 +173,7 @@ const [
   readText('scripts/verify-release.ps1'),
   readText('docs/store-media-review.md'),
   readText('docs/decision-records.md'),
-  readText('docs/code-structure.md'),
+  readText('docs/code-structure.md'), readText('docs/protection-model.md'),
   readText('docs/localization.md'),
   readText('docs/content-script-load-order.md'),
   readText('src/platform/chrome/action.js'),
@@ -590,6 +590,7 @@ assertCondition(
 );
 failures.push(...getUsageStatsLocalizationFailures({ englishMessages, usageStatsModule }));
 failures.push(...getIntentDiagnosticsLocalizationFailures({ englishMessages, intentDiagnosticsModule: `${intentDiagnosticsModule}\n${intentDiagnosticsMessagesModule}` }));
+failures.push(...getProductModelFailures({ protectionModel }));
 
 assertCondition(
   hasAll(reviewerNotes, [
