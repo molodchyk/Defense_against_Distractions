@@ -9,7 +9,10 @@ import {
   addTabRemovedListener,
   addTabUpdatedListener,
   createTab,
+  discardTab,
   getActiveCurrentWindowTab,
+  moveTabToWindow,
+  removeTabs,
   sendTabMessage,
   updateTab
 } from '../../../src/platform/chrome/tabs.js';
@@ -117,6 +120,70 @@ describe('Chrome tabs platform wrapper', () => {
 
     assert.equal(await sendTabMessage(7, { action: 'ping' }), null);
     assert.equal(await updateTab(7, { url: 'https://example.test/' }), null);
+  });
+
+  it('resolves null when tab update support is unavailable', async () => {
+    globalThis.chrome = {
+      runtime: { lastError: null },
+      tabs: {}
+    };
+
+    assert.equal(await updateTab(7, { url: 'https://example.test/' }), null);
+  });
+
+  it('removes, moves, and discards tabs through Chrome callbacks', async () => {
+    const removedTabIds = [];
+    const movedTabs = [];
+    const discardedTabs = [];
+
+    globalThis.chrome = {
+      runtime: { lastError: null },
+      tabs: {
+        remove(tabIds, callback) {
+          removedTabIds.push(...tabIds);
+          callback();
+        },
+        move(tabId, moveProperties, callback) {
+          movedTabs.push([tabId, moveProperties]);
+          callback({ id: tabId, windowId: moveProperties.windowId });
+        },
+        discard(tabId, callback) {
+          discardedTabs.push(tabId);
+          callback({ id: tabId, discarded: true });
+        }
+      }
+    };
+
+    await removeTabs([4, 9]);
+    assert.deepEqual(await moveTabToWindow(9, 12), { id: 9, windowId: 12 });
+    assert.deepEqual(await discardTab(9), { id: 9, discarded: true });
+
+    assert.deepEqual(removedTabIds, [4, 9]);
+    assert.deepEqual(movedTabs, [[9, { windowId: 12, index: -1 }]]);
+    assert.deepEqual(discardedTabs, [9]);
+  });
+
+  it('rejects tab remove, move, and discard runtime errors', async () => {
+    const tabError = new Error('Tab operation failed.');
+
+    globalThis.chrome = {
+      runtime: { lastError: tabError },
+      tabs: {
+        remove(_tabIds, callback) {
+          callback();
+        },
+        move(_tabId, _moveProperties, callback) {
+          callback(null);
+        },
+        discard(_tabId, callback) {
+          callback(null);
+        }
+      }
+    };
+
+    await assert.rejects(() => removeTabs([4]), tabError);
+    await assert.rejects(() => moveTabToWindow(4, 12), tabError);
+    await assert.rejects(() => discardTab(4), tabError);
   });
 
   it('adds and removes tab lifecycle listeners', () => {

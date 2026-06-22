@@ -5,6 +5,26 @@ export function canCreateTab() {
   return Boolean(chrome.tabs?.create);
 }
 
+export function canQueryTabs() {
+  return Boolean(chrome.tabs?.query);
+}
+
+export function canRemoveTabs() {
+  return Boolean(chrome.tabs?.remove);
+}
+
+export function canDiscardTab() {
+  return Boolean(chrome.tabs?.discard);
+}
+
+export function canMoveTab() {
+  return Boolean(chrome.tabs?.move);
+}
+
+export function canUpdateTab() {
+  return Boolean(chrome.tabs?.update);
+}
+
 export function addTabActivatedListener(listener) {
   chrome.tabs.onActivated.addListener(listener);
   return () => chrome.tabs.onActivated.removeListener(listener);
@@ -27,6 +47,11 @@ export function addTabUpdatedListener(listener) {
 
 export function queryTabs(queryInfo) {
   return new Promise((resolve, reject) => {
+    if (!canQueryTabs()) {
+      reject(new Error('chrome.tabs.query is unavailable.'));
+      return;
+    }
+
     chrome.tabs.query(queryInfo, tabs => {
       if (chrome.runtime.lastError) {
         reject(chrome.runtime.lastError);
@@ -81,8 +106,67 @@ export function sendTabMessage(tabId, message, options) {
   });
 }
 
+export function removeTabs(tabIds) {
+  return new Promise((resolve, reject) => {
+    if (!canRemoveTabs()) {
+      reject(new Error('chrome.tabs.remove is unavailable.'));
+      return;
+    }
+
+    chrome.tabs.remove(tabIds, () => {
+      if (chrome.runtime.lastError) {
+        reject(chrome.runtime.lastError);
+        return;
+      }
+
+      resolve();
+    });
+  });
+}
+
+export function moveTabToWindow(tabId, windowId) {
+  return new Promise((resolve, reject) => {
+    if (!canMoveTab()) {
+      reject(new Error('chrome.tabs.move is unavailable.'));
+      return;
+    }
+
+    chrome.tabs.move(tabId, { windowId, index: -1 }, tab => {
+      if (chrome.runtime.lastError || !tab) {
+        reject(chrome.runtime.lastError || new Error('Tab could not be moved.'));
+        return;
+      }
+
+      resolve(tab);
+    });
+  });
+}
+
+export function discardTab(tabId) {
+  return new Promise((resolve, reject) => {
+    if (!canDiscardTab()) {
+      reject(new Error('chrome.tabs.discard is unavailable.'));
+      return;
+    }
+
+    chrome.tabs.discard(tabId, tab => {
+      if (chrome.runtime.lastError || !tab) {
+        reject(chrome.runtime.lastError || new Error('Tab could not be discarded.'));
+        return;
+      }
+
+      resolve(tab);
+    });
+  });
+}
+
 export function updateTab(tabId, updateProperties) {
   return new Promise(resolve => {
+    if (!canUpdateTab()) {
+      resolve(null);
+      return;
+    }
+
     chrome.tabs.update(tabId, updateProperties, tab => {
       if (chrome.runtime.lastError) {
         resolve(null);

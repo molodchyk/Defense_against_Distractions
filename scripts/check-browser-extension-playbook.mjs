@@ -187,6 +187,7 @@ const [
   appBackgroundModule,
   backgroundDefaultsModule,
   intentInitializerModule,
+  intentChromeApiModule,
   pomodoroChromeStorageModule,
   pomodoroInitializerModule,
   pomodoroNotificationsModule,
@@ -232,6 +233,7 @@ const [
   readText('src/app/background/index.js'),
   readText('src/js/background/defaults.js'),
   readText('src/js/background/intent/initializer.js'),
+  readText('src/js/background/intent/chromeApi.js'),
   readText('src/js/background/pomodoro/chromeStorage.js'),
   readText('src/js/background/pomodoro/initializer.js'),
   readText('src/js/background/pomodoro/notifications.js'),
@@ -377,11 +379,12 @@ assertCondition(/platform\/chrome\/downloads\.js/.test(storageTransferModule) &&
 assertCondition(/chrome\.runtime\.onInstalled/.test(runtimeWrapper) && /chrome\.runtime\.onStartup/.test(runtimeWrapper) && /chrome\.runtime\.onMessage/.test(runtimeWrapper) && /chrome\.runtime\.getManifest/.test(runtimeWrapper) && /chrome\.runtime\.getURL/.test(runtimeWrapper) && /chrome\.runtime\.openOptionsPage/.test(runtimeWrapper), 'Chrome runtime platform wrapper must own lifecycle listeners, message listeners, manifest, extension URL, and options-page helpers.');
 assertCondition([appBackgroundModule, backgroundDefaultsModule, pomodoroInitializerModule, releaseNoticeModule, scheduleMonitorModule, intentMessagesModule, popupIndexModule, popupChromeModule, popupDiagnosticsExportModule].every(text => /platform\/chrome\/runtime\.js/.test(text) && !/chrome\.runtime\.(?:onInstalled|onStartup|onMessage|getManifest|getURL|openOptionsPage)/.test(text)), 'Migrated background and popup modules must use the runtime platform wrapper instead of raw chrome.runtime lifecycle/helpers.');
 assertCondition(/chrome\.runtime\.sendMessage/.test(runtimeMessagesWrapper) && /runtime\.lastError/.test(runtimeMessagesWrapper), 'Chrome runtime-message platform wrapper must own chrome.runtime.sendMessage and runtime.lastError handling.');
-assertCondition(/chrome\.tabs\.query/.test(tabsWrapper) && /chrome\.tabs\.create/.test(tabsWrapper) && /chrome\.tabs\.sendMessage/.test(tabsWrapper) && /chrome\.tabs\.update/.test(tabsWrapper) && /chrome\.tabs\.onActivated/.test(tabsWrapper) && /chrome\.tabs\.onCreated/.test(tabsWrapper) && /chrome\.tabs\.onRemoved/.test(tabsWrapper) && /chrome\.tabs\.onUpdated/.test(tabsWrapper) && /runtime\.lastError/.test(tabsWrapper), 'Chrome tabs platform wrapper must own tab query/create/message/update plus lifecycle listener registration.');
+assertCondition(/chrome\.tabs\.query/.test(tabsWrapper) && /chrome\.tabs\.create/.test(tabsWrapper) && /chrome\.tabs\.sendMessage/.test(tabsWrapper) && /chrome\.tabs\.update/.test(tabsWrapper) && /chrome\.tabs\.remove/.test(tabsWrapper) && /chrome\.tabs\.move/.test(tabsWrapper) && /chrome\.tabs\.discard/.test(tabsWrapper) && /chrome\.tabs\.onActivated/.test(tabsWrapper) && /chrome\.tabs\.onCreated/.test(tabsWrapper) && /chrome\.tabs\.onRemoved/.test(tabsWrapper) && /chrome\.tabs\.onUpdated/.test(tabsWrapper) && /runtime\.lastError/.test(tabsWrapper), 'Chrome tabs platform wrapper must own tab query/create/message/update/remove/move/discard plus lifecycle listener registration.');
 assertCondition([popupChromeModule, elementPickerLauncherModule].every(text => /platform\/chrome\/tabs\.js/.test(text) && !/chrome\.tabs\./.test(text) && !/chrome\.runtime\.lastError/.test(text)), 'Popup tab helpers must use the tabs platform wrapper instead of raw chrome.tabs callbacks.');
 assertCondition(/platform\/chrome\/tabs\.js/.test(pomodoroNotificationsModule) && !/chrome\.tabs\./.test(pomodoroNotificationsModule) && !/chrome\.runtime\.lastError/.test(pomodoroNotificationsModule), 'Background Pomodoro notifications must use the tabs platform wrapper instead of raw chrome.tabs callbacks.');
-assertCondition(/chrome\.windows\.onFocusChanged/.test(windowsWrapper) && /WINDOW_ID_NONE/.test(windowsWrapper), 'Chrome windows platform wrapper must own focus-change listener registration and no-focused-window id access.');
+assertCondition(/chrome\.windows\.onFocusChanged/.test(windowsWrapper) && /chrome\.windows\.create/.test(windowsWrapper) && /WINDOW_ID_NONE/.test(windowsWrapper), 'Chrome windows platform wrapper must own focus-change listener registration, window creation, and no-focused-window id access.');
 assertCondition([appBackgroundModule, intentInitializerModule, pomodoroInitializerModule].every(text => /platform\/chrome\/(?:action|navigation|tabs|windows)\.js/.test(text) && !/chrome\.(?:action\.onClicked|tabs\.on(?:Activated|Created|Removed|Updated)|webNavigation|windows\.(?:onFocusChanged|WINDOW_ID_NONE))/.test(text)), 'Migrated background event modules must use platform wrappers instead of raw action/tab/navigation/window listener registration.');
+assertCondition(/platform\/chrome\/tabs\.js/.test(intentChromeApiModule) && /platform\/chrome\/windows\.js/.test(intentChromeApiModule) && /platform\/chrome\/runtime\.js/.test(intentChromeApiModule) && !/chrome\.(?:tabs|windows|runtime)|runtime\.lastError/.test(intentChromeApiModule), 'Background intent Chrome adapter must use platform wrappers instead of raw chrome tabs/windows/runtime callbacks.');
 assertCondition(
   [usageStatsModule, intentDiagnosticsModule, planPomodoroEditorModule].every(text =>
     /platform\/chrome\/runtimeMessages\.js/.test(text) && !/chrome\.runtime\.sendMessage/.test(text)

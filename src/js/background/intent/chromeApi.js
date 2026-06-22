@@ -2,89 +2,82 @@
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
 import { getLocal, getSync, setLocal } from '../../../platform/chrome/storage.js';
+import {
+  canCreateTab,
+  canDiscardTab,
+  canMoveTab,
+  canQueryTabs,
+  canRemoveTabs,
+  createTab,
+  discardTab as discardChromeTab,
+  moveTabToWindow as moveChromeTabToWindow,
+  queryTabs,
+  removeTabs as removeChromeTabs,
+  updateTab as updateChromeTab
+} from '../../../platform/chrome/tabs.js';
+import { getExtensionUrl, openOptionsPage } from '../../../platform/chrome/runtime.js';
+import { canCreateWindow, createWindow as createChromeWindow } from '../../../platform/chrome/windows.js';
 
 export { getLocal, getSync, setLocal };
 
-export function openIntentDiagnosticsPage() {
-  const url = chrome.runtime.getURL('src/options.html#intentDiagnosticsPanel');
-  if (!chrome.tabs?.create) {
-    chrome.runtime.openOptionsPage();
-    return Promise.resolve({ status: 'opened', url });
+export async function openIntentDiagnosticsPage() {
+  const url = getExtensionUrl('src/options.html#intentDiagnosticsPanel');
+  if (!canCreateTab()) {
+    openOptionsPage();
+    return { status: 'opened', url };
   }
 
-  return new Promise((resolve, reject) => {
-    chrome.tabs.create({ url }, tab => {
-      if (chrome.runtime.lastError || !tab) {
-        reject(chrome.runtime.lastError || new Error('Intent diagnostics page could not be opened.'));
-        return;
-      }
+  const tab = await createTab({ url });
+  if (!tab) {
+    throw new Error('Intent diagnostics page could not be opened.');
+  }
 
-      resolve({
-        status: 'opened',
-        tabId: tab.id ?? null,
-        url
-      });
-    });
-  });
+  return {
+    status: 'opened',
+    tabId: tab.id ?? null,
+    url
+  };
 }
 
-export function getTabPressure() {
-  return new Promise(resolve => {
-    if (!chrome.tabs?.query) {
-      resolve({});
-      return;
-    }
+export async function getTabPressure() {
+  if (!canQueryTabs()) {
+    return {};
+  }
 
-    chrome.tabs.query({}, tabs => {
-      if (chrome.runtime.lastError || !Array.isArray(tabs)) {
-        resolve({});
-        return;
-      }
+  try {
+    const tabs = await queryTabs({});
 
-      resolve({
-        tabCount: tabs.length,
-        windowCount: new Set(tabs
-          .map(tab => Number(tab.windowId))
-          .filter(Number.isFinite)).size
-      });
-    });
-  });
+    return {
+      tabCount: tabs.length,
+      windowCount: new Set(tabs
+        .map(tab => Number(tab.windowId))
+        .filter(Number.isFinite)).size
+    };
+  } catch {
+    return {};
+  }
 }
 
-export function getOpenTabIds() {
-  return new Promise(resolve => {
-    if (!chrome.tabs?.query) {
-      resolve(null);
-      return;
-    }
+export async function getOpenTabIds() {
+  if (!canQueryTabs()) {
+    return null;
+  }
 
-    chrome.tabs.query({}, tabs => {
-      if (chrome.runtime.lastError || !Array.isArray(tabs)) {
-        resolve(null);
-        return;
-      }
-
-      resolve(new Set(tabs.map(tab => Number(tab.id)).filter(Number.isFinite)));
-    });
-  });
+  try {
+    const tabs = await queryTabs({});
+    return new Set(tabs.map(tab => Number(tab.id)).filter(Number.isFinite));
+  } catch {
+    return null;
+  }
 }
 
 export function removeTabs(tabIds = []) {
   const normalizedTabIds = [...new Set(tabIds.map(Number).filter(Number.isFinite))];
-  if (normalizedTabIds.length === 0 || !chrome.tabs?.remove) {
+  if (normalizedTabIds.length === 0 || !canRemoveTabs()) {
     return Promise.resolve();
   }
 
-  return new Promise((resolve, reject) => {
-    chrome.tabs.remove(normalizedTabIds, () => {
-      if (chrome.runtime.lastError) {
-        reject(chrome.runtime.lastError);
-        return;
-      }
-
-      resolve();
-    });
-  });
+  return removeChromeTabs(normalizedTabIds);
 }
 
 export async function moveTabsToNewWindow(tabIds = []) {
@@ -97,7 +90,7 @@ export async function moveTabsToNewWindow(tabIds = []) {
     };
   }
 
-  if (!chrome.windows?.create || !chrome.tabs?.move) {
+  if (!canCreateWindow() || !canMoveTab()) {
     return {
       movedTabIds: [],
       failedTabIds: normalizedTabIds,
@@ -106,14 +99,14 @@ export async function moveTabsToNewWindow(tabIds = []) {
   }
 
   try {
-    const createdWindow = await createWindowWithTab(normalizedTabIds[0]);
+    const createdWindow = await createChromeWindow({ tabId: normalizedTabIds[0], focused: false });
     const windowId = Number(createdWindow.id);
     const movedTabIds = [normalizedTabIds[0]];
     const failedTabIds = [];
 
     for (const tabId of normalizedTabIds.slice(1)) {
       try {
-        await moveTabToWindow(tabId, windowId);
+        await moveChromeTabToWindow(tabId, windowId);
         movedTabIds.push(tabId);
       } catch (error) {
         failedTabIds.push(tabId);
@@ -136,7 +129,7 @@ export async function moveTabsToNewWindow(tabIds = []) {
 
 export async function discardTabs(tabIds = []) {
   const normalizedTabIds = [...new Set(tabIds.map(Number).filter(Number.isFinite))];
-  if (normalizedTabIds.length === 0 || !chrome.tabs?.discard) {
+  if (normalizedTabIds.length === 0 || !canDiscardTab()) {
     return {
       discardedTabIds: [],
       failedTabIds: normalizedTabIds
@@ -148,7 +141,7 @@ export async function discardTabs(tabIds = []) {
 
   for (const tabId of normalizedTabIds) {
     try {
-      await discardTab(tabId);
+      await discardChromeTab(tabId);
       discardedTabIds.push(tabId);
     } catch (error) {
       failedTabIds.push(tabId);
@@ -166,7 +159,6 @@ export async function updateTabsUrl(tabIds = [], url = '') {
   const normalizedUrl = String(url || '').trim();
   if (
     normalizedTabIds.length === 0
-      || !chrome.tabs?.update
       || !isSafeTabUpdateUrl(normalizedUrl)
   ) {
     return {
@@ -180,7 +172,10 @@ export async function updateTabsUrl(tabIds = [], url = '') {
 
   for (const tabId of normalizedTabIds) {
     try {
-      await updateTabUrl(tabId, normalizedUrl);
+      const tab = await updateChromeTab(tabId, { url: normalizedUrl });
+      if (!tab) {
+        throw new Error('Tab could not be updated.');
+      }
       updatedTabIds.push(tabId);
     } catch (error) {
       failedTabIds.push(tabId);
@@ -191,58 +186,6 @@ export async function updateTabsUrl(tabIds = [], url = '') {
     updatedTabIds,
     failedTabIds
   };
-}
-
-function createWindowWithTab(tabId) {
-  return new Promise((resolve, reject) => {
-    chrome.windows.create({ tabId, focused: false }, createdWindow => {
-      if (chrome.runtime.lastError || !Number.isFinite(Number(createdWindow?.id))) {
-        reject(chrome.runtime.lastError || new Error('Window could not be created.'));
-        return;
-      }
-
-      resolve(createdWindow);
-    });
-  });
-}
-
-function moveTabToWindow(tabId, windowId) {
-  return new Promise((resolve, reject) => {
-    chrome.tabs.move(tabId, { windowId, index: -1 }, tab => {
-      if (chrome.runtime.lastError || !tab) {
-        reject(chrome.runtime.lastError || new Error('Tab could not be moved.'));
-        return;
-      }
-
-      resolve(tab);
-    });
-  });
-}
-
-function discardTab(tabId) {
-  return new Promise((resolve, reject) => {
-    chrome.tabs.discard(tabId, tab => {
-      if (chrome.runtime.lastError || !tab) {
-        reject(chrome.runtime.lastError || new Error('Tab could not be discarded.'));
-        return;
-      }
-
-      resolve(tab);
-    });
-  });
-}
-
-function updateTabUrl(tabId, url) {
-  return new Promise((resolve, reject) => {
-    chrome.tabs.update(tabId, { url }, tab => {
-      if (chrome.runtime.lastError || !tab) {
-        reject(chrome.runtime.lastError || new Error('Tab could not be updated.'));
-        return;
-      }
-
-      resolve(tab);
-    });
-  });
 }
 
 function isSafeTabUpdateUrl(url) {
