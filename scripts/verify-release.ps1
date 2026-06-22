@@ -208,6 +208,10 @@ try {
   Assert-Condition ($LASTEXITCODE -eq 0) "Relative import verification failed"
   node scripts/check-browser-extension-playbook.mjs
   Assert-Condition ($LASTEXITCODE -eq 0) "Browser extension playbook verification failed"
+  node scripts/audit-file-sizes.mjs
+  Assert-Condition ($LASTEXITCODE -eq 0) "File-size audit failed"
+  node scripts/audit-folder-density.mjs
+  Assert-Condition ($LASTEXITCODE -eq 0) "Folder-density audit failed"
   node scripts/check-locale-coverage.mjs
   Assert-Condition ($LASTEXITCODE -eq 0) "Locale coverage verification failed"
   node scripts/check-static-localization.mjs
@@ -364,6 +368,8 @@ $requiredSourceEntries = @(
   "scripts/check-platform-boundaries.mjs",
   "scripts/check-relative-imports.mjs",
   "scripts/check-static-localization.mjs",
+  "scripts/audit-file-sizes.mjs",
+  "scripts/audit-folder-density.mjs",
   "scripts/package-extension.ps1",
   "scripts/playbook/constants.mjs",
   "scripts/playbook/manifestAudit.mjs",
