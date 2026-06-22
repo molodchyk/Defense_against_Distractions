@@ -3,7 +3,10 @@
 
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { getPomodoroSummary } from '../../../src/js/popup/pomodoroPanel.js';
+import {
+  getPomodoroSummary,
+  getPopupPomodoroRuntimeControlState
+} from '../../../src/js/popup/pomodoroPanel.js';
 
 function message(key, substitutions = []) {
   const messages = {
@@ -20,6 +23,45 @@ function message(key, substitutions = []) {
 }
 
 describe('popup Pomodoro panel helpers', () => {
+  it('allows starting Pomodoro during locked schedules because starting is stricter', () => {
+    assert.deepEqual(getPopupPomodoroRuntimeControlState({
+      canStart: true,
+      phase: 'idle',
+      protectedScheduleActive: true
+    }), {
+      startDisabled: false,
+      pauseDisabled: true,
+      resumeDisabled: true,
+      resetDisabled: true
+    });
+  });
+
+  it('allows resuming but not pausing or resetting Pomodoro during locked schedules', () => {
+    assert.deepEqual(getPopupPomodoroRuntimeControlState({
+      canStart: true,
+      phase: 'paused',
+      protectedScheduleActive: true
+    }), {
+      startDisabled: true,
+      pauseDisabled: true,
+      resumeDisabled: false,
+      resetDisabled: true
+    });
+  });
+
+  it('keeps pause and reset available outside locked schedules while Pomodoro is running', () => {
+    assert.deepEqual(getPopupPomodoroRuntimeControlState({
+      canStart: true,
+      phase: 'work',
+      protectedScheduleActive: false
+    }), {
+      startDisabled: true,
+      pauseDisabled: false,
+      resumeDisabled: true,
+      resetDisabled: false
+    });
+  });
+
   it('summarizes rest-satisfied work credit before ordinary work state', () => {
     assert.deepEqual(getPomodoroSummary({
       timerStatus: {

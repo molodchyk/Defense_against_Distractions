@@ -33,7 +33,7 @@ Pages are blocked when their score reaches `1000`.
 
 ## Locked Schedules
 
-Locked schedules let you define times when the extension should resist being weakened. During an active locked schedule, the extension prevents changes such as deleting active schedules, weakening plan entries, relaxing schedule constraints, adding allowed websites, or changing password protection.
+Locked schedules let you define times when the extension should resist being weakened. During an active locked schedule, the extension prevents changes such as deleting active schedules, weakening plan entries, relaxing schedule constraints, adding allowed websites, or changing password protection. Stricter changes are still allowed, including adding blocked entries, tightening Pomodoro or intent settings, and starting or resuming Pomodoro instead of pausing or resetting it.
 
 Each scheduled day must keep at least one hour unlocked.
 

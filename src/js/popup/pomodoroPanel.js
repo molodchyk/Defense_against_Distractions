@@ -70,6 +70,25 @@ export function getPomodoroSummary(payload, getMessage) {
   };
 }
 
+export function getPopupPomodoroRuntimeControlState({
+  canStart = false,
+  phase = 'idle',
+  protectedScheduleActive = false
+} = {}) {
+  const isRunning = RUNNING_PHASES.has(phase);
+  const isPaused = phase === 'paused';
+  const isIdle = phase === 'idle';
+  const isCompleted = phase === 'completed';
+  const canStartPhase = isIdle || isCompleted;
+
+  return {
+    startDisabled: !canStart || !canStartPhase,
+    pauseDisabled: protectedScheduleActive || !isRunning,
+    resumeDisabled: !isPaused,
+    resetDisabled: protectedScheduleActive || isIdle
+  };
+}
+
 export function createPomodoroPanel({
   getMessage,
   getActiveTab,
@@ -253,15 +272,15 @@ export function createPomodoroPanel({
     const completedWorkSessions = payload?.timerStatus?.completedWorkSessions || 0;
     const planName = payload?.plan?.name || getMessage('popupNoActivePomodoroPlan');
     const activityStatus = payload?.activityStatus;
-    const isRunning = RUNNING_PHASES.has(phase);
-    const isPaused = phase === 'paused';
-    const isIdle = phase === 'idle';
-    const isCompleted = phase === 'completed';
-    const canStart = isIdle || isCompleted;
     const suppressionText = getAutoStartSuppressionText(payload);
     const phaseBadge = document.getElementById('pomodoroPhaseText');
     const protectedScheduleActive = Boolean(payload?.protectedScheduleActive);
     const protectedScheduleReason = getMessage('popupPomodoroProtectedScheduleReason');
+    const controlState = getPopupPomodoroRuntimeControlState({
+      canStart: Boolean(payload?.canStart),
+      phase,
+      protectedScheduleActive
+    });
 
     phaseBadge.textContent = payload?.timerStatus?.restSatisfiedByCredit
       ? getMessage('pomodoroRestSatisfiedLabel', 'Rest satisfied')
@@ -288,10 +307,10 @@ export function createPomodoroPanel({
     const resumeButton = document.getElementById('resumePomodoroButton');
     const resetButton = document.getElementById('resetPomodoroButton');
 
-    startButton.disabled = !payload?.canStart || !canStart;
-    pauseButton.disabled = protectedScheduleActive || !isRunning;
-    resumeButton.disabled = !isPaused;
-    resetButton.disabled = protectedScheduleActive || isIdle;
+    startButton.disabled = controlState.startDisabled;
+    pauseButton.disabled = controlState.pauseDisabled;
+    resumeButton.disabled = controlState.resumeDisabled;
+    resetButton.disabled = controlState.resetDisabled;
     pauseButton.title = protectedScheduleActive ? protectedScheduleReason : '';
     resetButton.title = protectedScheduleActive ? protectedScheduleReason : '';
     onStateChange?.(latestPayload);
