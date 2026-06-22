@@ -582,6 +582,8 @@ for (const locale of locales) {
   const listing = await readText(listingPath);
   const listingLines = listing.split(/\r?\n/).map(line => line.trim()).filter(Boolean);
   const firstLine = getFirstNonEmptyLine(listing);
+  const localeMessages = JSON.parse(await readText(`_locales/${locale}/messages.json`));
+  const localeDescription = localeMessages.description?.message || '';
   const listingVersionMentions = [...listing.matchAll(/\b\d+\.\d+(?:\.\d+)?\b/g)]
     .map((match) => match[0])
     .filter((version) => version !== manifest.version && version !== '3.0');
@@ -605,6 +607,7 @@ for (const locale of locales) {
   assertCondition(/GPL-3\.0/.test(listing), `${listingPath} must include GPL-3.0 license disclosure.`);
   assertCondition(listingLines.at(-2) === 'GPL-3.0 license:' && listingLines.at(-1) === repositoryUrl, `${listingPath} must end with the canonical license and GitHub footer.`);
   assertCondition(!/buymeacoffee|patreon/i.test(listing), `${listingPath} must not include donation links.`);
+  assertCondition(!localeDescription || !listing.includes(localeDescription), `${listingPath} must not paste the short Chrome Web Store summary into the direct detailed-description body.`);
   assertCondition(
     listingVersionMentions.length === 0,
     `${listingPath} mentions stale or unsynchronized version numbers: ${listingVersionMentions.join(', ')}.`
@@ -613,7 +616,6 @@ for (const locale of locales) {
   assertCondition(!/\b(guarantee[sd]?|perfect|scientifically proven|clinically proven|cure[sd]?|ADHD|medical|therapy|therapeutic|mental health|knows your true intent|true intention|attention residue|permanent attention damage|objectively useless)\b/i.test(listing), `${listingPath} must avoid inflated, medical, or mind-reading claims.`);
 
   if (englishStoreListingLocales.has(locale)) {
-    assertCondition(!listing.includes(englishDescription), `${listingPath} must not paste the short Chrome Web Store summary into the direct detailed-description body.`);
     assertCondition(
       /plans/i.test(listing) && /allowed websites/i.test(listing) && /intent coherence/i.test(listing) && /You can use it to protect/i.test(listing) && /Main features:/i.test(listing) && /Browser notes:/i.test(listing) && /What is new in version/i.test(listing) && /incognito/i.test(listing) && /file URL/i.test(listing) && /open source/i.test(listing),
       `${listingPath} must describe examples, features, current plan-based UI model, browser-controlled limitations, current-version notes, and open-source footer.`
