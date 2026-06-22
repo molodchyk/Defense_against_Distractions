@@ -343,6 +343,7 @@ $requiredSourceEntries = @(
   "docs/chrome-web-store-privacy-form.md",
   "docs/code-structure.md",
   "docs/decision-records.md",
+  "docs/localization.md",
   "docs/permission-audit.md",
   "docs/release-checklist.md",
   "docs/release-notes.md",

@@ -88,6 +88,7 @@ assertCondition(await exists('docs/release-notes.md'), 'Missing release notes do
 assertCondition(await exists('docs/release-checklist.md'), 'Missing release checklist document.');
 assertCondition(await exists('docs/store-media-review.md'), 'Missing store media review document.');
 assertCondition(await exists('docs/decision-records.md'), 'Missing decision records document.');
+assertCondition(await exists('docs/localization.md'), 'Missing localization workflow document.');
 assertCondition(await exists('scripts/check-static-localization.mjs'), 'Missing static localization verification script.');
 assertCondition(await exists('scripts/check-unpacked-extension-load.ps1'), 'Missing unpacked extension browser-load smoke script.');
 for (const platformWrapper of ['action', 'alarms', 'contentBridge', 'downloads', 'i18n', 'idle', 'navigation', 'runtime', 'runtimeMessages', 'tabs', 'windows']) {
@@ -115,6 +116,7 @@ const [
   storeMediaReview,
   decisionRecords,
   codeStructure,
+  localizationDoc,
   actionWrapper,
   alarmsWrapper,
   downloadsWrapper,
@@ -170,6 +172,7 @@ const [
   readText('docs/store-media-review.md'),
   readText('docs/decision-records.md'),
   readText('docs/code-structure.md'),
+  readText('docs/localization.md'),
   readText('src/platform/chrome/action.js'),
   readText('src/platform/chrome/alarms.js'),
   readText('src/platform/chrome/downloads.js'),
@@ -555,6 +558,7 @@ assertCondition(
   ]),
   'Code structure document must map feature, platform, and repository-script test ownership.'
 );
+assertCondition(hasAll(localizationDoc, [/Chrome Web Store Visible Languages/, /en_AU/, /Persian \(`fa`\)/, /Arabic \(`ar`\), Persian \(`fa`\), Hebrew \(`he`\), and Urdu \(`ur`\) are right-to-left locales/, /without changing the host page direction/, /store\/store-listing\/<locale>\.txt/, /npm run verify:locales/]), 'Localization document must cover visible store languages, RTL locales, store-listing coverage, and locale verification.');
 
 for (const storageKeyFamily of storageKeyFamilies) {
   assertCondition(
