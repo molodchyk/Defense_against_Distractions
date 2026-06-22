@@ -610,6 +610,7 @@ for (const locale of locales) {
   }
 
   const listing = await readText(listingPath);
+  const listingLines = listing.split(/\r?\n/).map(line => line.trim()).filter(Boolean);
   const firstLine = getFirstNonEmptyLine(listing);
   const listingVersionMentions = [...listing.matchAll(/\b\d+\.\d+(?:\.\d+)?\b/g)]
     .map((match) => match[0])
@@ -632,6 +633,7 @@ for (const locale of locales) {
   );
   assertCondition(listing.includes(repositoryUrl), `${listingPath} must include the GitHub URL.`);
   assertCondition(/GPL-3\.0/.test(listing), `${listingPath} must include GPL-3.0 license disclosure.`);
+  assertCondition(listingLines.at(-2) === 'GPL-3.0 license:' && listingLines.at(-1) === repositoryUrl, `${listingPath} must end with the canonical license and GitHub footer.`);
   assertCondition(!/buymeacoffee|patreon/i.test(listing), `${listingPath} must not include donation links.`);
   assertCondition(
     listingVersionMentions.length === 0,

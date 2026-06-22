@@ -15,5 +15,6 @@ Sozlash amaliy bo'lishi uchun qulflangan jadvallar, ruxsat berilgan saytlar, par
 Brauzer eslatmalari:
 Brauzer incognito va file URL kirishini boshqaradi. DaD bu sahifalarda faqat kengaytmaga u yerda aniq ruxsat berganingizda ishlaydi.
 
+Defense Against Distractions ochiq manbali:
 GPL-3.0 license:
 https://github.com/molodchyk/Defense_against_Distractions
