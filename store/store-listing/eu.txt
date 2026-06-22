@@ -2,15 +2,18 @@ Foku-luzapen gehienek webgune osoak blokeatzen dituzte. Hori erabilgarria da, ba
 
 Distrakzioen aurkako defentsak kontrol zehatzagoa ematen dizu.
 
-URL bidez soilik blokeatu beharrean, orriak blokeatu ditzakezu haietan agertzen diren hitz eta esaldietan oinarrituta. Sortu webgune-taldeak, gehitu gako-hitzak edo esaldiak, esleitu puntuazioak eta utzi luzapenak orria blokeatzen distrazio puntuak konfiguratutako atalasea gainditzen duenean.
+URL bidez soilik blokeatu beharrean, planak sor ditzakezu webguneko sarrerekin, gako-hitz edo esaldiekin, puntuazio haztatuekin, baimendutako webguneekin, ordutegiekin, Pomodoro arauekin, intent coherence ezarpenekin eta aukerako UI garbiketarekin. Bat datorren orri batek konfiguratutako distrakzio-puntuazioa gainditzen duenean, luzapenak blokeatu egiten du.
 
 Ikasketa saioak, lan-blokeak, azterketak prestatzeko, ikerketa-denbora edo arakatzailea desbideratze bat bihurtu gabe erabilgarria izatea nahi duzun edozein egoera babesteko erabil dezakezu.
 
 Ezaugarri nagusiak:
 
 Blokeatu orriak gako-hitz, esaldi eta puntuazio haztatuen arabera.
-Antolatu foku-arau desberdinak webgune eta gako-taldeetan.
-Erabili blokeatutako ordutegiak, zerrenda zuriak, pasahitz babesa, esportazioa/inportazioa, UI moduak eta UI elementua ezkutatzea konfigurazioa praktikoa izan dadin.
+Antolatu foku-testuinguru desberdinak planetan.
+Erabili blokeatutako ordutegiak, baimendutako webguneak, pasahitz-babesa, esportazioa/inportazioa, UI moduak, Pomodoro, intent coherence eta UI elementuak ezkutatzea konfigurazioa praktikoa izan dadin.
+
+Arakatzailearen oharrak:
+Arakatzaileak incognito eta file URL sarbidea kontrolatzen du. DaD orri horietan bakarrik dabil luzapena han berariaz baimentzen duzunean.
 
 Zer da berria 1.6.1 bertsioan:
 Pomodorok orain inaktibo eta blokeatutako denbora beharrezko atseden gisa zenbatzen du.

@@ -2,15 +2,18 @@ Die meisten Fokus-Erweiterungen blockieren ganze Websites. Das ist hilfreich, ab
 
 Defense Against Distractions gibt dir präzisere Kontrolle.
 
-Statt nur nach URL zu blockieren, kannst du Seiten anhand der Wörter und Phrasen blockieren, die auf ihnen erscheinen. Erstelle Gruppen von Websites, füge Schlüsselwörter oder Phrasen hinzu, vergebe Punkte und lasse die Erweiterung die Seite blockieren, sobald der Ablenkungsscore deinen festgelegten Grenzwert überschreitet.
+Statt nur nach URL zu blockieren, kannst du Pläne mit Website-Einträgen, Schlüsselwörtern oder Phrasen, gewichteten Scores, erlaubten Websites, Zeitplänen, Pomodoro-Regeln, intent coherence-Einstellungen und optionaler UI-Bereinigung erstellen. Wenn eine passende Seite den konfigurierten Ablenkungsscore überschreitet, blockiert die Erweiterung sie.
 
 Du kannst es für Lerneinheiten, Arbeitsblöcke, Prüfungsvorbereitung, Recherchezeit oder jede Situation nutzen, in der der Browser nützlich bleiben soll, ohne zum Umweg zu werden.
 
 Hauptfunktionen:
 
 Seiten nach Schlüsselwörtern, Phrasen und gewichteten Scores blockieren.
-Verschiedene Fokusregeln in Website- und Schlüsselwortgruppen organisieren.
-Gesperrte Zeitpläne, Whitelists, Passwortschutz, Export/Import, UI-Modi und das Ausblenden von UI-Elementen nutzen, damit die Einrichtung praktisch bleibt.
+Verschiedene Fokuskontexte in Plänen organisieren.
+Gesperrte Zeitpläne, erlaubte Websites, Passwortschutz, Export/Import, UI-Modi, Pomodoro, intent coherence und das Ausblenden von UI-Elementen nutzen, damit die Einrichtung praktisch bleibt.
+
+Browser-Hinweise:
+Der Browser steuert den Zugriff auf incognito und file URL. DaD funktioniert auf diesen Seiten nur, wenn du die Erweiterung dort ausdrücklich erlaubst.
 
 Neu in Version 1.6.1:
 Pomodoro zählt jetzt Leerlaufzeit und gesperrte Zeit als erforderliche Ruhezeit.

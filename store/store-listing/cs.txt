@@ -2,15 +2,18 @@ Většina rozšíření pro soustředění blokuje celé weby. To je užitečné
 
 Defense Against Distractions vám dává přesnější kontrolu.
 
-Místo blokování pouze podle URL můžete blokovat stránky podle slov a frází, které se na nich objevují. Vytvořte skupiny webů, přidejte klíčová slova nebo fráze, přiřaďte jim skóre a nechte rozšíření stránku zablokovat, když skóre rozptýlení překročí nastavený práh.
+Místo blokování pouze podle URL můžete vytvářet plány s položkami webů, klíčovými slovy nebo frázemi, váženými skóre, povolenými weby, rozvrhy, pravidly Pomodoro, nastaveními intent coherence a volitelným čištěním UI. Když odpovídající stránka překročí nastavené skóre rozptýlení, rozšíření ji zablokuje.
 
 Můžete ho použít pro studijní sezení, pracovní bloky, přípravu na zkoušky, čas na výzkum nebo jakoukoli situaci, kdy chcete, aby prohlížeč zůstal užitečný a nestal se odbočkou.
 
 Hlavní funkce:
 
 Blokování stránek podle klíčových slov, frází a vážených skóre.
-Organizace různých pravidel soustředění do skupin webů a klíčových slov.
-Uzamčené rozvrhy, whitelisty, ochrana heslem, export/import, režimy UI a skrývání prvků UI pro praktické nastavení.
+Uspořádejte různé kontexty soustředění do plánů.
+Používejte zamčené rozvrhy, povolené weby, ochranu heslem, export/import, režimy UI, Pomodoro, intent coherence a skrývání prvků UI, aby nastavení zůstalo praktické.
+
+Poznámky k prohlížeči:
+Prohlížeč řídí přístup k incognito a file URL. DaD na těchto stránkách funguje pouze tehdy, když tam rozšíření výslovně povolíte.
 
 Co je nového ve verzi 1.6.1:
 Pomodoro nyní započítává nečinnost a uzamčení systému do povinného odpočinku.

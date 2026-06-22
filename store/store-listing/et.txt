@@ -2,15 +2,18 @@ Enamik fookuslaiendeid blokeerib terveid veebisaite. See on kasulik, kuid Intern
 
 Defense Against Distractions annab teile täpsema juhtimise.
 
-Selle asemel, et blokeerida ainult URL-i järgi, saate blokeerida lehed nendel kuvatavate sõnade ja fraaside alusel. Looge veebisaitide rühmi, lisage märksõnu või fraase, määrake hinded ja laske laiendil leht blokeerida, kui tähelepanu hajumise skoor ületab teie seadistatud läve.
+Selle asemel et blokeerida ainult URL-i järgi, saate luua plaane veebisaidi kirjete, märksõnade või fraaside, kaalutud punktide, lubatud veebisaitide, ajakavade, Pomodoro reeglite, intent coherence seadete ja valikulise UI-koristusega. Kui sobiv leht ületab seadistatud hajutamise skoori, blokeerib laiendus selle.
 
 Saate seda kasutada õppesessioonide, tööblokkide, eksamiteks valmistumise, uurimistöö aja või mis tahes olukorra kaitsmiseks, kus soovite, et brauser jääks kasulikuks, ilma et see muutuks kõrvalepõikeks.
 
 Peamised omadused:
 
-Lehtede blokeerimine märksõnade, fraaside ja kaalutud skooride järgi.
-Korraldage erinevad fookusreeglid veebisaitide ja märksõnarühmadesse.
-Kasutage lukustatud ajakavasid, valgeid loendeid, paroolikaitset, eksporti/importi, kasutajaliidese režiime ja kasutajaliidese elementide peitmist, et seadistus oleks praktiline.
+Blokeerige lehti märksõnade, fraaside ja kaalutud skooride järgi.
+Korraldage erinevad fookuse kontekstid plaanidesse.
+Kasutage lukustatud ajakavasid, lubatud veebisaite, paroolikaitset, eksporti/importi, UI-režiime, Pomodorot, intent coherence'i ja UI elementide peitmist, et seadistus püsiks praktiline.
+
+Brauseri märkused:
+Brauser kontrollib juurdepääsu incognito ja file URL lehtedele. DaD töötab neil lehtedel ainult siis, kui lubate laienduse seal selgesõnaliselt.
 
 Mis on uut versioonis 1.6.1:
 Pomodoro arvestab nüüd jõudeoleku ja lukustatud aja vajaliku puhkeaja hulka.

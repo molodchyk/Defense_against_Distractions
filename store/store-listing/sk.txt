@@ -2,20 +2,18 @@ Väčšina rozšírení na sústredenie blokuje celé weby. Je to užitočné, a
 
 Defense Against Distractions vám dáva presnejšiu kontrolu.
 
-Namiesto blokovania iba podľa URL môžete blokovať stránky podľa slov a fráz, ktoré sa na nich objavujú. Vytvorte skupiny webov, pridajte kľúčové slová alebo frázy, priraďte skóre a nechajte rozšírenie zablokovať stránku, keď skóre rozptýlenia prekročí nastavený prah.
+Namiesto blokovania iba podľa URL môžete vytvárať plány s položkami webov, kľúčovými slovami alebo frázami, váženými skóre, povolenými webmi, rozvrhmi, pravidlami Pomodoro, nastaveniami intent coherence a voliteľným čistením UI. Keď zodpovedajúca stránka prekročí nastavené skóre rozptýlenia, rozšírenie ju zablokuje.
 
 Môžete ho použiť na ochranu štúdia, pracovných blokov, prípravy na skúšky, výskumného času alebo akejkoľvek situácie, keď chcete, aby prehliadač zostal užitočný bez toho, aby sa stal obchádzkou.
 
 Hlavné funkcie:
 
 Blokovanie stránok podľa kľúčových slov, fráz a vážených skóre.
-Organizovanie rôznych pravidiel sústredenia do skupín webov a kľúčových slov.
-Používanie uzamknutých plánov, whitelistov, ochrany heslom, exportu/importu, režimov UI a skrývania prvkov UI, aby nastavenie zostalo praktické.
-Novinky vo verzii 1.6.1:
-Pomodoro teraz započítava nečinný a uzamknutý čas do potrebného oddychu.
-Popup a stránka Pomodoro plánu teraz zobrazujú jasnejšiu diagnostiku časovača.
-Prísne blokovanie prestávky teraz po skončení bloku obnoví médiá aj stav stlmenia karty.
-Diagnostika blokovanej stránky teraz zobrazuje pozastavenie médií a stlmenie karty riadené rozšírením.
+Usporiadajte rôzne kontexty sústredenia do plánov.
+Používajte uzamknuté rozvrhy, povolené weby, ochranu heslom, export/import, režimy UI, Pomodoro, intent coherence a skrývanie prvkov UI, aby nastavenie zostalo praktické.
+
+Poznámky prehliadača:
+Prehliadač riadi prístup k incognito a file URL. DaD na týchto stránkach funguje iba vtedy, keď tam rozšírenie výslovne povolíte.
 
 Defense Against Distractions je open source:
 GPL-3.0 license:

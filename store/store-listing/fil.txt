@@ -2,15 +2,18 @@ Bina-block ng karamihan sa mga extension ng focus ang buong website. Iyan ay kap
 
 Ang Defense Against Distractions ay nagbibigay sa iyo ng mas tumpak na kontrol.
 
-Sa halip na i-block lamang sa pamamagitan ng URL, maaari mong i-block ang mga pahina batay sa mga salita at pariralang lumalabas sa mga ito. Gumawa ng mga pangkat ng mga website, magdagdag ng mga keyword o parirala, magtalaga ng mga marka, at hayaang i-block ng extension ang page kapag lumampas ang marka ng distraction sa iyong na-configure na threshold.
+Sa halip na mag-block lang batay sa URL, maaari kang gumawa ng mga plan na may mga entry ng website, keyword o parirala, weighted scores, allowed websites, schedule, Pomodoro rules, intent coherence settings, at opsyonal na UI cleanup. Kapag lumampas ang tumutugmang pahina sa naka-configure na distraction score, iba-block ito ng extension.
 
 Magagamit mo ito upang protektahan ang mga sesyon ng pag-aaral, mga bloke sa trabaho, paghahanda sa pagsusulit, oras ng pananaliksik, o anumang sitwasyon kung saan mo gustong manatiling kapaki-pakinabang ang browser nang hindi nagiging detour.
 
 Pangunahing tampok:
 
-I-block ang mga pahina sa pamamagitan ng mga keyword, parirala, at may timbang na marka.
-Ayusin ang iba't ibang panuntunan sa pagtutok sa mga pangkat ng website at keyword.
-Gumamit ng mga naka-lock na iskedyul, mga whitelist, proteksyon ng password, pag-export/pag-import, mga mode ng UI, at pagtatago ng elemento ng UI upang panatilihing praktikal ang setup.
+I-block ang mga pahina ayon sa keyword, parirala, at weighted scores.
+Ayusin ang iba't ibang konteksto ng focus sa mga plan.
+Gumamit ng locked schedules, allowed websites, password protection, export/import, UI modes, Pomodoro, intent coherence, at UI element hiding para manatiling praktikal ang setup.
+
+Mga tala ng browser:
+Ang browser ang kumokontrol sa incognito at file URL access. Gumagana lang ang DaD sa mga pahinang iyon kapag malinaw mong pinayagan ang extension doon.
 
 Ano ang bago sa bersyon 1.6.1:
 Binibilang na ngayon ng Pomodoro ang idle at locked na oras bilang bahagi ng kinakailangang pahinga.

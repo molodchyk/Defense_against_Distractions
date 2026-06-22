@@ -2,15 +2,18 @@ A legtöbb fókuszáló bővítmény teljes webhelyeket blokkol. Ez hasznos, de 
 
 A Defense Against Distractions pontosabb irányítást ad.
 
-Nemcsak URL alapján blokkolhatsz, hanem a lapokon megjelenő szavak és kifejezések alapján is. Hozz létre webhelygyűjteményeket, adj hozzá kulcsszavakat vagy kifejezéseket, rendelj hozzájuk pontszámokat, és a bővítmény blokkolja az oldalt, amikor a zavarási pontszám átlépi a beállított küszöböt.
+Nemcsak URL alapján blokkolhatsz: terveket hozhatsz létre webhely-bejegyzésekkel, kulcsszavakkal vagy kifejezésekkel, súlyozott pontszámokkal, engedélyezett webhelyekkel, ütemezésekkel, Pomodoro-szabályokkal, intent coherence beállításokkal és opcionális UI-tisztítással. Amikor egy illeszkedő oldal átlépi a beállított figyelemelterelési pontszámot, a bővítmény blokkolja.
 
 Használhatod tanuláshoz, munkablokkokhoz, vizsgafelkészüléshez, kutatási időhöz vagy bármilyen helyzethez, amikor azt szeretnéd, hogy a böngésző hasznos maradjon, ne pedig kerülőút legyen.
 
 Fő funkciók:
 
 Oldalak blokkolása kulcsszavak, kifejezések és súlyozott pontszámok alapján.
-Különböző fókuszszabályok rendezése webhely- és kulcsszócsoportokba.
-Zárolt ütemezések, whitelistek, jelszóvédelem, export/import, UI módok és UI elemek elrejtése a praktikus beállításért.
+Rendezd a különböző fókuszkörnyezeteket tervekbe.
+Használj zárolt ütemezéseket, engedélyezett webhelyeket, jelszóvédelmet, export/import funkciót, UI módokat, Pomodorót, intent coherence-t és UI-elemek elrejtését, hogy a beállítás praktikus maradjon.
+
+Böngészőmegjegyzések:
+A böngésző szabályozza az incognito és file URL hozzáférést. A DaD ezeken az oldalakon csak akkor működik, ha ott kifejezetten engedélyezed a bővítményt.
 
 Újdonságok az 1.6.1-os verzióban:
 A Pomodoro mostantól a tétlen és zárolt időt is beszámítja a szükséges pihenőbe.

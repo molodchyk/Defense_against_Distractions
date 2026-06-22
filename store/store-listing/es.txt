@@ -2,15 +2,18 @@ La mayoría de las extensiones de concentración bloquean sitios completos. Eso 
 
 Defense Against Distractions te da un control más preciso.
 
-En lugar de bloquear solo por URL, puedes bloquear páginas según las palabras y frases que aparecen en ellas. Crea grupos de sitios web, añade palabras clave o frases, asigna puntuaciones y deja que la extensión bloquee la página cuando la puntuación de distracción supere el umbral configurado.
+En lugar de bloquear solo por URL, puedes crear planes con entradas de sitios web, palabras clave o frases, puntuaciones ponderadas, sitios web permitidos, horarios, reglas Pomodoro, ajustes de intent coherence y limpieza opcional de la interfaz. Cuando una página coincidente supera la puntuación de distracción configurada, la extensión la bloquea.
 
 Puedes usarla para proteger sesiones de estudio, bloques de trabajo, preparación de exámenes, tiempo de investigación o cualquier situación en la que quieras que el navegador siga siendo útil sin convertirse en un desvío.
 
 Funciones principales:
 
 Bloquea páginas por palabras clave, frases y puntuaciones ponderadas.
-Organiza distintas reglas de enfoque en grupos de sitios web y palabras clave.
-Usa horarios bloqueados, listas blancas, protección con contraseña, exportación/importación, modos de interfaz y ocultación de elementos de UI para mantener la configuración práctica.
+Organiza distintos contextos de concentración en planes.
+Usa horarios bloqueados, sitios web permitidos, protección con contraseña, exportación/importación, modos de interfaz, Pomodoro, intent coherence y ocultación de elementos de la interfaz para que la configuración siga siendo práctica.
+
+Notas del navegador:
+El navegador controla el acceso a incognito y file URL. DaD solo funciona en esas páginas cuando permites explícitamente la extensión allí.
 
 Novedades de la versión 1.6.1:
 Pomodoro ahora cuenta el tiempo inactivo y bloqueado como parte del descanso requerido.

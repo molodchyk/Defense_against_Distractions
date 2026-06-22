@@ -2,15 +2,18 @@ Kebanyakan sambungan fokus menyekat keseluruhan laman web. Itu berguna, tetapi i
 
 Defense Against Distractions memberi anda kawalan yang lebih tepat.
 
-Daripada hanya menyekat berdasarkan URL, anda boleh menyekat halaman berdasarkan perkataan dan frasa yang muncul padanya. Cipta kumpulan laman web, tambah kata kunci atau frasa, berikan skor, dan biarkan sambungan menyekat halaman apabila skor gangguan melepasi ambang yang ditetapkan.
+Daripada hanya menyekat berdasarkan URL, anda boleh mencipta pelan dengan entri laman web, kata kunci atau frasa, skor berwajaran, laman web yang dibenarkan, jadual, peraturan Pomodoro, tetapan intent coherence dan pembersihan UI pilihan. Apabila halaman yang sepadan melepasi skor gangguan yang dikonfigurasi, sambungan akan menyekatnya.
 
 Anda boleh menggunakannya untuk melindungi sesi belajar, blok kerja, persediaan peperiksaan, masa penyelidikan atau apa-apa situasi di mana anda mahu pelayar kekal berguna tanpa menjadi lencongan.
 
 Ciri utama:
 
 Sekat halaman berdasarkan kata kunci, frasa dan skor berwajaran.
-Susun peraturan fokus yang berbeza ke dalam kumpulan laman web dan kata kunci.
-Gunakan jadual berkunci, whitelist, perlindungan kata laluan, eksport/import, mod UI dan penyembunyian elemen UI supaya tetapan kekal praktikal.
+Susun konteks fokus yang berbeza ke dalam pelan.
+Gunakan jadual berkunci, laman web yang dibenarkan, perlindungan kata laluan, eksport/import, mod UI, Pomodoro, intent coherence dan penyembunyian elemen UI supaya tetapan kekal praktikal.
+
+Nota penyemak imbas:
+Penyemak imbas mengawal akses incognito dan file URL. DaD hanya berfungsi pada halaman tersebut apabila anda membenarkan sambungan itu secara jelas di sana.
 
 Apa yang baharu dalam versi 1.6.1:
 Pomodoro kini mengira masa melahu dan terkunci sebagai sebahagian daripada rehat yang diperlukan.

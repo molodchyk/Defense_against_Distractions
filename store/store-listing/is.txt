@@ -2,15 +2,18 @@ Flestar fókusviðbætur loka fyrir heilar vefsíður. Það er gagnlegt, en int
 
 Defence Against Distractions gefur þér nákvæmari stjórn.
 
-Í stað þess að loka eingöngu með vefslóð geturðu lokað síðum út frá orðum og orðasamböndum sem birtast á þeim. Búðu til hópa af vefsíðum, bættu við leitarorðum eða orðasamböndum, úthlutaðu stigum og láttu viðbótina loka á síðuna þegar truflunarstigið fer yfir stilltan þröskuld þinn.
+Í stað þess að loka aðeins eftir vefslóð geturðu búið til áætlanir með vefsvæðafærslum, leitarorðum eða frösum, vegnum stigum, leyfðum vefsvæðum, tímasetningum, Pomodoro-reglum, intent coherence stillingum og valfrjálsri UI-tiltekt. Þegar samsvarandi síða fer yfir stillt truflunarstig lokar viðbótin henni.
 
 Þú getur notað það til að vernda námslotur, vinnublokkir, prófundirbúning, rannsóknartíma eða allar aðstæður þar sem þú vilt að vafrinn haldist gagnlegur án þess að verða krókur.
 
 Helstu eiginleikar:
 
 Lokaðu síðum eftir leitarorðum, orðasamböndum og vegnum stigum.
-Skipuleggðu mismunandi áherslureglur í vefsíðu- og leitarorðahópa.
-Notaðu læstar áætlanir, hvítlista, lykilorðsvörn, útflutning/innflutning, notendastillingar og felu notendahluti til að halda uppsetningunni hagnýtri.
+Skipuleggðu mismunandi einbeitingarsamhengi í áætlanir.
+Notaðu læstar tímasetningar, leyfð vefsvæði, lykilorðavernd, útflutning/innflutning, UI-stillingar, Pomodoro, intent coherence og felun UI-eininga til að halda uppsetningunni hagnýtri.
+
+Athugasemdir vafra:
+Vafrinn stjórnar aðgangi að incognito og file URL. DaD virkar aðeins á þeim síðum þegar þú leyfir viðbótina þar sérstaklega.
 
 Hvað er nýtt í útgáfu 1.6.1:
 Pomodoro telur nú aðgerðalausan og læstan tíma með nauðsynlegri hvíld.

@@ -13,17 +13,7 @@ const canonicalReadmeSupportBlock = '## Support\n\nIf this extension saves you t
 const licenseId = 'GPL-3.0-only';
 const manifestPermissions = ['storage', 'alarms', 'downloads', 'activeTab', 'idle', 'webNavigation'];
 const allowedManifestKeys = new Set(['manifest_version', 'name', 'description', 'version', 'default_locale', 'permissions', 'action', 'options_page', 'background', 'content_scripts', 'web_accessible_resources', 'icons']);
-const privacyDataUsageKeys = [
-  'data_usage.personally_identifiable_information',
-  'data_usage.health_information',
-  'data_usage.financial_payment_information',
-  'data_usage.authentication_information',
-  'data_usage.personal_communications',
-  'data_usage.location',
-  'data_usage.web_history',
-  'data_usage.user_activity',
-  'data_usage.website_content'
-];
+const privacyDataUsageKeys = ['data_usage.personally_identifiable_information', 'data_usage.health_information', 'data_usage.financial_payment_information', 'data_usage.authentication_information', 'data_usage.personal_communications', 'data_usage.location', 'data_usage.web_history', 'data_usage.user_activity', 'data_usage.website_content'];
 const privacyCertificationKeys = ['certification.no_sell_or_transfer', 'certification.no_unrelated_use', 'certification.no_creditworthiness'];
 const storeCategories = [
   'Communication',
@@ -552,6 +542,7 @@ assertCondition(
   'Release notes document must cover the current version, changelog source, release gate, source archive, media, network posture, and isolated browser-load safety.'
 );
 assertCondition(/Run `npm run verify:browser-load` only in an isolated browser environment[\s\S]+Load the extension zip or unpacked project in an isolated Chromium-based browser\/profile/i.test(releaseChecklist), 'Release checklist must isolate browser-load and manual browser QA from active user sessions.');
+assertCondition(/localized store listings preserve the current plan, allowed-website, Pomodoro, intent-coherence, and browser-limitation wording/i.test(releaseChecklist), 'Release checklist must require localized store listings to stay aligned with the current product model.');
 
 assertCondition(
   hasAll(decisionRecords, [
@@ -664,6 +655,7 @@ for (const locale of locales) {
     listingVersionMentions.length === 0,
     `${listingPath} mentions stale or unsynchronized version numbers: ${listingVersionMentions.join(', ')}.`
   );
+  assertCondition(/Pomodoro/i.test(listing) && /intent coherence/i.test(listing) && /incognito/i.test(listing) && /file URL/i.test(listing) && /DaD/i.test(listing), `${listingPath} must keep localized listing copy aligned with Pomodoro, intent coherence, and browser-controlled access limitations.`);
 
   if (englishStoreListingLocales.has(locale)) {
     assertCondition(

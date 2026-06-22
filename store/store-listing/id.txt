@@ -2,15 +2,18 @@ Sebagian besar ekstensi fokus memblokir seluruh situs web. Itu berguna, tetapi i
 
 Defense Against Distractions memberi Anda kontrol yang lebih tepat.
 
-Alih-alih hanya memblokir berdasarkan URL, Anda dapat memblokir halaman berdasarkan kata dan frasa yang muncul di dalamnya. Buat grup situs web, tambahkan kata kunci atau frasa, tetapkan skor, dan biarkan ekstensi memblokir halaman ketika skor distraksi melewati ambang yang Anda atur.
+Alih-alih hanya memblokir berdasarkan URL, Anda dapat membuat rencana dengan entri situs web, kata kunci atau frasa, skor berbobot, situs web yang diizinkan, jadwal, aturan Pomodoro, pengaturan intent coherence, dan pembersihan UI opsional. Saat halaman yang cocok melewati skor distraksi yang dikonfigurasi, ekstensi akan memblokirnya.
 
 Anda dapat menggunakannya untuk melindungi sesi belajar, blok kerja, persiapan ujian, waktu riset, atau situasi apa pun ketika Anda ingin browser tetap berguna tanpa menjadi jalan memutar.
 
 Fitur utama:
 
 Blokir halaman berdasarkan kata kunci, frasa, dan skor berbobot.
-Atur berbagai aturan fokus ke dalam grup situs web dan kata kunci.
-Gunakan jadwal terkunci, whitelist, perlindungan kata sandi, ekspor/impor, mode UI, dan penyembunyian elemen UI agar pengaturan tetap praktis.
+Atur berbagai konteks fokus ke dalam rencana.
+Gunakan jadwal terkunci, situs web yang diizinkan, perlindungan kata sandi, ekspor/impor, mode UI, Pomodoro, intent coherence, dan penyembunyian elemen UI agar pengaturan tetap praktis.
+
+Catatan browser:
+Browser mengontrol akses incognito dan file URL. DaD hanya berfungsi pada halaman tersebut jika Anda secara eksplisit mengizinkan ekstensi di sana.
 
 Yang baru di versi 1.6.1:
 Pomodoro sekarang menghitung waktu idle dan terkunci sebagai bagian dari istirahat yang diperlukan.

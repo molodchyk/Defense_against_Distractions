@@ -2,15 +2,18 @@ La plupart des extensions de concentration bloquent des sites entiers. C’est u
 
 Defense Against Distractions vous donne un contrôle plus précis.
 
-Au lieu de bloquer uniquement par URL, vous pouvez bloquer les pages selon les mots et expressions qui y apparaissent. Créez des groupes de sites web, ajoutez des mots-clés ou expressions, attribuez des scores et laissez l’extension bloquer la page lorsque le score de distraction dépasse le seuil configuré.
+Au lieu de bloquer uniquement par URL, vous pouvez créer des plans avec des entrées de sites, des mots-clés ou expressions, des scores pondérés, des sites autorisés, des horaires, des règles Pomodoro, des réglages d'intent coherence et un nettoyage d'interface optionnel. Lorsqu'une page correspondante dépasse le score de distraction configuré, l'extension la bloque.
 
 Vous pouvez l’utiliser pour protéger des sessions d’étude, des plages de travail, la préparation d’examens, le temps de recherche ou toute situation où vous voulez que le navigateur reste utile sans devenir un détour.
 
 Fonctionnalités principales:
 
 Bloquer des pages par mots-clés, expressions et scores pondérés.
-Organiser différentes règles de concentration en groupes de sites web et de mots-clés.
-Utiliser des horaires verrouillés, des listes blanches, une protection par mot de passe, l’export/import, les modes d’interface et le masquage d’éléments UI pour garder une configuration pratique.
+Organiser différents contextes de concentration en plans.
+Utiliser des horaires verrouillés, des sites autorisés, une protection par mot de passe, l'export/import, les modes d'interface, Pomodoro, intent coherence et le masquage d'éléments UI pour garder la configuration pratique.
+
+Notes du navigateur:
+Le navigateur contrôle l'accès incognito et file URL. DaD ne fonctionne sur ces pages que lorsque vous y autorisez explicitement l'extension.
 
 Nouveautés de la version 1.6.1:
 Pomodoro compte maintenant le temps inactif et verrouillé comme repos requis.

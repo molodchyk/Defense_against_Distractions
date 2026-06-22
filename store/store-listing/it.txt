@@ -2,15 +2,18 @@ La maggior parte delle estensioni per la concentrazione blocca interi siti. È u
 
 Defense Against Distractions ti dà un controllo più preciso.
 
-Invece di bloccare solo per URL, puoi bloccare le pagine in base alle parole e frasi che compaiono al loro interno. Crea gruppi di siti web, aggiungi parole chiave o frasi, assegna punteggi e lascia che l’estensione blocchi la pagina quando il punteggio di distrazione supera la soglia configurata.
+Invece di bloccare solo per URL, puoi creare piani con voci di siti web, parole chiave o frasi, punteggi ponderati, siti web consentiti, pianificazioni, regole Pomodoro, impostazioni di intent coherence e pulizia opzionale dell'interfaccia. Quando una pagina corrispondente supera il punteggio di distrazione configurato, l'estensione la blocca.
 
 Puoi usarla per proteggere sessioni di studio, blocchi di lavoro, preparazione agli esami, tempo di ricerca o qualsiasi situazione in cui vuoi che il browser resti utile senza diventare una deviazione.
 
 Funzioni principali:
 
 Blocca pagine per parole chiave, frasi e punteggi ponderati.
-Organizza diverse regole di concentrazione in gruppi di siti web e parole chiave.
-Usa pianificazioni bloccate, whitelist, protezione con password, esportazione/importazione, modalità UI e occultamento di elementi UI per mantenere la configurazione pratica.
+Organizza diversi contesti di concentrazione in piani.
+Usa pianificazioni bloccate, siti web consentiti, protezione con password, esportazione/importazione, modalità UI, Pomodoro, intent coherence e occultamento di elementi UI per mantenere la configurazione pratica.
+
+Note del browser:
+Il browser controlla l'accesso a incognito e file URL. DaD funziona su quelle pagine solo quando autorizzi esplicitamente l'estensione lì.
 
 Novità nella versione 1.6.1:
 Pomodoro ora conta il tempo inattivo e bloccato come parte del riposo richiesto.

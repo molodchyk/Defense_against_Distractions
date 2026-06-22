@@ -2,15 +2,18 @@ Lielākā daļa fokusa paplašinājumu bloķē veselas vietnes. Tas ir noderīgi
 
 Defense Against Distractions nodrošina precīzāku kontroli.
 
-Tā vietā, lai bloķētu tikai pēc URL, varat bloķēt lapas, pamatojoties uz tajās redzamajiem vārdiem un frāzēm. Izveidojiet vietņu grupas, pievienojiet atslēgvārdus vai frāzes, piešķiriet punktus un ļaujiet paplašinājumam bloķēt lapu, kad uzmanības novēršanas rādītājs pārsniedz jūsu konfigurēto slieksni.
+Tā vietā, lai bloķētu tikai pēc URL, varat veidot plānus ar vietņu ierakstiem, atslēgvārdiem vai frāzēm, svērtiem punktiem, atļautām vietnēm, grafikiem, Pomodoro noteikumiem, intent coherence iestatījumiem un izvēles UI sakopšanu. Kad atbilstoša lapa pārsniedz konfigurēto uzmanības novēršanas punktu skaitu, paplašinājums to bloķē.
 
 Varat to izmantot, lai aizsargātu mācību sesijas, darba blokus, gatavošanos eksāmeniem, izpētes laiku vai jebkuru situāciju, kurā vēlaties, lai pārlūkprogramma būtu noderīga, nekļūstot par apvedceļu.
 
 Galvenās iezīmes:
 
-Bloķējiet lapas pēc atslēgvārdiem, frāzēm un svērtajiem rādītājiem.
-Sakārtojiet dažādus fokusa noteikumus vietņu un atslēgvārdu grupās.
-Izmantojiet bloķētus grafikus, baltos sarakstus, paroles aizsardzību, eksportēšanu/importēšanu, lietotāja interfeisa režīmus un lietotāja interfeisa elementu slēpšanu, lai iestatīšana būtu praktiska.
+Bloķējiet lapas pēc atslēgvārdiem, frāzēm un svērtiem punktiem.
+Organizējiet dažādus fokusa kontekstus plānos.
+Izmantojiet bloķētus grafikus, atļautas vietnes, paroles aizsardzību, eksportu/importu, UI režīmus, Pomodoro, intent coherence un UI elementu slēpšanu, lai iestatījumi paliktu praktiski.
+
+Pārlūka piezīmes:
+Pārlūks kontrolē incognito un file URL piekļuvi. DaD šajās lapās darbojas tikai tad, ja tur skaidri atļaujat paplašinājumu.
 
 Kas jauns versijā 1.6.1:
 Pomodoro tagad ieskaita dīkstāves un bloķēto laiku nepieciešamajā atpūtā.

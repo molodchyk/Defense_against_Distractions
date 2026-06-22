@@ -2,20 +2,18 @@ De fleste fokusutvidelser blokkerer hele nettsteder. Det er nyttig, men internet
 
 Defense Against Distractions gir deg mer presis kontroll.
 
-I stedet for bare å blokkere etter URL kan du blokkere sider basert på ordene og frasene som vises på dem. Lag grupper av nettsteder, legg til nøkkelord eller fraser, gi dem poeng, og la utvidelsen blokkere siden når distraksjonsscoren passerer terskelen du har satt.
+I stedet for bare å blokkere etter URL kan du lage planer med nettstedoppføringer, nøkkelord eller fraser, vektede poeng, tillatte nettsteder, tidsplaner, Pomodoro-regler, intent coherence-innstillinger og valgfri UI-opprydding. Når en matchende side passerer den konfigurerte distraksjonsscoren, blokkerer utvidelsen den.
 
 Du kan bruke den til å beskytte studieøkter, arbeidsblokker, eksamensforberedelser, researchtid eller enhver situasjon der du vil at nettleseren skal være nyttig uten å bli en omvei.
 
 Hovedfunksjoner:
 
-Blokker sider etter nøkkelord, fraser og vektede scorer.
-Organiser ulike fokusregler i grupper for nettsteder og nøkkelord.
-Bruk låste tidsplaner, whitelists, passordbeskyttelse, eksport/import, UI-moduser og skjuling av UI-elementer for å holde oppsettet praktisk.
-Nytt i versjon 1.6.1:
-Pomodoro teller nå inaktiv og låst tid som del av nødvendig hvile.
-Popupen og planens Pomodoro-side viser nå tydeligere kjøretidsdiagnostikk.
-Streng pauseblokkering gjenoppretter nå medier og fanens dempestatus når blokkeringen slutter.
-Diagnostikk for blokkerte sider viser nå mediesuspensjon og fanedemping styrt av utvidelsen.
+Blokker sider etter nøkkelord, fraser og vektede poeng.
+Organiser ulike fokuskontekster i planer.
+Bruk låste tidsplaner, tillatte nettsteder, passordbeskyttelse, eksport/import, UI-moduser, Pomodoro, intent coherence og skjuling av UI-elementer for å holde oppsettet praktisk.
+
+Nettlesernotater:
+Nettleseren kontrollerer tilgang til incognito og file URL. DaD fungerer bare på disse sidene når du uttrykkelig tillater utvidelsen der.
 
 Defense Against Distractions er åpen kildekode:
 GPL-3.0 license:

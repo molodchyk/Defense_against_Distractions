@@ -2,20 +2,18 @@ Viendelezi vingi vya kuzingatia huzuia tovuti nzima. Hiyo ni muhimu, lakini mtan
 
 Ulinzi Dhidi ya Kukengeushwa hukupa udhibiti sahihi zaidi.
 
-Badala ya kuzuia kwa URL pekee, unaweza kuzuia kurasa kulingana na maneno na vifungu vinavyoonekana kwenye kurasa hizo. Unda vikundi vya tovuti, ongeza maneno au vifungu vya maneno, toa alama, na uruhusu kiendelezi kizuie ukurasa wakati alama ya ovyo inavuka kikomo chako ulichosanidi.
+Badala ya kuzuia kwa URL pekee, unaweza kuunda mipango yenye maingizo ya tovuti, maneno muhimu au vifungu, alama zenye uzito, tovuti zinazoruhusiwa, ratiba, sheria za Pomodoro, mipangilio ya intent coherence na usafishaji wa UI wa hiari. Ukurasa unaolingana ukipita alama ya usumbufu iliyowekwa, kiendelezi huuzuia.
 
 Unaweza kuitumia kulinda vipindi vya masomo, vizuizi vya kazi, maandalizi ya mitihani, muda wa utafiti, au hali yoyote ambapo ungependa kivinjari kikae muhimu bila kukengeuka.
 
 Vipengele kuu:
 
-Zuia kurasa kwa maneno muhimu, misemo na alama zilizopimwa.
-Panga sheria tofauti za kuzingatia katika vikundi vya tovuti na maneno muhimu.
-Tumia ratiba zilizofungwa, orodha zilizoidhinishwa, ulinzi wa nenosiri, kuhamisha/kuagiza, modi za kiolesura na kipengele cha UI kujificha ili kuweka usanidi kuwa wa vitendo.
-Ni nini kipya katika toleo la 1.6.1:
-Pomodoro sasa huhesabu muda wa kutokuwa na shughuli na muda uliofungwa kama sehemu ya mapumziko yanayohitajika.
-Popup na ukurasa wa Pomodoro wa mpango sasa zinaonyesha uchunguzi wa runtime ulio wazi zaidi.
-Uzuiaji mkali wa mapumziko sasa hurejesha media na hali ya kunyamazisha kichupo baada ya kizuizi kuisha.
-Uchunguzi wa ukurasa uliozuiwa sasa unaonyesha kusimamishwa kwa media na kunyamazisha kichupo kunakodhibitiwa na kiendelezi.
+Zuia kurasa kwa maneno muhimu, vifungu na alama zenye uzito.
+Panga miktadha tofauti ya kuzingatia ndani ya mipango.
+Tumia ratiba zilizofungwa, tovuti zinazoruhusiwa, ulinzi wa nenosiri, export/import, modi za UI, Pomodoro, intent coherence na kuficha vipengele vya UI ili usanidi ubaki wa vitendo.
+
+Vidokezo vya kivinjari:
+Kivinjari hudhibiti ufikiaji wa incognito na file URL. DaD hufanya kazi kwenye kurasa hizo tu unapokiruhusu kiendelezi hapo kwa uwazi.
 
 Ulinzi dhidi ya usumbufu ni chanzo wazi:
 GPL-3.0 license:

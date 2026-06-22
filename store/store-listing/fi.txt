@@ -2,15 +2,18 @@ Useimmat keskittymistä tukevat laajennukset estävät kokonaisia sivustoja. Se 
 
 Defense Against Distractions antaa tarkemman hallinnan.
 
-Sen sijaan että estäisit vain URL-osoitteen perusteella, voit estää sivuja niillä esiintyvien sanojen ja lauseiden mukaan. Luo verkkosivustoryhmiä, lisää avainsanoja tai lauseita, määritä pisteitä ja anna laajennuksen estää sivu, kun häiriöpisteet ylittävät määrittämäsi rajan.
+Sen sijaan että estäisit vain URL-osoitteen perusteella, voit luoda suunnitelmia, joissa on sivustomerkintöjä, avainsanoja tai lauseita, painotettuja pisteitä, sallittuja sivustoja, aikatauluja, Pomodoro-sääntöjä, intent coherence -asetuksia ja valinnainen UI-siivous. Kun vastaava sivu ylittää määritetyn häiriöpistemäärän, laajennus estää sen.
 
 Voit käyttää sitä opiskeluun, työjaksoihin, tentteihin valmistautumiseen, tutkimusaikaan tai mihin tahansa tilanteeseen, jossa haluat selaimen pysyvän hyödyllisenä ilman että siitä tulee harhapolku.
 
 Pääominaisuudet:
 
 Estä sivuja avainsanojen, lauseiden ja painotettujen pisteiden perusteella.
-Järjestä eri keskittymissäännöt verkkosivusto- ja avainsanaryhmiin.
-Käytä lukittuja aikatauluja, sallittujen listoja, salasanasuojausta, vientiä/tuontia, käyttöliittymätiloja ja UI-elementtien piilotusta, jotta asetukset pysyvät käytännöllisinä.
+Järjestä eri keskittymiskontekstit suunnitelmiin.
+Käytä lukittuja aikatauluja, sallittuja sivustoja, salasanasuojausta, vientiä/tuontia, UI-tiloja, Pomodoroa, intent coherencea ja UI-elementtien piilotusta, jotta asetukset pysyvät käytännöllisinä.
+
+Selaimen huomautukset:
+Selain hallitsee incognito- ja file URL -käyttöä. DaD toimii näillä sivuilla vain, kun sallit laajennuksen siellä erikseen.
 
 Uutta versiossa 1.6.1:
 Pomodoro laskee nyt käyttämättömän ja lukitun ajan osaksi vaadittua lepoa.

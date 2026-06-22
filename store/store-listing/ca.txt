@@ -2,15 +2,18 @@ La majoria de les extensions de focus bloquegen llocs web sencers. Això és út
 
 La defensa contra les distraccions us ofereix un control més precís.
 
-En lloc de bloquejar només per URL, podeu bloquejar pàgines en funció de les paraules i frases que hi apareixen. Creeu grups de llocs web, afegiu paraules clau o frases, assigneu puntuacions i deixeu que l'extensió bloquegi la pàgina quan la puntuació de distracció superi el vostre llindar configurat.
+En lloc de bloquejar només per URL, pots crear plans amb entrades de llocs web, paraules clau o frases, puntuacions ponderades, llocs web permesos, horaris, regles Pomodoro, opcions d'intent coherence i neteja opcional de la interfície. Quan una pàgina coincident supera la puntuació de distracció configurada, l'extensió la bloqueja.
 
 Podeu utilitzar-lo per protegir sessions d'estudi, blocs de treball, preparació d'exàmens, temps de recerca o qualsevol situació en què vulgueu que el navegador sigui útil sense convertir-se en un desviament.
 
 Característiques principals:
 
 Bloqueja pàgines per paraules clau, frases i puntuacions ponderades.
-Organitzeu diferents regles d'enfocament en llocs web i grups de paraules clau.
-Utilitzeu horaris bloquejats, llistes blanques, protecció de contrasenya, exportació/importació, modes d'interfície d'usuari i amagat d'elements d'IU per mantenir la configuració pràctica.
+Organitza diferents contextos de concentració en plans.
+Fes servir horaris bloquejats, llocs web permesos, protecció amb contrasenya, exportació/importació, modes d'interfície, Pomodoro, intent coherence i ocultació d'elements de la interfície perquè la configuració sigui pràctica.
+
+Notes del navegador:
+El navegador controla l'accés incognito i file URL. DaD només funciona en aquestes pàgines quan hi permets explícitament l'extensió.
 
 Què hi ha de nou a la versió 1.6.1:
 Pomodoro ara compta el temps inactiu i bloquejat com a part del descans requerit.

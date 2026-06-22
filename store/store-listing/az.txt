@@ -2,15 +2,18 @@
 
 Diqqət yayındıranlara qarşı müdafiə sizə daha dəqiq nəzarət imkanı verir.
 
-Yalnız URL ilə bloklamaq əvəzinə, onlarda görünən söz və ifadələrə əsasən səhifələri bloklaya bilərsiniz. Veb sayt qrupları yaradın, açar sözlər və ya ifadələr əlavə edin, xallar təyin edin və yayındırma balı konfiqurasiya edilmiş həddi keçdikdə genişləndirmənin səhifəni bloklamasına icazə verin.
+Yalnız URL-ə görə bloklamaq əvəzinə, sayt qeydləri, açar sözlər və ya ifadələr, çəkili ballar, icazə verilən saytlar, cədvəllər, Pomodoro qaydaları, intent coherence parametrləri və istəyə bağlı UI təmizləməsi olan planlar yarada bilərsiniz. Uyğun səhifə qurulmuş yayındırma balını keçəndə genişləndirmə onu bloklayır.
 
 Siz ondan təhsil sessiyalarını, iş bloklarını, imtahana hazırlığı, tədqiqat vaxtını və ya brauzerin dolamadan faydalı qalmasını istədiyiniz istənilən vəziyyəti qorumaq üçün istifadə edə bilərsiniz.
 
 Əsas xüsusiyyətlər:
 
-Səhifələri açar sözlər, ifadələr və ölçülmüş ballarla bloklayın.
-Veb sayt və açar söz qruplarına fərqli diqqət qaydalarını təşkil edin.
-Quraşdırmanı praktik saxlamaq üçün kilidlənmiş cədvəllər, ağ siyahılar, parol qorunması, ixrac/idxal, UI rejimləri və UI elementinin gizlədilməsindən istifadə edin.
+Səhifələri açar sözlər, ifadələr və çəkili ballarla bloklayın.
+Müxtəlif fokus kontekstlərini planlarda təşkil edin.
+Quraşdırmanı praktik saxlamaq üçün kilidli cədvəllər, icazə verilən saytlar, parol qoruması, ixrac/idxal, UI rejimləri, Pomodoro, intent coherence və UI elementlərinin gizlədilməsindən istifadə edin.
+
+Brauzer qeydləri:
+Brauzer incognito və file URL girişinə nəzarət edir. DaD həmin səhifələrdə yalnız genişləndirməyə açıq şəkildə icazə verdiyiniz zaman işləyir.
 
 1.6.1 versiyasında yeniliklər:
 Pomodoro artıq boş və kilidli vaxtı tələb olunan istirahətə daxil edir.

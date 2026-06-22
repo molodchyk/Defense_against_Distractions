@@ -2,20 +2,18 @@
 
 خلفشار کے خلاف دفاع آپ کو زیادہ درست کنٹرول فراہم کرتا ہے۔
 
-صرف URL کے ذریعے بلاک کرنے کے بجائے، آپ صفحات کو ان پر ظاہر ہونے والے الفاظ اور فقروں کی بنیاد پر بلاک کر سکتے ہیں۔ ویب سائٹس کے گروپس بنائیں، کلیدی الفاظ یا فقرے شامل کریں، اسکور تفویض کریں، اور جب خلفشار کا اسکور آپ کی ترتیب کردہ حد سے تجاوز کر جائے تو ایکسٹینشن کو صفحہ کو بلاک کرنے دیں۔
+صرف URL کے ذریعے بلاک کرنے کے بجائے، آپ website entries، keywords یا phrases، weighted scores، allowed websites، schedules، Pomodoro rules، intent coherence settings اور اختیاری UI cleanup والے plans بنا سکتے ہیں۔ جب کوئی matching page configured distraction score سے آگے بڑھتا ہے تو extension اسے بلاک کر دیتی ہے۔
 
 آپ اسے مطالعہ کے سیشنز، کام کے بلاکس، امتحان کی تیاری، تحقیق کے وقت، یا ایسی کسی بھی صورت حال کی حفاظت کے لیے استعمال کر سکتے ہیں جہاں آپ چاہتے ہیں کہ براؤزر بغیر کسی چکر کا شکار بنے مفید رہے۔
 
 اہم خصوصیات:
 
-مطلوبہ الفاظ، جملے، اور وزنی اسکور کے ذریعے صفحات کو مسدود کریں۔
-ویب سائٹ اور کلیدی الفاظ کے گروپس میں مختلف فوکس رولز کو منظم کریں۔
-سیٹ اپ کو عملی طور پر برقرار رکھنے کے لیے مقفل شدہ شیڈولز، وائٹ لسٹ، پاس ورڈ کی حفاظت، برآمد/درآمد، UI موڈز، اور UI عنصر کو چھپانے کا استعمال کریں۔
-ورژن 1.6.1 میں نیا کیا ہے:
-Pomodoro اب idle اور locked وقت کو ضروری آرام میں شمار کرتا ہے۔
-Popup اور plan Pomodoro صفحہ اب runtime diagnostics کو زیادہ واضح دکھاتے ہیں۔
-Strict-break blocking اب block ختم ہونے کے بعد media اور tab mute state بحال کرتا ہے۔
-Blocked-page diagnostics اب media suspension اور extension-owned tab mute state دکھاتے ہیں۔
+keywords، phrases اور weighted scores کے ذریعے pages کو بلاک کریں۔
+مختلف focus contexts کو plans میں منظم کریں۔
+setup کو عملی رکھنے کے لیے locked schedules، allowed websites، password protection، export/import، UI modes، Pomodoro، intent coherence اور UI element hiding استعمال کریں۔
+
+براؤزر نوٹس:
+براؤزر incognito اور file URL access کو کنٹرول کرتا ہے۔ DaD ان pages پر صرف اس وقت کام کرتا ہے جب آپ وہاں extension کو واضح طور پر اجازت دیتے ہیں۔
 
 خلفشار کے خلاف دفاع کھلا ذریعہ ہے:
 GPL-3.0 license:

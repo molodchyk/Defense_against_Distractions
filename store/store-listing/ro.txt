@@ -2,20 +2,18 @@ Majoritatea extensiilor de focus blochează site-uri întregi. Este util, dar in
 
 Defense Against Distractions îți oferă control mai precis.
 
-În loc să blochezi doar după URL, poți bloca pagini pe baza cuvintelor și expresiilor care apar pe ele. Creează grupuri de site-uri, adaugă cuvinte-cheie sau expresii, atribuie scoruri și lasă extensia să blocheze pagina când scorul de distragere trece pragul configurat.
+În loc să blochezi doar după URL, poți crea planuri cu intrări de site-uri, cuvinte-cheie sau expresii, scoruri ponderate, site-uri permise, programe, reguli Pomodoro, setări intent coherence și curățare UI opțională. Când o pagină potrivită depășește scorul de distragere configurat, extensia o blochează.
 
 O poți folosi pentru sesiuni de studiu, blocuri de lucru, pregătire pentru examene, timp de cercetare sau orice situație în care vrei ca browserul să rămână util fără să devină o abatere.
 
 Funcții principale:
 
 Blochează pagini după cuvinte-cheie, expresii și scoruri ponderate.
-Organizează reguli diferite de focus în grupuri de site-uri și cuvinte-cheie.
-Folosește programe blocate, whitelists, protecție cu parolă, export/import, moduri UI și ascunderea elementelor UI pentru a păstra configurarea practică.
-Ce este nou în versiunea 1.6.1:
-Pomodoro contează acum timpul inactiv și blocat ca parte din odihna necesară.
-Popup-ul și pagina Pomodoro a planului afișează acum diagnostice de rulare mai clare.
-Blocarea strictă a pauzei restaurează acum media și starea de mut a filei după terminarea blocării.
-Diagnosticele paginii blocate afișează acum suspendarea media și starea de mut a filei controlată de extensie.
+Organizează diferite contexte de concentrare în planuri.
+Folosește programe blocate, site-uri permise, protecție cu parolă, export/import, moduri UI, Pomodoro, intent coherence și ascunderea elementelor UI pentru a păstra configurarea practică.
+
+Note despre browser:
+Browserul controlează accesul la incognito și file URL. DaD funcționează pe acele pagini doar când permiți explicit extensia acolo.
 
 Defense Against Distractions este open source:
 GPL-3.0 license:

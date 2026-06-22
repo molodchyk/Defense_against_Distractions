@@ -2,20 +2,18 @@ Shumica e shtesave të fokusit bllokojnë faqet e internetit të tëra. Kjo ësh
 
 Mbrojtja kundër shpërqendrimeve ju jep kontroll më të saktë.
 
-Në vend që të bllokoni vetëm me URL, ju mund të bllokoni faqet bazuar në fjalët dhe frazat që shfaqen në to. Krijoni grupe uebsajtesh, shtoni fjalë kyçe ose fraza, caktoni pikë dhe lëreni shtesën të bllokojë faqen kur rezultati i shpërqendrimit kalon pragun tuaj të konfiguruar.
+Në vend që të bllokoni vetëm me URL, mund të krijoni plane me hyrje uebsajtesh, fjalë kyçe ose fraza, pikë të ponderuara, uebsajte të lejuara, orare, rregulla Pomodoro, cilësime intent coherence dhe pastrim opsional të UI. Kur një faqe që përputhet kalon pikën e konfiguruar të shpërqendrimit, shtesa e bllokon atë.
 
 Mund ta përdorni për të mbrojtur seancat e studimit, blloqet e punës, përgatitjen e provimeve, kohën e kërkimit ose çdo situatë ku dëshironi që shfletuesi të qëndrojë i dobishëm pa u shndërruar në një devijim.
 
 Karakteristikat kryesore:
 
-Blloko faqet sipas fjalëve kyçe, frazave dhe rezultateve të ponderuara.
-Organizoni rregulla të ndryshme fokusimi në uebsajt dhe grupe fjalë kyçe.
-Përdorni oraret e kyçura, listat e bardha, mbrojtjen me fjalëkalim, eksportin/importin, modalitetet e ndërfaqes së përdoruesit dhe fshehjen e elementeve të ndërfaqes së përdoruesit për ta mbajtur konfigurimin praktik.
-Çfarë është e re në versionin 1.6.1:
-Pomodoro tani e llogarit kohën boshe dhe të kyçur si pjesë të pushimit të kërkuar.
-Popup-i dhe faqja Pomodoro e planit tani shfaqin diagnostikë më të qartë të kohëmatësit.
-Bllokimi strikt i pushimit tani rikthen mediat dhe gjendjen mute të skedës pasi mbaron bllokimi.
-Diagnostika e faqes së bllokuar tani shfaq pezullimin e mediave dhe mute të skedës të kontrolluar nga shtesa.
+Blloko faqet sipas fjalëve kyçe, frazave dhe pikëve të ponderuara.
+Organizoni kontekste të ndryshme fokusi në plane.
+Përdorni orare të kyçura, uebsajte të lejuara, mbrojtje me fjalëkalim, eksport/import, mënyra UI, Pomodoro, intent coherence dhe fshehje të elementeve UI që konfigurimi të mbetet praktik.
+
+Shënime të shfletuesit:
+Shfletuesi kontrollon qasjen incognito dhe file URL. DaD funksionon në ato faqe vetëm kur e lejoni shprehimisht shtesën atje.
 
 Mbrojtja kundër shpërqendrimeve është me burim të hapur:
 GPL-3.0 license:

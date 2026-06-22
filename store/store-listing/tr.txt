@@ -2,20 +2,18 @@
 
 Defense Against Distractions size daha hassas kontrol sağlar.
 
-Yalnızca URL’ye göre engellemek yerine, sayfalarda görünen kelime ve ifadelere göre engelleyebilirsiniz. Web sitesi grupları oluşturun, anahtar kelimeler veya ifadeler ekleyin, puanlar atayın ve dikkat dağıtma skoru belirlediğiniz eşiği geçtiğinde eklentinin sayfayı engellemesine izin verin.
+Yalnızca URL’ye göre engellemek yerine, site girişleri, anahtar kelimeler veya ifadeler, ağırlıklı puanlar, izin verilen web siteleri, zamanlamalar, Pomodoro kuralları, intent coherence ayarları ve isteğe bağlı UI temizliği içeren planlar oluşturabilirsiniz. Eşleşen bir sayfa yapılandırılmış dikkat dağıtma puanını geçtiğinde uzantı onu engeller.
 
 Bunu çalışma oturumlarını, iş bloklarını, sınav hazırlığını, araştırma zamanını veya tarayıcının yararlı kalmasını ama bir sapmaya dönüşmemesini istediğiniz her durumda kullanabilirsiniz.
 
 Ana özellikler:
 
-Sayfaları anahtar kelimeler, ifadeler ve ağırlıklı skorlarla engelleyin.
-Farklı odak kurallarını web sitesi ve anahtar kelime grupları halinde düzenleyin.
-Kilitli programlar, whitelist, parola koruması, dışa/içe aktarma, UI modları ve UI öğesi gizleme ile kurulumu pratik tutun.
-Sürüm 1.6.1 yenilikleri:
-Pomodoro artık boşta ve kilitli geçen zamanı gerekli dinlenmeye dahil eder.
-Popup ve plan Pomodoro sayfası artık daha net çalışma zamanı tanıları gösterir.
-Katı mola engellemesi artık engel bittikten sonra medyayı ve sekme sessiz durumunu geri yükler.
-Engellenen sayfa tanıları artık medya askıya alma ve eklentinin yönettiği sekme sessiz durumunu gösterir.
+Sayfaları anahtar kelimeler, ifadeler ve ağırlıklı puanlarla engelleyin.
+Farklı odak bağlamlarını planlar içinde düzenleyin.
+Kurulumu pratik tutmak için kilitli zamanlamalar, izin verilen web siteleri, parola koruması, dışa/içe aktarma, UI modları, Pomodoro, intent coherence ve UI öğesi gizleme kullanın.
+
+Tarayıcı notları:
+Tarayıcı incognito ve file URL erişimini kontrol eder. DaD bu sayfalarda yalnızca uzantıya orada açıkça izin verdiğinizde çalışır.
 
 Defense Against Distractions açık kaynaklıdır:
 GPL-3.0 license:

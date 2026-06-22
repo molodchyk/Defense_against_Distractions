@@ -2,20 +2,18 @@ De meeste focus-extensies blokkeren hele websites. Dat is nuttig, maar het inter
 
 Defense Against Distractions geeft je nauwkeurigere controle.
 
-In plaats van alleen op URL te blokkeren, kun je pagina’s blokkeren op basis van de woorden en zinnen die erop verschijnen. Maak groepen van websites, voeg trefwoorden of zinnen toe, geef scores en laat de extensie de pagina blokkeren wanneer de afleidingsscore je ingestelde drempel overschrijdt.
+In plaats van alleen op URL te blokkeren, kun je plannen maken met website-items, trefwoorden of zinnen, gewogen scores, toegestane websites, schema's, Pomodoro-regels, intent coherence-instellingen en optionele UI-opruiming. Wanneer een overeenkomende pagina de ingestelde afleidingsscore overschrijdt, blokkeert de extensie die pagina.
 
 Je kunt het gebruiken om studiesessies, werkblokken, examenvoorbereiding, onderzoekstijd of elke situatie te beschermen waarin je wilt dat de browser nuttig blijft zonder een omweg te worden.
 
 Belangrijkste functies:
 
-Blokkeer pagina’s op trefwoorden, zinnen en gewogen scores.
-Organiseer verschillende focusregels in website- en trefwoordgroepen.
-Gebruik vergrendelde schema’s, whitelists, wachtwoordbeveiliging, export/import, UI-modi en het verbergen van UI-elementen om de setup praktisch te houden.
-Nieuw in versie 1.6.1:
-Pomodoro telt nu inactieve en vergrendelde tijd mee als vereiste rust.
-De popup en de Pomodoro-pagina van het plan tonen nu duidelijkere runtime-diagnostiek.
-Strikte pauzeblokkering herstelt nu media en de dempstatus van het tabblad nadat de blokkering eindigt.
-Diagnostiek van geblokkeerde pagina’s toont nu media-onderbreking en door de extensie beheerde tabdemping.
+Blokkeer pagina's op trefwoorden, zinnen en gewogen scores.
+Organiseer verschillende focuscontexten in plannen.
+Gebruik vergrendelde schema's, toegestane websites, wachtwoordbeveiliging, export/import, UI-modi, Pomodoro, intent coherence en het verbergen van UI-elementen om de setup praktisch te houden.
+
+Browsernotities:
+De browser beheert toegang tot incognito en file URL. DaD werkt op die pagina's alleen wanneer je de extensie daar expliciet toestaat.
 
 Defense Against Distractions is open source:
 GPL-3.0 license:

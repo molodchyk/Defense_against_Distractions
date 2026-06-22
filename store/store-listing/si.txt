@@ -2,20 +2,18 @@
 
 අවධානය වෙනතකට යොමු කිරීමට එරෙහිව ආරක්ෂාව ඔබට වඩාත් නිවැරදි පාලනයක් ලබා දෙයි.
 
-URL මගින් පමණක් අවහිර කිරීම වෙනුවට, ඔබට ඒවායේ දිස්වන වචන සහ වාක්‍ය ඛණ්ඩ මත පදනම්ව පිටු අවහිර කළ හැක. වෙබ් අඩවි කණ්ඩායම් සාදන්න, මූල පද හෝ වාක්‍ය ඛණ්ඩ එක් කරන්න, ලකුණු පවරන්න, සහ බාධා ලකුණු ඔබේ වින්‍යාස කළ සීමාව පසු කරන විට පිටුව අවහිර කිරීමට දිගුවට ඉඩ දෙන්න.
+URL මත පමණක් අවහිර කිරීම වෙනුවට, website entries, keywords හෝ phrases, weighted scores, allowed websites, schedules, Pomodoro rules, intent coherence settings සහ විකල්ප UI cleanup ඇති plans ඔබට සාදිය හැක. ගැලපෙන පිටුවක් configured distraction score ඉක්මවන විට extension එය අවහිර කරයි.
 
 අධ්‍යයන සැසි, වැඩ කොටස්, විභාග සූදානම් කිරීම, පර්යේෂණ කාලය හෝ බ්‍රවුසරය හැරවුම් මාර්ගයක් නොවී ප්‍රයෝජනවත්ව සිටීමට ඔබට අවශ්‍ය ඕනෑම තත්වයක් ආරක්ෂා කිරීමට ඔබට එය භාවිතා කළ හැක.
 
 ප්රධාන ලක්ෂණ:
 
-මූල පද, වාක්‍ය ඛණ්ඩ සහ බර ලකුණු අනුව පිටු අවහිර කරන්න.
-වෙබ් අඩවි සහ මූල පද කණ්ඩායම් වලට විවිධ අවධානය යොමු කිරීමේ නීති සංවිධානය කරන්න.
-සැකසුම ප්‍රායෝගිකව තබා ගැනීමට අගුලු දැමූ කාලසටහන්, සුදු ලැයිස්තු, මුරපද ආරක්ෂාව, අපනයන/ආනයනය, UI මාතයන් සහ UI මූලද්‍රව්‍ය සැඟවීම භාවිත කරන්න.
-1.6.1 අනුවාදයේ අලුත් මොනවාද:
-Pomodoro දැන් idle සහ locked කාලය අවශ්‍ය විවේකයට ගණනය කරයි.
-Popup සහ plan Pomodoro පිටුව දැන් runtime diagnostics වඩා පැහැදිලිව පෙන්වයි.
-Strict-break blocking දැන් block අවසන් වූ පසු media සහ tab mute state ප්‍රතිස්ථාපනය කරයි.
-Blocked-page diagnostics දැන් media suspension සහ extension-owned tab mute state පෙන්වයි.
+මූල පද, වාක්‍ය ඛණ්ඩ සහ weighted scores අනුව පිටු අවහිර කරන්න.
+විවිධ focus contexts plans තුළ සංවිධානය කරන්න.
+සැකසුම ප්‍රායෝගිකව තබා ගැනීමට locked schedules, allowed websites, password protection, export/import, UI modes, Pomodoro, intent coherence සහ UI element hiding භාවිත කරන්න.
+
+බ්‍රවුසර සටහන්:
+බ්‍රවුසරය incognito සහ file URL access පාලනය කරයි. ඔබ එහි extension පැහැදිලිව අවසර දුන් විට පමණක් DaD එම පිටුවල ක්‍රියා කරයි.
 
 අවධානය වෙනතකට යොමු කිරීමට එරෙහිව ආරක්ෂාව විවෘත මූලාශ්‍රයකි:
 GPL-3.0 license:

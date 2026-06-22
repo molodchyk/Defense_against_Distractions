@@ -2,20 +2,18 @@ Večina razširitev fokusa blokira celotna spletna mesta. To je uporabno, vendar
 
 Defense Against Distractions vam omogoča natančnejši nadzor.
 
-Namesto samo blokiranja po URL-ju lahko blokirate strani na podlagi besed in besednih zvez, ki se pojavljajo na njih. Ustvarite skupine spletnih mest, dodajte ključne besede ali fraze, dodelite ocene in pustite, da razširitev blokira stran, ko ocena motenj preseže vaš konfigurirani prag.
+Namesto blokiranja samo po URL-ju lahko ustvarite načrte z vnosi spletnih mest, ključnimi besedami ali frazami, ponderiranimi ocenami, dovoljenimi spletnimi mesti, urniki, pravili Pomodoro, nastavitvami intent coherence in izbirnim čiščenjem UI. Ko ujemajoča se stran preseže nastavljeno oceno motnje, jo razširitev blokira.
 
 Uporabite ga lahko za zaščito učnih ur, delovnih blokov, priprav na izpite, časa raziskovanja ali katere koli situacije, v kateri želite, da brskalnik ostane uporaben, ne da bi postal ovinek.
 
 Glavne značilnosti:
 
-Blokirajte strani s ključnimi besedami, frazami in tehtanimi rezultati.
-Organizirajte različna pravila osredotočanja v skupine spletnih mest in ključnih besed.
-Uporabite zaklenjene urnike, sezname dovoljenih, zaščito z geslom, izvoz/uvoz, načine uporabniškega vmesnika in skrivanje elementov uporabniškega vmesnika, da bo nastavitev praktična.
-Kaj je novega v različici 1.6.1:
-Pomodoro zdaj šteje nedejaven in zaklenjen čas kot del potrebnega počitka.
-Pojavno okno in stran Pomodoro načrta zdaj prikazujeta jasnejšo diagnostiko delovanja.
-Strogo blokiranje odmora zdaj po koncu blokade obnovi medije in stanje utišanja zavihka.
-Diagnostika blokirane strani zdaj prikazuje prekinitev medijev in utišanje zavihka, ki ga upravlja razširitev.
+Blokirajte strani s ključnimi besedami, frazami in ponderiranimi ocenami.
+Različne kontekste zbranosti organizirajte v načrte.
+Uporabite zaklenjene urnike, dovoljena spletna mesta, zaščito z geslom, izvoz/uvoz, načine UI, Pomodoro, intent coherence in skrivanje elementov UI, da nastavitev ostane praktična.
+
+Opombe brskalnika:
+Brskalnik nadzoruje dostop do incognito in file URL. DaD deluje na teh straneh samo, ko tam izrecno dovolite razširitev.
 
 Defense Against Distractions je odprtokoden:
 GPL-3.0 license:

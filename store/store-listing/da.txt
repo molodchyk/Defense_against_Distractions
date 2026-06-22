@@ -2,15 +2,18 @@ De fleste fokusudvidelser blokerer hele websites. Det er nyttigt, men internette
 
 Defense Against Distractions giver dig mere præcis kontrol.
 
-I stedet for kun at blokere efter URL kan du blokere sider ud fra de ord og sætninger, der vises på dem. Opret grupper af websites, tilføj nøgleord eller sætninger, tildel scorer, og lad udvidelsen blokere siden, når distraktionsscoren passerer din valgte grænse.
+I stedet for kun at blokere efter URL kan du oprette planer med webstedsindgange, nøgleord eller sætninger, vægtede scorer, tilladte websteder, tidsplaner, Pomodoro-regler, intent coherence-indstillinger og valgfri UI-oprydning. Når en matchende side overskrider den konfigurerede distraktionsscore, blokerer udvidelsen den.
 
 Du kan bruge den til at beskytte studieperioder, arbejdsblokke, eksamensforberedelse, researchtid eller enhver situation, hvor browseren skal forblive nyttig uden at blive en omvej.
 
 Hovedfunktioner:
 
 Bloker sider efter nøgleord, sætninger og vægtede scorer.
-Organiser forskellige fokusregler i website- og nøgleordsgrupper.
-Brug låste tidsplaner, whitelists, adgangskodebeskyttelse, eksport/import, UI-tilstande og skjulning af UI-elementer for at holde opsætningen praktisk.
+Organiser forskellige fokuskontekster i planer.
+Brug låste tidsplaner, tilladte websteder, adgangskodebeskyttelse, eksport/import, UI-tilstande, Pomodoro, intent coherence og skjulning af UI-elementer for at holde opsætningen praktisk.
+
+Browsernoter:
+Browseren styrer adgang til incognito og file URL. DaD virker kun på disse sider, når du eksplicit tillader udvidelsen der.
 
 Nyt i version 1.6.1:
 Pomodoro tæller nu inaktiv og låst tid med i den krævede pause.

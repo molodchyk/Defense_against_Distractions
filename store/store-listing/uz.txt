@@ -2,20 +2,18 @@ Aksariyat fokusli kengaytmalar butun veb-saytlarni bloklaydi. Bu foydali, lekin 
 
 Chalg'itadigan narsalarga qarshi himoya sizga aniqroq nazoratni beradi.
 
-Faqat URL orqali bloklash o'rniga, sahifalarni ulardagi so'zlar va iboralar asosida bloklashingiz mumkin. Veb-saytlar guruhlarini yarating, kalit so'zlar yoki iboralar qo'shing, ballarni belgilang va chalg'ituvchi ball sizning sozlangan chegarangizni kesib o'tganda kengaytma sahifani bloklashiga ruxsat bering.
+Faqat URL orqali bloklash o'rniga, sayt yozuvlari, kalit so'zlar yoki iboralar, vaznli ballar, ruxsat berilgan saytlar, jadvallar, Pomodoro qoidalari, intent coherence sozlamalari va ixtiyoriy UI tozalashga ega rejalar yaratishingiz mumkin. Mos keladigan sahifa sozlangan chalg'itish ballidan oshsa, kengaytma uni bloklaydi.
 
 Siz undan o'quv mashg'ulotlarini, ish bloklarini, imtihonga tayyorgarlikni, tadqiqot vaqtini yoki brauzerning aylanma yo'llarga aylanmasdan foydali bo'lishini istagan har qanday vaziyatni himoya qilish uchun foydalanishingiz mumkin.
 
 Asosiy xususiyatlar:
 
-Kalit so'zlar, iboralar va vaznli ballar bo'yicha sahifalarni bloklang.
-Turli fokus qoidalarini veb-sayt va kalit so'z guruhlariga ajrating.
-Qulflangan jadvallar, oq roʻyxatlar, parolni himoyalash, eksport/import, UI rejimlari va foydalanuvchi interfeysi elementlarini yashirishdan foydalaning.
-1.6.1 versiyasida nima yangilik:
-Pomodoro endi bekor va qulflangan vaqtni zarur dam olishga qo‘shadi.
-Popup va rejaning Pomodoro sahifasi endi aniqroq runtime diagnostikasini ko‘rsatadi.
-Qattiq tanaffus blokirovkasi blok tugagach media va tab ovozsiz holatini tiklaydi.
-Bloklangan sahifa diagnostikasi endi media to‘xtatilishi va kengaytma boshqaradigan tab ovozsizligini ko‘rsatadi.
+Sahifalarni kalit so'zlar, iboralar va vaznli ballar bo'yicha bloklang.
+Turli fokus kontekstlarini rejalarda tartiblang.
+Sozlash amaliy bo'lishi uchun qulflangan jadvallar, ruxsat berilgan saytlar, parol himoyasi, eksport/import, UI rejimlari, Pomodoro, intent coherence va UI elementlarini yashirishdan foydalaning.
+
+Brauzer eslatmalari:
+Brauzer incognito va file URL kirishini boshqaradi. DaD bu sahifalarda faqat kengaytmaga u yerda aniq ruxsat berganingizda ishlaydi.
 
 GPL-3.0 license:
 https://github.com/molodchyk/Defense_against_Distractions

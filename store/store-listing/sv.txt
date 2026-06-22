@@ -2,20 +2,18 @@ De flesta fokus-tillägg blockerar hela webbplatser. Det är användbart, men in
 
 Defense Against Distractions ger dig mer exakt kontroll.
 
-I stället för att bara blockera efter URL kan du blockera sidor baserat på orden och fraserna som visas på dem. Skapa grupper av webbplatser, lägg till nyckelord eller fraser, tilldela poäng och låt tillägget blockera sidan när distraktionspoängen passerar din inställda gräns.
+I stället för att bara blockera efter URL kan du skapa planer med webbplatsposter, nyckelord eller fraser, viktade poäng, tillåtna webbplatser, scheman, Pomodoro-regler, intent coherence-inställningar och valfri UI-rensning. När en matchande sida passerar den konfigurerade distraktionspoängen blockerar tillägget den.
 
 Du kan använda det för att skydda studiepass, arbetsblock, tentaförberedelser, researchtid eller vilken situation som helst där du vill att webbläsaren ska förbli användbar utan att bli en omväg.
 
 Huvudfunktioner:
 
 Blockera sidor efter nyckelord, fraser och viktade poäng.
-Organisera olika fokusregler i grupper för webbplatser och nyckelord.
-Använd låsta scheman, whitelists, lösenordsskydd, export/import, UI-lägen och döljning av UI-element för att hålla inställningen praktisk.
-Nytt i version 1.6.1:
-Pomodoro räknar nu inaktiv och låst tid som del av den nödvändiga vilan.
-Popupen och planens Pomodoro-sida visar nu tydligare körningsdiagnostik.
-Strikt pausblockering återställer nu media och flikens ljud av-status när blockeringen slutar.
-Diagnostik för blockerade sidor visar nu medieavstängning och flikljud av som ägs av tillägget.
+Organisera olika fokussammanhang i planer.
+Använd låsta scheman, tillåtna webbplatser, lösenordsskydd, export/import, UI-lägen, Pomodoro, intent coherence och döljning av UI-element för att hålla inställningen praktisk.
+
+Webbläsaranteckningar:
+Webbläsaren styr åtkomst till incognito och file URL. DaD fungerar bara på dessa sidor när du uttryckligen tillåter tillägget där.
 
 Defense Against Distractions är open source:
 GPL-3.0 license:

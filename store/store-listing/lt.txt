@@ -2,15 +2,18 @@ Dauguma dėmesio plėtinių blokuoja visas svetaines. Tai naudinga, bet internet
 
 Defense Against Distractions suteikia tikslesnį valdymą.
 
-Užuot blokavę tik pagal URL, galite blokuoti puslapius pagal juose rodomus žodžius ir frazes. Kurkite svetainių grupes, pridėkite raktinių žodžių ar frazių, priskirkite balus ir leiskite plėtiniui užblokuoti puslapį, kai išsiblaškymo balas peržengia sukonfigūruotą slenkstį.
+Užuot blokavę tik pagal URL, galite kurti planus su svetainių įrašais, raktažodžiais ar frazėmis, svertiniais balais, leidžiamomis svetainėmis, tvarkaraščiais, Pomodoro taisyklėmis, intent coherence nustatymais ir pasirenkamu UI sutvarkymu. Kai atitinkantis puslapis viršija nustatytą blaškymo balą, plėtinys jį blokuoja.
 
 Galite naudoti ją norėdami apsaugoti studijų sesijas, darbo blokus, pasiruošimą egzaminams, tyrimo laiką ar bet kokią situaciją, kai norite, kad naršyklė išliktų naudinga ir netaptų aplinkeliu.
 
 Pagrindinės savybės:
 
-Blokuokite puslapius pagal raktinius žodžius, frazes ir įvertintus balus.
-Suskirstykite skirtingas fokusavimo taisykles į svetainių ir raktinių žodžių grupes.
-Naudokite užrakintus tvarkaraščius, baltuosius sąrašus, apsaugą slaptažodžiu, eksportavimą / importavimą, vartotojo sąsajos režimus ir vartotojo sąsajos elementų slėpimą, kad sąranka būtų praktiška.
+Blokuokite puslapius pagal raktažodžius, frazes ir svertinius balus.
+Skirtingus susikaupimo kontekstus tvarkykite planuose.
+Naudokite užrakintus tvarkaraščius, leidžiamas svetaines, slaptažodžio apsaugą, eksportą/importą, UI režimus, Pomodoro, intent coherence ir UI elementų slėpimą, kad nustatymai liktų praktiški.
+
+Naršyklės pastabos:
+Naršyklė valdo incognito ir file URL prieigą. DaD šiuose puslapiuose veikia tik tada, kai aiškiai leidžiate plėtinį ten.
 
 Kas naujo 1.6.1 versijoje:
 Pomodoro dabar įskaito neveikos ir užrakintą laiką į būtiną poilsį.

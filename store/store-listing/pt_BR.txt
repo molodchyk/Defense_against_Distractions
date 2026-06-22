@@ -2,20 +2,18 @@ A maioria das extensões de foco bloqueia sites inteiros. Isso ajuda, mas a inte
 
 Defense Against Distractions oferece controle mais preciso.
 
-Em vez de bloquear apenas por URL, você pode bloquear páginas com base nas palavras e frases que aparecem nelas. Crie grupos de sites, adicione palavras-chave ou frases, atribua pontuações e deixe a extensão bloquear a página quando a pontuação de distração ultrapassar o limite configurado.
+Em vez de bloquear apenas por URL, você pode criar planos com entradas de sites, palavras-chave ou frases, pontuações ponderadas, sites permitidos, horários, regras Pomodoro, configurações de intent coherence e limpeza opcional da interface. Quando uma página correspondente ultrapassa a pontuação de distração configurada, a extensão a bloqueia.
 
 Você pode usá-la para proteger sessões de estudo, blocos de trabalho, preparação para provas, tempo de pesquisa ou qualquer situação em que queira que o navegador continue útil sem virar um desvio.
 
 Principais recursos:
 
 Bloqueie páginas por palavras-chave, frases e pontuações ponderadas.
-Organize diferentes regras de foco em grupos de sites e palavras-chave.
-Use horários bloqueados, whitelists, proteção por senha, exportação/importação, modos de UI e ocultação de elementos de UI para manter a configuração prática.
-Novidades da versão 1.6.1:
-O Pomodoro agora conta tempo ocioso e bloqueado como parte do descanso necessário.
-O popup e a página Pomodoro do plano agora mostram diagnósticos de execução mais claros.
-O bloqueio estrito de pausa agora restaura mídia e o estado de mudo da aba após o fim do bloqueio.
-Os diagnósticos da página bloqueada agora mostram a suspensão de mídia e o mudo da aba controlado pela extensão.
+Organize diferentes contextos de foco em planos.
+Use horários bloqueados, sites permitidos, proteção por senha, exportação/importação, modos de interface, Pomodoro, intent coherence e ocultação de elementos da interface para manter a configuração prática.
+
+Notas do navegador:
+O navegador controla o acesso a incognito e file URL. O DaD só funciona nessas páginas quando você permite explicitamente a extensão nelas.
 
 Defense Against Distractions é open source:
 GPL-3.0 license:

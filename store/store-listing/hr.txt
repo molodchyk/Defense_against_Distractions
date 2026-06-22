@@ -2,15 +2,18 @@ Većina proširenja za fokus blokira cijele web stranice. To je korisno, ali int
 
 Defense Against Distractions daje vam precizniju kontrolu.
 
-Umjesto blokiranja samo po URL-u, možete blokirati stranice prema riječima i frazama koje se na njima pojavljuju. Stvorite grupe web stranica, dodajte ključne riječi ili fraze, dodijelite im bodove i dopustite proširenju da blokira stranicu kada rezultat ometanja prijeđe zadani prag.
+Umjesto blokiranja samo po URL-u, možete stvarati planove s unosima web-mjesta, ključnim riječima ili frazama, ponderiranim rezultatima, dopuštenim web-mjestima, rasporedima, Pomodoro pravilima, postavkama intent coherence i opcionalnim čišćenjem UI-ja. Kada odgovarajuća stranica prijeđe konfigurirani rezultat ometanja, proširenje je blokira.
 
 Možete ga koristiti za zaštitu učenja, radnih blokova, pripreme za ispite, vremena za istraživanje ili bilo koje situacije u kojoj želite da preglednik ostane koristan bez pretvaranja u zaobilaznicu.
 
 Glavne značajke:
 
 Blokiranje stranica prema ključnim riječima, frazama i ponderiranim rezultatima.
-Organiziranje različitih pravila fokusa u grupe web stranica i ključnih riječi.
-Korištenje zaključanih rasporeda, whitelistova, zaštite lozinkom, izvoza/uvoza, UI načina i skrivanja UI elemenata kako bi postavke ostale praktične.
+Organizirajte različite kontekste fokusa u planove.
+Koristite zaključane rasporede, dopuštena web-mjesta, zaštitu lozinkom, izvoz/uvoz, UI načine, Pomodoro, intent coherence i skrivanje UI elemenata kako bi postavke ostale praktične.
+
+Bilješke preglednika:
+Preglednik upravlja pristupom incognito i file URL stranicama. DaD radi na tim stranicama samo kada tamo izričito dopustite proširenje.
 
 Novo u verziji 1.6.1:
 Pomodoro sada računa neaktivno i zaključano vrijeme kao dio potrebnog odmora.

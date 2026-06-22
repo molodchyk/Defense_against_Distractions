@@ -2,15 +2,18 @@ La mayoría de las extensiones de enfoque bloquean sitios web completos. Esto es
 
 La Defensa contra las distracciones te brinda un control más preciso.
 
-En lugar de bloquear únicamente por URL, puede bloquear páginas según las palabras y frases que aparecen en ellas. Cree grupos de sitios web, agregue palabras clave o frases, asigne puntuaciones y deje que la extensión bloquee la página cuando la puntuación de distracción cruce su umbral configurado.
+En lugar de bloquear solo por URL, puedes crear planes con entradas de sitios web, palabras clave o frases, puntajes ponderados, sitios web permitidos, horarios, reglas Pomodoro, ajustes de intent coherence y limpieza opcional de la interfaz. Cuando una página coincidente supera el puntaje de distracción configurado, la extensión la bloquea.
 
 Puedes usarlo para proteger sesiones de estudio, bloques de trabajo, preparación de exámenes, tiempo de investigación o cualquier situación en la que quieras que el navegador siga siendo útil sin convertirse en un desvío.
 
 Características principales:
 
-Bloquee páginas por palabras clave, frases y puntuaciones ponderadas.
-Organice diferentes reglas de enfoque en sitios web y grupos de palabras clave.
-Utilice programaciones bloqueadas, listas blancas, protección con contraseña, exportación/importación, modos de interfaz de usuario y ocultación de elementos de la interfaz de usuario para que la configuración sea práctica.
+Bloquea páginas por palabras clave, frases y puntajes ponderados.
+Organiza distintos contextos de enfoque en planes.
+Usa horarios bloqueados, sitios web permitidos, protección con contraseña, exportación/importación, modos de interfaz, Pomodoro, intent coherence y ocultamiento de elementos de la interfaz para que la configuración siga siendo práctica.
+
+Notas del navegador:
+El navegador controla el acceso a incognito y file URL. DaD solo funciona en esas páginas cuando permites explícitamente la extensión allí.
 
 Novedades de la versión 1.6.1:
 Pomodoro ahora cuenta el tiempo inactivo y bloqueado como parte del descanso requerido.

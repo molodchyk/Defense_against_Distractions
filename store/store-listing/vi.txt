@@ -2,20 +2,18 @@ Hầu hết tiện ích tập trung chặn toàn bộ website. Điều đó hữ
 
 Defense Against Distractions cho bạn quyền kiểm soát chính xác hơn.
 
-Thay vì chỉ chặn theo URL, bạn có thể chặn trang dựa trên các từ và cụm từ xuất hiện trên đó. Tạo nhóm website, thêm từ khóa hoặc cụm từ, gán điểm, và để tiện ích chặn trang khi điểm xao nhãng vượt qua ngưỡng bạn đã đặt.
+Thay vì chỉ chặn theo URL, bạn có thể tạo các kế hoạch với mục trang web, từ khóa hoặc cụm từ, điểm có trọng số, trang web được phép, lịch, quy tắc Pomodoro, cài đặt intent coherence và dọn dẹp UI tùy chọn. Khi một trang khớp vượt qua điểm gây xao nhãng đã cấu hình, tiện ích sẽ chặn trang đó.
 
 Bạn có thể dùng nó để bảo vệ phiên học, khối thời gian làm việc, ôn thi, thời gian nghiên cứu hoặc bất kỳ tình huống nào bạn muốn trình duyệt vẫn hữu ích mà không trở thành đường vòng.
 
 Tính năng chính:
 
 Chặn trang theo từ khóa, cụm từ và điểm có trọng số.
-Tổ chức các quy tắc tập trung khác nhau thành nhóm website và từ khóa.
-Sử dụng lịch khóa, whitelist, bảo vệ bằng mật khẩu, export/import, chế độ UI và ẩn phần tử UI để giữ cấu hình thực tế.
-Điểm mới trong phiên bản 1.6.1:
-Pomodoro hiện tính thời gian rảnh và thời gian bị khóa vào phần nghỉ bắt buộc.
-Popup và trang Pomodoro của kế hoạch hiện hiển thị chẩn đoán runtime rõ hơn.
-Chặn nghỉ nghiêm ngặt hiện khôi phục media và trạng thái tắt tiếng tab sau khi kết thúc chặn.
-Chẩn đoán trang bị chặn hiện hiển thị trạng thái tạm dừng media và tắt tiếng tab do tiện ích kiểm soát.
+Tổ chức các ngữ cảnh tập trung khác nhau thành kế hoạch.
+Dùng lịch khóa, trang web được phép, bảo vệ bằng mật khẩu, export/import, chế độ UI, Pomodoro, intent coherence và ẩn phần tử UI để giữ cấu hình thực tế.
+
+Ghi chú trình duyệt:
+Trình duyệt kiểm soát quyền truy cập incognito và file URL. DaD chỉ hoạt động trên các trang đó khi bạn cho phép tiện ích rõ ràng ở đó.
 
 Defense Against Distractions là mã nguồn mở:
 GPL-3.0 license:
