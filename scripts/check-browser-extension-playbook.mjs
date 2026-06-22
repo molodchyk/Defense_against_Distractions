@@ -237,6 +237,9 @@ const [
 ]);
 assertCondition(packageJson.version === manifest.version, 'package.json version must match manifest.json version.');
 assertCondition(packageJson.license === licenseId, `package.json license must be ${licenseId}.`);
+const manifestPermissionSet = new Set(manifest.permissions || []);
+assertCondition(manifest.permissions?.length === manifestPermissions.length && manifestPermissions.every(permission => manifestPermissionSet.has(permission)), 'manifest.json permissions must exactly match the audited required permission set.');
+assertCondition(manifest.content_scripts?.length === 1 && manifest.content_scripts[0].matches?.length === 1 && manifest.content_scripts[0].matches[0] === '<all_urls>' && manifest.web_accessible_resources?.length === 1 && manifest.web_accessible_resources[0].matches?.length === 1 && manifest.web_accessible_resources[0].matches[0] === '<all_urls>', 'manifest.json host access must stay on the audited content-script and web-accessible-resource <all_urls> surfaces.');
 for (const key of Object.keys(manifest)) assertCondition(allowedManifestKeys.has(key), `manifest.json contains an unaudited top-level key: ${key}`);
 assertCondition(!('chrome_settings_overrides' in manifest), 'manifest.json must not change browser search, homepage, or startup settings.');
 assertCondition(!('optional_permissions' in manifest) && !('host_permissions' in manifest) && !('optional_host_permissions' in manifest), 'manifest.json must keep host access and permissions inside the audited required surfaces.');
