@@ -553,6 +553,29 @@ assertCondition(
   'Options UI must expose an explicit localized reset path with confirmation, backup warning, irreversible warning, and protected-schedule lockout.'
 );
 
+const localDiagnosticsClearMessages = [
+  englishMessages.clearUsageStatsConfirm?.message,
+  englishMessages.clearUsageStatsFailed?.message,
+  englishMessages.clearIntentDiagnosticsConfirm?.message,
+  englishMessages.clearIntentDiagnosticsFailed?.message,
+  englishMessages.clearDiagnosticsClearedStatus?.message
+].join('\n');
+assertCondition(
+  /globalThis\.confirm\?\.\(getUiMessage\(\s*['"]clearUsageStatsConfirm['"]/.test(usageStatsModule)
+    && /clearUsageStatsFailed/.test(usageStatsModule)
+    && /globalThis\.confirm\?\.\(getUiMessage\(\s*['"]clearIntentDiagnosticsConfirm['"]/.test(intentDiagnosticsModule)
+    && /clearIntentDiagnosticsFailed/.test(intentDiagnosticsModule)
+    && /clearDiagnosticsClearedStatus/.test(intentDiagnosticsModule)
+    && hasAll(localDiagnosticsClearMessages, [
+      /Clear local usage stats\?/,
+      /hostname-level usage aggregates/,
+      /Clear local intent diagnostics\?/,
+      /intent trajectory state/,
+      /Export first/
+    ]),
+  'Options local diagnostics clears must require localized confirmation, name the local data being removed, and expose localized failure states.'
+);
+
 assertCondition(
   hasAll(reviewerNotes, [
     /file:\/\/.+Allow access to file URLs/is,

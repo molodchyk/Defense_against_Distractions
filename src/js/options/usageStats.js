@@ -172,6 +172,13 @@ export async function refreshUsageStatsPanel() {
 }
 
 async function clearUsageStatsPanel() {
+  if (!globalThis.confirm?.(getUiMessage(
+    'clearUsageStatsConfirm',
+    'Clear local usage stats? This removes hostname-level usage aggregates stored on this device. Export first if you want a backup.'
+  ))) {
+    return;
+  }
+
   const clearButton = getElement('clearUsageStatsButton');
   clearButton.disabled = true;
   try {
@@ -179,8 +186,11 @@ async function clearUsageStatsPanel() {
     if (response?.status === 'cleared') {
       renderUsageStats(response);
     } else {
-      setUsageEmptyState('Could not clear local usage stats');
+      setUsageEmptyState(getUiMessage('clearUsageStatsFailed', 'Could not clear local usage stats.'));
     }
+  } catch (error) {
+    console.error('Failed to clear usage stats:', error);
+    setUsageEmptyState(getUiMessage('clearUsageStatsFailed', 'Could not clear local usage stats.'));
   } finally {
     clearButton.disabled = false;
   }

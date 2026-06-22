@@ -3,6 +3,7 @@
 import {
   createIntentLineageGraph
 } from '../shared/intentCoherence.js';
+import { getUiMessage } from '../shared/ui/uiLanguage.js';
 import { sendRuntimeMessage } from '../../platform/chrome/runtimeMessages.js';
 import { addStorageChangeListener } from '../../platform/chrome/storage.js';
 import {
@@ -41,7 +42,7 @@ function getLabel(entity) {
   return title || hostname || '--';
 }
 
-function setEmptyState(message = 'No data') {
+function setEmptyState(message = getUiMessage('popupNoDataLabel', 'No data')) {
   getElement('optionsIntentState').textContent = message;
   getElement('optionsIntentState').dataset.state = 'none';
   getElement('optionsIntentScore').textContent = '--';
@@ -299,13 +300,28 @@ export async function refreshIntentDiagnosticsPanel() {
 }
 
 async function clearIntentDiagnosticsPanel() {
+  if (!globalThis.confirm?.(getUiMessage(
+    'clearIntentDiagnosticsConfirm',
+    'Clear local intent diagnostics? This removes recent intent trajectory state and intervention feedback stored on this device. Export first if you want a backup.'
+  ))) {
+    return;
+  }
+
   const clearButton = getElement('clearIntentDiagnosticsButton');
   clearButton.disabled = true;
-  const response = await sendRuntimeMessage({ action: 'clearIntentDebugState' });
-  if (response?.status === 'cleared') {
-    setEmptyState('Cleared');
+  try {
+    const response = await sendRuntimeMessage({ action: 'clearIntentDebugState' });
+    if (response?.status === 'cleared') {
+      setEmptyState(getUiMessage('clearDiagnosticsClearedStatus', 'Cleared.'));
+    } else {
+      setEmptyState(getUiMessage('clearIntentDiagnosticsFailed', 'Could not clear intent diagnostics.'));
+    }
+  } catch (error) {
+    console.error('Failed to clear intent diagnostics:', error);
+    setEmptyState(getUiMessage('clearIntentDiagnosticsFailed', 'Could not clear intent diagnostics.'));
+  } finally {
+    clearButton.disabled = false;
   }
-  clearButton.disabled = false;
 }
 
 async function exportIntentDiagnosticsPanel() {

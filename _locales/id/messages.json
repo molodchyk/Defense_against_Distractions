@@ -548,6 +548,15 @@
     "intentDiagnosticsIntroText": {
         "message": "Local trajectory state used by intent coherence. No raw typed input is stored."
     },
+    "clearIntentDiagnosticsConfirm": {
+        "message": "Clear local intent diagnostics? This removes recent intent trajectory state and intervention feedback stored on this device. Export first if you want a backup."
+    },
+    "clearIntentDiagnosticsFailed": {
+        "message": "Could not clear intent diagnostics."
+    },
+    "clearDiagnosticsClearedStatus": {
+        "message": "Cleared."
+    },
     "optionsIntentStateLabel": {
         "message": "State"
     },
@@ -571,6 +580,12 @@
     },
     "usageStatsIntroText": {
         "message": "Local hostname-level aggregates. No raw text, full URLs, titles, or tokens are stored."
+    },
+    "clearUsageStatsConfirm": {
+        "message": "Clear local usage stats? This removes hostname-level usage aggregates stored on this device. Export first if you want a backup."
+    },
+    "clearUsageStatsFailed": {
+        "message": "Could not clear local usage stats."
     },
     "usageStatsTodayVisitsLabel": {
         "message": "Today visits"
