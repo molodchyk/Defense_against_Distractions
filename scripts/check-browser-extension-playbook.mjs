@@ -5,59 +5,21 @@ import { access, readFile, readdir, stat } from 'node:fs/promises';
 import { spawnSync } from 'node:child_process';
 import path from 'node:path';
 import process from 'node:process';
+import {
+  allowedManifestKeys,
+  canonicalReadmeSupportBlock,
+  licenseId,
+  manifestPermissions,
+  privacyCertificationKeys,
+  privacyDataUsageKeys,
+  repositoryUrl,
+  requiredRootEntries,
+  storeCategories,
+  storeMediaAssetPaths
+} from './playbook/constants.mjs';
 import { getFirstNonEmptyLine, getPngDimensionFailure, hasAll, parseKeyedBlock } from './playbook-utils.mjs';
 
 const rootDir = process.cwd();
-const repositoryUrl = 'https://github.com/molodchyk/Defense_against_Distractions';
-const canonicalReadmeSupportBlock = '## Support\n\nIf this extension saves you time and you want to support its development:\n\n[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-support-FFDD00?logo=buymeacoffee&logoColor=000)](https://buymeacoffee.com/molodchyk)\n[![Patreon](https://img.shields.io/badge/Patreon-support-F96854?logo=patreon&logoColor=fff)](https://www.patreon.com/OMolodchyk)';
-const licenseId = 'GPL-3.0-only';
-const manifestPermissions = ['storage', 'alarms', 'downloads', 'activeTab', 'idle', 'webNavigation'];
-const allowedManifestKeys = new Set(['manifest_version', 'name', 'description', 'version', 'default_locale', 'permissions', 'action', 'options_page', 'background', 'content_scripts', 'web_accessible_resources', 'icons']);
-const privacyDataUsageKeys = ['data_usage.personally_identifiable_information', 'data_usage.health_information', 'data_usage.financial_payment_information', 'data_usage.authentication_information', 'data_usage.personal_communications', 'data_usage.location', 'data_usage.web_history', 'data_usage.user_activity', 'data_usage.website_content'];
-const privacyCertificationKeys = ['certification.no_sell_or_transfer', 'certification.no_unrelated_use', 'certification.no_creditworthiness'];
-const storeCategories = [
-  'Communication',
-  'Developer Tools',
-  'Education',
-  'Tools',
-  'Workflow and planning',
-  'Art & Design',
-  'Entertainment',
-  'Games',
-  'Household',
-  'Just for fun',
-  'News & Weather',
-  'Shopping',
-  'Social Networking',
-  'Travel',
-  'Wellbeing',
-  'Accessibility',
-  'Functionality and UI',
-  'Privacy & Security'
-];
-const requiredRootEntries = [
-  'README.md',
-  'LICENSE',
-  'PRIVACY.md',
-  'manifest.json',
-  'package.json',
-  'src',
-  'assets',
-  'docs',
-  'store',
-  'scripts',
-  'test',
-  '_locales'
-];
-const storeMediaAssetPaths = [
-  'store/screenshots/01-popup-protection-status.png',
-  'store/screenshots/02-plan-pomodoro-controls.png',
-  'store/screenshots/03-intent-drift-recovery.png',
-  'store/screenshots/04-blocked-page.png',
-  'store/screenshots/05-ui-element-picker.png',
-  'store/promo/small-promo-440x280.png',
-  'store/promo/marquee-promo-1400x560.png'
-];
 const failures = [];
 async function exists(relativePath) {
   try {
@@ -151,6 +113,7 @@ const [
   releaseVerifier,
   storeMediaReview,
   decisionRecords,
+  codeStructure,
   actionWrapper,
   alarmsWrapper,
   downloadsWrapper,
@@ -205,6 +168,7 @@ const [
   readText('scripts/verify-release.ps1'),
   readText('docs/store-media-review.md'),
   readText('docs/decision-records.md'),
+  readText('docs/code-structure.md'),
   readText('src/platform/chrome/action.js'),
   readText('src/platform/chrome/alarms.js'),
   readText('src/platform/chrome/downloads.js'),
@@ -561,6 +525,19 @@ assertCondition(
     /UI Element Actions/i
   ]),
   'Decision records document must index the durable local-first, plan-first, feature-first, StorePilot, intent, and UI action decisions.'
+);
+
+assertCondition(
+  hasAll(codeStructure, [
+    /## Test Structure/,
+    /test\/features\//,
+    /test\/platform\/chrome\//,
+    /test\/scripts\//,
+    /scripts\/playbook\//,
+    /repository validation and release scripts/i,
+    /isolated browser environment/i
+  ]),
+  'Code structure document must map feature, platform, and repository-script test ownership.'
 );
 
 const storageKeyFamilies = [

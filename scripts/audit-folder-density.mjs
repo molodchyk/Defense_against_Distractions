@@ -129,6 +129,14 @@ const budgets = [
     matches(relativeDir) {
       return relativeDir === 'scripts';
     }
+  },
+  {
+    name: 'project script support',
+    max: 8,
+    hard: 12,
+    matches(relativeDir) {
+      return relativeDir.startsWith('scripts/');
+    }
   }
 ];
 
