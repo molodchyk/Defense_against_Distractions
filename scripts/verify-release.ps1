@@ -308,6 +308,7 @@ $requiredSourceEntries = @(
   "LICENSE",
   "manifest.json",
   "package.json",
+  "PRIVACY.md",
   "README.md",
   "scripts/check-browser-extension-playbook.mjs",
   "scripts/check-locale-coverage.mjs",

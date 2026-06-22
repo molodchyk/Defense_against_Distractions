@@ -126,6 +126,7 @@ $sourceFiles = @(
   "assets",
   "docs",
   "LICENSE",
+  "PRIVACY.md",
   "README.md",
   "manifest.json",
   "package.json",
