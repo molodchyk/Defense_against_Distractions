@@ -8,6 +8,12 @@ The extension may process page text, URLs, page titles, page structure, media co
 
 The extension stores user configuration such as plans, plan entries, keywords, schedules, plan allowed websites, UI mode, UI element blocking rules, Pomodoro settings, export/import state, and optional extension password data. Legacy website groups, standalone schedules, and whitelist entries may be read locally only to migrate existing user configuration into plans. The extension may also store bounded local diagnostic summaries such as recent page visits, extracted URL/title/host tokens, media/feed/link counts, hostname-level usage aggregates, open-tab/window count summaries, recent activity time, local active-time totals, current local system activity state, navigation transition summaries, intent-coherence scores, and local intervention feedback actions such as continue, isolate, or return. If plan auto-calibration is enabled, that local feedback may conservatively adjust the effective intent-intervention threshold. The usage aggregates do not store raw page text, full URLs, page titles, topic tokens, tab URLs, tab titles, or tab identities.
 
+## Local Diagnostics Are Not Analytics
+
+Usage stats, page-signal summaries, and intent-coherence diagnostics are user-facing local tools. They exist so the user can inspect how their own rules, timers, blocking outcomes, and browsing-chain recovery prompts are behaving on their device.
+
+These diagnostics are not developer analytics, telemetry, advertising measurement, or tracking dashboards. They are not transmitted to the developer, a server, or a third party. Users can clear local usage stats, clear local intent diagnostics, export local diagnostic JSON snapshots, or reset all extension storage from the options page.
+
 ## Storage
 
 Configuration is stored using Chrome extension storage. Some settings use `chrome.storage.sync` so they can be available across the user's browser profile. Some local security, timer, and diagnostic state, such as password attempt state, encryption helper data, Pomodoro runtime and activity state, hostname-level usage aggregates, and intent-coherence trajectory summaries, uses `chrome.storage.local`. The extension does not use `chrome.storage.session` or `chrome.storage.managed`.

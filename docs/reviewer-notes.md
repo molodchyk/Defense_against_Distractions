@@ -28,6 +28,7 @@ Some behavior depends on browser APIs and browser version details:
 Claims in README, privacy policy, store listing text, and release packages should stay aligned with the checked source:
 
 - no analytics, ads, tracking pixels, telemetry, or remote executable code;
+- local Usage and Intent diagnostic surfaces are user-facing self-inspection tools, not developer analytics, telemetry, advertising measurement, or tracking dashboards;
 - no sale or third-party transfer of user data;
 - local Chrome extension storage for configuration, runtime state, and bounded diagnostics;
 - manifest permissions and broad content-script access are mapped in [Permission Audit](permission-audit.md);

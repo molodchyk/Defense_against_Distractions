@@ -387,6 +387,10 @@ for (const permission of manifest.permissions) {
   assertCondition(new RegExp(`\`${escapedPermission}\``).test(privacy), `PRIVACY.md must include manifest permission: ${permission}.`);
 }
 assertCondition(
+  /Local usage stats, page-signal summaries, and intent-coherence diagnostics are user-facing self-inspection tools, not developer analytics, telemetry, advertising measurement, or tracking dashboards/i.test(storePrivacyForm),
+  'StorePilot privacy form must distinguish local diagnostics from developer analytics, telemetry, and tracking dashboards.'
+);
+assertCondition(
   packageJson.scripts?.['verify:browser-load']?.includes('scripts/check-unpacked-extension-load.ps1'),
   'package.json must expose npm run verify:browser-load for the unpacked browser-load smoke check.'
 );
@@ -464,6 +468,14 @@ assertCondition(/does not make remote network requests from the runtime extensio
 assertCondition(/does not require a remote server/i.test(privacy), 'PRIVACY.md must state core behavior does not require a remote server.');
 assertCondition(/does not use remote JavaScript or WebAssembly/i.test(privacy), 'PRIVACY.md must state remote executable code is not used.');
 assertCondition(/does not use analytics, ads, tracking pixels, or telemetry/i.test(privacy), 'PRIVACY.md must state analytics, ads, tracking pixels, and telemetry are not used.');
+assertCondition(
+  /Local Diagnostics Are Not Analytics/.test(privacy)
+    && /user-facing local tools/i.test(privacy)
+    && /not developer analytics, telemetry, advertising measurement, or tracking dashboards/i.test(privacy)
+    && /not transmitted to the developer, a server, or a third party/i.test(privacy)
+    && /clear local usage stats, clear local intent diagnostics, export local diagnostic JSON snapshots, or reset all extension storage/i.test(privacy),
+  'PRIVACY.md must distinguish user-facing local diagnostics from developer analytics, telemetry, and tracking dashboards.'
+);
 assertCondition(/reset all extension storage/i.test(privacy), 'PRIVACY.md must explain the reset-storage path.');
 
 assertCondition(
@@ -583,6 +595,7 @@ assertCondition(
     /browser-controlled behavior/i,
     /Manifest V3 service workers can sleep and restart/i,
     /cannot guarantee behavior that Chrome itself withholds/i,
+    /local Usage and Intent diagnostic surfaces are user-facing self-inspection tools, not developer analytics, telemetry, advertising measurement, or tracking dashboards/i,
     /runtime package excludes docs, the repository research workspace, tests, scripts, screenshots, promo images, store listing text, and source-only icon files/i
   ]),
   'Reviewer notes must cover file URLs, incognito, browser-controlled behavior, MV3 restart behavior, and package contents.'

@@ -76,6 +76,8 @@ StorePilot keys above use the Chrome Web Store disclosure meaning of "collect": 
 
 DaD processes website content, optional extension password data, and local activity summaries on the user's device for blocking, UI cleanup, Pomodoro timing, usage stats, and intent-coherence diagnostics. Those values are not sent to the developer or a third party, so the canonical `data_usage.*` dashboard answers are `no`.
 
+Local usage stats, page-signal summaries, and intent-coherence diagnostics are user-facing self-inspection tools, not developer analytics, telemetry, advertising measurement, or tracking dashboards.
+
 Current privacy position:
 
 - User data is not sold.
