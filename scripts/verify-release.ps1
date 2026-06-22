@@ -67,7 +67,7 @@ function Get-ZipEntries {
   }
 }
 
-function Get-ZipTextEntry {
+function Get-ZipByteEntry {
   param(
     [string]$ZipPath,
     [string]$EntryName
@@ -78,17 +78,37 @@ function Get-ZipTextEntry {
     $entry = $zip.Entries | Where-Object { $_.FullName -eq $EntryName } | Select-Object -First 1
     Assert-Condition ($null -ne $entry) "Missing source archive entry: $EntryName"
 
-    $reader = New-Object System.IO.StreamReader($entry.Open())
+    $entryStream = $entry.Open()
+    $memoryStream = New-Object System.IO.MemoryStream
     try {
-      return $reader.ReadToEnd()
+      $entryStream.CopyTo($memoryStream)
+      return $memoryStream.ToArray()
     }
     finally {
-      $reader.Dispose()
+      $entryStream.Dispose()
+      $memoryStream.Dispose()
     }
   }
   finally {
     $zip.Dispose()
   }
+}
+
+function Assert-SourceZipEntryMatchesProjectFile {
+  param([string]$EntryName)
+
+  $rootEntryPath = Join-Path $projectRoot $EntryName.Replace("/", "\")
+  $rootEntryBytes = [System.IO.File]::ReadAllBytes($rootEntryPath)
+  $sourceEntryBytes = Get-ZipByteEntry -ZipPath $sourceZipPath -EntryName $EntryName
+  $bytesMatch = $rootEntryBytes.Length -eq $sourceEntryBytes.Length
+
+  for ($index = 0; $bytesMatch -and $index -lt $rootEntryBytes.Length; $index++) {
+    if ($rootEntryBytes[$index] -ne $sourceEntryBytes[$index]) {
+      $bytesMatch = $false
+    }
+  }
+
+  Assert-Condition $bytesMatch "Source archive $EntryName does not match the root $EntryName"
 }
 
 function Assert-ZipContains {
@@ -335,9 +355,7 @@ $requiredSourceEntries = @(
 
 foreach ($entry in $requiredSourceEntries) {
   Assert-ZipContains -Entries $sourceEntries -EntryName $entry -ArchiveName "Source archive"
-  $rootEntryText = Get-Content -LiteralPath (Join-Path $projectRoot $entry) -Raw
-  $sourceEntryText = Get-ZipTextEntry -ZipPath $sourceZipPath -EntryName $entry
-  Assert-Condition ($rootEntryText -eq $sourceEntryText) "Source archive $entry does not match the root $entry"
+  Assert-SourceZipEntryMatchesProjectFile -EntryName $entry
 }
 
 foreach ($prefix in @("assets/", "docs/", "store/", "test/", "_locales/", "scripts/", "src/")) {
@@ -355,9 +373,11 @@ foreach ($localeDirectory in $localeDirectories) {
   Assert-Condition ($localeDirectory.Name -notmatch "-") "Locale directory must use Chrome underscore locale codes, not hyphens: $($localeDirectory.Name)"
 
   $localeListingPath = Join-Path $storeListingRoot "$($localeDirectory.Name).txt"
+  $relativeLocaleListingPath = "store/store-listing/$($localeDirectory.Name).txt"
   Assert-Condition (Test-Path -LiteralPath $localeListingPath) "Missing store listing for locale: $($localeDirectory.Name)"
 
   $storeListing = Get-Content -LiteralPath $localeListingPath -Raw
+  Assert-SourceZipEntryMatchesProjectFile -EntryName $relativeLocaleListingPath
   $firstStoreListingLine = ($storeListing -split "\r?\n" | ForEach-Object { $_.Trim() } | Where-Object { $_ } | Select-Object -First 1)
   Assert-Condition ($storeListing -notmatch "[#*\[\]]") "Store listing should stay plain text, not Markdown-formatted text: $($localeDirectory.Name).txt"
   Assert-Condition ($null -ne $firstStoreListingLine -and $firstStoreListingLine.Length -gt 0) "Store listing should not be empty: $($localeDirectory.Name).txt"
