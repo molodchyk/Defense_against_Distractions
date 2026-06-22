@@ -24,11 +24,7 @@ const privacyDataUsageKeys = [
   'data_usage.user_activity',
   'data_usage.website_content'
 ];
-const privacyCertificationKeys = [
-  'certification.no_sell_or_transfer',
-  'certification.no_unrelated_use',
-  'certification.no_creditworthiness'
-];
+const privacyCertificationKeys = ['certification.no_sell_or_transfer', 'certification.no_unrelated_use', 'certification.no_creditworthiness'];
 const storeCategories = [
   'Communication',
   'Developer Tools',
@@ -136,6 +132,7 @@ assertCondition(await exists('docs/chrome-web-store-category.md'), 'Missing Stor
 assertCondition(await exists('docs/storage-ownership.md'), 'Missing storage ownership document.');
 assertCondition(await exists('docs/permission-audit.md'), 'Missing permission audit document.');
 assertCondition(await exists('docs/release-notes.md'), 'Missing release notes document.');
+assertCondition(await exists('docs/release-checklist.md'), 'Missing release checklist document.');
 assertCondition(await exists('docs/store-media-review.md'), 'Missing store media review document.');
 assertCondition(await exists('docs/decision-records.md'), 'Missing decision records document.');
 assertCondition(await exists('scripts/check-static-localization.mjs'), 'Missing static localization verification script.');
@@ -159,6 +156,7 @@ const [
   storageOwnership,
   permissionAudit,
   releaseNotes,
+  releaseChecklist,
   storeMediaReview,
   decisionRecords,
   actionWrapper,
@@ -210,6 +208,7 @@ const [
   readText('docs/storage-ownership.md'),
   readText('docs/permission-audit.md'),
   readText('docs/release-notes.md'),
+  readText('docs/release-checklist.md'),
   readText('docs/store-media-review.md'),
   readText('docs/decision-records.md'),
   readText('src/platform/chrome/action.js'),
@@ -552,6 +551,7 @@ assertCondition(
   ]),
   'Release notes document must cover the current version, changelog source, release gate, source archive, media, network posture, and isolated browser-load safety.'
 );
+assertCondition(/Run `npm run verify:browser-load` only in an isolated browser environment[\s\S]+Load the extension zip or unpacked project in an isolated Chromium-based browser\/profile/i.test(releaseChecklist), 'Release checklist must isolate browser-load and manual browser QA from active user sessions.');
 
 assertCondition(
   hasAll(decisionRecords, [
