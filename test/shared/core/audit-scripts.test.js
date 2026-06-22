@@ -52,4 +52,10 @@ describe('audit scripts', () => {
     assert.match(output, /Browser extension playbook check passed:/);
     assert.match(output, /\d+ localized store listings verified\./);
   });
+
+  it('verifies platform boundary ownership', () => {
+    const output = runNodeScript('scripts/check-platform-boundaries.mjs');
+
+    assert.match(output, /Platform boundary check passed\./);
+  });
 });
