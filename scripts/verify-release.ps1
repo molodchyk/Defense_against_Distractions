@@ -335,6 +335,9 @@ $requiredSourceEntries = @(
 
 foreach ($entry in $requiredSourceEntries) {
   Assert-ZipContains -Entries $sourceEntries -EntryName $entry -ArchiveName "Source archive"
+  $rootEntryText = Get-Content -LiteralPath (Join-Path $projectRoot $entry) -Raw
+  $sourceEntryText = Get-ZipTextEntry -ZipPath $sourceZipPath -EntryName $entry
+  Assert-Condition ($rootEntryText -eq $sourceEntryText) "Source archive $entry does not match the root $entry"
 }
 
 foreach ($prefix in @("assets/", "docs/", "store/", "test/", "_locales/", "scripts/", "src/")) {
@@ -345,8 +348,6 @@ $rootChangelog = Get-Content -LiteralPath (Join-Path $projectRoot "CHANGELOG.md"
 $escapedVersion = [System.Text.RegularExpressions.Regex]::Escape($version)
 $versionHeadingPattern = "Version\s+{0}:" -f $escapedVersion
 Assert-Condition ($rootChangelog -match $versionHeadingPattern) "Root CHANGELOG.md is missing an entry for version $version"
-$sourceChangelog = Get-ZipTextEntry -ZipPath $sourceZipPath -EntryName "CHANGELOG.md"
-Assert-Condition ($rootChangelog -eq $sourceChangelog) "Source archive CHANGELOG.md does not match the root CHANGELOG.md"
 
 $storeListingRoot = Join-Path $projectRoot "store\store-listing"
 $localeDirectories = Get-ChildItem -LiteralPath (Join-Path $projectRoot "_locales") -Directory
