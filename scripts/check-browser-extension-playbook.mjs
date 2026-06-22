@@ -281,6 +281,8 @@ assertCondition(
     /remote network requests/i,
     /assets\/icons/,
     /store\/store-listing/,
+    /compatibility barrels for migrated callers/i,
+    /thin stylesheet entry points and focused surface files during migration/i,
     /docs\/permission-audit\.md/,
     /docs\/localization\.md/,
     /docs\/store-media-review\.md/,
@@ -292,7 +294,7 @@ assertCondition(
     /Buy Me a Coffee/i,
     /Patreon/i
   ]),
-  'README must cover product goal, load-unpacked steps, checks, privacy, support, license, and source URL.'
+  'README must cover product goal, load-unpacked steps, checks, privacy, architecture ownership, support, license, and source URL.'
 );
 assertCondition(
   !/redirects?\s+(it|matching pages|pages|the page)\s+to\s+a\s+block(?:ed)?\s+page|redirect-first|navigation-first/i.test(readme),

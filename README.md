@@ -75,8 +75,8 @@ Chrome Web Store API release helpers are documented in [Chrome Web Store API](do
 - `src/app/instructions/index.js` contains the instructions page entry point.
 - `src/app/blocked/index.js` contains the blocked page entry point.
 - `src/app/content/index.js` contains the classic content-script entry point.
-- `src/js/shared/` contains shared parsing, URL, UI helpers, and compatibility barrels; feature-owned models live under `src/features/`, and Chrome API wrappers live under `src/platform/`.
-- `src/css/` contains extension styles.
+- `src/js/shared/` contains shared parsing, URL, UI helpers, and compatibility barrels for migrated callers; feature-owned models live under `src/features/`, and Chrome API wrappers live under `src/platform/`.
+- `src/css/` contains thin stylesheet entry points and focused surface files during migration; new styling should move to the narrowest feature or surface file documented in [Code Structure](docs/code-structure.md).
 
 Runtime extension files are the files that must ship inside the extension ZIP. Source-only project files such as docs, tests, scripts, screenshots, promotional images, and store listing text are kept in the repository and source ZIP, but are intentionally excluded from the runtime extension package. The runtime package also excludes the repository research workspace.
 
