@@ -84,6 +84,7 @@ assertCondition(await exists('docs/reviewer-notes.md'), 'Missing reviewer notes 
 assertCondition(await exists('docs/chrome-web-store-privacy-form.md'), 'Missing StorePilot privacy form document.');
 assertCondition(await exists('docs/chrome-web-store-additional-fields.md'), 'Missing StorePilot additional-fields document.');
 assertCondition(await exists('docs/chrome-web-store-category.md'), 'Missing StorePilot category document.');
+assertCondition(await exists('docs/storepilot-automation.md'), 'Missing StorePilot automation index document.');
 assertCondition(await exists('docs/storage-ownership.md'), 'Missing storage ownership document.');
 assertCondition(await exists('docs/permission-audit.md'), 'Missing permission audit document.');
 assertCondition(await exists('docs/release-notes.md'), 'Missing release notes document.');
@@ -113,6 +114,7 @@ const [
   storePrivacyForm,
   storeAdditionalFields,
   storeCategory,
+  storeAutomationIndex,
   storageOwnership,
   permissionAudit,
   releaseNotes,
@@ -171,6 +173,7 @@ const [
   readText('docs/chrome-web-store-privacy-form.md'),
   readText('docs/chrome-web-store-additional-fields.md'),
   readText('docs/chrome-web-store-category.md'),
+  readText('docs/storepilot-automation.md'),
   readText('docs/storage-ownership.md'),
   readText('docs/permission-audit.md'),
   readText('docs/release-notes.md'),
@@ -298,6 +301,7 @@ assertCondition(
     /docs\/permission-audit\.md/,
     /docs\/localization\.md/,
     /docs\/store-media-review\.md/,
+    /docs\/storepilot-automation\.md/,
     /docs\/release-notes\.md/,
     /docs\/decision-records\.md/,
     /docs\/release-verification-record\.md/,
@@ -408,7 +412,7 @@ assertCondition(
   packageJson.scripts?.['verify:static-localization'] === 'node scripts/check-static-localization.mjs',
   'package.json must expose npm run verify:static-localization for extension HTML localization checks.'
 );
-failures.push(...getStoreAutomationFailures({ storePrivacyForm, storeAdditionalFields, storeCategory, manifestPermissions }));
+failures.push(...getStoreAutomationFailures({ storePrivacyForm, storeAdditionalFields, storeCategory, storeAutomationIndex, manifestPermissions }));
 for (const iconPath of Object.values(manifest.icons || {})) {
   assertCondition(
     typeof iconPath === 'string' && iconPath.startsWith('assets/icons/'),

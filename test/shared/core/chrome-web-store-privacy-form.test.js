@@ -11,11 +11,12 @@ import {
   repositoryUrl,
   storeCategories
 } from '../../../scripts/playbook/constants.mjs';
-import { getDuplicateKeyedBlockFields, parseKeyedBlock } from '../../../scripts/playbook-utils.mjs';
+import { getDuplicateKeyedBlockFields, hasAll, parseKeyedBlock } from '../../../scripts/playbook-utils.mjs';
 
 const PRIVACY_FORM_PATH = 'docs/chrome-web-store-privacy-form.md';
 const ADDITIONAL_FIELDS_PATH = 'docs/chrome-web-store-additional-fields.md';
 const CATEGORY_PATH = 'docs/chrome-web-store-category.md';
+const STOREPILOT_INDEX_PATH = 'docs/storepilot-automation.md';
 const MANIFEST_PATH = 'manifest.json';
 
 describe('Chrome Web Store privacy form', () => {
@@ -79,5 +80,31 @@ describe('Chrome Web Store automation fields', () => {
 
     assert.ok(match, 'Missing Selected category line');
     assert.ok(storeCategories.includes(match[1].trim()), 'Unknown Chrome Web Store category');
+  });
+
+  it('maps StorePilot import inputs for the current project shape', () => {
+    const markdown = readFileSync(STOREPILOT_INDEX_PATH, 'utf8');
+    const manifest = JSON.parse(readFileSync(MANIFEST_PATH, 'utf8'));
+
+    assert.ok(hasAll(markdown, [
+      /# StorePilot Automation/,
+      /store\/store-listing\/<locale>\.txt/,
+      /docs\/chrome-web-store-privacy-form\.md/,
+      /\[privacy\]/,
+      /docs\/chrome-web-store-additional-fields\.md/,
+      /\[additional_fields\]/,
+      /docs\/chrome-web-store-category\.md/,
+      /Selected category:/,
+      /assets\/icons\/extension-icon-128\.png/,
+      /store\/screenshots\//,
+      /store\/promo\//,
+      /docs\/store-media-review\.md/,
+      /npm run verify:playbook/,
+      /npm run verify:release/
+    ]));
+
+    for (const permission of manifest.permissions) {
+      assert.match(markdown, new RegExp(`permission\\.${permission}`));
+    }
   });
 });

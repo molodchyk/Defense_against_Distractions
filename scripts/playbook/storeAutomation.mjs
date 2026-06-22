@@ -8,9 +8,15 @@ import {
   repositoryUrl,
   storeCategories
 } from './constants.mjs';
-import { getDuplicateKeyedBlockFields, parseKeyedBlock } from '../playbook-utils.mjs';
+import { getDuplicateKeyedBlockFields, hasAll, parseKeyedBlock } from '../playbook-utils.mjs';
 
-export function getStoreAutomationFailures({ storePrivacyForm, storeAdditionalFields, storeCategory, manifestPermissions }) {
+export function getStoreAutomationFailures({
+  storePrivacyForm,
+  storeAdditionalFields,
+  storeCategory,
+  storeAutomationIndex,
+  manifestPermissions
+}) {
   const failures = [];
   const assertCondition = (condition, message) => {
     if (!condition) failures.push(message);
@@ -61,6 +67,39 @@ export function getStoreAutomationFailures({ storePrivacyForm, storeAdditionalFi
     categoryMatch ? storeCategories.includes(categoryMatch[1].trim()) : false,
     'StorePilot category document must use a visible Chrome Web Store category label.'
   );
+
+  assertCondition(
+    hasAll(storeAutomationIndex, [
+      /# StorePilot Automation/,
+      /StorePilot project reference/i,
+      /store\/store-listing\/<locale>\.txt/,
+      /docs\/chrome-web-store-privacy-form\.md/,
+      /\[privacy\]/,
+      /host_permission/,
+      /remote_code:\s+no/,
+      /docs\/chrome-web-store-additional-fields\.md/,
+      /\[additional_fields\]/,
+      /docs\/chrome-web-store-category\.md/,
+      /Selected category:/,
+      /assets\/icons\/extension-icon-128\.png/,
+      /store\/screenshots\//,
+      /store\/promo\//,
+      /docs\/store-media-review\.md/,
+      /source archive/i,
+      /runtime extension package/i,
+      /npm run verify:playbook/,
+      /npm run verify:package/,
+      /npm run verify:release/
+    ]),
+    'StorePilot automation index must map listing, privacy, additional-fields, category, media, archive, and verification inputs.'
+  );
+
+  for (const permission of manifestPermissions) {
+    assertCondition(
+      storeAutomationIndex.includes(`permission.${permission}`),
+      `StorePilot automation index must include permission.${permission}.`
+    );
+  }
 
   return failures;
 }

@@ -47,7 +47,7 @@ export async function getReleaseSafetyFailures(rootDir, packageJson) {
   if (!/Static verification status:\s+passed[\s\S]+`npm run package`[\s\S]+`npm run verify:package`[\s\S]+`npm run verify:release`/i.test(releaseVerificationRecord)) {
     failures.push('Release verification record must record static gate pass status for the current package.');
   }
-  if (!/## Static Gate Evidence[\s\S]+Current result:\s+passed[\s\S]+`npm test`[\s\S]+398 unit tests passed[\s\S]+`npm run verify:release`[\s\S]+Passed for `Defense_against_Distractions-v1\.6\.1`/i.test(releaseVerificationRecord)) {
+  if (!/## Static Gate Evidence[\s\S]+Current result:\s+passed[\s\S]+`npm test`[\s\S]+399 unit tests passed[\s\S]+`npm run verify:release`[\s\S]+Passed for `Defense_against_Distractions-v1\.6\.1`/i.test(releaseVerificationRecord)) {
     failures.push('Release verification record must list the static release gate evidence recorded for the current package.');
   }
 

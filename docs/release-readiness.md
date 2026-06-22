@@ -70,7 +70,7 @@ The release verifier checks:
 - The `dist/` folder contains only current manifest-version package zips, with no stale zips or staging directories.
 - The source archive contains docs, tests, scripts, source files, store assets, README, privacy policy, license, about file, and changelog.
 - The source archive contains the store media review for screenshots and promotional images.
-- The source archive contains StorePilot privacy, category, and additional-field automation documents.
+- The source archive contains StorePilot privacy, category, additional-field, and automation-index documents.
 - The changelog in the source archive matches the root `CHANGELOG.md`.
 - The store listing remains plain text instead of Markdown.
 - StorePilot direct listing files do not start with a title, field label, or extension name.
