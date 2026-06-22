@@ -672,6 +672,7 @@ for (const locale of locales) {
       !/create groups of websites|website and keyword groups|whitelists/i.test(listing),
       `${listingPath} must not use retired group or whitelist wording.`
     );
+    assertCondition(!/\b(guarantee[sd]?|perfect|scientifically proven|clinically proven|cure[sd]?|ADHD|medical|therapy|therapeutic|mental health|knows your true intent|true intention|attention residue|permanent attention damage|objectively useless)\b/i.test(listing), `${listingPath} must avoid inflated, medical, or mind-reading claims.`);
   }
 }
 
