@@ -30,4 +30,6 @@ Optional isolated smoke check:
 
 - `npm run verify:browser-load`
 
+Run this only in an isolated browser environment where launching Chrome, Edge, or Chromium cannot close active browser windows or unsaved work.
+
 The runtime extension archive intentionally excludes docs, tests, scripts, screenshots, promo images, store listing text, and source-only icon files. Those files remain available in the source archive for reviewers and future maintenance.

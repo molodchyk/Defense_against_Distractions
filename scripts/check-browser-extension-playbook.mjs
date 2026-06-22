@@ -546,9 +546,10 @@ assertCondition(
     /remote network access/i,
     /screenshots/i,
     /promo/i,
-    /Store Media Review/i
+    /Store Media Review/i,
+    /cannot close active browser windows or unsaved work/i
   ]),
-  'Release notes document must cover the current version, changelog source, release gate, source archive, media, and network posture.'
+  'Release notes document must cover the current version, changelog source, release gate, source archive, media, network posture, and isolated browser-load safety.'
 );
 
 assertCondition(
