@@ -44,8 +44,11 @@ export async function getReleaseSafetyFailures(rootDir, packageJson) {
   if (!/## Browser-Only Evidence[\s\S]+`npm run verify:browser-load`[\s\S]+Not fully browser-verified[\s\S]+isolated Chromium-based browser\/profile[\s\S]+Manual QA from `docs\/release-checklist\.md`[\s\S]+Pending/i.test(releaseVerificationRecord)) {
     failures.push('Release verification record must keep browser-load and manual QA separate from static gates until isolated browser evidence exists.');
   }
-  if (!/## Static Gate Evidence[\s\S]+`npm run verify:release`[\s\S]+Full static release gate passes for the current version/i.test(releaseVerificationRecord)) {
-    failures.push('Release verification record must list the static release gate evidence to record for the current package.');
+  if (!/Static verification status:\s+passed[\s\S]+`npm run package`[\s\S]+`npm run verify:package`[\s\S]+`npm run verify:release`/i.test(releaseVerificationRecord)) {
+    failures.push('Release verification record must record static gate pass status for the current package.');
+  }
+  if (!/## Static Gate Evidence[\s\S]+Current result:\s+passed[\s\S]+`npm test`[\s\S]+398 unit tests passed[\s\S]+`npm run verify:release`[\s\S]+Passed for `Defense_against_Distractions-v1\.6\.1`/i.test(releaseVerificationRecord)) {
+    failures.push('Release verification record must list the static release gate evidence recorded for the current package.');
   }
 
   failures.push(...getBrowserLoadTriggerFailures(

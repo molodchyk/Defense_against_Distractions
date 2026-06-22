@@ -9,27 +9,29 @@ Use it as the short release evidence log. Do not mark browser-only items as pass
 - Version: `1.6.1`
 - Extension archive: `dist/Defense_against_Distractions-v1.6.1-extension.zip`
 - Source archive: `dist/Defense_against_Distractions-v1.6.1-source.zip`
-- Static verification status: pending until the commands below are run for the final release package.
+- Static verification status: passed on 2026-06-22 for the current `1.6.1` package after `npm run package`, `npm run verify:package`, and `npm run verify:release`.
 - Browser-load status: not fully browser-verified.
 - Manual browser QA status: pending.
 
 ## Static Gate Evidence
 
-Record the result after running these commands from the repository root:
+Current result: passed on 2026-06-22 for version `1.6.1`.
 
-| Gate | Expected evidence |
+Commands run from the repository root:
+
+| Gate | Recorded evidence |
 | --- | --- |
-| `npm test` | Unit tests pass. |
-| `npm run verify:manifest` | Manifest-referenced paths exist. |
-| `npm run verify:imports` | Relative source imports resolve. |
-| `npm run verify:locales` | Locale message keys and placeholders match. |
-| `npm run verify:static-localization` | Static extension HTML surfaces route visible text through localization. |
-| `npm run verify:playbook` | Repository, store, privacy, release, and architecture playbook checks pass. |
-| `npm run audit:file-sizes` | File-size budgets pass. |
-| `npm run audit:folder-density` | Folder-density budgets pass. |
-| `npm run package` | Current extension and source ZIPs are generated in `dist/`. |
-| `npm run verify:package` | Generated runtime archive passes package-output checks. |
-| `npm run verify:release` | Full static release gate passes for the current version. |
+| `npm test` | Covered by `npm run verify:release`; 398 unit tests passed. |
+| `npm run verify:manifest` | Covered by `npm run verify:release`; manifest-referenced paths exist. |
+| `npm run verify:imports` | Covered by `npm run verify:release`; relative source imports resolve. |
+| `npm run verify:locales` | Covered by `npm run verify:release`; 68 locales match the English message keys. |
+| `npm run verify:static-localization` | Covered by `npm run verify:release`; 4 static extension HTML surfaces scanned. |
+| `npm run verify:playbook` | Passed directly and through `npm run verify:release`; 68 localized store listings verified. |
+| `npm run audit:file-sizes` | Passed directly and through `npm run verify:release`; no files exceed documented budgets. |
+| `npm run audit:folder-density` | Passed directly and through `npm run verify:release`; no folders exceed documented budgets. |
+| `npm run package` | Generated the current extension and source ZIPs in `dist/`. |
+| `npm run verify:package` | Passed directly and through `npm run verify:release`; 337 packaged runtime files scanned and 76 manifest references verified. |
+| `npm run verify:release` | Passed for `Defense_against_Distractions-v1.6.1`. |
 
 ## Browser-Only Evidence
 
