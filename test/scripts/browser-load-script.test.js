@@ -34,4 +34,11 @@ describe('unpacked extension browser-load smoke script', () => {
       assert.doesNotMatch(script, browserLoadTriggerPattern, `${scriptPath} must not launch browser-load`);
     }
   });
+
+  it('keeps browser-load required but isolated in release readiness', () => {
+    const releaseReadiness = readFileSync('docs/release-readiness.md', 'utf8');
+
+    assert.match(releaseReadiness, /automated gates are static repository and archive checks[\s\S]+must not invoke `npm run verify:browser-load`/i);
+    assert.match(releaseReadiness, /`npm run verify:browser-load` is not an automated gate[\s\S]+isolated target-browser smoke check is required before publishing[\s\S]+not fully browser-verified/i);
+  });
 });

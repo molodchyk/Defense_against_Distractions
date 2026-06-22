@@ -58,7 +58,7 @@ The release verifier checks:
 
 The package verifier extracts the current extension archive into a temporary folder when needed.
 
-`npm run verify:browser-load` is an optional isolated-environment smoke check. Do not run it on an active workstation where launching Chrome, Edge, or Chromium could close existing browser windows or unsaved work. If it is safe to run and a browser is not discoverable, set `DAD_CHROME_PATH` or pass `-BrowserPath` to `scripts/check-unpacked-extension-load.ps1`.
+`npm run verify:browser-load` is not an automated gate, but an isolated target-browser smoke check is required before publishing. Run it only in an isolated browser environment where launching Chrome, Edge, or Chromium cannot close active user windows or unsaved work. If that safe environment is not available, leave the release marked as not fully browser-verified instead of running the smoke check on an active workstation. If it is safe to run and a browser is not discoverable, set `DAD_CHROME_PATH` or pass `-BrowserPath` to `scripts/check-unpacked-extension-load.ps1`.
 
 ## Manual Gates
 

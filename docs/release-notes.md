@@ -10,7 +10,7 @@ Release focus:
 - Store-ready media: five 1280x800 screenshots, a 440x280 small promo, and a 1400x560 marquee promo verified by the package checks and documented in [Store Media Review](store-media-review.md).
 - StorePilot preparation: localized listing text, privacy form answers, category selection, additional fields, and permission justifications for the current manifest.
 - Privacy and package posture: local-first behavior, no analytics, no remote executable code, and no unexpected remote network access in the runtime package.
-- Release automation: manifest, import, locale, playbook, package, source archive, file-size, and folder-density checks are part of the release gate; browser-load remains an isolated-environment smoke check.
+- Release automation: manifest, import, locale, playbook, package, source archive, file-size, and folder-density checks are part of the automated release gate; browser-load remains a required isolated target-browser smoke check before publishing.
 
 Release gates:
 
@@ -26,10 +26,10 @@ Release gates:
 - `npm run verify:package`
 - `npm run verify:release`
 
-Optional isolated smoke check:
+Required isolated browser smoke check:
 
 - `npm run verify:browser-load`
 
-Run this only in an isolated browser environment where launching Chrome, Edge, or Chromium cannot close active browser windows or unsaved work.
+Run this only in an isolated browser environment where launching Chrome, Edge, or Chromium cannot close active browser windows or unsaved work. If that environment is not available, keep the release marked as not fully browser-verified rather than running it on an active workstation.
 
 The runtime extension archive intentionally excludes docs, tests, scripts, screenshots, promo images, store listing text, and source-only icon files. Those files remain available in the source archive for reviewers and future maintenance.
