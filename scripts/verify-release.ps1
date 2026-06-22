@@ -282,6 +282,7 @@ foreach ($entry in (($manifestScriptPaths + $webAccessibleResourcePaths) | Selec
 }
 
 $forbiddenExtensionPrefixes = @(
+  "research/",
   "docs/",
   "test/",
   "scripts/",

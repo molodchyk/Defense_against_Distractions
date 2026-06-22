@@ -32,4 +32,4 @@ Claims in README, privacy policy, store listing text, and release packages shoul
 - local Chrome extension storage for configuration, runtime state, and bounded diagnostics;
 - manifest permissions and broad content-script access are mapped in [Permission Audit](permission-audit.md);
 - open source under GPL-3.0-only with source at `https://github.com/molodchyk/Defense_against_Distractions`;
-- runtime package excludes docs, tests, scripts, screenshots, promo images, store listing text, and source-only icon files.
+- runtime package excludes docs, the repository research workspace, tests, scripts, screenshots, promo images, store listing text, and source-only icon files.

@@ -44,7 +44,7 @@ The release verifier checks:
 - Manifest permissions are present in the permission audit, privacy policy, and StorePilot privacy form.
 - Static extension HTML surfaces have a localization path for visible text and accessible labels.
 - The extension archive contains runtime files required by the manifest.
-- The extension archive excludes docs, tests, scripts, screenshots, promo images, store listing text, and source-only icon files.
+- The extension archive excludes docs, the repository research workspace, tests, scripts, screenshots, promo images, store listing text, and source-only icon files.
 - The `dist/` folder contains only current manifest-version package zips, with no stale zips or staging directories.
 - The source archive contains docs, tests, scripts, source files, store assets, README, license, about file, and changelog.
 - The source archive contains the store media review for screenshots and promotional images.
