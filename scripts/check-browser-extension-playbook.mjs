@@ -510,6 +510,7 @@ assertCondition(
 assertCondition(/Host access through content scripts/i.test(privacy), 'PRIVACY.md must explain host/content-script access.');
 assertCondition(/chrome\.storage\.sync/.test(privacy), 'PRIVACY.md must mention sync storage.');
 assertCondition(/chrome\.storage\.local/.test(privacy), 'PRIVACY.md must mention local storage.');
+assertCondition(/does not use `chrome\.storage\.session` or `chrome\.storage\.managed`/i.test(privacy), 'PRIVACY.md must state session and managed storage are not used.');
 assertCondition(/does not sell user data/i.test(privacy), 'PRIVACY.md must state user data is not sold.');
 assertCondition(/does not transfer user data to third parties/i.test(privacy), 'PRIVACY.md must state user data is not transferred to third parties.');
 assertCondition(/does not require a remote server/i.test(privacy), 'PRIVACY.md must state core behavior does not require a remote server.');

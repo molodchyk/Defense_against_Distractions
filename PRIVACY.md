@@ -10,7 +10,7 @@ The extension stores user configuration such as plans, plan entries, keywords, s
 
 ## Storage
 
-Configuration is stored using Chrome extension storage. Some settings use `chrome.storage.sync` so they can be available across the user's browser profile. Some local security, timer, and diagnostic state, such as password attempt state, encryption helper data, Pomodoro runtime and activity state, hostname-level usage aggregates, and intent-coherence trajectory summaries, uses `chrome.storage.local`.
+Configuration is stored using Chrome extension storage. Some settings use `chrome.storage.sync` so they can be available across the user's browser profile. Some local security, timer, and diagnostic state, such as password attempt state, encryption helper data, Pomodoro runtime and activity state, hostname-level usage aggregates, and intent-coherence trajectory summaries, uses `chrome.storage.local`. The extension does not use `chrome.storage.session` or `chrome.storage.managed`.
 
 ## Permissions
 
