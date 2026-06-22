@@ -18,6 +18,7 @@ import {
 import { getManifestAuditFailures } from './playbook/manifestAudit.mjs';
 import { getInstructionGuideFailures } from './playbook/instructionGuide.mjs';
 import { getIntentDiagnosticsLocalizationFailures, getUsageStatsLocalizationFailures } from './playbook/localization.mjs';
+import { getPlaybookComplianceFailures } from './playbook/playbookCompliance.mjs';
 import { getProductModelFailures } from './playbook/productModel.mjs';
 import { getReleaseDocumentationFailures } from './playbook/release/releaseDocs.mjs';
 import { getReleaseSafetyFailures } from './playbook/release/releaseSafety.mjs';
@@ -89,6 +90,7 @@ assertCondition(await exists('docs/release-notes.md'), 'Missing release notes do
 assertCondition(await exists('docs/release-checklist.md'), 'Missing release checklist document.');
 assertCondition(await exists('docs/store-media-review.md'), 'Missing store media review document.');
 assertCondition(await exists('docs/decision-records.md'), 'Missing decision records document.');
+assertCondition(await exists('docs/browser-extension-playbook-compliance.md'), 'Missing browser extension playbook compliance document.');
 assertCondition(await exists('docs/localization.md'), 'Missing localization workflow document.');
 assertCondition(await exists('docs/content-script-load-order.md'), 'Missing content-script load-order document.');
 assertCondition(await exists('scripts/check-static-localization.mjs'), 'Missing static localization verification script.');
@@ -117,6 +119,7 @@ const [
   releaseVerifier,
   storeMediaReview,
   decisionRecords,
+  playbookCompliance,
   codeStructure, protectionModel,
   localizationDoc,
   contentScriptLoadOrderDoc,
@@ -174,6 +177,7 @@ const [
   readText('scripts/verify-release.ps1'),
   readText('docs/store-media-review.md'),
   readText('docs/decision-records.md'),
+  readText('docs/browser-extension-playbook-compliance.md'),
   readText('docs/code-structure.md'), readText('docs/protection-model.md'),
   readText('docs/localization.md'),
   readText('docs/content-script-load-order.md'),
@@ -298,6 +302,7 @@ assertCondition(
     /docs\/code-structure\.md/,
     /docs\/content-script-load-order\.md/,
     /docs\/extension-modularization-playbook\.md/,
+    /docs\/browser-extension-playbook-compliance\.md/,
     new RegExp(repositoryUrl.replaceAll('/', '\\/')),
     /Buy Me a Coffee/i,
     /Patreon/i
@@ -515,6 +520,8 @@ assertCondition(
   ]),
   'Decision records document must index the durable local-first, plan-first, feature-first, StorePilot, intent, and UI action decisions.'
 );
+
+failures.push(...getPlaybookComplianceFailures({ playbookCompliance }));
 
 assertCondition(
   hasAll(codeStructure, [
