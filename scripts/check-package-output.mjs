@@ -124,6 +124,56 @@ const CSS_REMOTE_NETWORK_PATTERNS = [
     regex: /url\(\s*["']?https?:\/\//i
   }
 ];
+const TRACKING_TELEMETRY_PATTERNS = [
+  {
+    label: 'Google Analytics API',
+    regex: /\bgtag\s*\(/i
+  },
+  {
+    label: 'Google Tag Manager data layer',
+    regex: /\bdataLayer\s*\.\s*push\s*\(/i
+  },
+  {
+    label: 'Google Analytics or Tag Manager endpoint',
+    regex: /\b(?:google-analytics|googletagmanager)\.com\b/i
+  },
+  {
+    label: 'Mixpanel SDK usage',
+    regex: /\bmixpanel\s*\./i
+  },
+  {
+    label: 'PostHog SDK usage',
+    regex: /\bposthog\s*\./i
+  },
+  {
+    label: 'Amplitude SDK usage',
+    regex: /\bamplitude\s*\./i
+  },
+  {
+    label: 'Segment endpoint or SDK usage',
+    regex: /\b(?:segment\.io|analytics\.load\s*\(|analytics\.track\s*\()/i
+  },
+  {
+    label: 'Plausible SDK usage',
+    regex: /\bplausible\s*\(/i
+  },
+  {
+    label: 'Matomo SDK usage',
+    regex: /\b(?:_paq\s*\.\s*push\s*\(|Matomo\s*\.)/
+  },
+  {
+    label: 'Sentry SDK usage',
+    regex: /\b(?:Sentry\s*\.|@sentry\/|sentry\.io\b)/
+  },
+  {
+    label: 'Heap SDK usage',
+    regex: /\bheap\s*\.\s*(?:track|identify|load)\s*\(/i
+  },
+  {
+    label: 'Meta Pixel API',
+    regex: /\bfbq\s*\(/i
+  }
+];
 
 function parseArgs(argv) {
   const options = {
@@ -399,6 +449,12 @@ function scanRemoteNetworkAccess(relativePath, text) {
   return issues;
 }
 
+function scanTrackingTelemetryCode(relativePath, text) {
+  return TRACKING_TELEMETRY_PATTERNS
+    .filter((pattern) => pattern.regex.test(text))
+    .map((pattern) => `${relativePath}: ${pattern.label}`);
+}
+
 function getRelativeImportSpecifiers(source) {
   return [
     ...source.matchAll(STATIC_RELATIVE_IMPORT_PATTERN),
@@ -456,6 +512,10 @@ async function assertPackageFiles({ allowSourceMaps, files, issues, packageRoot 
 
     for (const issue of scanRemoteNetworkAccess(relativePath, text)) {
       issues.push(`Remote network access detected: ${issue}`);
+    }
+
+    for (const issue of scanTrackingTelemetryCode(relativePath, text)) {
+      issues.push(`Tracking or telemetry code detected: ${issue}`);
     }
 
     if (extension === '.js' || extension === '.mjs') {

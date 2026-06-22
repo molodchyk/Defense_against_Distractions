@@ -133,6 +133,36 @@ describe('package output verifier', () => {
     }
   });
 
+  it('rejects telemetry SDK signatures in package output', async () => {
+    const { packageRoot, projectRoot } = await createPackageFixture({
+      popupJs: 'Sentry.init({ dsn: "https://example.invalid" });\n'
+    });
+
+    try {
+      const result = runPackageCheck(projectRoot, packageRoot);
+
+      assert.equal(result.status, 1);
+      assert.match(result.stderr, /Tracking or telemetry code detected: popup\.js: Sentry SDK usage/);
+    } finally {
+      await rm(projectRoot, { force: true, recursive: true });
+    }
+  });
+
+  it('rejects tracking pixel APIs in package output', async () => {
+    const { packageRoot, projectRoot } = await createPackageFixture({
+      popupJs: 'gtag("event", "page_view");\n'
+    });
+
+    try {
+      const result = runPackageCheck(projectRoot, packageRoot);
+
+      assert.equal(result.status, 1);
+      assert.match(result.stderr, /Tracking or telemetry code detected: popup\.js: Google Analytics API/);
+    } finally {
+      await rm(projectRoot, { force: true, recursive: true });
+    }
+  });
+
   it('rejects remote stylesheet network access in package output', async () => {
     const { packageRoot, projectRoot } = await createPackageFixture({
       contentCss: '.pixel { background-image: url("https://analytics.example.com/pixel.gif"); }\n'
