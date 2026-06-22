@@ -4,7 +4,7 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { describe, it } from 'node:test';
-import { browserLoadTriggerPattern, staticPackageScriptNames, staticReleaseScriptPaths } from '../../scripts/playbook/releaseSafety.mjs';
+import { browserLoadTriggerPattern, staticPackageScriptNames, staticReleaseScriptPaths } from '../../scripts/playbook/release/releaseSafety.mjs';
 
 const SCRIPT_PATH = 'scripts/check-unpacked-extension-load.ps1';
 

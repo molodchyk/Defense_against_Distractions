@@ -10,7 +10,7 @@ Release focus:
 - Store-ready media: five 1280x800 screenshots, a 440x280 small promo, and a 1400x560 marquee promo verified by the package checks and documented in [Store Media Review](store-media-review.md).
 - StorePilot preparation: localized listing text, privacy form answers, category selection, additional fields, and permission justifications for the current manifest.
 - Privacy and package posture: local-first behavior, no analytics, no remote executable code, and no unexpected remote network access in the runtime package.
-- Release automation: manifest, import, locale, playbook, package, source archive, file-size, and folder-density checks are part of the automated release gate; browser-load remains a required isolated target-browser smoke check before publishing.
+- Release automation: unit tests, manifest, import, locale, playbook, package, source archive, file-size, and folder-density checks are part of the automated release gate; browser-load remains a required isolated target-browser smoke check before publishing.
 
 Release gates:
 

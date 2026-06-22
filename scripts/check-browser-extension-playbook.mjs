@@ -19,7 +19,8 @@ import { getManifestAuditFailures } from './playbook/manifestAudit.mjs';
 import { getInstructionGuideFailures } from './playbook/instructionGuide.mjs';
 import { getIntentDiagnosticsLocalizationFailures, getUsageStatsLocalizationFailures } from './playbook/localization.mjs';
 import { getProductModelFailures } from './playbook/productModel.mjs';
-import { getReleaseSafetyFailures } from './playbook/releaseSafety.mjs';
+import { getReleaseDocumentationFailures } from './playbook/release/releaseDocs.mjs';
+import { getReleaseSafetyFailures } from './playbook/release/releaseSafety.mjs';
 import { getStoreAutomationFailures } from './playbook/storeAutomation.mjs';
 import { verifyReviewedStoreMediaHashes } from './playbook/storeMediaReview.mjs';
 import { getFirstNonEmptyLine, getPngDimensionFailure, hasAll } from './playbook-utils.mjs';
@@ -498,25 +499,7 @@ assertCondition(
   'Storage ownership document must cover the modularization playbook storage fields.'
 );
 
-assertCondition(
-  hasAll(releaseNotes, [
-    /# Release Notes/,
-    /CHANGELOG\.md/,
-    new RegExp(`\\b${manifest.version.replaceAll('.', '\\.')}\\b`),
-    /npm run verify:release/,
-    /source archive/i,
-    /remote network access/i,
-    /screenshots/i,
-    /promo/i,
-    /Store Media Review/i,
-    /cannot close active browser windows or unsaved work/i
-  ]),
-  'Release notes document must cover the current version, changelog source, release gate, source archive, media, network posture, and isolated browser-load safety.'
-);
-assertCondition(/Run `npm run verify:browser-load` only in an isolated browser environment[\s\S]+Load the extension zip or unpacked project in an isolated Chromium-based browser\/profile/i.test(releaseChecklist), 'Release checklist must isolate browser-load and manual browser QA from active user sessions.');
-assertCondition(/localized store listings preserve the current plan, allowed-website, Pomodoro, intent-coherence, local-processing privacy-boundary, and browser-limitation wording/i.test(releaseChecklist), 'Release checklist must require localized store listings to stay aligned with the current product model and privacy boundary.');
-assertCondition(/blank states are intentional for empty plans, empty UI cleanup rules, empty usage stats, and empty intent diagnostics/i.test(releaseChecklist), 'Release checklist must require intentional blank-state review.');
-assertCondition(hasAll(releaseVerifier, [/check-manifest-references\.mjs/, /check-relative-imports\.mjs/, /check-browser-extension-playbook\.mjs/, /audit-file-sizes\.mjs/, /audit-folder-density\.mjs/, /check-locale-coverage\.mjs/, /check-static-localization\.mjs/, /check-package-output\.mjs/, /content-script-load-order\.md/, /manifestAudit\.mjs/, /"assets\/", "docs\/", "store\/", "test\/", "_locales\/", "scripts\/", "src\/"/]), 'Release verifier must run manifest, import, playbook, file-size, folder-density, locale, static-localization, package-output, and source-archive prefix gates.');
+failures.push(...getReleaseDocumentationFailures({ releaseNotes, releaseChecklist, releaseVerifier, manifestVersion: manifest.version }));
 failures.push(...await getReleaseSafetyFailures(rootDir, packageJson));
 
 assertCondition(

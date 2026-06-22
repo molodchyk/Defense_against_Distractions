@@ -202,6 +202,8 @@ Assert-Condition ($packageJson.license -eq "GPL-3.0-only") "package.json license
 
 Push-Location $projectRoot
 try {
+  node --test "test/**/*.test.js"
+  Assert-Condition ($LASTEXITCODE -eq 0) "Unit test suite failed"
   node scripts/check-manifest-references.mjs
   Assert-Condition ($LASTEXITCODE -eq 0) "Manifest reference verification failed"
   node scripts/check-relative-imports.mjs
@@ -373,7 +375,8 @@ $requiredSourceEntries = @(
   "scripts/package-extension.ps1",
   "scripts/playbook/constants.mjs",
   "scripts/playbook/manifestAudit.mjs",
-  "scripts/playbook/releaseSafety.mjs",
+  "scripts/playbook/release/releaseDocs.mjs",
+  "scripts/playbook/release/releaseSafety.mjs",
   "scripts/playbook/storeAutomation.mjs",
   "scripts/playbook/storeMediaReview.mjs",
   "scripts/playbook-utils.mjs",
