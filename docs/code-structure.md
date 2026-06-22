@@ -22,7 +22,7 @@ The detailed modularization target, dependency rules, file-size budgets, and mig
 
 `store/` contains Chrome Web Store material that should not ship in the runtime extension archive. `store/store-listing/` owns plain-text localized listing copy, `store/screenshots/` owns store screenshots, and `store/promo/` owns promotional images. Packaging and release verification keep these files in the source archive while excluding them from the extension ZIP.
 
-Project validation scripts live under `scripts/`. `scripts/check-browser-extension-playbook.mjs` owns repository-level playbook verification, while `scripts/playbook/` owns static verifier data shared by that check so the verifier can stay below the documented script-size budget.
+Project validation scripts live under `scripts/`. `scripts/check-browser-extension-playbook.mjs` owns repository-level playbook verification, while `scripts/playbook/` owns focused verifier support modules shared by that check so the verifier can stay below the documented script-size budget.
 
 The root `src/js` folder should stay empty of runtime entries and helper modules. Content-script feature modules still live under `src/js/content/` while the classic manifest-loaded entry is `src/app/content/index.js`.
 

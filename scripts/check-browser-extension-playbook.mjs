@@ -17,6 +17,7 @@ import {
   storeCategories,
   storeMediaAssetPaths
 } from './playbook/constants.mjs';
+import { verifyReviewedStoreMediaHashes } from './playbook/storeMediaReview.mjs';
 import { getFirstNonEmptyLine, getPngDimensionFailure, hasAll, parseKeyedBlock } from './playbook-utils.mjs';
 
 const rootDir = process.cwd();
@@ -450,6 +451,8 @@ for (const assetPath of storeMediaAssetPaths) {
 assertCondition(
   hasAll(storeMediaReview, [
     /# Store Media Review/,
+    /Reviewed Asset Hashes/,
+    /SHA-256/,
     /Chrome Web Store/i,
     /screenshots/i,
     /promo images/i,
@@ -462,6 +465,7 @@ assertCondition(
   ]),
   'Store media review must document screenshot and promo privacy boundaries.'
 );
+failures.push(...await verifyReviewedStoreMediaHashes(rootDir, storeMediaAssetPaths, storeMediaReview));
 
 assertCondition(/Host access through content scripts \(`<all_urls>`\)/i.test(privacy), 'PRIVACY.md must explain exact <all_urls> host/content-script access.');
 assertCondition(/chrome\.storage\.sync/.test(privacy), 'PRIVACY.md must mention sync storage.');
