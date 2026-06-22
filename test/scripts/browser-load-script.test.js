@@ -41,4 +41,14 @@ describe('unpacked extension browser-load smoke script', () => {
     assert.match(releaseReadiness, /automated gates are static repository and archive checks[\s\S]+must not invoke `npm run verify:browser-load`/i);
     assert.match(releaseReadiness, /`npm run verify:browser-load` is not an automated gate[\s\S]+isolated target-browser smoke check is required before publishing[\s\S]+not fully browser-verified/i);
   });
+
+  it('documents the explicit dist archive policy', () => {
+    const releaseReadiness = readFileSync('docs/release-readiness.md', 'utf8');
+
+    assert.match(releaseReadiness, /## Release Archive Policy/);
+    assert.match(releaseReadiness, /`dist\/` folder is disposable release output[\s\S]+`npm run package` resets it before packaging/i);
+    assert.match(releaseReadiness, /Defense_against_Distractions-vX\.Y\.Z-extension\.zip[\s\S]+Chrome Web Store upload package/i);
+    assert.match(releaseReadiness, /Defense_against_Distractions-vX\.Y\.Z-source\.zip[\s\S]+matching source archive/i);
+    assert.match(releaseReadiness, /No staging folders[\s\S]+stale version ZIPs/i);
+  });
 });

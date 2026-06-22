@@ -8,6 +8,17 @@ This document tracks what must be true before publishing the current update.
 - Browser-load status: not fully browser-verified until `npm run verify:browser-load` is run in an isolated Chromium-based browser/profile.
 - Do not run browser-load on an active workstation where launching Chrome, Edge, or Chromium could close active user windows or unsaved work.
 
+## Release Archive Policy
+
+The `dist/` folder is disposable release output. `npm run package` resets it before packaging.
+
+For this project, `dist/` must contain only these two current-version ZIP files:
+
+- `Defense_against_Distractions-vX.Y.Z-extension.zip`: the Chrome Web Store upload package.
+- `Defense_against_Distractions-vX.Y.Z-source.zip`: the matching source archive for reviewer or source-distribution needs.
+
+No staging folders, unpacked extension folders, stale version ZIPs, screenshots, promotional images, store listing text, or source-only icon files should remain in `dist/` after packaging.
+
 ## Automated Gates
 
 Run these from the project root:

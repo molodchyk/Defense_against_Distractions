@@ -31,6 +31,9 @@ export async function getReleaseSafetyFailures(rootDir, packageJson) {
   if (!/`npm run verify:browser-load` is not an automated gate[\s\S]+isolated target-browser smoke check is required before publishing[\s\S]+not fully browser-verified/i.test(releaseReadiness)) {
     failures.push('Release readiness must keep browser-load as a required isolated target-browser check before publishing.');
   }
+  if (!/## Release Archive Policy[\s\S]+`dist\/` folder is disposable release output[\s\S]+`npm run package` resets it before packaging[\s\S]+Defense_against_Distractions-vX\.Y\.Z-extension\.zip[\s\S]+Chrome Web Store upload package[\s\S]+Defense_against_Distractions-vX\.Y\.Z-source\.zip[\s\S]+matching source archive[\s\S]+No staging folders[\s\S]+stale version ZIPs/i.test(releaseReadiness)) {
+    failures.push('Release readiness must document the explicit dist archive policy for the current extension and source ZIP outputs.');
+  }
 
   failures.push(...getBrowserLoadTriggerFailures(
     staticPackageScriptNames.map((scriptName) => [`package.json scripts.${scriptName}`, packageJson.scripts?.[scriptName] || ''])
