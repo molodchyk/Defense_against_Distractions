@@ -242,6 +242,10 @@ foreach ($resourceGroup in $manifest.web_accessible_resources) {
 $extensionEntries = Get-ZipEntries -ZipPath $extensionZipPath
 $sourceEntries = Get-ZipEntries -ZipPath $sourceZipPath
 
+foreach ($iconPath in $expectedIconDimensions.Keys) {
+  Assert-SourceZipEntryMatchesProjectFile -EntryName $iconPath
+}
+
 $expectedZipNames = @(
   "$releaseName-extension.zip",
   "$releaseName-source.zip"
@@ -390,13 +394,19 @@ foreach ($localeDirectory in $localeDirectories) {
 foreach ($screenshotPath in Get-ChildItem -LiteralPath (Join-Path $projectRoot "store\screenshots") -Filter "*.png") {
   $relativeScreenshotPath = "store/screenshots/$($screenshotPath.Name)"
   Assert-ImageDimensions -RelativePath $relativeScreenshotPath -ExpectedWidth 1280 -ExpectedHeight 800
+  Assert-SourceZipEntryMatchesProjectFile -EntryName $relativeScreenshotPath
 }
 
 $screenshotCount = @(Get-ChildItem -LiteralPath (Join-Path $projectRoot "store\screenshots") -Filter "*.png").Count
 Assert-Condition ($screenshotCount -eq 5) "Store screenshots folder should contain exactly 5 PNG screenshots"
 
-Assert-ImageDimensions -RelativePath "store/promo/small-promo-440x280.png" -ExpectedWidth 440 -ExpectedHeight 280
-Assert-ImageDimensions -RelativePath "store/promo/marquee-promo-1400x560.png" -ExpectedWidth 1400 -ExpectedHeight 560
+foreach ($promoAsset in @(
+  @{ Path = "store/promo/small-promo-440x280.png"; Width = 440; Height = 280 },
+  @{ Path = "store/promo/marquee-promo-1400x560.png"; Width = 1400; Height = 560 }
+)) {
+  Assert-ImageDimensions -RelativePath $promoAsset.Path -ExpectedWidth $promoAsset.Width -ExpectedHeight $promoAsset.Height
+  Assert-SourceZipEntryMatchesProjectFile -EntryName $promoAsset.Path
+}
 
 $defaultLocale = $manifest.default_locale
 $defaultLocalePath = Join-Path $projectRoot "_locales\$defaultLocale\messages.json"
