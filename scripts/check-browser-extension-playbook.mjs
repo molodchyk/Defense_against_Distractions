@@ -11,14 +11,8 @@ const rootDir = process.cwd();
 const repositoryUrl = 'https://github.com/molodchyk/Defense_against_Distractions';
 const canonicalReadmeSupportBlock = '## Support\n\nIf this extension saves you time and you want to support its development:\n\n[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-support-FFDD00?logo=buymeacoffee&logoColor=000)](https://buymeacoffee.com/molodchyk)\n[![Patreon](https://img.shields.io/badge/Patreon-support-F96854?logo=patreon&logoColor=fff)](https://www.patreon.com/OMolodchyk)';
 const licenseId = 'GPL-3.0-only';
-const manifestPermissions = [
-  'storage',
-  'alarms',
-  'downloads',
-  'activeTab',
-  'idle',
-  'webNavigation'
-];
+const manifestPermissions = ['storage', 'alarms', 'downloads', 'activeTab', 'idle', 'webNavigation'];
+const allowedManifestKeys = new Set(['manifest_version', 'name', 'description', 'version', 'default_locale', 'permissions', 'action', 'options_page', 'background', 'content_scripts', 'web_accessible_resources', 'icons']);
 const privacyDataUsageKeys = [
   'data_usage.personally_identifiable_information',
   'data_usage.health_information',
@@ -254,6 +248,10 @@ const [
 ]);
 assertCondition(packageJson.version === manifest.version, 'package.json version must match manifest.json version.');
 assertCondition(packageJson.license === licenseId, `package.json license must be ${licenseId}.`);
+for (const key of Object.keys(manifest)) assertCondition(allowedManifestKeys.has(key), `manifest.json contains an unaudited top-level key: ${key}`);
+assertCondition(!('chrome_settings_overrides' in manifest), 'manifest.json must not change browser search, homepage, or startup settings.');
+assertCondition(!('optional_permissions' in manifest) && !('host_permissions' in manifest) && !('optional_host_permissions' in manifest), 'manifest.json must keep host access and permissions inside the audited required surfaces.');
+assertCondition(!('externally_connectable' in manifest) && !('oauth2' in manifest), 'manifest.json must not expose external messaging or OAuth surfaces without an audit.');
 assertCondition(
   new RegExp(`Version\\s+${manifest.version.replaceAll('.', '\\.')}:`).test(changelog),
   `CHANGELOG.md must include an entry for the current manifest version ${manifest.version}.`
@@ -364,7 +362,9 @@ assertCondition(
     /not requested/i,
     /`tabs`/,
     /`scripting`/,
-    /`webRequest`/
+    /`webRequest`/,
+    /chrome_settings_overrides/,
+    /externally_connectable/
   ]),
   'Permission audit must explain host access, removal triggers, and deliberately unrequested broad permissions.'
 );

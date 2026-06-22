@@ -64,6 +64,12 @@ This document records why each current manifest permission and broad content-scr
 - `notifications`: not requested. Pomodoro and protection state are shown in extension surfaces instead.
 - `cookies`, `history`, `identity`, `debugger`, `nativeMessaging`, and `offscreen`: not requested.
 
+## Manifest Surfaces Deliberately Not Used
+
+- `chrome_settings_overrides`: not used. DaD does not change browser search, homepage, startup pages, or new tab behavior.
+- `host_permissions`, `optional_permissions`, and `optional_host_permissions`: not used. Host access is the audited `content_scripts.matches` surface described above, not a second permission surface.
+- `externally_connectable` and `oauth2`: not used. DaD does not expose an external messaging API and does not sign users in through OAuth.
+
 ## Release Rule
 
 Any manifest permission addition, removal, or new broad host access must update this audit, `PRIVACY.md`, `docs/chrome-web-store-privacy-form.md`, reviewer notes if browser behavior changes, and the release verification checks before publishing.
