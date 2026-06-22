@@ -1,6 +1,9 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
+import { getMessage as getChromeMessage, getUILanguage } from '../../../platform/chrome/i18n.js';
+import { getExtensionUrl } from '../../../platform/chrome/runtime.js';
+
 const UI_LANGUAGE_STORAGE_KEY = 'uiLanguage';
 const DEFAULT_UI_LANGUAGE = 'system';
 const RTL_LANGUAGE_CODES = new Set(['ar', 'fa', 'he', 'ur']);
@@ -26,7 +29,7 @@ export function initBlockedPageLocalization({
   }
 
   function getSystemUiLanguage() {
-    const browserLanguage = globalThis.chrome?.i18n?.getUILanguage?.() || globalThis.navigator?.language || 'en';
+    const browserLanguage = getUILanguage() || globalThis.navigator?.language || 'en';
     const normalizedLanguage = normalizeUiLanguage(browserLanguage);
     return normalizedLanguage === DEFAULT_UI_LANGUAGE ? 'en' : normalizedLanguage;
   }
@@ -98,7 +101,7 @@ export function initBlockedPageLocalization({
     }
 
     try {
-      return globalThis.chrome.i18n.getMessage(messageKey, substitutions)
+      return getChromeMessage(messageKey, substitutions)
         || interpolatePositionalPlaceholders(fallback, substitutions);
     } catch (error) {
       return interpolatePositionalPlaceholders(fallback, substitutions);
@@ -183,7 +186,7 @@ function setText(elementId, text) {
 
 function getRuntimeUrl(path) {
   try {
-    return globalThis.chrome?.runtime?.getURL?.(path) || '';
+    return getExtensionUrl(path);
   } catch (error) {
     return '';
   }

@@ -1,24 +1,20 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
-export function isExtensionContextAvailable() {
-  try {
-    return Boolean(globalThis.chrome?.runtime?.id);
-  } catch (error) {
-    return false;
-  }
-}
+import { isExtensionContextAvailable } from '../../../platform/chrome/runtime.js';
+import { sendRuntimeMessage } from '../../../platform/chrome/runtimeMessages.js';
+import { addStorageChangeListener, getSync } from '../../../platform/chrome/storage.js';
+
+export { isExtensionContextAvailable };
 
 export function safeSyncStorageGet(keys, callback) {
   try {
-    if (!isExtensionContextAvailable() || !globalThis.chrome?.storage?.sync?.get) {
+    if (!isExtensionContextAvailable()) {
       callback(null);
       return false;
     }
 
-    globalThis.chrome.storage.sync.get(keys, result => {
-      callback(hasRuntimeLastError() ? null : result);
-    });
+    getSync(keys).then(result => callback(result)).catch(() => callback(null));
     return true;
   } catch (error) {
     callback(null);
@@ -28,14 +24,12 @@ export function safeSyncStorageGet(keys, callback) {
 
 export function safeRuntimeSendMessage(message, callback) {
   try {
-    if (!isExtensionContextAvailable() || !globalThis.chrome?.runtime?.sendMessage) {
+    if (!isExtensionContextAvailable()) {
       callback(null);
       return false;
     }
 
-    globalThis.chrome.runtime.sendMessage(message, response => {
-      callback(hasRuntimeLastError() ? null : response);
-    });
+    sendRuntimeMessage(message).then(response => callback(response)).catch(() => callback(null));
     return true;
   } catch (error) {
     callback(null);
@@ -45,21 +39,13 @@ export function safeRuntimeSendMessage(message, callback) {
 
 export function safeStorageOnChangedAddListener(listener) {
   try {
-    if (!isExtensionContextAvailable() || !globalThis.chrome?.storage?.onChanged?.addListener) {
+    if (!isExtensionContextAvailable()) {
       return false;
     }
 
-    globalThis.chrome.storage.onChanged.addListener(listener);
+    addStorageChangeListener(listener);
     return true;
   } catch (error) {
     return false;
-  }
-}
-
-function hasRuntimeLastError() {
-  try {
-    return Boolean(globalThis.chrome?.runtime?.lastError);
-  } catch (error) {
-    return true;
   }
 }

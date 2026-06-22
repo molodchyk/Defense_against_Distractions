@@ -5,6 +5,14 @@ export function getExtensionUrl(path = '') {
   return chrome.runtime.getURL(path);
 }
 
+export function isExtensionContextAvailable() {
+  try {
+    return Boolean(chrome.runtime?.id);
+  } catch (error) {
+    return false;
+  }
+}
+
 export function getManifest() {
   return chrome.runtime.getManifest();
 }

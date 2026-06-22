@@ -77,9 +77,7 @@ const storeMediaAssetPaths = [
   'store/promo/small-promo-440x280.png',
   'store/promo/marquee-promo-1400x560.png'
 ];
-
 const failures = [];
-
 async function exists(relativePath) {
   try {
     await access(path.join(rootDir, relativePath));
@@ -88,21 +86,17 @@ async function exists(relativePath) {
     return false;
   }
 }
-
 function assertCondition(condition, message) {
   if (!condition) {
     failures.push(message);
   }
 }
-
 async function readText(relativePath) {
   return readFile(path.join(rootDir, relativePath), 'utf8');
 }
-
 async function readJson(relativePath) {
   return JSON.parse(await readText(relativePath));
 }
-
 async function getLocaleDirectories() {
   const localeRoot = path.join(rootDir, '_locales');
   const entries = await readdir(localeRoot);
@@ -116,7 +110,6 @@ async function getLocaleDirectories() {
 
   return locales.sort((left, right) => left.localeCompare(right));
 }
-
 async function getDirectoryEntries(relativePath) {
   const absolutePath = path.join(rootDir, relativePath);
   const entries = await readdir(absolutePath, { withFileTypes: true });
@@ -127,12 +120,10 @@ async function getDirectoryEntries(relativePath) {
     name: entry.name
   }));
 }
-
 async function assertPngDimensions(relativePath, expectedWidth, expectedHeight) {
   const failure = await getPngDimensionFailure(rootDir, relativePath, expectedWidth, expectedHeight);
   if (failure) failures.push(failure);
 }
-
 for (const entry of requiredRootEntries) {
   assertCondition(await exists(entry), `Missing required playbook entry: ${entry}`);
 }
@@ -154,7 +145,7 @@ assertCondition(await exists('docs/store-media-review.md'), 'Missing store media
 assertCondition(await exists('docs/decision-records.md'), 'Missing decision records document.');
 assertCondition(await exists('scripts/check-static-localization.mjs'), 'Missing static localization verification script.');
 assertCondition(await exists('scripts/check-unpacked-extension-load.ps1'), 'Missing unpacked extension browser-load smoke script.');
-for (const platformWrapper of ['action', 'alarms', 'downloads', 'idle', 'navigation', 'runtime', 'runtimeMessages', 'tabs', 'windows']) {
+for (const platformWrapper of ['action', 'alarms', 'downloads', 'i18n', 'idle', 'navigation', 'runtime', 'runtimeMessages', 'tabs', 'windows']) {
   assertCondition(await exists(`src/platform/chrome/${platformWrapper}.js`), `Missing Chrome ${platformWrapper} platform wrapper.`);
 }
 const [
@@ -178,6 +169,7 @@ const [
   actionWrapper,
   alarmsWrapper,
   downloadsWrapper,
+  i18nWrapper,
   idleWrapper,
   navigationWrapper,
   runtimeWrapper,
@@ -199,6 +191,8 @@ const [
   popupChromeModule,
   popupDiagnosticsExportModule,
   elementPickerLauncherModule,
+  blockedPageChromeApiModule,
+  blockedPageLocalizationModule,
   storageTransferModule,
   usageStatsModule,
   intentDiagnosticsModule,
@@ -224,6 +218,7 @@ const [
   readText('src/platform/chrome/action.js'),
   readText('src/platform/chrome/alarms.js'),
   readText('src/platform/chrome/downloads.js'),
+  readText('src/platform/chrome/i18n.js'),
   readText('src/platform/chrome/idle.js'),
   readText('src/platform/chrome/navigation.js'),
   readText('src/platform/chrome/runtime.js'),
@@ -245,6 +240,8 @@ const [
   readText('src/js/popup/chrome.js'),
   readText('src/js/popup/diagnosticsExport.js'),
   readText('src/js/popup/elementPickerLauncher.js'),
+  readText('src/features/content-blocking/blocked-page/chromeApi.js'),
+  readText('src/features/content-blocking/blocked-page/localization.js'),
   readText('src/js/options/storageTransfer.js'),
   readText('src/js/options/usageStats.js'),
   readText('src/js/options/intentDiagnostics.js'),
@@ -375,6 +372,7 @@ assertCondition(/chrome\.idle/.test(idleWrapper) && /setDetectionInterval/.test(
 assertCondition(/platform\/chrome\/idle\.js/.test(pomodoroInitializerModule) && !/chrome\.idle/.test(pomodoroInitializerModule), 'Background Pomodoro initializer must use the idle platform wrapper instead of raw chrome.idle calls.');
 assertCondition(/chrome\.webNavigation\.onCommitted/.test(navigationWrapper) && /chrome\.webNavigation\.onHistoryStateUpdated/.test(navigationWrapper), 'Chrome navigation platform wrapper must own webNavigation committed and history-state listener registration.');
 assertCondition(/chrome\.downloads\.download/.test(downloadsWrapper) && /runtime\.lastError/.test(downloadsWrapper), 'Chrome downloads platform wrapper must own chrome.downloads.download and runtime.lastError handling.');
+assertCondition(/chrome\.i18n\?\.getMessage/.test(i18nWrapper) && /chrome\.i18n\?\.getUILanguage/.test(i18nWrapper), 'Chrome i18n platform wrapper must own localized message and UI language access.');
 assertCondition(/platform\/chrome\/downloads\.js/.test(storageTransferModule) && !/chrome\.downloads\.download/.test(storageTransferModule), 'Options storage transfer must use the downloads platform wrapper instead of raw chrome.downloads.download.');
 assertCondition(/chrome\.runtime\.onInstalled/.test(runtimeWrapper) && /chrome\.runtime\.onStartup/.test(runtimeWrapper) && /chrome\.runtime\.onMessage/.test(runtimeWrapper) && /chrome\.runtime\.getManifest/.test(runtimeWrapper) && /chrome\.runtime\.getURL/.test(runtimeWrapper) && /chrome\.runtime\.openOptionsPage/.test(runtimeWrapper), 'Chrome runtime platform wrapper must own lifecycle listeners, message listeners, manifest, extension URL, and options-page helpers.');
 assertCondition([appBackgroundModule, backgroundDefaultsModule, pomodoroInitializerModule, releaseNoticeModule, scheduleMonitorModule, intentMessagesModule, popupIndexModule, popupChromeModule, popupDiagnosticsExportModule].every(text => /platform\/chrome\/runtime\.js/.test(text) && !/chrome\.runtime\.(?:onInstalled|onStartup|onMessage|getManifest|getURL|openOptionsPage)/.test(text)), 'Migrated background and popup modules must use the runtime platform wrapper instead of raw chrome.runtime lifecycle/helpers.');
@@ -385,6 +383,8 @@ assertCondition(/platform\/chrome\/tabs\.js/.test(pomodoroNotificationsModule) &
 assertCondition(/chrome\.windows\.onFocusChanged/.test(windowsWrapper) && /chrome\.windows\.create/.test(windowsWrapper) && /WINDOW_ID_NONE/.test(windowsWrapper), 'Chrome windows platform wrapper must own focus-change listener registration, window creation, and no-focused-window id access.');
 assertCondition([appBackgroundModule, intentInitializerModule, pomodoroInitializerModule].every(text => /platform\/chrome\/(?:action|navigation|tabs|windows)\.js/.test(text) && !/chrome\.(?:action\.onClicked|tabs\.on(?:Activated|Created|Removed|Updated)|webNavigation|windows\.(?:onFocusChanged|WINDOW_ID_NONE))/.test(text)), 'Migrated background event modules must use platform wrappers instead of raw action/tab/navigation/window listener registration.');
 assertCondition(/platform\/chrome\/tabs\.js/.test(intentChromeApiModule) && /platform\/chrome\/windows\.js/.test(intentChromeApiModule) && /platform\/chrome\/runtime\.js/.test(intentChromeApiModule) && !/chrome\.(?:tabs|windows|runtime)|runtime\.lastError/.test(intentChromeApiModule), 'Background intent Chrome adapter must use platform wrappers instead of raw chrome tabs/windows/runtime callbacks.');
+assertCondition(/platform\/chrome\/storage\.js/.test(blockedPageChromeApiModule) && /platform\/chrome\/runtimeMessages\.js/.test(blockedPageChromeApiModule) && /platform\/chrome\/runtime\.js/.test(blockedPageChromeApiModule) && !/chrome\.(?:storage|runtime)|runtime\.lastError/.test(blockedPageChromeApiModule), 'Blocked-page Chrome facade must use platform wrappers instead of raw chrome storage/runtime callbacks.');
+assertCondition(/platform\/chrome\/i18n\.js/.test(blockedPageLocalizationModule) && /platform\/chrome\/runtime\.js/.test(blockedPageLocalizationModule) && !/chrome\.(?:i18n|runtime)/.test(blockedPageLocalizationModule), 'Blocked-page localization must use platform wrappers instead of raw chrome i18n/runtime helpers.');
 assertCondition(
   [usageStatsModule, intentDiagnosticsModule, planPomodoroEditorModule].every(text =>
     /platform\/chrome\/runtimeMessages\.js/.test(text) && !/chrome\.runtime\.sendMessage/.test(text)

@@ -9,6 +9,7 @@ import {
   addStartupListener,
   getExtensionUrl,
   getManifest,
+  isExtensionContextAvailable,
   openOptionsPage
 } from '../../../src/platform/chrome/runtime.js';
 
@@ -62,6 +63,14 @@ describe('Chrome runtime platform wrapper', () => {
     assert.deepEqual(getManifest(), { version: '1.6.1' });
     openOptionsPage();
     assert.equal(openedOptions, true);
+  });
+
+  it('reports whether the extension runtime context is available', () => {
+    globalThis.chrome = { runtime: { id: 'extension-id' } };
+    assert.equal(isExtensionContextAvailable(), true);
+
+    globalThis.chrome = { runtime: {} };
+    assert.equal(isExtensionContextAvailable(), false);
   });
 
   it('adds and removes installed, startup, and message listeners', () => {

@@ -7,7 +7,7 @@ This document records why each current manifest permission and broad content-scr
 ### `storage`
 
 - Feature owner: plans, settings, UI cleanup rules, Pomodoro runtime, usage summaries, intent diagnostics, export/import, and migration code.
-- API evidence: `src/platform/chrome/storage.js`, `src/js/content/state.js`, `src/features/content-blocking/blocked-page/chromeApi.js`.
+- API evidence: `src/platform/chrome/storage.js`, used by extension pages and background modules; `src/js/content/state.js` remains the classic content-script storage adapter.
 - Why retained: DaD must persist user configuration, protected schedules, local runtime state, and bounded diagnostics across Manifest V3 service-worker restarts.
 - Removal trigger: no realistic removal path while the extension has configurable rules, local diagnostics, or reset/export/import behavior.
 
