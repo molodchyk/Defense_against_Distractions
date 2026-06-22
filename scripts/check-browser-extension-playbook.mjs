@@ -607,13 +607,14 @@ for (const storageKeyFamily of storageKeyFamilies) {
   );
 }
 
+const resetMessages = [englishMessages.resetExtensionButton?.message, englishMessages.resetExtensionHint?.message, englishMessages.resetExtensionConfirm?.message, englishMessages.resetExtensionLockedError?.message].join('\n');
 assertCondition(
   /id="resetExtensionButton"/.test(optionsHtml)
     && /id="resetExtensionHint"/.test(optionsHtml)
-    && englishMessages.resetExtensionButton?.message
-    && englishMessages.resetExtensionConfirm?.message
-    && englishMessages.resetExtensionLockedError?.message,
-  'Options UI must expose a localized reset extension data control.'
+    && /id="resetExtensionStatus"[^>]*aria-live="polite"/.test(optionsHtml)
+    && /confirm\(getMessage\('resetExtensionConfirm'\)\)/.test(storageTransferModule)
+    && hasAll(resetMessages, [/Reset extension data/i, /Reset all/i, /Export first/i, /cannot be undone/i, /active protected schedule/i]),
+  'Options UI must expose an explicit localized reset path with confirmation, backup warning, irreversible warning, and protected-schedule lockout.'
 );
 
 assertCondition(
