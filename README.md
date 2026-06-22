@@ -91,7 +91,7 @@ Architecture and release notes live in `docs/`. The current future-facing produc
 
 ## Privacy
 
-Defense Against Distractions is local-first. It stores configuration and bounded diagnostics in Chrome extension storage, does not use analytics, ads, tracking pixels, telemetry, or remote executable code, and does not require a server for core blocking behavior. See [PRIVACY.md](PRIVACY.md).
+Defense Against Distractions is local-first. It stores configuration and bounded diagnostics in Chrome extension storage, does not use analytics, ads, tracking pixels, telemetry, remote executable code, or remote network requests, and does not require a server for core blocking behavior. See [PRIVACY.md](PRIVACY.md).
 
 ## Contributing
 

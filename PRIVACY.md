@@ -36,6 +36,8 @@ Defense Against Distractions does not use user data for creditworthiness, lendin
 
 Defense Against Distractions does not use remote JavaScript or WebAssembly code.
 
+Defense Against Distractions does not make remote network requests from the runtime extension package.
+
 Defense Against Distractions does not require a remote server to perform its core blocking behavior.
 
 Defense Against Distractions does not use analytics, ads, tracking pixels, or telemetry.

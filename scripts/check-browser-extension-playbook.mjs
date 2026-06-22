@@ -304,6 +304,7 @@ assertCondition(
     /intent coherence/i,
     /UI cleanup/i,
     /extension-owned overlay/i,
+    /remote network requests/i,
     /assets\/icons/,
     /store\/store-listing/,
     /docs\/permission-audit\.md/,
@@ -505,6 +506,7 @@ assertCondition(/chrome\.storage\.local/.test(privacy), 'PRIVACY.md must mention
 assertCondition(/does not use `chrome\.storage\.session` or `chrome\.storage\.managed`/i.test(privacy), 'PRIVACY.md must state session and managed storage are not used.');
 assertCondition(/does not sell user data/i.test(privacy), 'PRIVACY.md must state user data is not sold.');
 assertCondition(/does not transfer user data to third parties/i.test(privacy), 'PRIVACY.md must state user data is not transferred to third parties.');
+assertCondition(/does not make remote network requests from the runtime extension package/i.test(privacy), 'PRIVACY.md must state whether the runtime extension package makes remote network requests.');
 assertCondition(/does not require a remote server/i.test(privacy), 'PRIVACY.md must state core behavior does not require a remote server.');
 assertCondition(/does not use remote JavaScript or WebAssembly/i.test(privacy), 'PRIVACY.md must state remote executable code is not used.');
 assertCondition(/does not use analytics, ads, tracking pixels, or telemetry/i.test(privacy), 'PRIVACY.md must state analytics, ads, tracking pixels, and telemetry are not used.');
