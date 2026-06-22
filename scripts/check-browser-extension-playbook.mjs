@@ -611,6 +611,21 @@ assertCondition(
 );
 
 const locales = await getLocaleDirectories();
+const localeSet = new Set(locales);
+const storeListingEntries = await getDirectoryEntries('store/store-listing');
+const storeListingTextLocales = storeListingEntries
+  .filter((entry) => entry.isFile && entry.name.endsWith('.txt'))
+  .map((entry) => entry.name.slice(0, -'.txt'.length))
+  .sort((left, right) => left.localeCompare(right));
+const unexpectedStoreListingEntries = storeListingEntries
+  .filter((entry) => !entry.isFile || !entry.name.endsWith('.txt'))
+  .map((entry) => entry.name);
+
+assertCondition(unexpectedStoreListingEntries.length === 0, `Store listing folder must contain only direct .txt locale files: ${unexpectedStoreListingEntries.join(', ')}.`);
+assertCondition(storeListingTextLocales.length === locales.length, 'Store listing locale count must exactly match _locales.');
+for (const listingLocale of storeListingTextLocales) {
+  assertCondition(localeSet.has(listingLocale), `Store listing file has no matching _locales directory: ${listingLocale}.txt`);
+}
 for (const locale of locales) {
   const listingPath = `store/store-listing/${locale}.txt`;
   assertCondition(await exists(listingPath), `Missing store listing for locale: ${locale}`);
