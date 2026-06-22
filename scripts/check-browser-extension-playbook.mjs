@@ -17,11 +17,11 @@ import {
   storeCategories,
   storeMediaAssetPaths
 } from './playbook/constants.mjs';
+import { getReleaseSafetyFailures } from './playbook/releaseSafety.mjs';
 import { verifyReviewedStoreMediaHashes } from './playbook/storeMediaReview.mjs';
 import { getDuplicateKeyedBlockFields, getFirstNonEmptyLine, getPngDimensionFailure, hasAll, parseKeyedBlock } from './playbook-utils.mjs';
 
-const rootDir = process.cwd();
-const failures = [];
+const rootDir = process.cwd(), failures = [];
 async function exists(relativePath) {
   try {
     await access(path.join(rootDir, relativePath));
@@ -71,13 +71,11 @@ async function assertPngDimensions(relativePath, expectedWidth, expectedHeight) 
 for (const entry of requiredRootEntries) {
   assertCondition(await exists(entry), `Missing required playbook entry: ${entry}`);
 }
-
 assertCondition(await exists('store/store-listing'), 'Missing store listing source folder.');
 assertCondition(await exists('assets/icons'), 'Missing packaged icon asset folder.');
 assertCondition(await exists('store/promo'), 'Missing Chrome Web Store promotional image folder.');
 assertCondition(await exists('store/screenshots'), 'Missing Chrome Web Store screenshot folder.');
 assertCondition(!(await exists('LICENSE.txt')), 'Use standard LICENSE filename, not LICENSE.txt.');
-
 assertCondition(await exists('docs/reviewer-notes.md'), 'Missing reviewer notes document.');
 assertCondition(await exists('docs/chrome-web-store-privacy-form.md'), 'Missing StorePilot privacy form document.');
 assertCondition(await exists('docs/chrome-web-store-additional-fields.md'), 'Missing StorePilot additional-fields document.');
@@ -520,6 +518,7 @@ assertCondition(
 assertCondition(/Run `npm run verify:browser-load` only in an isolated browser environment[\s\S]+Load the extension zip or unpacked project in an isolated Chromium-based browser\/profile/i.test(releaseChecklist), 'Release checklist must isolate browser-load and manual browser QA from active user sessions.');
 assertCondition(/localized store listings preserve the current plan, allowed-website, Pomodoro, intent-coherence, and browser-limitation wording/i.test(releaseChecklist), 'Release checklist must require localized store listings to stay aligned with the current product model.');
 assertCondition(hasAll(releaseVerifier, [/check-manifest-references\.mjs/, /check-relative-imports\.mjs/, /check-browser-extension-playbook\.mjs/, /check-locale-coverage\.mjs/, /check-static-localization\.mjs/, /check-package-output\.mjs/, /"assets\/", "docs\/", "store\/", "test\/", "_locales\/", "scripts\/", "src\/"/]), 'Release verifier must run manifest, import, playbook, locale, static-localization, package-output, and source-archive prefix gates.');
+failures.push(...await getReleaseSafetyFailures(rootDir, packageJson));
 
 assertCondition(
   hasAll(decisionRecords, [

@@ -18,6 +18,8 @@ Run these from the project root:
 - `npm run verify:package`
 - `npm run verify:release`
 
+These automated gates are static repository and archive checks. They must not invoke `npm run verify:browser-load`, `scripts/check-unpacked-extension-load.ps1`, or any browser-launch smoke test.
+
 Reviewer-facing browser limitations are documented in [Reviewer Notes](reviewer-notes.md). Recheck that file before publishing if file URL, incognito, permissions, package contents, or browser-controlled behavior changes.
 
 Manifest permission rationale and broad host-access boundaries are documented in [Permission Audit](permission-audit.md). Recheck that file before publishing if any permission, content-script match, or web-accessible resource match changes.

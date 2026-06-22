@@ -4,6 +4,7 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { describe, it } from 'node:test';
+import { browserLoadTriggerPattern, staticPackageScriptNames, staticReleaseScriptPaths } from '../../scripts/playbook/releaseSafety.mjs';
 
 const SCRIPT_PATH = 'scripts/check-unpacked-extension-load.ps1';
 
@@ -19,5 +20,18 @@ describe('unpacked extension browser-load smoke script', () => {
     assert.match(script, /Refusing to remove a temporary profile outside the system temp directory/);
     assert.match(script, /\$profileLeaf -like "dad-unpacked-load-\*"/);
     assert.doesNotMatch(script, /\btaskkill\b/i);
+  });
+
+  it('keeps browser-load out of package and release gates', () => {
+    const packageJson = JSON.parse(readFileSync('package.json', 'utf8'));
+
+    for (const scriptName of staticPackageScriptNames) {
+      assert.doesNotMatch(packageJson.scripts[scriptName], browserLoadTriggerPattern, `${scriptName} must stay static`);
+    }
+
+    for (const scriptPath of staticReleaseScriptPaths) {
+      const script = readFileSync(scriptPath, 'utf8');
+      assert.doesNotMatch(script, browserLoadTriggerPattern, `${scriptPath} must not launch browser-load`);
+    }
   });
 });
