@@ -623,6 +623,7 @@ assertCondition(
     /incognito.+explicitly allow/is,
     /browser-controlled behavior/i,
     /Manifest V3 service workers can sleep and restart/i,
+    /cannot guarantee behavior that Chrome itself withholds/i,
     /runtime package excludes docs, tests, scripts, screenshots, promo images, store listing text, and source-only icon files/i
   ]),
   'Reviewer notes must cover file URLs, incognito, browser-controlled behavior, MV3 restart behavior, and package contents.'
