@@ -41,7 +41,7 @@
   }
 
   function getSystemLanguage() {
-    const browserLanguage = global.chrome?.i18n?.getUILanguage?.() || global.navigator?.language || 'en';
+    const browserLanguage = global.DAD.ChromePlatform?.getUiLanguage?.() || global.navigator?.language || 'en';
     const normalizedLanguage = normalizeLanguage(browserLanguage);
     return normalizedLanguage === DEFAULT_UI_LANGUAGE ? 'en' : normalizedLanguage;
   }
@@ -80,7 +80,8 @@
     }
 
     try {
-      const response = await fetch(global.chrome.runtime.getURL(`_locales/${normalizedLanguage}/messages.json`));
+      const localeUrl = global.DAD.ChromePlatform.getExtensionUrl(`_locales/${normalizedLanguage}/messages.json`);
+      const response = await fetch(localeUrl);
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}`);
       }
@@ -153,7 +154,7 @@
     }
 
     try {
-      const chromeMessage = global.chrome?.i18n?.getMessage?.(key, substitutions);
+      const chromeMessage = global.DAD.ChromePlatform?.getI18nMessage?.(key, substitutions);
       if (chromeMessage) {
         return chromeMessage;
       }

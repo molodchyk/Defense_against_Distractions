@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
+import { getMessage, getUILanguage } from '../../../platform/chrome/i18n.js';
+import { getExtensionUrl } from '../../../platform/chrome/runtime.js';
 import { getSync, setSync } from '../../../platform/chrome/storage.js';
 
 export const UI_LANGUAGE_STORAGE_KEY = 'uiLanguage';
@@ -190,7 +192,7 @@ export function getUiMessage(key, fallback = '', substitutions) {
     return formatLocalizedMessage(customMessage, substitutions);
   }
 
-  const chromeMessage = globalThis.chrome?.i18n?.getMessage?.(key, substitutions);
+  const chromeMessage = getMessage(key, substitutions);
   if (chromeMessage) {
     return chromeMessage;
   }
@@ -199,7 +201,7 @@ export function getUiMessage(key, fallback = '', substitutions) {
 }
 
 function getSystemUiLanguage() {
-  const browserLanguage = globalThis.chrome?.i18n?.getUILanguage?.() || globalThis.navigator?.language || 'en';
+  const browserLanguage = getUILanguage() || globalThis.navigator?.language || 'en';
   return normalizeUiLanguage(browserLanguage) === DEFAULT_UI_LANGUAGE
     ? 'en'
     : normalizeUiLanguage(browserLanguage);
@@ -216,9 +218,7 @@ async function loadLocaleMessages(localeCode) {
   }
 
   try {
-    const localeUrl = globalThis.chrome?.runtime?.getURL
-      ? globalThis.chrome.runtime.getURL(`_locales/${normalizedLocale}/messages.json`)
-      : `../../_locales/${normalizedLocale}/messages.json`;
+    const localeUrl = getExtensionUrl(`_locales/${normalizedLocale}/messages.json`);
     const response = await fetch(localeUrl);
     if (!response.ok) {
       throw new Error(`HTTP ${response.status}`);

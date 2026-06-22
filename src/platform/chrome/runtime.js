@@ -2,7 +2,11 @@
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
 export function getExtensionUrl(path = '') {
-  return chrome.runtime.getURL(path);
+  try {
+    return chrome.runtime?.getURL?.(path) || path;
+  } catch (error) {
+    return path;
+  }
 }
 
 export function isExtensionContextAvailable() {

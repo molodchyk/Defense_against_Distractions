@@ -73,6 +73,12 @@ describe('Chrome runtime platform wrapper', () => {
     assert.equal(isExtensionContextAvailable(), false);
   });
 
+  it('falls back to the original path when runtime URL access is unavailable', () => {
+    globalThis.chrome = {};
+
+    assert.equal(getExtensionUrl('_locales/de/messages.json'), '_locales/de/messages.json');
+  });
+
   it('adds and removes installed, startup, and message listeners', () => {
     const installed = createEvent();
     const startup = createEvent();

@@ -70,7 +70,7 @@
     };
   }
 
-  chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  global.DAD.ChromePlatform.addRuntimeMessageListener((message, sender, sendResponse) => {
     if (message.action === SITE_CHECK_MESSAGE) {
       performSiteCheck();
       sendResponse({ status: 'Site check performed' });

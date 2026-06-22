@@ -9,6 +9,14 @@ export function addStorageChangeListener(listener) {
   };
 }
 
+export function getSyncQuotaBytes(fallback = 0) {
+  try {
+    return chrome.storage.sync.QUOTA_BYTES || fallback;
+  } catch (error) {
+    return fallback;
+  }
+}
+
 export function getSync(keys) {
   return new Promise((resolve, reject) => {
     chrome.storage.sync.get(keys, result => {

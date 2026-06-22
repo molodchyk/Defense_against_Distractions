@@ -12,15 +12,6 @@ const CONTINUE_MESSAGE_PATH = 'src/js/content/intent/continueMessage.js';
 function loadContinueMessage() {
   const listeners = [];
   const window = {
-    chrome: {
-      runtime: {
-        onMessage: {
-          addListener(listener) {
-            listeners.push(listener);
-          }
-        }
-      }
-    },
     clearTimeout,
     Date,
     document: {
@@ -29,6 +20,12 @@ function loadContinueMessage() {
       }
     },
     DAD: {
+      ChromePlatform: {
+        addRuntimeMessageListener(listener) {
+          listeners.push(listener);
+          return true;
+        }
+      },
       IntentIntervention: {
         effects: {},
         media: {}

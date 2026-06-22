@@ -5,192 +5,39 @@
   global.DAD = global.DAD || {};
 
   global.DAD.isExtensionContextAvailable = function() {
-    try {
-      return Boolean(global.chrome?.runtime?.id);
-    } catch (error) {
-      return false;
-    }
+    return global.DAD.ChromePlatform?.isExtensionContextAvailable?.() || false;
   };
 
   global.DAD.safeRuntimeSendMessage = function(message, callback = null) {
-    try {
-      if (!global.DAD.isExtensionContextAvailable() || !global.chrome?.runtime?.sendMessage) {
-        if (callback) callback(null);
-        return false;
-      }
-
-      global.chrome.runtime.sendMessage(message, response => {
-        let hasLastError = false;
-        try {
-          hasLastError = Boolean(global.chrome?.runtime?.lastError);
-        } catch (error) {
-          hasLastError = true;
-        }
-
-        if (callback) callback(hasLastError ? null : response);
-      });
-      return true;
-    } catch (error) {
-      if (callback) callback(null);
-      return false;
-    }
+    return global.DAD.ChromePlatform?.sendRuntimeMessage?.(message, callback) || false;
   };
 
   global.DAD.safeSyncStorageGet = function(keys, callback) {
-    try {
-      if (!global.DAD.isExtensionContextAvailable() || !global.chrome?.storage?.sync?.get) {
-        callback(null);
-        return false;
-      }
-
-      global.chrome.storage.sync.get(keys, result => {
-        let hasLastError = false;
-        try {
-          hasLastError = Boolean(global.chrome?.runtime?.lastError);
-        } catch (error) {
-          hasLastError = true;
-        }
-
-        callback(hasLastError ? null : result);
-      });
-      return true;
-    } catch (error) {
-      callback(null);
-      return false;
-    }
+    return global.DAD.ChromePlatform?.getSync?.(keys, callback) || false;
   };
 
   global.DAD.safeSyncStorageSet = function(items, callback = null) {
-    try {
-      if (!global.DAD.isExtensionContextAvailable() || !global.chrome?.storage?.sync?.set) {
-        if (callback) callback(false);
-        return false;
-      }
-
-      global.chrome.storage.sync.set(items, () => {
-        let hasLastError = false;
-        try {
-          hasLastError = Boolean(global.chrome?.runtime?.lastError);
-        } catch (error) {
-          hasLastError = true;
-        }
-
-        if (callback) callback(!hasLastError);
-      });
-      return true;
-    } catch (error) {
-      if (callback) callback(false);
-      return false;
-    }
+    return global.DAD.ChromePlatform?.setSync?.(items, callback) || false;
   };
 
   global.DAD.safeSyncStorageRemove = function(keys, callback = null) {
-    try {
-      if (!global.DAD.isExtensionContextAvailable() || !global.chrome?.storage?.sync?.remove) {
-        if (callback) callback(false);
-        return false;
-      }
-
-      global.chrome.storage.sync.remove(keys, () => {
-        let hasLastError = false;
-        try {
-          hasLastError = Boolean(global.chrome?.runtime?.lastError);
-        } catch (error) {
-          hasLastError = true;
-        }
-
-        if (callback) callback(!hasLastError);
-      });
-      return true;
-    } catch (error) {
-      if (callback) callback(false);
-      return false;
-    }
+    return global.DAD.ChromePlatform?.removeSync?.(keys, callback) || false;
   };
 
   global.DAD.safeSyncStorageGetBytesInUse = function(keys, callback) {
-    try {
-      if (!global.DAD.isExtensionContextAvailable() || !global.chrome?.storage?.sync?.getBytesInUse) {
-        callback(null);
-        return false;
-      }
-
-      global.chrome.storage.sync.getBytesInUse(keys, bytesInUse => {
-        let hasLastError = false;
-        try {
-          hasLastError = Boolean(global.chrome?.runtime?.lastError);
-        } catch (error) {
-          hasLastError = true;
-        }
-
-        callback(hasLastError ? null : bytesInUse);
-      });
-      return true;
-    } catch (error) {
-      callback(null);
-      return false;
-    }
+    return global.DAD.ChromePlatform?.getBytesInUseSync?.(keys, callback) || false;
   };
 
   global.DAD.safeLocalStorageGet = function(keys, callback) {
-    try {
-      if (!global.DAD.isExtensionContextAvailable() || !global.chrome?.storage?.local?.get) {
-        callback(null);
-        return false;
-      }
-
-      global.chrome.storage.local.get(keys, result => {
-        let hasLastError = false;
-        try {
-          hasLastError = Boolean(global.chrome?.runtime?.lastError);
-        } catch (error) {
-          hasLastError = true;
-        }
-
-        callback(hasLastError ? null : result);
-      });
-      return true;
-    } catch (error) {
-      callback(null);
-      return false;
-    }
+    return global.DAD.ChromePlatform?.getLocal?.(keys, callback) || false;
   };
 
   global.DAD.safeLocalStorageSet = function(items, callback = null) {
-    try {
-      if (!global.DAD.isExtensionContextAvailable() || !global.chrome?.storage?.local?.set) {
-        if (callback) callback(false);
-        return false;
-      }
-
-      global.chrome.storage.local.set(items, () => {
-        let hasLastError = false;
-        try {
-          hasLastError = Boolean(global.chrome?.runtime?.lastError);
-        } catch (error) {
-          hasLastError = true;
-        }
-
-        if (callback) callback(!hasLastError);
-      });
-      return true;
-    } catch (error) {
-      if (callback) callback(false);
-      return false;
-    }
+    return global.DAD.ChromePlatform?.setLocal?.(items, callback) || false;
   };
 
   global.DAD.safeStorageOnChangedAddListener = function(listener) {
-    try {
-      if (!global.DAD.isExtensionContextAvailable() || !global.chrome?.storage?.onChanged?.addListener) {
-        return false;
-      }
-
-      global.chrome.storage.onChanged.addListener(listener);
-      return true;
-    } catch (error) {
-      return false;
-    }
+    return global.DAD.ChromePlatform?.addStorageChangeListener?.(listener) || false;
   };
 
   global.DAD.initializePageState = function() {

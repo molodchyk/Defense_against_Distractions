@@ -3,6 +3,7 @@
 
 import {
   getBytesInUseSync,
+  getSyncQuotaBytes,
   getSync,
   removeSync,
   setSync
@@ -57,7 +58,7 @@ function estimateSyncItemBytes(items) {
 }
 
 async function ensureElementRuleStorageBudget(items, replacingKeys) {
-  const quotaBytes = chrome.storage.sync.QUOTA_BYTES || SYNC_QUOTA_BYTES_FALLBACK;
+  const quotaBytes = getSyncQuotaBytes(SYNC_QUOTA_BYTES_FALLBACK);
   const protectedLimit = quotaBytes - PROTECTED_SYNC_RESERVE_BYTES;
   const [totalBytes, replacingBytes] = await Promise.all([
     getBytesInUseSync(null),
@@ -176,7 +177,7 @@ export async function getElementRuleStorageUsage(rules) {
   ]);
 
   return {
-    quotaBytes: chrome.storage.sync.QUOTA_BYTES || SYNC_QUOTA_BYTES_FALLBACK,
+    quotaBytes: getSyncQuotaBytes(SYNC_QUOTA_BYTES_FALLBACK),
     ruleBytes,
     totalBytes
   };

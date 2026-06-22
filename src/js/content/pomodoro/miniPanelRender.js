@@ -12,11 +12,7 @@
       return uiMessage;
     }
 
-    try {
-      return global.chrome?.i18n?.getMessage?.(key, substitutions) || fallback;
-    } catch (error) {
-      return fallback;
-    }
+    return global.DAD.ChromePlatform?.getI18nMessage?.(key, substitutions) || fallback;
   }
 
   function formatDuration(milliseconds) {

@@ -10,6 +10,7 @@ import {
   initializeUiLanguage,
   setUiLanguagePreference
 } from '../shared/ui/uiLanguage.js';
+import { addStorageChangeListener } from '../../platform/chrome/storage.js';
 
 export function initializeUiLanguageControl(onLanguageChanged) {
   const languageSelect = document.getElementById('uiLanguageSelect');
@@ -36,7 +37,7 @@ export function initializeUiLanguageControl(onLanguageChanged) {
     }
   });
 
-  globalThis.chrome?.storage?.onChanged?.addListener(async (changes, areaName) => {
+  addStorageChangeListener(async (changes, areaName) => {
     if (areaName !== 'sync' || !changes[UI_LANGUAGE_STORAGE_KEY]) {
       return;
     }

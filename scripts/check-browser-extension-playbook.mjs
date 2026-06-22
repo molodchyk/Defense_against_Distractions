@@ -145,7 +145,7 @@ assertCondition(await exists('docs/store-media-review.md'), 'Missing store media
 assertCondition(await exists('docs/decision-records.md'), 'Missing decision records document.');
 assertCondition(await exists('scripts/check-static-localization.mjs'), 'Missing static localization verification script.');
 assertCondition(await exists('scripts/check-unpacked-extension-load.ps1'), 'Missing unpacked extension browser-load smoke script.');
-for (const platformWrapper of ['action', 'alarms', 'downloads', 'i18n', 'idle', 'navigation', 'runtime', 'runtimeMessages', 'tabs', 'windows']) {
+for (const platformWrapper of ['action', 'alarms', 'contentBridge', 'downloads', 'i18n', 'idle', 'navigation', 'runtime', 'runtimeMessages', 'tabs', 'windows']) {
   assertCondition(await exists(`src/platform/chrome/${platformWrapper}.js`), `Missing Chrome ${platformWrapper} platform wrapper.`);
 }
 const [
@@ -378,7 +378,7 @@ assertCondition(/chrome\.webNavigation\.onCommitted/.test(navigationWrapper) && 
 assertCondition(/chrome\.downloads\.download/.test(downloadsWrapper) && /runtime\.lastError/.test(downloadsWrapper), 'Chrome downloads platform wrapper must own chrome.downloads.download and runtime.lastError handling.');
 assertCondition(/chrome\.i18n\?\.getMessage/.test(i18nWrapper) && /chrome\.i18n\?\.getUILanguage/.test(i18nWrapper), 'Chrome i18n platform wrapper must own localized message and UI language access.');
 assertCondition(/platform\/chrome\/downloads\.js/.test(storageTransferModule) && !/chrome\.downloads\.download/.test(storageTransferModule), 'Options storage transfer must use the downloads platform wrapper instead of raw chrome.downloads.download.');
-assertCondition(/chrome\.runtime\.onInstalled/.test(runtimeWrapper) && /chrome\.runtime\.onStartup/.test(runtimeWrapper) && /chrome\.runtime\.onMessage/.test(runtimeWrapper) && /chrome\.runtime\.getManifest/.test(runtimeWrapper) && /chrome\.runtime\.getURL/.test(runtimeWrapper) && /chrome\.runtime\.openOptionsPage/.test(runtimeWrapper), 'Chrome runtime platform wrapper must own lifecycle listeners, message listeners, manifest, extension URL, and options-page helpers.');
+assertCondition(/chrome\.runtime\.onInstalled/.test(runtimeWrapper) && /chrome\.runtime\.onStartup/.test(runtimeWrapper) && /chrome\.runtime\.onMessage/.test(runtimeWrapper) && /chrome\.runtime\.getManifest/.test(runtimeWrapper) && /runtime.*getURL/.test(runtimeWrapper) && /chrome\.runtime\.openOptionsPage/.test(runtimeWrapper), 'Chrome runtime platform wrapper must own lifecycle listeners, message listeners, manifest, extension URL, and options-page helpers.');
 assertCondition([appBackgroundModule, backgroundDefaultsModule, pomodoroInitializerModule, releaseNoticeModule, scheduleMonitorModule, intentMessagesModule, popupIndexModule, popupChromeModule, popupDiagnosticsExportModule].every(text => /platform\/chrome\/runtime\.js/.test(text) && !/chrome\.runtime\.(?:onInstalled|onStartup|onMessage|getManifest|getURL|openOptionsPage)/.test(text)), 'Migrated background and popup modules must use the runtime platform wrapper instead of raw chrome.runtime lifecycle/helpers.');
 assertCondition(/chrome\.runtime\.sendMessage/.test(runtimeMessagesWrapper) && /runtime\.lastError/.test(runtimeMessagesWrapper), 'Chrome runtime-message platform wrapper must own chrome.runtime.sendMessage and runtime.lastError handling.');
 assertCondition(/chrome\.tabs\.query/.test(tabsWrapper) && /chrome\.tabs\.get/.test(tabsWrapper) && /chrome\.tabs\.create/.test(tabsWrapper) && /chrome\.tabs\.sendMessage/.test(tabsWrapper) && /chrome\.tabs\.update/.test(tabsWrapper) && /chrome\.tabs\.remove/.test(tabsWrapper) && /chrome\.tabs\.move/.test(tabsWrapper) && /chrome\.tabs\.discard/.test(tabsWrapper) && /chrome\.tabs\.onActivated/.test(tabsWrapper) && /chrome\.tabs\.onCreated/.test(tabsWrapper) && /chrome\.tabs\.onRemoved/.test(tabsWrapper) && /chrome\.tabs\.onUpdated/.test(tabsWrapper) && /runtime\.lastError/.test(tabsWrapper), 'Chrome tabs platform wrapper must own tab query/get/create/message/update/remove/move/discard plus lifecycle listener registration.');
@@ -438,7 +438,6 @@ assertCondition(
   storePrivacyFields.get('privacy_policy_url') === 'https://github.com/molodchyk/Defense_against_Distractions/blob/main/PRIVACY.md',
   'StorePilot privacy form must point to the repository privacy policy.'
 );
-
 const additionalFields = parseKeyedBlock(storeAdditionalFields, 'additional_fields');
 assertCondition(additionalFields.get('official_url') === 'none', 'StorePilot additional fields must set official_url: none.');
 assertCondition(additionalFields.get('homepage_url') === repositoryUrl, 'StorePilot additional fields must set homepage_url to the repository URL.');
@@ -451,21 +450,18 @@ assertCondition(
   categoryMatch ? storeCategories.includes(categoryMatch[1].trim()) : false,
   'StorePilot category document must use a visible Chrome Web Store category label.'
 );
-
 for (const iconPath of Object.values(manifest.icons || {})) {
   assertCondition(
     typeof iconPath === 'string' && iconPath.startsWith('assets/icons/'),
     `Manifest icon path should live under assets/icons/: ${iconPath}`
   );
 }
-
 for (const iconPath of Object.values(manifest.action?.default_icon || {})) {
   assertCondition(
     typeof iconPath === 'string' && iconPath.startsWith('assets/icons/'),
     `Action icon path should live under assets/icons/: ${iconPath}`
   );
 }
-
 const expectedIconDimensions = new Map([
   ['assets/icons/extension-icon-16.png', 16],
   ['assets/icons/extension-icon-32.png', 32],
@@ -473,22 +469,18 @@ const expectedIconDimensions = new Map([
   ['assets/icons/extension-icon-64.png', 64],
   ['assets/icons/extension-icon-128.png', 128]
 ]);
-
 for (const [iconPath, expectedSize] of expectedIconDimensions) {
   await assertPngDimensions(iconPath, expectedSize, expectedSize);
 }
-
 const screenshotEntries = await getDirectoryEntries('store/screenshots');
 const screenshotPngs = screenshotEntries
   .filter((entry) => entry.isFile && entry.name.endsWith('.png'))
   .map((entry) => `store/screenshots/${entry.name}`)
   .sort((left, right) => left.localeCompare(right));
-
 assertCondition(screenshotPngs.length === 5, 'Store screenshots folder must contain exactly 5 PNG screenshots.');
 for (const screenshotPath of screenshotPngs) {
   await assertPngDimensions(screenshotPath, 1280, 800);
 }
-
 await assertPngDimensions('store/promo/small-promo-440x280.png', 440, 280);
 await assertPngDimensions('store/promo/marquee-promo-1400x560.png', 1400, 560);
 
@@ -683,6 +675,12 @@ for (const locale of locales) {
   }
 }
 
+if (failures.length === 0) {
+  const platformBoundaryCheck = spawnSync(process.execPath, ['scripts/check-platform-boundaries.mjs'], { cwd: rootDir, encoding: 'utf8' });
+  if (platformBoundaryCheck.status !== 0) {
+    failures.push(`Platform boundary verification failed:\n${platformBoundaryCheck.stdout}${platformBoundaryCheck.stderr}`.trim());
+  }
+}
 if (failures.length === 0) {
   const staticLocalizationCheck = spawnSync(process.execPath, ['scripts/check-static-localization.mjs'], { cwd: rootDir, encoding: 'utf8' });
   if (staticLocalizationCheck.status !== 0) {

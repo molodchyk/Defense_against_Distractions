@@ -135,16 +135,14 @@
     });
   }
 
-  if (global.chrome?.runtime?.onMessage?.addListener) {
-    global.chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-      if (message?.action !== 'continueIntentIntervention') {
-        return false;
-      }
+  global.DAD.ChromePlatform?.addRuntimeMessageListener?.((message, sender, sendResponse) => {
+    if (message?.action !== 'continueIntentIntervention') {
+      return false;
+    }
 
-      continueIntentIntervention(message, sendResponse);
-      return true;
-    });
-  }
+    continueIntentIntervention(message, sendResponse);
+    return true;
+  });
 
   intent.continueMessage = {
     canContinueDecision,

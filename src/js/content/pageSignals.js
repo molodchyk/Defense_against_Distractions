@@ -48,7 +48,7 @@
     schedulePageSignalReport
   };
 
-  chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  global.DAD.ChromePlatform.addRuntimeMessageListener((message, sender, sendResponse) => {
     if (message.action === 'reportIntentPageSignals') {
       reporter.sendPageSignals({ force: true });
       sendResponse({ status: 'reported' });

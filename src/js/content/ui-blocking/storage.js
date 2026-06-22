@@ -40,11 +40,7 @@
   }
 
   function getSyncQuotaBytes() {
-    try {
-      return global.chrome?.storage?.sync?.QUOTA_BYTES || SYNC_QUOTA_BYTES_FALLBACK;
-    } catch (error) {
-      return SYNC_QUOTA_BYTES_FALLBACK;
-    }
+    return global.DAD.ChromePlatform?.getSyncQuotaBytes?.(SYNC_QUOTA_BYTES_FALLBACK) || SYNC_QUOTA_BYTES_FALLBACK;
   }
 
   function loadElementRules(callback) {

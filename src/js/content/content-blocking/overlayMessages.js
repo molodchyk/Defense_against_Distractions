@@ -11,11 +11,7 @@
       return selectedLanguageMessage;
     }
 
-    try {
-      return chrome.i18n.getMessage(messageKey, substitutions) || fallback;
-    } catch (error) {
-      return fallback;
-    }
+    return global.DAD.ChromePlatform?.getI18nMessage?.(messageKey, substitutions) || fallback;
   }
 
   contentBlocking.overlayMessages = {
