@@ -38,7 +38,9 @@ const instructionGuideKeys = [
   'passwordManagementText'
 ];
 
-export function getInstructionGuideFailures({ instructionsHtml, englishMessages }) {
+const retiredPrimaryGuidePattern = /Add Group|Create a Group|group panel|Whitelist Websites|whitelisted websites|websites in groups|for this group|Timer Count|Timer Duration \(seconds\)|Activate Timer/i;
+
+export function getInstructionGuideFailures({ about, instructionsHtml, englishMessages }) {
   const failures = [];
   const instructionGuideCopy = [
     instructionsHtml,
@@ -58,8 +60,26 @@ export function getInstructionGuideFailures({ instructionsHtml, englishMessages 
     failures.push('Instruction guide must describe the current plan-based protection model, local processing boundary, allowed websites, Pomodoro, intent coherence, UI cleanup, and protected-schedule strictness.');
   }
 
-  if (/Add Group|Create a Group|group panel|Whitelist Websites|whitelisted websites|websites in groups|for this group|Timer Count|Timer Duration \(seconds\)|Activate Timer/i.test(instructionGuideCopy)) {
+  if (retiredPrimaryGuidePattern.test(instructionGuideCopy)) {
     failures.push('Instruction guide must not use retired group, whitelist, or old timer wording as primary user guidance.');
+  }
+
+  if (!hasAll(about, [
+    /plan-based protection/i,
+    /website entries/i,
+    /allowed websites/i,
+    /Pomodoro/i,
+    /intent-coherence settings/i,
+    /UI cleanup rules/i,
+    /local-first/i,
+    /without a remote server/i,
+    /browser defense layer/i
+  ])) {
+    failures.push('ABOUT.md must describe the current plan-based, local-first product model including allowed websites, Pomodoro, intent coherence, UI cleanup, and no remote server for core blocking.');
+  }
+
+  if (retiredPrimaryGuidePattern.test(about)) {
+    failures.push('ABOUT.md must not use retired group, whitelist, or old timer wording as primary product guidance.');
   }
 
   return failures;
