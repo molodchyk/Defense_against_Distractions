@@ -284,6 +284,7 @@ assertCondition(
     /assets\/icons/,
     /store\/store-listing/,
     /docs\/permission-audit\.md/,
+    /docs\/localization\.md/,
     /docs\/store-media-review\.md/,
     /docs\/release-notes\.md/,
     /docs\/decision-records\.md/,
