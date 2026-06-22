@@ -6,6 +6,7 @@ export const canonicalReadmeSupportBlock = '## Support\n\nIf this extension save
 export const chromeWebStoreFieldLimit = 1000;
 export const licenseId = 'GPL-3.0-only';
 export const manifestPermissions = ['storage', 'alarms', 'downloads', 'activeTab', 'idle', 'webNavigation'];
+export const englishStoreListingLocales = new Set(['en', 'en_AU', 'en_GB', 'en_US']);
 export const allowedManifestKeys = new Set(['manifest_version', 'name', 'description', 'version', 'default_locale', 'permissions', 'action', 'options_page', 'background', 'content_scripts', 'web_accessible_resources', 'icons']);
 export const privacyDataUsageKeys = ['data_usage.personally_identifiable_information', 'data_usage.health_information', 'data_usage.financial_payment_information', 'data_usage.authentication_information', 'data_usage.personal_communications', 'data_usage.location', 'data_usage.web_history', 'data_usage.user_activity', 'data_usage.website_content'];
 export const privacyCertificationKeys = ['certification.no_sell_or_transfer', 'certification.no_unrelated_use', 'certification.no_creditworthiness'];
@@ -51,4 +52,39 @@ export const storeMediaAssetPaths = [
   'store/screenshots/05-ui-element-picker.png',
   'store/promo/small-promo-440x280.png',
   'store/promo/marquee-promo-1400x560.png'
+];
+export const storageKeyFamilies = [
+  'plans',
+  'planCounter',
+  'planMigrationState',
+  'websiteGroups',
+  'group_<id>',
+  'schedules',
+  'whitelistedSites',
+  'elementBlockRuleIds',
+  'elementBlockRule.<id>',
+  'elementBlockRules',
+  'uiThemeMode',
+  'uiLanguage',
+  'blockedPageSettings',
+  'password',
+  'billingIntegration',
+  'billingIdentity',
+  'billingEntitlement',
+  'releaseBackupNoticeEligible.<version>',
+  'releaseBackupNoticeSeen.<version>',
+  'intentTrajectoryState',
+  'usageStats',
+  'pomodoroRuntimeState',
+  'pomodoroActivityState',
+  'pomodoroHistoryState',
+  'pomodoroAutoStartSuppressedUntil',
+  'pomodoroAutoStartSuppressedPlanId',
+  'pomodoroMiniPanelUiState',
+  'focusStateSignal',
+  'popupActivePane',
+  'key',
+  'attempts',
+  'lastAttempt',
+  'debugLogging'
 ];

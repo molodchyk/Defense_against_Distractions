@@ -8,6 +8,7 @@ import process from 'node:process';
 import {
   allowedManifestKeys,
   canonicalReadmeSupportBlock,
+  englishStoreListingLocales,
   licenseId,
   manifestPermissions,
   privacyCertificationKeys,
@@ -15,7 +16,8 @@ import {
   repositoryUrl,
   requiredRootEntries,
   storeCategories,
-  storeMediaAssetPaths
+  storeMediaAssetPaths,
+  storageKeyFamilies
 } from './playbook/constants.mjs';
 import { getReleaseSafetyFailures } from './playbook/releaseSafety.mjs';
 import { verifyReviewedStoreMediaHashes } from './playbook/storeMediaReview.mjs';
@@ -204,6 +206,9 @@ const [
 ]);
 assertCondition(packageJson.version === manifest.version, 'package.json version must match manifest.json version.');
 assertCondition(packageJson.license === licenseId, `package.json license must be ${licenseId}.`);
+assertCondition(packageJson.homepage === repositoryUrl, 'package.json homepage must match the repository URL.');
+assertCondition(packageJson.repository?.type === 'git' && packageJson.repository?.url === `${repositoryUrl}.git`, 'package.json repository metadata must point to the project Git repository.');
+assertCondition(packageJson.bugs?.url === `${repositoryUrl}/issues`, 'package.json bugs URL must point to repository issues.');
 const manifestPermissionSet = new Set(manifest.permissions || []);
 assertCondition(manifest.permissions?.length === manifestPermissions.length && manifestPermissions.every(permission => manifestPermissionSet.has(permission)), 'manifest.json permissions must exactly match the audited required permission set.');
 assertCondition(manifest.content_scripts?.length === 1 && manifest.content_scripts[0].matches?.length === 1 && manifest.content_scripts[0].matches[0] === '<all_urls>' && manifest.web_accessible_resources?.length === 1 && manifest.web_accessible_resources[0].matches?.length === 1 && manifest.web_accessible_resources[0].matches[0] === '<all_urls>', 'manifest.json host access must stay on the audited content-script and web-accessible-resource <all_urls> surfaces.');
@@ -221,6 +226,7 @@ assertCondition(
 );
 const englishDescription = englishMessages.description?.message || '';
 assertCondition(manifest.description === '__MSG_description__', 'Manifest description must use the localized description message.');
+assertCondition(packageJson.description === englishDescription, 'package.json description must match the English manifest summary.');
 assertCondition(englishDescription.length > 0 && englishDescription.length <= 132 && !/\n/.test(englishDescription) && /^[A-Z].+\.$/.test(englishDescription) && !/[!?]/.test(englishDescription), 'English manifest description must be a single direct sentence that fits Chrome Web Store summary length.');
 assertCondition(
   /plans/i.test(englishDescription)
@@ -547,43 +553,6 @@ assertCondition(
   ]),
   'Code structure document must map feature, platform, and repository-script test ownership.'
 );
-
-const storageKeyFamilies = [
-  'plans',
-  'planCounter',
-  'planMigrationState',
-  'websiteGroups',
-  'group_<id>',
-  'schedules',
-  'whitelistedSites',
-  'elementBlockRuleIds',
-  'elementBlockRule.<id>',
-  'elementBlockRules',
-  'uiThemeMode',
-  'uiLanguage',
-  'blockedPageSettings',
-  'password',
-  'billingIntegration',
-  'billingIdentity',
-  'billingEntitlement',
-  'releaseBackupNoticeEligible.<version>',
-  'releaseBackupNoticeSeen.<version>',
-  'intentTrajectoryState',
-  'usageStats',
-  'pomodoroRuntimeState',
-  'pomodoroActivityState',
-  'pomodoroHistoryState',
-  'pomodoroAutoStartSuppressedUntil',
-  'pomodoroAutoStartSuppressedPlanId',
-  'pomodoroMiniPanelUiState',
-  'focusStateSignal',
-  'popupActivePane',
-  'key',
-  'attempts',
-  'lastAttempt',
-  'debugLogging'
-];
-const englishStoreListingLocales = new Set(['en', 'en_AU', 'en_GB', 'en_US']);
 
 for (const storageKeyFamily of storageKeyFamilies) {
   assertCondition(
