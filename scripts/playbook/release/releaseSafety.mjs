@@ -25,6 +25,9 @@ export async function getReleaseSafetyFailures(rootDir, packageJson) {
   if (!/automated gates are static repository and archive checks[\s\S]+must not invoke `npm run verify:browser-load`/i.test(releaseReadiness)) {
     failures.push('Release readiness must state automated gates do not invoke browser-load smoke checks.');
   }
+  if (!/## Current Verification State[\s\S]+Browser-load status:\s+not fully browser-verified[\s\S]+isolated Chromium-based browser\/profile/i.test(releaseReadiness)) {
+    failures.push('Release readiness must explicitly mark browser-load as not fully browser-verified until the isolated smoke check runs.');
+  }
   if (!/`npm run verify:browser-load` is not an automated gate[\s\S]+isolated target-browser smoke check is required before publishing[\s\S]+not fully browser-verified/i.test(releaseReadiness)) {
     failures.push('Release readiness must keep browser-load as a required isolated target-browser check before publishing.');
   }

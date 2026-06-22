@@ -2,6 +2,12 @@
 
 This document tracks what must be true before publishing the current update.
 
+## Current Verification State
+
+- Automated static and archive gates are covered by `npm run verify:release` after `npm run package`.
+- Browser-load status: not fully browser-verified until `npm run verify:browser-load` is run in an isolated Chromium-based browser/profile.
+- Do not run browser-load on an active workstation where launching Chrome, Edge, or Chromium could close active user windows or unsaved work.
+
 ## Automated Gates
 
 Run these from the project root:
