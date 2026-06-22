@@ -16,6 +16,7 @@ import {
   storeMediaAssetPaths,
   storageKeyFamilies
 } from './playbook/constants.mjs';
+import { getManifestAuditFailures } from './playbook/manifestAudit.mjs';
 import { getReleaseSafetyFailures } from './playbook/releaseSafety.mjs';
 import { getStoreAutomationFailures } from './playbook/storeAutomation.mjs';
 import { verifyReviewedStoreMediaHashes } from './playbook/storeMediaReview.mjs';
@@ -87,6 +88,7 @@ assertCondition(await exists('docs/release-checklist.md'), 'Missing release chec
 assertCondition(await exists('docs/store-media-review.md'), 'Missing store media review document.');
 assertCondition(await exists('docs/decision-records.md'), 'Missing decision records document.');
 assertCondition(await exists('docs/localization.md'), 'Missing localization workflow document.');
+assertCondition(await exists('docs/content-script-load-order.md'), 'Missing content-script load-order document.');
 assertCondition(await exists('scripts/check-static-localization.mjs'), 'Missing static localization verification script.');
 assertCondition(await exists('scripts/check-unpacked-extension-load.ps1'), 'Missing unpacked extension browser-load smoke script.');
 for (const platformWrapper of ['action', 'alarms', 'contentBridge', 'downloads', 'i18n', 'idle', 'navigation', 'runtime', 'runtimeMessages', 'tabs', 'windows']) {
@@ -115,6 +117,7 @@ const [
   decisionRecords,
   codeStructure,
   localizationDoc,
+  contentScriptLoadOrderDoc,
   actionWrapper,
   alarmsWrapper,
   downloadsWrapper,
@@ -171,6 +174,7 @@ const [
   readText('docs/decision-records.md'),
   readText('docs/code-structure.md'),
   readText('docs/localization.md'),
+  readText('docs/content-script-load-order.md'),
   readText('src/platform/chrome/action.js'),
   readText('src/platform/chrome/alarms.js'),
   readText('src/platform/chrome/downloads.js'),
@@ -217,6 +221,7 @@ for (const key of Object.keys(manifest)) assertCondition(allowedManifestKeys.has
 assertCondition(!('chrome_settings_overrides' in manifest), 'manifest.json must not change browser search, homepage, or startup settings.');
 assertCondition(!('optional_permissions' in manifest) && !('host_permissions' in manifest) && !('optional_host_permissions' in manifest), 'manifest.json must keep host access and permissions inside the audited required surfaces.');
 assertCondition(!('externally_connectable' in manifest) && !('oauth2' in manifest), 'manifest.json must not expose external messaging or OAuth surfaces without an audit.');
+failures.push(...getManifestAuditFailures({ manifest, contentScriptLoadOrderDoc }));
 assertCondition(
   new RegExp(`Version\\s+${manifest.version.replaceAll('.', '\\.')}:`).test(changelog),
   `CHANGELOG.md must include an entry for the current manifest version ${manifest.version}.`
@@ -289,6 +294,7 @@ assertCondition(
     /docs\/release-notes\.md/,
     /docs\/decision-records\.md/,
     /docs\/code-structure\.md/,
+    /docs\/content-script-load-order\.md/,
     /docs\/extension-modularization-playbook\.md/,
     new RegExp(repositoryUrl.replaceAll('/', '\\/')),
     /Buy Me a Coffee/i,
@@ -496,7 +502,7 @@ assertCondition(
 );
 assertCondition(/Run `npm run verify:browser-load` only in an isolated browser environment[\s\S]+Load the extension zip or unpacked project in an isolated Chromium-based browser\/profile/i.test(releaseChecklist), 'Release checklist must isolate browser-load and manual browser QA from active user sessions.');
 assertCondition(/localized store listings preserve the current plan, allowed-website, Pomodoro, intent-coherence, local-processing privacy-boundary, and browser-limitation wording/i.test(releaseChecklist), 'Release checklist must require localized store listings to stay aligned with the current product model and privacy boundary.');
-assertCondition(hasAll(releaseVerifier, [/check-manifest-references\.mjs/, /check-relative-imports\.mjs/, /check-browser-extension-playbook\.mjs/, /check-locale-coverage\.mjs/, /check-static-localization\.mjs/, /check-package-output\.mjs/, /"assets\/", "docs\/", "store\/", "test\/", "_locales\/", "scripts\/", "src\/"/]), 'Release verifier must run manifest, import, playbook, locale, static-localization, package-output, and source-archive prefix gates.');
+assertCondition(hasAll(releaseVerifier, [/check-manifest-references\.mjs/, /check-relative-imports\.mjs/, /check-browser-extension-playbook\.mjs/, /check-locale-coverage\.mjs/, /check-static-localization\.mjs/, /check-package-output\.mjs/, /content-script-load-order\.md/, /manifestAudit\.mjs/, /"assets\/", "docs\/", "store\/", "test\/", "_locales\/", "scripts\/", "src\/"/]), 'Release verifier must run manifest, import, playbook, locale, static-localization, package-output, and source-archive prefix gates.');
 failures.push(...await getReleaseSafetyFailures(rootDir, packageJson));
 
 assertCondition(
@@ -521,6 +527,7 @@ assertCondition(
     /test\/scripts\//,
     /scripts\/playbook\//,
     /Extension Modularization Playbook/,
+    /Content Script Load Order/,
     /repository validation and release scripts/i,
     /isolated browser environment/i
   ]),

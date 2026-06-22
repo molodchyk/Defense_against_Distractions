@@ -28,7 +28,7 @@ The root `src/js` folder should stay empty of runtime entries and helper modules
 
 `src/js/background` contains background/service-worker adapters and compatibility barrels for existing background feature modules. New background behavior should go into a feature-owned module first, with `src/app/background/index.js` or a narrow background adapter only registering listeners and routing messages.
 
-`src/js/content` contains page-injected content scripts. These files are loaded by `manifest.json` in order and are not ES modules, so shared content-script APIs attach to `window.DAD`. `src/platform/chrome/contentBridge.js` must load first and owns raw Chrome runtime, storage, extension URL, and i18n access for those classic scripts. Feature-specific content scripts should live in subfolders while preserving the manifest order.
+`src/js/content` contains page-injected content scripts. These files are loaded by `manifest.json` in order and are not ES modules, so shared content-script APIs attach to `window.DAD`. `src/platform/chrome/contentBridge.js` must load first and owns raw Chrome runtime, storage, extension URL, and i18n access for those classic scripts. Feature-specific content scripts should live in subfolders while preserving the manifest order. The exact current order is kept in [Content Script Load Order](content-script-load-order.md) and checked against `manifest.json`.
 
 `src/js/content/uiLanguage.js` owns the classic content-script localization bridge, including selected-locale message loading and right-to-left attributes for extension-owned injected UI. It must not change the host page's document direction.
 
