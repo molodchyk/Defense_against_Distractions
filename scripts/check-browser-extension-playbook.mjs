@@ -429,8 +429,8 @@ for (const field of privacyDataUsageKeys) {
 for (const field of privacyCertificationKeys) {
   assertCondition(storePrivacyFields.get(field) === 'yes', `StorePilot privacy form must set ${field}: yes.`);
 }
-assertCondition(storePrivacyFields.get('remote_code') === 'no', 'StorePilot privacy form must set remote_code: no.');
-assertCondition(!storePrivacyFields.has('remote_code_justification'), 'StorePilot privacy form should omit remote_code_justification when remote_code is no.');
+assertCondition(storePrivacyFields.get('remote_code') === 'no' && !storePrivacyFields.has('remote_code_justification'), 'StorePilot privacy form must set remote_code: no and omit remote_code_justification.');
+assertCondition(/<all_urls>/.test(storePrivacyFields.get('host_permission') || ''), 'StorePilot privacy form must name exact <all_urls> host access.');
 assertCondition(
   storePrivacyFields.get('privacy_policy_url') === 'https://github.com/molodchyk/Defense_against_Distractions/blob/main/PRIVACY.md',
   'StorePilot privacy form must point to the repository privacy policy.'
@@ -502,7 +502,7 @@ assertCondition(
   'Store media review must document screenshot and promo privacy boundaries.'
 );
 
-assertCondition(/Host access through content scripts/i.test(privacy), 'PRIVACY.md must explain host/content-script access.');
+assertCondition(/Host access through content scripts \(`<all_urls>`\)/i.test(privacy), 'PRIVACY.md must explain exact <all_urls> host/content-script access.');
 assertCondition(/chrome\.storage\.sync/.test(privacy), 'PRIVACY.md must mention sync storage.');
 assertCondition(/chrome\.storage\.local/.test(privacy), 'PRIVACY.md must mention local storage.');
 assertCondition(/does not use `chrome\.storage\.session` or `chrome\.storage\.managed`/i.test(privacy), 'PRIVACY.md must state session and managed storage are not used.');

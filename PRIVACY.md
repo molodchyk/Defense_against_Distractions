@@ -22,7 +22,7 @@ Defense Against Distractions requests these browser permissions:
 - `activeTab`: lets the popup act on the current tab after the user starts the UI element picker or a tab-specific action.
 - `idle`: reads local active, idle, and locked system state for Pomodoro rest-credit timing.
 - `webNavigation`: observes top-frame navigation transitions locally for intent-coherence lineage, drift detection, recovery prompts, and diagnostics.
-- Host access through content scripts: lets the extension scan configured pages locally, block matching pages, suspend blocked-page media, summarize page signals, and apply user-created UI cleanup rules.
+- Host access through content scripts (`<all_urls>`): lets the extension scan configured pages locally, block matching pages, suspend blocked-page media, summarize page signals, and apply user-created UI cleanup rules.
 
 ## No Sale or Third-Party Transfer
 
