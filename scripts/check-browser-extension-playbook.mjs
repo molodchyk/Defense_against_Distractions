@@ -493,7 +493,7 @@ assertCondition(
   'Release notes document must cover the current version, changelog source, release gate, source archive, media, network posture, and isolated browser-load safety.'
 );
 assertCondition(/Run `npm run verify:browser-load` only in an isolated browser environment[\s\S]+Load the extension zip or unpacked project in an isolated Chromium-based browser\/profile/i.test(releaseChecklist), 'Release checklist must isolate browser-load and manual browser QA from active user sessions.');
-assertCondition(/localized store listings preserve the current plan, allowed-website, Pomodoro, intent-coherence, and browser-limitation wording/i.test(releaseChecklist), 'Release checklist must require localized store listings to stay aligned with the current product model.');
+assertCondition(/localized store listings preserve the current plan, allowed-website, Pomodoro, intent-coherence, local-processing privacy-boundary, and browser-limitation wording/i.test(releaseChecklist), 'Release checklist must require localized store listings to stay aligned with the current product model and privacy boundary.');
 assertCondition(hasAll(releaseVerifier, [/check-manifest-references\.mjs/, /check-relative-imports\.mjs/, /check-browser-extension-playbook\.mjs/, /check-locale-coverage\.mjs/, /check-static-localization\.mjs/, /check-package-output\.mjs/, /"assets\/", "docs\/", "store\/", "test\/", "_locales\/", "scripts\/", "src\/"/]), 'Release verifier must run manifest, import, playbook, locale, static-localization, package-output, and source-archive prefix gates.');
 failures.push(...await getReleaseSafetyFailures(rootDir, packageJson));
 
@@ -524,7 +524,7 @@ assertCondition(
   ]),
   'Code structure document must map feature, platform, and repository-script test ownership.'
 );
-assertCondition(hasAll(localizationDoc, [/Chrome Web Store Visible Languages/, /en_AU/, /Persian \(`fa`\)/, /Arabic \(`ar`\), Persian \(`fa`\), Hebrew \(`he`\), and Urdu \(`ur`\) are right-to-left locales/, /without changing the host page direction/, /store\/store-listing\/<locale>\.txt/, /npm run verify:locales/]), 'Localization document must cover visible store languages, RTL locales, store-listing coverage, and locale verification.');
+assertCondition(hasAll(localizationDoc, [/Chrome Web Store Visible Languages/, /en_AU/, /Persian \(`fa`\)/, /Arabic \(`ar`\), Persian \(`fa`\), Hebrew \(`he`\), and Urdu \(`ur`\) are right-to-left locales/, /without changing the host page direction/, /store\/store-listing\/<locale>\.txt/, /local-processing privacy boundary/, /npm run verify:locales/]), 'Localization document must cover visible store languages, RTL locales, store-listing coverage, privacy-boundary preservation, and locale verification.');
 
 for (const storageKeyFamily of storageKeyFamilies) {
   assertCondition(

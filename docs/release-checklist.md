@@ -101,7 +101,7 @@ Use this checklist before publishing a new extension release.
 - Use the English store listing from `store/store-listing/en.txt`.
 - Confirm every `_locales` language has a matching plain-text store listing in `store/store-listing/`.
 - Confirm store listing files are direct body text and do not start with a title, field label, or extension name.
-- Confirm localized store listings preserve the current plan, allowed-website, Pomodoro, intent-coherence, and browser-limitation wording.
+- Confirm localized store listings preserve the current plan, allowed-website, Pomodoro, intent-coherence, local-processing privacy-boundary, and browser-limitation wording.
 - Confirm every locale `messages.json` has the same keys and placeholders as `_locales/en/messages.json`.
 - Review `docs/localization.md` before changing locale folders or store listing locale files.
 - Use screenshots from `store/screenshots/`.
