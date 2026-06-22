@@ -139,6 +139,7 @@ const [
   licenseText,
   reviewerNotes,
   optionsHtml,
+  popupHtml,
   englishMessages,
   storePrivacyForm,
   storeAdditionalFields,
@@ -191,6 +192,7 @@ const [
   readText('LICENSE'),
   readText('docs/reviewer-notes.md'),
   readText('src/options.html'),
+  readText('src/popup.html'),
   readJson('_locales/en/messages.json'),
   readText('docs/chrome-web-store-privacy-form.md'),
   readText('docs/chrome-web-store-additional-fields.md'),
@@ -327,14 +329,9 @@ const privacySectionIndex = readme.search(/^## Privacy$/m);
 const licenseSectionIndex = readme.search(/^## License$/m);
 const sourceLineIndex = readme.indexOf(`Source: ${repositoryUrl}`);
 const supportSectionIndex = readme.search(/^## Support$/m);
-assertCondition(
-  privacySectionIndex !== -1
-    && licenseSectionIndex > privacySectionIndex
-    && sourceLineIndex > licenseSectionIndex
-    && supportSectionIndex > sourceLineIndex,
-  'README Support block must appear after the Privacy and License/source sections.'
-);
+assertCondition(privacySectionIndex !== -1 && licenseSectionIndex > privacySectionIndex && sourceLineIndex > licenseSectionIndex && supportSectionIndex > sourceLineIndex, 'README Support block must appear after the Privacy and License/source sections.');
 assertCondition(readme.includes(canonicalReadmeSupportBlock), 'README Support block must match the canonical donation wording and links.');
+assertCondition(hasAll(popupHtml, [/Protection status/, /Current page/, /role="tablist"/, /data-popup-pane="actions"/, /data-popup-pane="diagnostics"/, /focusStateCalmButton/, /startPomodoroButton/, /intentRecoveryTitle/, /pickElementButton/, /role="status"/]) && !/welcome|get started|learn more|hero|tagline/i.test(popupHtml), 'Popup first screen must stay an operational status/control surface, not a marketing page.');
 for (const permission of manifestPermissions) {
   assertCondition(
     manifest.permissions.includes(permission),
