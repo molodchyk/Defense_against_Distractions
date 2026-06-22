@@ -312,6 +312,8 @@ for (const permission of manifestPermissions) {
     `PRIVACY.md must explain manifest permission: ${permission}`
   );
 }
+const privacyPermissionBullets = [...privacy.matchAll(/^- `([^`]+)`: /gm)].map(match => match[1]);
+assertCondition(privacyPermissionBullets.length === manifestPermissions.length && manifestPermissions.every(permission => privacyPermissionBullets.includes(permission)), 'PRIVACY.md permission bullets must exactly match manifest permissions.');
 assertCondition(
   hasAll(permissionAudit, [
     /# Permission Audit/,
