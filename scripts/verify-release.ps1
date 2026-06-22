@@ -356,6 +356,7 @@ $requiredSourceEntries = @(
   "docs/release-notes.md",
   "docs/release-readiness.md",
   "docs/reviewer-notes.md",
+  "docs/browser-extension-playbook-requirements.md",
   "docs/storepilot-automation.md",
   "docs/store-media-review.md",
   "docs/storage-ownership.md",

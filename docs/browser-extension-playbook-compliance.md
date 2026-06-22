@@ -2,7 +2,7 @@
 
 This document maps the shared browser-extension playbook to the current repository evidence for Defense Against Distractions.
 
-It is not a replacement for the release checklist. It is an index for reviewers and future maintenance work: each row points to the files or commands that prove the claim, and it keeps the browser-load requirement separate from static repository checks.
+It is not a replacement for the release checklist. It is an index for reviewers and future maintenance work: each row points to the files or commands that prove the claim, and it keeps the browser-load requirement separate from static repository checks. The requirement-level ledger lives in [Browser Extension Playbook Requirements](browser-extension-playbook-requirements.md).
 
 ## Verification Status
 
