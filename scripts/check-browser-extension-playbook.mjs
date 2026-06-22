@@ -295,6 +295,8 @@ assertCondition(
     /Defense Against Distractions/i,
     /Load unpacked/i,
     /npm run verify:browser-load/i,
+    /isolated-environment smoke test/i,
+    /cannot close active user windows or unsaved work/i,
     /npm run verify:release/i,
     /PRIVACY\.md/,
     /GPL-3\.0-only/,
