@@ -572,6 +572,285 @@
     "intentRecentTrajectoryHeading": {
         "message": "Recent trajectory"
     },
+    "intentDiagnosticsNoScoreReasons": {
+        "message": "No score reasons yet."
+    },
+    "intentDiagnosticsNoGraphData": {
+        "message": "No graph data yet."
+    },
+    "intentDiagnosticsPolicyValue": {
+        "message": "Policy: $1"
+    },
+    "intentDiagnosticsCurrentValue": {
+        "message": "Current: $1"
+    },
+    "intentDiagnosticsActionInterveneThreshold": {
+        "message": "intervene <= $1"
+    },
+    "intentDiagnosticsActionLockedThreshold": {
+        "message": "locked <= $1"
+    },
+    "intentDiagnosticsActionRetentionDays": {
+        "message": "retain $1d"
+    },
+    "intentDiagnosticsActionCalibrated": {
+        "message": "calibrated $1"
+    },
+    "intentDiagnosticsActionChainQuarantine": {
+        "message": "chain quarantine"
+    },
+    "intentDiagnosticsActionAutoCloseCurrentTab": {
+        "message": "auto-close current tab"
+    },
+    "intentDiagnosticsVisitPolicy": {
+        "message": "policy $1"
+    },
+    "intentDiagnosticsVisitTab": {
+        "message": "tab $1"
+    },
+    "intentDiagnosticsVisitFromTab": {
+        "message": "from tab $1"
+    },
+    "intentDiagnosticsVisitDriftDescendant": {
+        "message": "drift descendant"
+    },
+    "intentDiagnosticsVisitTransition": {
+        "message": "transition $1"
+    },
+    "intentDiagnosticsVisitActive": {
+        "message": "active $1"
+    },
+    "intentDiagnosticsVisitDwell": {
+        "message": "dwell $1"
+    },
+    "intentDiagnosticsVisitOrigin": {
+        "message": "origin $1"
+    },
+    "intentDiagnosticsVisitLocal": {
+        "message": "local $1"
+    },
+    "intentDiagnosticsGraphTab": {
+        "message": "tab $1"
+    },
+    "intentDiagnosticsGraphFromTab": {
+        "message": "from tab $1"
+    },
+    "intentDiagnosticsGraphVia": {
+        "message": "via $1"
+    },
+    "intentDiagnosticsGraphSameTab": {
+        "message": "same tab"
+    },
+    "intentDiagnosticsGraphOriginBadge": {
+        "message": "origin"
+    },
+    "intentDiagnosticsGraphCurrentBadge": {
+        "message": "current"
+    },
+    "intentDiagnosticsGraphUncertainBadge": {
+        "message": "uncertain"
+    },
+    "intentDiagnosticsBooleanYes": {
+        "message": "yes"
+    },
+    "intentDiagnosticsBooleanNo": {
+        "message": "no"
+    },
+    "intentDiagnosticsMetricOriginSimilarityAnchor": {
+        "message": "Origin similarity / anchor"
+    },
+    "intentDiagnosticsMetricLocalSimilarity": {
+        "message": "Local similarity"
+    },
+    "intentDiagnosticsMetricTextOriginSimilarity": {
+        "message": "Text origin similarity"
+    },
+    "intentDiagnosticsMetricPassiveMediaLoad": {
+        "message": "Passive media load"
+    },
+    "intentDiagnosticsMetricMediaPlaybackChainLoad": {
+        "message": "Media playback / chain load"
+    },
+    "intentDiagnosticsMetricMediaPlayback": {
+        "message": "Media playback"
+    },
+    "intentDiagnosticsMetricMediaEvents": {
+        "message": "Media play/change/end events"
+    },
+    "intentDiagnosticsMetricPassiveRegions": {
+        "message": "Passive regions"
+    },
+    "intentDiagnosticsMetricPassiveScrollClickPressure": {
+        "message": "Passive scroll/click pressure"
+    },
+    "intentDiagnosticsMetricActiveInputLoad": {
+        "message": "Active input load"
+    },
+    "intentDiagnosticsMetricAgencyRatioLowAgencyLoad": {
+        "message": "Agency ratio / low-agency load"
+    },
+    "intentDiagnosticsMetricInteractionVelocityLoad": {
+        "message": "Interaction velocity load"
+    },
+    "intentDiagnosticsMetricScrollClickVelocity": {
+        "message": "Scroll/click velocity"
+    },
+    "intentDiagnosticsMetricScrollMovement": {
+        "message": "Scroll movement"
+    },
+    "intentDiagnosticsMetricDynamicScrollAppends": {
+        "message": "Dynamic scroll appends"
+    },
+    "intentDiagnosticsMetricRecommendationFeedClickLoad": {
+        "message": "Recommendation/feed click load"
+    },
+    "intentDiagnosticsMetricRecommendationFeedClicks": {
+        "message": "Recommendation/feed clicks"
+    },
+    "intentDiagnosticsMetricFeedCommentLoad": {
+        "message": "Feed/comment load"
+    },
+    "intentDiagnosticsMetricLatestTransition": {
+        "message": "Latest transition"
+    },
+    "intentDiagnosticsMetricTransitionQualifiers": {
+        "message": "Transition qualifiers"
+    },
+    "intentDiagnosticsMetricRedirectTransitionLoad": {
+        "message": "Redirect transition load"
+    },
+    "intentDiagnosticsMetricRedirectTransitions": {
+        "message": "Redirect transitions"
+    },
+    "intentDiagnosticsMetricNavigationLoopLoad": {
+        "message": "Navigation loop load"
+    },
+    "intentDiagnosticsMetricSearchLoopLoad": {
+        "message": "Search loop load"
+    },
+    "intentDiagnosticsMetricDeliberateGapLoad": {
+        "message": "Deliberate gap load"
+    },
+    "intentDiagnosticsMetricUnanchoredOriginDecayLoad": {
+        "message": "Unanchored / origin decay load"
+    },
+    "intentDiagnosticsMetricSessionAgeDeliberateGap": {
+        "message": "Session age / deliberate gap"
+    },
+    "intentDiagnosticsMetricInputVelocity": {
+        "message": "Input velocity"
+    },
+    "intentDiagnosticsMetricKeyVelocity": {
+        "message": "Key velocity"
+    },
+    "intentDiagnosticsMetricConstructiveDwell": {
+        "message": "Constructive dwell"
+    },
+    "intentDiagnosticsMetricPassiveActiveTimeLoad": {
+        "message": "Passive active-time load"
+    },
+    "intentDiagnosticsMetricLatestDwellActive": {
+        "message": "Latest dwell / active"
+    },
+    "intentDiagnosticsMetricTotalDwellActive": {
+        "message": "Total dwell / active"
+    },
+    "intentDiagnosticsMetricLongSessionLoad": {
+        "message": "Long-session load"
+    },
+    "intentDiagnosticsMetricLinkDensity": {
+        "message": "Link density"
+    },
+    "intentDiagnosticsMetricDomainEntropy": {
+        "message": "Domain entropy"
+    },
+    "intentDiagnosticsMetricDomainChanges": {
+        "message": "Domain changes"
+    },
+    "intentDiagnosticsMetricReturnRate": {
+        "message": "Return rate"
+    },
+    "intentDiagnosticsMetricOriginReturnRate": {
+        "message": "Origin return rate"
+    },
+    "intentDiagnosticsMetricLowReturnLoad": {
+        "message": "Low-return load"
+    },
+    "intentDiagnosticsMetricTabsInChain": {
+        "message": "Tabs in chain"
+    },
+    "intentDiagnosticsMetricOpenTabs": {
+        "message": "Open tabs"
+    },
+    "intentDiagnosticsMetricOpenWindows": {
+        "message": "Open windows"
+    },
+    "intentDiagnosticsMetricOpenTabPressure": {
+        "message": "Open-tab pressure"
+    },
+    "intentDiagnosticsMetricRecentTabSwitches": {
+        "message": "Recent tab switches"
+    },
+    "intentDiagnosticsMetricTabSwitchVelocity": {
+        "message": "Tab-switch velocity"
+    },
+    "intentDiagnosticsMetricTabSwitchLoops": {
+        "message": "Tab-switch loops"
+    },
+    "intentDiagnosticsMetricTabSwitchLoad": {
+        "message": "Tab-switch load"
+    },
+    "intentDiagnosticsMetricChildTabBranches": {
+        "message": "Child-tab branches"
+    },
+    "intentDiagnosticsMetricCoherentHosts": {
+        "message": "Coherent hosts"
+    },
+    "intentDiagnosticsMetricDriftDescendants": {
+        "message": "Drift descendants"
+    },
+    "intentDiagnosticsMetricDriftDescendantHosts": {
+        "message": "Drift descendant hosts"
+    },
+    "intentDiagnosticsMetricCurrentIsDriftDescendant": {
+        "message": "Current is drift descendant"
+    },
+    "intentDiagnosticsMetricInterventionFeedbackEntries": {
+        "message": "Intervention feedback entries"
+    },
+    "intentDiagnosticsMetricFeedbackContinueReasons": {
+        "message": "Feedback continue reasons"
+    },
+    "intentDiagnosticsMetricFeedbackReturnRate": {
+        "message": "Feedback return rate"
+    },
+    "intentDiagnosticsMetricFeedbackIsolateRate": {
+        "message": "Feedback isolate rate"
+    },
+    "intentDiagnosticsMetricFeedbackCoherentMarkRate": {
+        "message": "Feedback coherent mark rate"
+    },
+    "intentDiagnosticsMetricFeedbackContinueRate": {
+        "message": "Feedback continue rate"
+    },
+    "intentDiagnosticsMetricFeedbackDismissRate": {
+        "message": "Feedback dismiss rate"
+    },
+    "intentDiagnosticsMetricFeedbackScoreOutcomes": {
+        "message": "Feedback score / outcomes"
+    },
+    "intentDiagnosticsMetricContinueOutcomes": {
+        "message": "Continue outcomes"
+    },
+    "intentDiagnosticsMetricCalibrationDiagnostic": {
+        "message": "Calibration diagnostic"
+    },
+    "intentDiagnosticsMetricAutoCalibration": {
+        "message": "Auto calibration"
+    },
+    "intentDiagnosticsMetricChainBlock": {
+        "message": "Chain block"
+    },
     "usageStatsNavLabel": {
         "message": "Usage"
     },

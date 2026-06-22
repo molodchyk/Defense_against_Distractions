@@ -17,7 +17,7 @@ import {
   storageKeyFamilies
 } from './playbook/constants.mjs';
 import { getManifestAuditFailures } from './playbook/manifestAudit.mjs';
-import { getUsageStatsLocalizationFailures } from './playbook/localization.mjs';
+import { getIntentDiagnosticsLocalizationFailures, getUsageStatsLocalizationFailures } from './playbook/localization.mjs';
 import { getReleaseSafetyFailures } from './playbook/releaseSafety.mjs';
 import { getStoreAutomationFailures } from './playbook/storeAutomation.mjs';
 import { verifyReviewedStoreMediaHashes } from './playbook/storeMediaReview.mjs';
@@ -150,7 +150,7 @@ const [
   blockedPageLocalizationModule,
   storageTransferModule,
   usageStatsModule,
-  intentDiagnosticsModule,
+  intentDiagnosticsModule, intentDiagnosticsMessagesModule,
   planPomodoroEditorModule
 ] = await Promise.all([
   readJson('manifest.json'),
@@ -207,7 +207,7 @@ const [
   readText('src/features/content-blocking/blocked-page/localization.js'),
   readText('src/js/options/storageTransfer.js'),
   readText('src/js/options/usageStats.js'),
-  readText('src/js/options/intentDiagnostics.js'),
+  readText('src/js/options/intentDiagnostics.js'), readText('src/js/options/intent-diagnostics/messages.js'),
   readText('src/js/options/plans/pomodoroEditor.js')
 ]);
 assertCondition(packageJson.version === manifest.version, 'package.json version must match manifest.json version.');
@@ -576,7 +576,7 @@ const localDiagnosticsClearMessages = [
 assertCondition(
   /globalThis\.confirm\?\.\(getUiMessage\(\s*['"]clearUsageStatsConfirm['"]/.test(usageStatsModule)
     && /clearUsageStatsFailed/.test(usageStatsModule)
-    && /globalThis\.confirm\?\.\(getUiMessage\(\s*['"]clearIntentDiagnosticsConfirm['"]/.test(intentDiagnosticsModule)
+    && /globalThis\.confirm\?\.\((?:getUiMessage|getMessage)\(\s*['"]clearIntentDiagnosticsConfirm['"]/.test(intentDiagnosticsModule)
     && /clearIntentDiagnosticsFailed/.test(intentDiagnosticsModule)
     && /clearDiagnosticsClearedStatus/.test(intentDiagnosticsModule)
     && hasAll(localDiagnosticsClearMessages, [
@@ -589,6 +589,7 @@ assertCondition(
   'Options local diagnostics clears must require localized confirmation, name the local data being removed, and expose localized failure states.'
 );
 failures.push(...getUsageStatsLocalizationFailures({ englishMessages, usageStatsModule }));
+failures.push(...getIntentDiagnosticsLocalizationFailures({ englishMessages, intentDiagnosticsModule: `${intentDiagnosticsModule}\n${intentDiagnosticsMessagesModule}` }));
 
 assertCondition(
   hasAll(reviewerNotes, [

@@ -12,7 +12,8 @@ describe('options local diagnostics clearing', () => {
     const englishMessages = JSON.parse(readFileSync('_locales/en/messages.json', 'utf8'));
 
     assert.match(usageSource, /globalThis\.confirm\?\.\(getUiMessage\(\s*'clearUsageStatsConfirm'/);
-    assert.match(intentSource, /globalThis\.confirm\?\.\(getUiMessage\(\s*'clearIntentDiagnosticsConfirm'/);
+    assert.match(intentSource, /globalThis\.confirm\?\.\(getMessage\(\s*'clearIntentDiagnosticsConfirm'/);
+    assert.match(intentSource, /getIntentDiagnosticMessage as getMessage/);
     assert.match(usageSource, /clearUsageStatsFailed/);
     assert.match(intentSource, /clearIntentDiagnosticsFailed/);
     assert.match(intentSource, /clearDiagnosticsClearedStatus/);

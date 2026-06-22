@@ -3,7 +3,6 @@
 import {
   createIntentLineageGraph
 } from '../shared/intentCoherence.js';
-import { getUiMessage } from '../shared/ui/uiLanguage.js';
 import { sendRuntimeMessage } from '../../platform/chrome/runtimeMessages.js';
 import { addStorageChangeListener } from '../../platform/chrome/storage.js';
 import {
@@ -21,6 +20,12 @@ import {
   formatRate,
   formatSignedNumber
 } from './intent-diagnostics/format.js';
+import {
+  createMetricRow,
+  formatIntentActionSummary,
+  formatIntentBoolean,
+  getIntentDiagnosticMessage as getMessage
+} from './intent-diagnostics/messages.js';
 const MAX_VISITS = 10;
 const MAX_GRAPH_NODES = 12;
 
@@ -42,7 +47,7 @@ function getLabel(entity) {
   return title || hostname || '--';
 }
 
-function setEmptyState(message = getUiMessage('popupNoDataLabel', 'No data')) {
+function setEmptyState(message = getMessage('popupNoDataLabel', 'No data')) {
   getElement('optionsIntentState').textContent = message;
   getElement('optionsIntentState').dataset.state = 'none';
   getElement('optionsIntentScore').textContent = '--';
@@ -62,7 +67,7 @@ function renderReasons(reasons = []) {
   const list = getElement('optionsIntentReasons');
   const items = Array.isArray(reasons) && reasons.length > 0
     ? reasons
-    : ['No score reasons yet.'];
+    : [getMessage('intentDiagnosticsNoScoreReasons', 'No score reasons yet.')];
 
   list.replaceChildren(...items.map(reason => {
     const item = document.createElement('li');
@@ -74,71 +79,71 @@ function renderReasons(reasons = []) {
 function renderMetrics(metrics = {}, debugState = {}, feedbackSummary = {}, session = {}) {
   const feedbackCount = Array.isArray(debugState?.state?.feedback) ? debugState.state.feedback.length : 0;
   const metricRows = [
-    ['Origin similarity / anchor', `${formatPercent(metrics.originSimilarity)} / ${formatPercent(metrics.originAnchorStrength)}`],
-    ['Local similarity', formatPercent(metrics.localSimilarity)],
-    ['Text origin similarity', metrics.textOriginSimilarity === null ? '--' : formatPercent(metrics.textOriginSimilarity)],
-    ['Passive media load', formatPercent(metrics.passiveMediaLoad)],
-    ['Media playback / chain load', `${formatPercent(metrics.mediaPlaybackLoad)} / ${formatPercent(metrics.mediaChainLoad)} (${formatCount(metrics.consecutiveMediaVisitCount)} in a row)`],
-    ['Media playback', formatDuration(metrics.mediaPlaybackMs)],
-    ['Media play/change/end events', `${formatCount(metrics.mediaPlayEvents)} / ${formatCount(metrics.mediaSourceChangeEvents)} / ${formatCount(metrics.mediaEndEvents)}`],
-    ['Passive regions', `${formatCount(metrics.recommendationRegionCount)} rec / ${formatCount(metrics.commentSectionCount)} comments / ${formatCount(metrics.shortFormMediaCount)} short`],
-    ['Passive scroll/click pressure', formatPercent(metrics.passiveInteractionLoad)],
-    ['Active input load', `${formatPercent(metrics.activeInputLoad)} (${formatDuration(metrics.activeInputMs)})`],
-    ['Agency ratio / low-agency load', `${formatPercent(metrics.agencyRatio)} / ${formatPercent(metrics.lowAgencyLoad)}`],
-    ['Interaction velocity load', formatPercent(metrics.interactionVelocityLoad)],
-    ['Scroll/click velocity', `${formatRate(metrics.scrollRatePerMinute)} / ${formatRate(metrics.clickRatePerMinute)}`],
-    ['Scroll movement', `${formatCount(metrics.scrollDirectionChanges)} reversals / ${Number(metrics.scrollDistanceViewportUnits || 0).toFixed(1)} screens`],
-    ['Dynamic scroll appends', `${formatPercent(metrics.dynamicContentLoad)} (${formatCount(metrics.scrollLinkedContentBatches)} batches / ${formatCount(metrics.scrollLinkedAddedElements)} elements)`],
-    ['Recommendation/feed click load', formatPercent(metrics.recommenderClickLoad)],
-    ['Recommendation/feed clicks', `${formatCount(metrics.recommenderClickEvents)} (${formatCount(metrics.recommendationClickEvents)} rec / ${formatCount(metrics.feedClickEvents)} feed / ${formatCount(metrics.commentClickEvents)} comments)`],
-    ['Feed/comment load', `${formatPercent(metrics.feedCommentInteractionLoad)} (${formatRate(metrics.feedClickRatePerMinute)} / ${formatRate(metrics.commentClickRatePerMinute)})`],
-    ['Latest transition', `${metrics.latestTransitionType || '--'}${metrics.latestDirectNavigation ? ` (direct, recovery ${formatPercent(metrics.directNavigationRecovery)})` : ''}`],
-    ['Transition qualifiers', Array.isArray(metrics.latestTransitionQualifiers) && metrics.latestTransitionQualifiers.length > 0 ? metrics.latestTransitionQualifiers.join(', ') : '--'],
-    ['Redirect transition load', formatPercent(metrics.redirectTransitionLoad)],
-    ['Redirect transitions', formatCount(metrics.redirectTransitionCount)],
-    ['Navigation loop load', `${formatPercent(metrics.navigationLoopLoad)} (${formatCount(metrics.samePageRepeatCount)} repeats, ${formatCount(metrics.reloadTransitionCount)} reloads)`],
-    ['Search loop load', `${formatPercent(metrics.searchRefinementLoad)} (${formatCount(metrics.searchVisitCount)} searches, ${formatCount(metrics.searchQueryShiftCount)} shifts)`],
-    ['Deliberate gap load', `${formatPercent(metrics.deliberateStalenessLoad)} (${formatCount(metrics.visitsSinceDeliberateAction)} visits)`],
-    ['Unanchored / origin decay load', `${formatPercent(metrics.unanchoredSessionLoad)} / ${formatPercent(metrics.originDecayLoad)} (${formatPercent(metrics.recentOriginSimilarity)} recent avg)`],
-    ['Session age / deliberate gap', `${formatDuration(metrics.sessionAgeMs)} / ${formatDuration(metrics.deliberateGapMs)}`],
-    ['Input velocity', formatRate(metrics.inputRatePerMinute)],
-    ['Key velocity', formatRate(metrics.keyRatePerMinute)],
-    ['Constructive dwell', formatPercent(metrics.constructiveDwell)],
-    ['Passive active-time load', formatPercent(metrics.passiveTimeLoad)],
-    ['Latest dwell / active', `${formatDuration(metrics.latestDwellMs)} / ${formatDuration(metrics.latestActiveMs)}`],
-    ['Total dwell / active', `${formatDuration(metrics.totalDwellMs)} / ${formatDuration(metrics.totalActiveMs)}`],
-    ['Long-session load', formatPercent(metrics.longSessionLoad)],
-    ['Link density', formatPercent(metrics.linkDensity)],
-    ['Domain entropy', formatPercent(metrics.domainEntropy)],
-    ['Domain changes', String(metrics.domainChanges ?? 0)],
-    ['Return rate', formatPercent(metrics.returnRate)],
-    ['Origin return rate', formatPercent(metrics.originReturnRate)],
-    ['Low-return load', formatPercent(metrics.lowReturnLoad)],
-    ['Tabs in chain', formatCount(metrics.tabCount)],
-    ['Open tabs', formatCount(metrics.openTabCount)],
-    ['Open windows', formatCount(metrics.openWindowCount)],
-    ['Open-tab pressure', formatPercent(metrics.tabPressureLoad)],
-    ['Recent tab switches', formatCount(metrics.tabSwitchCount)],
-    ['Tab-switch velocity', formatRate(metrics.tabSwitchRatePerMinute)],
-    ['Tab-switch loops', formatCount(metrics.tabSwitchLoopCount)],
-    ['Tab-switch load', formatPercent(metrics.tabSwitchLoad)],
-    ['Child-tab branches', formatCount(metrics.branchCount)],
-    ['Coherent hosts', formatCoherentHosts(session)],
-    ['Drift descendants', formatCount(metrics.driftDescendantCount)],
-    ['Drift descendant hosts', formatDriftDescendantHosts(session)],
-    ['Current is drift descendant', metrics.latestIsDriftDescendant ? 'yes' : 'no'],
-    ['Intervention feedback entries', formatCount(feedbackSummary.total ?? feedbackCount)],
-    ['Feedback continue reasons', formatCount(feedbackSummary.continueReasonCount)],
-    ['Feedback return rate', formatPercent(feedbackSummary.returnRate)],
-    ['Feedback isolate rate', formatPercent(feedbackSummary.isolateRate)],
-    ['Feedback coherent mark rate', formatPercent(feedbackSummary.markCoherentRate)],
-    ['Feedback continue rate', formatPercent(feedbackSummary.continueRate)],
-    ['Feedback dismiss rate', formatPercent(feedbackSummary.dismissRate)],
-    ['Feedback score / outcomes', `${Number.isFinite(feedbackSummary.averageCoherenceScore) ? String(feedbackSummary.averageCoherenceScore) : '--'} avg - ${formatCount(feedbackSummary.outcomeTotal)} observed - ${formatPercent(feedbackSummary.outcomeRecoveredRate)} recovered (${formatCount(feedbackSummary.outcomeRecovered)}) - return host ${formatPercent(feedbackSummary.outcomeReturnHostRate)} - delta ${Number.isFinite(feedbackSummary.averageOutcomeScoreDelta) ? formatSignedNumber(feedbackSummary.averageOutcomeScoreDelta) : '--'}`],
-    ['Continue outcomes', formatContinueOutcomeSummary(feedbackSummary)],
-    ['Calibration diagnostic', formatFeedbackRecommendation(feedbackSummary.recommendation)],
-    ['Auto calibration', formatIntentCalibration(debugState?.intentPolicy?.settings?.calibration)],
-    ['Chain block', formatChainBlock(debugState?.intervention?.chainBlock)]
+    createMetricRow('originSimilarityAnchor', `${formatPercent(metrics.originSimilarity)} / ${formatPercent(metrics.originAnchorStrength)}`),
+    createMetricRow('localSimilarity', formatPercent(metrics.localSimilarity)),
+    createMetricRow('textOriginSimilarity', metrics.textOriginSimilarity === null ? '--' : formatPercent(metrics.textOriginSimilarity)),
+    createMetricRow('passiveMediaLoad', formatPercent(metrics.passiveMediaLoad)),
+    createMetricRow('mediaPlaybackChainLoad', `${formatPercent(metrics.mediaPlaybackLoad)} / ${formatPercent(metrics.mediaChainLoad)} (${formatCount(metrics.consecutiveMediaVisitCount)} in a row)`),
+    createMetricRow('mediaPlayback', formatDuration(metrics.mediaPlaybackMs)),
+    createMetricRow('mediaEvents', `${formatCount(metrics.mediaPlayEvents)} / ${formatCount(metrics.mediaSourceChangeEvents)} / ${formatCount(metrics.mediaEndEvents)}`),
+    createMetricRow('passiveRegions', `${formatCount(metrics.recommendationRegionCount)} rec / ${formatCount(metrics.commentSectionCount)} comments / ${formatCount(metrics.shortFormMediaCount)} short`),
+    createMetricRow('passiveScrollClickPressure', formatPercent(metrics.passiveInteractionLoad)),
+    createMetricRow('activeInputLoad', `${formatPercent(metrics.activeInputLoad)} (${formatDuration(metrics.activeInputMs)})`),
+    createMetricRow('agencyRatioLowAgencyLoad', `${formatPercent(metrics.agencyRatio)} / ${formatPercent(metrics.lowAgencyLoad)}`),
+    createMetricRow('interactionVelocityLoad', formatPercent(metrics.interactionVelocityLoad)),
+    createMetricRow('scrollClickVelocity', `${formatRate(metrics.scrollRatePerMinute)} / ${formatRate(metrics.clickRatePerMinute)}`),
+    createMetricRow('scrollMovement', `${formatCount(metrics.scrollDirectionChanges)} reversals / ${Number(metrics.scrollDistanceViewportUnits || 0).toFixed(1)} screens`),
+    createMetricRow('dynamicScrollAppends', `${formatPercent(metrics.dynamicContentLoad)} (${formatCount(metrics.scrollLinkedContentBatches)} batches / ${formatCount(metrics.scrollLinkedAddedElements)} elements)`),
+    createMetricRow('recommendationFeedClickLoad', formatPercent(metrics.recommenderClickLoad)),
+    createMetricRow('recommendationFeedClicks', `${formatCount(metrics.recommenderClickEvents)} (${formatCount(metrics.recommendationClickEvents)} rec / ${formatCount(metrics.feedClickEvents)} feed / ${formatCount(metrics.commentClickEvents)} comments)`),
+    createMetricRow('feedCommentLoad', `${formatPercent(metrics.feedCommentInteractionLoad)} (${formatRate(metrics.feedClickRatePerMinute)} / ${formatRate(metrics.commentClickRatePerMinute)})`),
+    createMetricRow('latestTransition', `${metrics.latestTransitionType || '--'}${metrics.latestDirectNavigation ? ` (direct, recovery ${formatPercent(metrics.directNavigationRecovery)})` : ''}`),
+    createMetricRow('transitionQualifiers', Array.isArray(metrics.latestTransitionQualifiers) && metrics.latestTransitionQualifiers.length > 0 ? metrics.latestTransitionQualifiers.join(', ') : '--'),
+    createMetricRow('redirectTransitionLoad', formatPercent(metrics.redirectTransitionLoad)),
+    createMetricRow('redirectTransitions', formatCount(metrics.redirectTransitionCount)),
+    createMetricRow('navigationLoopLoad', `${formatPercent(metrics.navigationLoopLoad)} (${formatCount(metrics.samePageRepeatCount)} repeats, ${formatCount(metrics.reloadTransitionCount)} reloads)`),
+    createMetricRow('searchLoopLoad', `${formatPercent(metrics.searchRefinementLoad)} (${formatCount(metrics.searchVisitCount)} searches, ${formatCount(metrics.searchQueryShiftCount)} shifts)`),
+    createMetricRow('deliberateGapLoad', `${formatPercent(metrics.deliberateStalenessLoad)} (${formatCount(metrics.visitsSinceDeliberateAction)} visits)`),
+    createMetricRow('unanchoredOriginDecayLoad', `${formatPercent(metrics.unanchoredSessionLoad)} / ${formatPercent(metrics.originDecayLoad)} (${formatPercent(metrics.recentOriginSimilarity)} recent avg)`),
+    createMetricRow('sessionAgeDeliberateGap', `${formatDuration(metrics.sessionAgeMs)} / ${formatDuration(metrics.deliberateGapMs)}`),
+    createMetricRow('inputVelocity', formatRate(metrics.inputRatePerMinute)),
+    createMetricRow('keyVelocity', formatRate(metrics.keyRatePerMinute)),
+    createMetricRow('constructiveDwell', formatPercent(metrics.constructiveDwell)),
+    createMetricRow('passiveActiveTimeLoad', formatPercent(metrics.passiveTimeLoad)),
+    createMetricRow('latestDwellActive', `${formatDuration(metrics.latestDwellMs)} / ${formatDuration(metrics.latestActiveMs)}`),
+    createMetricRow('totalDwellActive', `${formatDuration(metrics.totalDwellMs)} / ${formatDuration(metrics.totalActiveMs)}`),
+    createMetricRow('longSessionLoad', formatPercent(metrics.longSessionLoad)),
+    createMetricRow('linkDensity', formatPercent(metrics.linkDensity)),
+    createMetricRow('domainEntropy', formatPercent(metrics.domainEntropy)),
+    createMetricRow('domainChanges', String(metrics.domainChanges ?? 0)),
+    createMetricRow('returnRate', formatPercent(metrics.returnRate)),
+    createMetricRow('originReturnRate', formatPercent(metrics.originReturnRate)),
+    createMetricRow('lowReturnLoad', formatPercent(metrics.lowReturnLoad)),
+    createMetricRow('tabsInChain', formatCount(metrics.tabCount)),
+    createMetricRow('openTabs', formatCount(metrics.openTabCount)),
+    createMetricRow('openWindows', formatCount(metrics.openWindowCount)),
+    createMetricRow('openTabPressure', formatPercent(metrics.tabPressureLoad)),
+    createMetricRow('recentTabSwitches', formatCount(metrics.tabSwitchCount)),
+    createMetricRow('tabSwitchVelocity', formatRate(metrics.tabSwitchRatePerMinute)),
+    createMetricRow('tabSwitchLoops', formatCount(metrics.tabSwitchLoopCount)),
+    createMetricRow('tabSwitchLoad', formatPercent(metrics.tabSwitchLoad)),
+    createMetricRow('childTabBranches', formatCount(metrics.branchCount)),
+    createMetricRow('coherentHosts', formatCoherentHosts(session)),
+    createMetricRow('driftDescendants', formatCount(metrics.driftDescendantCount)),
+    createMetricRow('driftDescendantHosts', formatDriftDescendantHosts(session)),
+    createMetricRow('currentIsDriftDescendant', formatIntentBoolean(metrics.latestIsDriftDescendant)),
+    createMetricRow('interventionFeedbackEntries', formatCount(feedbackSummary.total ?? feedbackCount)),
+    createMetricRow('feedbackContinueReasons', formatCount(feedbackSummary.continueReasonCount)),
+    createMetricRow('feedbackReturnRate', formatPercent(feedbackSummary.returnRate)),
+    createMetricRow('feedbackIsolateRate', formatPercent(feedbackSummary.isolateRate)),
+    createMetricRow('feedbackCoherentMarkRate', formatPercent(feedbackSummary.markCoherentRate)),
+    createMetricRow('feedbackContinueRate', formatPercent(feedbackSummary.continueRate)),
+    createMetricRow('feedbackDismissRate', formatPercent(feedbackSummary.dismissRate)),
+    createMetricRow('feedbackScoreOutcomes', `${Number.isFinite(feedbackSummary.averageCoherenceScore) ? String(feedbackSummary.averageCoherenceScore) : '--'} avg - ${formatCount(feedbackSummary.outcomeTotal)} observed - ${formatPercent(feedbackSummary.outcomeRecoveredRate)} recovered (${formatCount(feedbackSummary.outcomeRecovered)}) - return host ${formatPercent(feedbackSummary.outcomeReturnHostRate)} - delta ${Number.isFinite(feedbackSummary.averageOutcomeScoreDelta) ? formatSignedNumber(feedbackSummary.averageOutcomeScoreDelta) : '--'}`),
+    createMetricRow('continueOutcomes', formatContinueOutcomeSummary(feedbackSummary)),
+    createMetricRow('calibrationDiagnostic', formatFeedbackRecommendation(feedbackSummary.recommendation)),
+    createMetricRow('autoCalibration', formatIntentCalibration(debugState?.intentPolicy?.settings?.calibration)),
+    createMetricRow('chainBlock', formatChainBlock(debugState?.intervention?.chainBlock))
   ];
 
   getElement('optionsIntentMetrics').replaceChildren(...metricRows.flatMap(([label, value]) => {
@@ -159,22 +164,22 @@ function renderVisits(visits = []) {
     const title = document.createElement('strong');
     title.textContent = getLabel(visit);
     const policyLabel = Array.isArray(visit.policy?.planNames) && visit.policy.planNames.length > 0
-      ? `policy ${visit.policy.planNames.join(', ')}`
-      : (visit.policy?.source ? `policy ${visit.policy.source}` : '');
+      ? getMessage('intentDiagnosticsVisitPolicy', 'policy $1', [visit.policy.planNames.join(', ')])
+      : (visit.policy?.source ? getMessage('intentDiagnosticsVisitPolicy', 'policy $1', [visit.policy.source]) : '');
 
     const meta = document.createElement('span');
     meta.textContent = [
       visit.startedAt ? new Date(visit.startedAt).toLocaleTimeString() : '',
-      Number.isFinite(Number(visit.tabId)) ? `tab ${visit.tabId}` : '',
-      Number.isFinite(Number(visit.openerTabId)) ? `from tab ${visit.openerTabId}` : '',
-      visit.driftDescendant ? 'drift descendant' : '',
-      visit.transitionType ? `transition ${visit.transitionType}` : '',
+      Number.isFinite(Number(visit.tabId)) ? getMessage('intentDiagnosticsVisitTab', 'tab $1', [String(visit.tabId)]) : '',
+      Number.isFinite(Number(visit.openerTabId)) ? getMessage('intentDiagnosticsVisitFromTab', 'from tab $1', [String(visit.openerTabId)]) : '',
+      visit.driftDescendant ? getMessage('intentDiagnosticsVisitDriftDescendant', 'drift descendant') : '',
+      visit.transitionType ? getMessage('intentDiagnosticsVisitTransition', 'transition $1', [visit.transitionType]) : '',
       Array.isArray(visit.transitionQualifiers) && visit.transitionQualifiers.length > 0 ? visit.transitionQualifiers.join(', ') : '',
-      `active ${formatDuration(visit.activeMs ?? visit.signals?.activity?.activePageMs)}`,
-      `dwell ${formatDuration(visit.dwellMs ?? visit.signals?.activity?.pageAgeMs)}`,
+      getMessage('intentDiagnosticsVisitActive', 'active $1', [formatDuration(visit.activeMs ?? visit.signals?.activity?.activePageMs)]),
+      getMessage('intentDiagnosticsVisitDwell', 'dwell $1', [formatDuration(visit.dwellMs ?? visit.signals?.activity?.pageAgeMs)]),
       policyLabel,
-      `origin ${formatPercent(visit.metrics?.originSimilarity)}`,
-      `local ${formatPercent(visit.metrics?.localSimilarity)}`
+      getMessage('intentDiagnosticsVisitOrigin', 'origin $1', [formatPercent(visit.metrics?.originSimilarity)]),
+      getMessage('intentDiagnosticsVisitLocal', 'local $1', [formatPercent(visit.metrics?.localSimilarity)])
     ].filter(Boolean).join(' · ');
 
     item.append(title, meta);
@@ -192,9 +197,9 @@ function createGraphBadge(label) {
 function getGraphNodeMeta(node = {}) {
   return [
     node.startedAt ? new Date(node.startedAt).toLocaleTimeString() : '',
-    Number.isFinite(node.tabId) ? `tab ${node.tabId}` : '',
-    Number.isFinite(node.openerTabId) ? `from tab ${node.openerTabId}` : '',
-    node.transitionType ? `via ${node.transitionType}` : '',
+    Number.isFinite(node.tabId) ? getMessage('intentDiagnosticsGraphTab', 'tab $1', [String(node.tabId)]) : '',
+    Number.isFinite(node.openerTabId) ? getMessage('intentDiagnosticsGraphFromTab', 'from tab $1', [String(node.openerTabId)]) : '',
+    node.transitionType ? getMessage('intentDiagnosticsGraphVia', 'via $1', [node.transitionType]) : '',
     Array.isArray(node.transitionQualifiers) && node.transitionQualifiers.length > 0
       ? node.transitionQualifiers.join(', ')
       : ''
@@ -206,7 +211,7 @@ function renderLineageGraph(session = {}) {
   const graph = createIntentLineageGraph(session, { maxNodes: MAX_GRAPH_NODES });
   if (graph.nodes.length === 0) {
     const item = document.createElement('li');
-    item.textContent = 'No graph data yet.';
+    item.textContent = getMessage('intentDiagnosticsNoGraphData', 'No graph data yet.');
     list.replaceChildren(item);
     return;
   }
@@ -231,13 +236,13 @@ function renderLineageGraph(session = {}) {
     title.textContent = node.label;
 
     const meta = document.createElement('small');
-    meta.textContent = getGraphNodeMeta(node) || 'same tab';
+    meta.textContent = getGraphNodeMeta(node) || getMessage('intentDiagnosticsGraphSameTab', 'same tab');
 
     const badges = document.createElement('div');
     badges.className = 'intent-graph-badges';
-    badges.appendChild(createGraphBadge(node.coherenceLabel || 'uncertain'));
-    if (node.isOrigin) badges.appendChild(createGraphBadge('origin'));
-    if (node.isCurrent) badges.appendChild(createGraphBadge('current'));
+    badges.appendChild(createGraphBadge(node.coherenceLabel || getMessage('intentDiagnosticsGraphUncertainBadge', 'uncertain')));
+    if (node.isOrigin) badges.appendChild(createGraphBadge(getMessage('intentDiagnosticsGraphOriginBadge', 'origin')));
+    if (node.isCurrent) badges.appendChild(createGraphBadge(getMessage('intentDiagnosticsGraphCurrentBadge', 'current')));
 
     body.append(title, meta, badges);
     item.append(marker, body);
@@ -266,12 +271,12 @@ function renderDiagnostics(debugState) {
   getElement('optionsIntentScore').textContent = Number.isFinite(decision.coherenceScore)
     ? String(decision.coherenceScore)
     : '--';
-  getElement('optionsIntentPlan').textContent = `Policy: ${planNames}`;
-  getElement('optionsIntentAction').textContent = decision.settings
-    ? `${decision.action} · intervene <= ${decision.settings.interventionThreshold} · locked <= ${decision.settings.lockedThreshold} · retain ${decision.settings.diagnosticsRetentionDays}d${decision.settings.calibration?.applied ? ` · calibrated ${formatSignedNumber(decision.settings.calibration.thresholdDelta)}` : ''}${decision.chainBlock?.active ? ' · chain quarantine' : ''}${decision.settings.autoCloseQuarantinedTab ? ' · auto-close current tab' : ''}`
-    : '--';
+  getElement('optionsIntentPlan').textContent = getMessage('intentDiagnosticsPolicyValue', 'Policy: $1', [planNames]);
+  getElement('optionsIntentAction').textContent = formatIntentActionSummary(decision);
   getElement('optionsIntentOrigin').textContent = getLabel(session.origin);
-  getElement('optionsIntentCurrent').textContent = latestVisit ? `Current: ${getLabel(latestVisit)}` : '--';
+  getElement('optionsIntentCurrent').textContent = latestVisit
+    ? getMessage('intentDiagnosticsCurrentValue', 'Current: $1', [getLabel(latestVisit)])
+    : '--';
   getElement('optionsIntentLineage').textContent = formatLineageSummary(session.metrics);
   getElement('optionsIntentLineageDetail').textContent = formatLineageDetail(session.metrics);
 
@@ -300,7 +305,7 @@ export async function refreshIntentDiagnosticsPanel() {
 }
 
 async function clearIntentDiagnosticsPanel() {
-  if (!globalThis.confirm?.(getUiMessage(
+  if (!globalThis.confirm?.(getMessage(
     'clearIntentDiagnosticsConfirm',
     'Clear local intent diagnostics? This removes recent intent trajectory state and intervention feedback stored on this device. Export first if you want a backup.'
   ))) {
@@ -312,13 +317,13 @@ async function clearIntentDiagnosticsPanel() {
   try {
     const response = await sendRuntimeMessage({ action: 'clearIntentDebugState' });
     if (response?.status === 'cleared') {
-      setEmptyState(getUiMessage('clearDiagnosticsClearedStatus', 'Cleared.'));
+      setEmptyState(getMessage('clearDiagnosticsClearedStatus', 'Cleared.'));
     } else {
-      setEmptyState(getUiMessage('clearIntentDiagnosticsFailed', 'Could not clear intent diagnostics.'));
+      setEmptyState(getMessage('clearIntentDiagnosticsFailed', 'Could not clear intent diagnostics.'));
     }
   } catch (error) {
     console.error('Failed to clear intent diagnostics:', error);
-    setEmptyState(getUiMessage('clearIntentDiagnosticsFailed', 'Could not clear intent diagnostics.'));
+    setEmptyState(getMessage('clearIntentDiagnosticsFailed', 'Could not clear intent diagnostics.'));
   } finally {
     clearButton.disabled = false;
   }
