@@ -8,21 +8,18 @@ import process from 'node:process';
 import {
   allowedManifestKeys,
   canonicalReadmeSupportBlock,
-  chromeWebStoreFieldLimit,
   englishStoreListingLocales,
   licenseId,
   manifestPermissions,
-  privacyCertificationKeys,
-  privacyDataUsageKeys,
   repositoryUrl,
   requiredRootEntries,
-  storeCategories,
   storeMediaAssetPaths,
   storageKeyFamilies
 } from './playbook/constants.mjs';
 import { getReleaseSafetyFailures } from './playbook/releaseSafety.mjs';
+import { getStoreAutomationFailures } from './playbook/storeAutomation.mjs';
 import { verifyReviewedStoreMediaHashes } from './playbook/storeMediaReview.mjs';
-import { getDuplicateKeyedBlockFields, getFirstNonEmptyLine, getPngDimensionFailure, hasAll, parseKeyedBlock } from './playbook-utils.mjs';
+import { getFirstNonEmptyLine, getPngDimensionFailure, hasAll } from './playbook-utils.mjs';
 
 const rootDir = process.cwd(), failures = [];
 async function exists(relativePath) {
@@ -389,49 +386,7 @@ assertCondition(
   packageJson.scripts?.['verify:static-localization'] === 'node scripts/check-static-localization.mjs',
   'package.json must expose npm run verify:static-localization for extension HTML localization checks.'
 );
-const storePrivacyFields = parseKeyedBlock(storePrivacyForm, 'privacy');
-const duplicateStorePrivacyFields = getDuplicateKeyedBlockFields(storePrivacyForm, 'privacy');
-assertCondition(duplicateStorePrivacyFields.length === 0, `StorePilot privacy form has duplicate keys: ${duplicateStorePrivacyFields.join(', ')}.`);
-for (const [field, value] of storePrivacyFields) {
-  assertCondition(
-    value.length <= chromeWebStoreFieldLimit,
-    `StorePilot privacy field ${field} is ${value.length} characters; Chrome Web Store fields must be ${chromeWebStoreFieldLimit} characters or fewer.`
-  );
-}
-for (const field of ['single_purpose', 'host_permission', 'remote_code', 'privacy_policy_url']) {
-  assertCondition(storePrivacyFields.has(field), `StorePilot privacy form is missing ${field}.`);
-}
-for (const permission of manifestPermissions) {
-  assertCondition(
-    storePrivacyFields.has(`permission.${permission}`),
-    `StorePilot privacy form is missing permission.${permission}.`
-  );
-}
-for (const field of privacyDataUsageKeys) {
-  assertCondition(storePrivacyFields.get(field) === 'no', `StorePilot privacy form must set ${field}: no.`);
-}
-for (const field of privacyCertificationKeys) {
-  assertCondition(storePrivacyFields.get(field) === 'yes', `StorePilot privacy form must set ${field}: yes.`);
-}
-assertCondition(storePrivacyFields.get('remote_code') === 'no' && !storePrivacyFields.has('remote_code_justification'), 'StorePilot privacy form must set remote_code: no and omit remote_code_justification.');
-assertCondition(/<all_urls>/.test(storePrivacyFields.get('host_permission') || ''), 'StorePilot privacy form must name exact <all_urls> host access.');
-assertCondition(
-  storePrivacyFields.get('privacy_policy_url') === 'https://github.com/molodchyk/Defense_against_Distractions/blob/main/PRIVACY.md',
-  'StorePilot privacy form must point to the repository privacy policy.'
-);
-const additionalFields = parseKeyedBlock(storeAdditionalFields, 'additional_fields');
-const duplicateAdditionalFields = getDuplicateKeyedBlockFields(storeAdditionalFields, 'additional_fields');
-assertCondition(duplicateAdditionalFields.length === 0, `StorePilot additional fields document has duplicate keys: ${duplicateAdditionalFields.join(', ')}.`);
-assertCondition(additionalFields.get('official_url') === 'none', 'StorePilot additional fields must set official_url: none.');
-assertCondition(additionalFields.get('homepage_url') === repositoryUrl, 'StorePilot additional fields must set homepage_url to the repository URL.');
-assertCondition(additionalFields.get('support_url') === `${repositoryUrl}/issues`, 'StorePilot additional fields must set support_url to repository issues.');
-assertCondition(additionalFields.get('mature_content') === 'no', 'StorePilot additional fields must set mature_content: no.');
-const categoryMatch = storeCategory.match(/^Selected category:\s*(.+)$/m);
-assertCondition(Boolean(categoryMatch), 'StorePilot category document must include a Selected category line.');
-assertCondition(
-  categoryMatch ? storeCategories.includes(categoryMatch[1].trim()) : false,
-  'StorePilot category document must use a visible Chrome Web Store category label.'
-);
+failures.push(...getStoreAutomationFailures({ storePrivacyForm, storeAdditionalFields, storeCategory, manifestPermissions }));
 for (const iconPath of Object.values(manifest.icons || {})) {
   assertCondition(
     typeof iconPath === 'string' && iconPath.startsWith('assets/icons/'),
@@ -658,6 +613,7 @@ for (const locale of locales) {
   assertCondition(!/\b(guarantee[sd]?|perfect|scientifically proven|clinically proven|cure[sd]?|ADHD|medical|therapy|therapeutic|mental health|knows your true intent|true intention|attention residue|permanent attention damage|objectively useless)\b/i.test(listing), `${listingPath} must avoid inflated, medical, or mind-reading claims.`);
 
   if (englishStoreListingLocales.has(locale)) {
+    assertCondition(!listing.includes(englishDescription), `${listingPath} must not paste the short Chrome Web Store summary into the direct detailed-description body.`);
     assertCondition(
       /plans/i.test(listing) && /allowed websites/i.test(listing) && /intent coherence/i.test(listing) && /You can use it to protect/i.test(listing) && /Main features:/i.test(listing) && /Browser notes:/i.test(listing) && /What is new in version/i.test(listing) && /incognito/i.test(listing) && /file URL/i.test(listing) && /open source/i.test(listing),
       `${listingPath} must describe examples, features, current plan-based UI model, browser-controlled limitations, current-version notes, and open-source footer.`

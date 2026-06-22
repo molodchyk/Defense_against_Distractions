@@ -366,6 +366,7 @@ $requiredSourceEntries = @(
   "scripts/package-extension.ps1",
   "scripts/playbook/constants.mjs",
   "scripts/playbook/releaseSafety.mjs",
+  "scripts/playbook/storeAutomation.mjs",
   "scripts/playbook/storeMediaReview.mjs",
   "scripts/playbook-utils.mjs",
   "scripts/verify-package-output.ps1",
