@@ -623,6 +623,10 @@ for (const locale of locales) {
     `${listingPath} must not start with a Chrome Web Store field label.`
   );
   assertCondition(
+    !/^(name|summary|description|detailed description|category|homepage url|support url|official url|mature content|privacy fields)\s*:/im.test(listing),
+    `${listingPath} must not contain Chrome Web Store dashboard field labels.`
+  );
+  assertCondition(
     !/^(defen[sc]e against distractions)\b/i.test(firstLine),
     `${listingPath} must not start with the extension name.`
   );
