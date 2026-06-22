@@ -12,6 +12,9 @@ Block pages by keywords, phrases, and weighted scores.
 Organize different focus contexts into plans.
 Use locked schedules, allowed websites, password protection, export/import, UI modes, Pomodoro, intent coherence, and UI element hiding to keep the setup practical.
 
+Browser notes:
+The browser controls incognito and file URL access. DaD only works on those pages when you explicitly allow the extension there.
+
 What is new in version 1.6.1:
 Pomodoro now counts idle and locked time toward required rest.
 The popup and plan Pomodoro page now show clearer runtime diagnostics.

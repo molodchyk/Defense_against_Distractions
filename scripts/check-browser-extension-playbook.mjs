@@ -666,8 +666,8 @@ for (const locale of locales) {
 
   if (englishStoreListingLocales.has(locale)) {
     assertCondition(
-      /plans/i.test(listing) && /allowed websites/i.test(listing) && /intent coherence/i.test(listing),
-      `${listingPath} must describe the current plan-based UI model.`
+      /plans/i.test(listing) && /allowed websites/i.test(listing) && /intent coherence/i.test(listing) && /Browser notes:/i.test(listing) && /incognito/i.test(listing) && /file URL/i.test(listing),
+      `${listingPath} must describe the current plan-based UI model and browser-controlled limitations.`
     );
     assertCondition(
       !/create groups of websites|website and keyword groups|whitelists/i.test(listing),
