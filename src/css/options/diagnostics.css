@@ -124,6 +124,11 @@
     color: var(--muted);
 }
 
+.usage-domain-list .usage-domain-empty {
+    color: var(--muted);
+    font-weight: 700;
+}
+
 .intent-debug-layout {
     display: grid;
     grid-template-columns: minmax(220px, 0.8fr) minmax(320px, 1fr);

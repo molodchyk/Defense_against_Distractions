@@ -2,6 +2,7 @@
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
 import { buildUsageStatsExportPayload } from '../shared/usageStats.js';
+import { getUiMessage } from '../shared/ui/uiLanguage.js';
 import { sendRuntimeMessage } from '../../platform/chrome/runtimeMessages.js';
 import { addStorageChangeListener } from '../../platform/chrome/storage.js';
 
@@ -95,7 +96,21 @@ function createDomainItem(domain = {}) {
   return item;
 }
 
-function setUsageEmptyState(message = 'No local usage stats yet') {
+function createEmptyDomainItem(message = getUiMessage('popupNoLocalUsageStats', 'No local usage stats yet')) {
+  const item = document.createElement('li');
+  item.className = 'usage-domain-empty';
+  item.textContent = message;
+  return item;
+}
+
+function renderDomainList(domains = []) {
+  const domainItems = domains.slice(0, MAX_VISIBLE_DOMAINS).map(createDomainItem);
+  getElement('usageStatsDomainList').replaceChildren(
+    ...(domainItems.length > 0 ? domainItems : [createEmptyDomainItem()])
+  );
+}
+
+function setUsageEmptyState(message = getUiMessage('popupNoLocalUsageStats', 'No local usage stats yet')) {
   getElement('usageStatsStatus').textContent = message;
   getElement('usageStatsTodayVisits').textContent = '0';
   getElement('usageStatsTodayActive').textContent = '0s';
@@ -109,7 +124,7 @@ function setUsageEmptyState(message = 'No local usage stats yet') {
   getElement('usageStatsTodayAllowedVisits').textContent = '0';
   getElement('usageStatsTodayTabMax').textContent = '0';
   getElement('usageStatsTotalSamples').textContent = '0';
-  getElement('usageStatsDomainList').replaceChildren();
+  renderDomainList();
 }
 
 function renderUsageStats(payload) {
@@ -136,9 +151,7 @@ function renderUsageStats(payload) {
   getElement('usageStatsTodayAllowedVisits').textContent = formatCount(today.allowedVisits);
   getElement('usageStatsTodayTabMax').textContent = formatCount(today.tabMax);
   getElement('usageStatsTotalSamples').textContent = formatCount(total.samples);
-  getElement('usageStatsDomainList').replaceChildren(
-    ...topDomains.slice(0, MAX_VISIBLE_DOMAINS).map(createDomainItem)
-  );
+  renderDomainList(topDomains);
 }
 
 function downloadJson(filename, payload) {

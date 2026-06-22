@@ -56,6 +56,7 @@ Use this checklist before publishing a new extension release.
 - Confirm the popup Page Signals panel shows current-page keyword ideas when bounded page tokens exist, and that `Copy keyword ideas` copies keyword-editor lines without saving them automatically.
 - Confirm the popup Inspect pane exposes Copy Diagnostics as a pane-level action, and that Block Diagnostics keeps block-specific refresh/status controls.
 - Switch UI mode between light, dark, and system; confirm popup, options, blocked page, and UI picker follow it.
+- Confirm blank states are intentional for empty plans, empty UI cleanup rules, empty usage stats, and empty intent diagnostics.
 - Open popup Inspect, close and reopen the popup, and confirm it restores Inspect; set it back to Control and confirm Control restores.
 - With an existing configuration, confirm legacy groups, locked schedules, and whitelisted websites are migrated into plans on options-page load.
 - Confirm standalone Groups, Locked Schedules, and Whitelist sections are not visible as primary editing surfaces.
