@@ -14,6 +14,18 @@ const htmlFiles = [
 ];
 const runtimeValuePattern = /^(?:--|0|0s|0:00|0 ?\/ ?160|0\/280|0% active \/ 0% visits)$/;
 const checkedAttributes = ['aria-label', 'title', 'placeholder'];
+const fallbackMessageMaps = [
+  ['src/js/popup/i18n.js', 'POPUP_MESSAGES'],
+  ['src/js/content/intent/messages.js', 'INTENT_MESSAGES'],
+  ['src/js/options/storageTransfer.js', 'FALLBACK_MESSAGES'],
+  ['src/js/options/password/manager.js', 'PASSWORD_MESSAGES'],
+  ['src/js/options/billing.js', 'BILLING_MESSAGES'],
+  ['src/js/options/localization.js', 'FALLBACK_MESSAGES'],
+  ['src/js/options/settings/blockedPageSettings.js', 'FALLBACK_MESSAGES'],
+  ['src/js/options/plans/messages.js', 'PLAN_MESSAGES'],
+  ['src/js/options/element-rules/constants.js', 'ELEMENT_RULE_MESSAGES'],
+  ['src/js/content/ui-blocking/pickerPanel.js', 'PICKER_MESSAGES']
+];
 
 const failures = [];
 
@@ -259,6 +271,20 @@ async function scanOptionsSourceFiles() {
   }
 }
 
+async function scanFallbackMessageMaps(englishMessages) {
+  for (const [file, mapName] of fallbackMessageMaps) {
+    const source = await readText(file);
+    const messageKeys = getObjectKeys(source, mapName);
+
+    if (messageKeys.size === 0) {
+      failures.push(`${file}: ${mapName} fallback message map was not found.`);
+      continue;
+    }
+
+    assertMessageKeysExist(messageKeys, englishMessages, `${file} ${mapName}`);
+  }
+}
+
 async function scanElementRuleSourceFiles(englishMessages) {
   const [
     elementRuleConstants,
@@ -356,6 +382,7 @@ for (const messageKey of config.referencedMessageKeys) {
 
 htmlFiles.forEach((file, index) => scanHtmlFile(file, htmlTexts[index], config));
 await scanOptionsSourceFiles();
+await scanFallbackMessageMaps(englishMessages);
 await scanElementRuleSourceFiles(englishMessages);
 
 if (failures.length === 0) {

@@ -2368,5 +2368,377 @@
     },
     "intentPromptContinueReasonRequired": {
         "message": "Enter a short reason to continue."
+    },
+    "popupUsageSummaryTitle": {
+        "message": "Today usage"
+    },
+    "popupUsageSummaryAriaLabel": {
+        "message": "Today local usage summary"
+    },
+    "popupVisitsLabel": {
+        "message": "Visits"
+    },
+    "popupActiveTodayLabel": {
+        "message": "Active today"
+    },
+    "popupBlockedActiveLabel": {
+        "message": "Blocked active"
+    },
+    "popupAllowedActiveLabel": {
+        "message": "Allowed active"
+    },
+    "popupBlockedShareLabel": {
+        "message": "Blocked share"
+    },
+    "popupDomainsLabel": {
+        "message": "Domains"
+    },
+    "popupPageWordsLabel": {
+        "message": "Page words"
+    },
+    "popupUsageDomainsAriaLabel": {
+        "message": "Today top local usage domains"
+    },
+    "popupUsageStatusSummary": {
+        "message": "Local aggregates - $1d retention"
+    },
+    "popupNoLocalUsageStats": {
+        "message": "No local usage stats yet"
+    },
+    "popupUsageWordsOutcome": {
+        "message": "$1 blocked / $2 allowed"
+    },
+    "popupUsageBlockedShare": {
+        "message": "$1 active / $2 visits"
+    },
+    "popupUsageDomainMeta": {
+        "message": "$1 active - $2 blocked / $3 allowed visits"
+    },
+    "popupContributorsLabel": {
+        "message": "Contributors"
+    },
+    "popupUnavailableLabel": {
+        "message": "Unavailable"
+    },
+    "popupNoPageLabel": {
+        "message": "No page"
+    },
+    "popupNoScriptLabel": {
+        "message": "No script"
+    },
+    "popupCurrentTabStatus": {
+        "message": "Current tab"
+    },
+    "popupNoWebPage": {
+        "message": "No web page"
+    },
+    "popupBlockedOverlayActive": {
+        "message": "Blocked overlay active"
+    },
+    "popupBlockedWithKeyword": {
+        "message": "Blocked: $1"
+    },
+    "popupAllowedByPlans": {
+        "message": "Allowed: $1"
+    },
+    "popupMatchedGroups": {
+        "message": "Matched: $1"
+    },
+    "popupNoMatchingRule": {
+        "message": "No matching rule"
+    },
+    "popupNoActivePlan": {
+        "message": "No active plan"
+    },
+    "popupNoPlansConfigured": {
+        "message": "No plans configured"
+    },
+    "popupActivePlansFallback": {
+        "message": "$1 active"
+    },
+    "popupActivePlansSummary": {
+        "message": "$1 active / $2 total"
+    },
+    "popupActiveState": {
+        "message": "Active"
+    },
+    "popupReadyState": {
+        "message": "Ready"
+    },
+    "popupIdleState": {
+        "message": "Idle"
+    },
+    "popupAutoStartPaused": {
+        "message": "Auto-start paused"
+    },
+    "popupAutoStartDelayed": {
+        "message": "Auto-start delayed"
+    },
+    "popupWorkSummary": {
+        "message": "Work - $1"
+    },
+    "popupPomodoroStateSummary": {
+        "message": "$1 - $2"
+    },
+    "popupPausedSummary": {
+        "message": "Paused - $1"
+    },
+    "popupRestSatisfied": {
+        "message": "Rest satisfied"
+    },
+    "popupNotRunning": {
+        "message": "Not running"
+    },
+    "popupStrictBreaks": {
+        "message": "strict breaks"
+    },
+    "popupAdvisoryBreaks": {
+        "message": "advisory breaks"
+    },
+    "popupAutoStart": {
+        "message": "auto-start"
+    },
+    "popupAutoStartTimelineLabel": {
+        "message": "Auto-start"
+    },
+    "popupManualStart": {
+        "message": "manual start"
+    },
+    "popupWorkSessionsCompleted": {
+        "message": "$1 work sessions completed"
+    },
+    "popupAutoStartDelayedFor": {
+        "message": "auto-start delayed $1"
+    },
+    "popupAutoStartPausedUntilStart": {
+        "message": "auto-start paused until Start or Resume"
+    },
+    "popupPomodoroProtectedScheduleControls": {
+        "message": "Controls locked"
+    },
+    "popupPomodoroProtectedScheduleReason": {
+        "message": "Pause and reset are locked while a protected schedule is active."
+    },
+    "popupNoTrajectory": {
+        "message": "No trajectory"
+    },
+    "popupClearState": {
+        "message": "clear"
+    },
+    "popupBlockedState": {
+        "message": "blocked"
+    },
+    "popupNoneDetected": {
+        "message": "none detected"
+    },
+    "popupNoTriggerRecorded": {
+        "message": "No trigger recorded"
+    },
+    "popupNoContributorRecorded": {
+        "message": "No contributors recorded"
+    },
+    "popupEarlierContributors": {
+        "message": "+$1 earlier"
+    },
+    "popupUnknownLabel": {
+        "message": "unknown"
+    },
+    "popupBlockedOverlayIn": {
+        "message": "overlay in $1"
+    },
+    "popupMediaSuspendedSummary": {
+        "message": "$1 media / $2 frames suspended"
+    },
+    "popupMediaRestoredSummary": {
+        "message": "restored $1 media / $2 frames"
+    },
+    "popupMediaCapableElements": {
+        "message": "$1 media-capable elements"
+    },
+    "popupMutedOriginallyMuted": {
+        "message": "muted, originally muted"
+    },
+    "popupMutedByDad": {
+        "message": "muted by DaD"
+    },
+    "popupRestoredMutedState": {
+        "message": "restored to muted"
+    },
+    "popupRestoredUnmutedState": {
+        "message": "restored to unmuted"
+    },
+    "popupRestoreSkipped": {
+        "message": "restore skipped"
+    },
+    "popupNotTracked": {
+        "message": "not tracked"
+    },
+    "popupNoTrajectoryDataYet": {
+        "message": "No trajectory data yet"
+    },
+    "popupNoneDetectedTitleCase": {
+        "message": "None detected"
+    },
+    "popupConfiguredCycle": {
+        "message": "$1m work / $2m rest"
+    },
+    "popupStateForDuration": {
+        "message": "$1 for $2"
+    },
+    "popupStateLastActivity": {
+        "message": "$1 - last activity $2 ago"
+    },
+    "popupActivityWithActiveToday": {
+        "message": "$1 - active today $2"
+    },
+    "popupLastActivityAgo": {
+        "message": "$1 ago"
+    },
+    "popupOpenPageBeforePicking": {
+        "message": "Open a page before picking an element."
+    },
+    "popupReloadBeforePicking": {
+        "message": "Reload this page, then try picking again."
+    },
+    "popupElementPickerStarted": {
+        "message": "Element picker started."
+    },
+    "popupCouldNotClearIntent": {
+        "message": "Could not clear intent diagnostics."
+    },
+    "popupClearedLabel": {
+        "message": "Cleared"
+    },
+    "popupPomodoroActionFailed": {
+        "message": "Pomodoro action failed."
+    },
+    "popupDiagnosticsCopied": {
+        "message": "Diagnostics copied."
+    },
+    "popupCouldNotCopyDiagnostics": {
+        "message": "Could not copy diagnostics."
+    },
+    "billingDisabledNotice": {
+        "message": "Billing integration is disabled in this build."
+    },
+    "planPomodoroLabel": {
+        "message": "Pomodoro"
+    },
+    "planIntentLabel": {
+        "message": "Intent"
+    },
+    "intentEnabledLabel": {
+        "message": "Enable intent coherence for this plan"
+    },
+    "intentActionLabel": {
+        "message": "Intervention action"
+    },
+    "intentActionWarnLabel": {
+        "message": "Warn only"
+    },
+    "intentActionGrayscaleLabel": {
+        "message": "Grayscale page"
+    },
+    "intentActionReduceNoiseLabel": {
+        "message": "Hide feeds and comments"
+    },
+    "intentActionPromptLabel": {
+        "message": "Return prompt"
+    },
+    "intentActionBlockLabel": {
+        "message": "Block drift chain"
+    },
+    "intentInterventionThresholdLabel": {
+        "message": "Intervention threshold"
+    },
+    "intentLockedThresholdLabel": {
+        "message": "Locked threshold"
+    },
+    "intentPomodoroInfluenceLabel": {
+        "message": "Pomodoro influence"
+    },
+    "intentDiagnosticsRetentionLabel": {
+        "message": "Diagnostics retention days"
+    },
+    "intentAutoCalibrationLabel": {
+        "message": "Use local feedback calibration"
+    },
+    "intentAutoCloseQuarantinedTabLabel": {
+        "message": "Auto-close quarantined current tab after cooldown"
+    },
+    "intentPomodoroIgnoreLabel": {
+        "message": "Ignore Pomodoro"
+    },
+    "intentPomodoroWorkStricterLabel": {
+        "message": "Work stricter"
+    },
+    "intentPomodoroBreakLenientLabel": {
+        "message": "Breaks lenient"
+    },
+    "intentPomodoroBothLabel": {
+        "message": "Work stricter, breaks lenient"
+    },
+    "intentSaveLabel": {
+        "message": "Save intent settings"
+    },
+    "intentSettingsHint": {
+        "message": "Lower coherence means higher drift. Higher thresholds make this plan intervene earlier."
+    },
+    "pomodoroEnabledLabel": {
+        "message": "Enable Pomodoro for this plan"
+    },
+    "pomodoroWorkMinutesLabel": {
+        "message": "Work minutes"
+    },
+    "pomodoroShortBreakMinutesLabel": {
+        "message": "Short break minutes"
+    },
+    "pomodoroLongBreakMinutesLabel": {
+        "message": "Long break minutes"
+    },
+    "pomodoroSessionsBeforeLongBreakLabel": {
+        "message": "Work sessions before long break"
+    },
+    "pomodoroStrictBreaksLabel": {
+        "message": "Strict breaks"
+    },
+    "pomodoroAutoStartLabel": {
+        "message": "Auto-start when this plan is active"
+    },
+    "pomodoroSaveLabel": {
+        "message": "Save Pomodoro"
+    },
+    "pomodoroStartLabel": {
+        "message": "Start"
+    },
+    "pomodoroPauseLabel": {
+        "message": "Pause"
+    },
+    "pomodoroResumeLabel": {
+        "message": "Resume"
+    },
+    "pomodoroResetLabel": {
+        "message": "Reset"
+    },
+    "pomodoroIdleStatus": {
+        "message": "Timer is not running."
+    },
+    "pomodoroActivityUnknown": {
+        "message": "Activity unknown."
+    },
+    "pomodoroDisabledLabel": {
+        "message": "disabled"
+    },
+    "pomodoroInactivePlanLabel": {
+        "message": "plan is not active"
+    },
+    "pomodoroAnotherPlanRunningLabel": {
+        "message": "another plan is running"
+    },
+    "noPlanSchedulesMeta": {
+        "message": "no schedule"
+    },
+    "scheduleNeedsDayError": {
+        "message": "Select at least one day before saving this schedule."
     }
 }
