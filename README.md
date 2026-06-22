@@ -89,6 +89,8 @@ Release-facing assets use the shared browser-extension playbook shape:
 
 Architecture and release notes live in `docs/`. The current future-facing product model is documented in [Protection Model](docs/protection-model.md), the planned user-facing plan structure is documented in [Plans Architecture](docs/plans-architecture.md), durable project choices are indexed in [Decision Records](docs/decision-records.md), manifest permissions are mapped in [Permission Audit](docs/permission-audit.md), localization workflow is documented in [Localization](docs/localization.md), reviewer-facing browser limitations are documented in [Reviewer Notes](docs/reviewer-notes.md), store screenshots and promo assets are reviewed in [Store Media Review](docs/store-media-review.md), current release notes are documented in [Release Notes](docs/release-notes.md), and release gates are documented in [Release Readiness](docs/release-readiness.md).
 
+Current code ownership and the reusable architecture target are documented in [Code Structure](docs/code-structure.md) and [Extension Modularization Playbook](docs/extension-modularization-playbook.md).
+
 ## Privacy
 
 Defense Against Distractions is local-first. It stores configuration and bounded diagnostics in Chrome extension storage, does not use analytics, ads, tracking pixels, telemetry, remote executable code, or remote network requests, and does not require a server for core blocking behavior. See [PRIVACY.md](PRIVACY.md).

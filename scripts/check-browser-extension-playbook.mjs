@@ -288,6 +288,8 @@ assertCondition(
     /docs\/store-media-review\.md/,
     /docs\/release-notes\.md/,
     /docs\/decision-records\.md/,
+    /docs\/code-structure\.md/,
+    /docs\/extension-modularization-playbook\.md/,
     new RegExp(repositoryUrl.replaceAll('/', '\\/')),
     /Buy Me a Coffee/i,
     /Patreon/i
@@ -554,6 +556,7 @@ assertCondition(
     /test\/platform\/chrome\//,
     /test\/scripts\//,
     /scripts\/playbook\//,
+    /Extension Modularization Playbook/,
     /repository validation and release scripts/i,
     /isolated browser environment/i
   ]),
