@@ -347,6 +347,7 @@ $requiredSourceEntries = @(
   "docs/chrome-web-store-additional-fields.md",
   "docs/chrome-web-store-category.md",
   "docs/chrome-web-store-privacy-form.md",
+  "docs/claim-traceability.md",
   "docs/code-structure.md",
   "docs/content-script-load-order.md",
   "docs/decision-records.md",

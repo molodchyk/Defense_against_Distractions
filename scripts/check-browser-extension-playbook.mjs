@@ -94,6 +94,7 @@ assertCondition(await exists('docs/store-media-review.md'), 'Missing store media
 assertCondition(await exists('docs/decision-records.md'), 'Missing decision records document.');
 assertCondition(await exists('docs/browser-extension-playbook-compliance.md'), 'Missing browser extension playbook compliance document.');
 assertCondition(await exists('docs/browser-extension-playbook-requirements.md'), 'Missing browser extension playbook requirements ledger.');
+assertCondition(await exists('docs/claim-traceability.md'), 'Missing visible-claim traceability document.');
 assertCondition(await exists('docs/localization.md'), 'Missing localization workflow document.');
 assertCondition(await exists('docs/content-script-load-order.md'), 'Missing content-script load-order document.');
 assertCondition(await exists('scripts/check-static-localization.mjs'), 'Missing static localization verification script.');
@@ -123,7 +124,7 @@ const [
   releaseVerifier,
   storeMediaReview,
   decisionRecords,
-  playbookCompliance, playbookRequirements,
+  playbookCompliance, playbookRequirements, claimTraceability,
   codeStructure, protectionModel,
   localizationDoc,
   contentScriptLoadOrderDoc,
@@ -182,7 +183,7 @@ const [
   readText('scripts/verify-release.ps1'),
   readText('docs/store-media-review.md'),
   readText('docs/decision-records.md'),
-  readText('docs/browser-extension-playbook-compliance.md'), readText('docs/browser-extension-playbook-requirements.md'),
+  readText('docs/browser-extension-playbook-compliance.md'), readText('docs/browser-extension-playbook-requirements.md'), readText('docs/claim-traceability.md'),
   readText('docs/code-structure.md'), readText('docs/protection-model.md'),
   readText('docs/localization.md'),
   readText('docs/content-script-load-order.md'),
@@ -303,6 +304,7 @@ assertCondition(
     /docs\/localization\.md/,
     /docs\/store-media-review\.md/,
     /docs\/storepilot-automation\.md/,
+    /docs\/claim-traceability\.md/,
     /docs\/release-notes\.md/,
     /docs\/decision-records\.md/,
     /docs\/release-verification-record\.md/,
@@ -529,7 +531,7 @@ assertCondition(
   'Decision records document must index the durable local-first, plan-first, feature-first, StorePilot, intent, and UI action decisions.'
 );
 
-failures.push(...getPlaybookComplianceFailures({ playbookCompliance, playbookRequirements }));
+failures.push(...getPlaybookComplianceFailures({ claimTraceability, playbookCompliance, playbookRequirements }));
 
 assertCondition(
   hasAll(codeStructure, [

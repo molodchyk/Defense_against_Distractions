@@ -3,7 +3,7 @@
 
 import { hasAll } from '../playbook-utils.mjs';
 
-export function getPlaybookComplianceFailures({ playbookCompliance, playbookRequirements }) {
+export function getPlaybookComplianceFailures({ claimTraceability, playbookCompliance, playbookRequirements }) {
   const complianceOk = hasAll(playbookCompliance, [
     /# Browser Extension Playbook Compliance/,
     /## Verification Status/,
@@ -28,7 +28,8 @@ export function getPlaybookComplianceFailures({ playbookCompliance, playbookRequ
     /docs\/release-verification-record\.md/,
     /not fully browser-verified/i,
     /isolated Chromium-based browser\/profile/i,
-    /browser-extension-playbook-requirements\.md/
+    /browser-extension-playbook-requirements\.md/,
+    /docs\/claim-traceability\.md/
   ]);
   const requirementsOk = hasAll(playbookRequirements, [
     /# Browser Extension Playbook Requirements/,
@@ -58,10 +59,28 @@ export function getPlaybookComplianceFailures({ playbookCompliance, playbookRequ
     /Browser-only pending/,
     /Run smallest useful checks before reporting completion/
   ]);
+  const claimsOk = hasAll(claimTraceability, [
+    /# Claim Traceability/,
+    /local-first/,
+    /analytics, ads, tracking pixels, telemetry/,
+    /remote JavaScript, WebAssembly, or other remote executable code/,
+    /remote network requests/,
+    /Manifest permissions are minimal and explainable/,
+    /Broad host access is limited to audited content-script/,
+    /Store listing files are direct Chrome Web Store detailed-description bodies/,
+    /Store media does not expose personal accounts/,
+    /Runtime ZIP excludes source-only files/,
+    /Source ZIP contains reviewer and release evidence/,
+    /GPL-3\.0-only/,
+    /browser-load remains pending until isolated verification/,
+    /scripts\/check-package-output\.mjs/,
+    /scripts\/verify-release\.ps1/,
+    /docs\/release-verification-record\.md/
+  ]);
 
-  if (complianceOk && requirementsOk) {
+  if (complianceOk && requirementsOk && claimsOk) {
     return [];
   }
 
-  return ['Browser extension playbook compliance documents must map playbook areas and individual requirements to evidence while preserving the isolated browser-load gap.'];
+  return ['Browser extension playbook compliance documents must map playbook areas, individual requirements, and visible claims to evidence while preserving the isolated browser-load gap.'];
 }

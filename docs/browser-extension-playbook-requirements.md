@@ -38,7 +38,7 @@ Status meanings:
 
 | Requirement | Current evidence | Status |
 | --- | --- | --- |
-| Store copy is direct, concrete, free of inflated claims, and stored as direct body text. | `store/store-listing/*.txt`; checked for title, field-label, Markdown, stale-version, donation-link, and inflated-claim patterns. | Static evidence passed |
+| Store copy is direct, concrete, free of inflated claims, and stored as direct body text. | `store/store-listing/*.txt`; checked for title, field-label, Markdown, stale-version, donation-link, and inflated-claim patterns. `docs/claim-traceability.md` maps visible claims to proof gates. | Static evidence passed |
 | Store listing includes inputs, privacy boundaries, examples, features, browser notes, and open-source footer. | English listing variants are checked for plans, allowed websites, Pomodoro, intent coherence, local processing, remote server wording, examples, current-version notes, incognito and file URL notes, and GPL/source footer. | Static evidence passed |
 | Localized UI and store listing workflow follows `docs/localization.md`. | `_locales/`, `store/store-listing/`, `docs/localization.md`, `npm run verify:locales`, and `npm run verify:static-localization`. | Static evidence passed |
 | Right-to-left language support is documented and checked. | `docs/localization.md`, UI language helpers, RTL CSS tests, Arabic/Persian/Hebrew/Urdu references, and static localization checks. | Static evidence passed |
