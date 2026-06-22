@@ -39,6 +39,7 @@ The package verifier checks:
 The release verifier checks:
 
 - `package.json` and `manifest.json` versions match.
+- Manifest-reference, relative-import, playbook, locale-coverage, static-localization, and package-output gates pass.
 - Manifest icon, popup, options, background, content-script, and web-accessible resource paths exist.
 - Manifest permissions are present in the permission audit, privacy policy, and StorePilot privacy form.
 - Static extension HTML surfaces have a localization path for visible text and accessible labels.
