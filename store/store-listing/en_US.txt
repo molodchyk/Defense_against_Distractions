@@ -2,6 +2,8 @@ Most focus extensions block whole websites. That is useful, but the internet is 
 
 Defense Against Distractions gives you more precise control.
 
+Rules and page checks are processed locally in the browser; core blocking does not need a remote server.
+
 Instead of only blocking by URL, you can create plans with website entries, keywords or phrases, weighted scores, allowed websites, schedules, Pomodoro rules, intent-coherence settings, and optional UI cleanup. When a matching page crosses the configured distraction score, the extension blocks it.
 
 You can use it to protect study sessions, work blocks, exam preparation, research time, or any situation where you want the browser to stay useful without becoming a detour.
