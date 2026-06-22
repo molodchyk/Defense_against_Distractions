@@ -11,40 +11,20 @@ import {
   repositoryUrl,
   storeCategories
 } from '../../../scripts/playbook/constants.mjs';
+import { getDuplicateKeyedBlockFields, parseKeyedBlock } from '../../../scripts/playbook-utils.mjs';
 
 const PRIVACY_FORM_PATH = 'docs/chrome-web-store-privacy-form.md';
 const ADDITIONAL_FIELDS_PATH = 'docs/chrome-web-store-additional-fields.md';
 const CATEGORY_PATH = 'docs/chrome-web-store-category.md';
 const MANIFEST_PATH = 'manifest.json';
 
-function getBracketBlock(markdown, blockName) {
-  const blockMarker = `[${blockName}]`;
-  const blockStart = markdown.indexOf(blockMarker);
-  assert.notEqual(blockStart, -1, `Missing [${blockName}] block`);
-
-  const afterBlockHeading = markdown.slice(blockStart + blockMarker.length);
-  const nextHeading = afterBlockHeading.search(/^##\s+/m);
-  return nextHeading === -1 ? afterBlockHeading : afterBlockHeading.slice(0, nextHeading);
-}
-
-function parseFields(markdown, blockName) {
-  const block = getBracketBlock(markdown, blockName);
-  const fieldPattern = /^([A-Za-z0-9_.-]+):[ \t]*\r?\n([\s\S]*?)(?=^[A-Za-z0-9_.-]+:[ \t]*\r?\n|\s*$)/gm;
-  const fields = new Map();
-
-  for (const match of block.matchAll(fieldPattern)) {
-    fields.set(match[1], match[2].trim());
-  }
-
-  return fields;
-}
-
 describe('Chrome Web Store privacy form', () => {
   it('keeps every privacy justification within the dashboard character limit', () => {
     const markdown = readFileSync(PRIVACY_FORM_PATH, 'utf8');
-    const fields = parseFields(markdown, 'privacy');
+    const fields = parseKeyedBlock(markdown, 'privacy');
 
     assert.notEqual(fields.size, 0, 'No privacy fields found');
+    assert.deepEqual(getDuplicateKeyedBlockFields(markdown, 'privacy'), []);
 
     for (const [key, value] of fields) {
       assert.ok(
@@ -56,7 +36,7 @@ describe('Chrome Web Store privacy form', () => {
 
   it('uses StorePilot canonical privacy keys for the current manifest', () => {
     const markdown = readFileSync(PRIVACY_FORM_PATH, 'utf8');
-    const fields = parseFields(markdown, 'privacy');
+    const fields = parseKeyedBlock(markdown, 'privacy');
     const manifest = JSON.parse(readFileSync(MANIFEST_PATH, 'utf8'));
 
     for (const key of ['single_purpose', 'host_permission', 'remote_code', 'privacy_policy_url']) {
@@ -84,8 +64,9 @@ describe('Chrome Web Store privacy form', () => {
 describe('Chrome Web Store automation fields', () => {
   it('keeps additional fields in StorePilot import shape', () => {
     const markdown = readFileSync(ADDITIONAL_FIELDS_PATH, 'utf8');
-    const fields = parseFields(markdown, 'additional_fields');
+    const fields = parseKeyedBlock(markdown, 'additional_fields');
 
+    assert.deepEqual(getDuplicateKeyedBlockFields(markdown, 'additional_fields'), []);
     assert.equal(fields.get('official_url'), 'none');
     assert.equal(fields.get('homepage_url'), repositoryUrl);
     assert.equal(fields.get('support_url'), `${repositoryUrl}/issues`);

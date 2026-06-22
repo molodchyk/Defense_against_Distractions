@@ -18,7 +18,7 @@ import {
   storeMediaAssetPaths
 } from './playbook/constants.mjs';
 import { verifyReviewedStoreMediaHashes } from './playbook/storeMediaReview.mjs';
-import { getFirstNonEmptyLine, getPngDimensionFailure, hasAll, parseKeyedBlock } from './playbook-utils.mjs';
+import { getDuplicateKeyedBlockFields, getFirstNonEmptyLine, getPngDimensionFailure, hasAll, parseKeyedBlock } from './playbook-utils.mjs';
 
 const rootDir = process.cwd();
 const failures = [];
@@ -376,6 +376,8 @@ assertCondition(
   'package.json must expose npm run verify:static-localization for extension HTML localization checks.'
 );
 const storePrivacyFields = parseKeyedBlock(storePrivacyForm, 'privacy');
+const duplicateStorePrivacyFields = getDuplicateKeyedBlockFields(storePrivacyForm, 'privacy');
+assertCondition(duplicateStorePrivacyFields.length === 0, `StorePilot privacy form has duplicate keys: ${duplicateStorePrivacyFields.join(', ')}.`);
 for (const field of ['single_purpose', 'host_permission', 'remote_code', 'privacy_policy_url']) {
   assertCondition(storePrivacyFields.has(field), `StorePilot privacy form is missing ${field}.`);
 }
@@ -398,6 +400,8 @@ assertCondition(
   'StorePilot privacy form must point to the repository privacy policy.'
 );
 const additionalFields = parseKeyedBlock(storeAdditionalFields, 'additional_fields');
+const duplicateAdditionalFields = getDuplicateKeyedBlockFields(storeAdditionalFields, 'additional_fields');
+assertCondition(duplicateAdditionalFields.length === 0, `StorePilot additional fields document has duplicate keys: ${duplicateAdditionalFields.join(', ')}.`);
 assertCondition(additionalFields.get('official_url') === 'none', 'StorePilot additional fields must set official_url: none.');
 assertCondition(additionalFields.get('homepage_url') === repositoryUrl, 'StorePilot additional fields must set homepage_url to the repository URL.');
 assertCondition(additionalFields.get('support_url') === `${repositoryUrl}/issues`, 'StorePilot additional fields must set support_url to repository issues.');

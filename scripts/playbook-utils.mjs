@@ -39,6 +39,23 @@ export function parseKeyedBlock(text, blockName) {
   return fields;
 }
 
+export function getDuplicateKeyedBlockFields(text, blockName) {
+  const block = getBracketBlock(text, blockName);
+  const seen = new Set();
+  const duplicates = new Set();
+  const fieldPattern = /^([A-Za-z0-9_.-]+):[ \t]*\r?\n/gm;
+
+  for (const match of block.matchAll(fieldPattern)) {
+    if (seen.has(match[1])) {
+      duplicates.add(match[1]);
+    } else {
+      seen.add(match[1]);
+    }
+  }
+
+  return [...duplicates].sort((left, right) => left.localeCompare(right));
+}
+
 export async function getPngDimensionFailure(rootDir, relativePath, expectedWidth, expectedHeight) {
   try {
     const buffer = await readFile(path.join(rootDir, relativePath));
