@@ -256,10 +256,7 @@ assertCondition(
 );
 const englishDescription = englishMessages.description?.message || '';
 assertCondition(manifest.description === '__MSG_description__', 'Manifest description must use the localized description message.');
-assertCondition(
-  englishDescription.length > 0 && englishDescription.length <= 132,
-  'English manifest description must be present and fit Chrome Web Store summary length.'
-);
+assertCondition(englishDescription.length > 0 && englishDescription.length <= 132 && !/\n/.test(englishDescription) && /^[A-Z].+\.$/.test(englishDescription) && !/[!?]/.test(englishDescription), 'English manifest description must be a single direct sentence that fits Chrome Web Store summary length.');
 assertCondition(
   /plans/i.test(englishDescription)
     && /block pages/i.test(englishDescription)
