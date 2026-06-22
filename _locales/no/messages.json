@@ -626,6 +626,54 @@
     "usageStatsTopDomainsHeading": {
         "message": "Top local domains"
     },
+    "usageStatsLocalAggregatesStatus": {
+        "message": "Local aggregates · $1d retention"
+    },
+    "usageStatsBlockedShareValue": {
+        "message": "$1 active / $2 visits"
+    },
+    "usageStatsDomainVisitsMeta": {
+        "message": "$1 visits"
+    },
+    "usageStatsDomainActiveMeta": {
+        "message": "$1 active"
+    },
+    "usageStatsDomainBlockedActiveShareMeta": {
+        "message": "$1 blocked active share"
+    },
+    "usageStatsDomainBlockedVisitsMeta": {
+        "message": "$1 blocked visits"
+    },
+    "usageStatsDomainBlockedActiveMeta": {
+        "message": "$1 blocked active"
+    },
+    "usageStatsDomainBlockedWordsMeta": {
+        "message": "$1 blocked page words"
+    },
+    "usageStatsDomainAllowedVisitsMeta": {
+        "message": "$1 allowed visits"
+    },
+    "usageStatsDomainAllowedWordsMeta": {
+        "message": "$1 allowed page words"
+    },
+    "usageStatsDomainTabsMaxMeta": {
+        "message": "$1 tabs max"
+    },
+    "usageStatsDomainVideosMeta": {
+        "message": "$1 videos"
+    },
+    "usageStatsDomainAudioMeta": {
+        "message": "$1 audio"
+    },
+    "usageStatsDomainAudibleMeta": {
+        "message": "$1 audible"
+    },
+    "usageStatsDomainGifsMeta": {
+        "message": "$1 GIFs"
+    },
+    "usageStatsDomainLinksMeta": {
+        "message": "$1 links"
+    },
     "refreshButtonLabel": {
         "message": "Refresh"
     },

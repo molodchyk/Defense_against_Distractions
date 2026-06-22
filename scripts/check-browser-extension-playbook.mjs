@@ -17,6 +17,7 @@ import {
   storageKeyFamilies
 } from './playbook/constants.mjs';
 import { getManifestAuditFailures } from './playbook/manifestAudit.mjs';
+import { getUsageStatsLocalizationFailures } from './playbook/localization.mjs';
 import { getReleaseSafetyFailures } from './playbook/releaseSafety.mjs';
 import { getStoreAutomationFailures } from './playbook/storeAutomation.mjs';
 import { verifyReviewedStoreMediaHashes } from './playbook/storeMediaReview.mjs';
@@ -587,6 +588,7 @@ assertCondition(
     ]),
   'Options local diagnostics clears must require localized confirmation, name the local data being removed, and expose localized failure states.'
 );
+failures.push(...getUsageStatsLocalizationFailures({ englishMessages, usageStatsModule }));
 
 assertCondition(
   hasAll(reviewerNotes, [
