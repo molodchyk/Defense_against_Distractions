@@ -23,7 +23,7 @@ import { getProductModelFailures } from './playbook/productModel.mjs';
 import { getReleaseDocumentationFailures } from './playbook/release/releaseDocs.mjs';
 import { getReleaseSafetyFailures } from './playbook/release/releaseSafety.mjs';
 import { getStoreAutomationFailures } from './playbook/storeAutomation.mjs';
-import { verifyReviewedStoreMediaHashes } from './playbook/storeMediaReview.mjs';
+import { getStoreMediaReviewCoverageFailures, verifyReviewedStoreMediaHashes } from './playbook/storeMediaReview.mjs';
 import { getFirstNonEmptyLine, getPngDimensionFailure, hasAll } from './playbook-utils.mjs';
 const rootDir = process.cwd(), failures = [];
 async function exists(relativePath) {
@@ -473,7 +473,7 @@ assertCondition(
   ]),
   'Store media review must document screenshot and promo privacy boundaries.'
 );
-failures.push(...await verifyReviewedStoreMediaHashes(rootDir, storeMediaAssetPaths, storeMediaReview));
+failures.push(...getStoreMediaReviewCoverageFailures(storeMediaAssetPaths, storeMediaReview), ...await verifyReviewedStoreMediaHashes(rootDir, storeMediaAssetPaths, storeMediaReview));
 
 assertCondition(/Host access through content scripts \(`<all_urls>`\)/i.test(privacy), 'PRIVACY.md must explain exact <all_urls> host/content-script access.');
 assertCondition(/chrome\.storage\.sync/.test(privacy), 'PRIVACY.md must mention sync storage.');

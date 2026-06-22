@@ -18,6 +18,20 @@ Store screenshots and promo images must not expose personal accounts, private co
 | `store/promo/small-promo-440x280.png` | 440x280 | Small promotional tile | Uses extension branding and product positioning only. It does not show accounts, conversations, rules, domains, or user-specific configuration. |
 | `store/promo/marquee-promo-1400x560.png` | 1400x560 | Marquee promotional image | Uses extension branding and product positioning only. It does not show accounts, conversations, rules, domains, or user-specific configuration. |
 
+## Store Copy Consistency Map
+
+These assets are expected to match the current Chrome Web Store listing themes: precise page blocking, plans, allowed websites, locked schedules, Pomodoro, intent coherence, UI cleanup, browser-controlled incognito/file URL access, local processing, and GPL/open-source disclosure.
+
+| Asset | Store-copy feature it supports | Current UI evidence |
+| --- | --- | --- |
+| `store/screenshots/01-popup-protection-status.png` | Quick status and current-page protection | Popup Defense Panel with protection status, current page, focus state, timer, and intent status. |
+| `store/screenshots/02-plan-pomodoro-controls.png` | Plans, Pomodoro, locked-schedule strictness, and local plan controls | Options plan view with Pomodoro settings, strict breaks, plan status, schedule, entries, and intent controls. |
+| `store/screenshots/03-intent-drift-recovery.png` | Intent coherence and recovery choices | Intent drift prompt with coherence score, origin, last coherent page, current page, reasons, Continue, Isolate, Return, and Show graph. |
+| `store/screenshots/04-blocked-page.png` | Keyword/page blocking and local diagnostics | Extension-owned blocked page showing trigger, score, and context diagnostics. |
+| `store/screenshots/05-ui-element-picker.png` | UI element hiding and picker-based cleanup | DaD UI picker showing element selection, rule action, strategy, target, and save/cancel controls. |
+| `store/promo/small-promo-440x280.png` | Product identity and defensive positioning | Branded promotional tile without UI details or private data. |
+| `store/promo/marquee-promo-1400x560.png` | Product identity and defensive positioning | Branded marquee image without UI details or private data. |
+
 ## Reviewed Asset Hashes
 
 These SHA-256 hashes bind the review above to the exact PNG files inspected for this release. If an image changes, update the review note and hash together.

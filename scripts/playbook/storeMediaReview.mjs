@@ -41,3 +41,31 @@ export async function verifyReviewedStoreMediaHashes(rootDir, assetPaths, storeM
 
   return failures;
 }
+
+export function getStoreMediaReviewCoverageFailures(assetPaths, storeMediaReview) {
+  const failures = [];
+  const requiredPatterns = [
+    /## Store Copy Consistency Map/,
+    /precise page blocking/i,
+    /allowed websites/i,
+    /locked schedules/i,
+    /Pomodoro/i,
+    /intent coherence/i,
+    /UI cleanup/i,
+    /browser-controlled incognito\/file URL access/i,
+    /local processing/i,
+    /GPL\/open-source/i,
+    /Continue, Isolate, Return, and Show graph/,
+    /trigger, score, and context diagnostics/i,
+    /element selection, rule action, strategy, target, and save\/cancel controls/i
+  ];
+
+  for (const pattern of requiredPatterns) {
+    if (!pattern.test(storeMediaReview)) failures.push(`Store media review is missing consistency evidence for: ${pattern}`);
+  }
+  for (const assetPath of assetPaths) {
+    if (!storeMediaReview.includes(`| \`${assetPath}\` |`)) failures.push(`Store media consistency map must cover ${assetPath}.`);
+  }
+
+  return failures;
+}

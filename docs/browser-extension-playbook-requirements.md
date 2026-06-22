@@ -56,7 +56,7 @@ Status meanings:
 | Options expose the main setting immediately and popup supports quick status/actions. | `src/options.html`, `src/popup.html`, and release checklist manual QA. | Static evidence passed |
 | Destructive actions are explicit and blank states are intentional. | Reset/diagnostic-clear confirmation tests and `docs/release-checklist.md`. | Static evidence passed |
 | File URL, incognito, browser-controlled behavior, reviewer limitations, and package contents are documented. | `docs/reviewer-notes.md`. | Static evidence passed |
-| Screenshots stay consistent with current UI and store copy. | `store/screenshots/`, `store/promo/`, `docs/store-media-review.md`, and media hash checks. | Static evidence passed |
+| Screenshots stay consistent with current UI and store copy. | `store/screenshots/`, `store/promo/`, the consistency map in `docs/store-media-review.md`, and media hash checks. | Static evidence passed |
 | Release checks validate manifest paths, icons, screenshots, unit tests, package output, stale `dist/` artifacts, privacy alignment, and store listing footer. | `npm run package`, `npm run verify:package`, `npm run verify:release`, `docs/release-readiness.md`, and `docs/release-verification-record.md`. | Static evidence passed |
 | Load the unpacked extension in the target browser before publishing. | `npm run verify:browser-load`, `scripts/check-unpacked-extension-load.ps1`, `docs/release-checklist.md`, and `docs/release-verification-record.md`. This must only run in an isolated browser/profile. | Browser-only pending |
 
