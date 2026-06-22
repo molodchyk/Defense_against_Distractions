@@ -100,6 +100,10 @@ Use this checklist before publishing a new extension release.
 
 ## Store Assets
 
+- Use `docs/storepilot-automation.md` as the StorePilot import index for listing, privacy, additional-field, category, and media inputs.
+- Use `docs/chrome-web-store-privacy-form.md` for StorePilot `[privacy]` fields.
+- Use `docs/chrome-web-store-additional-fields.md` for StorePilot `[additional_fields]`.
+- Use `docs/chrome-web-store-category.md` for the selected Chrome Web Store category.
 - Use the English store listing from `store/store-listing/en.txt`.
 - Confirm every `_locales` language has a matching plain-text store listing in `store/store-listing/`.
 - Confirm store listing files are direct body text and do not start with a title, field label, or extension name.

@@ -17,6 +17,7 @@ const PRIVACY_FORM_PATH = 'docs/chrome-web-store-privacy-form.md';
 const ADDITIONAL_FIELDS_PATH = 'docs/chrome-web-store-additional-fields.md';
 const CATEGORY_PATH = 'docs/chrome-web-store-category.md';
 const STOREPILOT_INDEX_PATH = 'docs/storepilot-automation.md';
+const RELEASE_CHECKLIST_PATH = 'docs/release-checklist.md';
 const MANIFEST_PATH = 'manifest.json';
 
 describe('Chrome Web Store privacy form', () => {
@@ -106,5 +107,19 @@ describe('Chrome Web Store automation fields', () => {
     for (const permission of manifest.permissions) {
       assert.match(markdown, new RegExp(`permission\\.${permission}`));
     }
+  });
+
+  it('keeps StorePilot dashboard files in the release checklist', () => {
+    const checklist = readFileSync(RELEASE_CHECKLIST_PATH, 'utf8');
+
+    assert.ok(hasAll(checklist, [
+      /docs\/storepilot-automation\.md/,
+      /docs\/chrome-web-store-privacy-form\.md/,
+      /\[privacy\]/,
+      /docs\/chrome-web-store-additional-fields\.md/,
+      /\[additional_fields\]/,
+      /docs\/chrome-web-store-category\.md/,
+      /selected Chrome Web Store category/i
+    ]));
   });
 });

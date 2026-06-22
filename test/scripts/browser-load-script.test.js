@@ -48,7 +48,7 @@ describe('unpacked extension browser-load smoke script', () => {
     const releaseRecord = readFileSync('docs/release-verification-record.md', 'utf8');
 
     assert.match(releaseRecord, /Static verification status:\s+passed[\s\S]+`npm run package`[\s\S]+`npm run verify:package`[\s\S]+`npm run verify:release`/i);
-    assert.match(releaseRecord, /## Static Gate Evidence[\s\S]+Current result:\s+passed[\s\S]+`npm test`[\s\S]+399 unit tests passed/i);
+    assert.match(releaseRecord, /## Static Gate Evidence[\s\S]+Current result:\s+passed[\s\S]+`npm test`[\s\S]+400 unit tests passed/i);
     assert.match(releaseRecord, /`npm run verify:release`[\s\S]+Passed for `Defense_against_Distractions-v1\.6\.1`/i);
     assert.match(releaseRecord, /## Browser-Only Evidence[\s\S]+`npm run verify:browser-load`[\s\S]+Not fully browser-verified[\s\S]+isolated Chromium-based browser\/profile/i);
     assert.match(releaseRecord, /Manual QA from `docs\/release-checklist\.md`[\s\S]+Pending/i);

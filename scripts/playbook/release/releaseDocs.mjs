@@ -39,6 +39,18 @@ export function getReleaseDocumentationFailures({
     failures.push('Release checklist must require intentional blank-state review.');
   }
 
+  if (!hasAll(releaseChecklist, [
+    /docs\/storepilot-automation\.md/,
+    /docs\/chrome-web-store-privacy-form\.md/,
+    /\[privacy\]/,
+    /docs\/chrome-web-store-additional-fields\.md/,
+    /\[additional_fields\]/,
+    /docs\/chrome-web-store-category\.md/,
+    /selected Chrome Web Store category/i
+  ])) {
+    failures.push('Release checklist must point StorePilot dashboard work at the canonical automation index and import documents.');
+  }
+
   if (!hasAll(releaseVerifier, [
     /node --test\s+"test\/\*\*\/\*\.test\.js"/,
     /check-manifest-references\.mjs/,
