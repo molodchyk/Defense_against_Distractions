@@ -372,148 +372,148 @@
         "message": "Giriş"
     },
     "introText1": {
-        "message": "salam! İnternetdə diqqətinizi yayındırmaq və işi təxirə salmaq çox asandır. Bu genişləndirmə sizə görmək istəmədiyiniz açar sözlər əsasında veb səhifələri bloklamağa imkan verir."
+        "message": "Defense Against Distractions lets you create local protection plans that block pages, guide Pomodoro timing, detect possible intent drift, and clean up distracting page UI."
     },
     "introText2": {
-        "message": "Oynamaq üçün minlərlə video oyun, oxumaq üçün xəbərlər, izləmək üçün videolar və s. Çox vaxt layihənin son tarixləri və ya imtahanları hələ çox uzaqda olanda bunu edirik. Bəzən özünüzə lazım olanı etməyə məcbur etmək bir qədər çətin ola bilər."
+        "message": "A plan combines page entries, allowed websites, schedules, Pomodoro settings, intent-coherence settings, and optional UI cleanup rules. Turn a plan on when you want that protection available."
     },
     "introText3": {
-        "message": "Və diqqəti yayındıranlar hər yerdədir! Bəzi vebsaytları URL-lərinə görə bloklamaq üçün StayFocusd və ya Cold Turkey və ya FocusMe istifadə etsəniz belə, hər şeyi bloklaya bilməzsiniz. Məsələn, hətta ChatGPT ilə, həqiqətən oxumaq və ya işləmək istəmirsinizsə, xəbərlər və ya video oyunlar haqqında danışa bilərsiniz."
+        "message": "The extension checks configured pages locally in the browser. It does not send page text, browsing diagnostics, or settings to a remote server."
     },
     "introText4": {
-        "message": "Bu genişləndirmə ilə siz mətnlərindəki söz və ifadələrə əsasən vebsaytları bloklaya bilərsiniz."
+        "message": "Start with one plan, add the pages and words that matter, then make the plan stricter with schedules or Pomodoro when you need stronger defense."
     },
     "howToUseTitle": {
         "message": "Uzatmadan necə istifadə etməli"
     },
     "createGroupTitle": {
-        "message": "İlk addım: Qrup yaradın"
+        "message": "First Step: Create a Plan"
     },
     "createGroupText1": {
-        "message": "Siz \"Qrup əlavə et\" düyməsini sıxa və ya qrupun adını daxil edib Enter və ya Qrup əlavə et düyməsini sıxa bilərsiniz. Bir neçə qrup yarada bilərsiniz."
+        "message": "Enter a plan name and press Add Plan. Open the plan to configure entries, schedules, Pomodoro, intent coherence, allowed websites, and UI cleanup assignments."
     },
     "createGroupText2": {
-        "message": "Qrup panelini görəcəksiniz."
+        "message": "The default plan is a safe starting point. You can keep it, rename it, or create additional plans for different contexts."
     },
     "websitesTitle": {
-        "message": "Veb saytlar"
+        "message": "Entries and Websites"
     },
     "websitesText": {
-        "message": "Vebsaytlar xəttinin solunda yerləşən 'Düzəliş et' düyməsini sıxaraq vebsaytları əlavə etməyə başlaya bilərsiniz. Bu sahə genişləndirmənin açar sözləri bloklayacağı vebsaytlar üçün məsuliyyət daşıyır. Burada vebsayt URL-lərini daxil etməlisiniz, məsələn, 'google.com'. Birdən çox veb-sayt daxil edə bilərsiniz, hər yeni sətir yeni veb-saytdır. Sadəcə Enter düyməsini basın. Hazır olduqda, yaşıl \"Saxla\" düyməsini basın. Və ya Ləğv edə bilərsiniz."
+        "message": "A plan entry has websites and keywords. Add the websites where the keywords should be scanned, one host per line, such as example.com or docs.example.com."
     },
     "keywordsTitle": {
         "message": "Açar sözlər"
     },
     "keywordsText1": {
-        "message": "Yeni açar sözlər əlavə etmək və ya hər hansı dəyişiklik etmək üçün 'Redaktə et' düyməsini basın. Buraya daxil etdiyiniz açar sözlər bu qrup üçün daxil etdiyiniz vebsaytlarda skan ediləcək."
+        "message": "Add keywords or phrases to the same entry. The extension scans matching pages locally and blocks the page when the entry score reaches 1000."
     },
     "keywordFormatsIntroduction": {
         "message": "Açar sözlər üçün 3 format var:"
     },
     "keywordFormat1Title": {
-        "message": "Birinci format:"
+        "message": "Keyword format 1:"
     },
     "keywordFormat1Text": {
-        "message": "Sadəcə açar sözləri daxil edin. Bu bir söz və ya ifadə ola bilər. Açar sözdə vergül ',' varsa, ondan əvvəl '\\' qaçış simvolundan istifadə etməlisiniz. Açar söz aşkarlanan kimi vebsayt bloklanacaq. İstədiyiniz qədər açar sözlər daxil edə bilərsiniz, sadəcə olaraq enter düyməsini basın. Hər yeni sətir yeni açar sözdür."
+        "message": "Enter a word or phrase. If the keyword contains a comma, put a backslash before the comma. A plain keyword blocks as soon as it is detected."
     },
     "keywordFormat1_2": {
-        "message": "Misal: 'video oyunlar' və ya 'xəbərlər'."
+        "message": "Examples: 'video games', 'news'."
     },
     "keywordFormat2Title": {
-        "message": "İkinci format:"
+        "message": "Keyword format 2:"
     },
     "keywordFormat2Text": {
-        "message": "Açar sözü, ardınca isə rəqəmsal dəyəri daxil edin. Qrupa daxil etdiyiniz hər bir vebsayt 1000-ə çatmalıdır. Veb sayt 0 dəyəri ilə başlayır və açar sözün ədədi dəyərinə əsasən dəyər artır. Veb sayt 1000 bala çatdıqdan sonra bloklanacaq."
+        "message": "Add a number after a comma. The page score starts at 0 and increases by that amount each time the keyword is found. At 1000, the page is blocked."
     },
     "keywordFormat2_2": {
         "message": "Misal: 'xəbər, 50'"
     },
     "keywordFormat2_3": {
-        "message": "Qrupda daxil etdiyiniz hər bir vebsayt 1000-ə çatmalıdır. Sayt 0 dəyəri ilə başlayır və açar sözün ədədi dəyərinə əsasən dəyər artır. Veb sayt 1000 bala çatdıqdan sonra bloklanacaq."
+        "message": "Use this when a word should matter, but only after repeated or combined signals."
     },
     "keywordFormat3Title": {
-        "message": "Üçüncü Format:"
+        "message": "Keyword format 3:"
     },
     "keywordFormat3Text": {
-        "message": "Açar sözü, ardınca vurma və ya əlavə işarəsini (* və ya +), sonra isə ədədi dəyəri daxil edin. Bu ssenaridə səhifə üçün xal tapılan açar sözün ədədi dəyərinə əsasən vurulur."
+        "message": "Use * or + with a number when you want a keyword to multiply or add to the current page score in a more explicit way."
     },
     "keywordFormat3_2": {
         "message": "Misal: 'xəbər, *, 10'"
     },
     "keywordFormat3_3": {
-        "message": "Bu ssenaridə səhifə üçün xal tapılan açar sözün ədədi dəyərinə əsasən vurulur."
+        "message": "Use this for stronger signals that should become decisive only in a specific context."
     },
     "timerCountTitle": {
-        "message": "Taymer sayı"
+        "message": "Pomodoro"
     },
     "timerCountText": {
-        "message": "Səhifə bloklandıqdan sonra 'Taymeri aktivləşdir' düyməsini sıxmaq seçiminiz olacaq. Bundan sonra, yenidən bloklanmadan əvvəl səhifədə bəzi hərəkətləri yerinə yetirmək üçün vaxtınız olacaq. Timer Count sahəsində siz gün ərzində neçə taymerə sahib olmaq istədiyinizə qərar verə bilərsiniz."
+        "message": "A plan can run Pomodoro work and rest timing. Strict breaks can block or quiet pages during rest so the break is protected."
     },
     "timerDurationTitle": {
-        "message": "Taymer müddəti (saniyə)"
+        "message": "Pomodoro Timing"
     },
     "timerDurationText": {
-        "message": "Bu sahədə hər taymerin neçə saniyəyə sahib olacağına siz qərar verirsiniz."
+        "message": "Set work minutes, short breaks, long breaks, and how many work sessions happen before a long break. During an active protected schedule, enabling Pomodoro or making it stricter is allowed; relaxing it is blocked."
     },
     "lockedSchedulesTitle": {
         "message": "Bağlı Cədvəllər"
     },
     "lockedSchedulesNote": {
-        "message": "! Vaxt keçənə qədər kilidlənmiş cədvəli açmaq mümkün deyil (əgər siz genişləndirməni silməyincə)!"
+        "message": "A protected schedule is meant to resist hot-state weakening while the scheduled window is active."
     },
     "lockedSchedulesText1": {
-        "message": "Siz Cədvəl Adı sahəsində cədvəl adını yaradaraq Enter düyməsini və ya Cədvəl Əlavə et düyməsini sıxmaqla yeni kilidlənmiş cədvəl əlavə edə bilərsiniz."
+        "message": "Open a plan, choose Schedule, and add one or more scheduled time blocks. Each block can choose days, start time, end time, and whether it is protected."
     },
     "lockedSchedulesText2": {
-        "message": "Cədvəlinizin parametrlərini dəyişdirmək üçün \"Düzəliş et\" düyməsini basın. Gün düymələrinə basmaqla siz ya həmin günün cədvəlini aktivləşdirəcəksiniz (düymə yaşıl rəngə çevriləcək), ya da həmin gün üçün onu söndürəcəksiniz. Başlama vaxtı və bitmə vaxtı sahələrini dəyişdirməklə siz cədvəlin aktiv ola biləcəyi vaxtları təyin edirsiniz. Hər günün 1 saatlıq qeyri-aktiv vaxt pəncərəsi olmalıdır ki, siz həmin vaxt ərzində cədvəli deaktiv edə biləsiniz. Qeyri-aktiv/Aktiv düyməsi cədvəli dəyişdirir. Cari gün işə salınıbsa (yaşıl) və düymə \"Aktiv\"i göstərirsə və həmçinin yaşıldırsa və cari vaxt başlanğıc və bitmə vaxtları arasındadırsa, cədvəl kilidlənəcək və aktiv olacaq."
+        "message": "A protected active schedule can be made stricter but not more relaxed. For example, you can add entries, raise keyword scores, enable stricter Pomodoro behavior, or add UI cleanup rules, but you cannot remove active protection."
     },
     "lockedSchedulesText3": {
-        "message": "Sil düyməsi kilidlənmiş cədvəli silir. Eyni şey qruplara və ağ siyahıya alınmış vebsaytlara da aiddir."
+        "message": "Delete removes a schedule only when doing so does not relax an active protected window."
     },
     "lockedSchedulesText4": {
-        "message": "Bağlı cədvəl zamanı bir neçə məhdudiyyət tətbiq olunur:"
+        "message": "During an active protected schedule, relaxed changes are refused:"
     },
     "lockedScheduleRestriction1": {
-        "message": "Qrup adlarını dəyişə bilməzsiniz."
+        "message": "You cannot disable the active plan."
     },
     "lockedScheduleRestriction2": {
-        "message": "Siz qruplardakı mövcud veb-saytları dəyişdirə və ya silə bilməzsiniz."
+        "message": "You cannot remove existing plan entries or reduce the websites they protect."
     },
     "lockedScheduleRestriction3": {
-        "message": "Mövcud açar sözləri və onların dəyərlərini dəyişdirə və ya silə bilməzsiniz."
+        "message": "You cannot remove existing keywords or reduce their weights."
     },
     "lockedScheduleRestriction4": {
-        "message": "Siz vurma üçün yalnız açar söz dəyərlərini təyin edə bilərsiniz: 1-dən 1000-ə qədər. Əlavə üçün: 0-dan 1000-ə qədər."
+        "message": "New or changed keywords must stay inside the strict allowed scoring ranges."
     },
     "lockedScheduleRestriction5": {
-        "message": "Taymer sayı artırıla bilməz."
+        "message": "You cannot disable Pomodoro, turn off strict breaks, or make Pomodoro easier to bypass."
     },
     "lockedScheduleRestriction6": {
-        "message": "Taymer müddəti artırıla bilməz."
+        "message": "You can enable Pomodoro or make its timing stricter when that increases protection."
     },
     "lockedScheduleRestriction7": {
-        "message": "Aktiv cədvəllər silinə bilməz."
+        "message": "Active schedules cannot be deleted."
     },
     "lockedScheduleRestriction8": {
-        "message": "Siz gün seçimini ləğv edə, cədvəli qeyri-aktiv edə və ya aktiv cədvəllər üçün başlanğıc və ya bitmə vaxtlarını dəyişə bilməzsiniz."
+        "message": "You cannot remove active days or shrink an active protected schedule window."
     },
     "lockedScheduleRestriction9": {
-        "message": "Siz ağ siyahıya alınmış veb saytları əlavə edə bilməzsiniz."
+        "message": "You cannot add allowed websites to bypass a protected plan."
     },
     "lockedScheduleRestriction10": {
-        "message": "Siz genişləndirmə üçün parol təyin edə və ya silə bilməzsiniz."
+        "message": "You cannot delete password protection during an active protected schedule."
     },
     "whitelistWebsitesTitle": {
-        "message": "Ağ siyahı vebsaytları"
+        "message": "Allowed Websites"
     },
     "whitelistWebsitesText": {
-        "message": "Ağ siyahıya alınmış veb-saytlara daxil olmağa imkan verir, yəni bu veb-saytlarda açar söz skanı aparılmayacaq və beləliklə, onlar bloklanmayacaq. Hal-hazırda, bir girişə çoxlu vebsaytları daxil etmək üçün (*.io, '.io' olan bütün veb-saytların bloklanacağı kimi) joker simvoldan (*) istifadə etmək imkanımız yoxdur, ona görə də bu funksiya çox faydalı deyil, lakin mövcuddur."
+        "message": "Allowed websites are plan-owned exceptions. Add them when a site should remain usable while a plan is active; the plan will not scan or block those allowed hosts."
     },
     "passwordManagementTitle": {
         "message": "Şifrə İdarəetmə"
     },
     "passwordManagementText": {
-        "message": "Uzatma səhifəsi üçün parol təyin etməyə imkan verir. Genişləndirmə səhifəsini açan hər kəs daxil olmaq üçün düzgün parol daxil etməlidir. Başqalarının təsadüfən (və ya qəsdən) parametrləri sərtləşdirməsinin qarşısını almaq üçün faydalıdır."
+        "message": "Password protection can require a password before opening the options page. Use it when you want an extra barrier around changing protection settings."
     },
     "contactFeedbackTitle": {
         "message": "Əlaqə və Əlaqə"

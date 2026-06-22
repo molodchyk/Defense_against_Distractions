@@ -372,148 +372,148 @@
         "message": "Ievads"
     },
     "introText1": {
-        "message": "Sveiki! Ir tik viegli novērst uzmanību internetā un vilcināties. Šis paplašinājums ļauj bloķēt tīmekļa lapas, pamatojoties uz atslēgvārdiem, kurus nevēlaties redzēt."
+        "message": "Defense Against Distractions lets you create local protection plans that block pages, guide Pomodoro timing, detect possible intent drift, and clean up distracting page UI."
     },
     "introText2": {
-        "message": "Var atskaņot tūkstošiem video games, lasīt ziņu stāstus, skatīties videoklipus un tā tālāk. Un bieži vien tas ir tas, ko mēs darām, kad projektu termiņi vai eksāmeni vēl ir tālu. Dažreiz var būt grūti piespiest sevi darīt to, kas jums jādara."
+        "message": "A plan combines page entries, allowed websites, schedules, Pomodoro settings, intent-coherence settings, and optional UI cleanup rules. Turn a plan on when you want that protection available."
     },
     "introText3": {
-        "message": "Un traucējošie faktori ir visur! Pat ja izmantojat StayFocusd, Cold Turkey vai FocusMe, lai bloķētu dažas vietnes pēc to URL, jūs nevarat bloķēt visu. Piemēram, pat ar ChatGPT varat runāt par jaunumiem vai video games, ja tiešām nevēlaties mācīties vai strādāt."
+        "message": "The extension checks configured pages locally in the browser. It does not send page text, browsing diagnostics, or settings to a remote server."
     },
     "introText4": {
-        "message": "Izmantojot šo paplašinājumu, varat bloķēt vietnes, pamatojoties uz vārdiem un frāzēm to tekstā."
+        "message": "Start with one plan, add the pages and words that matter, then make the plan stricter with schedules or Pomodoro when you need stronger defense."
     },
     "howToUseTitle": {
         "message": "Kā lietot paplašinājumu"
     },
     "createGroupTitle": {
-        "message": "Pirmais solis: izveidojiet grupu"
+        "message": "First Step: Create a Plan"
     },
     "createGroupText1": {
-        "message": "Varat nospiest pogu \"Pievienot grupu\" vai ievadīt grupas nosaukumu un nospiest taustiņu Enter vai pogu Pievienot grupu. Varat izveidot vairākas grupas."
+        "message": "Enter a plan name and press Add Plan. Open the plan to configure entries, schedules, Pomodoro, intent coherence, allowed websites, and UI cleanup assignments."
     },
     "createGroupText2": {
-        "message": "Jūs redzēsit grupas paneli."
+        "message": "The default plan is a safe starting point. You can keep it, rename it, or create additional plans for different contexts."
     },
     "websitesTitle": {
-        "message": "Vietnes"
+        "message": "Entries and Websites"
     },
     "websitesText": {
-        "message": "Tīmekļa vietņu pievienošanu var sākt, nospiežot pogu Rediģēt pa kreisi no rindiņas Vietnes. Šis lauks ir atbildīgs par vietnēm, kurās paplašinājums bloķēs atslēgvārdus. Šeit jāievada vietņu URL, piemēram, 'google.com'. Varat ievadīt vairākas vietnes, katra jauna rindiņa ir jauna vietne. Vienkārši nospiediet taustiņu Enter. Kad esat gatavs, nospiediet zaļo pogu \"Saglabāt\". Vai arī varat atcelt."
+        "message": "A plan entry has websites and keywords. Add the websites where the keywords should be scanned, one host per line, such as example.com or docs.example.com."
     },
     "keywordsTitle": {
         "message": "Atslēgvārdi"
     },
     "keywordsText1": {
-        "message": "Lai pievienotu jaunus atslēgvārdus vai veiktu izmaiņas, nospiediet 'Rediģēt'. Šeit ievadītie atslēgvārdi tiks skenēti vietnēs, kuras ievadījāt šai grupai."
+        "message": "Add keywords or phrases to the same entry. The extension scans matching pages locally and blocks the page when the entry score reaches 1000."
     },
     "keywordFormatsIntroduction": {
         "message": "Ir 3 atslēgvārdu formāti:"
     },
     "keywordFormat1Title": {
-        "message": "Pirmais formāts:"
+        "message": "Keyword format 1:"
     },
     "keywordFormat1Text": {
-        "message": "Vienkārši ievadiet atslēgvārdus. Tas var būt vārds vai frāze. Ja atslēgvārdā ir komats ',', pirms tā ir jāizmanto atsoļa rakstzīme '\\'. Vietne tiks bloķēta, tiklīdz tiks atklāts atslēgvārds. Varat ievadīt tik daudz atslēgvārdu, cik vēlaties, vienkārši nospiediet taustiņu Enter. Katra jauna rindiņa ir jauns atslēgvārds."
+        "message": "Enter a word or phrase. If the keyword contains a comma, put a backslash before the comma. A plain keyword blocks as soon as it is detected."
     },
     "keywordFormat1_2": {
-        "message": "Piemērs: \"video games\" vai \"ziņas\"."
+        "message": "Examples: 'video games', 'news'."
     },
     "keywordFormat2Title": {
-        "message": "Otrais formāts:"
+        "message": "Keyword format 2:"
     },
     "keywordFormat2Text": {
-        "message": "Ievadiet atslēgvārdu, kam seko skaitliska vērtība. Katrai vietnei, kuru ievadījāt grupā, ir jāsasniedz 1000 punktu. Vietne sākas ar vērtību 0, un, pamatojoties uz atslēgvārda skaitlisko vērtību, vērtība palielinās. Kad vietne sasniegs 1000 punktu, tā tiks bloķēta."
+        "message": "Add a number after a comma. The page score starts at 0 and increases by that amount each time the keyword is found. At 1000, the page is blocked."
     },
     "keywordFormat2_2": {
         "message": "Piemērs: 'news, 50'"
     },
     "keywordFormat2_3": {
-        "message": "Katrai vietnei, kuru ievadījāt grupā, ir jāsasniedz 1000 punktu. Vietne sākas ar vērtību 0, un, pamatojoties uz atslēgvārda skaitlisko vērtību, vērtība palielinās. Kad vietne sasniegs 1000 punktu, tā tiks bloķēta."
+        "message": "Use this when a word should matter, but only after repeated or combined signals."
     },
     "keywordFormat3Title": {
-        "message": "Trešais formāts:"
+        "message": "Keyword format 3:"
     },
     "keywordFormat3Text": {
-        "message": "Ievadiet atslēgvārdu, kam seko reizināšanas vai saskaitīšanas zīme (* vai +), pēc tam skaitlisko vērtību. Šajā scenārijā lapas rezultāts tiek reizināts, pamatojoties uz atrastā atslēgvārda skaitlisko vērtību."
+        "message": "Use * or + with a number when you want a keyword to multiply or add to the current page score in a more explicit way."
     },
     "keywordFormat3_2": {
         "message": "Piemērs: 'news, *, 10'"
     },
     "keywordFormat3_3": {
-        "message": "Šajā scenārijā lapas rezultāts tiek reizināts, pamatojoties uz atrastā atslēgvārda skaitlisko vērtību."
+        "message": "Use this for stronger signals that should become decisive only in a specific context."
     },
     "timerCountTitle": {
-        "message": "Taimera skaits"
+        "message": "Pomodoro"
     },
     "timerCountText": {
-        "message": "Kad lapa ir bloķēta, jums būs iespēja nospiest pogu Aktivizēt taimeri. Pēc tam jums būs laiks veikt dažas darbības lapā, pirms tā atkal tiks bloķēta. Laukā Taimeru skaits varat izlemt, cik taimerus vēlaties izmantot dienas laikā."
+        "message": "A plan can run Pomodoro work and rest timing. Strict breaks can block or quiet pages during rest so the break is protected."
     },
     "timerDurationTitle": {
-        "message": "Taimera ilgums (sekundēs)"
+        "message": "Pomodoro Timing"
     },
     "timerDurationText": {
-        "message": "Šajā laukā jūs izlemjat, cik sekundes būs katram taimeram."
+        "message": "Set work minutes, short breaks, long breaks, and how many work sessions happen before a long break. During an active protected schedule, enabling Pomodoro or making it stricter is allowed; relaxing it is blocked."
     },
     "lockedSchedulesTitle": {
         "message": "Bloķēti grafiki"
     },
     "lockedSchedulesNote": {
-        "message": "! Bloķētu grafiku nevar atbloķēt, kamēr nav pagājis laiks (ja vien neatinstalējat paplašinājumu)!"
+        "message": "A protected schedule is meant to resist hot-state weakening while the scheduled window is active."
     },
     "lockedSchedulesText1": {
-        "message": "Varat pievienot jaunu bloķētu grafiku, izveidojot grafika nosaukumu laukā Grafika nosaukums un nospiežot Enter vai pogu Pievienot grafiku."
+        "message": "Open a plan, choose Schedule, and add one or more scheduled time blocks. Each block can choose days, start time, end time, and whether it is protected."
     },
     "lockedSchedulesText2": {
-        "message": "Lai mainītu grafika iestatījumus, nospiediet 'Rediģēt'. Nospiežot dienas pogas, jūs vai nu iespējojat šīs dienas grafiku (poga kļūst zaļa), vai arī atspējojat to šai dienai. Pārveidojot laukus Sākuma laiks un Beigu laiks, jūs iestatāt laiku, kad grafiks var būt aktīvs. Katrai dienai ir jābūt 1 stunda neaktīvam laika logam, lai jūs varētu deaktivizēt grafiku šajā laikā. Poga Neaktīvs/Aktīvs pārslēdz grafiku. Grafiks tiks bloķēts un aktīvs, ja pašreizējā diena ir iespējota (zaļa) un poga parāda “Aktīvs” un ir arī zaļa, un ja pašreizējais laiks ir starp sākuma un beigu laiku."
+        "message": "A protected active schedule can be made stricter but not more relaxed. For example, you can add entries, raise keyword scores, enable stricter Pomodoro behavior, or add UI cleanup rules, but you cannot remove active protection."
     },
     "lockedSchedulesText3": {
-        "message": "Poga Dzēst noņem bloķēto grafiku. Tas pats attiecas uz grupām un baltajā sarakstā iekļautajām vietnēm."
+        "message": "Delete removes a schedule only when doing so does not relax an active protected window."
     },
     "lockedSchedulesText4": {
-        "message": "Slēgtā grafika laikā tiek piemēroti vairāki ierobežojumi:"
+        "message": "During an active protected schedule, relaxed changes are refused:"
     },
     "lockedScheduleRestriction1": {
-        "message": "Jūs nevarat mainīt grupu nosaukumus."
+        "message": "You cannot disable the active plan."
     },
     "lockedScheduleRestriction2": {
-        "message": "Grupās esošās vietnes nevar mainīt vai noņemt."
+        "message": "You cannot remove existing plan entries or reduce the websites they protect."
     },
     "lockedScheduleRestriction3": {
-        "message": "Esošos atslēgvārdus un to vērtības nevar mainīt vai noņemt."
+        "message": "You cannot remove existing keywords or reduce their weights."
     },
     "lockedScheduleRestriction4": {
-        "message": "Reizināšanai varat iestatīt tikai atslēgvārdu vērtības: no 1 līdz 1000. Saskaitīšanai: no 0 līdz 1000."
+        "message": "New or changed keywords must stay inside the strict allowed scoring ranges."
     },
     "lockedScheduleRestriction5": {
-        "message": "Taimera skaitu nevar palielināt."
+        "message": "You cannot disable Pomodoro, turn off strict breaks, or make Pomodoro easier to bypass."
     },
     "lockedScheduleRestriction6": {
-        "message": "Taimera ilgumu nevar palielināt."
+        "message": "You can enable Pomodoro or make its timing stricter when that increases protection."
     },
     "lockedScheduleRestriction7": {
-        "message": "Aktīvos grafikus nevar izdzēst."
+        "message": "Active schedules cannot be deleted."
     },
     "lockedScheduleRestriction8": {
-        "message": "Jūs nevarat atcelt dienu atlasi, padarīt grafiku neaktīvu vai mainīt aktīvo grafiku sākuma vai beigu laiku."
+        "message": "You cannot remove active days or shrink an active protected schedule window."
     },
     "lockedScheduleRestriction9": {
-        "message": "Baltajā sarakstā iekļautās vietnes nevar pievienot."
+        "message": "You cannot add allowed websites to bypass a protected plan."
     },
     "lockedScheduleRestriction10": {
-        "message": "Paplašinājuma paroli nevar iestatīt vai izdzēst."
+        "message": "You cannot delete password protection during an active protected schedule."
     },
     "whitelistWebsitesTitle": {
-        "message": "Baltā saraksta vietnes"
+        "message": "Allowed Websites"
     },
     "whitelistWebsitesText": {
-        "message": "Ļauj ievadīt baltajā sarakstā iekļautās vietnes, kas nozīmē, ka šajās vietnēs netiks veikta atslēgvārdu skenēšana un tādējādi tās netiks bloķētas. Pašlaik mēs nevaram izmantot aizstājējzīmi (*), lai vienā ierakstā iekļautu daudzas vietnes (piemēram, *.io, kur visas vietnes ar “.io” tiktu bloķētas), tāpēc šī funkcija nav īpaši noderīga, taču tā pastāv."
+        "message": "Allowed websites are plan-owned exceptions. Add them when a site should remain usable while a plan is active; the plan will not scan or block those allowed hosts."
     },
     "passwordManagementTitle": {
         "message": "Paroles pārvaldība"
     },
     "passwordManagementText": {
-        "message": "Ļauj iestatīt paroli paplašinājuma lapai. Ikvienam, kurš atver paplašinājuma lapu, būs jāievada pareizā parole, lai piekļūtu. Noderīga, lai neļautu citiem nejauši (vai tīši) pastiprināt iestatījumus."
+        "message": "Password protection can require a password before opening the options page. Use it when you want an extra barrier around changing protection settings."
     },
     "contactFeedbackTitle": {
         "message": "Kontakti un atsauksmes"

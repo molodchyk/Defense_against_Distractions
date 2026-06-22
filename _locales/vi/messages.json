@@ -372,148 +372,148 @@
         "message": "Giới Thiệu"
     },
     "introText1": {
-        "message": "Chào bạn! Rất dễ để bị phân tâm trên internet và trì hoãn công việc. Tiện ích mở rộng này cho phép bạn chặn các trang web dựa trên từ khóa mà bạn không muốn thấy."
+        "message": "Defense Against Distractions lets you create local protection plans that block pages, guide Pomodoro timing, detect possible intent drift, and clean up distracting page UI."
     },
     "introText2": {
-        "message": "Có hàng ngàn trò chơi video để chơi, tin tức để đọc, video để xem, v.v. Và thường thì đó là những gì chúng ta làm khi hạn chót dự án hoặc kỳ thi vẫn còn xa. Đôi khi, việc tự ép mình làm những điều cần làm có thể khá khó khăn."
+        "message": "A plan combines page entries, allowed websites, schedules, Pomodoro settings, intent-coherence settings, and optional UI cleanup rules. Turn a plan on when you want that protection available."
     },
     "introText3": {
-        "message": "Và sự phân tâm ở khắp mọi nơi! Ngay cả khi bạn sử dụng StayFocusd hoặc Cold Turkey hoặc FocusMe để chặn một số trang web bằng URL của chúng, bạn không thể chặn tất cả. Ví dụ, ngay cả với ChatGPT, bạn cũng có thể nói về tin tức hoặc trò chơi video nếu bạn thực sự không muốn học hoặc làm việc."
+        "message": "The extension checks configured pages locally in the browser. It does not send page text, browsing diagnostics, or settings to a remote server."
     },
     "introText4": {
-        "message": "Với tiện ích mở rộng này, bạn có thể chặn các trang web dựa trên từ và cụm từ trong văn bản của chúng."
+        "message": "Start with one plan, add the pages and words that matter, then make the plan stricter with schedules or Pomodoro when you need stronger defense."
     },
     "howToUseTitle": {
         "message": "Cách Sử Dụng Tiện Ích Mở Rộng"
     },
     "createGroupTitle": {
-        "message": "Bước Đầu Tiên: Tạo Nhóm"
+        "message": "First Step: Create a Plan"
     },
     "createGroupText1": {
-        "message": "Bạn có thể nhấn nút 'Thêm Nhóm' hoặc nhập tên nhóm và nhấn Enter hoặc nút Thêm Nhóm. Bạn có thể tạo nhiều nhóm."
+        "message": "Enter a plan name and press Add Plan. Open the plan to configure entries, schedules, Pomodoro, intent coherence, allowed websites, and UI cleanup assignments."
     },
     "createGroupText2": {
-        "message": "Bạn sẽ thấy bảng điều khiển nhóm."
+        "message": "The default plan is a safe starting point. You can keep it, rename it, or create additional plans for different contexts."
     },
     "websitesTitle": {
-        "message": "Trang Web"
+        "message": "Entries and Websites"
     },
     "websitesText": {
-        "message": "Bạn có thể bắt đầu thêm trang web bằng cách nhấn nút 'Chỉnh Sửa' ở bên trái dòng Trang Web. Trường này chịu trách nhiệm về các trang web mà tiện ích mở rộng sẽ chặn từ khóa. Tại đây bạn phải nhập URL của trang web, ví dụ: 'google.com'. Bạn có thể nhập nhiều trang web, mỗi dòng mới là một trang web mới. Chỉ cần nhấn Enter. Khi bạn đã sẵn sàng, nhấn nút 'Lưu' màu xanh lá. Hoặc bạn có thể Hủy."
+        "message": "A plan entry has websites and keywords. Add the websites where the keywords should be scanned, one host per line, such as example.com or docs.example.com."
     },
     "keywordsTitle": {
         "message": "Từ Khóa"
     },
     "keywordsText1": {
-        "message": "Để thêm từ khóa mới hoặc thay đổi bất cứ điều gì, nhấn 'Chỉnh Sửa'. Các từ khóa bạn nhập vào đây sẽ được quét trên các trang web bạn đã nhập cho nhóm này."
+        "message": "Add keywords or phrases to the same entry. The extension scans matching pages locally and blocks the page when the entry score reaches 1000."
     },
     "keywordFormatsIntroduction": {
         "message": "Có 3 định dạng cho từ khóa:"
     },
     "keywordFormat1Title": {
-        "message": "Định Dạng Đầu Tiên:"
+        "message": "Keyword format 1:"
     },
     "keywordFormat1Text": {
-        "message": "Chỉ cần nhập từ khóa. Nó có thể là một từ hoặc cụm từ. Nếu từ khóa chứa dấu phẩy ',', bạn phải sử dụng ký tự thoát '\\' trước nó. Trang web sẽ bị chặn ngay khi phát hiện từ khóa. Bạn có thể nhập bao nhiêu từ khóa tùy ý, chỉ cần nhấn enter. Mỗi dòng mới là một từ khóa mới."
+        "message": "Enter a word or phrase. If the keyword contains a comma, put a backslash before the comma. A plain keyword blocks as soon as it is detected."
     },
     "keywordFormat1_2": {
-        "message": "Ví dụ: 'trò chơi video' hoặc 'tin tức'."
+        "message": "Examples: 'video games', 'news'."
     },
     "keywordFormat2Title": {
-        "message": "Định Dạng Thứ Hai:"
+        "message": "Keyword format 2:"
     },
     "keywordFormat2Text": {
-        "message": "Nhập từ khóa, theo sau là một giá trị số. Mỗi trang web bạn nhập vào một nhóm phải đạt đến điểm số 1000. Trang web bắt đầu với giá trị 0, và dựa trên giá trị số của từ khóa, giá trị này sẽ tăng lên. Một khi trang web đạt đến điểm số 1000, nó sẽ bị chặn."
+        "message": "Add a number after a comma. The page score starts at 0 and increases by that amount each time the keyword is found. At 1000, the page is blocked."
     },
     "keywordFormat2_2": {
         "message": "Ví dụ: 'tin tức, 50'"
     },
     "keywordFormat2_3": {
-        "message": "Mỗi trang web bạn nhập vào một nhóm phải đạt đến điểm số 1000. Trang web bắt đầu với giá trị 0, và dựa trên giá trị số của từ khóa, giá trị này sẽ tăng lên. Một khi trang web đạt đến điểm số 1000, nó sẽ bị chặn."
+        "message": "Use this when a word should matter, but only after repeated or combined signals."
     },
     "keywordFormat3Title": {
-        "message": "Định Dạng Thứ Ba:"
+        "message": "Keyword format 3:"
     },
     "keywordFormat3Text": {
-        "message": "Nhập từ khóa, theo sau là dấu nhân hoặc cộng (* hoặc +), sau đó là một giá trị số. Trong kịch bản này, điểm số cho trang sẽ được nhân dựa trên giá trị số của từ khóa tìm thấy."
+        "message": "Use * or + with a number when you want a keyword to multiply or add to the current page score in a more explicit way."
     },
     "keywordFormat3_2": {
         "message": "Ví dụ: 'tin tức, *, 10'"
     },
     "keywordFormat3_3": {
-        "message": "Trong kịch bản này, điểm số cho trang sẽ được nhân dựa trên giá trị số của từ khóa tìm thấy."
+        "message": "Use this for stronger signals that should become decisive only in a specific context."
     },
     "timerCountTitle": {
-        "message": "Số Lần Hẹn Giờ"
+        "message": "Pomodoro"
     },
     "timerCountText": {
-        "message": "Sau khi trang bị chặn, bạn sẽ có tùy chọn nhấn nút 'Kích Hoạt Hẹn Giờ'. Sau đó, bạn sẽ có thời gian để thực hiện một số hành động trên trang trước khi nó bị chặn lại. Trong trường Số Lần Hẹn Giờ, bạn có thể quyết định bạn muốn có bao nhiêu lần hẹn giờ trong ngày."
+        "message": "A plan can run Pomodoro work and rest timing. Strict breaks can block or quiet pages during rest so the break is protected."
     },
     "timerDurationTitle": {
-        "message": "Thời Lượng Hẹn Giờ (giây)"
+        "message": "Pomodoro Timing"
     },
     "timerDurationText": {
-        "message": "Trong trường này, bạn quyết định số giây cho mỗi lần hẹn giờ."
+        "message": "Set work minutes, short breaks, long breaks, and how many work sessions happen before a long break. During an active protected schedule, enabling Pomodoro or making it stricter is allowed; relaxing it is blocked."
     },
     "lockedSchedulesTitle": {
         "message": "Lịch Trình Đã Khóa"
     },
     "lockedSchedulesNote": {
-        "message": "! Lịch trình đã khóa không thể mở khóa cho đến khi thời gian qua đi (trừ khi bạn gỡ cài đặt tiện ích mở rộng) !"
+        "message": "A protected schedule is meant to resist hot-state weakening while the scheduled window is active."
     },
     "lockedSchedulesText1": {
-        "message": "Bạn có thể thêm lịch trình đã khóa mới bằng cách tạo tên lịch trình trong trường Tên Lịch Trình và nhấn Enter hoặc nút Thêm Lịch Trình."
+        "message": "Open a plan, choose Schedule, and add one or more scheduled time blocks. Each block can choose days, start time, end time, and whether it is protected."
     },
     "lockedSchedulesText2": {
-        "message": "Để chỉnh sửa cài đặt của lịch trình, nhấn 'Chỉnh Sửa'. Khi nhấn vào các nút ngày, bạn sẽ kích hoạt lịch trình cho ngày đó (nút chuyển sang màu xanh lá) hoặc vô hiệu hóa nó cho ngày đó. Bằng cách chỉnh sửa trường Thời Gian Bắt Đầu và Thời Gian Kết Thúc, bạn sẽ thiết lập thời gian hoạt động của lịch trình. Mỗi ngày phải có ít nhất một giờ không hoạt động để bạn có thể vô hiệu hóa lịch trình trong thời gian đó. Nút Hoạt Động/Không Hoạt Động sẽ chuyển đổi trạng thái của lịch trình. Lịch trình sẽ được khóa và hoạt động nếu ngày hiện tại được kích hoạt (xanh lá) và nút cho thấy 'Hoạt Động' và cũng là màu xanh lá, và nếu thời gian hiện tại nằm trong khoảng giữa thời gian bắt đầu và kết thúc."
+        "message": "A protected active schedule can be made stricter but not more relaxed. For example, you can add entries, raise keyword scores, enable stricter Pomodoro behavior, or add UI cleanup rules, but you cannot remove active protection."
     },
     "lockedSchedulesText3": {
-        "message": "Nút Xóa sẽ loại bỏ lịch trình đã khóa. Điều này cũng áp dụng cho các nhóm và trang web trong danh sách trắng."
+        "message": "Delete removes a schedule only when doing so does not relax an active protected window."
     },
     "lockedSchedulesText4": {
-        "message": "Một số hạn chế áp dụng trong lịch trình đã khóa:"
+        "message": "During an active protected schedule, relaxed changes are refused:"
     },
     "lockedScheduleRestriction1": {
-        "message": "Bạn không thể thay đổi tên nhóm."
+        "message": "You cannot disable the active plan."
     },
     "lockedScheduleRestriction2": {
-        "message": "Bạn không thể thay đổi hoặc loại bỏ các trang web hiện có trong nhóm."
+        "message": "You cannot remove existing plan entries or reduce the websites they protect."
     },
     "lockedScheduleRestriction3": {
-        "message": "Bạn không thể thay đổi hoặc loại bỏ các từ khóa hiện có và giá trị của chúng."
+        "message": "You cannot remove existing keywords or reduce their weights."
     },
     "lockedScheduleRestriction4": {
-        "message": "Bạn chỉ có thể thiết lập giá trị từ khóa cho phép nhân: từ 1 đến 1000. Cho phép cộng: từ 0 đến 1000."
+        "message": "New or changed keywords must stay inside the strict allowed scoring ranges."
     },
     "lockedScheduleRestriction5": {
-        "message": "Số lần hẹn giờ không thể tăng lên."
+        "message": "You cannot disable Pomodoro, turn off strict breaks, or make Pomodoro easier to bypass."
     },
     "lockedScheduleRestriction6": {
-        "message": "Thời lượng hẹn giờ không thể tăng lên."
+        "message": "You can enable Pomodoro or make its timing stricter when that increases protection."
     },
     "lockedScheduleRestriction7": {
-        "message": "Không thể xóa lịch trình đang hoạt động."
+        "message": "Active schedules cannot be deleted."
     },
     "lockedScheduleRestriction8": {
-        "message": "Bạn không thể bỏ chọn các ngày, làm cho lịch trình không hoạt động, hoặc thay đổi thời gian bắt đầu hoặc kết thúc cho các lịch trình đang hoạt động."
+        "message": "You cannot remove active days or shrink an active protected schedule window."
     },
     "lockedScheduleRestriction9": {
-        "message": "Bạn không thể thêm trang web vào danh sách trắng."
+        "message": "You cannot add allowed websites to bypass a protected plan."
     },
     "lockedScheduleRestriction10": {
-        "message": "Bạn không thể thiết lập hoặc xóa mật khẩu cho tiện ích mở rộng."
+        "message": "You cannot delete password protection during an active protected schedule."
     },
     "whitelistWebsitesTitle": {
-        "message": "Danh Sách Trắng Trang Web"
+        "message": "Allowed Websites"
     },
     "whitelistWebsitesText": {
-        "message": "Cho phép bạn nhập các trang web vào danh sách trắng, có nghĩa là việc quét từ khóa sẽ không được thực hiện trên những trang web này, và do đó chúng sẽ không bị chặn. Hiện tại, chúng tôi không có khả năng sử dụng ký tự đại diện (*) để bao gồm nhiều trang web trong một mục nhập (như *.io, nơi tất cả các trang web có '.io' sẽ bị chặn), vì vậy tính năng này không thực sự hữu ích, nhưng nó vẫn tồn tại."
+        "message": "Allowed websites are plan-owned exceptions. Add them when a site should remain usable while a plan is active; the plan will not scan or block those allowed hosts."
     },
     "passwordManagementTitle": {
         "message": "Quản Lý Mật Khẩu"
     },
     "passwordManagementText": {
-        "message": "Cho phép bạn thiết lập một mật khẩu cho trang của tiện ích mở rộng. Bất kỳ ai mở trang tiện ích mở rộng sẽ cần nhập mật khẩu đúng để truy cập. Hữu ích để ngăn chặn người khác vô tình (hoặc cố ý) làm chặt chẽ các cài đặt."
+        "message": "Password protection can require a password before opening the options page. Use it when you want an extra barrier around changing protection settings."
     },
     "contactFeedbackTitle": {
         "message": "Liên Hệ và Phản Hồi"

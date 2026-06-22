@@ -372,148 +372,148 @@
         "message": "はじめに"
     },
     "introText1": {
-        "message": "こんにちは！インターネット上で気を散らすことは簡単で、時間の浪費につながります。この拡張機能を使用すると、見たくないキーワードに基づいてウェブページをブロックできます。"
+        "message": "Defense Against Distractions lets you create local protection plans that block pages, guide Pomodoro timing, detect possible intent drift, and clean up distracting page UI."
     },
     "introText2": {
-        "message": "プレイするビデオゲーム、読むべきニュース記事、見るべき動画など、数え切れないほどのコンテンツがあります。そして、プロジェクトの締め切りや試験がまだ遠いときに、これらのことをしがちです。時には、必要なことをするために自分を奮い立たせるのが少し難しいこともあります。"
+        "message": "A plan combines page entries, allowed websites, schedules, Pomodoro settings, intent-coherence settings, and optional UI cleanup rules. Turn a plan on when you want that protection available."
     },
     "introText3": {
-        "message": "そして、気を散らすものは至る所にあります！StayFocusdやCold Turkey、FocusMeを使用して一部のウェブサイトをURLでブロックしても、すべてをブロックすることはできません。例えば、ChatGPTを使っても、勉強したくない、仕事をしたくないと思ったら、ニュースやビデオゲームについて話すことができます。"
+        "message": "The extension checks configured pages locally in the browser. It does not send page text, browsing diagnostics, or settings to a remote server."
     },
     "introText4": {
-        "message": "この拡張機能を使用すると、テキスト内の単語やフレーズに基づいてウェブサイトをブロックできます。"
+        "message": "Start with one plan, add the pages and words that matter, then make the plan stricter with schedules or Pomodoro when you need stronger defense."
     },
     "howToUseTitle": {
         "message": "拡張機能の使用方法"
     },
     "createGroupTitle": {
-        "message": "第一歩：グループの作成"
+        "message": "First Step: Create a Plan"
     },
     "createGroupText1": {
-        "message": "'グループを追加'ボタンを押すか、グループ名を入力してEnterを押すか、「グループを追加」ボタンを押すことで、複数のグループを作成できます。"
+        "message": "Enter a plan name and press Add Plan. Open the plan to configure entries, schedules, Pomodoro, intent coherence, allowed websites, and UI cleanup assignments."
     },
     "createGroupText2": {
-        "message": "グループパネルが表示されます。"
+        "message": "The default plan is a safe starting point. You can keep it, rename it, or create additional plans for different contexts."
     },
     "websitesTitle": {
-        "message": "ウェブサイト"
+        "message": "Entries and Websites"
     },
     "websitesText": {
-        "message": "'ウェブサイト'行の左にある'編集'ボタンを押して、ウェブサイトの追加を開始します。このフィールドは、拡張機能がキーワードをブロックするウェブサイトを指定するためのものです。例えば、「google.com」などのウェブサイトのURLを入力します。複数のウェブサイトを入力できます。新しい行は新しいウェブサイトです。Enterを押します。準備ができたら、緑色の'保存'ボタンを押します。または、キャンセルすることもできます。"
+        "message": "A plan entry has websites and keywords. Add the websites where the keywords should be scanned, one host per line, such as example.com or docs.example.com."
     },
     "keywordsTitle": {
         "message": "キーワード"
     },
     "keywordsText1": {
-        "message": "新しいキーワードを追加したり、変更を加えたりするには、「編集」を押します。ここに入力したキーワードは、このグループに入力したウェブサイトでスキャンされます。"
+        "message": "Add keywords or phrases to the same entry. The extension scans matching pages locally and blocks the page when the entry score reaches 1000."
     },
     "keywordFormatsIntroduction": {
         "message": "キーワードの形式は3種類あります："
     },
     "keywordFormat1Title": {
-        "message": "第一形式："
+        "message": "Keyword format 1:"
     },
     "keywordFormat1Text": {
-        "message": "キーワードを単に入力します。単語またはフレーズであることができます。キーワードにコンマ「,」が含まれている場合は、エスケープ文字「\\」を前に置く必要があります。キーワードが検出されたら、そのウェブサイトはブロックされます。希望するだけのキーワードを入力できます。Enterを押します。新しい行は新しいキーワードです。"
+        "message": "Enter a word or phrase. If the keyword contains a comma, put a backslash before the comma. A plain keyword blocks as soon as it is detected."
     },
     "keywordFormat1_2": {
-        "message": "例：「ビデオゲーム」または「ニュース」。"
+        "message": "Examples: 'video games', 'news'."
     },
     "keywordFormat2Title": {
-        "message": "第二形式："
+        "message": "Keyword format 2:"
     },
     "keywordFormat2Text": {
-        "message": "キーワードに続けて数値を入力します。グループに入力した各ウェブサイトは、1000のスコアに達する必要があります。ウェブサイトはスコア0から始まり、キーワードの数値に基づいてスコアが増加します。ウェブサイトのスコアが1000に達すると、ブロックされます。"
+        "message": "Add a number after a comma. The page score starts at 0 and increases by that amount each time the keyword is found. At 1000, the page is blocked."
     },
     "keywordFormat2_2": {
         "message": "例：「ニュース, 50」"
     },
     "keywordFormat2_3": {
-        "message": "グループに入力した各ウェブサイトは、1000のスコアに達する必要があります。サイトはスコア0から始まり、キーワードの数値に基づいて値が増加します。ウェブサイトのスコアが1000に達すると、それがブロックされます。"
+        "message": "Use this when a word should matter, but only after repeated or combined signals."
     },
     "keywordFormat3Title": {
-        "message": "第三形式："
+        "message": "Keyword format 3:"
     },
     "keywordFormat3Text": {
-        "message": "キーワードに続いて乗算または加算記号（* または +）、次に数値を入力します。このシナリオでは、ページのスコアは検出されたキーワードの数値に基づいて乗算されます。"
+        "message": "Use * or + with a number when you want a keyword to multiply or add to the current page score in a more explicit way."
     },
     "keywordFormat3_2": {
         "message": "例：「ニュース, *, 10」"
     },
     "keywordFormat3_3": {
-        "message": "このシナリオでは、ページのスコアは検出されたキーワードの数値に基づいて乗算されます。"
+        "message": "Use this for stronger signals that should become decisive only in a specific context."
     },
     "timerCountTitle": {
-        "message": "タイマーの数"
+        "message": "Pomodoro"
     },
     "timerCountText": {
-        "message": "ページがブロックされた後、'タイマーを起動'ボタンを押すオプションがあります。その後、ページが再びブロックされる前にいくつかのアクションを実行する時間が与えられます。タイマーの数フィールドでは、1日に何回タイマーを使用したいかを決定できます。"
+        "message": "A plan can run Pomodoro work and rest timing. Strict breaks can block or quiet pages during rest so the break is protected."
     },
     "timerDurationTitle": {
-        "message": "タイマーの持続時間（秒）"
+        "message": "Pomodoro Timing"
     },
     "timerDurationText": {
-        "message": "このフィールドでは、各タイマーの秒数を決定します。"
+        "message": "Set work minutes, short breaks, long breaks, and how many work sessions happen before a long break. During an active protected schedule, enabling Pomodoro or making it stricter is allowed; relaxing it is blocked."
     },
     "lockedSchedulesTitle": {
         "message": "ロックされたスケジュール"
     },
     "lockedSchedulesNote": {
-        "message": "！ロックされたスケジュールは、時間が経過するまで（または拡張機能をアンインストールするまで）解除できません！"
+        "message": "A protected schedule is meant to resist hot-state weakening while the scheduled window is active."
     },
     "lockedSchedulesText1": {
-        "message": "新しいロックされたスケジュールを追加するには、スケジュール名フィールドにスケジュール名を入力し、Enterキーを押すか、スケジュールを追加ボタンを押します。"
+        "message": "Open a plan, choose Schedule, and add one or more scheduled time blocks. Each block can choose days, start time, end time, and whether it is protected."
     },
     "lockedSchedulesText2": {
-        "message": "スケジュールの設定を変更するには、「編集」を押します。日ボタンを押すことで、その日にスケジュールを有効（ボタンが緑色になる）にするか、無効にすることができます。開始時刻と終了時刻フィールドを変更することで、スケジュールがアクティブになる時間を設定します。各日は、その時間中にスケジュールを無効にできるように、1時間の非アクティブ時間枠を持たなければなりません。非アクティブ/アクティブボタンでスケジュールを切り替えます。現在の日が有効（緑色）であり、ボタンが「アクティブ」と表示されていて緑色であり、現在の時間が開始と終了の時間の間であれば、スケジュールはロックされてアクティブになります。"
+        "message": "A protected active schedule can be made stricter but not more relaxed. For example, you can add entries, raise keyword scores, enable stricter Pomodoro behavior, or add UI cleanup rules, but you cannot remove active protection."
     },
     "lockedSchedulesText3": {
-        "message": "「削除」ボタンでロックされたスケジュールを削除できます。グループやホワイトリストに登録されたウェブサイトにも同様に適用されます。"
+        "message": "Delete removes a schedule only when doing so does not relax an active protected window."
     },
     "lockedSchedulesText4": {
-        "message": "ロックされたスケジュール中にはいくつかの制限が適用されます："
+        "message": "During an active protected schedule, relaxed changes are refused:"
     },
     "lockedScheduleRestriction1": {
-        "message": "グループ名を変更することはできません。"
+        "message": "You cannot disable the active plan."
     },
     "lockedScheduleRestriction2": {
-        "message": "グループ内の既存のウェブサイトを変更または削除することはできません。"
+        "message": "You cannot remove existing plan entries or reduce the websites they protect."
     },
     "lockedScheduleRestriction3": {
-        "message": "既存のキーワードとその値を変更または削除することはできません。"
+        "message": "You cannot remove existing keywords or reduce their weights."
     },
     "lockedScheduleRestriction4": {
-        "message": "乗算の場合のキーワード値は1から1000まで、加算の場合は0から1000までに設定することができます。"
+        "message": "New or changed keywords must stay inside the strict allowed scoring ranges."
     },
     "lockedScheduleRestriction5": {
-        "message": "タイマーの回数を増やすことはできません。"
+        "message": "You cannot disable Pomodoro, turn off strict breaks, or make Pomodoro easier to bypass."
     },
     "lockedScheduleRestriction6": {
-        "message": "タイマーの持続時間を増やすことはできません。"
+        "message": "You can enable Pomodoro or make its timing stricter when that increases protection."
     },
     "lockedScheduleRestriction7": {
-        "message": "アクティブなスケジュールは削除できません。"
+        "message": "Active schedules cannot be deleted."
     },
     "lockedScheduleRestriction8": {
-        "message": "アクティブなスケジュールで日を選択解除したり、スケジュールを非アクティブにしたり、開始または終了時間を変更することはできません。"
+        "message": "You cannot remove active days or shrink an active protected schedule window."
     },
     "lockedScheduleRestriction9": {
-        "message": "ホワイトリストにウェブサイトを追加することはできません。"
+        "message": "You cannot add allowed websites to bypass a protected plan."
     },
     "lockedScheduleRestriction10": {
-        "message": "拡張機能のパスワードを設定または削除することはできません。"
+        "message": "You cannot delete password protection during an active protected schedule."
     },
     "whitelistWebsitesTitle": {
-        "message": "ホワイトリストウェブサイト"
+        "message": "Allowed Websites"
     },
     "whitelistWebsitesText": {
-        "message": "キーワードスキャンが実行されず、ブロックされないホワイトリストにウェブサイトを入力できます。現在、ワイルドカード（*）を使用して多くのウェブサイトを一度に含める機能（例：*.io で '.io' を含むすべてのウェブサイトがブロックされる）はありませんが、この機能は存在しますがあまり便利ではありません。"
+        "message": "Allowed websites are plan-owned exceptions. Add them when a site should remain usable while a plan is active; the plan will not scan or block those allowed hosts."
     },
     "passwordManagementTitle": {
         "message": "パスワード管理"
     },
     "passwordManagementText": {
-        "message": "拡張機能ページのパスワードを設定できます。拡張機能ページを開く人は、アクセスするために正しいパスワードを入力する必要があります。他の人が誤って（または意図的に）設定を厳しくするのを防ぐのに役立ちます。"
+        "message": "Password protection can require a password before opening the options page. Use it when you want an extra barrier around changing protection settings."
     },
     "contactFeedbackTitle": {
         "message": "連絡先とフィードバック"

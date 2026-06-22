@@ -372,148 +372,148 @@
         "message": "Ներածություն"
     },
     "introText1": {
-        "message": "Ողջույն Այնքան հեշտ է ինտերնետում շեղվելը և հետաձգելը: Այս ընդլայնումը թույլ է տալիս արգելափակել վեբ էջերը հիմնաբառերի հիման վրա, որոնք դուք չեք ցանկանում տեսնել:"
+        "message": "Defense Against Distractions lets you create local protection plans that block pages, guide Pomodoro timing, detect possible intent drift, and clean up distracting page UI."
     },
     "introText2": {
-        "message": "Հազարավոր տեսախաղեր կան խաղալու, լուրեր կարդալու, տեսանյութեր դիտելու և այլն: Եվ հաճախ դա այն է, ինչ մենք անում ենք, երբ նախագծի վերջնաժամկետները կամ քննությունները դեռ հեռու են: Երբեմն կարող է մի փոքր դժվար լինել ստիպել ինքներդ ձեզ անել այն, ինչ պետք է անեք:"
+        "message": "A plan combines page entries, allowed websites, schedules, Pomodoro settings, intent-coherence settings, and optional UI cleanup rules. Turn a plan on when you want that protection available."
     },
     "introText3": {
-        "message": "Եվ շեղումները ամենուր են: Նույնիսկ եթե դուք օգտագործում եք StayFocusd-ը կամ Cold Turkey-ը կամ FocusMe-ը՝ որոշ կայքեր իրենց URL-ներով արգելափակելու համար, դուք չեք կարող ամեն ինչ արգելափակել: Օրինակ, նույնիսկ ChatGPT-ով դուք կարող եք խոսել նորությունների կամ տեսախաղերի մասին, եթե իսկապես չեք ցանկանում սովորել կամ աշխատանք կատարել:"
+        "message": "The extension checks configured pages locally in the browser. It does not send page text, browsing diagnostics, or settings to a remote server."
     },
     "introText4": {
-        "message": "Այս ընդլայնման միջոցով դուք կարող եք արգելափակել կայքերը՝ հիմնվելով դրանց տեքստի բառերի և արտահայտությունների վրա:"
+        "message": "Start with one plan, add the pages and words that matter, then make the plan stricter with schedules or Pomodoro when you need stronger defense."
     },
     "howToUseTitle": {
         "message": "Ինչպես օգտագործել ընդլայնումը"
     },
     "createGroupTitle": {
-        "message": "Առաջին քայլ. Ստեղծեք խումբ"
+        "message": "First Step: Create a Plan"
     },
     "createGroupText1": {
-        "message": "Կարող եք սեղմել «Ավելացնել խումբ» կոճակը կամ մուտքագրել խմբի անունը և սեղմել Enter կամ Ավելացնել խումբ կոճակը: Դուք կարող եք ստեղծել բազմաթիվ խմբեր:"
+        "message": "Enter a plan name and press Add Plan. Open the plan to configure entries, schedules, Pomodoro, intent coherence, allowed websites, and UI cleanup assignments."
     },
     "createGroupText2": {
-        "message": "Դուք կտեսնեք խմբի վահանակը:"
+        "message": "The default plan is a safe starting point. You can keep it, rename it, or create additional plans for different contexts."
     },
     "websitesTitle": {
-        "message": "Կայքեր"
+        "message": "Entries and Websites"
     },
     "websitesText": {
-        "message": "Կարող եք սկսել կայքեր ավելացնել՝ սեղմելով «Խմբագրել» կոճակը Կայքերի տողից ձախ: Այս դաշտը պատասխանատու է այն կայքերի համար, որտեղ ընդլայնումը կարգելափակի հիմնաբառեր: Այստեղ դուք պետք է մուտքագրեք կայքի URL-ները, օրինակ՝ «google.com»: Դուք կարող եք մուտքագրել բազմաթիվ կայքեր, յուրաքանչյուր նոր տող նոր կայք է: Պարզապես սեղմեք Enter: Երբ պատրաստ լինեք, սեղմեք կանաչ «Պահպանել» կոճակը: Կամ կարող եք Չեղարկել:"
+        "message": "A plan entry has websites and keywords. Add the websites where the keywords should be scanned, one host per line, such as example.com or docs.example.com."
     },
     "keywordsTitle": {
         "message": "Հիմնաբառեր"
     },
     "keywordsText1": {
-        "message": "Նոր հիմնաբառեր ավելացնելու կամ որևէ փոփոխություն կատարելու համար սեղմեք «Խմբագրել»: Այստեղ մուտքագրած հիմնաբառերը կսկանավորվեն այն կայքերում, որոնք մուտքագրել եք այս խմբի համար:"
+        "message": "Add keywords or phrases to the same entry. The extension scans matching pages locally and blocks the page when the entry score reaches 1000."
     },
     "keywordFormatsIntroduction": {
         "message": "Հիմնաբառերի 3 ձևաչափ կա."
     },
     "keywordFormat1Title": {
-        "message": "Առաջին ձևաչափ."
+        "message": "Keyword format 1:"
     },
     "keywordFormat1Text": {
-        "message": "Պարզապես մուտքագրեք հիմնաբառերը: Դա կարող է լինել բառ կամ արտահայտություն: Եթե ​​բանալի բառը պարունակում է «,» ստորակետ, ապա դրանից առաջ պետք է օգտագործեք «\\» նիշը: Հիմնական բառը հայտնաբերելուն պես կայքը կարգելափակվի: Կարող եք մուտքագրել այնքան հիմնաբառեր, որքան ցանկանում եք, պարզապես սեղմեք enter: Յուրաքանչյուր նոր տող նոր հիմնաբառ է:"
+        "message": "Enter a word or phrase. If the keyword contains a comma, put a backslash before the comma. A plain keyword blocks as soon as it is detected."
     },
     "keywordFormat1_2": {
-        "message": "Օրինակ՝ «տեսախաղեր» կամ «նորություններ»:"
+        "message": "Examples: 'video games', 'news'."
     },
     "keywordFormat2Title": {
-        "message": "Երկրորդ ձևաչափ."
+        "message": "Keyword format 2:"
     },
     "keywordFormat2Text": {
-        "message": "Մուտքագրեք հիմնաբառը, որին հաջորդում է թվային արժեքը: Խմբում ձեր մուտքագրած յուրաքանչյուր կայք պետք է հասնի 1000 միավորի: Կայքը սկսվում է 0 արժեքով և հիմնաբառի թվային արժեքի հիման վրա արժեքը մեծանում է: Երբ կայքը հասնի 1000 միավորի, այն կարգելափակվի։"
+        "message": "Add a number after a comma. The page score starts at 0 and increases by that amount each time the keyword is found. At 1000, the page is blocked."
     },
     "keywordFormat2_2": {
         "message": "Օրինակ՝ «նորություններ, 50»"
     },
     "keywordFormat2_3": {
-        "message": "Խմբում ձեր մուտքագրած յուրաքանչյուր կայք պետք է հասնի 1000 միավորի: Կայքը սկսվում է 0 արժեքով և հիմնաբառի թվային արժեքից ելնելով արժեքը մեծանում է: Երբ կայքը հասնի 1000 միավորի, այն կարգելափակվի։"
+        "message": "Use this when a word should matter, but only after repeated or combined signals."
     },
     "keywordFormat3Title": {
-        "message": "Երրորդ ձևաչափ."
+        "message": "Keyword format 3:"
     },
     "keywordFormat3Text": {
-        "message": "Մուտքագրեք հիմնաբառը, որին հաջորդում է բազմապատկման կամ գումարման նշանը (* կամ +), ապա թվային արժեք: Այս սցենարում էջի միավորը բազմապատկվում է՝ ելնելով գտնված բանալի բառի թվային արժեքից:"
+        "message": "Use * or + with a number when you want a keyword to multiply or add to the current page score in a more explicit way."
     },
     "keywordFormat3_2": {
         "message": "Օրինակ՝ «նորություններ, *, 10»"
     },
     "keywordFormat3_3": {
-        "message": "Այս սցենարում էջի միավորը բազմապատկվում է՝ ելնելով գտնված բանալի բառի թվային արժեքից:"
+        "message": "Use this for stronger signals that should become decisive only in a specific context."
     },
     "timerCountTitle": {
-        "message": "Ժամաչափի հաշվարկ"
+        "message": "Pomodoro"
     },
     "timerCountText": {
-        "message": "Էջն արգելափակելուց հետո դուք հնարավորություն կունենաք սեղմել «Ակտիվացնել ժմչփը» կոճակը: Դրանից հետո դուք ժամանակ կունենաք որոշ գործողություններ կատարելու էջի վրա՝ նախքան այն նորից արգելափակելը: Timer Count դաշտում կարող եք որոշել, թե օրվա ընթացքում քանի ժամաչափ եք ուզում ունենալ:"
+        "message": "A plan can run Pomodoro work and rest timing. Strict breaks can block or quiet pages during rest so the break is protected."
     },
     "timerDurationTitle": {
-        "message": "Ժամաչափի տևողությունը (վայրկյան)"
+        "message": "Pomodoro Timing"
     },
     "timerDurationText": {
-        "message": "Այս դաշտում դուք որոշում եք, թե քանի վայրկյան կունենա յուրաքանչյուր ժմչփ:"
+        "message": "Set work minutes, short breaks, long breaks, and how many work sessions happen before a long break. During an active protected schedule, enabling Pomodoro or making it stricter is allowed; relaxing it is blocked."
     },
     "lockedSchedulesTitle": {
         "message": "Կողպված ժամանակացույցեր"
     },
     "lockedSchedulesNote": {
-        "message": "! Կողպված ժամանակացույցը չի կարող ապակողպվել մինչև ժամանակը չանցնի (եթե չջեղադրեք ընդլայնումը):"
+        "message": "A protected schedule is meant to resist hot-state weakening while the scheduled window is active."
     },
     "lockedSchedulesText1": {
-        "message": "Դուք կարող եք ավելացնել նոր կողպված ժամանակացույց՝ ստեղծելով ժամանակացույցի անունը Schedule Name դաշտում և սեղմելով Enter կամ Add Schedule կոճակը:"
+        "message": "Open a plan, choose Schedule, and add one or more scheduled time blocks. Each block can choose days, start time, end time, and whether it is protected."
     },
     "lockedSchedulesText2": {
-        "message": "Ձեր ժամանակացույցի կարգավորումները փոփոխելու համար սեղմեք «Խմբագրել»: Սեղմելով օրվա կոճակները՝ դուք կա՛մ միացնում եք այդ օրվա գրաֆիկը (կոճակը դառնում է կանաչ), կա՛մ անջատում եք այն այդ օրվա համար: Փոփոխելով Start Time և End Time դաշտերը՝ դուք սահմանում եք ժամանակացույցի ակտիվ լինելու ժամերը: Ամեն օր պետք է ունենա 1-ժամյա ոչ ակտիվ ժամանակի պատուհան, որպեսզի կարողանաք այդ ընթացքում անջատել ժամանակացույցը: Անգործուն/Ակտիվ կոճակը փոխում է ժամանակացույցը: Ժամանակացույցը կողպված և ակտիվ կլինի, եթե ընթացիկ օրը միացված է (կանաչ), և կոճակը ցույց է տալիս «Ակտիվ» և նույնպես կանաչ է, և եթե ընթացիկ ժամանակը գտնվում է սկզբի և ավարտի ժամանակների միջև:"
+        "message": "A protected active schedule can be made stricter but not more relaxed. For example, you can add entries, raise keyword scores, enable stricter Pomodoro behavior, or add UI cleanup rules, but you cannot remove active protection."
     },
     "lockedSchedulesText3": {
-        "message": "Ջնջել կոճակը հեռացնում է կողպված ժամանակացույցը: Նույնը վերաբերում է խմբերին և սպիտակ ցուցակում գտնվող կայքերին:"
+        "message": "Delete removes a schedule only when doing so does not relax an active protected window."
     },
     "lockedSchedulesText4": {
-        "message": "Կողպված ժամանակացույցի ընթացքում կիրառվում են մի քանի սահմանափակումներ."
+        "message": "During an active protected schedule, relaxed changes are refused:"
     },
     "lockedScheduleRestriction1": {
-        "message": "Դուք չեք կարող փոխել խմբերի անունները:"
+        "message": "You cannot disable the active plan."
     },
     "lockedScheduleRestriction2": {
-        "message": "Դուք չեք կարող խմբերով փոխել կամ հեռացնել գոյություն ունեցող կայքերը:"
+        "message": "You cannot remove existing plan entries or reduce the websites they protect."
     },
     "lockedScheduleRestriction3": {
-        "message": "Դուք չեք կարող փոխել կամ հեռացնել առկա հիմնաբառերը և դրանց արժեքները:"
+        "message": "You cannot remove existing keywords or reduce their weights."
     },
     "lockedScheduleRestriction4": {
-        "message": "Բազմապատկման համար կարող եք սահմանել միայն հիմնաբառերի արժեքներ՝ 1-ից մինչև 1000, գումարման համար՝ 0-ից մինչև 1000:"
+        "message": "New or changed keywords must stay inside the strict allowed scoring ranges."
     },
     "lockedScheduleRestriction5": {
-        "message": "Ժամաչափի քանակը չի կարող ավելացվել:"
+        "message": "You cannot disable Pomodoro, turn off strict breaks, or make Pomodoro easier to bypass."
     },
     "lockedScheduleRestriction6": {
-        "message": "Ժամաչափի տևողությունը չի կարող ավելացվել:"
+        "message": "You can enable Pomodoro or make its timing stricter when that increases protection."
     },
     "lockedScheduleRestriction7": {
-        "message": "Ակտիվ ժամանակացույցերը չեն կարող ջնջվել:"
+        "message": "Active schedules cannot be deleted."
     },
     "lockedScheduleRestriction8": {
-        "message": "Դուք չեք կարող չեղարկել օրերը, չակտիվացնել ժամանակացույցը կամ փոխել ակտիվ ժամանակացույցերի մեկնարկի կամ ավարտի ժամերը:"
+        "message": "You cannot remove active days or shrink an active protected schedule window."
     },
     "lockedScheduleRestriction9": {
-        "message": "Դուք չեք կարող ավելացնել սպիտակ ցուցակում նշված կայքերը:"
+        "message": "You cannot add allowed websites to bypass a protected plan."
     },
     "lockedScheduleRestriction10": {
-        "message": "Դուք չեք կարող սահմանել կամ ջնջել ընդլայնման գաղտնաբառը:"
+        "message": "You cannot delete password protection during an active protected schedule."
     },
     "whitelistWebsitesTitle": {
-        "message": "Սպիտակ ցուցակի կայքեր"
+        "message": "Allowed Websites"
     },
     "whitelistWebsitesText": {
-        "message": "Թույլ է տալիս մուտք գործել սպիտակ ցուցակում գտնվող կայքեր, ինչը նշանակում է, որ հիմնաբառերի սկանավորումը չի կատարվի այս կայքերում, և այդպիսով դրանք չեն արգելափակվի: Ներկայում մենք հնարավորություն չունենք օգտագործել նիշ (*)՝ բազմաթիվ կայքեր մեկ մուտքի մեջ ներառելու համար (ինչպես *.io-ն, որտեղ «.io» ունեցող բոլոր կայքերը կարգելափակվեն), ուստի այս հատկությունը այնքան էլ օգտակար չէ, բայց այն գոյություն ունի:"
+        "message": "Allowed websites are plan-owned exceptions. Add them when a site should remain usable while a plan is active; the plan will not scan or block those allowed hosts."
     },
     "passwordManagementTitle": {
         "message": "Գաղտնաբառերի կառավարում"
     },
     "passwordManagementText": {
-        "message": "Թույլ է տալիս գաղտնաբառ տեղադրել ընդլայնման էջի համար: Յուրաքանչյուր ոք, ով բացում է ընդլայնման էջը, մուտք գործելու համար պետք է մուտքագրի ճիշտ գաղտնաբառը: Օգտակար է կանխելու այլոց կողմից պատահաբար (կամ միտումնավոր) խստացնել կարգավորումները:"
+        "message": "Password protection can require a password before opening the options page. Use it when you want an extra barrier around changing protection settings."
     },
     "contactFeedbackTitle": {
         "message": "Կապ և հետադարձ կապ"

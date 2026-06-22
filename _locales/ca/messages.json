@@ -372,148 +372,148 @@
         "message": "Introducció"
     },
     "introText1": {
-        "message": "hola! És molt fàcil distreure's a Internet i procrastinar. Aquesta extensió us permet bloquejar pàgines web basades en paraules clau que no voleu veure."
+        "message": "Defense Against Distractions lets you create local protection plans that block pages, guide Pomodoro timing, detect possible intent drift, and clean up distracting page UI."
     },
     "introText2": {
-        "message": "Hi ha milers de videojocs per jugar, notícies per llegir, vídeos per veure, etc. I sovint, això és el que fem quan els terminis dels projectes o els exàmens encara estan lluny. De vegades, pot ser una mica difícil forçar-se a fer el que cal fer."
+        "message": "A plan combines page entries, allowed websites, schedules, Pomodoro settings, intent-coherence settings, and optional UI cleanup rules. Turn a plan on when you want that protection available."
     },
     "introText3": {
-        "message": "I les distraccions són a tot arreu! Fins i tot si feu servir StayFocusd o Cold Turkey o FocusMe per bloquejar alguns llocs web amb els seus URL, no podeu bloquejar-ho tot. Per exemple, fins i tot amb ChatGPT, pots parlar de notícies o videojocs si realment no tens ganes d'estudiar o de treballar."
+        "message": "The extension checks configured pages locally in the browser. It does not send page text, browsing diagnostics, or settings to a remote server."
     },
     "introText4": {
-        "message": "Amb aquesta extensió, podeu bloquejar llocs web en funció de paraules i frases del seu text."
+        "message": "Start with one plan, add the pages and words that matter, then make the plan stricter with schedules or Pomodoro when you need stronger defense."
     },
     "howToUseTitle": {
         "message": "Com utilitzar l'extensió"
     },
     "createGroupTitle": {
-        "message": "Primer pas: crear un grup"
+        "message": "First Step: Create a Plan"
     },
     "createGroupText1": {
-        "message": "Podeu prémer el botó \"Afegeix grup\" o introduir el nom del grup i prémer Intro o el botó Afegeix grup. Podeu crear diversos grups."
+        "message": "Enter a plan name and press Add Plan. Open the plan to configure entries, schedules, Pomodoro, intent coherence, allowed websites, and UI cleanup assignments."
     },
     "createGroupText2": {
-        "message": "Veureu el panell del grup."
+        "message": "The default plan is a safe starting point. You can keep it, rename it, or create additional plans for different contexts."
     },
     "websitesTitle": {
-        "message": "Llocs web"
+        "message": "Entries and Websites"
     },
     "websitesText": {
-        "message": "Podeu començar a afegir llocs web prement el botó \"Edita\" a l'esquerra de la línia de llocs web. Aquest camp és responsable dels llocs web on l'extensió bloquejarà les paraules clau. Aquí heu d'introduir els URL del lloc web, per exemple, \"google.com\". Podeu introduir diversos llocs web, cada línia nova és un lloc web nou. Només has de prémer Enter. Quan estigueu preparat, premeu el botó verd \"Desa\". O pots cancel·lar."
+        "message": "A plan entry has websites and keywords. Add the websites where the keywords should be scanned, one host per line, such as example.com or docs.example.com."
     },
     "keywordsTitle": {
         "message": "Paraules clau"
     },
     "keywordsText1": {
-        "message": "Per afegir paraules clau noves o fer canvis, premeu \"Edita\". Les paraules clau que introduïu aquí s'escanejaran als llocs web que heu introduït per a aquest grup."
+        "message": "Add keywords or phrases to the same entry. The extension scans matching pages locally and blocks the page when the entry score reaches 1000."
     },
     "keywordFormatsIntroduction": {
         "message": "Hi ha 3 formats per a les paraules clau:"
     },
     "keywordFormat1Title": {
-        "message": "Primer format:"
+        "message": "Keyword format 1:"
     },
     "keywordFormat1Text": {
-        "message": "Només cal introduir les paraules clau. Pot ser una paraula o una frase. Si la paraula clau conté una coma ',', heu d'utilitzar un caràcter d'escapament '\\' abans. El lloc web es bloquejarà tan bon punt es detecti la paraula clau. Podeu introduir tantes paraules clau com vulgueu, només heu de prémer Intro. Cada línia nova és una paraula clau nova."
+        "message": "Enter a word or phrase. If the keyword contains a comma, put a backslash before the comma. A plain keyword blocks as soon as it is detected."
     },
     "keywordFormat1_2": {
-        "message": "Exemple: \"videojocs\" o \"notícies\"."
+        "message": "Examples: 'video games', 'news'."
     },
     "keywordFormat2Title": {
-        "message": "Segon format:"
+        "message": "Keyword format 2:"
     },
     "keywordFormat2Text": {
-        "message": "Introduïu la paraula clau, seguida d'un valor numèric. Cada lloc web que heu introduït en un grup ha d'arribar a una puntuació de 1000. El lloc web comença amb un valor de 0 i, en funció del valor numèric de la paraula clau, el valor augmenta. Un cop el lloc web arribi a una puntuació de 1000, es bloquejarà."
+        "message": "Add a number after a comma. The page score starts at 0 and increases by that amount each time the keyword is found. At 1000, the page is blocked."
     },
     "keywordFormat2_2": {
         "message": "Exemple: \"notícies, 50\""
     },
     "keywordFormat2_3": {
-        "message": "Cada lloc web que heu introduït en un grup ha d'arribar a una puntuació de 1000. El lloc comença amb un valor de 0 i, en funció del valor numèric de la paraula clau, el valor augmenta. Un cop el lloc web arribi a una puntuació de 1000, es bloquejarà."
+        "message": "Use this when a word should matter, but only after repeated or combined signals."
     },
     "keywordFormat3Title": {
-        "message": "Tercer format:"
+        "message": "Keyword format 3:"
     },
     "keywordFormat3Text": {
-        "message": "Introduïu la paraula clau, seguida d'un signe de multiplicació o suma (* o +) i després un valor numèric. En aquest escenari, la puntuació de la pàgina es multiplica en funció del valor numèric de la paraula clau trobada."
+        "message": "Use * or + with a number when you want a keyword to multiply or add to the current page score in a more explicit way."
     },
     "keywordFormat3_2": {
         "message": "Exemple: \"notícies, *, 10\""
     },
     "keywordFormat3_3": {
-        "message": "En aquest escenari, la puntuació de la pàgina es multiplica en funció del valor numèric de la paraula clau trobada."
+        "message": "Use this for stronger signals that should become decisive only in a specific context."
     },
     "timerCountTitle": {
-        "message": "Recompte de temporitzadors"
+        "message": "Pomodoro"
     },
     "timerCountText": {
-        "message": "Un cop bloquejada la pàgina, tindreu l'opció de prémer el botó \"Activa el temporitzador\". Després d'això, tindreu temps per realitzar algunes accions a la pàgina abans que es torni a bloquejar. Al camp Recompte de temporitzadors, podeu decidir quants temporitzadors voleu tenir durant el dia."
+        "message": "A plan can run Pomodoro work and rest timing. Strict breaks can block or quiet pages during rest so the break is protected."
     },
     "timerDurationTitle": {
-        "message": "Durada del temporitzador (segons)"
+        "message": "Pomodoro Timing"
     },
     "timerDurationText": {
-        "message": "En aquest camp, tu decideixes quants segons tindrà cada temporitzador."
+        "message": "Set work minutes, short breaks, long breaks, and how many work sessions happen before a long break. During an active protected schedule, enabling Pomodoro or making it stricter is allowed; relaxing it is blocked."
     },
     "lockedSchedulesTitle": {
         "message": "Horaris bloquejats"
     },
     "lockedSchedulesNote": {
-        "message": "! Una programació bloquejada no es pot desbloquejar fins que passa el temps (tret que desinstal·leu l'extensió)!"
+        "message": "A protected schedule is meant to resist hot-state weakening while the scheduled window is active."
     },
     "lockedSchedulesText1": {
-        "message": "Podeu afegir una nova programació bloquejada creant el nom de la programació al camp Nom de la programació i prement Retorn o el botó Afegeix una programació."
+        "message": "Open a plan, choose Schedule, and add one or more scheduled time blocks. Each block can choose days, start time, end time, and whether it is protected."
     },
     "lockedSchedulesText2": {
-        "message": "Per modificar la configuració de la vostra programació, premeu \"Edita\". En prémer els botons del dia, activeu l'horari aquell dia (el botó es torna verd) o el desactiveu per a aquell dia. En modificar els camps Hora d'inici i Hora de finalització, establiu les hores que la programació pot estar activa. Cada dia ha de tenir una finestra de temps inactiu d'1 hora perquè pugueu desactivar l'horari durant aquest temps. El botó Inactiu/Actiu alterna la programació. L'horari estarà bloquejat i actiu si el dia actual està habilitat (verd) i el botó mostra \"Actiu\" i també és verd, i si l'hora actual està entre l'hora d'inici i de finalització."
+        "message": "A protected active schedule can be made stricter but not more relaxed. For example, you can add entries, raise keyword scores, enable stricter Pomodoro behavior, or add UI cleanup rules, but you cannot remove active protection."
     },
     "lockedSchedulesText3": {
-        "message": "El botó Suprimeix elimina la programació bloquejada. El mateix s'aplica als grups i als llocs web inclosos a la llista blanca."
+        "message": "Delete removes a schedule only when doing so does not relax an active protected window."
     },
     "lockedSchedulesText4": {
-        "message": "S'apliquen diverses restriccions durant l'horari bloquejat:"
+        "message": "During an active protected schedule, relaxed changes are refused:"
     },
     "lockedScheduleRestriction1": {
-        "message": "No podeu canviar els noms dels grups."
+        "message": "You cannot disable the active plan."
     },
     "lockedScheduleRestriction2": {
-        "message": "No podeu canviar ni eliminar els llocs web existents en grups."
+        "message": "You cannot remove existing plan entries or reduce the websites they protect."
     },
     "lockedScheduleRestriction3": {
-        "message": "No podeu canviar ni eliminar les paraules clau existents i els seus valors."
+        "message": "You cannot remove existing keywords or reduce their weights."
     },
     "lockedScheduleRestriction4": {
-        "message": "Només podeu establir valors de paraules clau per a la multiplicació: d'1 a 1000. Per a la suma: de 0 a 1000."
+        "message": "New or changed keywords must stay inside the strict allowed scoring ranges."
     },
     "lockedScheduleRestriction5": {
-        "message": "El recompte del temporitzador no es pot augmentar."
+        "message": "You cannot disable Pomodoro, turn off strict breaks, or make Pomodoro easier to bypass."
     },
     "lockedScheduleRestriction6": {
-        "message": "La durada del temporitzador no es pot augmentar."
+        "message": "You can enable Pomodoro or make its timing stricter when that increases protection."
     },
     "lockedScheduleRestriction7": {
-        "message": "Els horaris actius no es poden suprimir."
+        "message": "Active schedules cannot be deleted."
     },
     "lockedScheduleRestriction8": {
-        "message": "No podeu anul·lar la selecció de dies, inactivar la programació ni canviar l'hora d'inici o de finalització de les programacions actives."
+        "message": "You cannot remove active days or shrink an active protected schedule window."
     },
     "lockedScheduleRestriction9": {
-        "message": "No podeu afegir llocs web a la llista blanca."
+        "message": "You cannot add allowed websites to bypass a protected plan."
     },
     "lockedScheduleRestriction10": {
-        "message": "No podeu establir ni eliminar la contrasenya de l'extensió."
+        "message": "You cannot delete password protection during an active protected schedule."
     },
     "whitelistWebsitesTitle": {
-        "message": "Llista blanca de llocs web"
+        "message": "Allowed Websites"
     },
     "whitelistWebsitesText": {
-        "message": "Us permet introduir llocs web a la llista blanca, és a dir, que l'exploració de paraules clau no es realitzarà en aquests llocs web i, per tant, no es bloquejaran. Actualment, no tenim la possibilitat d'utilitzar un comodí (*) per incloure molts llocs web en una entrada (com ara *.io, on es bloquejarien tots els llocs web amb '.io'), així que aquesta funció no és molt útil, però existeix."
+        "message": "Allowed websites are plan-owned exceptions. Add them when a site should remain usable while a plan is active; the plan will not scan or block those allowed hosts."
     },
     "passwordManagementTitle": {
         "message": "Gestió de contrasenyes"
     },
     "passwordManagementText": {
-        "message": "Us permet configurar una contrasenya per a la pàgina d'extensió. Qualsevol persona que obriu la pàgina d'extensió haurà d'introduir la contrasenya correcta per accedir-hi. Útil per evitar que altres persones ajustin accidentalment (o intencionadament) la configuració."
+        "message": "Password protection can require a password before opening the options page. Use it when you want an extra barrier around changing protection settings."
     },
     "contactFeedbackTitle": {
         "message": "Contacte i comentaris"

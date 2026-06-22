@@ -372,148 +372,148 @@
         "message": "Introduktion"
     },
     "introText1": {
-        "message": "Hej! Det är så lätt att bli distraherad på internet och att skjuta upp saker. Detta tillägg låter dig blockera webbsidor baserat på nyckelord som du inte vill se."
+        "message": "Defense Against Distractions lets you create local protection plans that block pages, guide Pomodoro timing, detect possible intent drift, and clean up distracting page UI."
     },
     "introText2": {
-        "message": "Det finns tusentals videospel att spela, nyheter att läsa, videor att titta på, och så vidare. Och ofta är detta vad vi gör när projektdeadlines eller tentor fortfarande är långt borta. Ibland kan det vara lite svårt att tvinga sig själv att göra det man behöver göra."
+        "message": "A plan combines page entries, allowed websites, schedules, Pomodoro settings, intent-coherence settings, and optional UI cleanup rules. Turn a plan on when you want that protection available."
     },
     "introText3": {
-        "message": "Och distraktioner finns överallt! Även om du använder StayFocusd, Cold Turkey eller FocusMe för att blockera vissa webbplatser med deras URL:er, kan du inte blockera allt. Till exempel, även med ChatGPT, kan du prata om nyheter eller videospel om du verkligen inte känner för att studera eller arbeta."
+        "message": "The extension checks configured pages locally in the browser. It does not send page text, browsing diagnostics, or settings to a remote server."
     },
     "introText4": {
-        "message": "Med detta tillägg kan du blockera webbplatser baserat på ord och fraser i deras text."
+        "message": "Start with one plan, add the pages and words that matter, then make the plan stricter with schedules or Pomodoro when you need stronger defense."
     },
     "howToUseTitle": {
         "message": "Hur man Använder Tillägget"
     },
     "createGroupTitle": {
-        "message": "Första Steget: Skapa en Grupp"
+        "message": "First Step: Create a Plan"
     },
     "createGroupText1": {
-        "message": "Du kan trycka på 'Lägg till Grupp'-knappen eller skriva in gruppnamnet och trycka Enter eller på 'Lägg till Grupp'-knappen. Du kan skapa flera grupper."
+        "message": "Enter a plan name and press Add Plan. Open the plan to configure entries, schedules, Pomodoro, intent coherence, allowed websites, and UI cleanup assignments."
     },
     "createGroupText2": {
-        "message": "Du kommer att se gruppens panel."
+        "message": "The default plan is a safe starting point. You can keep it, rename it, or create additional plans for different contexts."
     },
     "websitesTitle": {
-        "message": "Webbplatser"
+        "message": "Entries and Websites"
     },
     "websitesText": {
-        "message": "Du kan börja lägga till webbplatser genom att trycka på 'Redigera'-knappen till vänster om webbplatsraden. Detta fält ansvarar för webbplatser där tillägget kommer att blockera nyckelord. Här måste du ange webbplatsers URL:er, till exempel 'google.com'. Du kan mata in flera webbplatser, varje ny rad är en ny webbplats. Tryck bara Enter. När du är klar, tryck på den gröna 'Spara'-knappen. Eller du kan avbryta."
+        "message": "A plan entry has websites and keywords. Add the websites where the keywords should be scanned, one host per line, such as example.com or docs.example.com."
     },
     "keywordsTitle": {
         "message": "Nyckelord"
     },
     "keywordsText1": {
-        "message": "För att lägga till nya nyckelord eller göra några ändringar, tryck på 'Redigera'. De nyckelord du anger här kommer att skannas på de webbplatser du angav för denna grupp."
+        "message": "Add keywords or phrases to the same entry. The extension scans matching pages locally and blocks the page when the entry score reaches 1000."
     },
     "keywordFormatsIntroduction": {
         "message": "Det finns 3 format för nyckelorden:"
     },
     "keywordFormat1Title": {
-        "message": "Första Formatet:"
+        "message": "Keyword format 1:"
     },
     "keywordFormat1Text": {
-        "message": "Skriv bara in nyckelorden. Det kan vara ett ord eller en fras. Om nyckelordet innehåller ett kommatecken ',', måste du använda ett escape-tecken '\\' före det. Webbplatsen kommer att blockeras så snart nyckelordet upptäcks. Du kan mata in så många nyckelord som du vill, tryck bara enter. Varje ny rad är ett nytt nyckelord."
+        "message": "Enter a word or phrase. If the keyword contains a comma, put a backslash before the comma. A plain keyword blocks as soon as it is detected."
     },
     "keywordFormat1_2": {
-        "message": "Exempel: 'videospel' eller 'nyheter'."
+        "message": "Examples: 'video games', 'news'."
     },
     "keywordFormat2Title": {
-        "message": "Andra Formatet:"
+        "message": "Keyword format 2:"
     },
     "keywordFormat2Text": {
-        "message": "Ange nyckelordet, följt av ett numeriskt värde. Varje webbplats du angav i en grupp måste nå en poäng på 1000. Webbplatsen börjar med ett värde av 0, och baserat på det numeriska värdet av nyckelordet, ökar värdet. När webbplatsen når en poäng på 1000, kommer den att blockeras."
+        "message": "Add a number after a comma. The page score starts at 0 and increases by that amount each time the keyword is found. At 1000, the page is blocked."
     },
     "keywordFormat2_2": {
         "message": "Exempel: 'nyheter, 50'"
     },
     "keywordFormat2_3": {
-        "message": "Varje webbplats du angav i en grupp måste nå en poäng på 1000. Webbplatsen börjar med ett värde av 0, och baserat på det numeriska värdet av nyckelordet, ökar värdet. När webbplatsen når en poäng på 1000, kommer den att blockeras."
+        "message": "Use this when a word should matter, but only after repeated or combined signals."
     },
     "keywordFormat3Title": {
-        "message": "Tredje Formatet:"
+        "message": "Keyword format 3:"
     },
     "keywordFormat3Text": {
-        "message": "Ange nyckelordet, följt av ett multiplikations- eller additionstecken (* eller +), sedan ett numeriskt värde. I detta scenario multipliceras poängen för sidan baserat på det numeriska värdet av det hittade nyckelordet."
+        "message": "Use * or + with a number when you want a keyword to multiply or add to the current page score in a more explicit way."
     },
     "keywordFormat3_2": {
         "message": "Exempel: 'nyheter, *, 10'"
     },
     "keywordFormat3_3": {
-        "message": "I detta scenario multipliceras poängen för sidan baserat på det numeriska värdet av det hittade nyckelordet."
+        "message": "Use this for stronger signals that should become decisive only in a specific context."
     },
     "timerCountTitle": {
-        "message": "Timerantal"
+        "message": "Pomodoro"
     },
     "timerCountText": {
-        "message": "Efter att sidan är blockerad, kommer du att ha möjlighet att trycka på 'Aktivera Timer'-knappen. Därefter kommer du att ha tid att utföra vissa åtgärder på sidan innan den blockeras igen. I fältet Timerantal kan du bestämma hur många timers du vill ha under dagen."
+        "message": "A plan can run Pomodoro work and rest timing. Strict breaks can block or quiet pages during rest so the break is protected."
     },
     "timerDurationTitle": {
-        "message": "Timers varaktighet (sekunder)"
+        "message": "Pomodoro Timing"
     },
     "timerDurationText": {
-        "message": "I detta fält bestämmer du hur många sekunder varje timer ska vara."
+        "message": "Set work minutes, short breaks, long breaks, and how many work sessions happen before a long break. During an active protected schedule, enabling Pomodoro or making it stricter is allowed; relaxing it is blocked."
     },
     "lockedSchedulesTitle": {
         "message": "Låsta Scheman"
     },
     "lockedSchedulesNote": {
-        "message": "! Ett låst schema kan inte låsas upp förrän tiden går ut (om du inte avinstallerar tillägget) !"
+        "message": "A protected schedule is meant to resist hot-state weakening while the scheduled window is active."
     },
     "lockedSchedulesText1": {
-        "message": "Du kan lägga till ett nytt låst schema genom att skapa schemanamnet i fältet Schemanamn och trycka Enter eller på 'Lägg till Schema'-knappen."
+        "message": "Open a plan, choose Schedule, and add one or more scheduled time blocks. Each block can choose days, start time, end time, and whether it is protected."
     },
     "lockedSchedulesText2": {
-        "message": "För att modifiera inställningarna för ditt schema, tryck på 'Redigera'. Genom att trycka på dagknapparna, antingen aktiverar du schemat den dagen (knappen blir grön), eller inaktiverar det för den dagen. Genom att ändra fälten Starttid och Sluttid, ställer du in tiderna som schemat kan vara aktivt på. Varje dag måste ha ett 1-timmes inaktivt tidsfönster så att du kan avaktivera schemat under den tiden. Knappen Aktiv/Inaktiv växlar schemat. Schemat kommer att vara låst och aktivt om den aktuella dagen är aktiverad (grön) och knappen visar 'Aktiv' och är också grön, och om den nuvarande tiden är mellan start- och sluttiderna."
+        "message": "A protected active schedule can be made stricter but not more relaxed. For example, you can add entries, raise keyword scores, enable stricter Pomodoro behavior, or add UI cleanup rules, but you cannot remove active protection."
     },
     "lockedSchedulesText3": {
-        "message": "Radera-knappen tar bort det låsta schemat. Detsamma gäller för grupper och webbplatser på vitlistan."
+        "message": "Delete removes a schedule only when doing so does not relax an active protected window."
     },
     "lockedSchedulesText4": {
-        "message": "Flera restriktioner gäller under det låsta schemat:"
+        "message": "During an active protected schedule, relaxed changes are refused:"
     },
     "lockedScheduleRestriction1": {
-        "message": "Du kan inte ändra gruppnamn."
+        "message": "You cannot disable the active plan."
     },
     "lockedScheduleRestriction2": {
-        "message": "Du kan inte ändra eller ta bort befintliga webbplatser i grupper."
+        "message": "You cannot remove existing plan entries or reduce the websites they protect."
     },
     "lockedScheduleRestriction3": {
-        "message": "Du kan inte ändra eller ta bort befintliga nyckelord och deras värden."
+        "message": "You cannot remove existing keywords or reduce their weights."
     },
     "lockedScheduleRestriction4": {
-        "message": "Du kan bara ställa in nyckelordsvärden för multiplikation: från 1 till 1000. För addition: från 0 till 1000."
+        "message": "New or changed keywords must stay inside the strict allowed scoring ranges."
     },
     "lockedScheduleRestriction5": {
-        "message": "Timerantalet kan inte ökas."
+        "message": "You cannot disable Pomodoro, turn off strict breaks, or make Pomodoro easier to bypass."
     },
     "lockedScheduleRestriction6": {
-        "message": "Timerns varaktighet kan inte ökas."
+        "message": "You can enable Pomodoro or make its timing stricter when that increases protection."
     },
     "lockedScheduleRestriction7": {
-        "message": "Aktiva scheman kan inte raderas."
+        "message": "Active schedules cannot be deleted."
     },
     "lockedScheduleRestriction8": {
-        "message": "Du kan inte avmarkera dagar, göra schemat inaktivt, eller ändra start- och sluttider för aktiva scheman."
+        "message": "You cannot remove active days or shrink an active protected schedule window."
     },
     "lockedScheduleRestriction9": {
-        "message": "Du kan inte lägga till webbplatser på vitlistan."
+        "message": "You cannot add allowed websites to bypass a protected plan."
     },
     "lockedScheduleRestriction10": {
-        "message": "Du kan inte ställa in eller radera lösenordet för tillägget."
+        "message": "You cannot delete password protection during an active protected schedule."
     },
     "whitelistWebsitesTitle": {
-        "message": "Vitlista Webbplatser"
+        "message": "Allowed Websites"
     },
     "whitelistWebsitesText": {
-        "message": "Gör det möjligt för dig att lägga till webbplatser på vitlistan, vilket innebär att nyckelordssökningen inte kommer att utföras på dessa webbplatser, och de kommer därför inte att blockeras. För närvarande har vi inte möjligheten att använda en jokertecken (*) för att inkludera många webbplatser i en post (som *.io, där alla webbplatser med '.io' skulle blockeras), så denna funktion är inte särskilt användbar, men den finns."
+        "message": "Allowed websites are plan-owned exceptions. Add them when a site should remain usable while a plan is active; the plan will not scan or block those allowed hosts."
     },
     "passwordManagementTitle": {
         "message": "Lösenordshantering"
     },
     "passwordManagementText": {
-        "message": "Gör det möjligt för dig att ställa in ett lösenord för tilläggssidan. Den som öppnar tilläggssidan kommer att behöva ange rätt lösenord för att få tillgång. Användbart för att förhindra att andra oavsiktligt (eller avsiktligt) skärper inställningarna."
+        "message": "Password protection can require a password before opening the options page. Use it when you want an extra barrier around changing protection settings."
     },
     "contactFeedbackTitle": {
         "message": "Kontakt och Feedback"

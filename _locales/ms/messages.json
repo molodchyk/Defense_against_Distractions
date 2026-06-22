@@ -372,148 +372,148 @@
         "message": "Pendahuluan"
     },
     "introText1": {
-        "message": "Hai! Sangat mudah untuk terganggu di internet dan melengahkan kerja. Ekstensi ini membolehkan anda menyekat laman web berdasarkan kata kunci yang anda tidak mahu lihat."
+        "message": "Defense Against Distractions lets you create local protection plans that block pages, guide Pomodoro timing, detect possible intent drift, and clean up distracting page UI."
     },
     "introText2": {
-        "message": "Terdapat ribuan permainan video untuk dimainkan, berita untuk dibaca, video untuk ditonton, dan sebagainya. Dan seringkali, inilah yang kita lakukan apabila tarikh akhir projek atau peperiksaan masih jauh. Kadangkala, agak sukar untuk memaksa diri anda melakukan apa yang perlu dilakukan."
+        "message": "A plan combines page entries, allowed websites, schedules, Pomodoro settings, intent-coherence settings, and optional UI cleanup rules. Turn a plan on when you want that protection available."
     },
     "introText3": {
-        "message": "Dan gangguan ada di mana-mana! Walaupun anda menggunakan StayFocusd atau Cold Turkey atau FocusMe untuk menyekat beberapa laman web mengikut URL mereka, anda tidak dapat menyekat semua. Sebagai contoh, walaupun dengan ChatGPT, anda boleh bercakap mengenai berita atau permainan video jika anda benar-benar tidak ingin belajar atau bekerja."
+        "message": "The extension checks configured pages locally in the browser. It does not send page text, browsing diagnostics, or settings to a remote server."
     },
     "introText4": {
-        "message": "Dengan ekstensi ini, anda boleh menyekat laman web berdasarkan kata dan frasa dalam teks mereka."
+        "message": "Start with one plan, add the pages and words that matter, then make the plan stricter with schedules or Pomodoro when you need stronger defense."
     },
     "howToUseTitle": {
         "message": "Cara Menggunakan Ekstensi"
     },
     "createGroupTitle": {
-        "message": "Langkah Pertama: Cipta Kumpulan"
+        "message": "First Step: Create a Plan"
     },
     "createGroupText1": {
-        "message": "Anda boleh menekan butang 'Tambah Kumpulan' atau memasukkan nama kumpulan dan tekan Enter atau butang Tambah Kumpulan. Anda boleh mencipta beberapa kumpulan."
+        "message": "Enter a plan name and press Add Plan. Open the plan to configure entries, schedules, Pomodoro, intent coherence, allowed websites, and UI cleanup assignments."
     },
     "createGroupText2": {
-        "message": "Anda akan melihat panel kumpulan."
+        "message": "The default plan is a safe starting point. You can keep it, rename it, or create additional plans for different contexts."
     },
     "websitesTitle": {
-        "message": "Laman Web"
+        "message": "Entries and Websites"
     },
     "websitesText": {
-        "message": "Anda boleh mula menambah laman web dengan menekan butang 'Edit' di sebelah kiri baris Laman Web. Ruangan ini bertanggungjawab untuk laman web di mana ekstensi akan menyekat kata kunci. Di sini anda perlu memasukkan URL laman web, contohnya, 'google.com'. Anda boleh memasukkan beberapa laman web, setiap baris baru adalah laman web baru. Hanya tekan Enter. Apabila anda sudah bersedia, tekan butang hijau 'Simpan'. Atau anda boleh Batal."
+        "message": "A plan entry has websites and keywords. Add the websites where the keywords should be scanned, one host per line, such as example.com or docs.example.com."
     },
     "keywordsTitle": {
         "message": "Kata Kunci"
     },
     "keywordsText1": {
-        "message": "Untuk menambah kata kunci baru atau membuat perubahan apa pun, tekan 'Edit'. Kata kunci yang anda masukkan di sini akan diimbas pada laman web yang anda masukkan untuk kumpulan ini."
+        "message": "Add keywords or phrases to the same entry. The extension scans matching pages locally and blocks the page when the entry score reaches 1000."
     },
     "keywordFormatsIntroduction": {
         "message": "Terdapat 3 format untuk kata kunci:"
     },
     "keywordFormat1Title": {
-        "message": "Format Pertama:"
+        "message": "Keyword format 1:"
     },
     "keywordFormat1Text": {
-        "message": "Hanya masukkan kata kunci. Ia boleh menjadi perkataan atau frasa. Jika kata kunci mengandungi koma ',', anda mesti menggunakan karakter lari '\\' sebelumnya. Laman web akan disekat sebaik sahaja kata kunci dikesan. Anda boleh memasukkan seberapa banyak kata kunci yang anda mahu, hanya tekan enter. Setiap baris baru adalah kata kunci baru."
+        "message": "Enter a word or phrase. If the keyword contains a comma, put a backslash before the comma. A plain keyword blocks as soon as it is detected."
     },
     "keywordFormat1_2": {
-        "message": "Contoh: 'permainan video' atau 'berita'."
+        "message": "Examples: 'video games', 'news'."
     },
     "keywordFormat2Title": {
-        "message": "Format Kedua:"
+        "message": "Keyword format 2:"
     },
     "keywordFormat2Text": {
-        "message": "Masukkan kata kunci, diikuti dengan nilai numerik. Setiap laman web yang anda masukkan dalam kumpulan mesti mencapai skor 1000. Laman web bermula dengan nilai 0, dan berdasarkan nilai numerik kata kunci, nilai itu meningkat. Apabila laman web mencapai skor 1000, ia akan disekat."
+        "message": "Add a number after a comma. The page score starts at 0 and increases by that amount each time the keyword is found. At 1000, the page is blocked."
     },
     "keywordFormat2_2": {
         "message": "Contoh: 'berita, 50'"
     },
     "keywordFormat2_3": {
-        "message": "Setiap laman web yang anda masukkan dalam kumpulan mesti mencapai skor 1000. Laman bermula dengan nilai 0, dan berdasarkan nilai numerik kata kunci, nilai itu meningkat. Apabila laman web mencapai skor 1000, ia akan disekat."
+        "message": "Use this when a word should matter, but only after repeated or combined signals."
     },
     "keywordFormat3Title": {
-        "message": "Format Ketiga:"
+        "message": "Keyword format 3:"
     },
     "keywordFormat3Text": {
-        "message": "Masukkan kata kunci, diikuti oleh tanda perkalian atau tambahan (* atau +), kemudian nilai numerik. Dalam senario ini, skor untuk laman adalah didarab berdasarkan nilai numerik kata kunci yang ditemui."
+        "message": "Use * or + with a number when you want a keyword to multiply or add to the current page score in a more explicit way."
     },
     "keywordFormat3_2": {
         "message": "Contoh: 'berita, *, 10'"
     },
     "keywordFormat3_3": {
-        "message": "Dalam senario ini, skor untuk laman adalah didarab berdasarkan nilai numerik kata kunci yang ditemui."
+        "message": "Use this for stronger signals that should become decisive only in a specific context."
     },
     "timerCountTitle": {
-        "message": "Kiraan Pengatur Waktu"
+        "message": "Pomodoro"
     },
     "timerCountText": {
-        "message": "Selepas laman disekat, anda akan mempunyai pilihan untuk menekan butang 'Aktifkan Pengatur Waktu'. Selepas itu, anda akan mempunyai masa untuk melakukan beberapa tindakan pada laman sebelum ia disekat semula. Dalam medan Kiraan Pengatur Waktu, anda boleh memutuskan berapa banyak pengatur waktu yang anda ingin ada sepanjang hari."
+        "message": "A plan can run Pomodoro work and rest timing. Strict breaks can block or quiet pages during rest so the break is protected."
     },
     "timerDurationTitle": {
-        "message": "Tempoh Pengatur Waktu (saat)"
+        "message": "Pomodoro Timing"
     },
     "timerDurationText": {
-        "message": "Dalam medan ini, anda memutuskan berapa banyak saat setiap pengatur waktu akan mempunyai."
+        "message": "Set work minutes, short breaks, long breaks, and how many work sessions happen before a long break. During an active protected schedule, enabling Pomodoro or making it stricter is allowed; relaxing it is blocked."
     },
     "lockedSchedulesTitle": {
         "message": "Jadual Terkunci"
     },
     "lockedSchedulesNote": {
-        "message": "! Jadual terkunci tidak boleh dibuka kunci sehingga waktu berlalu (melainkan anda menyahpasang ekstensi) !"
+        "message": "A protected schedule is meant to resist hot-state weakening while the scheduled window is active."
     },
     "lockedSchedulesText1": {
-        "message": "Anda boleh menambah jadual terkunci baru dengan mencipta nama jadual dalam medan Nama Jadual dan menekan Enter atau butang Tambah Jadual."
+        "message": "Open a plan, choose Schedule, and add one or more scheduled time blocks. Each block can choose days, start time, end time, and whether it is protected."
     },
     "lockedSchedulesText2": {
-        "message": "Untuk mengubah tetapan jadual anda, tekan 'Edit'. Dengan menekan butang hari, anda sama ada mengaktifkan jadual pada hari itu (butang menjadi hijau), atau menyahaktifkannya pada hari itu. Dengan mengubah medan Masa Mula dan Masa Tamat, anda menetapkan waktu jadual boleh aktif. Setiap hari mesti mempunyai tingkap waktu tidak aktif 1 jam supaya anda boleh menyahaktifkan jadual semasa waktu itu. Butang Tidak Aktif/Aktif mengalih jadual. Jadual akan terkunci dan aktif jika hari semasa diaktifkan (hijau) dan butang menunjukkan 'Aktif' dan juga hijau, dan jika waktu semasa adalah di antara masa mula dan tamat."
+        "message": "A protected active schedule can be made stricter but not more relaxed. For example, you can add entries, raise keyword scores, enable stricter Pomodoro behavior, or add UI cleanup rules, but you cannot remove active protection."
     },
     "lockedSchedulesText3": {
-        "message": "Butang Padam menghilangkan jadual terkunci. Perkara yang sama berlaku untuk kumpulan dan laman web senarai putih."
+        "message": "Delete removes a schedule only when doing so does not relax an active protected window."
     },
     "lockedSchedulesText4": {
-        "message": "Beberapa sekatan dikenakan semasa jadual terkunci:"
+        "message": "During an active protected schedule, relaxed changes are refused:"
     },
     "lockedScheduleRestriction1": {
-        "message": "Anda tidak boleh mengubah nama kumpulan."
+        "message": "You cannot disable the active plan."
     },
     "lockedScheduleRestriction2": {
-        "message": "Anda tidak boleh mengubah atau membuang laman web yang ada dalam kumpulan."
+        "message": "You cannot remove existing plan entries or reduce the websites they protect."
     },
     "lockedScheduleRestriction3": {
-        "message": "Anda tidak boleh mengubah atau membuang kata kunci dan nilai-nilainya yang sedia ada."
+        "message": "You cannot remove existing keywords or reduce their weights."
     },
     "lockedScheduleRestriction4": {
-        "message": "Anda hanya boleh menetapkan nilai kata kunci untuk penggandaan: dari 1 hingga 1000. Untuk penambahan: dari 0 hingga 1000."
+        "message": "New or changed keywords must stay inside the strict allowed scoring ranges."
     },
     "lockedScheduleRestriction5": {
-        "message": "Bilangan pengatur waktu tidak boleh ditambah."
+        "message": "You cannot disable Pomodoro, turn off strict breaks, or make Pomodoro easier to bypass."
     },
     "lockedScheduleRestriction6": {
-        "message": "Tempoh pengatur waktu tidak boleh ditambah."
+        "message": "You can enable Pomodoro or make its timing stricter when that increases protection."
     },
     "lockedScheduleRestriction7": {
-        "message": "Jadual aktif tidak boleh dipadam."
+        "message": "Active schedules cannot be deleted."
     },
     "lockedScheduleRestriction8": {
-        "message": "Anda tidak boleh nyahpilih hari, menjadikan jadual tidak aktif, atau mengubah masa mula atau tamat untuk jadual aktif."
+        "message": "You cannot remove active days or shrink an active protected schedule window."
     },
     "lockedScheduleRestriction9": {
-        "message": "Anda tidak boleh menambah laman web ke dalam senarai putih."
+        "message": "You cannot add allowed websites to bypass a protected plan."
     },
     "lockedScheduleRestriction10": {
-        "message": "Anda tidak boleh menetapkan atau memadam kata laluan untuk sambungan."
+        "message": "You cannot delete password protection during an active protected schedule."
     },
     "whitelistWebsitesTitle": {
-        "message": "Senarai Putih Laman Web"
+        "message": "Allowed Websites"
     },
     "whitelistWebsitesText": {
-        "message": "Membolehkan anda memasukkan laman web ke dalam senarai putih, bermakna imbasan kata kunci tidak akan dilakukan pada laman web ini, dan oleh itu, laman web tersebut tidak akan disekat. Buat masa ini, kami tidak mempunyai kemampuan untuk menggunakan wildcard (*) untuk memasukkan banyak laman web dalam satu entri (seperti *.io, di mana semua laman web dengan '.io' akan disekat), jadi ciri ini tidak begitu berguna, tetapi ia wujud."
+        "message": "Allowed websites are plan-owned exceptions. Add them when a site should remain usable while a plan is active; the plan will not scan or block those allowed hosts."
     },
     "passwordManagementTitle": {
         "message": "Pengurusan Kata Laluan"
     },
     "passwordManagementText": {
-        "message": "Membolehkan anda menetapkan kata laluan untuk halaman sambungan. Sesiapa yang membuka halaman sambungan perlu memasukkan kata laluan yang betul untuk mendapat akses. Berguna untuk mencegah orang lain daripada secara tidak sengaja (atau sengaja) mengetatkan tetapan."
+        "message": "Password protection can require a password before opening the options page. Use it when you want an extra barrier around changing protection settings."
     },
     "contactFeedbackTitle": {
         "message": "Hubungi dan Maklum Balas"

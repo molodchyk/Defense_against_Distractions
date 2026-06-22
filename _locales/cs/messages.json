@@ -372,148 +372,148 @@
         "message": "Úvod"
     },
     "introText1": {
-        "message": "Ahoj! Je tak snadné nechat se rozptýlit na internetu a odkládat práci. Toto rozšíření vám umožní blokovat webové stránky na základě klíčových slov, která nechcete vidět."
+        "message": "Defense Against Distractions lets you create local protection plans that block pages, guide Pomodoro timing, detect possible intent drift, and clean up distracting page UI."
     },
     "introText2": {
-        "message": "Je tu tisíce videoher k hraní, zpravodajských příběhů ke čtení, videí ke sledování a tak dále. A často to děláme, když jsou termíny projektů nebo zkoušek ještě daleko. Někdy může být trochu těžké donutit se udělat to, co potřebujete."
+        "message": "A plan combines page entries, allowed websites, schedules, Pomodoro settings, intent-coherence settings, and optional UI cleanup rules. Turn a plan on when you want that protection available."
     },
     "introText3": {
-        "message": "A rozptylování je všude! I když používáte StayFocusd nebo Cold Turkey nebo FocusMe k blokování některých webových stránek podle jejich URL, nemůžete zablokovat vše. Například i s ChatGPT můžete mluvit o zprávách nebo videohrách, pokud se vám opravdu nechce studovat nebo pracovat."
+        "message": "The extension checks configured pages locally in the browser. It does not send page text, browsing diagnostics, or settings to a remote server."
     },
     "introText4": {
-        "message": "S tímto rozšířením můžete blokovat webové stránky na základě slov a frází v jejich textu."
+        "message": "Start with one plan, add the pages and words that matter, then make the plan stricter with schedules or Pomodoro when you need stronger defense."
     },
     "howToUseTitle": {
         "message": "Jak používat rozšíření"
     },
     "createGroupTitle": {
-        "message": "První krok: Vytvoření skupiny"
+        "message": "First Step: Create a Plan"
     },
     "createGroupText1": {
-        "message": "Můžete stisknout tlačítko 'Přidat skupinu' nebo zadat název skupiny a stisknout Enter nebo tlačítko Přidat skupinu. Můžete vytvořit více skupin."
+        "message": "Enter a plan name and press Add Plan. Open the plan to configure entries, schedules, Pomodoro, intent coherence, allowed websites, and UI cleanup assignments."
     },
     "createGroupText2": {
-        "message": "Uvidíte panel skupiny."
+        "message": "The default plan is a safe starting point. You can keep it, rename it, or create additional plans for different contexts."
     },
     "websitesTitle": {
-        "message": "Webové stránky"
+        "message": "Entries and Websites"
     },
     "websitesText": {
-        "message": "Přidávání webových stránek můžete začít stisknutím tlačítka 'Upravit' vlevo od řádku Webové stránky. Toto pole je určeno pro webové stránky, kde rozšíření bude blokovat klíčová slova. Zde musíte zadat URL webových stránek, například 'google.com'. Můžete zadat více webových stránek, každý nový řádek je nová webová stránka. Stačí stisknout Enter. Až budete připraveni, stiskněte zelené tlačítko 'Uložit'. Nebo můžete zrušit."
+        "message": "A plan entry has websites and keywords. Add the websites where the keywords should be scanned, one host per line, such as example.com or docs.example.com."
     },
     "keywordsTitle": {
         "message": "Klíčová slova"
     },
     "keywordsText1": {
-        "message": "Pro přidání nových klíčových slov nebo provedení jakýchkoli změn stiskněte 'Upravit'. Klíčová slova, která zde zadáte, budou skenována na webových stránkách, které jste zadali pro tuto skupinu."
+        "message": "Add keywords or phrases to the same entry. The extension scans matching pages locally and blocks the page when the entry score reaches 1000."
     },
     "keywordFormatsIntroduction": {
         "message": "Existují 3 formáty pro klíčová slova:"
     },
     "keywordFormat1Title": {
-        "message": "První formát:"
+        "message": "Keyword format 1:"
     },
     "keywordFormat1Text": {
-        "message": "Jednoduše zadejte klíčová slova. Může to být slovo nebo fráze. Pokud klíčové slovo obsahuje čárku ',', musíte před ní použít escape znak '\\'. Webová stránka bude zablokována, jakmile bude klíčové slovo detekováno. Můžete zadat tolik klíčových slov, kolik chcete, stačí stisknout enter. Každý nový řádek je nové klíčové slovo."
+        "message": "Enter a word or phrase. If the keyword contains a comma, put a backslash before the comma. A plain keyword blocks as soon as it is detected."
     },
     "keywordFormat1_2": {
-        "message": "Příklad: 'videohry' nebo 'zprávy'."
+        "message": "Examples: 'video games', 'news'."
     },
     "keywordFormat2Title": {
-        "message": "Druhý formát:"
+        "message": "Keyword format 2:"
     },
     "keywordFormat2Text": {
-        "message": "Zadejte klíčové slovo, následované číselnou hodnotou. Každý web, který jste zadali do skupiny, musí dosáhnout skóre 1000. Web začíná s hodnotou 0 a na základě číselné hodnoty klíčového slova se hodnota zvyšuje. Jakmile web dosáhne skóre 1000, bude zablokován."
+        "message": "Add a number after a comma. The page score starts at 0 and increases by that amount each time the keyword is found. At 1000, the page is blocked."
     },
     "keywordFormat2_2": {
         "message": "Příklad: 'novinky, 50'"
     },
     "keywordFormat2_3": {
-        "message": "Každý web, který jste zadali do skupiny, musí dosáhnout skóre 1000. Stránka začíná s hodnotou 0 a na základě číselné hodnoty klíčového slova se hodnota zvyšuje. Jakmile web dosáhne skóre 1000, bude zablokován."
+        "message": "Use this when a word should matter, but only after repeated or combined signals."
     },
     "keywordFormat3Title": {
-        "message": "Třetí formát:"
+        "message": "Keyword format 3:"
     },
     "keywordFormat3Text": {
-        "message": "Zadejte klíčové slovo, následované znaménkem násobení nebo sčítání (* nebo +), a pak číselnou hodnotu. V tomto scénáři se skóre stránky násobí na základě číselné hodnoty nalezeného klíčového slova."
+        "message": "Use * or + with a number when you want a keyword to multiply or add to the current page score in a more explicit way."
     },
     "keywordFormat3_2": {
         "message": "Příklad: 'novinky, *, 10'"
     },
     "keywordFormat3_3": {
-        "message": "V tomto scénáři se skóre stránky násobí na základě číselné hodnoty nalezeného klíčového slova."
+        "message": "Use this for stronger signals that should become decisive only in a specific context."
     },
     "timerCountTitle": {
-        "message": "Počet časovačů"
+        "message": "Pomodoro"
     },
     "timerCountText": {
-        "message": "Po zablokování stránky budete mít možnost stisknout tlačítko 'Aktivovat časovač'. Poté budete mít čas provést některé akce na stránce před jejím opětovným zablokováním. V poli Počet časovačů můžete rozhodnout, kolik časovačů chcete mít během dne."
+        "message": "A plan can run Pomodoro work and rest timing. Strict breaks can block or quiet pages during rest so the break is protected."
     },
     "timerDurationTitle": {
-        "message": "Délka časovače (v sekundách)"
+        "message": "Pomodoro Timing"
     },
     "timerDurationText": {
-        "message": "V tomto poli rozhodnete, kolik sekund bude mít každý časovač."
+        "message": "Set work minutes, short breaks, long breaks, and how many work sessions happen before a long break. During an active protected schedule, enabling Pomodoro or making it stricter is allowed; relaxing it is blocked."
     },
     "lockedSchedulesTitle": {
         "message": "Zamčené rozvrhy"
     },
     "lockedSchedulesNote": {
-        "message": "! Zamčený rozvrh nelze odemknout, dokud nepřejde čas (pokud neodinstalujete rozšíření) !"
+        "message": "A protected schedule is meant to resist hot-state weakening while the scheduled window is active."
     },
     "lockedSchedulesText1": {
-        "message": "Nový zamčený rozvrh můžete přidat vytvořením názvu rozvrhu v poli Název rozvrhu a stisknutím Enter nebo tlačítka Přidat rozvrh."
+        "message": "Open a plan, choose Schedule, and add one or more scheduled time blocks. Each block can choose days, start time, end time, and whether it is protected."
     },
     "lockedSchedulesText2": {
-        "message": "Pro úpravu nastavení rozvrhu stiskněte 'Upravit'. Stisknutím tlačítek dnů buď rozvrh pro tento den povolíte (tlačítko zezelená), nebo jej pro tento den zakážete. Úpravou polí Čas začátku a Čas konce nastavíte doby, kdy může být rozvrh aktivní. Každý den musí mít alespoň jednu hodinu neaktivního času, aby bylo možné rozvrh v tuto dobu deaktivovat. Tlačítko Aktivní/Neaktivní přepíná rozvrh. Rozvrh bude zamčený a aktivní, pokud je aktuální den povolen (zelený) a tlačítko ukazuje 'Aktivní' a je také zelené, a pokud je aktuální čas mezi časem začátku a konce."
+        "message": "A protected active schedule can be made stricter but not more relaxed. For example, you can add entries, raise keyword scores, enable stricter Pomodoro behavior, or add UI cleanup rules, but you cannot remove active protection."
     },
     "lockedSchedulesText3": {
-        "message": "Tlačítko Smazat odstraní zamčený rozvrh. Totéž platí pro skupiny a webové stránky na seznamu povolených."
+        "message": "Delete removes a schedule only when doing so does not relax an active protected window."
     },
     "lockedSchedulesText4": {
-        "message": "Během zamčeného rozvrhu platí několik omezení:"
+        "message": "During an active protected schedule, relaxed changes are refused:"
     },
     "lockedScheduleRestriction1": {
-        "message": "Nelze změnit názvy skupin."
+        "message": "You cannot disable the active plan."
     },
     "lockedScheduleRestriction2": {
-        "message": "Nelze změnit nebo odstranit existující webové stránky ve skupinách."
+        "message": "You cannot remove existing plan entries or reduce the websites they protect."
     },
     "lockedScheduleRestriction3": {
-        "message": "Nelze změnit nebo odstranit existující klíčová slova a jejich hodnoty."
+        "message": "You cannot remove existing keywords or reduce their weights."
     },
     "lockedScheduleRestriction4": {
-        "message": "Můžete nastavit hodnoty klíčových slov pouze pro násobení: od 1 do 1000. Pro sčítání: od 0 do 1000."
+        "message": "New or changed keywords must stay inside the strict allowed scoring ranges."
     },
     "lockedScheduleRestriction5": {
-        "message": "Nelze zvýšit počet časovačů."
+        "message": "You cannot disable Pomodoro, turn off strict breaks, or make Pomodoro easier to bypass."
     },
     "lockedScheduleRestriction6": {
-        "message": "Nelze zvýšit dobu trvání časovače."
+        "message": "You can enable Pomodoro or make its timing stricter when that increases protection."
     },
     "lockedScheduleRestriction7": {
-        "message": "Aktivní rozvrhy nelze smazat."
+        "message": "Active schedules cannot be deleted."
     },
     "lockedScheduleRestriction8": {
-        "message": "Nelze odznačit dny, deaktivovat rozvrh nebo změnit časy začátku a konce pro aktivní rozvrhy."
+        "message": "You cannot remove active days or shrink an active protected schedule window."
     },
     "lockedScheduleRestriction9": {
-        "message": "Nelze přidávat webové stránky na seznam povolených."
+        "message": "You cannot add allowed websites to bypass a protected plan."
     },
     "lockedScheduleRestriction10": {
-        "message": "Nelze nastavit nebo smazat heslo pro rozšíření."
+        "message": "You cannot delete password protection during an active protected schedule."
     },
     "whitelistWebsitesTitle": {
-        "message": "Seznam povolených webových stránek"
+        "message": "Allowed Websites"
     },
     "whitelistWebsitesText": {
-        "message": "Umožňuje vám zadávat povolené webové stránky, což znamená, že na těchto webových stránkách nebude prováděno skenování klíčových slov a tedy nebudou blokovány. V současné době nemáme možnost použít zástupný znak (*) k zahrnutí mnoha webových stránek v jednom záznamu (jako *.io, kde by byly blokovány všechny webové stránky s '.io'), takže tato funkce není příliš užitečná, ale existuje."
+        "message": "Allowed websites are plan-owned exceptions. Add them when a site should remain usable while a plan is active; the plan will not scan or block those allowed hosts."
     },
     "passwordManagementTitle": {
         "message": "Správa hesel"
     },
     "passwordManagementText": {
-        "message": "Umožňuje vám nastavit heslo pro stránku rozšíření. Každý, kdo otevře stránku rozšíření, bude muset zadat správné heslo pro získání přístupu. Užitečné pro zabránění ostatním v náhodném (nebo úmyslném) zpřísnění nastavení."
+        "message": "Password protection can require a password before opening the options page. Use it when you want an extra barrier around changing protection settings."
     },
     "contactFeedbackTitle": {
         "message": "Kontakt a zpětná vazba"

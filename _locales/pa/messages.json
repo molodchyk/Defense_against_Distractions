@@ -372,148 +372,148 @@
         "message": "ਜਾਣ-ਪਛਾਣ"
     },
     "introText1": {
-        "message": "ਹੈਲੋ! ਇੰਟਰਨੈੱਟ 'ਤੇ ਧਿਆਨ ਭਟਕਾਉਣਾ ਅਤੇ ਦੇਰੀ ਕਰਨਾ ਬਹੁਤ ਆਸਾਨ ਹੈ। ਇਹ ਐਕਸਟੈਂਸ਼ਨ ਤੁਹਾਨੂੰ ਉਹਨਾਂ ਕੀਵਰਡਸ ਦੇ ਅਧਾਰ ਤੇ ਵੈਬ ਪੇਜਾਂ ਨੂੰ ਬਲੌਕ ਕਰਨ ਦੀ ਆਗਿਆ ਦਿੰਦੀ ਹੈ ਜੋ ਤੁਸੀਂ ਨਹੀਂ ਦੇਖਣਾ ਚਾਹੁੰਦੇ।"
+        "message": "Defense Against Distractions lets you create local protection plans that block pages, guide Pomodoro timing, detect possible intent drift, and clean up distracting page UI."
     },
     "introText2": {
-        "message": "ਖੇਡਣ ਲਈ ਹਜ਼ਾਰਾਂ ਵੀਡੀਓ ਗੇਮਾਂ, ਪੜ੍ਹਨ ਲਈ ਖਬਰਾਂ, ਦੇਖਣ ਲਈ ਵੀਡੀਓ, ਆਦਿ ਹਨ। ਅਤੇ ਅਕਸਰ, ਇਹ ਅਸੀਂ ਉਦੋਂ ਕਰਦੇ ਹਾਂ ਜਦੋਂ ਪ੍ਰੋਜੈਕਟ ਦੀਆਂ ਅੰਤਮ ਤਾਰੀਖਾਂ ਜਾਂ ਪ੍ਰੀਖਿਆਵਾਂ ਅਜੇ ਵੀ ਦੂਰ ਹੁੰਦੀਆਂ ਹਨ। ਕਈ ਵਾਰ, ਆਪਣੇ ਆਪ ਨੂੰ ਉਹ ਕਰਨ ਲਈ ਮਜਬੂਰ ਕਰਨਾ ਥੋੜ੍ਹਾ ਔਖਾ ਹੋ ਸਕਦਾ ਹੈ ਜੋ ਤੁਹਾਨੂੰ ਕਰਨ ਦੀ ਲੋੜ ਹੈ।"
+        "message": "A plan combines page entries, allowed websites, schedules, Pomodoro settings, intent-coherence settings, and optional UI cleanup rules. Turn a plan on when you want that protection available."
     },
     "introText3": {
-        "message": "ਅਤੇ ਭਟਕਣਾ ਹਰ ਜਗ੍ਹਾ ਹਨ! ਭਾਵੇਂ ਤੁਸੀਂ ਕੁਝ ਵੈਬਸਾਈਟਾਂ ਨੂੰ ਉਹਨਾਂ ਦੇ URL ਦੁਆਰਾ ਬਲੌਕ ਕਰਨ ਲਈ StayFocusd ਜਾਂ Cold Turkey ਜਾਂ FocusMe ਦੀ ਵਰਤੋਂ ਕਰਦੇ ਹੋ, ਤੁਸੀਂ ਹਰ ਚੀਜ਼ ਨੂੰ ਬਲੌਕ ਨਹੀਂ ਕਰ ਸਕਦੇ। ਉਦਾਹਰਨ ਲਈ, ChatGPT ਦੇ ਨਾਲ ਵੀ, ਤੁਸੀਂ ਖਬਰਾਂ ਜਾਂ ਵੀਡੀਓ ਗੇਮਾਂ ਬਾਰੇ ਗੱਲ ਕਰ ਸਕਦੇ ਹੋ ਜੇਕਰ ਤੁਸੀਂ ਸੱਚਮੁੱਚ ਅਧਿਐਨ ਕਰਨਾ ਜਾਂ ਕੰਮ ਕਰਨਾ ਪਸੰਦ ਨਹੀਂ ਕਰਦੇ।"
+        "message": "The extension checks configured pages locally in the browser. It does not send page text, browsing diagnostics, or settings to a remote server."
     },
     "introText4": {
-        "message": "ਇਸ ਐਕਸਟੈਂਸ਼ਨ ਦੇ ਨਾਲ, ਤੁਸੀਂ ਉਹਨਾਂ ਦੇ ਟੈਕਸਟ ਵਿੱਚ ਸ਼ਬਦਾਂ ਅਤੇ ਵਾਕਾਂਸ਼ਾਂ ਦੇ ਅਧਾਰ ਤੇ ਵੈਬਸਾਈਟਾਂ ਨੂੰ ਬਲੌਕ ਕਰ ਸਕਦੇ ਹੋ।"
+        "message": "Start with one plan, add the pages and words that matter, then make the plan stricter with schedules or Pomodoro when you need stronger defense."
     },
     "howToUseTitle": {
         "message": "ਐਕਸਟੈਂਸ਼ਨ ਦੀ ਵਰਤੋਂ ਕਿਵੇਂ ਕਰੀਏ"
     },
     "createGroupTitle": {
-        "message": "ਪਹਿਲਾ ਕਦਮ: ਇੱਕ ਸਮੂਹ ਬਣਾਓ"
+        "message": "First Step: Create a Plan"
     },
     "createGroupText1": {
-        "message": "ਤੁਸੀਂ 'ਗਰੁੱਪ ਸ਼ਾਮਲ ਕਰੋ' ਬਟਨ ਨੂੰ ਦਬਾ ਸਕਦੇ ਹੋ ਜਾਂ ਗਰੁੱਪ ਦਾ ਨਾਮ ਇਨਪੁਟ ਕਰ ਸਕਦੇ ਹੋ ਅਤੇ ਐਂਟਰ ਜਾਂ ਗਰੁੱਪ ਸ਼ਾਮਲ ਕਰੋ ਬਟਨ ਦਬਾ ਸਕਦੇ ਹੋ। ਤੁਸੀਂ ਕਈ ਸਮੂਹ ਬਣਾ ਸਕਦੇ ਹੋ।"
+        "message": "Enter a plan name and press Add Plan. Open the plan to configure entries, schedules, Pomodoro, intent coherence, allowed websites, and UI cleanup assignments."
     },
     "createGroupText2": {
-        "message": "ਤੁਸੀਂ ਗਰੁੱਪ ਪੈਨਲ ਦੇਖੋਗੇ।"
+        "message": "The default plan is a safe starting point. You can keep it, rename it, or create additional plans for different contexts."
     },
     "websitesTitle": {
-        "message": "ਵੈੱਬਸਾਈਟਾਂ"
+        "message": "Entries and Websites"
     },
     "websitesText": {
-        "message": "ਤੁਸੀਂ ਵੈੱਬਸਾਈਟਾਂ ਲਾਈਨ ਦੇ ਖੱਬੇ ਪਾਸੇ 'ਸੰਪਾਦਨ' ਬਟਨ ਨੂੰ ਦਬਾ ਕੇ ਵੈੱਬਸਾਈਟਾਂ ਨੂੰ ਜੋੜਨਾ ਸ਼ੁਰੂ ਕਰ ਸਕਦੇ ਹੋ। ਇਹ ਖੇਤਰ ਉਹਨਾਂ ਵੈਬਸਾਈਟਾਂ ਲਈ ਜ਼ਿੰਮੇਵਾਰ ਹੈ ਜਿੱਥੇ ਐਕਸਟੈਂਸ਼ਨ ਕੀਵਰਡਸ ਨੂੰ ਬਲੌਕ ਕਰੇਗੀ। ਇੱਥੇ ਤੁਹਾਨੂੰ ਵੈੱਬਸਾਈਟ URLs ਨੂੰ ਇਨਪੁਟ ਕਰਨਾ ਹੋਵੇਗਾ, ਉਦਾਹਰਨ ਲਈ, 'google.com'। ਤੁਸੀਂ ਕਈ ਵੈਬਸਾਈਟਾਂ ਨੂੰ ਇਨਪੁਟ ਕਰ ਸਕਦੇ ਹੋ, ਹਰ ਨਵੀਂ ਲਾਈਨ ਇੱਕ ਨਵੀਂ ਵੈਬਸਾਈਟ ਹੈ। ਬੱਸ ਐਂਟਰ ਦਬਾਓ। ਜਦੋਂ ਤੁਸੀਂ ਤਿਆਰ ਹੋਵੋ, ਹਰੇ 'ਸੇਵ' ਬਟਨ ਨੂੰ ਦਬਾਓ। ਜਾਂ ਤੁਸੀਂ ਰੱਦ ਕਰ ਸਕਦੇ ਹੋ।"
+        "message": "A plan entry has websites and keywords. Add the websites where the keywords should be scanned, one host per line, such as example.com or docs.example.com."
     },
     "keywordsTitle": {
         "message": "ਕੀਵਰਡਸ"
     },
     "keywordsText1": {
-        "message": "ਨਵੇਂ ਕੀਵਰਡ ਜੋੜਨ ਜਾਂ ਕੋਈ ਬਦਲਾਅ ਕਰਨ ਲਈ, 'ਐਡਿਟ' ਦਬਾਓ। ਤੁਹਾਡੇ ਦੁਆਰਾ ਇੱਥੇ ਦਾਖਲ ਕੀਤੇ ਗਏ ਕੀਵਰਡਸ ਨੂੰ ਉਹਨਾਂ ਵੈਬਸਾਈਟਾਂ 'ਤੇ ਸਕੈਨ ਕੀਤਾ ਜਾਵੇਗਾ ਜੋ ਤੁਸੀਂ ਇਸ ਸਮੂਹ ਲਈ ਦਾਖਲ ਕੀਤੇ ਹਨ।"
+        "message": "Add keywords or phrases to the same entry. The extension scans matching pages locally and blocks the page when the entry score reaches 1000."
     },
     "keywordFormatsIntroduction": {
         "message": "ਕੀਵਰਡਸ ਲਈ 3 ਫਾਰਮੈਟ ਹਨ:"
     },
     "keywordFormat1Title": {
-        "message": "ਪਹਿਲਾ ਫਾਰਮੈਟ:"
+        "message": "Keyword format 1:"
     },
     "keywordFormat1Text": {
-        "message": "ਬਸ ਕੀਵਰਡ ਦਰਜ ਕਰੋ। ਇਹ ਇੱਕ ਸ਼ਬਦ ਜਾਂ ਵਾਕੰਸ਼ ਹੋ ਸਕਦਾ ਹੈ। ਜੇਕਰ ਕੀਵਰਡ ਵਿੱਚ ਕੌਮਾ ',' ਹੈ, ਤਾਂ ਤੁਹਾਨੂੰ ਇਸ ਤੋਂ ਪਹਿਲਾਂ ਇੱਕ ਐਸਕੇਪ ਅੱਖਰ '\\' ਦੀ ਵਰਤੋਂ ਕਰਨੀ ਚਾਹੀਦੀ ਹੈ। ਕੀਵਰਡ ਦਾ ਪਤਾ ਲੱਗਦੇ ਹੀ ਵੈੱਬਸਾਈਟ ਨੂੰ ਬਲੌਕ ਕਰ ਦਿੱਤਾ ਜਾਵੇਗਾ। ਤੁਸੀਂ ਜਿੰਨੇ ਚਾਹੋ ਕੀਵਰਡ ਦਰਜ ਕਰ ਸਕਦੇ ਹੋ, ਬੱਸ ਐਂਟਰ ਦਬਾਓ। ਹਰ ਨਵੀਂ ਲਾਈਨ ਇੱਕ ਨਵਾਂ ਕੀਵਰਡ ਹੈ।"
+        "message": "Enter a word or phrase. If the keyword contains a comma, put a backslash before the comma. A plain keyword blocks as soon as it is detected."
     },
     "keywordFormat1_2": {
-        "message": "ਉਦਾਹਰਨ: 'ਵੀਡੀਓ ਗੇਮਾਂ' ਜਾਂ 'ਖ਼ਬਰਾਂ'।"
+        "message": "Examples: 'video games', 'news'."
     },
     "keywordFormat2Title": {
-        "message": "ਦੂਜਾ ਫਾਰਮੈਟ:"
+        "message": "Keyword format 2:"
     },
     "keywordFormat2Text": {
-        "message": "ਕੀਵਰਡ ਦਰਜ ਕਰੋ, ਇੱਕ ਸੰਖਿਆਤਮਕ ਮੁੱਲ ਦੇ ਬਾਅਦ. ਤੁਹਾਡੇ ਦੁਆਰਾ ਇੱਕ ਸਮੂਹ ਵਿੱਚ ਦਾਖਲ ਕੀਤੀ ਗਈ ਹਰੇਕ ਵੈਬਸਾਈਟ ਨੂੰ 1000 ਦੇ ਸਕੋਰ ਤੱਕ ਪਹੁੰਚਣਾ ਚਾਹੀਦਾ ਹੈ। ਵੈਬਸਾਈਟ 0 ਦੇ ਮੁੱਲ ਨਾਲ ਸ਼ੁਰੂ ਹੁੰਦੀ ਹੈ, ਅਤੇ ਕੀਵਰਡ ਦੇ ਸੰਖਿਆਤਮਕ ਮੁੱਲ ਦੇ ਅਧਾਰ ਤੇ, ਮੁੱਲ ਵਧਦਾ ਹੈ। ਜਦੋਂ ਵੈੱਬਸਾਈਟ 1000 ਦੇ ਸਕੋਰ 'ਤੇ ਪਹੁੰਚ ਜਾਂਦੀ ਹੈ, ਤਾਂ ਇਸ ਨੂੰ ਬਲੌਕ ਕਰ ਦਿੱਤਾ ਜਾਵੇਗਾ।"
+        "message": "Add a number after a comma. The page score starts at 0 and increases by that amount each time the keyword is found. At 1000, the page is blocked."
     },
     "keywordFormat2_2": {
         "message": "ਉਦਾਹਰਨ: 'ਖ਼ਬਰ, 50'"
     },
     "keywordFormat2_3": {
-        "message": "ਤੁਹਾਡੇ ਦੁਆਰਾ ਇੱਕ ਸਮੂਹ ਵਿੱਚ ਦਾਖਲ ਕੀਤੀ ਗਈ ਹਰੇਕ ਵੈਬਸਾਈਟ ਨੂੰ 1000 ਦੇ ਸਕੋਰ ਤੱਕ ਪਹੁੰਚਣਾ ਚਾਹੀਦਾ ਹੈ। ਸਾਈਟ 0 ਦੇ ਮੁੱਲ ਨਾਲ ਸ਼ੁਰੂ ਹੁੰਦੀ ਹੈ, ਅਤੇ ਕੀਵਰਡ ਦੇ ਸੰਖਿਆਤਮਕ ਮੁੱਲ ਦੇ ਅਧਾਰ ਤੇ, ਮੁੱਲ ਵਧਦਾ ਹੈ। ਜਦੋਂ ਵੈੱਬਸਾਈਟ 1000 ਦੇ ਸਕੋਰ 'ਤੇ ਪਹੁੰਚ ਜਾਂਦੀ ਹੈ, ਤਾਂ ਇਸ ਨੂੰ ਬਲੌਕ ਕਰ ਦਿੱਤਾ ਜਾਵੇਗਾ।"
+        "message": "Use this when a word should matter, but only after repeated or combined signals."
     },
     "keywordFormat3Title": {
-        "message": "ਤੀਜਾ ਫਾਰਮੈਟ:"
+        "message": "Keyword format 3:"
     },
     "keywordFormat3Text": {
-        "message": "ਕੀਵਰਡ ਦਰਜ ਕਰੋ, ਇਸਦੇ ਬਾਅਦ ਇੱਕ ਗੁਣਾ ਜਾਂ ਜੋੜ ਚਿੰਨ੍ਹ (* ਜਾਂ +), ਫਿਰ ਇੱਕ ਸੰਖਿਆਤਮਕ ਮੁੱਲ। ਇਸ ਸਥਿਤੀ ਵਿੱਚ, ਪੰਨੇ ਲਈ ਸਕੋਰ ਲੱਭੇ ਗਏ ਕੀਵਰਡ ਦੇ ਸੰਖਿਆਤਮਕ ਮੁੱਲ ਦੇ ਅਧਾਰ ਤੇ ਗੁਣਾ ਕੀਤਾ ਜਾਂਦਾ ਹੈ।"
+        "message": "Use * or + with a number when you want a keyword to multiply or add to the current page score in a more explicit way."
     },
     "keywordFormat3_2": {
         "message": "ਉਦਾਹਰਨ: 'ਖ਼ਬਰ, *, 10'"
     },
     "keywordFormat3_3": {
-        "message": "ਇਸ ਸਥਿਤੀ ਵਿੱਚ, ਪੰਨੇ ਲਈ ਸਕੋਰ ਲੱਭੇ ਗਏ ਕੀਵਰਡ ਦੇ ਸੰਖਿਆਤਮਕ ਮੁੱਲ ਦੇ ਅਧਾਰ ਤੇ ਗੁਣਾ ਕੀਤਾ ਜਾਂਦਾ ਹੈ।"
+        "message": "Use this for stronger signals that should become decisive only in a specific context."
     },
     "timerCountTitle": {
-        "message": "ਟਾਈਮਰ ਗਿਣਤੀ"
+        "message": "Pomodoro"
     },
     "timerCountText": {
-        "message": "ਪੰਨਾ ਬਲੌਕ ਹੋਣ ਤੋਂ ਬਾਅਦ, ਤੁਹਾਡੇ ਕੋਲ 'ਐਕਟੀਵੇਟ ਟਾਈਮਰ' ਬਟਨ ਦਬਾਉਣ ਦਾ ਵਿਕਲਪ ਹੋਵੇਗਾ। ਉਸ ਤੋਂ ਬਾਅਦ, ਤੁਹਾਡੇ ਕੋਲ ਪੰਨੇ ਨੂੰ ਦੁਬਾਰਾ ਬਲੌਕ ਕੀਤੇ ਜਾਣ ਤੋਂ ਪਹਿਲਾਂ ਉਸ 'ਤੇ ਕੁਝ ਕਾਰਵਾਈਆਂ ਕਰਨ ਦਾ ਸਮਾਂ ਹੋਵੇਗਾ। ਟਾਈਮਰ ਕਾਉਂਟ ਖੇਤਰ ਵਿੱਚ, ਤੁਸੀਂ ਇਹ ਫੈਸਲਾ ਕਰ ਸਕਦੇ ਹੋ ਕਿ ਤੁਸੀਂ ਦਿਨ ਵਿੱਚ ਕਿੰਨੇ ਟਾਈਮਰ ਰੱਖਣਾ ਚਾਹੁੰਦੇ ਹੋ।"
+        "message": "A plan can run Pomodoro work and rest timing. Strict breaks can block or quiet pages during rest so the break is protected."
     },
     "timerDurationTitle": {
-        "message": "ਟਾਈਮਰ ਦੀ ਮਿਆਦ (ਸਕਿੰਟ)"
+        "message": "Pomodoro Timing"
     },
     "timerDurationText": {
-        "message": "ਇਸ ਖੇਤਰ ਵਿੱਚ, ਤੁਸੀਂ ਫੈਸਲਾ ਕਰਦੇ ਹੋ ਕਿ ਹਰੇਕ ਟਾਈਮਰ ਵਿੱਚ ਕਿੰਨੇ ਸਕਿੰਟ ਹੋਣਗੇ।"
+        "message": "Set work minutes, short breaks, long breaks, and how many work sessions happen before a long break. During an active protected schedule, enabling Pomodoro or making it stricter is allowed; relaxing it is blocked."
     },
     "lockedSchedulesTitle": {
         "message": "ਤਾਲਾਬੰਦ ਸਮਾਂ-ਸੂਚੀਆਂ"
     },
     "lockedSchedulesNote": {
-        "message": "! ਇੱਕ ਤਾਲਾਬੰਦ ਅਨੁਸੂਚੀ ਨੂੰ ਉਦੋਂ ਤੱਕ ਅਨਲੌਕ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ ਜਦੋਂ ਤੱਕ ਸਮਾਂ ਬੀਤ ਨਹੀਂ ਜਾਂਦਾ (ਜਦੋਂ ਤੱਕ ਤੁਸੀਂ ਐਕਸਟੈਂਸ਼ਨ ਨੂੰ ਅਣਇੰਸਟੌਲ ਨਹੀਂ ਕਰਦੇ)!"
+        "message": "A protected schedule is meant to resist hot-state weakening while the scheduled window is active."
     },
     "lockedSchedulesText1": {
-        "message": "ਤੁਸੀਂ ਅਨੁਸੂਚੀ ਨਾਮ ਖੇਤਰ ਵਿੱਚ ਅਨੁਸੂਚੀ ਨਾਮ ਬਣਾ ਕੇ ਅਤੇ ਐਂਟਰ ਜਾਂ ਐਡ ਸ਼ਡਿਊਲ ਬਟਨ ਦਬਾ ਕੇ ਇੱਕ ਨਵਾਂ ਲੌਕ ਕੀਤਾ ਸਮਾਂ-ਸੂਚੀ ਜੋੜ ਸਕਦੇ ਹੋ।"
+        "message": "Open a plan, choose Schedule, and add one or more scheduled time blocks. Each block can choose days, start time, end time, and whether it is protected."
     },
     "lockedSchedulesText2": {
-        "message": "ਆਪਣੇ ਅਨੁਸੂਚੀ ਦੀਆਂ ਸੈਟਿੰਗਾਂ ਨੂੰ ਸੋਧਣ ਲਈ, 'ਐਡਿਟ' ਦਬਾਓ। ਦਿਨ ਦੇ ਬਟਨਾਂ ਨੂੰ ਦਬਾ ਕੇ, ਤੁਸੀਂ ਜਾਂ ਤਾਂ ਉਸ ਦਿਨ ਦੀ ਸਮਾਂ-ਸਾਰਣੀ ਨੂੰ ਸਮਰੱਥ ਬਣਾਉਂਦੇ ਹੋ (ਬਟਨ ਹਰਾ ਹੋ ਜਾਂਦਾ ਹੈ), ਜਾਂ ਉਸ ਦਿਨ ਲਈ ਇਸਨੂੰ ਅਸਮਰੱਥ ਕਰਦੇ ਹੋ। ਸ਼ੁਰੂਆਤੀ ਸਮਾਂ ਅਤੇ ਸਮਾਪਤੀ ਸਮਾਂ ਖੇਤਰਾਂ ਨੂੰ ਸੋਧ ਕੇ, ਤੁਸੀਂ ਸਮਾਂ ਨਿਰਧਾਰਤ ਕਰਦੇ ਹੋ ਕਿ ਸਮਾਂ-ਸਾਰਣੀ ਕਿਰਿਆਸ਼ੀਲ ਹੋ ਸਕਦੀ ਹੈ। ਹਰ ਦਿਨ ਵਿੱਚ ਇੱਕ 1-ਘੰਟੇ ਦੀ ਨਿਸ਼ਕਿਰਿਆ ਸਮਾਂ ਵਿੰਡੋ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ ਤਾਂ ਜੋ ਤੁਸੀਂ ਉਸ ਸਮੇਂ ਦੌਰਾਨ ਅਨੁਸੂਚੀ ਨੂੰ ਅਕਿਰਿਆਸ਼ੀਲ ਕਰ ਸਕੋ। ਅਕਿਰਿਆਸ਼ੀਲ/ਸਰਗਰਮ ਬਟਨ ਅਨੁਸੂਚੀ ਨੂੰ ਟੌਗਲ ਕਰਦਾ ਹੈ। ਜੇ ਮੌਜੂਦਾ ਦਿਨ ਸਮਰਥਿਤ ਹੈ (ਹਰਾ) ਅਤੇ ਬਟਨ 'ਸਰਗਰਮ' ਦਿਖਾਉਂਦਾ ਹੈ ਅਤੇ ਹਰਾ ਵੀ ਹੈ, ਅਤੇ ਜੇਕਰ ਮੌਜੂਦਾ ਸਮਾਂ ਸ਼ੁਰੂਆਤੀ ਅਤੇ ਸਮਾਪਤੀ ਸਮੇਂ ਦੇ ਵਿਚਕਾਰ ਹੈ ਤਾਂ ਸਮਾਂ-ਸਾਰਣੀ ਲਾਕ ਅਤੇ ਕਿਰਿਆਸ਼ੀਲ ਹੋ ਜਾਵੇਗੀ।"
+        "message": "A protected active schedule can be made stricter but not more relaxed. For example, you can add entries, raise keyword scores, enable stricter Pomodoro behavior, or add UI cleanup rules, but you cannot remove active protection."
     },
     "lockedSchedulesText3": {
-        "message": "ਮਿਟਾਓ ਬਟਨ ਲਾਕ ਕੀਤੇ ਅਨੁਸੂਚੀ ਨੂੰ ਹਟਾਉਂਦਾ ਹੈ। ਇਹੀ ਗਰੁੱਪਾਂ ਅਤੇ ਵਾਈਟਲਿਸਟ ਕੀਤੀਆਂ ਵੈੱਬਸਾਈਟਾਂ 'ਤੇ ਲਾਗੂ ਹੁੰਦਾ ਹੈ।"
+        "message": "Delete removes a schedule only when doing so does not relax an active protected window."
     },
     "lockedSchedulesText4": {
-        "message": "ਲੌਕ ਕੀਤੇ ਅਨੁਸੂਚੀ ਦੌਰਾਨ ਕਈ ਪਾਬੰਦੀਆਂ ਲਾਗੂ ਹੁੰਦੀਆਂ ਹਨ:"
+        "message": "During an active protected schedule, relaxed changes are refused:"
     },
     "lockedScheduleRestriction1": {
-        "message": "ਤੁਸੀਂ ਸਮੂਹ ਦੇ ਨਾਮ ਨਹੀਂ ਬਦਲ ਸਕਦੇ ਹੋ।"
+        "message": "You cannot disable the active plan."
     },
     "lockedScheduleRestriction2": {
-        "message": "ਤੁਸੀਂ ਗਰੁੱਪਾਂ ਵਿੱਚ ਮੌਜੂਦਾ ਵੈੱਬਸਾਈਟਾਂ ਨੂੰ ਬਦਲ ਜਾਂ ਹਟਾ ਨਹੀਂ ਸਕਦੇ ਹੋ।"
+        "message": "You cannot remove existing plan entries or reduce the websites they protect."
     },
     "lockedScheduleRestriction3": {
-        "message": "ਤੁਸੀਂ ਮੌਜੂਦਾ ਕੀਵਰਡਸ ਅਤੇ ਉਹਨਾਂ ਦੇ ਮੁੱਲਾਂ ਨੂੰ ਬਦਲ ਜਾਂ ਹਟਾ ਨਹੀਂ ਸਕਦੇ ਹੋ।"
+        "message": "You cannot remove existing keywords or reduce their weights."
     },
     "lockedScheduleRestriction4": {
-        "message": "ਤੁਸੀਂ ਸਿਰਫ ਗੁਣਾ ਲਈ ਕੀਵਰਡ ਮੁੱਲ ਸੈੱਟ ਕਰ ਸਕਦੇ ਹੋ: 1 ਤੋਂ 1000 ਤੱਕ। ਜੋੜਨ ਲਈ: 0 ਤੋਂ 1000 ਤੱਕ।"
+        "message": "New or changed keywords must stay inside the strict allowed scoring ranges."
     },
     "lockedScheduleRestriction5": {
-        "message": "ਟਾਈਮਰ ਦੀ ਗਿਣਤੀ ਵਧਾਈ ਨਹੀਂ ਜਾ ਸਕਦੀ।"
+        "message": "You cannot disable Pomodoro, turn off strict breaks, or make Pomodoro easier to bypass."
     },
     "lockedScheduleRestriction6": {
-        "message": "ਟਾਈਮਰ ਦੀ ਮਿਆਦ ਵਧਾਈ ਨਹੀਂ ਜਾ ਸਕਦੀ।"
+        "message": "You can enable Pomodoro or make its timing stricter when that increases protection."
     },
     "lockedScheduleRestriction7": {
-        "message": "ਕਿਰਿਆਸ਼ੀਲ ਸਮਾਂ-ਸਾਰਣੀਆਂ ਨੂੰ ਮਿਟਾਇਆ ਨਹੀਂ ਜਾ ਸਕਦਾ ਹੈ।"
+        "message": "Active schedules cannot be deleted."
     },
     "lockedScheduleRestriction8": {
-        "message": "ਤੁਸੀਂ ਦਿਨਾਂ ਨੂੰ ਅਣ-ਚੁਣਿਆ ਨਹੀਂ ਕਰ ਸਕਦੇ, ਸਮਾਂ-ਸੂਚੀ ਨੂੰ ਅਕਿਰਿਆਸ਼ੀਲ ਨਹੀਂ ਬਣਾ ਸਕਦੇ, ਜਾਂ ਕਿਰਿਆਸ਼ੀਲ ਸਮਾਂ-ਸਾਰਣੀ ਲਈ ਸ਼ੁਰੂਆਤ ਜਾਂ ਸਮਾਪਤੀ ਸਮੇਂ ਨੂੰ ਬਦਲ ਨਹੀਂ ਸਕਦੇ।"
+        "message": "You cannot remove active days or shrink an active protected schedule window."
     },
     "lockedScheduleRestriction9": {
-        "message": "ਤੁਸੀਂ ਵਾਈਟਲਿਸਟ ਕੀਤੀਆਂ ਵੈੱਬਸਾਈਟਾਂ ਨੂੰ ਸ਼ਾਮਲ ਨਹੀਂ ਕਰ ਸਕਦੇ।"
+        "message": "You cannot add allowed websites to bypass a protected plan."
     },
     "lockedScheduleRestriction10": {
-        "message": "ਤੁਸੀਂ ਐਕਸਟੈਂਸ਼ਨ ਲਈ ਪਾਸਵਰਡ ਸੈੱਟ ਜਾਂ ਮਿਟਾ ਨਹੀਂ ਸਕਦੇ ਹੋ।"
+        "message": "You cannot delete password protection during an active protected schedule."
     },
     "whitelistWebsitesTitle": {
-        "message": "ਵਾਈਟਲਿਸਟ ਵੈੱਬਸਾਈਟਾਂ"
+        "message": "Allowed Websites"
     },
     "whitelistWebsitesText": {
-        "message": "ਤੁਹਾਨੂੰ ਵਾਈਟਲਿਸਟ ਕੀਤੀਆਂ ਵੈੱਬਸਾਈਟਾਂ ਨੂੰ ਦਾਖਲ ਕਰਨ ਦੀ ਇਜਾਜ਼ਤ ਦਿੰਦਾ ਹੈ, ਮਤਲਬ ਕਿ ਕੀਵਰਡ ਸਕੈਨ ਇਹਨਾਂ ਵੈੱਬਸਾਈਟਾਂ 'ਤੇ ਨਹੀਂ ਕੀਤਾ ਜਾਵੇਗਾ, ਅਤੇ ਇਸ ਤਰ੍ਹਾਂ ਉਹਨਾਂ ਨੂੰ ਬਲੌਕ ਨਹੀਂ ਕੀਤਾ ਜਾਵੇਗਾ। ਵਰਤਮਾਨ ਵਿੱਚ, ਸਾਡੇ ਕੋਲ ਇੱਕ ਇੰਦਰਾਜ਼ ਵਿੱਚ ਬਹੁਤ ਸਾਰੀਆਂ ਵੈਬਸਾਈਟਾਂ ਨੂੰ ਸ਼ਾਮਲ ਕਰਨ ਲਈ ਇੱਕ ਵਾਈਲਡਕਾਰਡ (*) ਦੀ ਵਰਤੋਂ ਕਰਨ ਦੀ ਸਮਰੱਥਾ ਨਹੀਂ ਹੈ (ਜਿਵੇਂ ਕਿ *.io, ਜਿੱਥੇ '.io' ਵਾਲੀਆਂ ਸਾਰੀਆਂ ਵੈਬਸਾਈਟਾਂ ਨੂੰ ਬਲੌਕ ਕੀਤਾ ਜਾਵੇਗਾ), ਇਸਲਈ ਇਹ ਵਿਸ਼ੇਸ਼ਤਾ ਬਹੁਤ ਉਪਯੋਗੀ ਨਹੀਂ ਹੈ, ਪਰ ਇਹ ਮੌਜੂਦ ਹੈ।"
+        "message": "Allowed websites are plan-owned exceptions. Add them when a site should remain usable while a plan is active; the plan will not scan or block those allowed hosts."
     },
     "passwordManagementTitle": {
         "message": "ਪਾਸਵਰਡ ਪ੍ਰਬੰਧਨ"
     },
     "passwordManagementText": {
-        "message": "ਤੁਹਾਨੂੰ ਐਕਸਟੈਂਸ਼ਨ ਪੰਨੇ ਲਈ ਇੱਕ ਪਾਸਵਰਡ ਸੈੱਟ ਕਰਨ ਦੀ ਇਜਾਜ਼ਤ ਦਿੰਦਾ ਹੈ। ਐਕਸਟੈਂਸ਼ਨ ਪੰਨੇ ਨੂੰ ਖੋਲ੍ਹਣ ਵਾਲੇ ਕਿਸੇ ਵੀ ਵਿਅਕਤੀ ਨੂੰ ਪਹੁੰਚ ਪ੍ਰਾਪਤ ਕਰਨ ਲਈ ਸਹੀ ਪਾਸਵਰਡ ਦਾਖਲ ਕਰਨ ਦੀ ਲੋੜ ਹੋਵੇਗੀ। ਦੂਜਿਆਂ ਨੂੰ ਗਲਤੀ ਨਾਲ (ਜਾਂ ਜਾਣਬੁੱਝ ਕੇ) ਸੈਟਿੰਗਾਂ ਨੂੰ ਸਖ਼ਤ ਕਰਨ ਤੋਂ ਰੋਕਣ ਲਈ ਉਪਯੋਗੀ।"
+        "message": "Password protection can require a password before opening the options page. Use it when you want an extra barrier around changing protection settings."
     },
     "contactFeedbackTitle": {
         "message": "ਸੰਪਰਕ ਅਤੇ ਫੀਡਬੈਕ"

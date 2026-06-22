@@ -372,148 +372,148 @@
         "message": "Вступ"
     },
     "introText1": {
-        "message": "Привіт! На інтернеті так легко відволіктися та відкладати справи. Це розширення дозволяє блокувати веб-сторінки на основі ключових слів, які ви не хочете бачити."
+        "message": "Defense Against Distractions lets you create local protection plans that block pages, guide Pomodoro timing, detect possible intent drift, and clean up distracting page UI."
     },
     "introText2": {
-        "message": "Є тисячі відеоігор для гри, новин для читання, відео для перегляду та інше. І часто ми робимо це, коли терміни проектів або іспити ще далеко. Іноді може бути трохи важко змусити себе робити те, що вам потрібно."
+        "message": "A plan combines page entries, allowed websites, schedules, Pomodoro settings, intent-coherence settings, and optional UI cleanup rules. Turn a plan on when you want that protection available."
     },
     "introText3": {
-        "message": "І відволікання є скрізь! Навіть якщо ви використовуєте StayFocusd або Cold Turkey або FocusMe для блокування деяких сайтів за їх URL, ви не можете заблокувати все. Наприклад, навіть з ChatGPT, ви можете говорити про новини або відеоігри, якщо дійсно не хочете вчитися або працювати."
+        "message": "The extension checks configured pages locally in the browser. It does not send page text, browsing diagnostics, or settings to a remote server."
     },
     "introText4": {
-        "message": "З цим розширенням ви можете блокувати веб-сайти на основі слів і фраз у їх тексті."
+        "message": "Start with one plan, add the pages and words that matter, then make the plan stricter with schedules or Pomodoro when you need stronger defense."
     },
     "howToUseTitle": {
         "message": "Як користуватися розширенням"
     },
     "createGroupTitle": {
-        "message": "Перший крок: Створення групи"
+        "message": "First Step: Create a Plan"
     },
     "createGroupText1": {
-        "message": "Ви можете натиснути кнопку 'Додати групу' або ввести назву групи та натиснути Enter або кнопку Додати групу. Ви можете створити кілька груп."
+        "message": "Enter a plan name and press Add Plan. Open the plan to configure entries, schedules, Pomodoro, intent coherence, allowed websites, and UI cleanup assignments."
     },
     "createGroupText2": {
-        "message": "Ви побачите панель групи."
+        "message": "The default plan is a safe starting point. You can keep it, rename it, or create additional plans for different contexts."
     },
     "websitesTitle": {
-        "message": "Сайти"
+        "message": "Entries and Websites"
     },
     "websitesText": {
-        "message": "Ви можете почати додавати сайти, натиснувши кнопку 'Редагувати' зліва від рядка Веб-сайти. Це поле відповідає за сайти, на яких розширення буде блокувати ключові слова. Тут вам потрібно ввести URL веб-сайтів, наприклад, 'google.com'. Ви можете ввести кілька веб-сайтів, кожен новий рядок – це новий сайт. Просто натисніть Enter. Коли будете готові, натисніть зелену кнопку 'Зберегти'. Або ви можете скасувати."
+        "message": "A plan entry has websites and keywords. Add the websites where the keywords should be scanned, one host per line, such as example.com or docs.example.com."
     },
     "keywordsTitle": {
         "message": "Ключові слова"
     },
     "keywordsText1": {
-        "message": "Щоб додати нові ключові слова або зробити будь-які зміни, натисніть 'Редагувати'. Ключові слова, які ви введете тут, будуть скануватися на сайтах, які ви ввели для цієї групи."
+        "message": "Add keywords or phrases to the same entry. The extension scans matching pages locally and blocks the page when the entry score reaches 1000."
     },
     "keywordFormatsIntroduction": {
         "message": "Існує 3 формати для ключових слів:"
     },
     "keywordFormat1Title": {
-        "message": "Перший Формат:"
+        "message": "Keyword format 1:"
     },
     "keywordFormat1Text": {
-        "message": "Просто введіть ключові слова. Це може бути слово або фраза. Якщо ключове слово містить кому ',', вам потрібно використовувати символ екранування '\\' перед нею. Веб-сайт буде заблокований, як тільки буде виявлено ключове слово. Ви можете ввести стільки ключових слів, скільки захочете, просто натисніть enter. Кожен новий рядок – це нове ключове слово."
+        "message": "Enter a word or phrase. If the keyword contains a comma, put a backslash before the comma. A plain keyword blocks as soon as it is detected."
     },
     "keywordFormat1_2": {
-        "message": "Приклад: 'відеоігри' або 'новини'."
+        "message": "Examples: 'video games', 'news'."
     },
     "keywordFormat2Title": {
-        "message": "Другий Формат:"
+        "message": "Keyword format 2:"
     },
     "keywordFormat2Text": {
-        "message": "Введіть ключове слово, за яким йде числове значення. Кожен веб-сайт, який ви ввели в групу, повинен досягти оцінки 1000. Сайт починає зі значення 0, і на основі числового значення ключового слова його значення зростає. Як тільки сайт досягне оцінки 1000, він буде заблокований."
+        "message": "Add a number after a comma. The page score starts at 0 and increases by that amount each time the keyword is found. At 1000, the page is blocked."
     },
     "keywordFormat2_2": {
         "message": "Приклад: 'новини, 50'"
     },
     "keywordFormat2_3": {
-        "message": "Кожен сайт, який ви ввели в групу, повинен досягти оцінки 1000. Сайт починає зі значення 0, і на основі числового значення ключового слова його значення зростає. Як тільки сайт досягне оцінки 1000, він буде заблокований."
+        "message": "Use this when a word should matter, but only after repeated or combined signals."
     },
     "keywordFormat3Title": {
-        "message": "Третій Формат:"
+        "message": "Keyword format 3:"
     },
     "keywordFormat3Text": {
-        "message": "Введіть ключове слово, за яким йде знак множення або додавання (* або +), потім числове значення. У цьому сценарії оцінка сторінки множиться на основі числового значення знайденого ключового слова."
+        "message": "Use * or + with a number when you want a keyword to multiply or add to the current page score in a more explicit way."
     },
     "keywordFormat3_2": {
         "message": "Приклад: 'новини, *, 10'"
     },
     "keywordFormat3_3": {
-        "message": "У цьому сценарії оцінка сторінки множиться на основі числового значення знайденого ключового слова."
+        "message": "Use this for stronger signals that should become decisive only in a specific context."
     },
     "timerCountTitle": {
-        "message": "Кількість Таймерів"
+        "message": "Pomodoro"
     },
     "timerCountText": {
-        "message": "Після блокування сторінки у вас буде можливість натиснути кнопку 'Активувати таймер'. Після цього у вас буде час для виконання деяких дій на сторінці, перш ніж вона знову буде заблокована. У полі 'Кількість таймерів' ви можете вирішити, скільки таймерів ви хочете мати протягом дня."
+        "message": "A plan can run Pomodoro work and rest timing. Strict breaks can block or quiet pages during rest so the break is protected."
     },
     "timerDurationTitle": {
-        "message": "Тривалість таймера (секунди)"
+        "message": "Pomodoro Timing"
     },
     "timerDurationText": {
-        "message": "У цьому полі ви вирішуєте, скільки секунд буде тривати кожен таймер."
+        "message": "Set work minutes, short breaks, long breaks, and how many work sessions happen before a long break. During an active protected schedule, enabling Pomodoro or making it stricter is allowed; relaxing it is blocked."
     },
     "lockedSchedulesTitle": {
         "message": "Заблоковані розклади"
     },
     "lockedSchedulesNote": {
-        "message": "! Заблокований розклад не можна розблокувати до закінчення часу (якщо ви не видалите розширення) !"
+        "message": "A protected schedule is meant to resist hot-state weakening while the scheduled window is active."
     },
     "lockedSchedulesText1": {
-        "message": "Ви можете додати новий заблокований розклад, створивши назву розкладу у полі 'Назва розкладу' та натиснувши Enter або кнопку 'Додати розклад'."
+        "message": "Open a plan, choose Schedule, and add one or more scheduled time blocks. Each block can choose days, start time, end time, and whether it is protected."
     },
     "lockedSchedulesText2": {
-        "message": "Щоб змінити налаштування розкладу, натисніть 'Редагувати'. Натискаючи кнопки днів, ви або активуєте розклад на цей день (кнопка стає зеленою), або відключаєте його на цей день. Змінюючи поля 'Час початку' та 'Час завершення', ви встановлюєте часи, коли розклад може бути активним. Кожен день повинен мати 1-годинне вікно неактивності, щоб ви могли деактивувати розклад під час цього часу. Кнопка 'Активний/Неактивний' перемикає розклад. Розклад буде заблокованим і активним, якщо поточний день активований (зелений) і кнопка показує 'Активний' і також зелена, а також якщо поточний час знаходиться між часом початку і кінця."
+        "message": "A protected active schedule can be made stricter but not more relaxed. For example, you can add entries, raise keyword scores, enable stricter Pomodoro behavior, or add UI cleanup rules, but you cannot remove active protection."
     },
     "lockedSchedulesText3": {
-        "message": "Кнопка 'Видалити' видаляє заблокований розклад. Те саме стосується груп та сайтів білого списку."
+        "message": "Delete removes a schedule only when doing so does not relax an active protected window."
     },
     "lockedSchedulesText4": {
-        "message": "Під час заблокованого розкладу діють декілька обмежень:"
+        "message": "During an active protected schedule, relaxed changes are refused:"
     },
     "lockedScheduleRestriction1": {
-        "message": "Ви не можете змінювати назви груп."
+        "message": "You cannot disable the active plan."
     },
     "lockedScheduleRestriction2": {
-        "message": "Ви не можете змінювати або видаляти існуючі сайти в групах."
+        "message": "You cannot remove existing plan entries or reduce the websites they protect."
     },
     "lockedScheduleRestriction3": {
-        "message": "Ви не можете змінювати або видаляти існуючі ключові слова та їх значення."
+        "message": "You cannot remove existing keywords or reduce their weights."
     },
     "lockedScheduleRestriction4": {
-        "message": "Ви можете встановлювати значення ключових слів тільки для множення: від 1 до 1000. Для додавання: від 0 до 1000."
+        "message": "New or changed keywords must stay inside the strict allowed scoring ranges."
     },
     "lockedScheduleRestriction5": {
-        "message": "Кількість таймерів не можна збільшувати."
+        "message": "You cannot disable Pomodoro, turn off strict breaks, or make Pomodoro easier to bypass."
     },
     "lockedScheduleRestriction6": {
-        "message": "Тривалість таймера не можна збільшувати."
+        "message": "You can enable Pomodoro or make its timing stricter when that increases protection."
     },
     "lockedScheduleRestriction7": {
-        "message": "Активні розклади не можна видаляти."
+        "message": "Active schedules cannot be deleted."
     },
     "lockedScheduleRestriction8": {
-        "message": "Ви не можете скасувати вибір днів, зробити розклад неактивним або змінити час початку або завершення для активних розкладів."
+        "message": "You cannot remove active days or shrink an active protected schedule window."
     },
     "lockedScheduleRestriction9": {
-        "message": "Ви не можете додавати сайти до білого списку."
+        "message": "You cannot add allowed websites to bypass a protected plan."
     },
     "lockedScheduleRestriction10": {
-        "message": "Ви не можете встановлювати або видаляти пароль для розширення."
+        "message": "You cannot delete password protection during an active protected schedule."
     },
     "whitelistWebsitesTitle": {
-        "message": "Білий список сайтів"
+        "message": "Allowed Websites"
     },
     "whitelistWebsitesText": {
-        "message": "Дозволяє вам вводити сайти білого списку, що означає, що сканування ключових слів не буде виконуватися на цих сайтах, і тому вони не будуть заблоковані. Наразі у нас немає можливості використовувати символ підстановки (*) для включення багатьох сайтів в один запис (наприклад, *.io, де всі сайти з '.io' були б заблоковані), тому ця функція не дуже корисна, але вона існує."
+        "message": "Allowed websites are plan-owned exceptions. Add them when a site should remain usable while a plan is active; the plan will not scan or block those allowed hosts."
     },
     "passwordManagementTitle": {
         "message": "Управління паролями"
     },
     "passwordManagementText": {
-        "message": "Дозволяє вам налаштувати пароль для сторінки розширення. Кожен, хто відкриє сторінку розширення, повинен буде ввести правильний пароль для доступу. Корисно для запобігання випадковому (або навмисному) посиленню налаштувань."
+        "message": "Password protection can require a password before opening the options page. Use it when you want an extra barrier around changing protection settings."
     },
     "contactFeedbackTitle": {
         "message": "Контакт та Зворотний Зв'язок"

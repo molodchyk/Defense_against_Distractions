@@ -14,100 +14,97 @@
 
         <section class="introduction">
             <h2 id="introTitle">Introduction</h2>
-            <p id="introText1">Hi! It's so easy to distract yourself on the internet and to procrastinate. This extension allows you to choose to block the website page based on the keywords you don't want to see appearing.</p>
-            <p id="introText2">There are thousands of video games to play, news stories to read, video content to consume and so on. And often times this is what we do when the project deadline or exams are still far away. It's sometimes a bit hard to force yourself into doing what you need to do.</p>
-            <p id="introText3">And distractions are everywhere! Even if you use StayFocusd or Cold Turkey or FocusMe to block some websites by their URLs, you can't block everything. For example, even with ChatGPT, you could talk about the news or video games if you really don't feel like studying/doing some work.</p>
-            <p id="introText4">With this extension, you can block the websites based on words and phrases on their text.</p>
+            <p id="introText1">Defense Against Distractions lets you create local protection plans that block pages, guide Pomodoro timing, detect possible intent drift, and clean up distracting page UI.</p>
+            <p id="introText2">A plan combines page entries, allowed websites, schedules, Pomodoro settings, intent-coherence settings, and optional UI cleanup rules. Turn a plan on when you want that protection available.</p>
+            <p id="introText3">The extension checks configured pages locally in the browser. It does not send page text, browsing diagnostics, or settings to a remote server.</p>
+            <p id="introText4">Start with one plan, add the pages and words that matter, then make the plan stricter with schedules or Pomodoro when you need stronger defense.</p>
         </section>
 
         <section class="how-to-use">
             <h2 id="howToUseTitle">How to Use the Extension</h2>
 
             <div class="step">
-                <h3 id="createGroupTitle">First Step: Create a Group</h3>
-                <p id="createGroupText1">You can press the "Add Group" button or input the group name and press the Enter or Add Group button. You can create many groups.</p>
-                <p id="createGroupText2">You will see the group panel.</p>
+                <h3 id="createGroupTitle">First Step: Create a Plan</h3>
+                <p id="createGroupText1">Enter a plan name and press Add Plan. Open the plan to configure entries, schedules, Pomodoro, intent coherence, allowed websites, and UI cleanup assignments.</p>
+                <p id="createGroupText2">The default plan is a safe starting point. You can keep it, rename it, or create additional plans for different contexts.</p>
             </div>
 
             <div class="step">
-                <h3 id="websitesTitle">Websites</h3>
-                <p id="websitesText">You can start adding websites by pressing the "Edit" button to the left of the Websites line. This field is responsible for websites that the extension will block the keywords on. Here you have to input the website URLs, for example: "google.com". You can input multiple websites, each new line is a new website. Just press Enter. After you are ready, press the green button "Save". Or you can Cancel.</p>
+                <h3 id="websitesTitle">Entries and Websites</h3>
+                <p id="websitesText">A plan entry has websites and keywords. Add the websites where the keywords should be scanned, one host per line, such as example.com or docs.example.com.</p>
             </div>
 
             <div class="step">
                 <h3 id="keywordsTitle">Keywords</h3>
-                <p id="keywordsText1">To add new keywords or change anything here, press "Edit". The keywords that you enter here will be scanned for on the websites that you entered for this group.</p>
+                <p id="keywordsText1">Add keywords or phrases to the same entry. The extension scans matching pages locally and blocks the page when the entry score reaches 1000.</p>
                 <p id="keywordFormatsIntroduction">There are 3 formats for the keywords:</p>
                 <ul>
                     <li>
-                        <!-- <p id="keywordFormat1"><strong>First Format:</strong> Just enter the keywords. It can be a word or a phrase. If the keyword contains a comma ",", you have to use an escape character "\" before it. The website will be blocked as soon as the keyword is detected. You can input as many keywords as you want, just press enter. Each new line is a new keyword.</p> -->
                         <p>
-                            <strong id="keywordFormat1Title">First Format:</strong> 
-                            <span id="keywordFormat1Text">Just enter the keywords. It can be a word or a phrase. If the keyword contains a comma ",", you have to use an escape character "\" before it. The website will be blocked as soon as the keyword is detected. You can input as many keywords as you want, just press enter. Each new line is a new keyword.</span>
+                            <strong id="keywordFormat1Title">Keyword format 1:</strong>
+                            <span id="keywordFormat1Text">Enter a word or phrase. If the keyword contains a comma, put a backslash before the comma. A plain keyword blocks as soon as it is detected.</span>
                         </p>
-                        <p id="keywordFormat1_2">Examples: "video games", "news"</p>
+                        <p id="keywordFormat1_2">Examples: "video games", "news".</p>
                     </li>
                     <li>
-                        <!-- <p id="keywordFormat2"><strong>Second Format:</strong> Enter the keyword, followed by a numeric value.</p> -->
                         <p>
-                            <strong id="keywordFormat2Title">Second Format:</strong> 
-                            <span id="keywordFormat2Text">Enter the keyword, followed by a numeric value. Each website you entered in a group has a score of 1000 to reach. The website starts with a value of 0, and based on the numeric value of the keyword, the value will increase. As soon as the website reaches the score of 1000, it will be blocked.</span>
+                            <strong id="keywordFormat2Title">Keyword format 2:</strong>
+                            <span id="keywordFormat2Text">Add a number after a comma. The page score starts at 0 and increases by that amount each time the keyword is found. At 1000, the page is blocked.</span>
                         </p>
                         <p id="keywordFormat2_2">Example: "news, 50"</p>
-                        <p id="keywordFormat2_3">Each website you entered in a group has a score of 1000 to reach. The website starts with a value of 0, and based on the numeric value of the keyword, the value will increase. As soon as the website reaches the score of 1000, it will be blocked.</p>
+                        <p id="keywordFormat2_3">Use this when a word should matter, but only after repeated or combined signals.</p>
                     </li>
                     <li>
-                        <!-- <p id="keywordFormat3"><strong>Third Format:</strong> Enter the keyword, followed by a multiplication or addition sign (* or +), followed by a numeric value.</p> -->
                         <p>
-                            <strong id="keywordFormat3Title">Third Format:</strong> 
-                            <span id="keywordFormat3Text">Enter the keyword, followed by a multiplication or addition sign (* or +), followed by a numeric value. In this scenario, the score for the page is multiplied based on the numeric value of the found keyword.</span>
+                            <strong id="keywordFormat3Title">Keyword format 3:</strong>
+                            <span id="keywordFormat3Text">Use * or + with a number when you want a keyword to multiply or add to the current page score in a more explicit way.</span>
                         </p>
                         <p id="keywordFormat3_2">Example: "news, *, 10"</p>
-                        <p id="keywordFormat3_3">In this scenario, the score for the page is multiplied based on the numeric value of the found keyword.</p>
+                        <p id="keywordFormat3_3">Use this for stronger signals that should become decisive only in a specific context.</p>
                     </li>
                 </ul>
             </div>
 
-            <!-- <div class="step">
-                <h3 id="timerCountTitle">Timer Count</h3>
-                <p id="timerCountText">After the page is blocked, you will have the option to press “Activate Timer” button. After that, you will have time to perform some actions on the page before it is blocked again. In Timer Count field, you can decide how many timers you want to have during the day.</p>
+            <div class="step">
+                <h3 id="timerCountTitle">Pomodoro</h3>
+                <p id="timerCountText">A plan can run Pomodoro work and rest timing. Strict breaks can block or quiet pages during rest so the break is protected.</p>
             </div>
 
             <div class="step">
-                <h3 id="timerDurationTitle">Timer Duration (seconds)</h3>
-                <p id="timerDurationText">In this field, you decide how many seconds each timer will have.</p>
+                <h3 id="timerDurationTitle">Pomodoro Timing</h3>
+                <p id="timerDurationText">Set work minutes, short breaks, long breaks, and how many work sessions happen before a long break. During an active protected schedule, enabling Pomodoro or making it stricter is allowed; relaxing it is blocked.</p>
             </div>
-        </section> -->
+        </section>
 
         <section class="locked-schedules">
             <h2 id="lockedSchedulesTitle">Locked Schedules</h2>
-            <p id="lockedSchedulesNote" class="important-note">! A locked schedule cannot be unlocked until the time passes (unless you uninstall the extension) !</p>
-            <p id="lockedSchedulesText1">You can add a new locked schedule by creating the schedule Name in the Schedule Name field and pressing enter or pressing the Add Schedule button, or by pressing the Add Schedule button.</p>
-            <p id="lockedSchedulesText2">To modify the settings for your schedule, press “Edit”. By pressing the day buttons, you either enable the schedule on that day (button turns green), or you disable it for that day. By modifying the Start Time and End Time fields, you set the times the schedule could be active on. Each day has to have a 1-hour inactive time window so that you can deactivate the schedule during that time. The Inactive/Active button toggles the schedule. The schedule will be locked and active if the current day is enabled (green) and the button Active/Inactive shows “Active” and is also green. And, if the current time is between start and end times.</p>
-            <p id="lockedSchedulesText3">The Delete button deletes the locked schedule. The same applies to groups and whitelisted websites.</p>
-            <p id="lockedSchedulesText4">During the locked schedule, several restrictions apply:</p>
+            <p id="lockedSchedulesNote" class="important-note">A protected schedule is meant to resist hot-state weakening while the scheduled window is active.</p>
+            <p id="lockedSchedulesText1">Open a plan, choose Schedule, and add one or more scheduled time blocks. Each block can choose days, start time, end time, and whether it is protected.</p>
+            <p id="lockedSchedulesText2">A protected active schedule can be made stricter but not more relaxed. For example, you can add entries, raise keyword scores, enable stricter Pomodoro behavior, or add UI cleanup rules, but you cannot remove active protection.</p>
+            <p id="lockedSchedulesText3">Delete removes a schedule only when doing so does not relax an active protected window.</p>
+            <p id="lockedSchedulesText4">During an active protected schedule, relaxed changes are refused:</p>
             <ol>
-                <li id="lockedScheduleRestriction1">Can't change group names.</li>
-                <li id="lockedScheduleRestriction2">Can't change or remove existing websites in groups.</li>
-                <li id="lockedScheduleRestriction3">Can't change or remove existing keywords and their values.</li>
-                <li id="lockedScheduleRestriction4">Can only set keyword values for multiplication: from 1 to 1000. For addition: from 0 to 1000.</li>
-                <li id="lockedScheduleRestriction5">Timer count cannot be increased.</li>
-                <li id="lockedScheduleRestriction6">Timer duration cannot be increased.</li>
+                <li id="lockedScheduleRestriction1">You cannot disable the active plan.</li>
+                <li id="lockedScheduleRestriction2">You cannot remove existing plan entries or reduce the websites they protect.</li>
+                <li id="lockedScheduleRestriction3">You cannot remove existing keywords or reduce their weights.</li>
+                <li id="lockedScheduleRestriction4">New or changed keywords must stay inside the strict allowed scoring ranges.</li>
+                <li id="lockedScheduleRestriction5">You cannot disable Pomodoro, turn off strict breaks, or make Pomodoro easier to bypass.</li>
+                <li id="lockedScheduleRestriction6">You can enable Pomodoro or make its timing stricter when that increases protection.</li>
                 <li id="lockedScheduleRestriction7">Active schedules cannot be deleted.</li>
-                <li id="lockedScheduleRestriction8">You can't deselect days, make the schedule inactive, make start time earlier or end time later for active schedules.</li>
-                <li id="lockedScheduleRestriction9">You cannot add whitelisted websites.</li>
-                <li id="lockedScheduleRestriction10">You cannot set or delete the password for the extension.</li>
+                <li id="lockedScheduleRestriction8">You cannot remove active days or shrink an active protected schedule window.</li>
+                <li id="lockedScheduleRestriction9">You cannot add allowed websites to bypass a protected plan.</li>
+                <li id="lockedScheduleRestriction10">You cannot delete password protection during an active protected schedule.</li>
             </ol>
         </section>
 
         <section class="whitelist-websites">
-            <h2 id="whitelistWebsitesTitle">Whitelist Websites</h2>
-            <p id="whitelistWebsitesText">Allows you to enter whitelisted websites, meaning, that on those websites the keyword scan will not be performed and thus the websites will not be blocked. As we right now do not have the ability to use a wildcard (*) to include a lot of websites in one entry (like *.io, where all websites that have “.io” would have been blocked), this feature is not really useful but it exists.</p>
+            <h2 id="whitelistWebsitesTitle">Allowed Websites</h2>
+            <p id="whitelistWebsitesText">Allowed websites are plan-owned exceptions. Add them when a site should remain usable while a plan is active; the plan will not scan or block those allowed hosts.</p>
         </section>
 
         <section class="password-management">
             <h2 id="passwordManagementTitle">Password Management</h2>
-            <p id="passwordManagementText">Allows you to set up a password for the extension page. Anyone who opens the extension page will have to submit a correct password to go in. Useful for preventing others from accidentally (or not) making the settings stricter.</p>
+            <p id="passwordManagementText">Password protection can require a password before opening the options page. Use it when you want an extra barrier around changing protection settings.</p>
         </section>
 
 

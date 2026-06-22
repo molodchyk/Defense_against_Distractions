@@ -372,148 +372,148 @@
         "message": "Въведение"
     },
     "introText1": {
-        "message": "Здравейте! Толкова е лесно да се разсееш в интернет и да отлагаш. Това разширение ви позволява да блокирате уеб страници въз основа на ключови думи, които не искате да виждате."
+        "message": "Defense Against Distractions lets you create local protection plans that block pages, guide Pomodoro timing, detect possible intent drift, and clean up distracting page UI."
     },
     "introText2": {
-        "message": "Има хиляди видеоигри за игра, новинарски истории за четене, видеоклипове за гледане и т.н. И често това правим, когато сроковете за проекти или изпитите все още са далеч. Понякога може да е малко трудно да се принудите да правите това, което трябва."
+        "message": "A plan combines page entries, allowed websites, schedules, Pomodoro settings, intent-coherence settings, and optional UI cleanup rules. Turn a plan on when you want that protection available."
     },
     "introText3": {
-        "message": "И разсейванията са навсякъде! Дори ако използвате StayFocusd или Cold Turkey или FocusMe за блокиране на някои уебсайтове по техните URL адреси, не можете да блокирате всичко. Например, дори с ChatGPT, можете да говорите за новини или видеоигри, ако наистина не ви се учи или работи."
+        "message": "The extension checks configured pages locally in the browser. It does not send page text, browsing diagnostics, or settings to a remote server."
     },
     "introText4": {
-        "message": "С това разширение можете да блокирате уебсайтове въз основа на думи и фрази в техния текст."
+        "message": "Start with one plan, add the pages and words that matter, then make the plan stricter with schedules or Pomodoro when you need stronger defense."
     },
     "howToUseTitle": {
         "message": "Как да използвате разширението"
     },
     "createGroupTitle": {
-        "message": "Първа стъпка: Създаване на група"
+        "message": "First Step: Create a Plan"
     },
     "createGroupText1": {
-        "message": "Можете да натиснете бутона 'Добави група' или да въведете името на групата и да натиснете Enter или бутона Добави група. Можете да създадете множество групи."
+        "message": "Enter a plan name and press Add Plan. Open the plan to configure entries, schedules, Pomodoro, intent coherence, allowed websites, and UI cleanup assignments."
     },
     "createGroupText2": {
-        "message": "Ще видите панела на групата."
+        "message": "The default plan is a safe starting point. You can keep it, rename it, or create additional plans for different contexts."
     },
     "websitesTitle": {
-        "message": "Уебсайтове"
+        "message": "Entries and Websites"
     },
     "websitesText": {
-        "message": "Можете да започнете да добавяте уебсайтове, като натиснете бутона 'Редактирай' вляво от линията Уебсайтове. Това поле е отговорно за уебсайтовете, където разширението ще блокира ключови думи. Тук трябва да въведете URL адресите на уебсайтове, например 'google.com'. Можете да въведете множество уебсайтове, всяка нова линия е нов уебсайт. Просто натиснете Enter. Когато сте готови, натиснете зеления бутон 'Запази'. Или можете да отмените."
+        "message": "A plan entry has websites and keywords. Add the websites where the keywords should be scanned, one host per line, such as example.com or docs.example.com."
     },
     "keywordsTitle": {
         "message": "Ключови думи"
     },
     "keywordsText1": {
-        "message": "За да добавите нови ключови думи или да направите каквито и да е промени, натиснете 'Редактирай'. Въведените от вас ключови думи ще бъдат сканирани на уебсайтовете, които сте въвели за тази група."
+        "message": "Add keywords or phrases to the same entry. The extension scans matching pages locally and blocks the page when the entry score reaches 1000."
     },
     "keywordFormatsIntroduction": {
         "message": "Има 3 формата за ключовите думи:"
     },
     "keywordFormat1Title": {
-        "message": "Първи формат:"
+        "message": "Keyword format 1:"
     },
     "keywordFormat1Text": {
-        "message": "Просто въведете ключовите думи. Може да бъде дума или фраза. Ако ключовата дума съдържа запетая ',', трябва да използвате символ за екраниране '\\' преди нея. Уебсайтът ще бъде блокиран веднага щом бъде открита ключовата дума. Можете да въведете толкова ключови думи, колкото желаете, просто натиснете enter. Всеки нов ред е нова ключова дума."
+        "message": "Enter a word or phrase. If the keyword contains a comma, put a backslash before the comma. A plain keyword blocks as soon as it is detected."
     },
     "keywordFormat1_2": {
-        "message": "Пример: 'видеоигри' или 'новини'."
+        "message": "Examples: 'video games', 'news'."
     },
     "keywordFormat2Title": {
-        "message": "Втори формат:"
+        "message": "Keyword format 2:"
     },
     "keywordFormat2Text": {
-        "message": "Въведете ключовата дума, последвана от числова стойност. Всеки уебсайт, който сте въвели в група, трябва да достигне до резултат от 1000. Уебсайтът започва със стойност 0 и в зависимост от числовата стойност на ключовата дума, стойността се увеличава. Веднъж щом уебсайтът достигне до резултат от 1000, той ще бъде блокиран."
+        "message": "Add a number after a comma. The page score starts at 0 and increases by that amount each time the keyword is found. At 1000, the page is blocked."
     },
     "keywordFormat2_2": {
         "message": "Пример: 'новини, 50'"
     },
     "keywordFormat2_3": {
-        "message": "Всеки уебсайт, който сте въвели в група, трябва да достигне до резултат от 1000. Сайтът започва със стойност 0 и в зависимост от числовата стойност на ключовата дума, стойността се увеличава. Веднъж щом уебсайтът достигне до резултат от 1000, той ще бъде блокиран."
+        "message": "Use this when a word should matter, but only after repeated or combined signals."
     },
     "keywordFormat3Title": {
-        "message": "Трети формат:"
+        "message": "Keyword format 3:"
     },
     "keywordFormat3Text": {
-        "message": "Въведете ключовата дума, последвана от знак за умножение или събиране (* или +), след това числова стойност. В този сценарий, резултатът за страницата се умножава въз основа на числовата стойност на откритата ключова дума."
+        "message": "Use * or + with a number when you want a keyword to multiply or add to the current page score in a more explicit way."
     },
     "keywordFormat3_2": {
         "message": "Пример: 'новини, *, 10'"
     },
     "keywordFormat3_3": {
-        "message": "В този сценарий, резултатът за страницата се умножава въз основа на числовата стойност на откритата ключова дума."
+        "message": "Use this for stronger signals that should become decisive only in a specific context."
     },
     "timerCountTitle": {
-        "message": "Брой таймери"
+        "message": "Pomodoro"
     },
     "timerCountText": {
-        "message": "След като страницата бъде блокирана, ще имате възможност да натиснете бутона 'Активирай таймера'. След това ще имате време да извършите някои действия на страницата преди тя да бъде отново блокирана. В полето за брой таймери можете да решите колко таймера искате да имате през деня."
+        "message": "A plan can run Pomodoro work and rest timing. Strict breaks can block or quiet pages during rest so the break is protected."
     },
     "timerDurationTitle": {
-        "message": "Продължителност на таймера (секунди)"
+        "message": "Pomodoro Timing"
     },
     "timerDurationText": {
-        "message": "В това поле решавате колко секунди ще бъде всеки таймер."
+        "message": "Set work minutes, short breaks, long breaks, and how many work sessions happen before a long break. During an active protected schedule, enabling Pomodoro or making it stricter is allowed; relaxing it is blocked."
     },
     "lockedSchedulesTitle": {
         "message": "Заключени графици"
     },
     "lockedSchedulesNote": {
-        "message": "! Заключеният график не може да бъде отключен, докато не изтече времето (освен ако не деинсталирате разширението) !"
+        "message": "A protected schedule is meant to resist hot-state weakening while the scheduled window is active."
     },
     "lockedSchedulesText1": {
-        "message": "Можете да добавите нов заключен график, като създадете име на графика в полето Име на графика и натиснете Enter или бутона Добави график."
+        "message": "Open a plan, choose Schedule, and add one or more scheduled time blocks. Each block can choose days, start time, end time, and whether it is protected."
     },
     "lockedSchedulesText2": {
-        "message": "За да промените настройките на вашия график, натиснете 'Редактирай'. Като натискате бутоните за ден, вие или активирате графика за този ден (бутонът става зелен), или го деактивирате за деня. Чрез промяна на полетата за начален и краен час, задавате времената, през които графикът може да бъде активен. Всеки ден трябва да има поне един неактивен часови прозорец, така че да можете да деактивирате графика през това време. Бутонът 'Активен/Неактивен' превключва графика. Графикът ще бъде заключен и активен, ако текущият ден е активиран (зелен) и бутонът показва 'Активен' и също е зелен, и ако текущото време е между началния и крайния час."
+        "message": "A protected active schedule can be made stricter but not more relaxed. For example, you can add entries, raise keyword scores, enable stricter Pomodoro behavior, or add UI cleanup rules, but you cannot remove active protection."
     },
     "lockedSchedulesText3": {
-        "message": "Бутонът 'Изтрий' премахва заключения график. Същото важи и за групите и уебсайтовете в белия списък."
+        "message": "Delete removes a schedule only when doing so does not relax an active protected window."
     },
     "lockedSchedulesText4": {
-        "message": "По време на заключения график важат няколко ограничения:"
+        "message": "During an active protected schedule, relaxed changes are refused:"
     },
     "lockedScheduleRestriction1": {
-        "message": "Не може да променяте имената на групите."
+        "message": "You cannot disable the active plan."
     },
     "lockedScheduleRestriction2": {
-        "message": "Не може да променяте или премахвате съществуващи уебсайтове в групите."
+        "message": "You cannot remove existing plan entries or reduce the websites they protect."
     },
     "lockedScheduleRestriction3": {
-        "message": "Не може да променяте или премахвате съществуващи ключови думи и техните стойности."
+        "message": "You cannot remove existing keywords or reduce their weights."
     },
     "lockedScheduleRestriction4": {
-        "message": "Може да задавате стойности на ключовите думи само за умножение: от 1 до 1000. За събиране: от 0 до 1000."
+        "message": "New or changed keywords must stay inside the strict allowed scoring ranges."
     },
     "lockedScheduleRestriction5": {
-        "message": "Броят на таймерите не може да бъде увеличен."
+        "message": "You cannot disable Pomodoro, turn off strict breaks, or make Pomodoro easier to bypass."
     },
     "lockedScheduleRestriction6": {
-        "message": "Продължителността на таймера не може да бъде увеличена."
+        "message": "You can enable Pomodoro or make its timing stricter when that increases protection."
     },
     "lockedScheduleRestriction7": {
-        "message": "Активните графици не могат да бъдат изтрити."
+        "message": "Active schedules cannot be deleted."
     },
     "lockedScheduleRestriction8": {
-        "message": "Не може да отмаркирате дни, да направите графика неактивен или да промените началния и крайния час за активни графици."
+        "message": "You cannot remove active days or shrink an active protected schedule window."
     },
     "lockedScheduleRestriction9": {
-        "message": "Не може да добавяте уебсайтове в белия списък."
+        "message": "You cannot add allowed websites to bypass a protected plan."
     },
     "lockedScheduleRestriction10": {
-        "message": "Не може да задавате или изтривате парола за разширението."
+        "message": "You cannot delete password protection during an active protected schedule."
     },
     "whitelistWebsitesTitle": {
-        "message": "Списък с разрешени уебсайтове"
+        "message": "Allowed Websites"
     },
     "whitelistWebsitesText": {
-        "message": "Позволява ви да въвеждате уебсайтове в белия списък, което означава, че сканирането на ключови думи няма да се извършва на тези сайтове и следователно те няма да бъдат блокирани. В момента нямаме възможност да използваме символа (*) за включване на много уебсайтове в един запис (като *.io, където всички уебсайтове с '.io' биха били блокирани), така че тази функция не е много полезна, но съществува."
+        "message": "Allowed websites are plan-owned exceptions. Add them when a site should remain usable while a plan is active; the plan will not scan or block those allowed hosts."
     },
     "passwordManagementTitle": {
         "message": "Управление на паролите"
     },
     "passwordManagementText": {
-        "message": "Позволява ви да зададете парола за страницата на разширението. Всеки, който отвори страницата на разширението, ще трябва да въведе правилната парола за достъп. Полезно за предотвратяване на случайно (или умишлено) затягане на настройките."
+        "message": "Password protection can require a password before opening the options page. Use it when you want an extra barrier around changing protection settings."
     },
     "contactFeedbackTitle": {
         "message": "Контакт и обратна връзка"

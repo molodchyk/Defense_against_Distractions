@@ -372,148 +372,148 @@
         "message": "Introducere"
     },
     "introText1": {
-        "message": "Bună! Este atât de ușor să te distragi pe internet și să amâni lucrurile. Această extensie îți permite să blochezi pagini web pe baza cuvintelor cheie pe care nu dorești să le vezi."
+        "message": "Defense Against Distractions lets you create local protection plans that block pages, guide Pomodoro timing, detect possible intent drift, and clean up distracting page UI."
     },
     "introText2": {
-        "message": "Există mii de jocuri video de jucat, știri de citit, videoclipuri de vizionat, și așa mai departe. Și adesea, aceasta este ceea ce facem atunci când termenele limită pentru proiecte sau examene sunt încă departe. Uneori, poate fi dificil să te forțezi să faci ceea ce trebuie să faci."
+        "message": "A plan combines page entries, allowed websites, schedules, Pomodoro settings, intent-coherence settings, and optional UI cleanup rules. Turn a plan on when you want that protection available."
     },
     "introText3": {
-        "message": "Și distracțiile sunt peste tot! Chiar dacă folosești StayFocusd sau Cold Turkey sau FocusMe pentru a bloca unele site-uri web după URL-urile lor, nu poți bloca totul. De exemplu, chiar și cu ChatGPT, ai putea vorbi despre știri sau jocuri video dacă nu ai chef să studiezi sau să lucrezi."
+        "message": "The extension checks configured pages locally in the browser. It does not send page text, browsing diagnostics, or settings to a remote server."
     },
     "introText4": {
-        "message": "Cu această extensie, poți bloca site-uri web pe baza cuvintelor și expresiilor din textul lor."
+        "message": "Start with one plan, add the pages and words that matter, then make the plan stricter with schedules or Pomodoro when you need stronger defense."
     },
     "howToUseTitle": {
         "message": "Cum să Utilizezi Extensia"
     },
     "createGroupTitle": {
-        "message": "Primul Pas: Creează un Grup"
+        "message": "First Step: Create a Plan"
     },
     "createGroupText1": {
-        "message": "Poți apăsa pe butonul 'Adaugă Grup' sau introdu numele grupului și apasă Enter sau butonul Adaugă Grup. Poți crea mai multe grupuri."
+        "message": "Enter a plan name and press Add Plan. Open the plan to configure entries, schedules, Pomodoro, intent coherence, allowed websites, and UI cleanup assignments."
     },
     "createGroupText2": {
-        "message": "Vei vedea panoul grupului."
+        "message": "The default plan is a safe starting point. You can keep it, rename it, or create additional plans for different contexts."
     },
     "websitesTitle": {
-        "message": "Site-uri Web"
+        "message": "Entries and Websites"
     },
     "websitesText": {
-        "message": "Poți începe să adaugi site-uri web apăsând pe butonul 'Editează' din stânga liniei Site-uri Web. Acest câmp este responsabil pentru site-urile web unde extensia va bloca cuvintele cheie. Aici trebuie să introduci URL-uri de site-uri web, de exemplu, 'google.com'. Poți introduce mai multe site-uri web, fiecare linie nouă este un site web nou. Doar apasă Enter. Când ești gata, apasă butonul verde 'Salvează'. Sau poți Anula."
+        "message": "A plan entry has websites and keywords. Add the websites where the keywords should be scanned, one host per line, such as example.com or docs.example.com."
     },
     "keywordsTitle": {
         "message": "Cuvinte Cheie"
     },
     "keywordsText1": {
-        "message": "Pentru a adăuga cuvinte cheie noi sau pentru a face orice modificări, apasă 'Editează'. Cuvintele cheie pe care le introduci aici vor fi scanate pe site-urile web pe care le-ai introdus pentru acest grup."
+        "message": "Add keywords or phrases to the same entry. The extension scans matching pages locally and blocks the page when the entry score reaches 1000."
     },
     "keywordFormatsIntroduction": {
         "message": "Există 3 formate pentru cuvintele cheie:"
     },
     "keywordFormat1Title": {
-        "message": "Primul Format:"
+        "message": "Keyword format 1:"
     },
     "keywordFormat1Text": {
-        "message": "Introdu doar cuvintele cheie. Poate fi un cuvânt sau o frază. Dacă cuvântul cheie conține o virgulă ',', trebuie să folosești un caracter de evadare '\\' înainte de aceasta. Site-ul web va fi blocat imediat ce cuvântul cheie este detectat. Poți introduce cât mai multe cuvinte cheie dorești, doar apasă enter. Fiecare linie nouă este un cuvânt cheie nou."
+        "message": "Enter a word or phrase. If the keyword contains a comma, put a backslash before the comma. A plain keyword blocks as soon as it is detected."
     },
     "keywordFormat1_2": {
-        "message": "Exemplu: 'jocuri video' sau 'știri'."
+        "message": "Examples: 'video games', 'news'."
     },
     "keywordFormat2Title": {
-        "message": "Al Doilea Format:"
+        "message": "Keyword format 2:"
     },
     "keywordFormat2Text": {
-        "message": "Introdu cuvântul cheie, urmat de o valoare numerică. Fiecare site web introdus într-un grup trebuie să atingă un scor de 1000. Site-ul începe cu o valoare de 0, și pe baza valorii numerice a cuvântului cheie, valoarea crește. Odată ce site-ul web atinge un scor de 1000, va fi blocat."
+        "message": "Add a number after a comma. The page score starts at 0 and increases by that amount each time the keyword is found. At 1000, the page is blocked."
     },
     "keywordFormat2_2": {
         "message": "Exemplu: 'știri, 50'"
     },
     "keywordFormat2_3": {
-        "message": "Fiecare site web introdus într-un grup trebuie să atingă un scor de 1000. Site-ul începe cu o valoare de 0, și pe baza valorii numerice a cuvântului cheie, valoarea crește. Odată ce site-ul web atinge un scor de 1000, va fi blocat."
+        "message": "Use this when a word should matter, but only after repeated or combined signals."
     },
     "keywordFormat3Title": {
-        "message": "Al Treilea Format:"
+        "message": "Keyword format 3:"
     },
     "keywordFormat3Text": {
-        "message": "Introdu cuvântul cheie, urmat de un semn de înmulțire sau adunare (* sau +), apoi o valoare numerică. În acest scenariu, scorul pentru pagina este înmulțit pe baza valorii numerice a cuvântului cheie găsit."
+        "message": "Use * or + with a number when you want a keyword to multiply or add to the current page score in a more explicit way."
     },
     "keywordFormat3_2": {
         "message": "Exemplu: 'știri, *, 10'"
     },
     "keywordFormat3_3": {
-        "message": "În acest scenariu, scorul pentru pagina este înmulțit pe baza valorii numerice a cuvântului cheie găsit."
+        "message": "Use this for stronger signals that should become decisive only in a specific context."
     },
     "timerCountTitle": {
-        "message": "Numărul Temporizatoarelor"
+        "message": "Pomodoro"
     },
     "timerCountText": {
-        "message": "După ce pagina este blocată, vei avea opțiunea să apeși pe butonul 'Activează Temporizatorul'. După aceea, vei avea timp să efectuezi unele acțiuni pe pagină înainte de a fi blocată din nou. În câmpul Numărul Temporizatoarelor, poți decide câte temporizatoare dorești să ai în timpul zilei."
+        "message": "A plan can run Pomodoro work and rest timing. Strict breaks can block or quiet pages during rest so the break is protected."
     },
     "timerDurationTitle": {
-        "message": "Durata Temporizatorului (secunde)"
+        "message": "Pomodoro Timing"
     },
     "timerDurationText": {
-        "message": "În acest câmp, decizi câte secunde va avea fiecare temporizator."
+        "message": "Set work minutes, short breaks, long breaks, and how many work sessions happen before a long break. During an active protected schedule, enabling Pomodoro or making it stricter is allowed; relaxing it is blocked."
     },
     "lockedSchedulesTitle": {
         "message": "Programe Blocate"
     },
     "lockedSchedulesNote": {
-        "message": "! Un program blocat nu poate fi deblocat până când nu trece timpul (cu excepția cazului în care dezinstalezi extensia) !"
+        "message": "A protected schedule is meant to resist hot-state weakening while the scheduled window is active."
     },
     "lockedSchedulesText1": {
-        "message": "Poți adăuga un nou program blocat creând numele programului în câmpul Numele Programului și apăsând Enter sau butonul Adaugă Program."
+        "message": "Open a plan, choose Schedule, and add one or more scheduled time blocks. Each block can choose days, start time, end time, and whether it is protected."
     },
     "lockedSchedulesText2": {
-        "message": "Pentru a modifica setările programului, apăsați 'Editează'. Prin apăsarea butoanelor zilelor, fie activați programul în acea zi (butonul devine verde), fie îl dezactivați pentru acea zi. Modificând câmpurile Ora de Început și Ora de Sfârșit, setați timpurile în care programul poate fi activ. Fiecare zi trebuie să aibă o fereastră de timp inactivă de 1 oră, astfel încât să puteți dezactiva programul în acel timp. Butonul Inactiv/Activ comută programul. Programul va fi blocat și activ dacă ziua curentă este activată (verde) și butonul arată 'Activ' și este, de asemenea, verde, și dacă ora curentă este între timpul de început și de sfârșit."
+        "message": "A protected active schedule can be made stricter but not more relaxed. For example, you can add entries, raise keyword scores, enable stricter Pomodoro behavior, or add UI cleanup rules, but you cannot remove active protection."
     },
     "lockedSchedulesText3": {
-        "message": "Butonul Șterge elimină programul blocat. Același lucru se aplică și pentru grupuri și site-uri web din lista albă."
+        "message": "Delete removes a schedule only when doing so does not relax an active protected window."
     },
     "lockedSchedulesText4": {
-        "message": "Mai multe restricții se aplică în timpul programului blocat:"
+        "message": "During an active protected schedule, relaxed changes are refused:"
     },
     "lockedScheduleRestriction1": {
-        "message": "Nu puteți schimba numele grupurilor."
+        "message": "You cannot disable the active plan."
     },
     "lockedScheduleRestriction2": {
-        "message": "Nu puteți schimba sau elimina site-urile web existente în grupuri."
+        "message": "You cannot remove existing plan entries or reduce the websites they protect."
     },
     "lockedScheduleRestriction3": {
-        "message": "Nu puteți schimba sau elimina cuvintele cheie existente și valorile acestora."
+        "message": "You cannot remove existing keywords or reduce their weights."
     },
     "lockedScheduleRestriction4": {
-        "message": "Puteți seta doar valorile cuvintelor cheie pentru înmulțire: de la 1 la 1000. Pentru adunare: de la 0 la 1000."
+        "message": "New or changed keywords must stay inside the strict allowed scoring ranges."
     },
     "lockedScheduleRestriction5": {
-        "message": "Numărul de temporizatoare nu poate fi mărit."
+        "message": "You cannot disable Pomodoro, turn off strict breaks, or make Pomodoro easier to bypass."
     },
     "lockedScheduleRestriction6": {
-        "message": "Durata temporizatorului nu poate fi mărită."
+        "message": "You can enable Pomodoro or make its timing stricter when that increases protection."
     },
     "lockedScheduleRestriction7": {
-        "message": "Programele active nu pot fi șterse."
+        "message": "Active schedules cannot be deleted."
     },
     "lockedScheduleRestriction8": {
-        "message": "Nu puteți deselecta zilele, face programul inactiv, sau schimba orele de început sau de sfârșit pentru programele active."
+        "message": "You cannot remove active days or shrink an active protected schedule window."
     },
     "lockedScheduleRestriction9": {
-        "message": "Nu puteți adăuga site-uri web în lista albă."
+        "message": "You cannot add allowed websites to bypass a protected plan."
     },
     "lockedScheduleRestriction10": {
-        "message": "Nu puteți seta sau șterge parola pentru extensie."
+        "message": "You cannot delete password protection during an active protected schedule."
     },
     "whitelistWebsitesTitle": {
-        "message": "Site-uri în Lista Albă"
+        "message": "Allowed Websites"
     },
     "whitelistWebsitesText": {
-        "message": "Vă permite să introduceți site-uri web în lista albă, ceea ce înseamnă că scanarea cuvintelor cheie nu va fi efectuată pe aceste site-uri și, prin urmare, nu vor fi blocate. În prezent, nu avem capacitatea de a utiliza un wildcard (*) pentru a include multe site-uri web într-o singură intrare (cum ar fi *.io, unde toate site-urile web cu '.io' ar fi blocate), deci această caracteristică nu este foarte utilă, dar există."
+        "message": "Allowed websites are plan-owned exceptions. Add them when a site should remain usable while a plan is active; the plan will not scan or block those allowed hosts."
     },
     "passwordManagementTitle": {
         "message": "Administrare Parolă"
     },
     "passwordManagementText": {
-        "message": "Vă permite să setați o parolă pentru pagina de extensie. Oricine deschide pagina de extensie va trebui să introducă parola corectă pentru a obține acces. Util pentru a preveni ca alții să strângă accidental (sau intenționat) setările."
+        "message": "Password protection can require a password before opening the options page. Use it when you want an extra barrier around changing protection settings."
     },
     "contactFeedbackTitle": {
         "message": "Contact și Feedback"

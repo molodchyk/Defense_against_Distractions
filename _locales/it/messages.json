@@ -372,148 +372,148 @@
         "message": "Introduzione"
     },
     "introText1": {
-        "message": "Ciao! È così facile distrarsi su internet e procrastinare. Questa estensione ti permette di bloccare le pagine web in base a parole chiave che non vuoi vedere."
+        "message": "Defense Against Distractions lets you create local protection plans that block pages, guide Pomodoro timing, detect possible intent drift, and clean up distracting page UI."
     },
     "introText2": {
-        "message": "Ci sono migliaia di videogiochi da giocare, notizie da leggere, video da guardare, e così via. E spesso, è ciò che facciamo quando le scadenze dei progetti o gli esami sono ancora lontani. A volte, può essere un po' difficile costringersi a fare ciò che si deve fare."
+        "message": "A plan combines page entries, allowed websites, schedules, Pomodoro settings, intent-coherence settings, and optional UI cleanup rules. Turn a plan on when you want that protection available."
     },
     "introText3": {
-        "message": "E le distrazioni sono ovunque! Anche se usi StayFocusd, Cold Turkey o FocusMe per bloccare alcuni siti web tramite i loro URL, non puoi bloccare tutto. Ad esempio, anche con ChatGPT, potresti parlare di notizie o videogiochi se davvero non hai voglia di studiare o lavorare."
+        "message": "The extension checks configured pages locally in the browser. It does not send page text, browsing diagnostics, or settings to a remote server."
     },
     "introText4": {
-        "message": "Con questa estensione, puoi bloccare siti web in base a parole e frasi nel loro testo."
+        "message": "Start with one plan, add the pages and words that matter, then make the plan stricter with schedules or Pomodoro when you need stronger defense."
     },
     "howToUseTitle": {
         "message": "Come Utilizzare l'Estensione"
     },
     "createGroupTitle": {
-        "message": "Primo Passo: Crea un Gruppo"
+        "message": "First Step: Create a Plan"
     },
     "createGroupText1": {
-        "message": "Puoi premere il pulsante 'Aggiungi Gruppo' o inserire il nome del gruppo e premere Invio o il pulsante Aggiungi Gruppo. Puoi creare più gruppi."
+        "message": "Enter a plan name and press Add Plan. Open the plan to configure entries, schedules, Pomodoro, intent coherence, allowed websites, and UI cleanup assignments."
     },
     "createGroupText2": {
-        "message": "Vedrai il pannello del gruppo."
+        "message": "The default plan is a safe starting point. You can keep it, rename it, or create additional plans for different contexts."
     },
     "websitesTitle": {
-        "message": "Siti Web"
+        "message": "Entries and Websites"
     },
     "websitesText": {
-        "message": "Puoi iniziare ad aggiungere siti web premendo il pulsante 'Modifica' a sinistra della linea Siti Web. Questo campo è responsabile dei siti web su cui l'estensione bloccherà le parole chiave. Qui devi inserire gli URL dei siti web, ad esempio, 'google.com'. Puoi inserire più siti web, ogni nuova riga è un nuovo sito web. Basta premere Invio. Quando sei pronto, premi il pulsante verde 'Salva'. Oppure puoi Annullare."
+        "message": "A plan entry has websites and keywords. Add the websites where the keywords should be scanned, one host per line, such as example.com or docs.example.com."
     },
     "keywordsTitle": {
         "message": "Parole Chiave"
     },
     "keywordsText1": {
-        "message": "Per aggiungere nuove parole chiave o apportare modifiche, premi 'Modifica'. Le parole chiave che inserisci qui verranno scansionate sui siti web che hai inserito per questo gruppo."
+        "message": "Add keywords or phrases to the same entry. The extension scans matching pages locally and blocks the page when the entry score reaches 1000."
     },
     "keywordFormatsIntroduction": {
         "message": "Ci sono 3 formati per le parole chiave:"
     },
     "keywordFormat1Title": {
-        "message": "Primo Formato:"
+        "message": "Keyword format 1:"
     },
     "keywordFormat1Text": {
-        "message": "Inserisci semplicemente le parole chiave. Può essere una parola o una frase. Se la parola chiave contiene una virgola ',', devi usare un carattere di escape '\\' prima di essa. Il sito web verrà bloccato non appena viene rilevata la parola chiave. Puoi inserire quante parole chiave vuoi, basta premere invio. Ogni nuova riga è una nuova parola chiave."
+        "message": "Enter a word or phrase. If the keyword contains a comma, put a backslash before the comma. A plain keyword blocks as soon as it is detected."
     },
     "keywordFormat1_2": {
-        "message": "Esempio: 'videogiochi' o 'notizie'."
+        "message": "Examples: 'video games', 'news'."
     },
     "keywordFormat2Title": {
-        "message": "Secondo Formato:"
+        "message": "Keyword format 2:"
     },
     "keywordFormat2Text": {
-        "message": "Inserisci la parola chiave, seguita da un valore numerico. Ogni sito web che hai inserito in un gruppo deve raggiungere un punteggio di 1000. Il sito inizia con un valore di 0, e in base al valore numerico della parola chiave, il valore aumenta. Una volta che il sito raggiunge un punteggio di 1000, verrà bloccato."
+        "message": "Add a number after a comma. The page score starts at 0 and increases by that amount each time the keyword is found. At 1000, the page is blocked."
     },
     "keywordFormat2_2": {
         "message": "Esempio: 'notizie, 50'"
     },
     "keywordFormat2_3": {
-        "message": "Ogni sito web inserito in un gruppo deve raggiungere un punteggio di 1000. Il sito inizia con un valore di 0, e in base al valore numerico della parola chiave, il valore aumenta. Una volta che il sito raggiunge un punteggio di 1000, verrà bloccato."
+        "message": "Use this when a word should matter, but only after repeated or combined signals."
     },
     "keywordFormat3Title": {
-        "message": "Terzo Formato:"
+        "message": "Keyword format 3:"
     },
     "keywordFormat3Text": {
-        "message": "Inserisci la parola chiave, seguita da un segno di moltiplicazione o addizione (* o +), quindi un valore numerico. In questo scenario, il punteggio della pagina viene moltiplicato in base al valore numerico della parola chiave trovata."
+        "message": "Use * or + with a number when you want a keyword to multiply or add to the current page score in a more explicit way."
     },
     "keywordFormat3_2": {
         "message": "Esempio: 'notizie, *, 10'"
     },
     "keywordFormat3_3": {
-        "message": "In questo scenario, il punteggio della pagina viene moltiplicato in base al valore numerico della parola chiave trovata."
+        "message": "Use this for stronger signals that should become decisive only in a specific context."
     },
     "timerCountTitle": {
-        "message": "Conteggio Timer"
+        "message": "Pomodoro"
     },
     "timerCountText": {
-        "message": "Dopo che la pagina è stata bloccata, avrai l'opzione di premere il pulsante 'Attiva Timer'. Dopo di che, avrai del tempo per eseguire alcune azioni sulla pagina prima che venga nuovamente bloccata. Nel campo Conteggio Timer, puoi decidere quanti timer vuoi avere durante il giorno."
+        "message": "A plan can run Pomodoro work and rest timing. Strict breaks can block or quiet pages during rest so the break is protected."
     },
     "timerDurationTitle": {
-        "message": "Durata del Timer (secondi)"
+        "message": "Pomodoro Timing"
     },
     "timerDurationText": {
-        "message": "In questo campo, decidi quanti secondi avrà ogni timer."
+        "message": "Set work minutes, short breaks, long breaks, and how many work sessions happen before a long break. During an active protected schedule, enabling Pomodoro or making it stricter is allowed; relaxing it is blocked."
     },
     "lockedSchedulesTitle": {
         "message": "Programmi Bloccati"
     },
     "lockedSchedulesNote": {
-        "message": "! Un programma bloccato non può essere sbloccato fino a quando non passa il tempo (a meno che non disinstalli l'estensione) !"
+        "message": "A protected schedule is meant to resist hot-state weakening while the scheduled window is active."
     },
     "lockedSchedulesText1": {
-        "message": "Puoi aggiungere un nuovo programma bloccato creando il nome del programma nel campo Nome del Programma e premendo Invio o il pulsante Aggiungi Programma."
+        "message": "Open a plan, choose Schedule, and add one or more scheduled time blocks. Each block can choose days, start time, end time, and whether it is protected."
     },
     "lockedSchedulesText2": {
-        "message": "Per modificare le impostazioni del tuo programma, premi 'Modifica'. Premendo i pulsanti dei giorni, attivi il programma in quel giorno (il pulsante diventa verde) o lo disattivi per quel giorno. Modificando i campi Ora di Inizio e Ora di Fine, imposti gli orari in cui il programma può essere attivo. Ogni giorno deve avere una finestra di tempo di un'ora non attiva per poter disattivare il programma durante quel tempo. Il pulsante Attivo/Inattivo attiva il programma. Il programma sarà bloccato e attivo se il giorno corrente è abilitato (verde) e il pulsante mostra 'Attivo' ed è anche verde, e se l'ora corrente è tra l'ora di inizio e l'ora di fine."
+        "message": "A protected active schedule can be made stricter but not more relaxed. For example, you can add entries, raise keyword scores, enable stricter Pomodoro behavior, or add UI cleanup rules, but you cannot remove active protection."
     },
     "lockedSchedulesText3": {
-        "message": "Il pulsante Elimina rimuove il programma bloccato. Lo stesso vale per i gruppi e i siti web nella lista bianca."
+        "message": "Delete removes a schedule only when doing so does not relax an active protected window."
     },
     "lockedSchedulesText4": {
-        "message": "Diverse restrizioni si applicano durante il programma bloccato:"
+        "message": "During an active protected schedule, relaxed changes are refused:"
     },
     "lockedScheduleRestriction1": {
-        "message": "Non è possibile modificare i nomi dei gruppi."
+        "message": "You cannot disable the active plan."
     },
     "lockedScheduleRestriction2": {
-        "message": "Non è possibile modificare o rimuovere i siti web esistenti nei gruppi."
+        "message": "You cannot remove existing plan entries or reduce the websites they protect."
     },
     "lockedScheduleRestriction3": {
-        "message": "Non è possibile modificare o rimuovere le parole chiave esistenti e i loro valori."
+        "message": "You cannot remove existing keywords or reduce their weights."
     },
     "lockedScheduleRestriction4": {
-        "message": "È possibile impostare i valori delle parole chiave solo per la moltiplicazione: da 1 a 1000. Per l'aggiunta: da 0 a 1000."
+        "message": "New or changed keywords must stay inside the strict allowed scoring ranges."
     },
     "lockedScheduleRestriction5": {
-        "message": "Non è possibile aumentare il conteggio dei timer."
+        "message": "You cannot disable Pomodoro, turn off strict breaks, or make Pomodoro easier to bypass."
     },
     "lockedScheduleRestriction6": {
-        "message": "Non è possibile aumentare la durata del timer."
+        "message": "You can enable Pomodoro or make its timing stricter when that increases protection."
     },
     "lockedScheduleRestriction7": {
-        "message": "I programmi attivi non possono essere eliminati."
+        "message": "Active schedules cannot be deleted."
     },
     "lockedScheduleRestriction8": {
-        "message": "Non è possibile deselezionare i giorni, rendere inattivo il programma o modificare gli orari di inizio e fine dei programmi attivi."
+        "message": "You cannot remove active days or shrink an active protected schedule window."
     },
     "lockedScheduleRestriction9": {
-        "message": "Non è possibile aggiungere siti web alla lista bianca."
+        "message": "You cannot add allowed websites to bypass a protected plan."
     },
     "lockedScheduleRestriction10": {
-        "message": "Non è possibile impostare o eliminare la password per l'estensione."
+        "message": "You cannot delete password protection during an active protected schedule."
     },
     "whitelistWebsitesTitle": {
-        "message": "Siti Web nella Lista Bianca"
+        "message": "Allowed Websites"
     },
     "whitelistWebsitesText": {
-        "message": "Consente di inserire siti web nella lista bianca, il che significa che la scansione delle parole chiave non verrà eseguita su questi siti web e quindi non verranno bloccati. Attualmente, non abbiamo la capacità di utilizzare un carattere jolly (*) per includere molti siti web in una sola voce (come *.io, dove tutti i siti web con '.io' verrebbero bloccati), quindi questa funzionalità non è molto utile, ma esiste."
+        "message": "Allowed websites are plan-owned exceptions. Add them when a site should remain usable while a plan is active; the plan will not scan or block those allowed hosts."
     },
     "passwordManagementTitle": {
         "message": "Gestione delle Password"
     },
     "passwordManagementText": {
-        "message": "Consente di impostare una password per la pagina dell'estensione. Chiunque apra la pagina dell'estensione dovrà inserire la password corretta per accedere. Utile per impedire agli altri di stringere accidentalmente (o intenzionalmente) le impostazioni."
+        "message": "Password protection can require a password before opening the options page. Use it when you want an extra barrier around changing protection settings."
     },
     "contactFeedbackTitle": {
         "message": "Contatti e Feedback"

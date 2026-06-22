@@ -372,148 +372,148 @@
         "message": "介绍"
     },
     "introText1": {
-        "message": "嗨！在互联网上很容易分心和拖延。这个扩展程序允许你根据你不想看到的关键词来屏蔽网页。"
+        "message": "Defense Against Distractions lets you create local protection plans that block pages, guide Pomodoro timing, detect possible intent drift, and clean up distracting page UI."
     },
     "introText2": {
-        "message": "有成千上万的视频游戏可以玩，新闻故事可以阅读，视频可以观看等等。而且通常，这就是我们在项目截止日期或考试还远时所做的。有时，强迫自己去做需要做的事情可能有点困难。"
+        "message": "A plan combines page entries, allowed websites, schedules, Pomodoro settings, intent-coherence settings, and optional UI cleanup rules. Turn a plan on when you want that protection available."
     },
     "introText3": {
-        "message": "而且到处都是干扰！即使你使用StayFocusd或Cold Turkey或FocusMe来屏蔽一些网站的URL，你也不能屏蔽所有内容。例如，即使有ChatGPT，如果你真的不想学习或工作，你也可以谈论新闻或视频游戏。"
+        "message": "The extension checks configured pages locally in the browser. It does not send page text, browsing diagnostics, or settings to a remote server."
     },
     "introText4": {
-        "message": "有了这个扩展，你可以根据网站文本中的单词和短语来屏蔽网站。"
+        "message": "Start with one plan, add the pages and words that matter, then make the plan stricter with schedules or Pomodoro when you need stronger defense."
     },
     "howToUseTitle": {
         "message": "如何使用扩展程序"
     },
     "createGroupTitle": {
-        "message": "第一步：创建一个组"
+        "message": "First Step: Create a Plan"
     },
     "createGroupText1": {
-        "message": "你可以按“添加组”按钮或输入组名并按Enter键或添加组按钮。你可以创建多个组。"
+        "message": "Enter a plan name and press Add Plan. Open the plan to configure entries, schedules, Pomodoro, intent coherence, allowed websites, and UI cleanup assignments."
     },
     "createGroupText2": {
-        "message": "你将看到组面板。"
+        "message": "The default plan is a safe starting point. You can keep it, rename it, or create additional plans for different contexts."
     },
     "websitesTitle": {
-        "message": "网站"
+        "message": "Entries and Websites"
     },
     "websitesText": {
-        "message": "你可以通过按网站行左侧的“编辑”按钮开始添加网站。此字段负责扩展程序将屏蔽关键词的网站。在这里，你必须输入网站URL，例如'google.com'。你可以输入多个网站，每个新行是一个新网站。只需按Enter键。准备好后，按绿色的“保存”按钮。或者你可以取消。"
+        "message": "A plan entry has websites and keywords. Add the websites where the keywords should be scanned, one host per line, such as example.com or docs.example.com."
     },
     "keywordsTitle": {
         "message": "关键词"
     },
     "keywordsText1": {
-        "message": "要添加新关键词或进行任何更改，请按“编辑”。你在此组中输入的关键词将在你输入的网站上进行扫描。"
+        "message": "Add keywords or phrases to the same entry. The extension scans matching pages locally and blocks the page when the entry score reaches 1000."
     },
     "keywordFormatsIntroduction": {
         "message": "关键词有3种格式："
     },
     "keywordFormat1Title": {
-        "message": "第一种格式："
+        "message": "Keyword format 1:"
     },
     "keywordFormat1Text": {
-        "message": "只需输入关键词。它可以是一个单词或一个短语。如果关键词包含逗号'，'，你必须在它前面使用转义字符'\\'。一旦检测到关键词，网站将被屏蔽。你可以输入任意多的关键词，只需按enter键。每个新行是一个新关键词。"
+        "message": "Enter a word or phrase. If the keyword contains a comma, put a backslash before the comma. A plain keyword blocks as soon as it is detected."
     },
     "keywordFormat1_2": {
-        "message": "例如：'video games'或'news'。"
+        "message": "Examples: 'video games', 'news'."
     },
     "keywordFormat2Title": {
-        "message": "第二种格式："
+        "message": "Keyword format 2:"
     },
     "keywordFormat2Text": {
-        "message": "输入关键词，后跟一个数字值。你在一个组中输入的每个网站必须达到1000的分数。网站从0开始，基于关键词的数字值，值增加。一旦网站达到1000分，它将被屏蔽。"
+        "message": "Add a number after a comma. The page score starts at 0 and increases by that amount each time the keyword is found. At 1000, the page is blocked."
     },
     "keywordFormat2_2": {
         "message": "例如：'news, 50'"
     },
     "keywordFormat2_3": {
-        "message": "你在一个组中输入的每个网站必须达到1000的分数。网站从0开始，基于关键词的数字值，值增加。一旦网站达到1000分，它将被屏蔽。"
+        "message": "Use this when a word should matter, but only after repeated or combined signals."
     },
     "keywordFormat3Title": {
-        "message": "第三种格式："
+        "message": "Keyword format 3:"
     },
     "keywordFormat3Text": {
-        "message": "输入关键词，后跟乘号或加号（*或+），然后是一个数字值。在这种情况下，页面的分数将根据找到的关键词的数字值进行乘法运算。"
+        "message": "Use * or + with a number when you want a keyword to multiply or add to the current page score in a more explicit way."
     },
     "keywordFormat3_2": {
         "message": "例如：'news, *, 10'"
     },
     "keywordFormat3_3": {
-        "message": "在这种情况下，页面的分数将根据找到的关键词的数字值进行乘法运算。"
+        "message": "Use this for stronger signals that should become decisive only in a specific context."
     },
     "timerCountTitle": {
-        "message": "计时器数量"
+        "message": "Pomodoro"
     },
     "timerCountText": {
-        "message": "页面被屏蔽后，你可以选择按下“激活计时器”按钮。之后，你将有时间在页面上执行一些操作，然后它将再次被屏蔽。在计时器数量字段中，你可以决定一天中要有多少计时器。"
+        "message": "A plan can run Pomodoro work and rest timing. Strict breaks can block or quiet pages during rest so the break is protected."
     },
     "timerDurationTitle": {
-        "message": "计时器持续时间（秒）"
+        "message": "Pomodoro Timing"
     },
     "timerDurationText": {
-        "message": "在此字段中，你决定每个计时器的秒数。"
+        "message": "Set work minutes, short breaks, long breaks, and how many work sessions happen before a long break. During an active protected schedule, enabling Pomodoro or making it stricter is allowed; relaxing it is blocked."
     },
     "lockedSchedulesTitle": {
         "message": "锁定时间表"
     },
     "lockedSchedulesNote": {
-        "message": "! 锁定的时间表在时间过去之前不能解锁（除非你卸载扩展程序）!"
+        "message": "A protected schedule is meant to resist hot-state weakening while the scheduled window is active."
     },
     "lockedSchedulesText1": {
-        "message": "你可以通过在时间表名称字段中创建时间表名称并按Enter键或添加时间表按钮来添加新的锁定时间表。"
+        "message": "Open a plan, choose Schedule, and add one or more scheduled time blocks. Each block can choose days, start time, end time, and whether it is protected."
     },
     "lockedSchedulesText2": {
-        "message": "要修改时间表的设置，请按“编辑”。通过按天按钮，你可以在那一天启用时间表（按钮变绿），或禁用它。通过修改开始时间和结束时间字段，你设置时间表可以激活的时间。每天必须有1小时的非活动时间窗口，以便你可以在那个时间解除时间表。非活动/活动按钮切换时间表。如果当前天被启用（绿色）并且按钮显示“活动”且也是绿色，并且当前时间在开始和结束时间之间，时间表将被锁定和激活。"
+        "message": "A protected active schedule can be made stricter but not more relaxed. For example, you can add entries, raise keyword scores, enable stricter Pomodoro behavior, or add UI cleanup rules, but you cannot remove active protection."
     },
     "lockedSchedulesText3": {
-        "message": "删除按钮移除锁定的时间表。组和白名单网站也是如此。"
+        "message": "Delete removes a schedule only when doing so does not relax an active protected window."
     },
     "lockedSchedulesText4": {
-        "message": "在锁定时间表期间适用几项限制："
+        "message": "During an active protected schedule, relaxed changes are refused:"
     },
     "lockedScheduleRestriction1": {
-        "message": "你不能更改组名。"
+        "message": "You cannot disable the active plan."
     },
     "lockedScheduleRestriction2": {
-        "message": "你不能更改或移除组中现有的网站。"
+        "message": "You cannot remove existing plan entries or reduce the websites they protect."
     },
     "lockedScheduleRestriction3": {
-        "message": "你不能更改或移除现有关键词及其值。"
+        "message": "You cannot remove existing keywords or reduce their weights."
     },
     "lockedScheduleRestriction4": {
-        "message": "你只能为乘法设置关键词值：从1到1000。对于加法：从0到1000。"
+        "message": "New or changed keywords must stay inside the strict allowed scoring ranges."
     },
     "lockedScheduleRestriction5": {
-        "message": "计时器数量不能增加。"
+        "message": "You cannot disable Pomodoro, turn off strict breaks, or make Pomodoro easier to bypass."
     },
     "lockedScheduleRestriction6": {
-        "message": "计时器持续时间不能增加。"
+        "message": "You can enable Pomodoro or make its timing stricter when that increases protection."
     },
     "lockedScheduleRestriction7": {
-        "message": "不能删除活动中的时间表。"
+        "message": "Active schedules cannot be deleted."
     },
     "lockedScheduleRestriction8": {
-        "message": "你不能取消选择天数，使时间表非活动，或更改活动时间表的开始或结束时间。"
+        "message": "You cannot remove active days or shrink an active protected schedule window."
     },
     "lockedScheduleRestriction9": {
-        "message": "你不能添加白名单网站。"
+        "message": "You cannot add allowed websites to bypass a protected plan."
     },
     "lockedScheduleRestriction10": {
-        "message": "你不能设置或删除扩展程序的密码。"
+        "message": "You cannot delete password protection during an active protected schedule."
     },
     "whitelistWebsitesTitle": {
-        "message": "白名单网站"
+        "message": "Allowed Websites"
     },
     "whitelistWebsitesText": {
-        "message": "允许你输入白名单网站，这意味着关键词扫描不会在这些网站上执行，因此它们不会被屏蔽。目前，我们没有能力使用通配符(*)来一次性包含很多网站（例如*.io，所有带有'.io'的网站将被屏蔽），所以这个功能不是很有用，但它存在。"
+        "message": "Allowed websites are plan-owned exceptions. Add them when a site should remain usable while a plan is active; the plan will not scan or block those allowed hosts."
     },
     "passwordManagementTitle": {
         "message": "密码管理"
     },
     "passwordManagementText": {
-        "message": "允许你为扩展程序页面设置密码。任何打开扩展程序页面的人都需要输入正确的密码才能获得访问权限。用于防止他人意外（或故意）加紧设置。"
+        "message": "Password protection can require a password before opening the options page. Use it when you want an extra barrier around changing protection settings."
     },
     "contactFeedbackTitle": {
         "message": "联系和反馈"

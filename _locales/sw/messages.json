@@ -372,148 +372,148 @@
         "message": "Utangulizi"
     },
     "introText1": {
-        "message": "Habari! Ni rahisi sana kukengeushwa kwenye mtandao na kuahirisha mambo. Kiendelezi hiki hukuruhusu kuzuia kurasa za wavuti kulingana na maneno muhimu ambayo hutaki kuona."
+        "message": "Defense Against Distractions lets you create local protection plans that block pages, guide Pomodoro timing, detect possible intent drift, and clean up distracting page UI."
     },
     "introText2": {
-        "message": "Kuna maelfu ya michezo ya video ya kucheza, habari za kusoma, video za kutazama, na kadhalika. Na mara nyingi, hivi ndivyo tunafanya wakati tarehe za mwisho za mradi au mitihani bado iko mbali. Wakati mwingine, inaweza kuwa ngumu kidogo kujilazimisha kufanya kile unachohitaji kufanya."
+        "message": "A plan combines page entries, allowed websites, schedules, Pomodoro settings, intent-coherence settings, and optional UI cleanup rules. Turn a plan on when you want that protection available."
     },
     "introText3": {
-        "message": "Na vikwazo viko kila mahali! Hata ukitumia StayFocusd au Cold Turkey au FocusMe kuzuia baadhi ya tovuti kwa kutumia URL zao, huwezi kuzuia kila kitu. Kwa mfano, hata kwa ChatGPT, unaweza kuzungumza kuhusu habari au michezo ya video ikiwa hujisikii kabisa kusoma au kufanya kazi."
+        "message": "The extension checks configured pages locally in the browser. It does not send page text, browsing diagnostics, or settings to a remote server."
     },
     "introText4": {
-        "message": "Kwa kiendelezi hiki, unaweza kuzuia tovuti kulingana na maneno na misemo katika maandishi yao."
+        "message": "Start with one plan, add the pages and words that matter, then make the plan stricter with schedules or Pomodoro when you need stronger defense."
     },
     "howToUseTitle": {
         "message": "Jinsi ya Kutumia Kiendelezi"
     },
     "createGroupTitle": {
-        "message": "Hatua ya Kwanza: Unda Kikundi"
+        "message": "First Step: Create a Plan"
     },
     "createGroupText1": {
-        "message": "Unaweza kubonyeza kitufe cha 'Ongeza Kikundi' au kuingiza jina la kikundi na ubonyeze Ingiza au kitufe cha Ongeza Kikundi. Unaweza kuunda vikundi vingi."
+        "message": "Enter a plan name and press Add Plan. Open the plan to configure entries, schedules, Pomodoro, intent coherence, allowed websites, and UI cleanup assignments."
     },
     "createGroupText2": {
-        "message": "Utaona paneli ya kikundi."
+        "message": "The default plan is a safe starting point. You can keep it, rename it, or create additional plans for different contexts."
     },
     "websitesTitle": {
-        "message": "Tovuti"
+        "message": "Entries and Websites"
     },
     "websitesText": {
-        "message": "Unaweza kuanza kuongeza tovuti kwa kubofya kitufe cha 'Hariri' kilicho upande wa kushoto wa mstari wa Tovuti. Sehemu hii inawajibika kwa tovuti ambapo kiendelezi kitazuia manenomsingi. Hapa lazima uingize URL za tovuti, kwa mfano, 'google.com'. Unaweza kuingiza tovuti nyingi, kila mstari mpya ni tovuti mpya. Bonyeza tu Enter. Ukiwa tayari, bonyeza kitufe cha kijani 'Hifadhi'. Au unaweza Ghairi."
+        "message": "A plan entry has websites and keywords. Add the websites where the keywords should be scanned, one host per line, such as example.com or docs.example.com."
     },
     "keywordsTitle": {
         "message": "Maneno muhimu"
     },
     "keywordsText1": {
-        "message": "Ili kuongeza manenomsingi mapya au kufanya mabadiliko yoyote, bonyeza 'Hariri'. Maneno muhimu utakayoweka hapa yatachanganuliwa kwenye tovuti ulizoweka za kikundi hiki."
+        "message": "Add keywords or phrases to the same entry. The extension scans matching pages locally and blocks the page when the entry score reaches 1000."
     },
     "keywordFormatsIntroduction": {
         "message": "Kuna fomati 3 za maneno muhimu:"
     },
     "keywordFormat1Title": {
-        "message": "Muundo wa Kwanza:"
+        "message": "Keyword format 1:"
     },
     "keywordFormat1Text": {
-        "message": "Ingiza tu maneno muhimu. Inaweza kuwa neno au kifungu cha maneno. Ikiwa neno kuu lina koma ',', lazima utumie herufi ya '\\' kabla yake. Tovuti itazuiwa mara tu neno kuu litakapotambuliwa. Unaweza kuingiza manenomsingi mengi unavyotaka, bonyeza tu kuingia. Kila mstari mpya ni neno kuu jipya."
+        "message": "Enter a word or phrase. If the keyword contains a comma, put a backslash before the comma. A plain keyword blocks as soon as it is detected."
     },
     "keywordFormat1_2": {
-        "message": "Mfano: 'michezo ya video' au 'habari'."
+        "message": "Examples: 'video games', 'news'."
     },
     "keywordFormat2Title": {
-        "message": "Muundo wa Pili:"
+        "message": "Keyword format 2:"
     },
     "keywordFormat2Text": {
-        "message": "Ingiza neno kuu, ikifuatiwa na thamani ya nambari. Kila tovuti uliyoingiza kwenye kikundi lazima ifikie alama 1000. Tovuti huanza na thamani ya 0, na kulingana na thamani ya nambari ya neno kuu, thamani huongezeka. Mara tu tovuti inapofikia alama 1000, itazuiwa."
+        "message": "Add a number after a comma. The page score starts at 0 and increases by that amount each time the keyword is found. At 1000, the page is blocked."
     },
     "keywordFormat2_2": {
         "message": "Mfano: 'habari, 50'"
     },
     "keywordFormat2_3": {
-        "message": "Kila tovuti uliyoingiza kwenye kikundi lazima ifikie alama 1000. Tovuti huanza na thamani ya 0, na kulingana na thamani ya nambari ya neno kuu, thamani huongezeka. Mara tu tovuti inapofikia alama 1000, itazuiwa."
+        "message": "Use this when a word should matter, but only after repeated or combined signals."
     },
     "keywordFormat3Title": {
-        "message": "Umbizo la Tatu:"
+        "message": "Keyword format 3:"
     },
     "keywordFormat3Text": {
-        "message": "Ingiza neno kuu, likifuatiwa na ishara ya kuzidisha au kuongeza (* au +), kisha thamani ya nambari. Katika hali hii, alama za ukurasa zinazidishwa kulingana na thamani ya nambari ya neno kuu lililopatikana."
+        "message": "Use * or + with a number when you want a keyword to multiply or add to the current page score in a more explicit way."
     },
     "keywordFormat3_2": {
         "message": "Mfano: 'habari, *, 10'"
     },
     "keywordFormat3_3": {
-        "message": "Katika hali hii, alama za ukurasa zinazidishwa kulingana na thamani ya nambari ya neno kuu lililopatikana."
+        "message": "Use this for stronger signals that should become decisive only in a specific context."
     },
     "timerCountTitle": {
-        "message": "Hesabu ya Kipima saa"
+        "message": "Pomodoro"
     },
     "timerCountText": {
-        "message": "Baada ya ukurasa kuzuiwa, utakuwa na chaguo la kubofya kitufe cha 'Amilisha Kipima Muda'. Baada ya hapo, utakuwa na muda wa kufanya baadhi ya vitendo kwenye ukurasa kabla haujazuiwa tena. Katika sehemu ya Hesabu ya Muda, unaweza kuamua ni vipima muda ambavyo ungependa kutumia wakati wa mchana."
+        "message": "A plan can run Pomodoro work and rest timing. Strict breaks can block or quiet pages during rest so the break is protected."
     },
     "timerDurationTitle": {
-        "message": "Muda wa Kipima Muda (sekunde)"
+        "message": "Pomodoro Timing"
     },
     "timerDurationText": {
-        "message": "Katika uwanja huu, unaamua ni sekunde ngapi kila kipima saa kitakuwa nacho."
+        "message": "Set work minutes, short breaks, long breaks, and how many work sessions happen before a long break. During an active protected schedule, enabling Pomodoro or making it stricter is allowed; relaxing it is blocked."
     },
     "lockedSchedulesTitle": {
         "message": "Ratiba Zilizofungwa"
     },
     "lockedSchedulesNote": {
-        "message": "! Ratiba iliyofungwa haiwezi kufunguliwa hadi muda upite (isipokuwa ukiondoa kiendelezi)!"
+        "message": "A protected schedule is meant to resist hot-state weakening while the scheduled window is active."
     },
     "lockedSchedulesText1": {
-        "message": "Unaweza kuongeza ratiba mpya iliyofungwa kwa kuunda jina la ratiba katika sehemu ya Jina la Ratiba na ubonyeze Ingiza au kitufe cha Ongeza Ratiba."
+        "message": "Open a plan, choose Schedule, and add one or more scheduled time blocks. Each block can choose days, start time, end time, and whether it is protected."
     },
     "lockedSchedulesText2": {
-        "message": "Ili kurekebisha mipangilio ya ratiba yako, bonyeza 'Hariri'. Kwa kubonyeza vitufe vya siku, unaweza kuwasha ratiba siku hiyo (kitufe hubadilika kuwa kijani), au uizime kwa siku hiyo. Kwa kurekebisha sehemu za Muda wa Kuanza na Saa za Mwisho, unaweka saa ambazo ratiba inaweza kutumika. Kila siku lazima iwe na kidirisha cha saa 1 cha muda usiotumika ili uweze kulemaza ratiba wakati huo. Kitufe Isiyotumika/Inayotumika hugeuza ratiba. Ratiba itafungwa na kufanya kazi ikiwa siku ya sasa imewashwa (kijani) na kitufe kinaonyesha 'Inayotumika' na pia ni ya kijani, na ikiwa wakati wa sasa ni kati ya saa za kuanza na za mwisho."
+        "message": "A protected active schedule can be made stricter but not more relaxed. For example, you can add entries, raise keyword scores, enable stricter Pomodoro behavior, or add UI cleanup rules, but you cannot remove active protection."
     },
     "lockedSchedulesText3": {
-        "message": "Kitufe cha Futa huondoa ratiba iliyofungwa. Hali hiyo hiyo inatumika kwa vikundi na tovuti zilizoidhinishwa."
+        "message": "Delete removes a schedule only when doing so does not relax an active protected window."
     },
     "lockedSchedulesText4": {
-        "message": "Vizuizi kadhaa hutumika wakati wa ratiba iliyofungwa:"
+        "message": "During an active protected schedule, relaxed changes are refused:"
     },
     "lockedScheduleRestriction1": {
-        "message": "Huwezi kubadilisha majina ya kikundi."
+        "message": "You cannot disable the active plan."
     },
     "lockedScheduleRestriction2": {
-        "message": "Huwezi kubadilisha au kuondoa tovuti zilizopo katika vikundi."
+        "message": "You cannot remove existing plan entries or reduce the websites they protect."
     },
     "lockedScheduleRestriction3": {
-        "message": "Huwezi kubadilisha au kuondoa manenomsingi yaliyopo na thamani zake."
+        "message": "You cannot remove existing keywords or reduce their weights."
     },
     "lockedScheduleRestriction4": {
-        "message": "Unaweza tu kuweka thamani za maneno muhimu kwa kuzidisha: kutoka 1 hadi 1000. Kwa nyongeza: kutoka 0 hadi 1000."
+        "message": "New or changed keywords must stay inside the strict allowed scoring ranges."
     },
     "lockedScheduleRestriction5": {
-        "message": "Idadi ya saa haiwezi kuongezwa."
+        "message": "You cannot disable Pomodoro, turn off strict breaks, or make Pomodoro easier to bypass."
     },
     "lockedScheduleRestriction6": {
-        "message": "Muda wa kipima muda hauwezi kuongezwa."
+        "message": "You can enable Pomodoro or make its timing stricter when that increases protection."
     },
     "lockedScheduleRestriction7": {
-        "message": "Ratiba zinazotumika haziwezi kufutwa."
+        "message": "Active schedules cannot be deleted."
     },
     "lockedScheduleRestriction8": {
-        "message": "Huwezi kutengua siku, kufanya ratiba kutotumika, au kubadilisha saa za kuanza au kumalizika kwa ratiba zinazotumika."
+        "message": "You cannot remove active days or shrink an active protected schedule window."
     },
     "lockedScheduleRestriction9": {
-        "message": "Huwezi kuongeza tovuti zilizoidhinishwa."
+        "message": "You cannot add allowed websites to bypass a protected plan."
     },
     "lockedScheduleRestriction10": {
-        "message": "Huwezi kuweka au kufuta nenosiri la kiendelezi."
+        "message": "You cannot delete password protection during an active protected schedule."
     },
     "whitelistWebsitesTitle": {
-        "message": "Tovuti zilizoidhinishwa"
+        "message": "Allowed Websites"
     },
     "whitelistWebsitesText": {
-        "message": "Hukuruhusu kuingiza tovuti zilizoidhinishwa, kumaanisha kuwa uchanganuzi wa nenomsingi hautafanywa kwenye tovuti hizi, na hivyo hautazuiwa. Kwa sasa, hatuna uwezo wa kutumia wildcard (*) kujumuisha tovuti nyingi katika ingizo moja (kama *.io, ambapo tovuti zote zilizo na '.io' zingezuiwa), kwa hivyo kipengele hiki si muhimu sana, lakini kipo."
+        "message": "Allowed websites are plan-owned exceptions. Add them when a site should remain usable while a plan is active; the plan will not scan or block those allowed hosts."
     },
     "passwordManagementTitle": {
         "message": "Usimamizi wa Nenosiri"
     },
     "passwordManagementText": {
-        "message": "Inakuruhusu kusanidi nenosiri kwa ukurasa wa kiendelezi. Mtu yeyote anayefungua ukurasa wa kiendelezi atahitaji kuingiza nenosiri sahihi ili kupata ufikiaji. Inatumika kwa kuzuia wengine kutoka kwa bahati mbaya (au kwa kukusudia) kubana mipangilio."
+        "message": "Password protection can require a password before opening the options page. Use it when you want an extra barrier around changing protection settings."
     },
     "contactFeedbackTitle": {
         "message": "Mawasiliano na Maoni"

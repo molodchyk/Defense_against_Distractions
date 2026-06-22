@@ -372,148 +372,148 @@
         "message": "መግቢያ"
     },
     "introText1": {
-        "message": "ሃይ! በበይነ መረብ ላይ ትኩረትን ለመሳብ እና ለማዘግየት በጣም ቀላል ነው። ይህ ቅጥያ ማየት በማይፈልጓቸው ቁልፍ ቃላት ላይ በመመስረት ድረ-ገጾችን እንዲያግዱ ይፈቅድልዎታል።"
+        "message": "Defense Against Distractions lets you create local protection plans that block pages, guide Pomodoro timing, detect possible intent drift, and clean up distracting page UI."
     },
     "introText2": {
-        "message": "የሚጫወቱት በሺዎች የሚቆጠሩ የቪዲዮ ጨዋታዎች፣ የሚነበቡ ዜናዎች፣ የሚመለከቷቸው ቪዲዮዎች እና የመሳሰሉት አሉ። እና ብዙ ጊዜ፣ የፕሮጀክት ቀነ-ገደቦች ወይም ፈተናዎች ገና ሩቅ ሲሆኑ እኛ የምናደርገው ነው። አንዳንድ ጊዜ፣ ማድረግ ያለብዎትን እንዲያደርጉ እራስዎን ማስገደድ ትንሽ ከባድ ሊሆን ይችላል።"
+        "message": "A plan combines page entries, allowed websites, schedules, Pomodoro settings, intent-coherence settings, and optional UI cleanup rules. Turn a plan on when you want that protection available."
     },
     "introText3": {
-        "message": "እና ትኩረትን የሚከፋፍሉ ነገሮች በሁሉም ቦታ አሉ! አንዳንድ ድረ-ገጾችን በዩአርኤላቸው ለማገድ StayFocusd ወይም Cold Turkey ወይም FocusMe ቢጠቀሙም ሁሉንም ነገር ማገድ አይችሉም። ለምሳሌ፣ በቻትጂፒቲም ቢሆን፣ በእውነት የማጥናት ወይም ስራ ለመስራት የማትፈልግ ከሆነ ስለ ዜና ወይም ቪዲዮ ጨዋታዎች ማውራት ትችላለህ።"
+        "message": "The extension checks configured pages locally in the browser. It does not send page text, browsing diagnostics, or settings to a remote server."
     },
     "introText4": {
-        "message": "በዚህ ቅጥያ፣ በጽሑፋቸው ውስጥ ባሉ ቃላት እና ሀረጎች ላይ ተመስርተው ድር ጣቢያዎችን ማገድ ይችላሉ።"
+        "message": "Start with one plan, add the pages and words that matter, then make the plan stricter with schedules or Pomodoro when you need stronger defense."
     },
     "howToUseTitle": {
         "message": "ቅጥያውን እንዴት መጠቀም እንደሚቻል"
     },
     "createGroupTitle": {
-        "message": "የመጀመሪያው እርምጃ: ቡድን ይፍጠሩ"
+        "message": "First Step: Create a Plan"
     },
     "createGroupText1": {
-        "message": "'ቡድን አክል' የሚለውን ቁልፍ መጫን ወይም የቡድን ስም አስገባ እና አስገባን ወይም የቡድን አክል የሚለውን ቁልፍ መጫን ትችላለህ። ብዙ ቡድኖችን መፍጠር ይችላሉ."
+        "message": "Enter a plan name and press Add Plan. Open the plan to configure entries, schedules, Pomodoro, intent coherence, allowed websites, and UI cleanup assignments."
     },
     "createGroupText2": {
-        "message": "የቡድን ፓነልን ያያሉ."
+        "message": "The default plan is a safe starting point. You can keep it, rename it, or create additional plans for different contexts."
     },
     "websitesTitle": {
-        "message": "ድር ጣቢያዎች"
+        "message": "Entries and Websites"
     },
     "websitesText": {
-        "message": "በድረ-ገጾች መስመር በስተግራ 'ኤዲት' የሚለውን ቁልፍ በመጫን ድረ-ገጾችን ማከል መጀመር ይችላሉ። ይህ መስክ ቅጥያው ቁልፍ ቃላትን ለሚገድብባቸው ድር ጣቢያዎች ኃላፊነት አለበት። እዚህ የድር ጣቢያ URLs ማስገባት አለብህ፣ ለምሳሌ 'google.com'። ብዙ ድር ጣቢያዎችን ማስገባት ይችላሉ, እያንዳንዱ አዲስ መስመር አዲስ ድር ጣቢያ ነው. አስገባን ብቻ ይጫኑ። ዝግጁ ሲሆኑ አረንጓዴውን 'አስቀምጥ' የሚለውን ቁልፍ ይጫኑ። ወይም መሰረዝ ይችላሉ።"
+        "message": "A plan entry has websites and keywords. Add the websites where the keywords should be scanned, one host per line, such as example.com or docs.example.com."
     },
     "keywordsTitle": {
         "message": "ቁልፍ ቃላት"
     },
     "keywordsText1": {
-        "message": "አዲስ ቁልፍ ቃላትን ለመጨመር ወይም ማንኛውንም ለውጥ ለማድረግ 'አርትዕ'ን ይጫኑ። እዚህ የሚያስገቧቸው ቁልፍ ቃላት ለዚህ ቡድን ባስገቧቸው ድረ-ገጾች ላይ ይቃኛሉ።"
+        "message": "Add keywords or phrases to the same entry. The extension scans matching pages locally and blocks the page when the entry score reaches 1000."
     },
     "keywordFormatsIntroduction": {
         "message": "ለቁልፍ ቃላቶች 3 ቅርጸቶች አሉ-"
     },
     "keywordFormat1Title": {
-        "message": "የመጀመሪያ ቅርጸት፡-"
+        "message": "Keyword format 1:"
     },
     "keywordFormat1Text": {
-        "message": "ቁልፍ ቃላትን ብቻ አስገባ። አንድ ቃል ወይም ሐረግ ሊሆን ይችላል. ቁልፍ ቃሉ ኮማ '፣' ካለው ከሱ በፊት የማምለጫ ቁምፊን \"\\\" መጠቀም አለቦት። ቁልፉ እንደተገኘ ድህረ ገጹ ይታገዳል። የፈለጉትን ያህል ቁልፍ ቃላቶች ማስገባት ይችላሉ፣ በቀላሉ አስገባን ይጫኑ። እያንዳንዱ አዲስ መስመር አዲስ ቁልፍ ቃል ነው።"
+        "message": "Enter a word or phrase. If the keyword contains a comma, put a backslash before the comma. A plain keyword blocks as soon as it is detected."
     },
     "keywordFormat1_2": {
-        "message": "ምሳሌ፡ 'የቪዲዮ ጨዋታዎች' ወይም 'ዜና'።"
+        "message": "Examples: 'video games', 'news'."
     },
     "keywordFormat2Title": {
-        "message": "ሁለተኛ ቅርጸት፡-"
+        "message": "Keyword format 2:"
     },
     "keywordFormat2Text": {
-        "message": "ቁልፍ ቃሉን አስገባ፣ ከዚያም የቁጥር እሴት። በቡድን ያስገቧቸው እያንዳንዱ ድረ-ገጽ 1000 ነጥብ ላይ መድረስ አለባቸው።ድር ጣቢያው በ0 ዋጋ ይጀምራል እና በቁልፍ ቃሉ የቁጥር እሴት ላይ በመመስረት እሴቱ ይጨምራል። አንዴ ድህረ ገጹ 1000 ነጥብ ላይ ሲደርስ ይታገዳል።"
+        "message": "Add a number after a comma. The page score starts at 0 and increases by that amount each time the keyword is found. At 1000, the page is blocked."
     },
     "keywordFormat2_2": {
         "message": "ምሳሌ፡ 'ዜና፣ 50'"
     },
     "keywordFormat2_3": {
-        "message": "በቡድን ውስጥ ያስገቡት እያንዳንዱ ድህረ ገጽ 1000 ነጥብ ላይ መድረስ አለበት።ጣቢያው በ0 ዋጋ ይጀምራል እና በቁልፍ ቃሉ የቁጥር እሴት ላይ በመመስረት እሴቱ ይጨምራል። አንዴ ድህረ ገጹ 1000 ነጥብ ላይ ሲደርስ ይታገዳል።"
+        "message": "Use this when a word should matter, but only after repeated or combined signals."
     },
     "keywordFormat3Title": {
-        "message": "ሦስተኛው ቅርጸት፡-"
+        "message": "Keyword format 3:"
     },
     "keywordFormat3Text": {
-        "message": "የማባዛት ወይም የመደመር ምልክት (* ወይም +) በመቀጠል ቁልፍ ቃሉን ያስገቡ፣ ከዚያም የቁጥር እሴት። በዚህ ሁኔታ፣ በተገኘው ቁልፍ ቃል የቁጥር እሴት መሰረት የገጹ ነጥብ ተባዝቷል።"
+        "message": "Use * or + with a number when you want a keyword to multiply or add to the current page score in a more explicit way."
     },
     "keywordFormat3_2": {
         "message": "ምሳሌ፡ 'ዜና፣ *፣ 10'"
     },
     "keywordFormat3_3": {
-        "message": "በዚህ ሁኔታ፣ በተገኘው ቁልፍ ቃል የቁጥር እሴት መሰረት የገጹ ነጥብ ተባዝቷል።"
+        "message": "Use this for stronger signals that should become decisive only in a specific context."
     },
     "timerCountTitle": {
-        "message": "የሰዓት ቆጣሪ ብዛት"
+        "message": "Pomodoro"
     },
     "timerCountText": {
-        "message": "ገጹ ከታገደ በኋላ 'Activate Timer' የሚለውን ቁልፍ የመጫን አማራጭ ይኖርዎታል። ከዚያ በኋላ እንደገና ከመታገዱ በፊት አንዳንድ ድርጊቶችን በገጹ ላይ ለማከናወን ጊዜ ይኖርዎታል። በጊዜ ቆጣሪ ቆጠራ መስክ፣ በቀን ውስጥ ምን ያህል ሰዓት ቆጣሪዎች ሊኖሩዎት እንደሚፈልጉ መወሰን ይችላሉ።"
+        "message": "A plan can run Pomodoro work and rest timing. Strict breaks can block or quiet pages during rest so the break is protected."
     },
     "timerDurationTitle": {
-        "message": "የሰዓት ቆጣሪ ቆይታ (ሰከንዶች)"
+        "message": "Pomodoro Timing"
     },
     "timerDurationText": {
-        "message": "በዚህ መስክ ውስጥ እያንዳንዱ ሰዓት ቆጣሪ ምን ያህል ሴኮንዶች እንደሚኖረው ይወስናሉ."
+        "message": "Set work minutes, short breaks, long breaks, and how many work sessions happen before a long break. During an active protected schedule, enabling Pomodoro or making it stricter is allowed; relaxing it is blocked."
     },
     "lockedSchedulesTitle": {
         "message": "የተቆለፉ መርሐ ግብሮች"
     },
     "lockedSchedulesNote": {
-        "message": "! የተቆለፈ መርሐግብር ጊዜው እስኪያልፍ ድረስ ሊከፈት አይችልም (ቅጥያውን ካላራገፉ በስተቀር)!"
+        "message": "A protected schedule is meant to resist hot-state weakening while the scheduled window is active."
     },
     "lockedSchedulesText1": {
-        "message": "በመርሃግብር ስም መስክ ውስጥ የመርሃግብር ስም በመፍጠር እና አስገባን ወይም የመርሃግብር አክል የሚለውን ቁልፍ በመጫን አዲስ የተቆለፈ መርሐግብር ማከል ይችላሉ።"
+        "message": "Open a plan, choose Schedule, and add one or more scheduled time blocks. Each block can choose days, start time, end time, and whether it is protected."
     },
     "lockedSchedulesText2": {
-        "message": "የመርሃግብርዎን መቼቶች ለማሻሻል 'አርትዕ'ን ይጫኑ። የቀን አዝራሮችን በመጫን፣ በዚያ ቀን መርሐ ግብሩን ያንቁታል (አዝራሩ አረንጓዴ ይለወጣል) ወይም ለዚያ ቀን ያሰናክሉት። የመነሻ ጊዜ እና የማብቂያ ጊዜ መስኮችን በማሻሻል መርሐ ግብሩ የሚሠራበትን ጊዜ ያዘጋጃሉ። በእያንዳንዱ ቀን የ1 ሰአት የቦዘነ የሰዓት መስኮት ሊኖረው ይገባል ስለዚህ መርሐ ግብሩን በዚያ ጊዜ ማቦዘን ይችላሉ። የእንቅስቃሴ-አልባ/አክቲቭ አዝራሩ የጊዜ ሰሌዳውን ይቀይረዋል። የአሁኑ ቀን ከነቃ (አረንጓዴ) እና ቁልፉ 'ገባሪ' እና እንዲሁም አረንጓዴ ከሆነ እና የአሁኑ ጊዜ በመጀመሪያ እና በመጨረሻው ጊዜ መካከል ከሆነ መርሃግብሩ ተቆልፎ እና ንቁ ይሆናል።"
+        "message": "A protected active schedule can be made stricter but not more relaxed. For example, you can add entries, raise keyword scores, enable stricter Pomodoro behavior, or add UI cleanup rules, but you cannot remove active protection."
     },
     "lockedSchedulesText3": {
-        "message": "የ Delete አዝራር የተቆለፈውን መርሐግብር ያስወግዳል. በቡድኖች እና በተፈቀደላቸው ድረ-ገጾች ላይም ተመሳሳይ ነው።"
+        "message": "Delete removes a schedule only when doing so does not relax an active protected window."
     },
     "lockedSchedulesText4": {
-        "message": "በተቆለፈው መርሐግብር ወቅት በርካታ ገደቦች ይተገበራሉ፡-"
+        "message": "During an active protected schedule, relaxed changes are refused:"
     },
     "lockedScheduleRestriction1": {
-        "message": "የቡድን ስሞችን መቀየር አይችሉም።"
+        "message": "You cannot disable the active plan."
     },
     "lockedScheduleRestriction2": {
-        "message": "ነባር ድር ጣቢያዎችን በቡድን መቀየር ወይም ማስወገድ አይችሉም።"
+        "message": "You cannot remove existing plan entries or reduce the websites they protect."
     },
     "lockedScheduleRestriction3": {
-        "message": "ያሉትን ቁልፍ ቃላት እና እሴቶቻቸውን መለወጥ ወይም ማስወገድ አይችሉም።"
+        "message": "You cannot remove existing keywords or reduce their weights."
     },
     "lockedScheduleRestriction4": {
-        "message": "ለማባዛት የቁልፍ ቃል እሴቶችን ብቻ ማዘጋጀት ይችላሉ፡ ከ1 እስከ 1000። ለመደመር፡ ከ0 እስከ 1000።"
+        "message": "New or changed keywords must stay inside the strict allowed scoring ranges."
     },
     "lockedScheduleRestriction5": {
-        "message": "የሰዓት ቆጣሪ ቆጠራ ሊጨምር አይችልም።"
+        "message": "You cannot disable Pomodoro, turn off strict breaks, or make Pomodoro easier to bypass."
     },
     "lockedScheduleRestriction6": {
-        "message": "የሰዓት ቆጣሪው ቆይታ ሊጨምር አይችልም።"
+        "message": "You can enable Pomodoro or make its timing stricter when that increases protection."
     },
     "lockedScheduleRestriction7": {
-        "message": "ንቁ መርሃግብሮች ሊሰረዙ አይችሉም።"
+        "message": "Active schedules cannot be deleted."
     },
     "lockedScheduleRestriction8": {
-        "message": "ቀኖችን አለመምረጥ፣ መርሐ ግብሩ እንዳይንቀሳቀስ ማድረግ ወይም ገባሪ መርሐግብሮችን ለመጀመር ወይም የመጨረሻ ጊዜ መቀየር አትችልም።"
+        "message": "You cannot remove active days or shrink an active protected schedule window."
     },
     "lockedScheduleRestriction9": {
-        "message": "የተፈቀደላቸው ድር ጣቢያዎችን ማከል አይችሉም።"
+        "message": "You cannot add allowed websites to bypass a protected plan."
     },
     "lockedScheduleRestriction10": {
-        "message": "የቅጥያውን የይለፍ ቃል ማዘጋጀት ወይም መሰረዝ አይችሉም።"
+        "message": "You cannot delete password protection during an active protected schedule."
     },
     "whitelistWebsitesTitle": {
-        "message": "የተፈቀደላቸው ድር ጣቢያዎች"
+        "message": "Allowed Websites"
     },
     "whitelistWebsitesText": {
-        "message": "የተፈቀደላቸው ድረ-ገጾች እንዲያስገቡ ይፈቅድልዎታል፣ ይህ ማለት የቁልፍ ቃል ቅኝት በእነዚህ ድረ-ገጾች ላይ አይደረግም እና ስለዚህ አይታገዱም። በአሁኑ ጊዜ፣ ብዙ ድረ-ገጾችን በአንድ ግቤት ውስጥ ለማካተት የዱር ካርድ (*) የመጠቀም አቅም የለንም (እንደ *.io፣ ሁሉም ‹.io› ያላቸው ድረ-ገጾች የሚታገዱበት)፣ ስለዚህ ይህ ባህሪ በጣም ጠቃሚ አይደለም፣ ግን አለ።"
+        "message": "Allowed websites are plan-owned exceptions. Add them when a site should remain usable while a plan is active; the plan will not scan or block those allowed hosts."
     },
     "passwordManagementTitle": {
         "message": "የይለፍ ቃል አስተዳደር"
     },
     "passwordManagementText": {
-        "message": "ለቅጥያው ገጹ የይለፍ ቃል እንዲያዘጋጁ ይፈቅድልዎታል. የኤክስቴንሽን ገጹን የሚከፍት ማንኛውም ሰው መዳረሻ ለማግኘት ትክክለኛውን የይለፍ ቃል ማስገባት ይኖርበታል። ሌሎች በአጋጣሚ (ወይም ሆን ተብሎ) ቅንብሮቹን እንዳይጨምሩ ለመከላከል ይጠቅማል።"
+        "message": "Password protection can require a password before opening the options page. Use it when you want an extra barrier around changing protection settings."
     },
     "contactFeedbackTitle": {
         "message": "እውቂያ እና ግብረመልስ"

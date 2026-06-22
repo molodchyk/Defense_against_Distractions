@@ -372,148 +372,148 @@
         "message": "හැඳින්වීම"
     },
     "introText1": {
-        "message": "හායි! අන්තර්ජාලයේ අවධානය වෙනතකට යොමු කිරීම සහ කල් දැමීම ඉතා පහසුය. මෙම දිගුව ඔබට දැකීමට අවශ්‍ය නැති මූල පද මත පදනම්ව වෙබ් පිටු අවහිර කිරීමට ඉඩ සලසයි."
+        "message": "Defense Against Distractions lets you create local protection plans that block pages, guide Pomodoro timing, detect possible intent drift, and clean up distracting page UI."
     },
     "introText2": {
-        "message": "ක්‍රීඩා කිරීමට වීඩියෝ ක්‍රීඩා දහස් ගණනක්, කියවීමට ප්‍රවෘත්ති, නැරඹීමට වීඩියෝ, යනාදිය ඇත. බොහෝ විට, ව්‍යාපෘති කාලසීමාවන් හෝ විභාග තවමත් දුරින් පවතින විට අප කරන්නේ මෙයයි. සමහර විට, ඔබට කළ යුතු දේ කිරීමට ඔබට බල කිරීම තරමක් අපහසු විය හැකිය."
+        "message": "A plan combines page entries, allowed websites, schedules, Pomodoro settings, intent-coherence settings, and optional UI cleanup rules. Turn a plan on when you want that protection available."
     },
     "introText3": {
-        "message": "සහ අවධානය වෙනතකට යොමු කිරීම සෑම තැනකම තිබේ! සමහර වෙබ් අඩවි ඔවුන්ගේ URL මගින් අවහිර කිරීමට ඔබ StayFocusd හෝ Cold Turkey හෝ FocusMe භාවිතා කළත්, ඔබට සියල්ල අවහිර කළ නොහැක. උදාහරණයක් ලෙස, ChatGPT සමඟින් වුවද, ඔබට ඇත්තටම පාඩම් කිරීමට හෝ රැකියාවක් කිරීමට අවශ්‍ය නැති නම් ඔබට ප්‍රවෘත්ති හෝ වීඩියෝ ක්‍රීඩා ගැන කතා කළ හැකිය."
+        "message": "The extension checks configured pages locally in the browser. It does not send page text, browsing diagnostics, or settings to a remote server."
     },
     "introText4": {
-        "message": "මෙම දිගුව සමඟ, ඔබට ඔවුන්ගේ පෙළෙහි ඇති වචන සහ වාක්‍ය ඛණ්ඩ මත පදනම්ව වෙබ් අඩවි අවහිර කළ හැක."
+        "message": "Start with one plan, add the pages and words that matter, then make the plan stricter with schedules or Pomodoro when you need stronger defense."
     },
     "howToUseTitle": {
         "message": "දිගුව භාවිතා කරන්නේ කෙසේද"
     },
     "createGroupTitle": {
-        "message": "පළමු පියවර: කණ්ඩායමක් සාදන්න"
+        "message": "First Step: Create a Plan"
     },
     "createGroupText1": {
-        "message": "ඔබට 'Add Group' බොත්තම ඔබන්න හෝ කණ්ඩායම් නම ඇතුළත් කර Enter හෝ Add Group බොත්තම ඔබන්න. ඔබට කණ්ඩායම් කිහිපයක් සෑදිය හැකිය."
+        "message": "Enter a plan name and press Add Plan. Open the plan to configure entries, schedules, Pomodoro, intent coherence, allowed websites, and UI cleanup assignments."
     },
     "createGroupText2": {
-        "message": "ඔබට කණ්ඩායම් පැනලය පෙනෙනු ඇත."
+        "message": "The default plan is a safe starting point. You can keep it, rename it, or create additional plans for different contexts."
     },
     "websitesTitle": {
-        "message": "වෙබ් අඩවි"
+        "message": "Entries and Websites"
     },
     "websitesText": {
-        "message": "වෙබ් අඩවි පේළියේ වම්පස ඇති 'සංස්කරණය' බොත්තම එබීමෙන් ඔබට වෙබ් අඩවි එකතු කිරීම ආරම්භ කළ හැක. දිගුව මූල පද අවහිර කරන වෙබ් අඩවි සඳහා මෙම ක්ෂේත්‍රය වගකිව යුතුය. මෙහිදී ඔබට වෙබ් අඩවි URL ඇතුළත් කළ යුතුය, උදාහරණයක් ලෙස, 'google.com'. ඔබට වෙබ් අඩවි කිහිපයක් ඇතුළත් කළ හැකිය, සෑම නව පේළියක්ම නව වෙබ් අඩවියකි. Enter ඔබන්න. ඔබ සූදානම් වූ විට, හරිත 'සුරකින්න' බොත්තම ඔබන්න. නැත්නම් Cancel කරන්න පුළුවන්."
+        "message": "A plan entry has websites and keywords. Add the websites where the keywords should be scanned, one host per line, such as example.com or docs.example.com."
     },
     "keywordsTitle": {
         "message": "මූල පද"
     },
     "keywordsText1": {
-        "message": "නව මූලපද එක් කිරීමට හෝ යම් වෙනසක් කිරීමට, 'Edit' ඔබන්න. ඔබ මෙහි ඇතුළත් කරන මූල පද ඔබ මෙම කණ්ඩායම සඳහා ඇතුළත් කළ වෙබ් අඩවිවල ස්කෑන් කරනු ලැබේ."
+        "message": "Add keywords or phrases to the same entry. The extension scans matching pages locally and blocks the page when the entry score reaches 1000."
     },
     "keywordFormatsIntroduction": {
         "message": "මූල පද සඳහා ආකෘති 3 ක් ඇත:"
     },
     "keywordFormat1Title": {
-        "message": "පළමු ආකෘතිය:"
+        "message": "Keyword format 1:"
     },
     "keywordFormat1Text": {
-        "message": "යන්තම් මූල පද ඇතුලත් කරන්න. එය වචනයක් හෝ වාක්‍ය ඛණ්ඩයක් විය හැකිය. මූල පදයේ ',' කොමාවක් තිබේ නම්, ඔබ එයට පෙර '\\' ගැලවීමේ අක්ෂරයක් භාවිතා කළ යුතුය. මූල පදය අනාවරණය වූ වහාම වෙබ් අඩවිය අවහිර කරනු ලැබේ. ඔබට අවශ්‍ය තරම් Keywords ඇතුලත් කල හැක, enter ඔබන්න. සෑම නව පේළියක්ම නව මූල පදයකි."
+        "message": "Enter a word or phrase. If the keyword contains a comma, put a backslash before the comma. A plain keyword blocks as soon as it is detected."
     },
     "keywordFormat1_2": {
-        "message": "උදාහරණය: 'වීඩියෝ ක්‍රීඩා' හෝ 'ප්‍රවෘත්ති'."
+        "message": "Examples: 'video games', 'news'."
     },
     "keywordFormat2Title": {
-        "message": "දෙවන ආකෘතිය:"
+        "message": "Keyword format 2:"
     },
     "keywordFormat2Text": {
-        "message": "මූල පදය ඇතුළත් කරන්න, ඉන්පසු සංඛ්‍යාත්මක අගයක් ඇතුළත් කරන්න. ඔබ කණ්ඩායමක් තුළ ඇතුළු කළ සෑම වෙබ් අඩවියක්ම ලකුණු 1000කට ළඟා විය යුතුය. වෙබ් අඩවිය ආරම්භ වන්නේ 0 අගයකින් වන අතර, මූල පදයේ සංඛ්‍යාත්මක අගය මත පදනම්ව, අගය වැඩි වේ. වෙබ් අඩවිය ලකුණු 1000කට ළඟා වූ පසු, එය අවහිර කරනු ලැබේ."
+        "message": "Add a number after a comma. The page score starts at 0 and increases by that amount each time the keyword is found. At 1000, the page is blocked."
     },
     "keywordFormat2_2": {
         "message": "උදාහරණය: 'පුවත්, 50'"
     },
     "keywordFormat2_3": {
-        "message": "ඔබ කණ්ඩායමක් තුළ ඇතුළත් කළ සෑම වෙබ් අඩවියක්ම ලකුණු 1000කට ළඟා විය යුතුය. අඩවිය ආරම්භ වන්නේ 0 අගයකින් වන අතර, මූල පදයේ සංඛ්‍යාත්මක අගය මත පදනම්ව, අගය වැඩිවේ. වෙබ් අඩවිය ලකුණු 1000කට ළඟා වූ පසු, එය අවහිර කරනු ලැබේ."
+        "message": "Use this when a word should matter, but only after repeated or combined signals."
     },
     "keywordFormat3Title": {
-        "message": "තුන්වන ආකෘතිය:"
+        "message": "Keyword format 3:"
     },
     "keywordFormat3Text": {
-        "message": "මූල පදය ඇතුළත් කරන්න, ඉන්පසු ගුණ කිරීමේ හෝ එකතු කිරීමේ ලකුණ (* හෝ +), ඉන්පසු සංඛ්‍යාත්මක අගයක්. මෙම අවස්ථාවෙහිදී, සොයාගත් මූල පදයේ සංඛ්‍යාත්මක අගය මත පදනම්ව පිටුව සඳහා ලකුණු ගුණ කරනු ලැබේ."
+        "message": "Use * or + with a number when you want a keyword to multiply or add to the current page score in a more explicit way."
     },
     "keywordFormat3_2": {
         "message": "උදාහරණය: 'පුවත්, *, 10'"
     },
     "keywordFormat3_3": {
-        "message": "මෙම අවස්ථාවෙහිදී, සොයාගත් මූල පදයේ සංඛ්‍යාත්මක අගය මත පදනම්ව පිටුව සඳහා ලකුණු ගුණ කරනු ලැබේ."
+        "message": "Use this for stronger signals that should become decisive only in a specific context."
     },
     "timerCountTitle": {
-        "message": "ටයිමර් ගණන"
+        "message": "Pomodoro"
     },
     "timerCountText": {
-        "message": "පිටුව අවහිර කළ පසු, ඔබට 'සක්‍රීය ටයිමරය' බොත්තම එබීමේ විකල්පය ඇත. ඊට පසු, පිටුව නැවත අවහිර කිරීමට පෙර එහි ක්‍රියා කිහිපයක් සිදු කිරීමට ඔබට කාලය ලැබෙනු ඇත. ටයිමර් ගණන් කිරීමේ ක්ෂේත්‍රය තුළ, ඔබට දවස තුළ කොපමණ ටයිමර ගණනක් තිබිය යුතුද යන්න තීරණය කළ හැකිය."
+        "message": "A plan can run Pomodoro work and rest timing. Strict breaks can block or quiet pages during rest so the break is protected."
     },
     "timerDurationTitle": {
-        "message": "ටයිමර් කාල සීමාව (තත්පර)"
+        "message": "Pomodoro Timing"
     },
     "timerDurationText": {
-        "message": "මෙම ක්ෂේත්‍රය තුළ, එක් එක් ටයිමරයට තත්පර කීයක් තිබේදැයි ඔබ තීරණය කරයි."
+        "message": "Set work minutes, short breaks, long breaks, and how many work sessions happen before a long break. During an active protected schedule, enabling Pomodoro or making it stricter is allowed; relaxing it is blocked."
     },
     "lockedSchedulesTitle": {
         "message": "අගුලු දැමූ කාලසටහන්"
     },
     "lockedSchedulesNote": {
-        "message": "! කාලය ගත වන තුරු අගුලු දැමූ කාලසටහනක් අගුළු හැරිය නොහැක (ඔබ දිගුව අස්ථාපනය කරන්නේ නම් මිස)!"
+        "message": "A protected schedule is meant to resist hot-state weakening while the scheduled window is active."
     },
     "lockedSchedulesText1": {
-        "message": "උපලේඛන නාම ක්ෂේත්‍රයේ කාලසටහනේ නම සාදා Enter හෝ Add Schedule බොත්තම එබීමෙන් ඔබට නව අගුලු දැමූ කාලසටහනක් එක් කළ හැකිය."
+        "message": "Open a plan, choose Schedule, and add one or more scheduled time blocks. Each block can choose days, start time, end time, and whether it is protected."
     },
     "lockedSchedulesText2": {
-        "message": "ඔබගේ කාලසටහනේ සැකසුම් වෙනස් කිරීමට, 'Edit' ඔබන්න. දින බොත්තම් එබීමෙන්, ඔබ එම දිනයේ කාලසටහන සක්‍රීය කරන්න (බොත්තම කොළ පැහැයට හැරේ), නැතහොත් එම දිනය සඳහා එය අක්‍රිය කරන්න. ආරම්භක වේලාව සහ අවසන් වේලාව යන ක්ෂේත්‍ර වෙනස් කිරීමෙන්, ඔබ කාලසටහන සක්‍රිය විය හැකි වේලාවන් සකසයි. සෑම දිනකම පැය 1ක අක්‍රිය කාල කවුළුවක් තිබිය යුතු අතර එම කාලය තුළ ඔබට කාලසටහන අක්‍රිය කළ හැක. අක්‍රිය/ක්‍රියාකාරී බොත්තම කාලසටහන ටොගල් කරයි. වත්මන් දිනය සක්‍රීය කර ඇත්නම් (කොළ) සහ බොත්තම 'සක්‍රිය' සහ කොළ පැහැති නම් සහ වත්මන් වේලාව ආරම්භක සහ අවසන් වේලාවන් අතර නම් කාලසටහන අගුලු දමා සක්‍රිය වනු ඇත."
+        "message": "A protected active schedule can be made stricter but not more relaxed. For example, you can add entries, raise keyword scores, enable stricter Pomodoro behavior, or add UI cleanup rules, but you cannot remove active protection."
     },
     "lockedSchedulesText3": {
-        "message": "මකන්න බොත්තම අගුලු දැමූ කාලසටහන ඉවත් කරයි. කණ්ඩායම් සහ සුදු ලැයිස්තුගත වෙබ් අඩවි සඳහා ද එය අදාළ වේ."
+        "message": "Delete removes a schedule only when doing so does not relax an active protected window."
     },
     "lockedSchedulesText4": {
-        "message": "අගුලු දැමූ කාලසටහන තුළ සීමාවන් කිහිපයක් අදාළ වේ:"
+        "message": "During an active protected schedule, relaxed changes are refused:"
     },
     "lockedScheduleRestriction1": {
-        "message": "ඔබට කණ්ඩායම් නම් වෙනස් කළ නොහැක."
+        "message": "You cannot disable the active plan."
     },
     "lockedScheduleRestriction2": {
-        "message": "ඔබට කණ්ඩායම් තුළ පවතින වෙබ් අඩවි වෙනස් කිරීමට හෝ ඉවත් කිරීමට නොහැක."
+        "message": "You cannot remove existing plan entries or reduce the websites they protect."
     },
     "lockedScheduleRestriction3": {
-        "message": "ඔබට පවතින මූල පද සහ ඒවායේ අගයන් වෙනස් කිරීමට හෝ ඉවත් කිරීමට නොහැක."
+        "message": "You cannot remove existing keywords or reduce their weights."
     },
     "lockedScheduleRestriction4": {
-        "message": "ඔබට ගුණ කිරීම සඳහා මූල පද අගයන් පමණක් සැකසිය හැක: 1 සිට 1000 දක්වා. එකතු කිරීම සඳහා: 0 සිට 1000 දක්වා."
+        "message": "New or changed keywords must stay inside the strict allowed scoring ranges."
     },
     "lockedScheduleRestriction5": {
-        "message": "ටයිමර් ගණන වැඩි කළ නොහැක."
+        "message": "You cannot disable Pomodoro, turn off strict breaks, or make Pomodoro easier to bypass."
     },
     "lockedScheduleRestriction6": {
-        "message": "ටයිමරයේ කාලසීමාව වැඩි කළ නොහැක."
+        "message": "You can enable Pomodoro or make its timing stricter when that increases protection."
     },
     "lockedScheduleRestriction7": {
-        "message": "සක්‍රිය කාලසටහන් මකා දැමිය නොහැක."
+        "message": "Active schedules cannot be deleted."
     },
     "lockedScheduleRestriction8": {
-        "message": "ඔබට දින තේරීම ඉවත් කිරීමට, කාලසටහන අක්‍රිය කිරීමට, හෝ සක්‍රිය කාලසටහන් සඳහා ආරම්භක හෝ අවසන් වේලාවන් වෙනස් කිරීමට නොහැක."
+        "message": "You cannot remove active days or shrink an active protected schedule window."
     },
     "lockedScheduleRestriction9": {
-        "message": "ඔබට සුදු ලැයිස්තුගත වෙබ් අඩවි එක් කළ නොහැක."
+        "message": "You cannot add allowed websites to bypass a protected plan."
     },
     "lockedScheduleRestriction10": {
-        "message": "ඔබට දිගුව සඳහා මුරපදය සැකසීමට හෝ මකා දැමිය නොහැක."
+        "message": "You cannot delete password protection during an active protected schedule."
     },
     "whitelistWebsitesTitle": {
-        "message": "සුදු ලැයිස්තු වෙබ් අඩවි"
+        "message": "Allowed Websites"
     },
     "whitelistWebsitesText": {
-        "message": "සුදු ලැයිස්තුගත කර ඇති වෙබ් අඩවි ඇතුළු කිරීමට ඔබට ඉඩ සලසයි, එනම් මූල පද පරිලෝකනය මෙම වෙබ් අඩවිවල සිදු නොකරනු ඇති අතර එමඟින් ඒවා අවහිර නොකරනු ඇත. දැනට, එක් ප්‍රවේශයකට වෙබ් අඩවි විශාල ප්‍රමාණයක් ඇතුළත් කිරීමට Wildcard (*) භාවිතා කිරීමට අපට හැකියාවක් නොමැත (*.io වැනි, '.io' සහිත සියලුම වෙබ් අඩවි අවහිර කරනු ලැබේ), එබැවින් මෙම විශේෂාංගය එතරම් ප්‍රයෝජනවත් නොවේ, නමුත් එය පවතී."
+        "message": "Allowed websites are plan-owned exceptions. Add them when a site should remain usable while a plan is active; the plan will not scan or block those allowed hosts."
     },
     "passwordManagementTitle": {
         "message": "මුරපද කළමනාකරණය"
     },
     "passwordManagementText": {
-        "message": "දිගු පිටුව සඳහා මුරපදයක් සැකසීමට ඔබට ඉඩ සලසයි. දිගු පිටුව විවෘත කරන ඕනෑම කෙනෙකුට ප්‍රවේශය ලබා ගැනීමට නිවැරදි මුරපදය ඇතුළත් කිරීමට අවශ්‍ය වනු ඇත. අනිත් අය අහම්බෙන් (හෝ හිතාමතාම) සිටුවම් තද කිරීමෙන් වැලැක්වීමට ප්‍රයෝජනවත් වේ."
+        "message": "Password protection can require a password before opening the options page. Use it when you want an extra barrier around changing protection settings."
     },
     "contactFeedbackTitle": {
         "message": "සම්බන්ධතා සහ ප්‍රතිපෝෂණ"

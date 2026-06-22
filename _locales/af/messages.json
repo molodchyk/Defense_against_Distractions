@@ -372,148 +372,148 @@
         "message": "Inleiding"
     },
     "introText1": {
-        "message": "Hallo! Dit is so maklik om op die internet afgelei te word en uit te stel. Hierdie uitbreiding laat jou toe om webblaaie te blokkeer op grond van sleutelwoorde wat jy nie wil sien nie."
+        "message": "Defense Against Distractions lets you create local protection plans that block pages, guide Pomodoro timing, detect possible intent drift, and clean up distracting page UI."
     },
     "introText2": {
-        "message": "Daar is duisende videospeletjies om te speel, nuusberigte om te lees, video's om te kyk, ensovoorts. En dit is dikwels wat ons doen wanneer projeksperdatums of eksamens nog ver is. Soms kan dit 'n bietjie moeilik wees om jouself te dwing om te doen wat jy moet doen."
+        "message": "A plan combines page entries, allowed websites, schedules, Pomodoro settings, intent-coherence settings, and optional UI cleanup rules. Turn a plan on when you want that protection available."
     },
     "introText3": {
-        "message": "En afleidings is oral! Selfs as jy StayFocusd of Cold Turkey of FocusMe gebruik om sommige webwerwe met hul URL's te blokkeer, kan jy nie alles blokkeer nie. Byvoorbeeld, selfs met ChatGPT, kan jy oor nuus of videospeletjies praat as jy regtig nie lus is om te studeer of werk te doen nie."
+        "message": "The extension checks configured pages locally in the browser. It does not send page text, browsing diagnostics, or settings to a remote server."
     },
     "introText4": {
-        "message": "Met hierdie uitbreiding kan jy webwerwe blokkeer op grond van woorde en frases in hul teks."
+        "message": "Start with one plan, add the pages and words that matter, then make the plan stricter with schedules or Pomodoro when you need stronger defense."
     },
     "howToUseTitle": {
         "message": "Hoe om die uitbreiding te gebruik"
     },
     "createGroupTitle": {
-        "message": "Eerste stap: Skep 'n groep"
+        "message": "First Step: Create a Plan"
     },
     "createGroupText1": {
-        "message": "Jy kan die 'Voeg groep by'-knoppie druk of die groepnaam invoer en Enter of die Voeg groep by-knoppie druk. Jy kan verskeie groepe skep."
+        "message": "Enter a plan name and press Add Plan. Open the plan to configure entries, schedules, Pomodoro, intent coherence, allowed websites, and UI cleanup assignments."
     },
     "createGroupText2": {
-        "message": "Jy sal die groeppaneel sien."
+        "message": "The default plan is a safe starting point. You can keep it, rename it, or create additional plans for different contexts."
     },
     "websitesTitle": {
-        "message": "Webwerwe"
+        "message": "Entries and Websites"
     },
     "websitesText": {
-        "message": "Jy kan begin om webwerwe by te voeg deur die 'Redigeer'-knoppie aan die linkerkant van die Webwerwe-reël te druk. Hierdie veld is verantwoordelik vir webwerwe waar die uitbreiding sleutelwoorde sal blokkeer. Hier moet jy webwerf-URL's invoer, byvoorbeeld 'google.com'. U kan verskeie webwerwe invoer, elke nuwe reël is 'n nuwe webwerf. Druk net Enter. Wanneer jy gereed is, druk die groen 'Stoor'-knoppie. Of jy kan kanselleer."
+        "message": "A plan entry has websites and keywords. Add the websites where the keywords should be scanned, one host per line, such as example.com or docs.example.com."
     },
     "keywordsTitle": {
         "message": "Sleutelwoorde"
     },
     "keywordsText1": {
-        "message": "Om nuwe sleutelwoorde by te voeg of enige veranderinge aan te bring, druk 'Redigeer'. Die sleutelwoorde wat jy hier invoer sal geskandeer word op die webwerwe wat jy vir hierdie groep ingevoer het."
+        "message": "Add keywords or phrases to the same entry. The extension scans matching pages locally and blocks the page when the entry score reaches 1000."
     },
     "keywordFormatsIntroduction": {
         "message": "Daar is 3 formate vir die sleutelwoorde:"
     },
     "keywordFormat1Title": {
-        "message": "Eerste formaat:"
+        "message": "Keyword format 1:"
     },
     "keywordFormat1Text": {
-        "message": "Voer net die sleutelwoorde in. Dit kan 'n woord of 'n frase wees. As die sleutelwoord 'n komma ',' bevat, moet jy 'n ontsnap-karakter '\\' daarvoor gebruik. Die webwerf sal geblokkeer word sodra die sleutelwoord bespeur word. Jy kan soveel sleutelwoorde invoer as wat jy wil, druk net enter. Elke nuwe reël is 'n nuwe sleutelwoord."
+        "message": "Enter a word or phrase. If the keyword contains a comma, put a backslash before the comma. A plain keyword blocks as soon as it is detected."
     },
     "keywordFormat1_2": {
-        "message": "Voorbeeld: 'videospeletjies' of 'nuus'."
+        "message": "Examples: 'video games', 'news'."
     },
     "keywordFormat2Title": {
-        "message": "Tweede formaat:"
+        "message": "Keyword format 2:"
     },
     "keywordFormat2Text": {
-        "message": "Voer die sleutelwoord in, gevolg deur 'n numeriese waarde. Elke webwerf wat jy in 'n groep ingeskryf het, moet 'n telling van 1000 bereik. Die webwerf begin met 'n waarde van 0, en gebaseer op die numeriese waarde van die sleutelwoord, neem die waarde toe. Sodra die webwerf 'n telling van 1000 bereik, sal dit geblokkeer word."
+        "message": "Add a number after a comma. The page score starts at 0 and increases by that amount each time the keyword is found. At 1000, the page is blocked."
     },
     "keywordFormat2_2": {
         "message": "Voorbeeld: 'nuus, 50'"
     },
     "keywordFormat2_3": {
-        "message": "Elke webwerf wat jy in 'n groep ingeskryf het, moet 'n telling van 1000 bereik. Die webwerf begin met 'n waarde van 0, en gebaseer op die numeriese waarde van die sleutelwoord, neem die waarde toe. Sodra die webwerf 'n telling van 1000 bereik, sal dit geblokkeer word."
+        "message": "Use this when a word should matter, but only after repeated or combined signals."
     },
     "keywordFormat3Title": {
-        "message": "Derde formaat:"
+        "message": "Keyword format 3:"
     },
     "keywordFormat3Text": {
-        "message": "Voer die sleutelwoord in, gevolg deur 'n vermenigvuldigings- of optelteken (* of +), dan 'n numeriese waarde. In hierdie scenario word die telling vir die bladsy vermenigvuldig op grond van die numeriese waarde van die gevind sleutelwoord."
+        "message": "Use * or + with a number when you want a keyword to multiply or add to the current page score in a more explicit way."
     },
     "keywordFormat3_2": {
         "message": "Voorbeeld: 'nuus, *, 10'"
     },
     "keywordFormat3_3": {
-        "message": "In hierdie scenario word die telling vir die bladsy vermenigvuldig op grond van die numeriese waarde van die gevind sleutelwoord."
+        "message": "Use this for stronger signals that should become decisive only in a specific context."
     },
     "timerCountTitle": {
-        "message": "Timer telling"
+        "message": "Pomodoro"
     },
     "timerCountText": {
-        "message": "Nadat die bladsy geblokkeer is, sal jy die opsie hê om die 'Aktiveer Timer'-knoppie te druk. Daarna sal jy tyd hê om 'n paar aksies op die bladsy uit te voer voordat dit weer geblokkeer word. In die Timer Count-veld kan jy besluit hoeveel timers jy gedurende die dag wil hê."
+        "message": "A plan can run Pomodoro work and rest timing. Strict breaks can block or quiet pages during rest so the break is protected."
     },
     "timerDurationTitle": {
-        "message": "Tydsduur van afteller (sekondes)"
+        "message": "Pomodoro Timing"
     },
     "timerDurationText": {
-        "message": "In hierdie veld besluit jy hoeveel sekondes elke timer sal hê."
+        "message": "Set work minutes, short breaks, long breaks, and how many work sessions happen before a long break. During an active protected schedule, enabling Pomodoro or making it stricter is allowed; relaxing it is blocked."
     },
     "lockedSchedulesTitle": {
         "message": "Geslote skedules"
     },
     "lockedSchedulesNote": {
-        "message": "! 'n Geslote skedule kan nie ontsluit word voordat die tyd verby is nie (tensy jy die uitbreiding deïnstalleer)!"
+        "message": "A protected schedule is meant to resist hot-state weakening while the scheduled window is active."
     },
     "lockedSchedulesText1": {
-        "message": "Jy kan 'n nuwe geslote skedule byvoeg deur die skedulenaam in die Skedulenaam-veld te skep en Enter of die Voeg Bylae-knoppie te druk."
+        "message": "Open a plan, choose Schedule, and add one or more scheduled time blocks. Each block can choose days, start time, end time, and whether it is protected."
     },
     "lockedSchedulesText2": {
-        "message": "Om die instellings van jou skedule te verander, druk 'Redigeer'. Deur die dagknoppies te druk, aktiveer jy óf die skedule op daardie dag (knoppie word groen), óf deaktiveer dit vir daardie dag. Deur die Begintyd- en Eindtyd-velde te wysig, stel jy die tye in wat die skedule aktief kan wees. Elke dag moet 'n 1-uur onaktiewe tydvenster hê sodat jy die skedule gedurende daardie tyd kan deaktiveer. Die Onaktief/Aktief-knoppie wissel die skedule. Die skedule sal gesluit en aktief wees as die huidige dag geaktiveer is (groen) en die knoppie wys 'Aktief' en is ook groen, en as die huidige tyd tussen die begin- en eindtye is."
+        "message": "A protected active schedule can be made stricter but not more relaxed. For example, you can add entries, raise keyword scores, enable stricter Pomodoro behavior, or add UI cleanup rules, but you cannot remove active protection."
     },
     "lockedSchedulesText3": {
-        "message": "Die Delete-knoppie verwyder die geslote skedule. Dieselfde geld vir groepe en webwerwe op die witlys."
+        "message": "Delete removes a schedule only when doing so does not relax an active protected window."
     },
     "lockedSchedulesText4": {
-        "message": "Verskeie beperkings geld tydens die geslote skedule:"
+        "message": "During an active protected schedule, relaxed changes are refused:"
     },
     "lockedScheduleRestriction1": {
-        "message": "Jy kan nie groepname verander nie."
+        "message": "You cannot disable the active plan."
     },
     "lockedScheduleRestriction2": {
-        "message": "Jy kan nie bestaande webwerwe in groepe verander of verwyder nie."
+        "message": "You cannot remove existing plan entries or reduce the websites they protect."
     },
     "lockedScheduleRestriction3": {
-        "message": "Jy kan nie bestaande sleutelwoorde en hul waardes verander of verwyder nie."
+        "message": "You cannot remove existing keywords or reduce their weights."
     },
     "lockedScheduleRestriction4": {
-        "message": "Jy kan slegs sleutelwoordwaardes vir vermenigvuldiging stel: van 1 tot 1000. Vir optelling: van 0 tot 1000."
+        "message": "New or changed keywords must stay inside the strict allowed scoring ranges."
     },
     "lockedScheduleRestriction5": {
-        "message": "Die timertelling kan nie verhoog word nie."
+        "message": "You cannot disable Pomodoro, turn off strict breaks, or make Pomodoro easier to bypass."
     },
     "lockedScheduleRestriction6": {
-        "message": "Die tydsduur kan nie verleng word nie."
+        "message": "You can enable Pomodoro or make its timing stricter when that increases protection."
     },
     "lockedScheduleRestriction7": {
-        "message": "Aktiewe skedules kan nie uitgevee word nie."
+        "message": "Active schedules cannot be deleted."
     },
     "lockedScheduleRestriction8": {
-        "message": "Jy kan nie dae ontkies, die skedule onaktief maak of die begin- of eindtye vir aktiewe skedules verander nie."
+        "message": "You cannot remove active days or shrink an active protected schedule window."
     },
     "lockedScheduleRestriction9": {
-        "message": "Jy kan nie witlys-webwerwe byvoeg nie."
+        "message": "You cannot add allowed websites to bypass a protected plan."
     },
     "lockedScheduleRestriction10": {
-        "message": "Jy kan nie die wagwoord vir die uitbreiding stel of uitvee nie."
+        "message": "You cannot delete password protection during an active protected schedule."
     },
     "whitelistWebsitesTitle": {
-        "message": "Witlys webwerwe"
+        "message": "Allowed Websites"
     },
     "whitelistWebsitesText": {
-        "message": "Laat jou toe om gewitlys-webwerwe in te voer, wat beteken dat die sleutelwoordskandering nie op hierdie webwerwe uitgevoer sal word nie, en dus sal hulle nie geblokkeer word nie. Tans het ons nie die vermoë om 'n jokerteken (*) te gebruik om baie webwerwe in een inskrywing in te sluit nie (soos *.io, waar alle webwerwe met '.io' geblokkeer sal word), so hierdie kenmerk is nie baie nuttig nie, maar dit bestaan."
+        "message": "Allowed websites are plan-owned exceptions. Add them when a site should remain usable while a plan is active; the plan will not scan or block those allowed hosts."
     },
     "passwordManagementTitle": {
         "message": "Wagwoordbestuur"
     },
     "passwordManagementText": {
-        "message": "Laat jou toe om 'n wagwoord vir die uitbreidingbladsy op te stel. Enigiemand wat die uitbreidingsbladsy oopmaak, sal die korrekte wagwoord moet invoer om toegang te verkry. Nuttig om te verhoed dat ander per ongeluk (of doelbewus) die instellings strenger maak."
+        "message": "Password protection can require a password before opening the options page. Use it when you want an extra barrier around changing protection settings."
     },
     "contactFeedbackTitle": {
         "message": "Kontak en terugvoer"

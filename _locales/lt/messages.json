@@ -372,148 +372,148 @@
         "message": "Įvadas"
     },
     "introText1": {
-        "message": "Sveiki! Taip lengva išsiblaškyti internete ir atidėlioti. Šis plėtinys leidžia blokuoti tinklalapius pagal raktinius žodžius, kurių nenorite matyti."
+        "message": "Defense Against Distractions lets you create local protection plans that block pages, guide Pomodoro timing, detect possible intent drift, and clean up distracting page UI."
     },
     "introText2": {
-        "message": "Galima leisti tūkstančius video games, skaityti naujienas, žiūrėti vaizdo įrašus ir pan. Ir dažnai tai darome, kai projekto terminai ar egzaminai dar toli. Kartais gali būti sunku priversti save daryti tai, ką reikia padaryti."
+        "message": "A plan combines page entries, allowed websites, schedules, Pomodoro settings, intent-coherence settings, and optional UI cleanup rules. Turn a plan on when you want that protection available."
     },
     "introText3": {
-        "message": "Ir blaškymas yra visur! Net jei naudojate StayFocusd, Cold Turkey arba FocusMe, kad blokuotumėte kai kurias svetaines pagal jų URL, negalėsite užblokuoti visko. Pavyzdžiui, net naudodami ChatGPT galite kalbėti apie naujienas arba video games, jei tikrai nenorite mokytis ar dirbti."
+        "message": "The extension checks configured pages locally in the browser. It does not send page text, browsing diagnostics, or settings to a remote server."
     },
     "introText4": {
-        "message": "Naudodami šį plėtinį galite blokuoti svetaines pagal jų teksto žodžius ir frazes."
+        "message": "Start with one plan, add the pages and words that matter, then make the plan stricter with schedules or Pomodoro when you need stronger defense."
     },
     "howToUseTitle": {
         "message": "Kaip naudoti plėtinį"
     },
     "createGroupTitle": {
-        "message": "Pirmas žingsnis: sukurkite grupę"
+        "message": "First Step: Create a Plan"
     },
     "createGroupText1": {
-        "message": "Galite paspausti mygtuką „Pridėti grupę“ arba įvesti grupės pavadinimą ir paspausti Enter arba mygtuką Pridėti grupę. Galite sukurti kelias grupes."
+        "message": "Enter a plan name and press Add Plan. Open the plan to configure entries, schedules, Pomodoro, intent coherence, allowed websites, and UI cleanup assignments."
     },
     "createGroupText2": {
-        "message": "Pamatysite grupės skydelį."
+        "message": "The default plan is a safe starting point. You can keep it, rename it, or create additional plans for different contexts."
     },
     "websitesTitle": {
-        "message": "Interneto svetainės"
+        "message": "Entries and Websites"
     },
     "websitesText": {
-        "message": "Galite pradėti pridėti svetainių paspausdami mygtuką „Redaguoti“, esantį kairėje nuo svetainės „Svetainės“ eilutės. Šis laukas yra atsakingas už svetaines, kuriose plėtinys blokuos raktinius žodžius. Čia turite įvesti svetainių URL adresus, pavyzdžiui, „google.com“. Galite įvesti kelias svetaines, kiekviena nauja eilutė yra nauja svetainė. Tiesiog paspauskite Enter. Kai būsite pasiruošę, paspauskite žalią mygtuką „Išsaugoti“. Arba galite atšaukti."
+        "message": "A plan entry has websites and keywords. Add the websites where the keywords should be scanned, one host per line, such as example.com or docs.example.com."
     },
     "keywordsTitle": {
         "message": "Raktažodžiai"
     },
     "keywordsText1": {
-        "message": "Norėdami pridėti naujų raktinių žodžių arba atlikti kokius nors pakeitimus, paspauskite „Redaguoti“. Čia įvesti raktiniai žodžiai bus nuskaityti svetainėse, kurias įvedėte šiai grupei."
+        "message": "Add keywords or phrases to the same entry. The extension scans matching pages locally and blocks the page when the entry score reaches 1000."
     },
     "keywordFormatsIntroduction": {
         "message": "Yra 3 raktinių žodžių formatai:"
     },
     "keywordFormat1Title": {
-        "message": "Pirmasis formatas:"
+        "message": "Keyword format 1:"
     },
     "keywordFormat1Text": {
-        "message": "Tiesiog įveskite raktinius žodžius. Tai gali būti žodis arba frazė. Jei raktiniame žodyje yra kablelis „,“, prieš jį turite naudoti pabėgimo simbolį „\\“. Svetainė bus užblokuota, kai tik bus aptiktas raktinis žodis. Galite įvesti tiek raktinių žodžių, kiek norite, tiesiog paspauskite klavišą Enter. Kiekviena nauja eilutė yra naujas raktinis žodis."
+        "message": "Enter a word or phrase. If the keyword contains a comma, put a backslash before the comma. A plain keyword blocks as soon as it is detected."
     },
     "keywordFormat1_2": {
-        "message": "Pavyzdys: „video games“ arba „naujienos“."
+        "message": "Examples: 'video games', 'news'."
     },
     "keywordFormat2Title": {
-        "message": "Antrasis formatas:"
+        "message": "Keyword format 2:"
     },
     "keywordFormat2Text": {
-        "message": "Įveskite raktinį žodį ir skaitinę reikšmę. Kiekviena svetainė, kurią įvedėte į grupę, turi pasiekti 1000 balų. Svetainė prasideda reikšme 0 ir, atsižvelgiant į skaitinę raktinio žodžio reikšmę, reikšmė didėja. Kai svetainė pasieks 1000 balų, ji bus užblokuota."
+        "message": "Add a number after a comma. The page score starts at 0 and increases by that amount each time the keyword is found. At 1000, the page is blocked."
     },
     "keywordFormat2_2": {
         "message": "Pavyzdys: 'news, 50'"
     },
     "keywordFormat2_3": {
-        "message": "Kiekviena svetainė, kurią įvedėte į grupę, turi pasiekti 1000 balų. Svetainė prasideda reikšme 0 ir, atsižvelgiant į skaitinę raktinio žodžio reikšmę, reikšmė didėja. Kai svetainė pasieks 1000 balų, ji bus užblokuota."
+        "message": "Use this when a word should matter, but only after repeated or combined signals."
     },
     "keywordFormat3Title": {
-        "message": "Trečias formatas:"
+        "message": "Keyword format 3:"
     },
     "keywordFormat3Text": {
-        "message": "Įveskite raktinį žodį, tada daugybos arba sudėties ženklą (* arba +), tada skaitinę reikšmę. Pagal šį scenarijų puslapio balas padauginamas pagal rasto raktinio žodžio skaitinę reikšmę."
+        "message": "Use * or + with a number when you want a keyword to multiply or add to the current page score in a more explicit way."
     },
     "keywordFormat3_2": {
         "message": "Pavyzdys: 'news, *, 10'"
     },
     "keywordFormat3_3": {
-        "message": "Pagal šį scenarijų puslapio balas padauginamas pagal rasto raktinio žodžio skaitinę reikšmę."
+        "message": "Use this for stronger signals that should become decisive only in a specific context."
     },
     "timerCountTitle": {
-        "message": "Laikmačio skaičius"
+        "message": "Pomodoro"
     },
     "timerCountText": {
-        "message": "Kai puslapis bus užblokuotas, turėsite galimybę paspausti mygtuką „Suaktyvinti laikmatį“. Po to turėsite laiko atlikti kai kuriuos veiksmus puslapyje, kol jis vėl bus užblokuotas. Lauke Laikmačio skaičius galite nuspręsti, kiek laikmačių norite turėti per dieną."
+        "message": "A plan can run Pomodoro work and rest timing. Strict breaks can block or quiet pages during rest so the break is protected."
     },
     "timerDurationTitle": {
-        "message": "Laikmačio trukmė (sekundėmis)"
+        "message": "Pomodoro Timing"
     },
     "timerDurationText": {
-        "message": "Šiame lauke jūs nuspręsite, kiek sekundžių turės kiekvienas laikmatis."
+        "message": "Set work minutes, short breaks, long breaks, and how many work sessions happen before a long break. During an active protected schedule, enabling Pomodoro or making it stricter is allowed; relaxing it is blocked."
     },
     "lockedSchedulesTitle": {
         "message": "Užrakinti tvarkaraščiai"
     },
     "lockedSchedulesNote": {
-        "message": "! Užrakinto tvarkaraščio negalima atrakinti, kol nepraeis laikas (nebent pašalinsite plėtinį)!"
+        "message": "A protected schedule is meant to resist hot-state weakening while the scheduled window is active."
     },
     "lockedSchedulesText1": {
-        "message": "Galite pridėti naują užrakintą tvarkaraštį sukūrę tvarkaraščio pavadinimą lauke Tvarkaraščio pavadinimas ir paspausdami Enter arba mygtuką Pridėti tvarkaraštį."
+        "message": "Open a plan, choose Schedule, and add one or more scheduled time blocks. Each block can choose days, start time, end time, and whether it is protected."
     },
     "lockedSchedulesText2": {
-        "message": "Norėdami pakeisti savo tvarkaraščio nustatymus, paspauskite „Redaguoti“. Paspaudę dienos mygtukus, įjungiate tos dienos tvarkaraštį (mygtukas tampa žalias) arba išjungiate tą dieną. Keisdami laukus Pradžios laikas ir Pabaigos laikas nustatote laiką, kada tvarkaraštis gali būti aktyvus. Kiekviena diena turi turėti 1 valandos neaktyvaus laiko langą, kad galėtumėte tuo metu išjungti tvarkaraštį. Mygtukas Neaktyvus / Aktyvus perjungia tvarkaraštį. Tvarkaraštis bus užrakintas ir aktyvus, jei įjungta einamoji diena (žalia spalva), o mygtukas rodo „Active“ ir taip pat yra žalias, o dabartinis laikas yra tarp pradžios ir pabaigos laiko."
+        "message": "A protected active schedule can be made stricter but not more relaxed. For example, you can add entries, raise keyword scores, enable stricter Pomodoro behavior, or add UI cleanup rules, but you cannot remove active protection."
     },
     "lockedSchedulesText3": {
-        "message": "Mygtukas Ištrinti pašalina užrakintą tvarkaraštį. Tas pats pasakytina apie grupes ir į baltąjį sąrašą įtrauktas svetaines."
+        "message": "Delete removes a schedule only when doing so does not relax an active protected window."
     },
     "lockedSchedulesText4": {
-        "message": "Užrakinto tvarkaraščio metu taikomi keli apribojimai:"
+        "message": "During an active protected schedule, relaxed changes are refused:"
     },
     "lockedScheduleRestriction1": {
-        "message": "Negalite keisti grupių pavadinimų."
+        "message": "You cannot disable the active plan."
     },
     "lockedScheduleRestriction2": {
-        "message": "Negalite keisti ar pašalinti esamų svetainių grupėse."
+        "message": "You cannot remove existing plan entries or reduce the websites they protect."
     },
     "lockedScheduleRestriction3": {
-        "message": "Negalite pakeisti arba pašalinti esamų raktinių žodžių ir jų verčių."
+        "message": "You cannot remove existing keywords or reduce their weights."
     },
     "lockedScheduleRestriction4": {
-        "message": "Galite nustatyti tik daugybos raktinių žodžių reikšmes: nuo 1 iki 1000. Sudėti: nuo 0 iki 1000."
+        "message": "New or changed keywords must stay inside the strict allowed scoring ranges."
     },
     "lockedScheduleRestriction5": {
-        "message": "Laikmačio skaičius negali būti padidintas."
+        "message": "You cannot disable Pomodoro, turn off strict breaks, or make Pomodoro easier to bypass."
     },
     "lockedScheduleRestriction6": {
-        "message": "Laikmačio trukmė negali būti padidinta."
+        "message": "You can enable Pomodoro or make its timing stricter when that increases protection."
     },
     "lockedScheduleRestriction7": {
-        "message": "Aktyvių tvarkaraščių ištrinti negalima."
+        "message": "Active schedules cannot be deleted."
     },
     "lockedScheduleRestriction8": {
-        "message": "Negalite panaikinti dienų pasirinkimo, padaryti tvarkaraščio neaktyvaus arba pakeisti aktyvių tvarkaraščių pradžios ar pabaigos laiko."
+        "message": "You cannot remove active days or shrink an active protected schedule window."
     },
     "lockedScheduleRestriction9": {
-        "message": "Negalite pridėti svetainių, įtrauktų į baltąjį sąrašą."
+        "message": "You cannot add allowed websites to bypass a protected plan."
     },
     "lockedScheduleRestriction10": {
-        "message": "Negalite nustatyti arba ištrinti plėtinio slaptažodžio."
+        "message": "You cannot delete password protection during an active protected schedule."
     },
     "whitelistWebsitesTitle": {
-        "message": "Baltojo sąrašo svetainės"
+        "message": "Allowed Websites"
     },
     "whitelistWebsitesText": {
-        "message": "Leidžia įvesti į baltąjį sąrašą įtrauktas svetaines, tai reiškia, kad šiose svetainėse raktinių žodžių nuskaitymas nebus atliktas, taigi jos nebus blokuojamos. Šiuo metu neturime galimybės naudoti pakaitos simbolio (*), kad į vieną įrašą įtrauktume daug svetainių (pvz., *.io, kur būtų blokuojamos visos svetainės su '.io'), todėl ši funkcija nėra labai naudinga, bet ji egzistuoja."
+        "message": "Allowed websites are plan-owned exceptions. Add them when a site should remain usable while a plan is active; the plan will not scan or block those allowed hosts."
     },
     "passwordManagementTitle": {
         "message": "Slaptažodžių valdymas"
     },
     "passwordManagementText": {
-        "message": "Leidžia nustatyti plėtinio puslapio slaptažodį. Kiekvienas, atidaręs plėtinio puslapį, turės įvesti teisingą slaptažodį, kad galėtų pasiekti. Naudinga, kad kiti netyčia (arba tyčia) nesugriežtintų nustatymų."
+        "message": "Password protection can require a password before opening the options page. Use it when you want an extra barrier around changing protection settings."
     },
     "contactFeedbackTitle": {
         "message": "Kontaktai ir atsiliepimai"

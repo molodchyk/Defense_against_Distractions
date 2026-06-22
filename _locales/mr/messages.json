@@ -372,148 +372,148 @@
         "message": "परिचय"
     },
     "introText1": {
-        "message": "हाय! इंटरनेटवर विचलित होणे आणि विलंब करणे खूप सोपे आहे. हा विस्तार तुम्हाला पाहू इच्छित नसलेल्या कीवर्डवर आधारित वेब पृष्ठे अवरोधित करण्याची परवानगी देतो."
+        "message": "Defense Against Distractions lets you create local protection plans that block pages, guide Pomodoro timing, detect possible intent drift, and clean up distracting page UI."
     },
     "introText2": {
-        "message": "खेळण्यासाठी हजारो व्हिडिओ गेम, वाचण्यासाठी बातम्या, पाहण्यासाठी व्हिडिओ इत्यादी आहेत. आणि अनेकदा, जेव्हा प्रोजेक्ट डेडलाइन किंवा परीक्षा अजून दूर असतात तेव्हा आपण हेच करतो. काहीवेळा, तुम्हाला जे करायचे आहे ते करायला स्वतःला भाग पाडणे थोडे कठीण असते."
+        "message": "A plan combines page entries, allowed websites, schedules, Pomodoro settings, intent-coherence settings, and optional UI cleanup rules. Turn a plan on when you want that protection available."
     },
     "introText3": {
-        "message": "आणि विचलन सर्वत्र आहेत! जरी तुम्ही StayFocusd किंवा Cold Turkey किंवा FocusMe काही वेबसाइट्स त्यांच्या URL द्वारे ब्लॉक करण्यासाठी वापरत असाल तरीही तुम्ही सर्वकाही ब्लॉक करू शकत नाही. उदाहरणार्थ, ChatGPT सह, तुम्हाला खरोखर अभ्यास किंवा काम करायला आवडत नसेल तर तुम्ही बातम्या किंवा व्हिडिओ गेमबद्दल बोलू शकता."
+        "message": "The extension checks configured pages locally in the browser. It does not send page text, browsing diagnostics, or settings to a remote server."
     },
     "introText4": {
-        "message": "या विस्तारासह, तुम्ही त्यांच्या मजकूरातील शब्द आणि वाक्यांशांवर आधारित वेबसाइट ब्लॉक करू शकता."
+        "message": "Start with one plan, add the pages and words that matter, then make the plan stricter with schedules or Pomodoro when you need stronger defense."
     },
     "howToUseTitle": {
         "message": "विस्तार कसा वापरायचा"
     },
     "createGroupTitle": {
-        "message": "पहिली पायरी: एक गट तयार करा"
+        "message": "First Step: Create a Plan"
     },
     "createGroupText1": {
-        "message": "तुम्ही 'समूह जोडा' बटण दाबू शकता किंवा गटाचे नाव इनपुट करू शकता आणि एंटर दाबा किंवा गट जोडा बटण दाबा. तुम्ही अनेक गट तयार करू शकता."
+        "message": "Enter a plan name and press Add Plan. Open the plan to configure entries, schedules, Pomodoro, intent coherence, allowed websites, and UI cleanup assignments."
     },
     "createGroupText2": {
-        "message": "तुम्हाला ग्रुप पॅनल दिसेल."
+        "message": "The default plan is a safe starting point. You can keep it, rename it, or create additional plans for different contexts."
     },
     "websitesTitle": {
-        "message": "वेबसाइट्स"
+        "message": "Entries and Websites"
     },
     "websitesText": {
-        "message": "तुम्ही वेबसाइट्स लाइनच्या डावीकडील 'संपादित करा' बटण दाबून वेबसाइट जोडणे सुरू करू शकता. हे फील्ड वेबसाइटसाठी जबाबदार आहे जेथे विस्तार कीवर्ड अवरोधित करेल. येथे तुम्हाला वेबसाइट URL इनपुट करावे लागतील, उदाहरणार्थ, 'google.com'. तुम्ही एकाधिक वेबसाइट्स इनपुट करू शकता, प्रत्येक नवीन ओळ एक नवीन वेबसाइट आहे. फक्त Enter दाबा. तुम्ही तयार असाल तेव्हा हिरवे 'सेव्ह' बटण दाबा. किंवा तुम्ही रद्द करू शकता."
+        "message": "A plan entry has websites and keywords. Add the websites where the keywords should be scanned, one host per line, such as example.com or docs.example.com."
     },
     "keywordsTitle": {
         "message": "कीवर्ड"
     },
     "keywordsText1": {
-        "message": "नवीन कीवर्ड जोडण्यासाठी किंवा कोणतेही बदल करण्यासाठी, 'एडिट' दाबा. आपण येथे प्रविष्ट केलेले कीवर्ड आपण या गटासाठी प्रविष्ट केलेल्या वेबसाइटवर स्कॅन केले जातील."
+        "message": "Add keywords or phrases to the same entry. The extension scans matching pages locally and blocks the page when the entry score reaches 1000."
     },
     "keywordFormatsIntroduction": {
         "message": "कीवर्डसाठी 3 स्वरूप आहेत:"
     },
     "keywordFormat1Title": {
-        "message": "प्रथम स्वरूप:"
+        "message": "Keyword format 1:"
     },
     "keywordFormat1Text": {
-        "message": "फक्त कीवर्ड प्रविष्ट करा. तो एक शब्द किंवा वाक्यांश असू शकतो. कीवर्डमध्ये स्वल्पविराम ',' असल्यास, तुम्ही त्याच्या आधी '\\' एस्केप वर्ण वापरला पाहिजे. कीवर्ड सापडताच वेबसाइट ब्लॉक केली जाईल. तुम्हाला हवे तितके कीवर्ड तुम्ही एंटर करू शकता, फक्त एंटर दाबा. प्रत्येक नवीन ओळ एक नवीन कीवर्ड आहे."
+        "message": "Enter a word or phrase. If the keyword contains a comma, put a backslash before the comma. A plain keyword blocks as soon as it is detected."
     },
     "keywordFormat1_2": {
-        "message": "उदाहरण: 'व्हिडिओ गेम' किंवा 'बातम्या'."
+        "message": "Examples: 'video games', 'news'."
     },
     "keywordFormat2Title": {
-        "message": "दुसरे स्वरूप:"
+        "message": "Keyword format 2:"
     },
     "keywordFormat2Text": {
-        "message": "कीवर्ड एंटर करा, त्यानंतर अंकीय मूल्य. तुम्ही ग्रुपमध्ये एंटर केलेल्या प्रत्येक वेबसाइटने 1000 स्कोअर गाठला पाहिजे. वेबसाइट 0 च्या मूल्याने सुरू होते आणि कीवर्डच्या संख्यात्मक मूल्यावर आधारित, मूल्य वाढते. एकदा वेबसाइटने 1000 चा स्कोअर गाठला की, ती ब्लॉक केली जाईल."
+        "message": "Add a number after a comma. The page score starts at 0 and increases by that amount each time the keyword is found. At 1000, the page is blocked."
     },
     "keywordFormat2_2": {
         "message": "उदाहरण: 'news, 50'"
     },
     "keywordFormat2_3": {
-        "message": "तुम्ही ग्रुपमध्ये एंटर केलेल्या प्रत्येक वेबसाइटने 1000 चा स्कोअर गाठला पाहिजे. साइट 0 च्या मूल्याने सुरू होते आणि कीवर्डच्या संख्यात्मक मूल्यावर आधारित, मूल्य वाढते. एकदा वेबसाइटने 1000 चा स्कोअर गाठला की, ती ब्लॉक केली जाईल."
+        "message": "Use this when a word should matter, but only after repeated or combined signals."
     },
     "keywordFormat3Title": {
-        "message": "तिसरा स्वरूप:"
+        "message": "Keyword format 3:"
     },
     "keywordFormat3Text": {
-        "message": "कीवर्ड एंटर करा, त्यानंतर गुणाकार किंवा जोड चिन्ह (* किंवा +), नंतर संख्यात्मक मूल्य. या परिस्थितीत, सापडलेल्या कीवर्डच्या संख्यात्मक मूल्यावर आधारित पृष्ठासाठी गुणाकार केला जातो."
+        "message": "Use * or + with a number when you want a keyword to multiply or add to the current page score in a more explicit way."
     },
     "keywordFormat3_2": {
         "message": "उदाहरण: 'बातम्या, *, 10'"
     },
     "keywordFormat3_3": {
-        "message": "या परिस्थितीत, सापडलेल्या कीवर्डच्या संख्यात्मक मूल्यावर आधारित पृष्ठासाठी गुणाकार केला जातो."
+        "message": "Use this for stronger signals that should become decisive only in a specific context."
     },
     "timerCountTitle": {
-        "message": "टाइमर गणना"
+        "message": "Pomodoro"
     },
     "timerCountText": {
-        "message": "पृष्ठ अवरोधित केल्यानंतर, आपल्याकडे 'टाइमर सक्रिय करा' बटण दाबण्याचा पर्याय असेल. त्यानंतर, पृष्ठावर पुन्हा अवरोधित होण्यापूर्वी काही क्रिया करण्यासाठी आपल्याकडे वेळ असेल. टाइमर काउंट फील्डमध्ये, तुम्ही दिवसभरात किती टायमर ठेवायचे हे ठरवू शकता."
+        "message": "A plan can run Pomodoro work and rest timing. Strict breaks can block or quiet pages during rest so the break is protected."
     },
     "timerDurationTitle": {
-        "message": "टाइमर कालावधी (सेकंद)"
+        "message": "Pomodoro Timing"
     },
     "timerDurationText": {
-        "message": "या फील्डमध्ये, प्रत्येक टाइमरमध्ये किती सेकंद असतील ते तुम्ही ठरवता."
+        "message": "Set work minutes, short breaks, long breaks, and how many work sessions happen before a long break. During an active protected schedule, enabling Pomodoro or making it stricter is allowed; relaxing it is blocked."
     },
     "lockedSchedulesTitle": {
         "message": "लॉक केलेले वेळापत्रक"
     },
     "lockedSchedulesNote": {
-        "message": "! वेळ संपेपर्यंत लॉक केलेले शेड्यूल अनलॉक केले जाऊ शकत नाही (जोपर्यंत तुम्ही विस्तार विस्थापित करत नाही तोपर्यंत)!"
+        "message": "A protected schedule is meant to resist hot-state weakening while the scheduled window is active."
     },
     "lockedSchedulesText1": {
-        "message": "शेड्यूल नेम फील्डमध्ये शेड्यूल नाव तयार करून आणि एंटर किंवा शेड्यूल जोडा बटण दाबून तुम्ही नवीन लॉक केलेले शेड्यूल जोडू शकता."
+        "message": "Open a plan, choose Schedule, and add one or more scheduled time blocks. Each block can choose days, start time, end time, and whether it is protected."
     },
     "lockedSchedulesText2": {
-        "message": "तुमच्या शेड्यूलच्या सेटिंग्जमध्ये बदल करण्यासाठी, 'एडिट' दाबा. दिवसाची बटणे दाबून, तुम्ही एकतर त्या दिवशीचे शेड्यूल सक्षम करा (बटण हिरवे होईल) किंवा त्या दिवसासाठी ते अक्षम करा. प्रारंभ वेळ आणि समाप्ती वेळ फील्डमध्ये बदल करून, आपण वेळापत्रक सक्रिय होण्याची वेळ सेट करता. प्रत्येक दिवसासाठी 1-तास निष्क्रिय वेळ विंडो असणे आवश्यक आहे जेणेकरून तुम्ही त्या वेळेत शेड्यूल निष्क्रिय करू शकता. निष्क्रिय/सक्रिय बटण शेड्यूल टॉगल करते. जर वर्तमान दिवस सक्षम असेल (हिरवा) आणि बटण 'सक्रिय' दर्शवित असेल आणि हिरवे देखील असेल आणि वर्तमान वेळ सुरू आणि समाप्तीच्या वेळेदरम्यान असेल तर शेड्यूल लॉक आणि सक्रिय होईल."
+        "message": "A protected active schedule can be made stricter but not more relaxed. For example, you can add entries, raise keyword scores, enable stricter Pomodoro behavior, or add UI cleanup rules, but you cannot remove active protection."
     },
     "lockedSchedulesText3": {
-        "message": "हटवा बटण लॉक केलेले वेळापत्रक काढून टाकते. हेच गट आणि श्वेतसूचीबद्ध वेबसाइटना लागू होते."
+        "message": "Delete removes a schedule only when doing so does not relax an active protected window."
     },
     "lockedSchedulesText4": {
-        "message": "लॉक केलेल्या शेड्यूल दरम्यान अनेक निर्बंध लागू होतात:"
+        "message": "During an active protected schedule, relaxed changes are refused:"
     },
     "lockedScheduleRestriction1": {
-        "message": "तुम्ही गटांची नावे बदलू शकत नाही."
+        "message": "You cannot disable the active plan."
     },
     "lockedScheduleRestriction2": {
-        "message": "तुम्ही गटांमध्ये विद्यमान वेबसाइट बदलू किंवा काढू शकत नाही."
+        "message": "You cannot remove existing plan entries or reduce the websites they protect."
     },
     "lockedScheduleRestriction3": {
-        "message": "तुम्ही विद्यमान कीवर्ड आणि त्यांची मूल्ये बदलू किंवा काढू शकत नाही."
+        "message": "You cannot remove existing keywords or reduce their weights."
     },
     "lockedScheduleRestriction4": {
-        "message": "तुम्ही गुणाकारासाठी फक्त कीवर्ड मूल्ये सेट करू शकता: 1 ते 1000 पर्यंत. जोडण्यासाठी: 0 ते 1000 पर्यंत."
+        "message": "New or changed keywords must stay inside the strict allowed scoring ranges."
     },
     "lockedScheduleRestriction5": {
-        "message": "टाइमर संख्या वाढवता येत नाही."
+        "message": "You cannot disable Pomodoro, turn off strict breaks, or make Pomodoro easier to bypass."
     },
     "lockedScheduleRestriction6": {
-        "message": "टाइमरचा कालावधी वाढवता येत नाही."
+        "message": "You can enable Pomodoro or make its timing stricter when that increases protection."
     },
     "lockedScheduleRestriction7": {
-        "message": "सक्रिय वेळापत्रक हटविले जाऊ शकत नाही."
+        "message": "Active schedules cannot be deleted."
     },
     "lockedScheduleRestriction8": {
-        "message": "तुम्ही दिवसांची निवड रद्द करू शकत नाही, शेड्यूल निष्क्रिय करू शकत नाही किंवा सक्रिय शेड्यूलसाठी सुरू किंवा समाप्ती वेळ बदलू शकत नाही."
+        "message": "You cannot remove active days or shrink an active protected schedule window."
     },
     "lockedScheduleRestriction9": {
-        "message": "तुम्ही श्वेतसूचीबद्ध वेबसाइट जोडू शकत नाही."
+        "message": "You cannot add allowed websites to bypass a protected plan."
     },
     "lockedScheduleRestriction10": {
-        "message": "तुम्ही विस्तारासाठी पासवर्ड सेट किंवा हटवू शकत नाही."
+        "message": "You cannot delete password protection during an active protected schedule."
     },
     "whitelistWebsitesTitle": {
-        "message": "व्हाइटलिस्ट वेबसाइट्स"
+        "message": "Allowed Websites"
     },
     "whitelistWebsitesText": {
-        "message": "तुम्हाला श्वेतसूचीबद्ध वेबसाइट्समध्ये प्रवेश करण्याची अनुमती देते, याचा अर्थ या वेबसाइट्सवर कीवर्ड स्कॅन केले जाणार नाहीत आणि त्यामुळे त्यांना ब्लॉक केले जाणार नाही. सध्या, एका एंट्रीमध्ये अनेक वेबसाइट्स समाविष्ट करण्यासाठी आमच्याकडे वाइल्डकार्ड (*) वापरण्याची क्षमता नाही (जसे *.io, जिथे '.io' असलेल्या सर्व वेबसाइट ब्लॉक केल्या जातील), त्यामुळे हे वैशिष्ट्य फारसे उपयुक्त नाही, परंतु ते अस्तित्वात आहे."
+        "message": "Allowed websites are plan-owned exceptions. Add them when a site should remain usable while a plan is active; the plan will not scan or block those allowed hosts."
     },
     "passwordManagementTitle": {
         "message": "पासवर्ड व्यवस्थापन"
     },
     "passwordManagementText": {
-        "message": "तुम्हाला विस्तार पृष्ठासाठी पासवर्ड सेट करण्याची अनुमती देते. जो कोणी विस्तार पृष्ठ उघडेल त्याला प्रवेश मिळविण्यासाठी योग्य संकेतशब्द प्रविष्ट करणे आवश्यक आहे. इतरांना चुकून (किंवा जाणूनबुजून) सेटिंग्ज घट्ट करण्यापासून रोखण्यासाठी उपयुक्त."
+        "message": "Password protection can require a password before opening the options page. Use it when you want an extra barrier around changing protection settings."
     },
     "contactFeedbackTitle": {
         "message": "संपर्क आणि अभिप्राय"

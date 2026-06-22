@@ -372,148 +372,148 @@
         "message": "Sarrera"
     },
     "introText1": {
-        "message": "Kaixo! Oso erraza da Interneten distraitzea eta atzeratzea. Luzapen honi esker, ikusi nahi ez dituzun gako-hitzetan oinarritutako web-orriak blokeatu ditzakezu."
+        "message": "Defense Against Distractions lets you create local protection plans that block pages, guide Pomodoro timing, detect possible intent drift, and clean up distracting page UI."
     },
     "introText2": {
-        "message": "Milaka bideo-joko daude jolasteko, albisteak irakurtzeko, bideoak ikusteko, etab. Eta askotan, hori egiten dugu proiektuen epeak edo azterketak oraindik urrun daudenean. Batzuetan, pixka bat zaila izan daiteke zeure burua egin behar duzuna egitera behartzea."
+        "message": "A plan combines page entries, allowed websites, schedules, Pomodoro settings, intent-coherence settings, and optional UI cleanup rules. Turn a plan on when you want that protection available."
     },
     "introText3": {
-        "message": "Eta distrazioak nonahi daude! StayFocusd edo Cold Turkey edo FocusMe erabiltzen badituzu ere webgune batzuk haien URLen bidez blokeatzeko, ezin duzu dena blokeatu. Adibidez, ChatGPT-rekin ere, albisteei edo bideo-jokoei buruz hitz egin dezakezu benetan ikasteko edo lana egiteko gogorik ez baduzu."
+        "message": "The extension checks configured pages locally in the browser. It does not send page text, browsing diagnostics, or settings to a remote server."
     },
     "introText4": {
-        "message": "Luzapen honekin, webguneak blokeatu ditzakezu haien testuko hitz eta esaldietan oinarrituta."
+        "message": "Start with one plan, add the pages and words that matter, then make the plan stricter with schedules or Pomodoro when you need stronger defense."
     },
     "howToUseTitle": {
         "message": "Luzapena nola erabili"
     },
     "createGroupTitle": {
-        "message": "Lehen urratsa: Talde bat sortu"
+        "message": "First Step: Create a Plan"
     },
     "createGroupText1": {
-        "message": "'Gehitu taldea' botoia sakatu edo taldearen izena sartu eta Sartu edo Gehitu taldea botoia sakatu. Hainbat talde sor ditzakezu."
+        "message": "Enter a plan name and press Add Plan. Open the plan to configure entries, schedules, Pomodoro, intent coherence, allowed websites, and UI cleanup assignments."
     },
     "createGroupText2": {
-        "message": "Taldearen panela ikusiko duzu."
+        "message": "The default plan is a safe starting point. You can keep it, rename it, or create additional plans for different contexts."
     },
     "websitesTitle": {
-        "message": "Webguneak"
+        "message": "Entries and Websites"
     },
     "websitesText": {
-        "message": "Webguneak gehitzen has zaitezke Webguneak lerroaren ezkerrean dagoen 'Editatu' botoia sakatuta. Eremu hau luzapenak gako-hitzak blokeatuko dituen webguneen arduraduna da. Hemen webgunearen URLak sartu behar dituzu, adibidez, 'google.com'. Hainbat webgune sar ditzakezu, lerro berri bakoitza webgune berri bat da. Sakatu Sartu. Prest zaudenean, sakatu 'Gorde' botoia berdea. Edo bertan behera utzi dezakezu."
+        "message": "A plan entry has websites and keywords. Add the websites where the keywords should be scanned, one host per line, such as example.com or docs.example.com."
     },
     "keywordsTitle": {
         "message": "Gako-hitzak"
     },
     "keywordsText1": {
-        "message": "Gako-hitz berriak gehitzeko edo aldaketak egiteko, sakatu 'Editatu'. Hemen sartzen dituzun gako-hitzak talde honetarako sartu dituzun webguneetan eskaneatuko dira."
+        "message": "Add keywords or phrases to the same entry. The extension scans matching pages locally and blocks the page when the entry score reaches 1000."
     },
     "keywordFormatsIntroduction": {
         "message": "Hitz gakoentzako 3 formatu daude:"
     },
     "keywordFormat1Title": {
-        "message": "Lehenengo formatua:"
+        "message": "Keyword format 1:"
     },
     "keywordFormat1Text": {
-        "message": "Sartu gako-hitzak. Hitz bat edo esaldi bat izan daiteke. Gako-hitzak ',' koma badu, '\\' ihes karakterea erabili behar duzu aurretik. Webgunea blokeatu egingo da gako-hitza detektatu bezain laster. Nahi adina gako-hitz sar ditzakezu, sakatu Sartu. Lerro berri bakoitza gako-hitz berri bat da."
+        "message": "Enter a word or phrase. If the keyword contains a comma, put a backslash before the comma. A plain keyword blocks as soon as it is detected."
     },
     "keywordFormat1_2": {
-        "message": "Adibidea: 'bideo-jokoak' edo 'albisteak'."
+        "message": "Examples: 'video games', 'news'."
     },
     "keywordFormat2Title": {
-        "message": "Bigarren formatua:"
+        "message": "Keyword format 2:"
     },
     "keywordFormat2Text": {
-        "message": "Sartu gako-hitza, eta ondoren zenbakizko balio bat. Talde batean sartu duzun webgune bakoitzak 1000 puntura iritsi behar du. Webgunea 0 balio batekin hasten da, eta gako-hitzaren balio numerikoaren arabera, balioa handitzen da. Webgunea 1000 puntura iristen denean, blokeatu egingo da."
+        "message": "Add a number after a comma. The page score starts at 0 and increases by that amount each time the keyword is found. At 1000, the page is blocked."
     },
     "keywordFormat2_2": {
         "message": "Adibidea: 'albisteak, 50'"
     },
     "keywordFormat2_3": {
-        "message": "Talde batean sartu duzun webgune bakoitzak 1000 puntura iritsi behar du. Gunea 0 balio batekin hasten da, eta gako-hitzaren balio numerikoaren arabera, balioa handitzen da. Webgunea 1000 puntura iristen denean, blokeatu egingo da."
+        "message": "Use this when a word should matter, but only after repeated or combined signals."
     },
     "keywordFormat3Title": {
-        "message": "Hirugarren formatua:"
+        "message": "Keyword format 3:"
     },
     "keywordFormat3Text": {
-        "message": "Sartu gako-hitza, biderketa edo batuketa ikurra (* edo +) eta gero zenbakizko balio bat. Eszenatoki honetan, orriaren puntuazioa biderkatu egiten da aurkitutako gako-gakoaren balio numerikoaren arabera."
+        "message": "Use * or + with a number when you want a keyword to multiply or add to the current page score in a more explicit way."
     },
     "keywordFormat3_2": {
         "message": "Adibidea: 'albisteak, *, 10'"
     },
     "keywordFormat3_3": {
-        "message": "Eszenatoki honetan, orriaren puntuazioa biderkatu egiten da aurkitutako gako-gakoaren balio numerikoaren arabera."
+        "message": "Use this for stronger signals that should become decisive only in a specific context."
     },
     "timerCountTitle": {
-        "message": "Tenporizadorearen zenbaketa"
+        "message": "Pomodoro"
     },
     "timerCountText": {
-        "message": "Orria blokeatu ondoren, 'Aktibatu tenporizadorea' botoia sakatzeko aukera izango duzu. Horren ostean, orrialdean ekintza batzuk egiteko denbora izango duzu berriro blokeatu aurretik. Tenporizadore-zenbaketa eremuan, egunean zehar zenbat tenporizadore izan nahi dituzun erabaki dezakezu."
+        "message": "A plan can run Pomodoro work and rest timing. Strict breaks can block or quiet pages during rest so the break is protected."
     },
     "timerDurationTitle": {
-        "message": "Tenporizadorearen iraupena (segundoak)"
+        "message": "Pomodoro Timing"
     },
     "timerDurationText": {
-        "message": "Eremu honetan, tenporizadore bakoitzak zenbat segundo izango dituen erabakitzen duzu."
+        "message": "Set work minutes, short breaks, long breaks, and how many work sessions happen before a long break. During an active protected schedule, enabling Pomodoro or making it stricter is allowed; relaxing it is blocked."
     },
     "lockedSchedulesTitle": {
         "message": "Ordutegi blokeatuak"
     },
     "lockedSchedulesNote": {
-        "message": "! Blokeatutako ordutegia ezin da desblokeatu denbora igaro arte (luzapena desinstalatzen ez baduzu)!"
+        "message": "A protected schedule is meant to resist hot-state weakening while the scheduled window is active."
     },
     "lockedSchedulesText1": {
-        "message": "Blokeatutako ordutegi berri bat gehi dezakezu Programazioaren izena eremuan ordutegiaren izena sortuz eta Sartu edo Gehitu programazioa botoia sakatuta."
+        "message": "Open a plan, choose Schedule, and add one or more scheduled time blocks. Each block can choose days, start time, end time, and whether it is protected."
     },
     "lockedSchedulesText2": {
-        "message": "Zure ordutegiaren ezarpenak aldatzeko, sakatu 'Editatu'. Eguneko botoiak sakatuta, egun horretako ordutegia gaituko duzu (botoia berde bihurtzen da) edo egun horretarako desgaitu. Hasierako ordua eta Amaiera ordua eremuak aldatuz, programazioa aktibo egon daitekeen orduak ezartzen dituzu. Egun bakoitzak ordubete inaktiboko denbora-leiho bat izan behar du, denbora horretan ordutegia desaktibatu ahal izateko. Inaktibo/Aktibo botoiak ordutegia aldatzen du. Ordutegia blokeatuta eta aktibo egongo da uneko eguna gaituta badago (berdea) eta botoiak 'Aktibo' erakusten badu eta berdea ere bada, eta uneko ordua hasiera eta amaiera orduen artean badago."
+        "message": "A protected active schedule can be made stricter but not more relaxed. For example, you can add entries, raise keyword scores, enable stricter Pomodoro behavior, or add UI cleanup rules, but you cannot remove active protection."
     },
     "lockedSchedulesText3": {
-        "message": "Ezabatu botoiak blokeatutako ordutegia kentzen du. Gauza bera gertatzen da talde eta zerrenda zuriko webguneetan."
+        "message": "Delete removes a schedule only when doing so does not relax an active protected window."
     },
     "lockedSchedulesText4": {
-        "message": "Blokeatutako ordutegian hainbat murrizketa aplikatzen dira:"
+        "message": "During an active protected schedule, relaxed changes are refused:"
     },
     "lockedScheduleRestriction1": {
-        "message": "Ezin dituzu taldeen izenak aldatu."
+        "message": "You cannot disable the active plan."
     },
     "lockedScheduleRestriction2": {
-        "message": "Ezin dituzu taldeetan dauden webguneak aldatu edo kendu."
+        "message": "You cannot remove existing plan entries or reduce the websites they protect."
     },
     "lockedScheduleRestriction3": {
-        "message": "Ezin dituzu aldatu edo kendu lehendik dauden gako-hitzak eta haien balioak."
+        "message": "You cannot remove existing keywords or reduce their weights."
     },
     "lockedScheduleRestriction4": {
-        "message": "Biderketarako soilik ezar ditzakezu gako-hitz-balioak: 1etik 1000era. Batuketak egiteko: 0tik 1000era."
+        "message": "New or changed keywords must stay inside the strict allowed scoring ranges."
     },
     "lockedScheduleRestriction5": {
-        "message": "Tenporizadorearen zenbaketa ezin da handitu."
+        "message": "You cannot disable Pomodoro, turn off strict breaks, or make Pomodoro easier to bypass."
     },
     "lockedScheduleRestriction6": {
-        "message": "Tenporizadorearen iraupena ezin da handitu."
+        "message": "You can enable Pomodoro or make its timing stricter when that increases protection."
     },
     "lockedScheduleRestriction7": {
-        "message": "Ordutegi aktiboak ezin dira ezabatu."
+        "message": "Active schedules cannot be deleted."
     },
     "lockedScheduleRestriction8": {
-        "message": "Ezin dituzu egunak desautatu, ordutegia inaktibo jarri edo ordutegi aktiboen hasiera edo amaiera orduak aldatu."
+        "message": "You cannot remove active days or shrink an active protected schedule window."
     },
     "lockedScheduleRestriction9": {
-        "message": "Ezin dituzu zerrenda zuriko webguneak gehitu."
+        "message": "You cannot add allowed websites to bypass a protected plan."
     },
     "lockedScheduleRestriction10": {
-        "message": "Ezin duzu luzapenaren pasahitza ezarri edo ezabatu."
+        "message": "You cannot delete password protection during an active protected schedule."
     },
     "whitelistWebsitesTitle": {
-        "message": "Zerrenda zuriko webguneak"
+        "message": "Allowed Websites"
     },
     "whitelistWebsitesText": {
-        "message": "Zerrenda zuriko webguneetan sartzeko aukera ematen du, hau da, gako-hitz-eskaera ez da webgune horietan egingo, eta, beraz, ez dira blokeatuko. Gaur egun, ez dugu komodin (*) erabiltzeko gaitasunik webgune asko sarrera batean sartzeko (*.io adibidez, non '.io' duten webgune guztiak blokeatuta egongo lirateke), beraz, funtzio hau ez da oso erabilgarria, baina badago."
+        "message": "Allowed websites are plan-owned exceptions. Add them when a site should remain usable while a plan is active; the plan will not scan or block those allowed hosts."
     },
     "passwordManagementTitle": {
         "message": "Pasahitzen kudeaketa"
     },
     "passwordManagementText": {
-        "message": "Luzapen-orrirako pasahitz bat konfiguratzeko aukera ematen dizu. Luzapen orria irekitzen duenak pasahitz zuzena sartu beharko du sarbidea lortzeko. Erabilgarria besteek nahi gabe (edo nahita) ezarpenak estutzea saihesteko."
+        "message": "Password protection can require a password before opening the options page. Use it when you want an extra barrier around changing protection settings."
     },
     "contactFeedbackTitle": {
         "message": "Kontaktua eta Iritzia"

@@ -372,148 +372,148 @@
         "message": "Uvod"
     },
     "introText1": {
-        "message": "Zdravo! Tako je lako da se omete na internetu i odlaže obaveze. Ova ekstenzija omogućava blokiranje web stranica na osnovu ključnih reči koje ne želite videti."
+        "message": "Defense Against Distractions lets you create local protection plans that block pages, guide Pomodoro timing, detect possible intent drift, and clean up distracting page UI."
     },
     "introText2": {
-        "message": "Postoje hiljade video igara za igranje, vesti za čitanje, video sadržaji za gledanje i slično. Često, to je ono što radimo kada su rokovi za projekte ili ispiti još uvek daleko. Ponekad, može biti teško naterati sebe da radite ono što trebate."
+        "message": "A plan combines page entries, allowed websites, schedules, Pomodoro settings, intent-coherence settings, and optional UI cleanup rules. Turn a plan on when you want that protection available."
     },
     "introText3": {
-        "message": "Ometanja su svuda! Čak i ako koristite StayFocusd, Cold Turkey ili FocusMe da blokirate neke sajtove po URL-u, ne možete blokirati sve. Na primer, čak i sa ChatGPT, možete pričati o vestima ili video igrama ako stvarno ne želite učiti ili raditi."
+        "message": "The extension checks configured pages locally in the browser. It does not send page text, browsing diagnostics, or settings to a remote server."
     },
     "introText4": {
-        "message": "Sa ovom ekstenzijom, možete blokirati web stranice na osnovu reči i fraza u njihovom tekstu."
+        "message": "Start with one plan, add the pages and words that matter, then make the plan stricter with schedules or Pomodoro when you need stronger defense."
     },
     "howToUseTitle": {
         "message": "Kako Koristiti Ekstenziju"
     },
     "createGroupTitle": {
-        "message": "Prvi korak: Kreiranje Grupe"
+        "message": "First Step: Create a Plan"
     },
     "createGroupText1": {
-        "message": "Možete pritisnuti dugme 'Dodaj Grupu' ili uneti naziv grupe i pritisnuti Enter ili dugme Dodaj Grupu. Možete kreirati više grupa."
+        "message": "Enter a plan name and press Add Plan. Open the plan to configure entries, schedules, Pomodoro, intent coherence, allowed websites, and UI cleanup assignments."
     },
     "createGroupText2": {
-        "message": "Videćete panel grupe."
+        "message": "The default plan is a safe starting point. You can keep it, rename it, or create additional plans for different contexts."
     },
     "websitesTitle": {
-        "message": "Sajtovi"
+        "message": "Entries and Websites"
     },
     "websitesText": {
-        "message": "Možete početi sa dodavanjem sajtova pritiskom na dugme 'Uredi' levo od linije Sajtovi. Ovo polje je zaduženo za sajtove na kojima će ekstenzija blokirati ključne reči. Ovde trebate uneti URL-ove sajtova, na primer, 'google.com'. Možete uneti više sajtova, svaki novi red je novi sajt. Samo pritisnite Enter. Kada ste spremni, pritisnite zeleno dugme 'Sačuvaj'. Ili možete otkazati."
+        "message": "A plan entry has websites and keywords. Add the websites where the keywords should be scanned, one host per line, such as example.com or docs.example.com."
     },
     "keywordsTitle": {
         "message": "Ključne Reči"
     },
     "keywordsText1": {
-        "message": "Da dodate nove ključne reči ili napravite promene, pritisnite 'Uredi'. Ključne reči koje ovde unesete će biti skenirane na sajtovima koje ste uneli za ovu grupu."
+        "message": "Add keywords or phrases to the same entry. The extension scans matching pages locally and blocks the page when the entry score reaches 1000."
     },
     "keywordFormatsIntroduction": {
         "message": "Postoje 3 formata za ključne reči:"
     },
     "keywordFormat1Title": {
-        "message": "Prvi Format:"
+        "message": "Keyword format 1:"
     },
     "keywordFormat1Text": {
-        "message": "Samo unesite ključne reči. To može biti reč ili fraza. Ako ključna reč sadrži zarez ',', morate koristiti escape karakter '\\' pre nje. Sajt će biti blokiran čim se detektuje ključna reč. Možete uneti koliko god ključnih reči želite, samo pritisnite enter. Svaki novi red je nova ključna reč."
+        "message": "Enter a word or phrase. If the keyword contains a comma, put a backslash before the comma. A plain keyword blocks as soon as it is detected."
     },
     "keywordFormat1_2": {
-        "message": "Primer: 'video igre' ili 'vesti'."
+        "message": "Examples: 'video games', 'news'."
     },
     "keywordFormat2Title": {
-        "message": "Drugi Format:"
+        "message": "Keyword format 2:"
     },
     "keywordFormat2Text": {
-        "message": "Unesite ključnu reč, a zatim numeričku vrednost. Svaki sajt koji ste uneli u grupu mora dostići skor od 1000. Sajt počinje sa vrednošću 0, i na osnovu numeričke vrednosti ključne reči, vrednost se povećava. Kada sajt dostigne skor od 1000, biće blokiran."
+        "message": "Add a number after a comma. The page score starts at 0 and increases by that amount each time the keyword is found. At 1000, the page is blocked."
     },
     "keywordFormat2_2": {
         "message": "Primer: 'vesti, 50'"
     },
     "keywordFormat2_3": {
-        "message": "Svaki sajt koji ste uneli u grupu mora dostići skor od 1000. Sajt počinje sa vrednošću 0, i na osnovu numeričke vrednosti ključne reči, vrednost se povećava. Kada sajt dostigne skor od 1000, biće blokiran."
+        "message": "Use this when a word should matter, but only after repeated or combined signals."
     },
     "keywordFormat3Title": {
-        "message": "Treći Format:"
+        "message": "Keyword format 3:"
     },
     "keywordFormat3Text": {
-        "message": "Unesite ključnu reč, zatim znak množenja ili sabiranja (* ili +), pa numeričku vrednost. U ovom scenariju, skor stranice se množi na osnovu numeričke vrednosti pronađene ključne reči."
+        "message": "Use * or + with a number when you want a keyword to multiply or add to the current page score in a more explicit way."
     },
     "keywordFormat3_2": {
         "message": "Primer: 'vesti, *, 10'"
     },
     "keywordFormat3_3": {
-        "message": "U ovom scenariju, skor stranice se množi na osnovu numeričke vrednosti pronađene ključne reči."
+        "message": "Use this for stronger signals that should become decisive only in a specific context."
     },
     "timerCountTitle": {
-        "message": "Brojač Tajmera"
+        "message": "Pomodoro"
     },
     "timerCountText": {
-        "message": "Nakon što je stranica blokirana, imaćete opciju da pritisnete dugme 'Aktiviraj Tajmer'. Nakon toga, imaćete vremena da izvršite neke akcije na stranici pre nego što se ponovo blokira. U polju Brojač Tajmera, možete odlučiti koliko tajmera želite imati tokom dana."
+        "message": "A plan can run Pomodoro work and rest timing. Strict breaks can block or quiet pages during rest so the break is protected."
     },
     "timerDurationTitle": {
-        "message": "Trajanje Tajmera (sekunde)"
+        "message": "Pomodoro Timing"
     },
     "timerDurationText": {
-        "message": "U ovom polju odlučujete koliko sekundi će trajati svaki tajmer."
+        "message": "Set work minutes, short breaks, long breaks, and how many work sessions happen before a long break. During an active protected schedule, enabling Pomodoro or making it stricter is allowed; relaxing it is blocked."
     },
     "lockedSchedulesTitle": {
         "message": "Zaključani Rasporedi"
     },
     "lockedSchedulesNote": {
-        "message": "! Zaključani raspored ne može biti otključan dok ne prođe vreme (osim ako ne deinstalirate ekstenziju) !"
+        "message": "A protected schedule is meant to resist hot-state weakening while the scheduled window is active."
     },
     "lockedSchedulesText1": {
-        "message": "Možete dodati novi zaključani raspored kreiranjem imena rasporeda u polju Naziv Rasporeda i pritiskom na Enter ili dugme Dodaj Raspored."
+        "message": "Open a plan, choose Schedule, and add one or more scheduled time blocks. Each block can choose days, start time, end time, and whether it is protected."
     },
     "lockedSchedulesText2": {
-        "message": "Za izmenu postavki vašeg rasporeda, pritisnite 'Uredi'. Pritiskom na dugmad dana, ili aktivirate raspored za taj dan (dugme postaje zeleno) ili ga deaktivirate za taj dan. Menjanjem polja za Vreme Početka i Vreme Završetka, postavljate vremena kada može biti aktivan raspored. Svaki dan mora imati najmanje 1 sat nezaključanog vremena kako biste mogli deaktivirati raspored u to vreme. Dugme Aktivno/Neaktivno prebacuje stanje rasporeda. Raspored će biti zaključan i aktivan ako je trenutni dan omogućen (zeleno) i ako dugme pokazuje 'Aktivno' i takođe je zeleno, i ako je trenutno vreme između vremena početka i završetka."
+        "message": "A protected active schedule can be made stricter but not more relaxed. For example, you can add entries, raise keyword scores, enable stricter Pomodoro behavior, or add UI cleanup rules, but you cannot remove active protection."
     },
     "lockedSchedulesText3": {
-        "message": "Dugme Obriši uklanja zaključani raspored. Isto važi i za grupe i sajtove na beloj listi."
+        "message": "Delete removes a schedule only when doing so does not relax an active protected window."
     },
     "lockedSchedulesText4": {
-        "message": "Tokom zaključanog rasporeda važe sledeća ograničenja:"
+        "message": "During an active protected schedule, relaxed changes are refused:"
     },
     "lockedScheduleRestriction1": {
-        "message": "Ne možete menjati nazive grupa."
+        "message": "You cannot disable the active plan."
     },
     "lockedScheduleRestriction2": {
-        "message": "Ne možete menjati ili uklanjati postojeće sajtove u grupama."
+        "message": "You cannot remove existing plan entries or reduce the websites they protect."
     },
     "lockedScheduleRestriction3": {
-        "message": "Ne možete menjati ili uklanjati postojeće ključne reči i njihove vrednosti."
+        "message": "You cannot remove existing keywords or reduce their weights."
     },
     "lockedScheduleRestriction4": {
-        "message": "Možete postaviti vrednosti ključnih reči samo za množenje: od 1 do 1000. Za sabiranje: od 0 do 1000."
+        "message": "New or changed keywords must stay inside the strict allowed scoring ranges."
     },
     "lockedScheduleRestriction5": {
-        "message": "Ne može se povećati broj tajmera."
+        "message": "You cannot disable Pomodoro, turn off strict breaks, or make Pomodoro easier to bypass."
     },
     "lockedScheduleRestriction6": {
-        "message": "Ne može se povećati trajanje tajmera."
+        "message": "You can enable Pomodoro or make its timing stricter when that increases protection."
     },
     "lockedScheduleRestriction7": {
-        "message": "Aktivni rasporedi ne mogu biti obrisani."
+        "message": "Active schedules cannot be deleted."
     },
     "lockedScheduleRestriction8": {
-        "message": "Ne možete de-selektovati dane, učiniti raspored neaktivnim, ili menjati vreme početka ili završetka za aktivne rasporede."
+        "message": "You cannot remove active days or shrink an active protected schedule window."
     },
     "lockedScheduleRestriction9": {
-        "message": "Ne možete dodavati sajtove na belu listu."
+        "message": "You cannot add allowed websites to bypass a protected plan."
     },
     "lockedScheduleRestriction10": {
-        "message": "Ne možete postavljati ili brisati lozinku za ekstenziju."
+        "message": "You cannot delete password protection during an active protected schedule."
     },
     "whitelistWebsitesTitle": {
-        "message": "Bela Lista Sajtova"
+        "message": "Allowed Websites"
     },
     "whitelistWebsitesText": {
-        "message": "Omogućava vam da unesete sajtove na beloj listi, što znači da se pretraga ključnih reči neće izvršiti na tim sajtovima, te stoga neće biti blokirani. Trenutno, nemamo mogućnost da koristimo džoker znak (*) za uključivanje mnogo sajtova u jedan unos (kao što je *.io, gde bi svi sajtovi sa '.io' bili blokirani), pa ova funkcija nije previše korisna, ali postoji."
+        "message": "Allowed websites are plan-owned exceptions. Add them when a site should remain usable while a plan is active; the plan will not scan or block those allowed hosts."
     },
     "passwordManagementTitle": {
         "message": "Upravljanje Lozinkama"
     },
     "passwordManagementText": {
-        "message": "Omogućava vam da postavite lozinku za stranicu ekstenzije. Svako ko otvori stranicu ekstenzije moraće uneti ispravnu lozinku da bi pristupio. Korisno za sprečavanje drugih da slučajno (ili namerno) pooštre postavke."
+        "message": "Password protection can require a password before opening the options page. Use it when you want an extra barrier around changing protection settings."
     },
     "contactFeedbackTitle": {
         "message": "Kontakt i Povratne Informacije"

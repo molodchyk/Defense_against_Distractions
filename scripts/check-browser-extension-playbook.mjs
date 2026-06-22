@@ -17,12 +17,12 @@ import {
   storageKeyFamilies
 } from './playbook/constants.mjs';
 import { getManifestAuditFailures } from './playbook/manifestAudit.mjs';
+import { getInstructionGuideFailures } from './playbook/instructionGuide.mjs';
 import { getIntentDiagnosticsLocalizationFailures, getUsageStatsLocalizationFailures } from './playbook/localization.mjs';
 import { getReleaseSafetyFailures } from './playbook/releaseSafety.mjs';
 import { getStoreAutomationFailures } from './playbook/storeAutomation.mjs';
 import { verifyReviewedStoreMediaHashes } from './playbook/storeMediaReview.mjs';
 import { getFirstNonEmptyLine, getPngDimensionFailure, hasAll } from './playbook-utils.mjs';
-
 const rootDir = process.cwd(), failures = [];
 async function exists(relativePath) {
   try {
@@ -104,7 +104,7 @@ const [
   licenseText,
   reviewerNotes,
   optionsHtml,
-  popupHtml,
+  popupHtml, instructionsHtml,
   englishMessages,
   storePrivacyForm,
   storeAdditionalFields,
@@ -161,7 +161,7 @@ const [
   readText('LICENSE'),
   readText('docs/reviewer-notes.md'),
   readText('src/options.html'),
-  readText('src/popup.html'),
+  readText('src/popup.html'), readText('src/instructions.html'),
   readJson('_locales/en/messages.json'),
   readText('docs/chrome-web-store-privacy-form.md'),
   readText('docs/chrome-web-store-additional-fields.md'),
@@ -315,6 +315,7 @@ assertCondition(privacySectionIndex !== -1 && licenseSectionIndex > privacySecti
 assertCondition(readme.includes(canonicalReadmeSupportBlock), 'README Support block must match the canonical donation wording and links.');
 assertCondition(hasAll(popupHtml, [/Protection status/, /Current page/, /role="tablist"/, /data-popup-pane="actions"/, /data-popup-pane="diagnostics"/, /focusStateCalmButton/, /startPomodoroButton/, /intentRecoveryTitle/, /pickElementButton/, /role="status"/]) && !/welcome|get started|learn more|hero|tagline/i.test(popupHtml), 'Popup first screen must stay an operational status/control surface, not a marketing page.');
 assertCondition(hasAll(optionsHtml, [/id="optionsSidebarNav"/, /id="plansPanel"/, /id="planNameInput"/, /id="addPlanButton"/, /id="elementRulesPanel"/, /id="intentDiagnosticsPanel"/, /id="usageStatsPanel"/, /id="settingsPanel"/]) && optionsHtml.indexOf('id="plansPanel"') < optionsHtml.indexOf('id="elementRulesPanel"') && !/welcome|get started|hero|tagline/i.test(optionsHtml), 'Options page must expose plan creation first and stay a settings surface, not a landing page.');
+failures.push(...getInstructionGuideFailures({ instructionsHtml, englishMessages }));
 for (const permission of manifestPermissions) {
   assertCondition(
     manifest.permissions.includes(permission),
@@ -439,7 +440,6 @@ for (const assetPath of storeMediaAssetPaths) {
     `Store media review must cover ${assetPath}.`
   );
 }
-
 assertCondition(
   hasAll(storeMediaReview, [
     /# Store Media Review/,

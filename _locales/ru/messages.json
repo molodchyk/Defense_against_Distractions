@@ -372,148 +372,148 @@
         "message": "Введение"
     },
     "introText1": {
-        "message": "Привет! Так легко отвлечься в интернете и заниматься прокрастинацией. Это расширение позволяет блокировать веб-страницы на основе ключевых слов, которые вы не хотите видеть."
+        "message": "Defense Against Distractions lets you create local protection plans that block pages, guide Pomodoro timing, detect possible intent drift, and clean up distracting page UI."
     },
     "introText2": {
-        "message": "Есть тысячи видеоигр, новостей для чтения, видео для просмотра и так далее. И часто мы это делаем, когда сроки проектов или экзамены еще далеко. Иногда может быть сложно заставить себя делать то, что вам нужно."
+        "message": "A plan combines page entries, allowed websites, schedules, Pomodoro settings, intent-coherence settings, and optional UI cleanup rules. Turn a plan on when you want that protection available."
     },
     "introText3": {
-        "message": "И отвлечения везде! Даже если вы используете StayFocusd, Cold Turkey или FocusMe для блокировки некоторых сайтов по их URL, вы не сможете заблокировать все. Например, даже с ChatGPT, вы можете говорить о новостях или видеоиграх, если действительно не хочется учиться или работать."
+        "message": "The extension checks configured pages locally in the browser. It does not send page text, browsing diagnostics, or settings to a remote server."
     },
     "introText4": {
-        "message": "С этим расширением вы можете блокировать веб-сайты на основе слов и фраз в их тексте."
+        "message": "Start with one plan, add the pages and words that matter, then make the plan stricter with schedules or Pomodoro when you need stronger defense."
     },
     "howToUseTitle": {
         "message": "Как Использовать Расширение"
     },
     "createGroupTitle": {
-        "message": "Первый Шаг: Создайте Группу"
+        "message": "First Step: Create a Plan"
     },
     "createGroupText1": {
-        "message": "Вы можете нажать кнопку 'Добавить Группу' или ввести название группы и нажать Enter или кнопку Добавить Группу. Вы можете создать несколько групп."
+        "message": "Enter a plan name and press Add Plan. Open the plan to configure entries, schedules, Pomodoro, intent coherence, allowed websites, and UI cleanup assignments."
     },
     "createGroupText2": {
-        "message": "Вы увидите панель группы."
+        "message": "The default plan is a safe starting point. You can keep it, rename it, or create additional plans for different contexts."
     },
     "websitesTitle": {
-        "message": "Сайты"
+        "message": "Entries and Websites"
     },
     "websitesText": {
-        "message": "Вы можете начать добавлять сайты, нажав кнопку 'Редактировать' слева от строки Сайты. Это поле отвечает за сайты, на которых расширение будет блокировать ключевые слова. Здесь вы должны вводить URL сайтов, например, 'google.com'. Вы можете ввести несколько сайтов, каждая новая строка - это новый сайт. Просто нажмите Enter. Когда будете готовы, нажмите зеленую кнопку 'Сохранить'. Или вы можете Отменить."
+        "message": "A plan entry has websites and keywords. Add the websites where the keywords should be scanned, one host per line, such as example.com or docs.example.com."
     },
     "keywordsTitle": {
         "message": "Ключевые Слова"
     },
     "keywordsText1": {
-        "message": "Чтобы добавить новые ключевые слова или внести изменения, нажмите 'Редактировать'. Введенные здесь ключевые слова будут сканироваться на сайтах, которые вы ввели для этой группы."
+        "message": "Add keywords or phrases to the same entry. The extension scans matching pages locally and blocks the page when the entry score reaches 1000."
     },
     "keywordFormatsIntroduction": {
         "message": "Существует 3 формата для ключевых слов:"
     },
     "keywordFormat1Title": {
-        "message": "Первый Формат:"
+        "message": "Keyword format 1:"
     },
     "keywordFormat1Text": {
-        "message": "Просто введите ключевые слова. Это может быть слово или фраза. Если ключевое слово содержит запятую ',', перед ней должен быть символ экранирования '\\'. Сайт будет заблокирован, как только ключевое слово будет обнаружено. Вы можете ввести столько ключевых слов, сколько хотите, просто нажмите Enter. Каждая новая строка - это новое ключевое слово."
+        "message": "Enter a word or phrase. If the keyword contains a comma, put a backslash before the comma. A plain keyword blocks as soon as it is detected."
     },
     "keywordFormat1_2": {
-        "message": "Пример: 'видеоигры' или 'новости'."
+        "message": "Examples: 'video games', 'news'."
     },
     "keywordFormat2Title": {
-        "message": "Второй Формат:"
+        "message": "Keyword format 2:"
     },
     "keywordFormat2Text": {
-        "message": "Введите ключевое слово, за которым следует числовое значение. Каждый сайт, который вы ввели в группу, должен набрать 1000 очков. Сайт начинается со значения 0, и на основе числового значения ключевого слова значение увеличивается. Как только сайт достигает 1000 очков, он будет заблокирован."
+        "message": "Add a number after a comma. The page score starts at 0 and increases by that amount each time the keyword is found. At 1000, the page is blocked."
     },
     "keywordFormat2_2": {
         "message": "Пример: 'новости, 50'"
     },
     "keywordFormat2_3": {
-        "message": "Каждый сайт, который вы ввели в группу, должен набрать 1000 очков. Сайт начинается со значения 0, и на основе числового значения ключевого слова значение увеличивается. Как только сайт достигает 1000 очков, он будет заблокирован."
+        "message": "Use this when a word should matter, but only after repeated or combined signals."
     },
     "keywordFormat3Title": {
-        "message": "Третий Формат:"
+        "message": "Keyword format 3:"
     },
     "keywordFormat3Text": {
-        "message": "Введите ключевое слово, за которым следует знак умножения или сложения (* или +), затем числовое значение. В этом сценарии, оценка страницы умножается на основе числового значения найденного ключевого слова."
+        "message": "Use * or + with a number when you want a keyword to multiply or add to the current page score in a more explicit way."
     },
     "keywordFormat3_2": {
         "message": "Пример: 'новости, *, 10'"
     },
     "keywordFormat3_3": {
-        "message": "В этом сценарии, оценка страницы умножается на основе числового значения найденного ключевого слова."
+        "message": "Use this for stronger signals that should become decisive only in a specific context."
     },
     "timerCountTitle": {
-        "message": "Количество Таймеров"
+        "message": "Pomodoro"
     },
     "timerCountText": {
-        "message": "После того, как страница будет заблокирована, у вас будет возможность нажать кнопку 'Активировать Таймер'. После этого у вас будет время для выполнения некоторых действий на странице, прежде чем она снова будет заблокирована. В поле Количество Таймеров вы можете решить, сколько таймеров вы хотите иметь в течение дня."
+        "message": "A plan can run Pomodoro work and rest timing. Strict breaks can block or quiet pages during rest so the break is protected."
     },
     "timerDurationTitle": {
-        "message": "Длительность Таймера (секунды)"
+        "message": "Pomodoro Timing"
     },
     "timerDurationText": {
-        "message": "В этом поле вы решаете, сколько секунд будет длиться каждый таймер."
+        "message": "Set work minutes, short breaks, long breaks, and how many work sessions happen before a long break. During an active protected schedule, enabling Pomodoro or making it stricter is allowed; relaxing it is blocked."
     },
     "lockedSchedulesTitle": {
         "message": "Заблокированные Расписания"
     },
     "lockedSchedulesNote": {
-        "message": "! Заблокированное расписание нельзя разблокировать до истечения времени (если только вы не удалите расширение) !"
+        "message": "A protected schedule is meant to resist hot-state weakening while the scheduled window is active."
     },
     "lockedSchedulesText1": {
-        "message": "Вы можете добавить новое заблокированное расписание, создав название расписания в поле Название Расписания и нажав Enter или кнопку Добавить Расписание."
+        "message": "Open a plan, choose Schedule, and add one or more scheduled time blocks. Each block can choose days, start time, end time, and whether it is protected."
     },
     "lockedSchedulesText2": {
-        "message": "Для изменения настроек вашего расписания, нажмите 'Редактировать'. Нажимая кнопки дней, вы активируете расписание на этот день (кнопка станет зеленой) или отключаете его на этот день. Изменяя поля 'Время Начала' и 'Время Окончания', вы устанавливаете время активности расписания. Каждый день должен иметь 1-часовое окно неактивности, чтобы вы могли деактивировать расписание в это время. Кнопка 'Активно'/'Неактивно' переключает расписание. Расписание будет заблокировано и активно, если текущий день включен (зеленый) и кнопка показывает 'Активно' и также зеленая, и если текущее время находится между начальным и конечным временем."
+        "message": "A protected active schedule can be made stricter but not more relaxed. For example, you can add entries, raise keyword scores, enable stricter Pomodoro behavior, or add UI cleanup rules, but you cannot remove active protection."
     },
     "lockedSchedulesText3": {
-        "message": "Кнопка 'Удалить' удаляет заблокированное расписание. То же самое касается групп и сайтов в белом списке."
+        "message": "Delete removes a schedule only when doing so does not relax an active protected window."
     },
     "lockedSchedulesText4": {
-        "message": "Во время заблокированного расписания действуют несколько ограничений:"
+        "message": "During an active protected schedule, relaxed changes are refused:"
     },
     "lockedScheduleRestriction1": {
-        "message": "Вы не можете изменять названия групп."
+        "message": "You cannot disable the active plan."
     },
     "lockedScheduleRestriction2": {
-        "message": "Вы не можете изменять или удалять существующие веб-сайты в группах."
+        "message": "You cannot remove existing plan entries or reduce the websites they protect."
     },
     "lockedScheduleRestriction3": {
-        "message": "Вы не можете изменять или удалять существующие ключевые слова и их значения."
+        "message": "You cannot remove existing keywords or reduce their weights."
     },
     "lockedScheduleRestriction4": {
-        "message": "Вы можете устанавливать значения ключевых слов только для умножения: от 1 до 1000. Для сложения: от 0 до 1000."
+        "message": "New or changed keywords must stay inside the strict allowed scoring ranges."
     },
     "lockedScheduleRestriction5": {
-        "message": "Количество таймеров не может быть увеличено."
+        "message": "You cannot disable Pomodoro, turn off strict breaks, or make Pomodoro easier to bypass."
     },
     "lockedScheduleRestriction6": {
-        "message": "Длительность таймера не может быть увеличена."
+        "message": "You can enable Pomodoro or make its timing stricter when that increases protection."
     },
     "lockedScheduleRestriction7": {
-        "message": "Активные расписания не могут быть удалены."
+        "message": "Active schedules cannot be deleted."
     },
     "lockedScheduleRestriction8": {
-        "message": "Вы не можете отменить выбор дней, сделать расписание неактивным или изменить время начала или окончания для активных расписаний."
+        "message": "You cannot remove active days or shrink an active protected schedule window."
     },
     "lockedScheduleRestriction9": {
-        "message": "Вы не можете добавлять сайты в белый список."
+        "message": "You cannot add allowed websites to bypass a protected plan."
     },
     "lockedScheduleRestriction10": {
-        "message": "Вы не можете устанавливать или удалять пароль для расширения."
+        "message": "You cannot delete password protection during an active protected schedule."
     },
     "whitelistWebsitesTitle": {
-        "message": "Белый Список Сайтов"
+        "message": "Allowed Websites"
     },
     "whitelistWebsitesText": {
-        "message": "Позволяет вам вводить сайты в белый список, что означает, что сканирование ключевых слов не будет производиться на этих сайтах, и, следовательно, они не будут заблокированы. В настоящее время у нас нет возможности использовать подстановочный знак (*) для включения множества сайтов в одну запись (например, *.io, где все сайты с '.io' будут заблокированы), поэтому эта функция не очень полезна, но она существует."
+        "message": "Allowed websites are plan-owned exceptions. Add them when a site should remain usable while a plan is active; the plan will not scan or block those allowed hosts."
     },
     "passwordManagementTitle": {
         "message": "Управление Паролями"
     },
     "passwordManagementText": {
-        "message": "Позволяет установить пароль для страницы расширения. Любой, кто откроет страницу расширения, должен будет ввести правильный пароль для доступа. Полезно для предотвращения случайного (или намеренного) ужесточения настроек."
+        "message": "Password protection can require a password before opening the options page. Use it when you want an extra barrier around changing protection settings."
     },
     "contactFeedbackTitle": {
         "message": "Контакты и Обратная Связь"

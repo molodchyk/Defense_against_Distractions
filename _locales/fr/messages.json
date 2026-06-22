@@ -372,148 +372,148 @@
         "message": "Introduction"
     },
     "introText1": {
-        "message": "Salut ! Il est si facile de se laisser distraire sur Internet et de procrastiner. Cette extension vous permet de bloquer des pages Web en fonction des mots-clés que vous ne souhaitez pas voir."
+        "message": "Defense Against Distractions lets you create local protection plans that block pages, guide Pomodoro timing, detect possible intent drift, and clean up distracting page UI."
     },
     "introText2": {
-        "message": "Il y a des milliers de jeux vidéo à jouer, d'histoires d'actualité à lire, de vidéos à regarder, etc. Et souvent, c'est ce que nous faisons lorsque les délais de projets ou les examens sont encore loin. Parfois, il peut être un peu difficile de se forcer à faire ce que l'on doit faire."
+        "message": "A plan combines page entries, allowed websites, schedules, Pomodoro settings, intent-coherence settings, and optional UI cleanup rules. Turn a plan on when you want that protection available."
     },
     "introText3": {
-        "message": "Et les distractions sont partout ! Même si vous utilisez StayFocusd, Cold Turkey ou FocusMe pour bloquer certains sites Web par leurs URL, vous ne pouvez pas tout bloquer. Par exemple, même avec ChatGPT, vous pourriez parler de l'actualité ou de jeux vidéo si vous n'avez vraiment pas envie d'étudier ou de travailler."
+        "message": "The extension checks configured pages locally in the browser. It does not send page text, browsing diagnostics, or settings to a remote server."
     },
     "introText4": {
-        "message": "Avec cette extension, vous pouvez bloquer des sites Web en fonction des mots et phrases dans leur texte."
+        "message": "Start with one plan, add the pages and words that matter, then make the plan stricter with schedules or Pomodoro when you need stronger defense."
     },
     "howToUseTitle": {
         "message": "Comment utiliser l'extension"
     },
     "createGroupTitle": {
-        "message": "Première étape : Créer un groupe"
+        "message": "First Step: Create a Plan"
     },
     "createGroupText1": {
-        "message": "Vous pouvez appuyer sur le bouton 'Ajouter un groupe' ou saisir le nom du groupe et appuyer sur Entrée ou sur le bouton Ajouter un groupe. Vous pouvez créer plusieurs groupes."
+        "message": "Enter a plan name and press Add Plan. Open the plan to configure entries, schedules, Pomodoro, intent coherence, allowed websites, and UI cleanup assignments."
     },
     "createGroupText2": {
-        "message": "Vous verrez le panneau du groupe."
+        "message": "The default plan is a safe starting point. You can keep it, rename it, or create additional plans for different contexts."
     },
     "websitesTitle": {
-        "message": "Sites Web"
+        "message": "Entries and Websites"
     },
     "websitesText": {
-        "message": "Vous pouvez commencer à ajouter des sites Web en appuyant sur le bouton 'Modifier' à gauche de la ligne Sites Web. Ce champ est responsable des sites Web où l'extension bloquera les mots-clés. Ici, vous devez saisir les URL des sites Web, par exemple, 'google.com'. Vous pouvez saisir plusieurs sites Web, chaque nouvelle ligne est un nouveau site Web. Appuyez simplement sur Entrée. Lorsque vous êtes prêt, appuyez sur le bouton vert 'Enregistrer'. Ou vous pouvez Annuler."
+        "message": "A plan entry has websites and keywords. Add the websites where the keywords should be scanned, one host per line, such as example.com or docs.example.com."
     },
     "keywordsTitle": {
         "message": "Mots-clés"
     },
     "keywordsText1": {
-        "message": "Pour ajouter de nouveaux mots-clés ou apporter des modifications, appuyez sur 'Modifier'. Les mots-clés que vous entrez ici seront analysés sur les sites Web que vous avez entrés pour ce groupe."
+        "message": "Add keywords or phrases to the same entry. The extension scans matching pages locally and blocks the page when the entry score reaches 1000."
     },
     "keywordFormatsIntroduction": {
         "message": "Il existe 3 formats pour les mots-clés :"
     },
     "keywordFormat1Title": {
-        "message": "Premier format :"
+        "message": "Keyword format 1:"
     },
     "keywordFormat1Text": {
-        "message": "Entrez simplement les mots-clés. Cela peut être un mot ou une phrase. Si le mot-clé contient une virgule ',', vous devez utiliser un caractère d'échappement '\\' avant. Le site Web sera bloqué dès que le mot-clé sera détecté. Vous pouvez entrer autant de mots-clés que vous le souhaitez, appuyez simplement sur entrer. Chaque nouvelle ligne est un nouveau mot-clé."
+        "message": "Enter a word or phrase. If the keyword contains a comma, put a backslash before the comma. A plain keyword blocks as soon as it is detected."
     },
     "keywordFormat1_2": {
-        "message": "Exemple : 'jeux vidéo' ou 'actualités'."
+        "message": "Examples: 'video games', 'news'."
     },
     "keywordFormat2Title": {
-        "message": "Deuxième format :"
+        "message": "Keyword format 2:"
     },
     "keywordFormat2Text": {
-        "message": "Entrez le mot-clé, suivi d'une valeur numérique. Chaque site Web que vous avez entré dans un groupe doit atteindre un score de 1000. Le site commence avec une valeur de 0, et en fonction de la valeur numérique du mot-clé, la valeur augmente. Une fois que le site atteint un score de 1000, il sera bloqué."
+        "message": "Add a number after a comma. The page score starts at 0 and increases by that amount each time the keyword is found. At 1000, the page is blocked."
     },
     "keywordFormat2_2": {
         "message": "Exemple : 'actualités, 50'"
     },
     "keywordFormat2_3": {
-        "message": "Chaque site Web que vous avez entré dans un groupe doit atteindre un score de 1000. Le site commence avec une valeur de 0, et en fonction de la valeur numérique du mot-clé, la valeur augmente. Une fois que le site atteint un score de 1000, il sera bloqué."
+        "message": "Use this when a word should matter, but only after repeated or combined signals."
     },
     "keywordFormat3Title": {
-        "message": "Troisième format :"
+        "message": "Keyword format 3:"
     },
     "keywordFormat3Text": {
-        "message": "Entrez le mot-clé, suivi d'un signe de multiplication ou d'addition (* ou +), puis d'une valeur numérique. Dans ce scénario, le score de la page est multiplié en fonction de la valeur numérique du mot-clé trouvé."
+        "message": "Use * or + with a number when you want a keyword to multiply or add to the current page score in a more explicit way."
     },
     "keywordFormat3_2": {
         "message": "Exemple : 'actualités, *, 10'"
     },
     "keywordFormat3_3": {
-        "message": "Dans ce scénario, le score de la page est multiplié en fonction de la valeur numérique du mot-clé trouvé."
+        "message": "Use this for stronger signals that should become decisive only in a specific context."
     },
     "timerCountTitle": {
-        "message": "Compte à rebours"
+        "message": "Pomodoro"
     },
     "timerCountText": {
-        "message": "Après que la page soit bloquée, vous aurez la possibilité d'appuyer sur le bouton 'Activer le minuteur'. Après cela, vous aurez du temps pour effectuer certaines actions sur la page avant qu'elle ne soit à nouveau bloquée. Dans le champ Compte à rebours, vous pouvez décider combien de minuteurs vous souhaitez avoir pendant la journée."
+        "message": "A plan can run Pomodoro work and rest timing. Strict breaks can block or quiet pages during rest so the break is protected."
     },
     "timerDurationTitle": {
-        "message": "Durée du minuteur (secondes)"
+        "message": "Pomodoro Timing"
     },
     "timerDurationText": {
-        "message": "Dans ce champ, vous décidez combien de secondes chaque minuteur aura."
+        "message": "Set work minutes, short breaks, long breaks, and how many work sessions happen before a long break. During an active protected schedule, enabling Pomodoro or making it stricter is allowed; relaxing it is blocked."
     },
     "lockedSchedulesTitle": {
         "message": "Programmes verrouillés"
     },
     "lockedSchedulesNote": {
-        "message": "! Un programme verrouillé ne peut pas être déverrouillé jusqu'à ce que le temps passe (à moins que vous ne désinstalliez l'extension) !"
+        "message": "A protected schedule is meant to resist hot-state weakening while the scheduled window is active."
     },
     "lockedSchedulesText1": {
-        "message": "Vous pouvez ajouter un nouveau programme verrouillé en créant le nom du programme dans le champ Nom du programme et en appuyant sur Entrée ou sur le bouton Ajouter un programme."
+        "message": "Open a plan, choose Schedule, and add one or more scheduled time blocks. Each block can choose days, start time, end time, and whether it is protected."
     },
     "lockedSchedulesText2": {
-        "message": "Pour modifier les paramètres de votre programme, appuyez sur 'Modifier'. En appuyant sur les boutons des jours, vous activez le programme ce jour-là (le bouton devient vert), ou vous le désactivez pour ce jour. En modifiant les champs Heure de début et Heure de fin, vous définissez les moments où le programme peut être actif. Chaque jour doit avoir une fenêtre de temps inactive d'au moins une heure pour que vous puissiez désactiver le programme pendant ce temps. Le bouton Inactif/Actif bascule le programme. Le programme sera verrouillé et actif si le jour actuel est activé (vert) et le bouton montre 'Actif' et est également vert, et si l'heure actuelle est entre les heures de début et de fin."
+        "message": "A protected active schedule can be made stricter but not more relaxed. For example, you can add entries, raise keyword scores, enable stricter Pomodoro behavior, or add UI cleanup rules, but you cannot remove active protection."
     },
     "lockedSchedulesText3": {
-        "message": "Le bouton Supprimer enlève le programme verrouillé. Il en va de même pour les groupes et les sites Web de la liste blanche."
+        "message": "Delete removes a schedule only when doing so does not relax an active protected window."
     },
     "lockedSchedulesText4": {
-        "message": "Plusieurs restrictions s'appliquent pendant le programme verrouillé :"
+        "message": "During an active protected schedule, relaxed changes are refused:"
     },
     "lockedScheduleRestriction1": {
-        "message": "Vous ne pouvez pas changer les noms des groupes."
+        "message": "You cannot disable the active plan."
     },
     "lockedScheduleRestriction2": {
-        "message": "Vous ne pouvez pas changer ou supprimer les sites Web existants dans les groupes."
+        "message": "You cannot remove existing plan entries or reduce the websites they protect."
     },
     "lockedScheduleRestriction3": {
-        "message": "Vous ne pouvez pas changer ou supprimer les mots-clés existants et leurs valeurs."
+        "message": "You cannot remove existing keywords or reduce their weights."
     },
     "lockedScheduleRestriction4": {
-        "message": "Vous pouvez uniquement définir les valeurs des mots-clés pour la multiplication : de 1 à 1000. Pour l'addition : de 0 à 1000."
+        "message": "New or changed keywords must stay inside the strict allowed scoring ranges."
     },
     "lockedScheduleRestriction5": {
-        "message": "Le nombre de minuteurs ne peut pas être augmenté."
+        "message": "You cannot disable Pomodoro, turn off strict breaks, or make Pomodoro easier to bypass."
     },
     "lockedScheduleRestriction6": {
-        "message": "La durée du minuteur ne peut pas être augmentée."
+        "message": "You can enable Pomodoro or make its timing stricter when that increases protection."
     },
     "lockedScheduleRestriction7": {
-        "message": "Les programmes actifs ne peuvent pas être supprimés."
+        "message": "Active schedules cannot be deleted."
     },
     "lockedScheduleRestriction8": {
-        "message": "Vous ne pouvez pas désélectionner des jours, rendre le programme inactif, ou changer les heures de début ou de fin pour les programmes actifs."
+        "message": "You cannot remove active days or shrink an active protected schedule window."
     },
     "lockedScheduleRestriction9": {
-        "message": "Vous ne pouvez pas ajouter de sites web à la liste blanche."
+        "message": "You cannot add allowed websites to bypass a protected plan."
     },
     "lockedScheduleRestriction10": {
-        "message": "Vous ne pouvez pas définir ou supprimer le mot de passe de l'extension."
+        "message": "You cannot delete password protection during an active protected schedule."
     },
     "whitelistWebsitesTitle": {
-        "message": "Sites en liste blanche"
+        "message": "Allowed Websites"
     },
     "whitelistWebsitesText": {
-        "message": "Vous permet d'entrer des sites web en liste blanche, ce qui signifie que la recherche de mots-clés ne sera pas effectuée sur ces sites, et donc ils ne seront pas bloqués. Actuellement, nous n'avons pas la capacité d'utiliser un joker (*) pour inclure de nombreux sites dans une seule entrée (comme *.io, où tous les sites avec '.io' seraient bloqués), donc cette fonctionnalité n'est pas très utile, mais elle existe."
+        "message": "Allowed websites are plan-owned exceptions. Add them when a site should remain usable while a plan is active; the plan will not scan or block those allowed hosts."
     },
     "passwordManagementTitle": {
         "message": "Gestion des mots de passe"
     },
     "passwordManagementText": {
-        "message": "Vous permet de définir un mot de passe pour la page de l'extension. Toute personne qui ouvre la page de l'extension devra entrer le bon mot de passe pour y accéder. Utile pour empêcher les autres de resserrer les paramètres accidentellement (ou intentionnellement)."
+        "message": "Password protection can require a password before opening the options page. Use it when you want an extra barrier around changing protection settings."
     },
     "contactFeedbackTitle": {
         "message": "Contact et retour d'information"

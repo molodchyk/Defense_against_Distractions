@@ -372,148 +372,148 @@
         "message": "ആമുഖം"
     },
     "introText1": {
-        "message": "ഹായ്! ഇൻ്റർനെറ്റിൽ ശ്രദ്ധ തിരിക്കുന്നതും നീട്ടിവെക്കുന്നതും വളരെ എളുപ്പമാണ്. നിങ്ങൾ കാണാൻ ആഗ്രഹിക്കാത്ത കീവേഡുകളെ അടിസ്ഥാനമാക്കി വെബ് പേജുകൾ തടയാൻ ഈ വിപുലീകരണം നിങ്ങളെ അനുവദിക്കുന്നു."
+        "message": "Defense Against Distractions lets you create local protection plans that block pages, guide Pomodoro timing, detect possible intent drift, and clean up distracting page UI."
     },
     "introText2": {
-        "message": "കളിക്കാൻ ആയിരക്കണക്കിന് വീഡിയോ ഗെയിമുകൾ ഉണ്ട്, വായിക്കാൻ വാർത്തകൾ, കാണാൻ വീഡിയോകൾ, അങ്ങനെ പലതും. പലപ്പോഴും, പ്രോജക്‌റ്റ് ഡെഡ്‌ലൈനുകളോ പരീക്ഷകളോ ഇപ്പോഴും അകലെയായിരിക്കുമ്പോൾ ഞങ്ങൾ ചെയ്യുന്നത് ഇതാണ്. ചിലപ്പോൾ, നിങ്ങൾ ചെയ്യേണ്ടത് ചെയ്യാൻ സ്വയം നിർബന്ധിക്കുന്നത് അൽപ്പം ബുദ്ധിമുട്ടായിരിക്കും."
+        "message": "A plan combines page entries, allowed websites, schedules, Pomodoro settings, intent-coherence settings, and optional UI cleanup rules. Turn a plan on when you want that protection available."
     },
     "introText3": {
-        "message": "എല്ലായിടത്തും ശ്രദ്ധ വ്യതിചലിപ്പിക്കുന്നു! നിങ്ങൾ StayFocusd അല്ലെങ്കിൽ Cold Turkey അല്ലെങ്കിൽ FocusMe എന്നിവ ഉപയോഗിച്ച് ചില വെബ്‌സൈറ്റുകളുടെ URL-കൾ ഉപയോഗിച്ച് ബ്ലോക്ക് ചെയ്യുകയാണെങ്കിൽ പോലും, നിങ്ങൾക്ക് എല്ലാം ബ്ലോക്ക് ചെയ്യാൻ കഴിയില്ല. ഉദാഹരണത്തിന്, ChatGPT-ൽ പോലും, നിങ്ങൾക്ക് പഠിക്കാനോ ജോലി ചെയ്യാനോ താൽപ്പര്യമില്ലെങ്കിൽ വാർത്തകളെക്കുറിച്ചോ വീഡിയോ ഗെയിമുകളെക്കുറിച്ചോ സംസാരിക്കാം."
+        "message": "The extension checks configured pages locally in the browser. It does not send page text, browsing diagnostics, or settings to a remote server."
     },
     "introText4": {
-        "message": "ഈ വിപുലീകരണം ഉപയോഗിച്ച്, നിങ്ങൾക്ക് വെബ്‌സൈറ്റുകളെ അവയുടെ വാചകത്തിലെ വാക്കുകളും ശൈലികളും അടിസ്ഥാനമാക്കി ബ്ലോക്ക് ചെയ്യാം."
+        "message": "Start with one plan, add the pages and words that matter, then make the plan stricter with schedules or Pomodoro when you need stronger defense."
     },
     "howToUseTitle": {
         "message": "വിപുലീകരണം എങ്ങനെ ഉപയോഗിക്കാം"
     },
     "createGroupTitle": {
-        "message": "ആദ്യ ഘട്ടം: ഒരു ഗ്രൂപ്പ് സൃഷ്ടിക്കുക"
+        "message": "First Step: Create a Plan"
     },
     "createGroupText1": {
-        "message": "നിങ്ങൾക്ക് 'ഗ്രൂപ്പ് ചേർക്കുക' ബട്ടൺ അമർത്താം അല്ലെങ്കിൽ ഗ്രൂപ്പിൻ്റെ പേര് നൽകി എൻ്റർ അല്ലെങ്കിൽ ഗ്രൂപ്പ് ചേർക്കുക ബട്ടൺ അമർത്തുക. നിങ്ങൾക്ക് ഒന്നിലധികം ഗ്രൂപ്പുകൾ സൃഷ്ടിക്കാൻ കഴിയും."
+        "message": "Enter a plan name and press Add Plan. Open the plan to configure entries, schedules, Pomodoro, intent coherence, allowed websites, and UI cleanup assignments."
     },
     "createGroupText2": {
-        "message": "നിങ്ങൾ ഗ്രൂപ്പ് പാനൽ കാണും."
+        "message": "The default plan is a safe starting point. You can keep it, rename it, or create additional plans for different contexts."
     },
     "websitesTitle": {
-        "message": "വെബ്സൈറ്റുകൾ"
+        "message": "Entries and Websites"
     },
     "websitesText": {
-        "message": "വെബ്‌സൈറ്റ് ലൈനിൻ്റെ ഇടതുവശത്തുള്ള 'എഡിറ്റ്' ബട്ടൺ അമർത്തി നിങ്ങൾക്ക് വെബ്‌സൈറ്റുകൾ ചേർക്കുന്നത് ആരംഭിക്കാം. വിപുലീകരണം കീവേഡുകൾ തടയുന്ന വെബ്‌സൈറ്റുകൾക്ക് ഈ ഫീൽഡ് ഉത്തരവാദിയാണ്. ഇവിടെ നിങ്ങൾ വെബ്‌സൈറ്റ് URL-കൾ നൽകണം, ഉദാഹരണത്തിന്, 'google.com'. നിങ്ങൾക്ക് ഒന്നിലധികം വെബ്‌സൈറ്റുകൾ ഇൻപുട്ട് ചെയ്യാൻ കഴിയും, ഓരോ പുതിയ വരിയും ഒരു പുതിയ വെബ്‌സൈറ്റാണ്. എൻ്റർ അമർത്തുക. നിങ്ങൾ തയ്യാറാകുമ്പോൾ, പച്ച 'സേവ്' ബട്ടൺ അമർത്തുക. അല്ലെങ്കിൽ നിങ്ങൾക്ക് റദ്ദാക്കാം."
+        "message": "A plan entry has websites and keywords. Add the websites where the keywords should be scanned, one host per line, such as example.com or docs.example.com."
     },
     "keywordsTitle": {
         "message": "കീവേഡുകൾ"
     },
     "keywordsText1": {
-        "message": "പുതിയ കീവേഡുകൾ ചേർക്കുന്നതിനോ എന്തെങ്കിലും മാറ്റങ്ങൾ വരുത്തുന്നതിനോ, 'എഡിറ്റ്' അമർത്തുക. നിങ്ങൾ ഇവിടെ നൽകുന്ന കീവേഡുകൾ ഈ ഗ്രൂപ്പിനായി നിങ്ങൾ നൽകിയ വെബ്‌സൈറ്റുകളിൽ സ്കാൻ ചെയ്യും."
+        "message": "Add keywords or phrases to the same entry. The extension scans matching pages locally and blocks the page when the entry score reaches 1000."
     },
     "keywordFormatsIntroduction": {
         "message": "കീവേഡുകൾക്ക് 3 ഫോർമാറ്റുകൾ ഉണ്ട്:"
     },
     "keywordFormat1Title": {
-        "message": "ആദ്യ ഫോർമാറ്റ്:"
+        "message": "Keyword format 1:"
     },
     "keywordFormat1Text": {
-        "message": "കീവേഡുകൾ മാത്രം നൽകുക. അത് ഒരു വാക്കോ വാക്യമോ ആകാം. കീവേഡിൽ കോമ ',' അടങ്ങിയിട്ടുണ്ടെങ്കിൽ, അതിന് മുമ്പ് നിങ്ങൾ '\\' എന്ന എസ്കേപ്പ് പ്രതീകം ഉപയോഗിക്കണം. കീവേഡ് കണ്ടെത്തിയാലുടൻ വെബ്സൈറ്റ് ബ്ലോക്ക് ചെയ്യപ്പെടും. നിങ്ങൾക്ക് ആവശ്യമുള്ളത്ര കീവേഡുകൾ നൽകാം, എൻ്റർ അമർത്തുക. ഓരോ പുതിയ വരിയും ഒരു പുതിയ കീവേഡാണ്."
+        "message": "Enter a word or phrase. If the keyword contains a comma, put a backslash before the comma. A plain keyword blocks as soon as it is detected."
     },
     "keywordFormat1_2": {
-        "message": "ഉദാഹരണം: 'വീഡിയോ ഗെയിമുകൾ' അല്ലെങ്കിൽ 'വാർത്തകൾ'."
+        "message": "Examples: 'video games', 'news'."
     },
     "keywordFormat2Title": {
-        "message": "രണ്ടാമത്തെ ഫോർമാറ്റ്:"
+        "message": "Keyword format 2:"
     },
     "keywordFormat2Text": {
-        "message": "കീവേഡ് നൽകുക, തുടർന്ന് ഒരു സംഖ്യാ മൂല്യം. നിങ്ങൾ ഒരു ഗ്രൂപ്പിൽ നൽകിയ ഓരോ വെബ്‌സൈറ്റും 1000 സ്‌കോറിൽ എത്തണം. വെബ്‌സൈറ്റ് ആരംഭിക്കുന്നത് 0 എന്ന മൂല്യത്തിലാണ്, കൂടാതെ കീവേഡിൻ്റെ സംഖ്യാ മൂല്യത്തെ അടിസ്ഥാനമാക്കി മൂല്യം വർദ്ധിക്കുന്നു. വെബ്‌സൈറ്റ് സ്‌കോർ 1000ൽ എത്തിയാൽ അത് ബ്ലോക്ക് ചെയ്യപ്പെടും."
+        "message": "Add a number after a comma. The page score starts at 0 and increases by that amount each time the keyword is found. At 1000, the page is blocked."
     },
     "keywordFormat2_2": {
         "message": "ഉദാഹരണം: 'വാർത്ത, 50'"
     },
     "keywordFormat2_3": {
-        "message": "നിങ്ങൾ ഒരു ഗ്രൂപ്പിൽ നൽകിയ ഓരോ വെബ്‌സൈറ്റും 1000 സ്‌കോറിൽ എത്തണം. സൈറ്റ് 0-ൻ്റെ മൂല്യത്തിൽ ആരംഭിക്കുന്നു, കീവേഡിൻ്റെ സംഖ്യാ മൂല്യത്തെ അടിസ്ഥാനമാക്കി, മൂല്യം വർദ്ധിക്കുന്നു. വെബ്‌സൈറ്റ് സ്‌കോർ 1000ൽ എത്തിയാൽ അത് ബ്ലോക്ക് ചെയ്യപ്പെടും."
+        "message": "Use this when a word should matter, but only after repeated or combined signals."
     },
     "keywordFormat3Title": {
-        "message": "മൂന്നാമത്തെ ഫോർമാറ്റ്:"
+        "message": "Keyword format 3:"
     },
     "keywordFormat3Text": {
-        "message": "കീവേഡ് നൽകുക, തുടർന്ന് ഒരു ഗുണനം അല്ലെങ്കിൽ കൂട്ടിച്ചേർക്കൽ ചിഹ്നം (* അല്ലെങ്കിൽ +), തുടർന്ന് ഒരു സംഖ്യാ മൂല്യം. ഈ സാഹചര്യത്തിൽ, കണ്ടെത്തിയ കീവേഡിൻ്റെ സംഖ്യാ മൂല്യത്തെ അടിസ്ഥാനമാക്കി പേജിൻ്റെ സ്കോർ ഗുണിക്കുന്നു."
+        "message": "Use * or + with a number when you want a keyword to multiply or add to the current page score in a more explicit way."
     },
     "keywordFormat3_2": {
         "message": "ഉദാഹരണം: 'വാർത്ത, *, 10'"
     },
     "keywordFormat3_3": {
-        "message": "ഈ സാഹചര്യത്തിൽ, കണ്ടെത്തിയ കീവേഡിൻ്റെ സംഖ്യാ മൂല്യത്തെ അടിസ്ഥാനമാക്കി പേജിൻ്റെ സ്കോർ ഗുണിക്കുന്നു."
+        "message": "Use this for stronger signals that should become decisive only in a specific context."
     },
     "timerCountTitle": {
-        "message": "ടൈമർ എണ്ണം"
+        "message": "Pomodoro"
     },
     "timerCountText": {
-        "message": "പേജ് ബ്ലോക്ക് ചെയ്‌ത ശേഷം, 'ടൈമർ സജീവമാക്കുക' ബട്ടൺ അമർത്താനുള്ള ഓപ്ഷൻ നിങ്ങൾക്കുണ്ടാകും. അതിനുശേഷം, പേജ് വീണ്ടും തടയുന്നതിന് മുമ്പ് അതിൽ ചില പ്രവർത്തനങ്ങൾ നടത്താൻ നിങ്ങൾക്ക് സമയമുണ്ടാകും. ടൈമർ കൗണ്ട് ഫീൽഡിൽ, ദിവസം എത്ര ടൈമറുകൾ വേണമെന്ന് നിങ്ങൾക്ക് തീരുമാനിക്കാം."
+        "message": "A plan can run Pomodoro work and rest timing. Strict breaks can block or quiet pages during rest so the break is protected."
     },
     "timerDurationTitle": {
-        "message": "ടൈമർ ദൈർഘ്യം (സെക്കൻഡ്)"
+        "message": "Pomodoro Timing"
     },
     "timerDurationText": {
-        "message": "ഈ ഫീൽഡിൽ, ഓരോ ടൈമറിനും എത്ര സെക്കൻഡ് വേണമെന്ന് നിങ്ങൾ തീരുമാനിക്കും."
+        "message": "Set work minutes, short breaks, long breaks, and how many work sessions happen before a long break. During an active protected schedule, enabling Pomodoro or making it stricter is allowed; relaxing it is blocked."
     },
     "lockedSchedulesTitle": {
         "message": "ലോക്ക് ചെയ്ത ഷെഡ്യൂളുകൾ"
     },
     "lockedSchedulesNote": {
-        "message": "! സമയം കടന്നുപോകുന്നതുവരെ ഒരു ലോക്ക് ചെയ്ത ഷെഡ്യൂൾ അൺലോക്ക് ചെയ്യാൻ കഴിയില്ല (നിങ്ങൾ വിപുലീകരണം അൺഇൻസ്റ്റാൾ ചെയ്തില്ലെങ്കിൽ)!"
+        "message": "A protected schedule is meant to resist hot-state weakening while the scheduled window is active."
     },
     "lockedSchedulesText1": {
-        "message": "ഷെഡ്യൂൾ നെയിം ഫീൽഡിൽ ഷെഡ്യൂൾ നാമം സൃഷ്ടിച്ച് എൻ്റർ അല്ലെങ്കിൽ ഷെഡ്യൂൾ ചേർക്കുക ബട്ടൺ അമർത്തി നിങ്ങൾക്ക് ഒരു പുതിയ ലോക്ക് ചെയ്ത ഷെഡ്യൂൾ ചേർക്കാൻ കഴിയും."
+        "message": "Open a plan, choose Schedule, and add one or more scheduled time blocks. Each block can choose days, start time, end time, and whether it is protected."
     },
     "lockedSchedulesText2": {
-        "message": "നിങ്ങളുടെ ഷെഡ്യൂളിൻ്റെ ക്രമീകരണങ്ങൾ പരിഷ്‌ക്കരിക്കുന്നതിന്, 'എഡിറ്റ്' അമർത്തുക. ദിവസ ബട്ടണുകൾ അമർത്തുന്നതിലൂടെ, നിങ്ങൾ ആ ദിവസത്തെ ഷെഡ്യൂൾ പ്രവർത്തനക്ഷമമാക്കുക (ബട്ടൺ പച്ചയായി മാറുന്നു), അല്ലെങ്കിൽ ആ ദിവസത്തേക്ക് അത് പ്രവർത്തനരഹിതമാക്കുക. ആരംഭ സമയം, അവസാന സമയം എന്നീ ഫീൽഡുകൾ പരിഷ്‌ക്കരിക്കുന്നതിലൂടെ, ഷെഡ്യൂൾ സജീവമാക്കാൻ കഴിയുന്ന സമയങ്ങൾ നിങ്ങൾ സജ്ജമാക്കുന്നു. ഓരോ ദിവസവും 1 മണിക്കൂർ നിഷ്‌ക്രിയ സമയ വിൻഡോ ഉണ്ടായിരിക്കണം, അതിനാൽ ആ സമയത്ത് നിങ്ങൾക്ക് ഷെഡ്യൂൾ നിർജ്ജീവമാക്കാം. നിഷ്ക്രിയ/സജീവ ബട്ടൺ ഷെഡ്യൂൾ ടോഗിൾ ചെയ്യുന്നു. നിലവിലെ ദിവസം പ്രവർത്തനക്ഷമമാക്കിയിട്ടുണ്ടെങ്കിലും (പച്ച) ബട്ടൺ 'ആക്‌റ്റീവ്' എന്ന് കാണിക്കുകയും പച്ചയാണെങ്കിൽ, നിലവിലെ സമയം ആരംഭ സമയത്തിനും അവസാന സമയത്തിനും ഇടയിലാണെങ്കിൽ ഷെഡ്യൂൾ ലോക്ക് ചെയ്‌ത് സജീവമാകും."
+        "message": "A protected active schedule can be made stricter but not more relaxed. For example, you can add entries, raise keyword scores, enable stricter Pomodoro behavior, or add UI cleanup rules, but you cannot remove active protection."
     },
     "lockedSchedulesText3": {
-        "message": "ഇല്ലാതാക്കുക ബട്ടൺ ലോക്ക് ചെയ്‌ത ഷെഡ്യൂൾ നീക്കംചെയ്യുന്നു. ഗ്രൂപ്പുകൾക്കും വൈറ്റ്‌ലിസ്റ്റ് ചെയ്‌ത വെബ്‌സൈറ്റുകൾക്കും ഇത് ബാധകമാണ്."
+        "message": "Delete removes a schedule only when doing so does not relax an active protected window."
     },
     "lockedSchedulesText4": {
-        "message": "ലോക്ക് ചെയ്ത ഷെഡ്യൂളിൽ നിരവധി നിയന്ത്രണങ്ങൾ ബാധകമാണ്:"
+        "message": "During an active protected schedule, relaxed changes are refused:"
     },
     "lockedScheduleRestriction1": {
-        "message": "നിങ്ങൾക്ക് ഗ്രൂപ്പിൻ്റെ പേരുകൾ മാറ്റാൻ കഴിയില്ല."
+        "message": "You cannot disable the active plan."
     },
     "lockedScheduleRestriction2": {
-        "message": "ഗ്രൂപ്പുകളിൽ നിലവിലുള്ള വെബ്സൈറ്റുകൾ മാറ്റാനോ നീക്കം ചെയ്യാനോ കഴിയില്ല."
+        "message": "You cannot remove existing plan entries or reduce the websites they protect."
     },
     "lockedScheduleRestriction3": {
-        "message": "നിങ്ങൾക്ക് നിലവിലുള്ള കീവേഡുകളും അവയുടെ മൂല്യങ്ങളും മാറ്റാനോ നീക്കം ചെയ്യാനോ കഴിയില്ല."
+        "message": "You cannot remove existing keywords or reduce their weights."
     },
     "lockedScheduleRestriction4": {
-        "message": "ഗുണനത്തിനായി നിങ്ങൾക്ക് കീവേഡ് മൂല്യങ്ങൾ മാത്രമേ സജ്ജീകരിക്കാൻ കഴിയൂ: 1 മുതൽ 1000 വരെ. കൂടാതെ: 0 മുതൽ 1000 വരെ."
+        "message": "New or changed keywords must stay inside the strict allowed scoring ranges."
     },
     "lockedScheduleRestriction5": {
-        "message": "ടൈമർ എണ്ണം വർദ്ധിപ്പിക്കാൻ കഴിയില്ല."
+        "message": "You cannot disable Pomodoro, turn off strict breaks, or make Pomodoro easier to bypass."
     },
     "lockedScheduleRestriction6": {
-        "message": "ടൈമർ ദൈർഘ്യം വർദ്ധിപ്പിക്കാൻ കഴിയില്ല."
+        "message": "You can enable Pomodoro or make its timing stricter when that increases protection."
     },
     "lockedScheduleRestriction7": {
-        "message": "സജീവ ഷെഡ്യൂളുകൾ ഇല്ലാതാക്കാൻ കഴിയില്ല."
+        "message": "Active schedules cannot be deleted."
     },
     "lockedScheduleRestriction8": {
-        "message": "നിങ്ങൾക്ക് ദിവസങ്ങൾ തിരഞ്ഞെടുത്തത് മാറ്റാനോ ഷെഡ്യൂൾ നിഷ്‌ക്രിയമാക്കാനോ സജീവ ഷെഡ്യൂളുകൾക്കായി ആരംഭ അല്ലെങ്കിൽ അവസാന സമയങ്ങൾ മാറ്റാനോ കഴിയില്ല."
+        "message": "You cannot remove active days or shrink an active protected schedule window."
     },
     "lockedScheduleRestriction9": {
-        "message": "വൈറ്റ്‌ലിസ്റ്റ് ചെയ്‌ത വെബ്‌സൈറ്റുകൾ നിങ്ങൾക്ക് ചേർക്കാൻ കഴിയില്ല."
+        "message": "You cannot add allowed websites to bypass a protected plan."
     },
     "lockedScheduleRestriction10": {
-        "message": "വിപുലീകരണത്തിനായി നിങ്ങൾക്ക് പാസ്‌വേഡ് സജ്ജമാക്കാനോ ഇല്ലാതാക്കാനോ കഴിയില്ല."
+        "message": "You cannot delete password protection during an active protected schedule."
     },
     "whitelistWebsitesTitle": {
-        "message": "വെബ്‌സൈറ്റുകൾ വൈറ്റ്‌ലിസ്റ്റ് ചെയ്യുക"
+        "message": "Allowed Websites"
     },
     "whitelistWebsitesText": {
-        "message": "വൈറ്റ്‌ലിസ്റ്റ് ചെയ്‌ത വെബ്‌സൈറ്റുകൾ നൽകാൻ നിങ്ങളെ അനുവദിക്കുന്നു, അതായത് ഈ വെബ്‌സൈറ്റുകളിൽ കീവേഡ് സ്കാൻ നടത്തില്ല, അതിനാൽ അവ തടയപ്പെടില്ല. നിലവിൽ, ഒരു എൻട്രിയിൽ ധാരാളം വെബ്‌സൈറ്റുകൾ ഉൾപ്പെടുത്തുന്നതിന് ഒരു വൈൽഡ്കാർഡ് (*) ഉപയോഗിക്കാനുള്ള കഴിവ് ഞങ്ങൾക്കില്ല ('.io' ഉള്ള എല്ലാ വെബ്‌സൈറ്റുകളും ബ്ലോക്ക് ചെയ്യപ്പെടുന്ന *.io പോലെ), അതിനാൽ ഈ സവിശേഷത വളരെ ഉപയോഗപ്രദമല്ല, പക്ഷേ അത് നിലവിലുണ്ട്."
+        "message": "Allowed websites are plan-owned exceptions. Add them when a site should remain usable while a plan is active; the plan will not scan or block those allowed hosts."
     },
     "passwordManagementTitle": {
         "message": "പാസ്വേഡ് മാനേജ്മെൻ്റ്"
     },
     "passwordManagementText": {
-        "message": "വിപുലീകരണ പേജിനായി ഒരു പാസ്‌വേഡ് സജ്ജീകരിക്കാൻ നിങ്ങളെ അനുവദിക്കുന്നു. വിപുലീകരണ പേജ് തുറക്കുന്ന ആർക്കും ആക്‌സസ് ലഭിക്കുന്നതിന് ശരിയായ പാസ്‌വേഡ് നൽകേണ്ടതുണ്ട്. ക്രമീകരണങ്ങൾ ആകസ്മികമായി (അല്ലെങ്കിൽ മനഃപൂർവ്വം) ശക്തമാക്കുന്നതിൽ നിന്ന് മറ്റുള്ളവരെ തടയുന്നതിന് ഉപയോഗപ്രദമാണ്."
+        "message": "Password protection can require a password before opening the options page. Use it when you want an extra barrier around changing protection settings."
     },
     "contactFeedbackTitle": {
         "message": "കോൺടാക്‌റ്റും ഫീഡ്‌ബാക്കും"

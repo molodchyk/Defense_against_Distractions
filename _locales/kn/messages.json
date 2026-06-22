@@ -372,148 +372,148 @@
         "message": "ಪರಿಚಯ"
     },
     "introText1": {
-        "message": "ನಮಸ್ತೆ! ಇಂಟರ್ನೆಟ್‌ನಲ್ಲಿ ವಿಚಲಿತರಾಗಲು ಮತ್ತು ಮುಂದೂಡಲು ತುಂಬಾ ಸುಲಭ. ನೀವು ನೋಡಲು ಬಯಸದ ಕೀವರ್ಡ್‌ಗಳ ಆಧಾರದ ಮೇಲೆ ವೆಬ್ ಪುಟಗಳನ್ನು ನಿರ್ಬಂಧಿಸಲು ಈ ವಿಸ್ತರಣೆಯು ನಿಮಗೆ ಅನುಮತಿಸುತ್ತದೆ."
+        "message": "Defense Against Distractions lets you create local protection plans that block pages, guide Pomodoro timing, detect possible intent drift, and clean up distracting page UI."
     },
     "introText2": {
-        "message": "ಆಡಲು ಸಾವಿರಾರು ವಿಡಿಯೋ ಗೇಮ್‌ಗಳು, ಓದಲು ಸುದ್ದಿಗಳು, ವೀಕ್ಷಿಸಲು ವೀಡಿಯೊಗಳು ಇತ್ಯಾದಿ. ಮತ್ತು ಆಗಾಗ್ಗೆ, ಪ್ರಾಜೆಕ್ಟ್ ಡೆಡ್‌ಲೈನ್‌ಗಳು ಅಥವಾ ಪರೀಕ್ಷೆಗಳು ಇನ್ನೂ ದೂರದಲ್ಲಿರುವಾಗ ನಾವು ಇದನ್ನು ಮಾಡುತ್ತೇವೆ. ಕೆಲವೊಮ್ಮೆ, ನೀವು ಮಾಡಬೇಕಾದುದನ್ನು ಮಾಡಲು ನಿಮ್ಮನ್ನು ಒತ್ತಾಯಿಸಲು ಸ್ವಲ್ಪ ಕಷ್ಟವಾಗಬಹುದು."
+        "message": "A plan combines page entries, allowed websites, schedules, Pomodoro settings, intent-coherence settings, and optional UI cleanup rules. Turn a plan on when you want that protection available."
     },
     "introText3": {
-        "message": "ಮತ್ತು ಗೊಂದಲಗಳು ಎಲ್ಲೆಡೆ ಇವೆ! ನೀವು ಕೆಲವು ವೆಬ್‌ಸೈಟ್‌ಗಳನ್ನು ಅವುಗಳ URL ಗಳ ಮೂಲಕ ನಿರ್ಬಂಧಿಸಲು StayFocusd ಅಥವಾ Cold Turkey ಅಥವಾ FocusMe ಅನ್ನು ಬಳಸಿದರೂ ಸಹ, ನೀವು ಎಲ್ಲವನ್ನೂ ನಿರ್ಬಂಧಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ. ಉದಾಹರಣೆಗೆ, ChatGPT ಯೊಂದಿಗೆ ಸಹ, ನಿಮಗೆ ನಿಜವಾಗಿಯೂ ಅಧ್ಯಯನ ಮಾಡಲು ಅಥವಾ ಕೆಲಸ ಮಾಡಲು ಇಷ್ಟವಿಲ್ಲದಿದ್ದರೆ ನೀವು ಸುದ್ದಿ ಅಥವಾ ವೀಡಿಯೊ ಗೇಮ್‌ಗಳ ಬಗ್ಗೆ ಮಾತನಾಡಬಹುದು."
+        "message": "The extension checks configured pages locally in the browser. It does not send page text, browsing diagnostics, or settings to a remote server."
     },
     "introText4": {
-        "message": "ಈ ವಿಸ್ತರಣೆಯೊಂದಿಗೆ, ನೀವು ಅವರ ಪಠ್ಯದಲ್ಲಿನ ಪದಗಳು ಮತ್ತು ಪದಗುಚ್ಛಗಳ ಆಧಾರದ ಮೇಲೆ ವೆಬ್‌ಸೈಟ್‌ಗಳನ್ನು ನಿರ್ಬಂಧಿಸಬಹುದು."
+        "message": "Start with one plan, add the pages and words that matter, then make the plan stricter with schedules or Pomodoro when you need stronger defense."
     },
     "howToUseTitle": {
         "message": "ವಿಸ್ತರಣೆಯನ್ನು ಹೇಗೆ ಬಳಸುವುದು"
     },
     "createGroupTitle": {
-        "message": "ಮೊದಲ ಹಂತ: ಗುಂಪನ್ನು ರಚಿಸಿ"
+        "message": "First Step: Create a Plan"
     },
     "createGroupText1": {
-        "message": "ನೀವು 'ಆಡ್ ಗ್ರೂಪ್' ಬಟನ್ ಅನ್ನು ಒತ್ತಬಹುದು ಅಥವಾ ಗುಂಪಿನ ಹೆಸರನ್ನು ಇನ್‌ಪುಟ್ ಮಾಡಬಹುದು ಮತ್ತು ಎಂಟರ್ ಅಥವಾ ಗ್ರೂಪ್ ಸೇರಿಸು ಬಟನ್ ಒತ್ತಿರಿ. ನೀವು ಬಹು ಗುಂಪುಗಳನ್ನು ರಚಿಸಬಹುದು."
+        "message": "Enter a plan name and press Add Plan. Open the plan to configure entries, schedules, Pomodoro, intent coherence, allowed websites, and UI cleanup assignments."
     },
     "createGroupText2": {
-        "message": "ನೀವು ಗುಂಪು ಫಲಕವನ್ನು ನೋಡುತ್ತೀರಿ."
+        "message": "The default plan is a safe starting point. You can keep it, rename it, or create additional plans for different contexts."
     },
     "websitesTitle": {
-        "message": "ವೆಬ್‌ಸೈಟ್‌ಗಳು"
+        "message": "Entries and Websites"
     },
     "websitesText": {
-        "message": "ವೆಬ್‌ಸೈಟ್‌ಗಳ ಸಾಲಿನ ಎಡಭಾಗದಲ್ಲಿರುವ 'ಎಡಿಟ್' ಬಟನ್ ಅನ್ನು ಒತ್ತುವ ಮೂಲಕ ನೀವು ವೆಬ್‌ಸೈಟ್‌ಗಳನ್ನು ಸೇರಿಸಲು ಪ್ರಾರಂಭಿಸಬಹುದು. ವಿಸ್ತರಣೆಯು ಕೀವರ್ಡ್‌ಗಳನ್ನು ನಿರ್ಬಂಧಿಸುವ ವೆಬ್‌ಸೈಟ್‌ಗಳಿಗೆ ಈ ಕ್ಷೇತ್ರವು ಕಾರಣವಾಗಿದೆ. ಇಲ್ಲಿ ನೀವು ವೆಬ್‌ಸೈಟ್ URL ಗಳನ್ನು ಇನ್‌ಪುಟ್ ಮಾಡಬೇಕು, ಉದಾಹರಣೆಗೆ, 'google.com'. ನೀವು ಬಹು ವೆಬ್‌ಸೈಟ್‌ಗಳನ್ನು ಇನ್‌ಪುಟ್ ಮಾಡಬಹುದು, ಪ್ರತಿ ಹೊಸ ಸಾಲು ಹೊಸ ವೆಬ್‌ಸೈಟ್ ಆಗಿದೆ. ಕೇವಲ ಎಂಟರ್ ಒತ್ತಿರಿ. ನೀವು ಸಿದ್ಧರಾದಾಗ, ಹಸಿರು 'ಉಳಿಸು' ಬಟನ್ ಒತ್ತಿರಿ. ಅಥವಾ ನೀವು ರದ್ದುಗೊಳಿಸಬಹುದು."
+        "message": "A plan entry has websites and keywords. Add the websites where the keywords should be scanned, one host per line, such as example.com or docs.example.com."
     },
     "keywordsTitle": {
         "message": "ಕೀವರ್ಡ್‌ಗಳು"
     },
     "keywordsText1": {
-        "message": "ಹೊಸ ಕೀವರ್ಡ್‌ಗಳನ್ನು ಸೇರಿಸಲು ಅಥವಾ ಯಾವುದೇ ಬದಲಾವಣೆಗಳನ್ನು ಮಾಡಲು, 'ಸಂಪಾದಿಸು' ಒತ್ತಿರಿ. ನೀವು ಇಲ್ಲಿ ನಮೂದಿಸಿದ ಕೀವರ್ಡ್‌ಗಳನ್ನು ನೀವು ಈ ಗುಂಪಿಗೆ ನಮೂದಿಸಿದ ವೆಬ್‌ಸೈಟ್‌ಗಳಲ್ಲಿ ಸ್ಕ್ಯಾನ್ ಮಾಡಲಾಗುತ್ತದೆ."
+        "message": "Add keywords or phrases to the same entry. The extension scans matching pages locally and blocks the page when the entry score reaches 1000."
     },
     "keywordFormatsIntroduction": {
         "message": "ಕೀವರ್ಡ್‌ಗಳಿಗಾಗಿ 3 ಸ್ವರೂಪಗಳಿವೆ:"
     },
     "keywordFormat1Title": {
-        "message": "ಮೊದಲ ಸ್ವರೂಪ:"
+        "message": "Keyword format 1:"
     },
     "keywordFormat1Text": {
-        "message": "ಕೇವಲ ಕೀವರ್ಡ್ಗಳನ್ನು ನಮೂದಿಸಿ. ಇದು ಪದ ಅಥವಾ ಪದಗುಚ್ಛವಾಗಿರಬಹುದು. ಕೀವರ್ಡ್ ಅಲ್ಪವಿರಾಮ ',' ಹೊಂದಿದ್ದರೆ, ನೀವು ಅದರ ಮೊದಲು ಎಸ್ಕೇಪ್ ಅಕ್ಷರ '\\' ಅನ್ನು ಬಳಸಬೇಕು. ಕೀವರ್ಡ್ ಪತ್ತೆಯಾದ ತಕ್ಷಣ ವೆಬ್‌ಸೈಟ್ ಅನ್ನು ನಿರ್ಬಂಧಿಸಲಾಗುತ್ತದೆ. ನಿಮಗೆ ಬೇಕಾದಷ್ಟು ಕೀವರ್ಡ್‌ಗಳನ್ನು ನೀವು ನಮೂದಿಸಬಹುದು, ಕೇವಲ ಎಂಟರ್ ಒತ್ತಿರಿ. ಪ್ರತಿ ಹೊಸ ಸಾಲು ಹೊಸ ಕೀವರ್ಡ್ ಆಗಿದೆ."
+        "message": "Enter a word or phrase. If the keyword contains a comma, put a backslash before the comma. A plain keyword blocks as soon as it is detected."
     },
     "keywordFormat1_2": {
-        "message": "ಉದಾಹರಣೆ: 'ವೀಡಿಯೋ ಆಟಗಳು' ಅಥವಾ 'ಸುದ್ದಿ'."
+        "message": "Examples: 'video games', 'news'."
     },
     "keywordFormat2Title": {
-        "message": "ಎರಡನೇ ಸ್ವರೂಪ:"
+        "message": "Keyword format 2:"
     },
     "keywordFormat2Text": {
-        "message": "ಕೀವರ್ಡ್ ಅನ್ನು ನಮೂದಿಸಿ, ನಂತರ ಸಂಖ್ಯಾ ಮೌಲ್ಯವನ್ನು ನಮೂದಿಸಿ. ನೀವು ಗುಂಪಿನಲ್ಲಿ ನಮೂದಿಸಿದ ಪ್ರತಿಯೊಂದು ವೆಬ್‌ಸೈಟ್ 1000 ಸ್ಕೋರ್ ಅನ್ನು ತಲುಪಬೇಕು. ವೆಬ್‌ಸೈಟ್ 0 ಮೌಲ್ಯದಿಂದ ಪ್ರಾರಂಭವಾಗುತ್ತದೆ ಮತ್ತು ಕೀವರ್ಡ್‌ನ ಸಂಖ್ಯಾ ಮೌಲ್ಯವನ್ನು ಆಧರಿಸಿ, ಮೌಲ್ಯವು ಹೆಚ್ಚಾಗುತ್ತದೆ. ವೆಬ್‌ಸೈಟ್ 1000 ಸ್ಕೋರ್ ತಲುಪಿದ ನಂತರ, ಅದನ್ನು ನಿರ್ಬಂಧಿಸಲಾಗುತ್ತದೆ."
+        "message": "Add a number after a comma. The page score starts at 0 and increases by that amount each time the keyword is found. At 1000, the page is blocked."
     },
     "keywordFormat2_2": {
         "message": "ಉದಾಹರಣೆ: 'ಸುದ್ದಿ, 50'"
     },
     "keywordFormat2_3": {
-        "message": "ನೀವು ಗುಂಪಿನಲ್ಲಿ ನಮೂದಿಸಿದ ಪ್ರತಿಯೊಂದು ವೆಬ್‌ಸೈಟ್ 1000 ಸ್ಕೋರ್ ಅನ್ನು ತಲುಪಬೇಕು. ಸೈಟ್ 0 ರ ಮೌಲ್ಯದಿಂದ ಪ್ರಾರಂಭವಾಗುತ್ತದೆ ಮತ್ತು ಕೀವರ್ಡ್‌ನ ಸಂಖ್ಯಾ ಮೌಲ್ಯವನ್ನು ಆಧರಿಸಿ, ಮೌಲ್ಯವು ಹೆಚ್ಚಾಗುತ್ತದೆ. ವೆಬ್‌ಸೈಟ್ 1000 ಸ್ಕೋರ್ ತಲುಪಿದ ನಂತರ, ಅದನ್ನು ನಿರ್ಬಂಧಿಸಲಾಗುತ್ತದೆ."
+        "message": "Use this when a word should matter, but only after repeated or combined signals."
     },
     "keywordFormat3Title": {
-        "message": "ಮೂರನೇ ಸ್ವರೂಪ:"
+        "message": "Keyword format 3:"
     },
     "keywordFormat3Text": {
-        "message": "ಕೀವರ್ಡ್ ನಮೂದಿಸಿ, ನಂತರ ಗುಣಾಕಾರ ಅಥವಾ ಸಂಕಲನ ಚಿಹ್ನೆ (* ಅಥವಾ +), ನಂತರ ಸಂಖ್ಯಾ ಮೌಲ್ಯ. ಈ ಸನ್ನಿವೇಶದಲ್ಲಿ, ಕಂಡುಬರುವ ಕೀವರ್ಡ್‌ನ ಸಂಖ್ಯಾ ಮೌಲ್ಯವನ್ನು ಆಧರಿಸಿ ಪುಟದ ಸ್ಕೋರ್ ಅನ್ನು ಗುಣಿಸಲಾಗುತ್ತದೆ."
+        "message": "Use * or + with a number when you want a keyword to multiply or add to the current page score in a more explicit way."
     },
     "keywordFormat3_2": {
         "message": "ಉದಾಹರಣೆ: 'ಸುದ್ದಿ, *, 10'"
     },
     "keywordFormat3_3": {
-        "message": "ಈ ಸನ್ನಿವೇಶದಲ್ಲಿ, ಕಂಡುಬರುವ ಕೀವರ್ಡ್‌ನ ಸಂಖ್ಯಾ ಮೌಲ್ಯವನ್ನು ಆಧರಿಸಿ ಪುಟದ ಸ್ಕೋರ್ ಅನ್ನು ಗುಣಿಸಲಾಗುತ್ತದೆ."
+        "message": "Use this for stronger signals that should become decisive only in a specific context."
     },
     "timerCountTitle": {
-        "message": "ಟೈಮರ್ ಎಣಿಕೆ"
+        "message": "Pomodoro"
     },
     "timerCountText": {
-        "message": "ಪುಟವನ್ನು ನಿರ್ಬಂಧಿಸಿದ ನಂತರ, ನೀವು 'ಟೈಮರ್ ಸಕ್ರಿಯಗೊಳಿಸಿ' ಬಟನ್ ಅನ್ನು ಒತ್ತಲು ಆಯ್ಕೆಯನ್ನು ಹೊಂದಿರುತ್ತೀರಿ. ಅದರ ನಂತರ, ಪುಟವನ್ನು ಮತ್ತೆ ನಿರ್ಬಂಧಿಸುವ ಮೊದಲು ಅದರಲ್ಲಿ ಕೆಲವು ಕ್ರಿಯೆಗಳನ್ನು ಮಾಡಲು ನಿಮಗೆ ಸಮಯವಿರುತ್ತದೆ. ಟೈಮರ್ ಕೌಂಟ್ ಕ್ಷೇತ್ರದಲ್ಲಿ, ದಿನದಲ್ಲಿ ನೀವು ಎಷ್ಟು ಟೈಮರ್‌ಗಳನ್ನು ಹೊಂದಬೇಕೆಂದು ನೀವು ನಿರ್ಧರಿಸಬಹುದು."
+        "message": "A plan can run Pomodoro work and rest timing. Strict breaks can block or quiet pages during rest so the break is protected."
     },
     "timerDurationTitle": {
-        "message": "ಟೈಮರ್ ಅವಧಿ (ಸೆಕೆಂಡ್‌ಗಳು)"
+        "message": "Pomodoro Timing"
     },
     "timerDurationText": {
-        "message": "ಈ ಕ್ಷೇತ್ರದಲ್ಲಿ, ಪ್ರತಿ ಟೈಮರ್ ಎಷ್ಟು ಸೆಕೆಂಡುಗಳನ್ನು ಹೊಂದಿರುತ್ತದೆ ಎಂಬುದನ್ನು ನೀವು ನಿರ್ಧರಿಸುತ್ತೀರಿ."
+        "message": "Set work minutes, short breaks, long breaks, and how many work sessions happen before a long break. During an active protected schedule, enabling Pomodoro or making it stricter is allowed; relaxing it is blocked."
     },
     "lockedSchedulesTitle": {
         "message": "ಲಾಕ್ ಮಾಡಿದ ವೇಳಾಪಟ್ಟಿಗಳು"
     },
     "lockedSchedulesNote": {
-        "message": "! ಸಮಯವು ಹಾದುಹೋಗುವವರೆಗೆ ಲಾಕ್ ಮಾಡಲಾದ ವೇಳಾಪಟ್ಟಿಯನ್ನು ಅನ್ಲಾಕ್ ಮಾಡಲು ಸಾಧ್ಯವಿಲ್ಲ (ನೀವು ವಿಸ್ತರಣೆಯನ್ನು ಅಸ್ಥಾಪಿಸದಿದ್ದರೆ)!"
+        "message": "A protected schedule is meant to resist hot-state weakening while the scheduled window is active."
     },
     "lockedSchedulesText1": {
-        "message": "ಶೆಡ್ಯೂಲ್ ಹೆಸರು ಕ್ಷೇತ್ರದಲ್ಲಿ ವೇಳಾಪಟ್ಟಿಯ ಹೆಸರನ್ನು ರಚಿಸುವ ಮೂಲಕ ಮತ್ತು ಎಂಟರ್ ಅಥವಾ ಆಡ್ ಶೆಡ್ಯೂಲ್ ಬಟನ್ ಒತ್ತುವ ಮೂಲಕ ನೀವು ಹೊಸ ಲಾಕ್ ಮಾಡಿದ ವೇಳಾಪಟ್ಟಿಯನ್ನು ಸೇರಿಸಬಹುದು."
+        "message": "Open a plan, choose Schedule, and add one or more scheduled time blocks. Each block can choose days, start time, end time, and whether it is protected."
     },
     "lockedSchedulesText2": {
-        "message": "ನಿಮ್ಮ ವೇಳಾಪಟ್ಟಿಯ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಮಾರ್ಪಡಿಸಲು, 'ಸಂಪಾದಿಸು' ಒತ್ತಿರಿ. ದಿನದ ಗುಂಡಿಗಳನ್ನು ಒತ್ತುವ ಮೂಲಕ, ನೀವು ಆ ದಿನದ ವೇಳಾಪಟ್ಟಿಯನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ (ಬಟನ್ ಹಸಿರು ಬಣ್ಣಕ್ಕೆ ತಿರುಗುತ್ತದೆ), ಅಥವಾ ಆ ದಿನಕ್ಕೆ ಅದನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ. ಪ್ರಾರಂಭ ಸಮಯ ಮತ್ತು ಅಂತಿಮ ಸಮಯ ಕ್ಷೇತ್ರಗಳನ್ನು ಮಾರ್ಪಡಿಸುವ ಮೂಲಕ, ವೇಳಾಪಟ್ಟಿಯು ಸಕ್ರಿಯವಾಗಿರಬಹುದಾದ ಸಮಯವನ್ನು ನೀವು ಹೊಂದಿಸಿ. ಪ್ರತಿ ದಿನವೂ 1-ಗಂಟೆಗಳ ನಿಷ್ಕ್ರಿಯ ಸಮಯ ವಿಂಡೋವನ್ನು ಹೊಂದಿರಬೇಕು ಆದ್ದರಿಂದ ನೀವು ಆ ಸಮಯದಲ್ಲಿ ವೇಳಾಪಟ್ಟಿಯನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಬಹುದು. ನಿಷ್ಕ್ರಿಯ/ಸಕ್ರಿಯ ಬಟನ್ ವೇಳಾಪಟ್ಟಿಯನ್ನು ಟಾಗಲ್ ಮಾಡುತ್ತದೆ. ಪ್ರಸ್ತುತ ದಿನವನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿದರೆ (ಹಸಿರು) ಮತ್ತು ಬಟನ್ 'ಸಕ್ರಿಯ' ಮತ್ತು ಹಸಿರು ಬಣ್ಣದ್ದಾಗಿದ್ದರೆ ಮತ್ತು ಪ್ರಸ್ತುತ ಸಮಯವು ಪ್ರಾರಂಭ ಮತ್ತು ಅಂತಿಮ ಸಮಯದ ನಡುವೆ ಇದ್ದರೆ ವೇಳಾಪಟ್ಟಿ ಲಾಕ್ ಆಗಿರುತ್ತದೆ ಮತ್ತು ಸಕ್ರಿಯವಾಗಿರುತ್ತದೆ."
+        "message": "A protected active schedule can be made stricter but not more relaxed. For example, you can add entries, raise keyword scores, enable stricter Pomodoro behavior, or add UI cleanup rules, but you cannot remove active protection."
     },
     "lockedSchedulesText3": {
-        "message": "ಅಳಿಸು ಬಟನ್ ಲಾಕ್ ಮಾಡಲಾದ ವೇಳಾಪಟ್ಟಿಯನ್ನು ತೆಗೆದುಹಾಕುತ್ತದೆ. ಗುಂಪುಗಳು ಮತ್ತು ಶ್ವೇತಪಟ್ಟಿ ಮಾಡಿದ ವೆಬ್‌ಸೈಟ್‌ಗಳಿಗೆ ಇದು ಅನ್ವಯಿಸುತ್ತದೆ."
+        "message": "Delete removes a schedule only when doing so does not relax an active protected window."
     },
     "lockedSchedulesText4": {
-        "message": "ಲಾಕ್ ಮಾಡಿದ ವೇಳಾಪಟ್ಟಿಯಲ್ಲಿ ಹಲವಾರು ನಿರ್ಬಂಧಗಳು ಅನ್ವಯಿಸುತ್ತವೆ:"
+        "message": "During an active protected schedule, relaxed changes are refused:"
     },
     "lockedScheduleRestriction1": {
-        "message": "ನೀವು ಗುಂಪಿನ ಹೆಸರುಗಳನ್ನು ಬದಲಾಯಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ."
+        "message": "You cannot disable the active plan."
     },
     "lockedScheduleRestriction2": {
-        "message": "ನೀವು ಗುಂಪುಗಳಲ್ಲಿ ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ವೆಬ್‌ಸೈಟ್‌ಗಳನ್ನು ಬದಲಾಯಿಸಲು ಅಥವಾ ತೆಗೆದುಹಾಕಲು ಸಾಧ್ಯವಿಲ್ಲ."
+        "message": "You cannot remove existing plan entries or reduce the websites they protect."
     },
     "lockedScheduleRestriction3": {
-        "message": "ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ಕೀವರ್ಡ್‌ಗಳು ಮತ್ತು ಅವುಗಳ ಮೌಲ್ಯಗಳನ್ನು ನೀವು ಬದಲಾಯಿಸಲು ಅಥವಾ ತೆಗೆದುಹಾಕಲು ಸಾಧ್ಯವಿಲ್ಲ."
+        "message": "You cannot remove existing keywords or reduce their weights."
     },
     "lockedScheduleRestriction4": {
-        "message": "ಗುಣಾಕಾರಕ್ಕಾಗಿ ನೀವು ಕೀವರ್ಡ್ ಮೌಲ್ಯಗಳನ್ನು ಮಾತ್ರ ಹೊಂದಿಸಬಹುದು: 1 ರಿಂದ 1000. ಹೆಚ್ಚುವರಿಗಾಗಿ: 0 ರಿಂದ 1000 ವರೆಗೆ."
+        "message": "New or changed keywords must stay inside the strict allowed scoring ranges."
     },
     "lockedScheduleRestriction5": {
-        "message": "ಟೈಮರ್ ಸಂಖ್ಯೆಯನ್ನು ಹೆಚ್ಚಿಸಲಾಗುವುದಿಲ್ಲ."
+        "message": "You cannot disable Pomodoro, turn off strict breaks, or make Pomodoro easier to bypass."
     },
     "lockedScheduleRestriction6": {
-        "message": "ಟೈಮರ್ ಅವಧಿಯನ್ನು ಹೆಚ್ಚಿಸಲಾಗುವುದಿಲ್ಲ."
+        "message": "You can enable Pomodoro or make its timing stricter when that increases protection."
     },
     "lockedScheduleRestriction7": {
-        "message": "ಸಕ್ರಿಯ ವೇಳಾಪಟ್ಟಿಗಳನ್ನು ಅಳಿಸಲಾಗುವುದಿಲ್ಲ."
+        "message": "Active schedules cannot be deleted."
     },
     "lockedScheduleRestriction8": {
-        "message": "ನೀವು ದಿನಗಳ ಆಯ್ಕೆಯನ್ನು ರದ್ದುಗೊಳಿಸಲು, ವೇಳಾಪಟ್ಟಿಯನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲು ಅಥವಾ ಸಕ್ರಿಯ ವೇಳಾಪಟ್ಟಿಗಳಿಗಾಗಿ ಪ್ರಾರಂಭ ಅಥವಾ ಅಂತಿಮ ಸಮಯವನ್ನು ಬದಲಾಯಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ."
+        "message": "You cannot remove active days or shrink an active protected schedule window."
     },
     "lockedScheduleRestriction9": {
-        "message": "ನೀವು ಶ್ವೇತಪಟ್ಟಿ ಮಾಡಿದ ವೆಬ್‌ಸೈಟ್‌ಗಳನ್ನು ಸೇರಿಸಲಾಗುವುದಿಲ್ಲ."
+        "message": "You cannot add allowed websites to bypass a protected plan."
     },
     "lockedScheduleRestriction10": {
-        "message": "ನೀವು ವಿಸ್ತರಣೆಗಾಗಿ ಪಾಸ್ವರ್ಡ್ ಅನ್ನು ಹೊಂದಿಸಲು ಅಥವಾ ಅಳಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ."
+        "message": "You cannot delete password protection during an active protected schedule."
     },
     "whitelistWebsitesTitle": {
-        "message": "ವೈಟ್‌ಲಿಸ್ಟ್ ವೆಬ್‌ಸೈಟ್‌ಗಳು"
+        "message": "Allowed Websites"
     },
     "whitelistWebsitesText": {
-        "message": "ಶ್ವೇತಪಟ್ಟಿ ಮಾಡಿದ ವೆಬ್‌ಸೈಟ್‌ಗಳನ್ನು ನಮೂದಿಸಲು ನಿಮಗೆ ಅನುಮತಿಸುತ್ತದೆ, ಅಂದರೆ ಈ ವೆಬ್‌ಸೈಟ್‌ಗಳಲ್ಲಿ ಕೀವರ್ಡ್ ಸ್ಕ್ಯಾನ್ ಅನ್ನು ನಿರ್ವಹಿಸಲಾಗುವುದಿಲ್ಲ ಮತ್ತು ಹೀಗಾಗಿ ಅವುಗಳನ್ನು ನಿರ್ಬಂಧಿಸಲಾಗುವುದಿಲ್ಲ. ಪ್ರಸ್ತುತ, ಒಂದು ನಮೂದುನಲ್ಲಿ ಬಹಳಷ್ಟು ವೆಬ್‌ಸೈಟ್‌ಗಳನ್ನು ಸೇರಿಸಲು ವೈಲ್ಡ್‌ಕಾರ್ಡ್ (*) ಅನ್ನು ಬಳಸುವ ಸಾಮರ್ಥ್ಯವನ್ನು ನಾವು ಹೊಂದಿಲ್ಲ (*.io, ಅಲ್ಲಿ '.io' ನೊಂದಿಗೆ ಎಲ್ಲಾ ವೆಬ್‌ಸೈಟ್‌ಗಳನ್ನು ನಿರ್ಬಂಧಿಸಲಾಗುತ್ತದೆ), ಆದ್ದರಿಂದ ಈ ವೈಶಿಷ್ಟ್ಯವು ಹೆಚ್ಚು ಉಪಯುಕ್ತವಲ್ಲ, ಆದರೆ ಅದು ಅಸ್ತಿತ್ವದಲ್ಲಿದೆ."
+        "message": "Allowed websites are plan-owned exceptions. Add them when a site should remain usable while a plan is active; the plan will not scan or block those allowed hosts."
     },
     "passwordManagementTitle": {
         "message": "ಪಾಸ್ವರ್ಡ್ ನಿರ್ವಹಣೆ"
     },
     "passwordManagementText": {
-        "message": "ವಿಸ್ತರಣೆ ಪುಟಕ್ಕಾಗಿ ಪಾಸ್‌ವರ್ಡ್ ಅನ್ನು ಹೊಂದಿಸಲು ನಿಮಗೆ ಅನುಮತಿಸುತ್ತದೆ. ವಿಸ್ತರಣೆ ಪುಟವನ್ನು ತೆರೆಯುವ ಯಾರಾದರೂ ಪ್ರವೇಶವನ್ನು ಪಡೆಯಲು ಸರಿಯಾದ ಪಾಸ್‌ವರ್ಡ್ ಅನ್ನು ನಮೂದಿಸಬೇಕಾಗುತ್ತದೆ. ಇತರರು ಆಕಸ್ಮಿಕವಾಗಿ (ಅಥವಾ ಉದ್ದೇಶಪೂರ್ವಕವಾಗಿ) ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಬಿಗಿಗೊಳಿಸುವುದನ್ನು ತಡೆಯಲು ಉಪಯುಕ್ತವಾಗಿದೆ."
+        "message": "Password protection can require a password before opening the options page. Use it when you want an extra barrier around changing protection settings."
     },
     "contactFeedbackTitle": {
         "message": "ಸಂಪರ್ಕ ಮತ್ತು ಪ್ರತಿಕ್ರಿಯೆ"

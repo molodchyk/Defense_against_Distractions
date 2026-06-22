@@ -372,148 +372,148 @@
         "message": "تعارف"
     },
     "introText1": {
-        "message": "ہائے! انٹرنیٹ پر مشغول ہونا اور تاخیر کرنا بہت آسان ہے۔ یہ توسیع آپ کو مطلوبہ الفاظ کی بنیاد پر ویب صفحات کو بلاک کرنے کی اجازت دیتی ہے جنہیں آپ نہیں دیکھنا چاہتے۔"
+        "message": "Defense Against Distractions lets you create local protection plans that block pages, guide Pomodoro timing, detect possible intent drift, and clean up distracting page UI."
     },
     "introText2": {
-        "message": "کھیلنے کے لیے ہزاروں ویڈیو گیمز، پڑھنے کے لیے خبریں، دیکھنے کے لیے ویڈیوز، وغیرہ ہیں۔ اور اکثر، ہم یہی کرتے ہیں جب پروجیکٹ کی آخری تاریخ یا امتحانات ابھی دور ہوتے ہیں۔ بعض اوقات، اپنے آپ کو وہ کرنے پر مجبور کرنا تھوڑا مشکل ہو سکتا ہے جو آپ کو کرنے کی ضرورت ہے۔"
+        "message": "A plan combines page entries, allowed websites, schedules, Pomodoro settings, intent-coherence settings, and optional UI cleanup rules. Turn a plan on when you want that protection available."
     },
     "introText3": {
-        "message": "اور خلفشار ہر جگہ ہے! یہاں تک کہ اگر آپ StayFocusd یا Cold Turkey یا FocusMe کچھ ویب سائٹس کو ان کے URLs کے ذریعے بلاک کرنے کے لیے استعمال کرتے ہیں، آپ ہر چیز کو بلاک نہیں کر سکتے۔ مثال کے طور پر، یہاں تک کہ چیٹ جی پی ٹی کے ساتھ، آپ خبروں یا ویڈیو گیمز کے بارے میں بات کر سکتے ہیں اگر آپ واقعی میں پڑھنا یا کام کرنا پسند نہیں کرتے۔"
+        "message": "The extension checks configured pages locally in the browser. It does not send page text, browsing diagnostics, or settings to a remote server."
     },
     "introText4": {
-        "message": "اس توسیع کے ساتھ، آپ ویب سائٹس کو ان کے متن میں الفاظ اور فقروں کی بنیاد پر بلاک کر سکتے ہیں۔"
+        "message": "Start with one plan, add the pages and words that matter, then make the plan stricter with schedules or Pomodoro when you need stronger defense."
     },
     "howToUseTitle": {
         "message": "ایکسٹینشن کا استعمال کیسے کریں۔"
     },
     "createGroupTitle": {
-        "message": "پہلا مرحلہ: ایک گروپ بنائیں"
+        "message": "First Step: Create a Plan"
     },
     "createGroupText1": {
-        "message": "آپ 'گروپ شامل کریں' بٹن دبا سکتے ہیں یا گروپ کا نام درج کر سکتے ہیں اور Enter دبائیں یا گروپ شامل کریں بٹن دبا سکتے ہیں۔ آپ متعدد گروپ بنا سکتے ہیں۔"
+        "message": "Enter a plan name and press Add Plan. Open the plan to configure entries, schedules, Pomodoro, intent coherence, allowed websites, and UI cleanup assignments."
     },
     "createGroupText2": {
-        "message": "آپ گروپ پینل دیکھیں گے۔"
+        "message": "The default plan is a safe starting point. You can keep it, rename it, or create additional plans for different contexts."
     },
     "websitesTitle": {
-        "message": "ویب سائٹس"
+        "message": "Entries and Websites"
     },
     "websitesText": {
-        "message": "آپ ویب سائٹس لائن کے بائیں جانب 'ترمیم' کے بٹن کو دبا کر ویب سائٹس کو شامل کرنا شروع کر سکتے ہیں۔ یہ فیلڈ ان ویب سائٹس کے لیے ذمہ دار ہے جہاں ایکسٹینشن کلیدی الفاظ کو روک دے گی۔ یہاں آپ کو ویب سائٹ کے یو آر ایل داخل کرنے ہوں گے، مثال کے طور پر، 'google.com'۔ آپ متعدد ویب سائٹس داخل کر سکتے ہیں، ہر نئی لائن ایک نئی ویب سائٹ ہے۔ بس Enter دبائیں۔ جب آپ تیار ہوں تو، سبز 'محفوظ کریں' بٹن کو دبائیں۔ یا آپ منسوخ کر سکتے ہیں۔"
+        "message": "A plan entry has websites and keywords. Add the websites where the keywords should be scanned, one host per line, such as example.com or docs.example.com."
     },
     "keywordsTitle": {
         "message": "مطلوبہ الفاظ"
     },
     "keywordsText1": {
-        "message": "نئے مطلوبہ الفاظ شامل کرنے یا کوئی تبدیلی کرنے کے لیے 'ترمیم' کو دبائیں۔ آپ جو کلیدی الفاظ یہاں درج کرتے ہیں ان ویب سائٹس پر اسکین کیے جائیں گے جو آپ نے اس گروپ کے لیے درج کیے ہیں۔"
+        "message": "Add keywords or phrases to the same entry. The extension scans matching pages locally and blocks the page when the entry score reaches 1000."
     },
     "keywordFormatsIntroduction": {
         "message": "مطلوبہ الفاظ کے لیے 3 فارمیٹس ہیں:"
     },
     "keywordFormat1Title": {
-        "message": "پہلا فارمیٹ:"
+        "message": "Keyword format 1:"
     },
     "keywordFormat1Text": {
-        "message": "صرف مطلوبہ الفاظ درج کریں۔ یہ ایک لفظ یا جملہ ہوسکتا ہے۔ اگر مطلوبہ لفظ میں کوما '،' ہے، تو آپ کو اس سے پہلے ایک فرار حرف '\\' استعمال کرنا چاہیے۔ کلیدی لفظ کا پتہ لگتے ہی ویب سائٹ بلاک کر دی جائے گی۔ آپ جتنے چاہیں مطلوبہ الفاظ درج کر سکتے ہیں، بس انٹر دبائیں۔ ہر نئی لائن ایک نیا کلیدی لفظ ہے۔"
+        "message": "Enter a word or phrase. If the keyword contains a comma, put a backslash before the comma. A plain keyword blocks as soon as it is detected."
     },
     "keywordFormat1_2": {
-        "message": "مثال: 'ویڈیو گیمز' یا 'خبریں'۔"
+        "message": "Examples: 'video games', 'news'."
     },
     "keywordFormat2Title": {
-        "message": "دوسرا فارمیٹ:"
+        "message": "Keyword format 2:"
     },
     "keywordFormat2Text": {
-        "message": "کلیدی لفظ درج کریں، اس کے بعد عددی قدر۔ ہر ویب سائٹ جو آپ نے گروپ میں داخل کی ہے اسے 1000 کے اسکور تک پہنچنا چاہیے۔ ویب سائٹ 0 کی قدر سے شروع ہوتی ہے، اور مطلوبہ الفاظ کی عددی قدر کی بنیاد پر، قدر بڑھ جاتی ہے۔ ایک بار جب ویب سائٹ 1000 کے سکور تک پہنچ جائے گی، تو اسے بلاک کر دیا جائے گا۔"
+        "message": "Add a number after a comma. The page score starts at 0 and increases by that amount each time the keyword is found. At 1000, the page is blocked."
     },
     "keywordFormat2_2": {
         "message": "مثال: 'خبریں، 50'"
     },
     "keywordFormat2_3": {
-        "message": "ہر ویب سائٹ جو آپ نے گروپ میں داخل کی ہے اسے 1000 کے اسکور تک پہنچنا چاہیے۔ سائٹ 0 کی قدر سے شروع ہوتی ہے، اور مطلوبہ الفاظ کی عددی قدر کی بنیاد پر، قدر بڑھ جاتی ہے۔ ایک بار جب ویب سائٹ 1000 کے سکور تک پہنچ جائے گی، تو اسے بلاک کر دیا جائے گا۔"
+        "message": "Use this when a word should matter, but only after repeated or combined signals."
     },
     "keywordFormat3Title": {
-        "message": "تیسرا فارمیٹ:"
+        "message": "Keyword format 3:"
     },
     "keywordFormat3Text": {
-        "message": "مطلوبہ لفظ درج کریں، اس کے بعد ضرب یا اضافے کا نشان (* یا +)، پھر ایک عددی قدر۔ اس منظر نامے میں، صفحہ کے سکور کو پائے جانے والے مطلوبہ الفاظ کی عددی قدر کی بنیاد پر ضرب دیا جاتا ہے۔"
+        "message": "Use * or + with a number when you want a keyword to multiply or add to the current page score in a more explicit way."
     },
     "keywordFormat3_2": {
         "message": "مثال: 'خبر، *، 10'"
     },
     "keywordFormat3_3": {
-        "message": "اس منظر نامے میں، صفحہ کے سکور کو پائے جانے والے مطلوبہ الفاظ کی عددی قدر کی بنیاد پر ضرب دیا جاتا ہے۔"
+        "message": "Use this for stronger signals that should become decisive only in a specific context."
     },
     "timerCountTitle": {
-        "message": "ٹائمر شمار"
+        "message": "Pomodoro"
     },
     "timerCountText": {
-        "message": "صفحہ بلاک ہونے کے بعد، آپ کے پاس 'ایکٹیویٹ ٹائمر' بٹن دبانے کا اختیار ہوگا۔ اس کے بعد، آپ کے پاس صفحہ کے دوبارہ بلاک ہونے سے پہلے اس پر کچھ کارروائیاں کرنے کا وقت ہوگا۔ ٹائمر کاؤنٹ فیلڈ میں، آپ فیصلہ کر سکتے ہیں کہ آپ دن میں کتنے ٹائمر رکھنا چاہتے ہیں۔"
+        "message": "A plan can run Pomodoro work and rest timing. Strict breaks can block or quiet pages during rest so the break is protected."
     },
     "timerDurationTitle": {
-        "message": "ٹائمر کا دورانیہ (سیکنڈ)"
+        "message": "Pomodoro Timing"
     },
     "timerDurationText": {
-        "message": "اس فیلڈ میں، آپ فیصلہ کرتے ہیں کہ ہر ٹائمر کے پاس کتنے سیکنڈ ہوں گے۔"
+        "message": "Set work minutes, short breaks, long breaks, and how many work sessions happen before a long break. During an active protected schedule, enabling Pomodoro or making it stricter is allowed; relaxing it is blocked."
     },
     "lockedSchedulesTitle": {
         "message": "مقفل شیڈولز"
     },
     "lockedSchedulesNote": {
-        "message": "! ایک مقفل شیڈول کو اس وقت تک غیر مقفل نہیں کیا جا سکتا جب تک کہ وقت گزر نہ جائے (جب تک کہ آپ ایکسٹینشن کو ان انسٹال نہ کریں)!"
+        "message": "A protected schedule is meant to resist hot-state weakening while the scheduled window is active."
     },
     "lockedSchedulesText1": {
-        "message": "آپ شیڈول کے نام کے فیلڈ میں شیڈول کا نام بنا کر اور Enter یا Add Schedule بٹن دبا کر ایک نیا مقفل شیڈول شامل کر سکتے ہیں۔"
+        "message": "Open a plan, choose Schedule, and add one or more scheduled time blocks. Each block can choose days, start time, end time, and whether it is protected."
     },
     "lockedSchedulesText2": {
-        "message": "اپنے شیڈول کی سیٹنگز میں ترمیم کرنے کے لیے، 'ترمیم کریں' کو دبائیں۔ دن کے بٹن کو دبانے سے، آپ یا تو اس دن کے شیڈول کو فعال کرتے ہیں (بٹن سبز ہو جاتا ہے)، یا اس دن کے لیے اسے غیر فعال کر دیتے ہیں۔ آغاز کے وقت اور اختتامی وقت کے شعبوں میں ترمیم کرکے، آپ شیڈول کے فعال ہونے کا وقت مقرر کرتے ہیں۔ ہر دن میں 1 گھنٹے کی غیر فعال ٹائم ونڈو ہونی چاہیے تاکہ آپ اس وقت کے دوران شیڈول کو غیر فعال کر سکیں۔ غیر فعال/فعال بٹن شیڈول کو ٹوگل کرتا ہے۔ شیڈول مقفل اور فعال ہو جائے گا اگر موجودہ دن فعال ہے (سبز) اور بٹن 'فعال' دکھاتا ہے اور سبز بھی ہے، اور اگر موجودہ وقت آغاز اور اختتامی اوقات کے درمیان ہے۔"
+        "message": "A protected active schedule can be made stricter but not more relaxed. For example, you can add entries, raise keyword scores, enable stricter Pomodoro behavior, or add UI cleanup rules, but you cannot remove active protection."
     },
     "lockedSchedulesText3": {
-        "message": "ڈیلیٹ بٹن مقفل شیڈول کو ہٹا دیتا ہے۔ یہی گروپس اور وائٹ لسٹ شدہ ویب سائٹس پر لاگو ہوتا ہے۔"
+        "message": "Delete removes a schedule only when doing so does not relax an active protected window."
     },
     "lockedSchedulesText4": {
-        "message": "مقفل شیڈول کے دوران کئی پابندیاں لاگو ہوتی ہیں:"
+        "message": "During an active protected schedule, relaxed changes are refused:"
     },
     "lockedScheduleRestriction1": {
-        "message": "آپ گروپ کے نام تبدیل نہیں کر سکتے۔"
+        "message": "You cannot disable the active plan."
     },
     "lockedScheduleRestriction2": {
-        "message": "آپ گروپس میں موجودہ ویب سائٹس کو تبدیل یا ہٹا نہیں سکتے۔"
+        "message": "You cannot remove existing plan entries or reduce the websites they protect."
     },
     "lockedScheduleRestriction3": {
-        "message": "آپ موجودہ مطلوبہ الفاظ اور ان کی اقدار کو تبدیل یا ہٹا نہیں سکتے۔"
+        "message": "You cannot remove existing keywords or reduce their weights."
     },
     "lockedScheduleRestriction4": {
-        "message": "آپ ضرب کے لیے صرف مطلوبہ الفاظ کی قدریں مقرر کر سکتے ہیں: 1 سے 1000 تک۔ اضافے کے لیے: 0 سے 1000 تک۔"
+        "message": "New or changed keywords must stay inside the strict allowed scoring ranges."
     },
     "lockedScheduleRestriction5": {
-        "message": "ٹائمر کی تعداد میں اضافہ نہیں کیا جا سکتا۔"
+        "message": "You cannot disable Pomodoro, turn off strict breaks, or make Pomodoro easier to bypass."
     },
     "lockedScheduleRestriction6": {
-        "message": "ٹائمر کی مدت میں اضافہ نہیں کیا جا سکتا۔"
+        "message": "You can enable Pomodoro or make its timing stricter when that increases protection."
     },
     "lockedScheduleRestriction7": {
-        "message": "فعال نظام الاوقات کو حذف نہیں کیا جا سکتا۔"
+        "message": "Active schedules cannot be deleted."
     },
     "lockedScheduleRestriction8": {
-        "message": "آپ دنوں کو غیر منتخب نہیں کر سکتے، شیڈول کو غیر فعال نہیں کر سکتے، یا فعال شیڈولز کے آغاز یا اختتام کے اوقات کو تبدیل نہیں کر سکتے۔"
+        "message": "You cannot remove active days or shrink an active protected schedule window."
     },
     "lockedScheduleRestriction9": {
-        "message": "آپ وائٹ لسٹ کردہ ویب سائٹس کو شامل نہیں کر سکتے۔"
+        "message": "You cannot add allowed websites to bypass a protected plan."
     },
     "lockedScheduleRestriction10": {
-        "message": "آپ ایکسٹینشن کے لیے پاس ورڈ سیٹ یا ڈیلیٹ نہیں کر سکتے۔"
+        "message": "You cannot delete password protection during an active protected schedule."
     },
     "whitelistWebsitesTitle": {
-        "message": "وائٹ لسٹ ویب سائٹس"
+        "message": "Allowed Websites"
     },
     "whitelistWebsitesText": {
-        "message": "آپ کو وائٹ لسٹ شدہ ویب سائٹس میں داخل ہونے کی اجازت دیتا ہے، مطلب یہ ہے کہ ان ویب سائٹس پر کلیدی لفظ اسکین نہیں کیا جائے گا، اور اس طرح وہ بلاک نہیں ہوں گی۔ فی الحال، ہمارے پاس ایک اندراج میں بہت ساری ویب سائٹس کو شامل کرنے کے لیے وائلڈ کارڈ (*) استعمال کرنے کی اہلیت نہیں ہے (جیسے *.io، جہاں '.io' والی تمام ویب سائٹس کو بلاک کردیا جائے گا)، اس لیے یہ فیچر زیادہ مفید نہیں ہے، لیکن یہ موجود ہے۔"
+        "message": "Allowed websites are plan-owned exceptions. Add them when a site should remain usable while a plan is active; the plan will not scan or block those allowed hosts."
     },
     "passwordManagementTitle": {
         "message": "پاس ورڈ مینجمنٹ"
     },
     "passwordManagementText": {
-        "message": "آپ کو توسیعی صفحہ کے لیے پاس ورڈ ترتیب دینے کی اجازت دیتا ہے۔ کوئی بھی جو ایکسٹینشن کا صفحہ کھولتا ہے اسے رسائی حاصل کرنے کے لیے درست پاس ورڈ درج کرنے کی ضرورت ہوگی۔ دوسروں کو غلطی سے (یا جان بوجھ کر) ترتیبات کو سخت کرنے سے روکنے کے لیے مفید ہے۔"
+        "message": "Password protection can require a password before opening the options page. Use it when you want an extra barrier around changing protection settings."
     },
     "contactFeedbackTitle": {
         "message": "رابطہ اور رائے"

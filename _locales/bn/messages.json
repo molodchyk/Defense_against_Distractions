@@ -372,148 +372,148 @@
         "message": "ভূমিকা"
     },
     "introText1": {
-        "message": "হাই! ইন্টারনেটে বিভ্রান্ত হওয়া এবং বিলম্বিত করা এত সহজ। এই এক্সটেনশনটি আপনাকে কীওয়ার্ডগুলির উপর ভিত্তি করে ওয়েব পৃষ্ঠাগুলিকে ব্লক করতে দেয় যা আপনি দেখতে চান না৷"
+        "message": "Defense Against Distractions lets you create local protection plans that block pages, guide Pomodoro timing, detect possible intent drift, and clean up distracting page UI."
     },
     "introText2": {
-        "message": "খেলার জন্য হাজার হাজার ভিডিও গেমস, পড়ার জন্য খবরের গল্প, দেখার জন্য ভিডিও ইত্যাদি রয়েছে। এবং প্রায়শই, যখন প্রকল্পের সময়সীমা বা পরীক্ষা এখনও অনেক দূরে থাকে তখন আমরা এটি করি। কখনও কখনও, আপনার যা করা দরকার তা করতে নিজেকে জোর করা কিছুটা কঠিন হতে পারে।"
+        "message": "A plan combines page entries, allowed websites, schedules, Pomodoro settings, intent-coherence settings, and optional UI cleanup rules. Turn a plan on when you want that protection available."
     },
     "introText3": {
-        "message": "এবং বিভ্রান্তি সর্বত্র! এমনকি যদি আপনি StayFocusd বা Cold Turkey বা FocusMe ব্যবহার করে কিছু ওয়েবসাইটকে তাদের URL দ্বারা ব্লক করতে পারেন, আপনি সবকিছু ব্লক করতে পারবেন না। উদাহরণস্বরূপ, এমনকি ChatGPT এর সাথে, আপনি যদি সত্যিই পড়াশোনা বা কাজ করতে না চান তবে আপনি খবর বা ভিডিও গেম সম্পর্কে কথা বলতে পারেন।"
+        "message": "The extension checks configured pages locally in the browser. It does not send page text, browsing diagnostics, or settings to a remote server."
     },
     "introText4": {
-        "message": "এই এক্সটেনশনের মাধ্যমে, আপনি ওয়েবসাইটগুলিকে তাদের পাঠ্যের শব্দ এবং বাক্যাংশের উপর ভিত্তি করে ব্লক করতে পারেন৷"
+        "message": "Start with one plan, add the pages and words that matter, then make the plan stricter with schedules or Pomodoro when you need stronger defense."
     },
     "howToUseTitle": {
         "message": "কিভাবে এক্সটেনশন ব্যবহার করবেন"
     },
     "createGroupTitle": {
-        "message": "প্রথম ধাপ: একটি গ্রুপ তৈরি করুন"
+        "message": "First Step: Create a Plan"
     },
     "createGroupText1": {
-        "message": "আপনি 'অ্যাড গ্রুপ' বোতাম টিপুন বা গ্রুপের নাম ইনপুট করতে পারেন এবং এন্টার বা গ্রুপ যোগ করুন বোতাম টিপুন। আপনি একাধিক গ্রুপ তৈরি করতে পারেন।"
+        "message": "Enter a plan name and press Add Plan. Open the plan to configure entries, schedules, Pomodoro, intent coherence, allowed websites, and UI cleanup assignments."
     },
     "createGroupText2": {
-        "message": "আপনি গ্রুপ প্যানেল দেখতে পাবেন।"
+        "message": "The default plan is a safe starting point. You can keep it, rename it, or create additional plans for different contexts."
     },
     "websitesTitle": {
-        "message": "ওয়েবসাইট"
+        "message": "Entries and Websites"
     },
     "websitesText": {
-        "message": "আপনি ওয়েবসাইটগুলি লাইনের বাম দিকে 'সম্পাদনা' বোতাম টিপে ওয়েবসাইটগুলি যোগ করা শুরু করতে পারেন৷ এই ক্ষেত্রটি ওয়েবসাইটগুলির জন্য দায়ী যেখানে এক্সটেনশন কীওয়ার্ডগুলিকে ব্লক করবে৷ এখানে আপনাকে ওয়েবসাইট ইউআরএল ইনপুট করতে হবে, উদাহরণস্বরূপ, 'google.com'। আপনি একাধিক ওয়েবসাইট ইনপুট করতে পারেন, প্রতিটি নতুন লাইন একটি নতুন ওয়েবসাইট। শুধু এন্টার টিপুন। আপনি প্রস্তুত হলে, সবুজ 'সংরক্ষণ করুন' বোতাম টিপুন। অথবা আপনি বাতিল করতে পারেন."
+        "message": "A plan entry has websites and keywords. Add the websites where the keywords should be scanned, one host per line, such as example.com or docs.example.com."
     },
     "keywordsTitle": {
         "message": "কীওয়ার্ড"
     },
     "keywordsText1": {
-        "message": "নতুন কীওয়ার্ড যোগ করতে বা কোনো পরিবর্তন করতে, 'সম্পাদনা' টিপুন। আপনি এখানে যে কীওয়ার্ডগুলি লিখছেন তা আপনি এই গ্রুপের জন্য প্রবেশ করানো ওয়েবসাইটগুলিতে স্ক্যান করা হবে৷"
+        "message": "Add keywords or phrases to the same entry. The extension scans matching pages locally and blocks the page when the entry score reaches 1000."
     },
     "keywordFormatsIntroduction": {
         "message": "কীওয়ার্ডের জন্য 3টি ফর্ম্যাট রয়েছে:"
     },
     "keywordFormat1Title": {
-        "message": "প্রথম বিন্যাস:"
+        "message": "Keyword format 1:"
     },
     "keywordFormat1Text": {
-        "message": "শুধু কিওয়ার্ড লিখুন. এটি একটি শব্দ বা একটি বাক্যাংশ হতে পারে। যদি কীওয়ার্ডে ',' একটি কমা থাকে, তাহলে আপনাকে অবশ্যই এর আগে একটি এস্কেপ অক্ষর '\\' ব্যবহার করতে হবে। কীওয়ার্ডটি সনাক্ত হওয়ার সাথে সাথে ওয়েবসাইটটি ব্লক করা হবে। আপনি যত খুশি কীওয়ার্ড লিখতে পারেন, শুধু এন্টার টিপুন। প্রতিটি নতুন লাইন একটি নতুন কীওয়ার্ড।"
+        "message": "Enter a word or phrase. If the keyword contains a comma, put a backslash before the comma. A plain keyword blocks as soon as it is detected."
     },
     "keywordFormat1_2": {
-        "message": "উদাহরণ: 'ভিডিও গেম' বা 'সংবাদ'।"
+        "message": "Examples: 'video games', 'news'."
     },
     "keywordFormat2Title": {
-        "message": "দ্বিতীয় বিন্যাস:"
+        "message": "Keyword format 2:"
     },
     "keywordFormat2Text": {
-        "message": "একটি সাংখ্যিক মান অনুসরণ করে কীওয়ার্ডটি লিখুন। আপনি একটি গ্রুপে প্রবেশ করা প্রতিটি ওয়েবসাইটকে অবশ্যই 1000 এর স্কোরে পৌঁছাতে হবে। ওয়েবসাইটটি 0 এর মান দিয়ে শুরু হয় এবং কীওয়ার্ডের সাংখ্যিক মানের উপর ভিত্তি করে মান বৃদ্ধি পায়। ওয়েবসাইটটি একবার 1000 স্কোরে পৌঁছে গেলে, এটি ব্লক করা হবে।"
+        "message": "Add a number after a comma. The page score starts at 0 and increases by that amount each time the keyword is found. At 1000, the page is blocked."
     },
     "keywordFormat2_2": {
         "message": "উদাহরণ: 'news, 50'"
     },
     "keywordFormat2_3": {
-        "message": "আপনি একটি গ্রুপে প্রবেশ করা প্রতিটি ওয়েবসাইটকে অবশ্যই 1000 এর স্কোরে পৌঁছাতে হবে। সাইটটি 0 এর মান দিয়ে শুরু হয় এবং কীওয়ার্ডের সংখ্যাসূচক মানের উপর ভিত্তি করে মান বৃদ্ধি পায়। ওয়েবসাইটটি একবার 1000 স্কোরে পৌঁছে গেলে, এটি ব্লক করা হবে।"
+        "message": "Use this when a word should matter, but only after repeated or combined signals."
     },
     "keywordFormat3Title": {
-        "message": "তৃতীয় বিন্যাস:"
+        "message": "Keyword format 3:"
     },
     "keywordFormat3Text": {
-        "message": "কীওয়ার্ডটি লিখুন, তারপরে একটি গুণ বা যোগ চিহ্ন (* বা +), তারপর একটি সংখ্যাসূচক মান। এই পরিস্থিতিতে, পাওয়া কীওয়ার্ডের সাংখ্যিক মানের উপর ভিত্তি করে পৃষ্ঠার স্কোর গুণিত হয়।"
+        "message": "Use * or + with a number when you want a keyword to multiply or add to the current page score in a more explicit way."
     },
     "keywordFormat3_2": {
         "message": "উদাহরণ: 'সংবাদ, *, 10'"
     },
     "keywordFormat3_3": {
-        "message": "এই পরিস্থিতিতে, পাওয়া কীওয়ার্ডের সাংখ্যিক মানের উপর ভিত্তি করে পৃষ্ঠার স্কোর গুণিত হয়।"
+        "message": "Use this for stronger signals that should become decisive only in a specific context."
     },
     "timerCountTitle": {
-        "message": "টাইমার গণনা"
+        "message": "Pomodoro"
     },
     "timerCountText": {
-        "message": "পৃষ্ঠাটি ব্লক করার পরে, আপনার কাছে 'অ্যাক্টিভেট টাইমার' বোতাম টিপতে বিকল্প থাকবে। এর পরে, পৃষ্ঠাটি আবার ব্লক করার আগে আপনার কাছে কিছু ক্রিয়া সম্পাদন করার সময় থাকবে৷ টাইমার কাউন্ট ফিল্ডে, আপনি দিনে কত টাইমার রাখতে চান তা নির্ধারণ করতে পারেন।"
+        "message": "A plan can run Pomodoro work and rest timing. Strict breaks can block or quiet pages during rest so the break is protected."
     },
     "timerDurationTitle": {
-        "message": "টাইমারের সময়কাল (সেকেন্ড)"
+        "message": "Pomodoro Timing"
     },
     "timerDurationText": {
-        "message": "এই ক্ষেত্রে, আপনি সিদ্ধান্ত নিন প্রতিটি টাইমারে কত সেকেন্ড থাকবে।"
+        "message": "Set work minutes, short breaks, long breaks, and how many work sessions happen before a long break. During an active protected schedule, enabling Pomodoro or making it stricter is allowed; relaxing it is blocked."
     },
     "lockedSchedulesTitle": {
         "message": "লক করা সময়সূচী"
     },
     "lockedSchedulesNote": {
-        "message": "! সময় অতিবাহিত না হওয়া পর্যন্ত একটি লক করা সময়সূচী আনলক করা যাবে না (যদি না আপনি এক্সটেনশন আনইনস্টল করেন)!"
+        "message": "A protected schedule is meant to resist hot-state weakening while the scheduled window is active."
     },
     "lockedSchedulesText1": {
-        "message": "আপনি একটি নতুন লক করা সময়সূচী যোগ করতে পারেন সময়সূচীর নাম ক্ষেত্রে সময়সূচী নাম তৈরি করে এবং এন্টার বা যোগ করুন শিডিউল বোতাম টিপে।"
+        "message": "Open a plan, choose Schedule, and add one or more scheduled time blocks. Each block can choose days, start time, end time, and whether it is protected."
     },
     "lockedSchedulesText2": {
-        "message": "আপনার সময়সূচীর সেটিংস পরিবর্তন করতে, 'সম্পাদনা' টিপুন। দিনের বোতাম টিপে, আপনি হয় সেই দিনের সময়সূচী সক্ষম করুন (বোতামটি সবুজ হয়ে যায়), বা সেই দিনের জন্য এটি অক্ষম করুন৷ শুরুর সময় এবং শেষ সময় ক্ষেত্রগুলি সংশোধন করে, আপনি সময়সূচীটি সক্রিয় হতে পারে তা সেট করেন। প্রতিটি দিনে অবশ্যই 1-ঘন্টা নিষ্ক্রিয় সময় উইন্ডো থাকতে হবে যাতে আপনি সেই সময়ের মধ্যে সময়সূচী নিষ্ক্রিয় করতে পারেন। নিষ্ক্রিয়/সক্রিয় বোতামটি সময়সূচী টগল করে। সময়সূচী লক এবং সক্রিয় হবে যদি বর্তমান দিনটি সক্রিয় থাকে (সবুজ) এবং বোতামটি 'সক্রিয়' দেখায় এবং সবুজও হয়, এবং যদি বর্তমান সময় শুরু এবং শেষ সময়ের মধ্যে হয়।"
+        "message": "A protected active schedule can be made stricter but not more relaxed. For example, you can add entries, raise keyword scores, enable stricter Pomodoro behavior, or add UI cleanup rules, but you cannot remove active protection."
     },
     "lockedSchedulesText3": {
-        "message": "মুছুন বোতামটি লক করা সময়সূচীটি সরিয়ে দেয়। একই গ্রুপ এবং সাদা তালিকাভুক্ত ওয়েবসাইটের ক্ষেত্রে প্রযোজ্য।"
+        "message": "Delete removes a schedule only when doing so does not relax an active protected window."
     },
     "lockedSchedulesText4": {
-        "message": "লক করা সময়সূচীর সময় বেশ কিছু বিধিনিষেধ প্রযোজ্য:"
+        "message": "During an active protected schedule, relaxed changes are refused:"
     },
     "lockedScheduleRestriction1": {
-        "message": "আপনি গ্রুপের নাম পরিবর্তন করতে পারবেন না।"
+        "message": "You cannot disable the active plan."
     },
     "lockedScheduleRestriction2": {
-        "message": "আপনি গ্রুপে বিদ্যমান ওয়েবসাইটগুলি পরিবর্তন বা সরাতে পারবেন না।"
+        "message": "You cannot remove existing plan entries or reduce the websites they protect."
     },
     "lockedScheduleRestriction3": {
-        "message": "আপনি বিদ্যমান কীওয়ার্ড এবং তাদের মান পরিবর্তন বা সরাতে পারবেন না।"
+        "message": "You cannot remove existing keywords or reduce their weights."
     },
     "lockedScheduleRestriction4": {
-        "message": "আপনি শুধুমাত্র গুণের জন্য কীওয়ার্ড মান সেট করতে পারেন: 1 থেকে 1000 পর্যন্ত। যোগ করার জন্য: 0 থেকে 1000 পর্যন্ত।"
+        "message": "New or changed keywords must stay inside the strict allowed scoring ranges."
     },
     "lockedScheduleRestriction5": {
-        "message": "টাইমার সংখ্যা বাড়ানো যাবে না।"
+        "message": "You cannot disable Pomodoro, turn off strict breaks, or make Pomodoro easier to bypass."
     },
     "lockedScheduleRestriction6": {
-        "message": "টাইমারের সময়কাল বাড়ানো যাবে না।"
+        "message": "You can enable Pomodoro or make its timing stricter when that increases protection."
     },
     "lockedScheduleRestriction7": {
-        "message": "সক্রিয় সময়সূচী মুছে ফেলা যাবে না."
+        "message": "Active schedules cannot be deleted."
     },
     "lockedScheduleRestriction8": {
-        "message": "আপনি দিনগুলি অনির্বাচিত করতে, সময়সূচী নিষ্ক্রিয় করতে বা সক্রিয় সময়সূচীর জন্য শুরু বা শেষের সময় পরিবর্তন করতে পারবেন না।"
+        "message": "You cannot remove active days or shrink an active protected schedule window."
     },
     "lockedScheduleRestriction9": {
-        "message": "আপনি সাদা তালিকাভুক্ত ওয়েবসাইট যোগ করতে পারবেন না।"
+        "message": "You cannot add allowed websites to bypass a protected plan."
     },
     "lockedScheduleRestriction10": {
-        "message": "আপনি এক্সটেনশনের জন্য পাসওয়ার্ড সেট বা মুছে ফেলতে পারবেন না।"
+        "message": "You cannot delete password protection during an active protected schedule."
     },
     "whitelistWebsitesTitle": {
-        "message": "হোয়াইটলিস্ট ওয়েবসাইট"
+        "message": "Allowed Websites"
     },
     "whitelistWebsitesText": {
-        "message": "আপনাকে সাদা তালিকাভুক্ত ওয়েবসাইটগুলিতে প্রবেশ করার অনুমতি দেয়, যার অর্থ এই ওয়েবসাইটগুলিতে কীওয়ার্ড স্ক্যান করা হবে না এবং এইভাবে সেগুলি ব্লক করা হবে না। বর্তমানে, আমাদের কাছে একটি এন্ট্রিতে অনেকগুলি ওয়েবসাইট অন্তর্ভুক্ত করার জন্য ওয়াইল্ডকার্ড (*) ব্যবহার করার ক্ষমতা নেই (যেমন *.io, যেখানে '.io' সহ সমস্ত ওয়েবসাইট ব্লক করা হবে), তাই এই বৈশিষ্ট্যটি খুব দরকারী নয়, তবে এটি বিদ্যমান।"
+        "message": "Allowed websites are plan-owned exceptions. Add them when a site should remain usable while a plan is active; the plan will not scan or block those allowed hosts."
     },
     "passwordManagementTitle": {
         "message": "পাসওয়ার্ড ব্যবস্থাপনা"
     },
     "passwordManagementText": {
-        "message": "আপনাকে এক্সটেনশন পৃষ্ঠার জন্য একটি পাসওয়ার্ড সেট আপ করার অনুমতি দেয়৷ যে কেউ এক্সটেনশন পৃষ্ঠাটি খোলে তাকে অ্যাক্সেস পেতে সঠিক পাসওয়ার্ড লিখতে হবে। ভুলবশত (বা ইচ্ছাকৃতভাবে) সেটিংস শক্ত করা থেকে অন্যদের প্রতিরোধ করার জন্য দরকারী।"
+        "message": "Password protection can require a password before opening the options page. Use it when you want an extra barrier around changing protection settings."
     },
     "contactFeedbackTitle": {
         "message": "যোগাযোগ এবং প্রতিক্রিয়া"

@@ -372,148 +372,148 @@
         "message": "مقدمه"
     },
     "introText1": {
-        "message": "سلام! پرت شدن حواس در اینترنت و به تعویق انداختن کار بسیار آسان است. این افزونه به شما امکان می دهد صفحات وب را بر اساس کلمات کلیدی که نمی خواهید ببینید مسدود کنید."
+        "message": "Defense Against Distractions lets you create local protection plans that block pages, guide Pomodoro timing, detect possible intent drift, and clean up distracting page UI."
     },
     "introText2": {
-        "message": "هزاران video games برای پخش، اخبار برای خواندن، ویدیو برای تماشا و غیره وجود دارد. و اغلب، این همان کاری است که ما انجام می دهیم زمانی که مهلت های پروژه یا امتحانات هنوز دور از دسترس است. گاهی اوقات، ممکن است کمی سخت باشد که خودتان را مجبور کنید کاری را که باید انجام دهید."
+        "message": "A plan combines page entries, allowed websites, schedules, Pomodoro settings, intent-coherence settings, and optional UI cleanup rules. Turn a plan on when you want that protection available."
     },
     "introText3": {
-        "message": "و حواس پرتی همه جا هست! حتی اگر از StayFocusd یا Cold Turkey یا FocusMe برای مسدود کردن برخی وب‌سایت‌ها از طریق URL آنها استفاده کنید، نمی‌توانید همه چیز را مسدود کنید. به عنوان مثال، حتی با ChatGPT، می توانید در مورد اخبار یا video games صحبت کنید اگر واقعاً تمایلی به مطالعه یا انجام کار ندارید."
+        "message": "The extension checks configured pages locally in the browser. It does not send page text, browsing diagnostics, or settings to a remote server."
     },
     "introText4": {
-        "message": "با این افزونه می توانید وب سایت ها را بر اساس کلمات و عبارات موجود در متن آنها مسدود کنید."
+        "message": "Start with one plan, add the pages and words that matter, then make the plan stricter with schedules or Pomodoro when you need stronger defense."
     },
     "howToUseTitle": {
         "message": "نحوه استفاده از افزونه"
     },
     "createGroupTitle": {
-        "message": "مرحله اول: ایجاد یک گروه"
+        "message": "First Step: Create a Plan"
     },
     "createGroupText1": {
-        "message": "می‌توانید دکمه «افزودن گروه» را فشار دهید یا نام گروه را وارد کنید و Enter یا دکمه افزودن گروه را فشار دهید. می توانید چندین گروه ایجاد کنید."
+        "message": "Enter a plan name and press Add Plan. Open the plan to configure entries, schedules, Pomodoro, intent coherence, allowed websites, and UI cleanup assignments."
     },
     "createGroupText2": {
-        "message": "پنل گروه را خواهید دید."
+        "message": "The default plan is a safe starting point. You can keep it, rename it, or create additional plans for different contexts."
     },
     "websitesTitle": {
-        "message": "وب سایت ها"
+        "message": "Entries and Websites"
     },
     "websitesText": {
-        "message": "می‌توانید با فشار دادن دکمه «ویرایش» در سمت چپ خط وب‌سایت‌ها، اضافه کردن وب‌سایت‌ها را شروع کنید. این قسمت مسئول وب سایت هایی است که افزونه کلمات کلیدی را مسدود می کند. در اینجا باید URL های وب سایت را وارد کنید، به عنوان مثال، 'google.com'. شما می توانید چندین وب سایت را وارد کنید، هر خط جدید یک وب سایت جدید است. فقط Enter را فشار دهید. وقتی آماده شدید، دکمه سبز \"ذخیره\" را فشار دهید. یا می توانید لغو کنید."
+        "message": "A plan entry has websites and keywords. Add the websites where the keywords should be scanned, one host per line, such as example.com or docs.example.com."
     },
     "keywordsTitle": {
         "message": "کلمات کلیدی"
     },
     "keywordsText1": {
-        "message": "برای افزودن کلمات کلیدی جدید یا ایجاد هرگونه تغییر، «ویرایش» را فشار دهید. کلمات کلیدی که در اینجا وارد می کنید در وب سایت هایی که برای این گروه وارد کرده اید اسکن می شوند."
+        "message": "Add keywords or phrases to the same entry. The extension scans matching pages locally and blocks the page when the entry score reaches 1000."
     },
     "keywordFormatsIntroduction": {
         "message": "3 قالب برای کلمات کلیدی وجود دارد:"
     },
     "keywordFormat1Title": {
-        "message": "فرمت اول:"
+        "message": "Keyword format 1:"
     },
     "keywordFormat1Text": {
-        "message": "فقط کلمات کلیدی را وارد کنید. می تواند یک کلمه یا یک عبارت باشد. اگر کلمه کلیدی حاوی کاما \",\"\" است، باید قبل از آن از یک کاراکتر فرار \"\\\" استفاده کنید. به محض شناسایی کلمه کلیدی وب سایت مسدود می شود. شما می توانید هر تعداد کلمه کلیدی که می خواهید وارد کنید، فقط کافی است اینتر را فشار دهید. هر خط جدید یک کلمه کلیدی جدید است."
+        "message": "Enter a word or phrase. If the keyword contains a comma, put a backslash before the comma. A plain keyword blocks as soon as it is detected."
     },
     "keywordFormat1_2": {
-        "message": "مثال: «video games» یا «اخبار»."
+        "message": "Examples: 'video games', 'news'."
     },
     "keywordFormat2Title": {
-        "message": "فرمت دوم:"
+        "message": "Keyword format 2:"
     },
     "keywordFormat2Text": {
-        "message": "کلمه کلیدی و به دنبال آن یک مقدار عددی را وارد کنید. هر وب سایتی که در یک گروه وارد می کنید باید به امتیاز 1000 برسد. وب سایت با مقدار 0 شروع می شود و بر اساس مقدار عددی کلمه کلیدی مقدار آن افزایش می یابد. وقتی وب سایت به امتیاز 1000 رسید، مسدود می شود."
+        "message": "Add a number after a comma. The page score starts at 0 and increases by that amount each time the keyword is found. At 1000, the page is blocked."
     },
     "keywordFormat2_2": {
         "message": "مثال: 'news, 50'"
     },
     "keywordFormat2_3": {
-        "message": "هر وب سایتی که در یک گروه وارد می کنید باید به امتیاز 1000 برسد، سایت با مقدار 0 شروع می شود و بر اساس مقدار عددی کلمه کلیدی، مقدار آن افزایش می یابد. وقتی وب سایت به امتیاز 1000 رسید، مسدود می شود."
+        "message": "Use this when a word should matter, but only after repeated or combined signals."
     },
     "keywordFormat3Title": {
-        "message": "فرمت سوم:"
+        "message": "Keyword format 3:"
     },
     "keywordFormat3Text": {
-        "message": "کلمه کلیدی را وارد کنید و به دنبال آن یک علامت ضرب یا جمع (* یا +) و سپس یک مقدار عددی را وارد کنید. در این سناریو، امتیاز صفحه بر اساس مقدار عددی کلمه کلیدی یافت شده ضرب می شود."
+        "message": "Use * or + with a number when you want a keyword to multiply or add to the current page score in a more explicit way."
     },
     "keywordFormat3_2": {
         "message": "مثال: 'news, *, 10'"
     },
     "keywordFormat3_3": {
-        "message": "در این سناریو، امتیاز صفحه بر اساس مقدار عددی کلمه کلیدی یافت شده ضرب می شود."
+        "message": "Use this for stronger signals that should become decisive only in a specific context."
     },
     "timerCountTitle": {
-        "message": "شمارش تایمر"
+        "message": "Pomodoro"
     },
     "timerCountText": {
-        "message": "پس از مسدود شدن صفحه، می‌توانید دکمه «فعال کردن تایمر» را فشار دهید. پس از آن، قبل از مسدود شدن مجدد صفحه، زمان خواهید داشت تا برخی از اقدامات را در صفحه انجام دهید. در قسمت Timer Count می‌توانید تصمیم بگیرید که چند تایمر در طول روز داشته باشید."
+        "message": "A plan can run Pomodoro work and rest timing. Strict breaks can block or quiet pages during rest so the break is protected."
     },
     "timerDurationTitle": {
-        "message": "مدت زمان تایمر (ثانیه)"
+        "message": "Pomodoro Timing"
     },
     "timerDurationText": {
-        "message": "در این قسمت شما تصمیم می گیرید که هر تایمر چند ثانیه داشته باشد."
+        "message": "Set work minutes, short breaks, long breaks, and how many work sessions happen before a long break. During an active protected schedule, enabling Pomodoro or making it stricter is allowed; relaxing it is blocked."
     },
     "lockedSchedulesTitle": {
         "message": "برنامه های قفل شده"
     },
     "lockedSchedulesNote": {
-        "message": "! یک برنامه قفل شده را نمی توان تا زمان سپری شدن آن باز کرد (مگر اینکه برنامه افزودنی را حذف نصب کنید)!"
+        "message": "A protected schedule is meant to resist hot-state weakening while the scheduled window is active."
     },
     "lockedSchedulesText1": {
-        "message": "می‌توانید با ایجاد نام برنامه در قسمت نام برنامه و فشار دادن Enter یا دکمه افزودن زمان‌بندی، یک برنامه زمان‌بندی قفل‌شده جدید اضافه کنید."
+        "message": "Open a plan, choose Schedule, and add one or more scheduled time blocks. Each block can choose days, start time, end time, and whether it is protected."
     },
     "lockedSchedulesText2": {
-        "message": "برای تغییر تنظیمات برنامه خود، «ویرایش» را فشار دهید. با فشردن دکمه‌های روز، برنامه را در آن روز فعال می‌کنید (دکمه سبز می‌شود)، یا آن را برای آن روز غیرفعال می‌کنید. با تغییر فیلدهای زمان شروع و زمان پایان، زمان هایی را تنظیم می کنید که برنامه می تواند فعال باشد. هر روز باید یک پنجره زمانی غیرفعال 1 ساعته داشته باشد تا بتوانید در آن زمان برنامه را غیرفعال کنید. دکمه غیرفعال/فعال زمان‌بندی را تغییر می‌دهد. اگر روز جاری فعال باشد (سبز) و دکمه \"فعال\" و همچنین سبز باشد و اگر زمان فعلی بین زمان شروع و پایان باشد، برنامه زمانی قفل و فعال خواهد شد."
+        "message": "A protected active schedule can be made stricter but not more relaxed. For example, you can add entries, raise keyword scores, enable stricter Pomodoro behavior, or add UI cleanup rules, but you cannot remove active protection."
     },
     "lockedSchedulesText3": {
-        "message": "دکمه Delete برنامه قفل شده را حذف می کند. همین امر در مورد گروه ها و وب سایت های در لیست سفید صدق می کند."
+        "message": "Delete removes a schedule only when doing so does not relax an active protected window."
     },
     "lockedSchedulesText4": {
-        "message": "در طول برنامه قفل شده چندین محدودیت اعمال می شود:"
+        "message": "During an active protected schedule, relaxed changes are refused:"
     },
     "lockedScheduleRestriction1": {
-        "message": "شما نمی توانید نام گروه را تغییر دهید."
+        "message": "You cannot disable the active plan."
     },
     "lockedScheduleRestriction2": {
-        "message": "شما نمی توانید وب سایت های موجود را در گروه ها تغییر یا حذف کنید."
+        "message": "You cannot remove existing plan entries or reduce the websites they protect."
     },
     "lockedScheduleRestriction3": {
-        "message": "شما نمی توانید کلمات کلیدی موجود و مقادیر آنها را تغییر یا حذف کنید."
+        "message": "You cannot remove existing keywords or reduce their weights."
     },
     "lockedScheduleRestriction4": {
-        "message": "شما فقط می توانید مقادیر کلمات کلیدی را برای ضرب تنظیم کنید: از 1 تا 1000. برای جمع: از 0 تا 1000."
+        "message": "New or changed keywords must stay inside the strict allowed scoring ranges."
     },
     "lockedScheduleRestriction5": {
-        "message": "تعداد تایمر قابل افزایش نیست."
+        "message": "You cannot disable Pomodoro, turn off strict breaks, or make Pomodoro easier to bypass."
     },
     "lockedScheduleRestriction6": {
-        "message": "مدت زمان تایمر را نمی توان افزایش داد."
+        "message": "You can enable Pomodoro or make its timing stricter when that increases protection."
     },
     "lockedScheduleRestriction7": {
-        "message": "برنامه های فعال را نمی توان حذف کرد."
+        "message": "Active schedules cannot be deleted."
     },
     "lockedScheduleRestriction8": {
-        "message": "نمی‌توانید روزها را لغو انتخاب کنید، زمان‌بندی را غیرفعال کنید، یا زمان شروع یا پایان برنامه‌های فعال را تغییر دهید."
+        "message": "You cannot remove active days or shrink an active protected schedule window."
     },
     "lockedScheduleRestriction9": {
-        "message": "شما نمی توانید وب سایت هایی را که در لیست سفید قرار گرفته اند اضافه کنید."
+        "message": "You cannot add allowed websites to bypass a protected plan."
     },
     "lockedScheduleRestriction10": {
-        "message": "شما نمی توانید رمز عبور را برای برنامه افزودنی تنظیم یا حذف کنید."
+        "message": "You cannot delete password protection during an active protected schedule."
     },
     "whitelistWebsitesTitle": {
-        "message": "وب سایت های لیست سفید"
+        "message": "Allowed Websites"
     },
     "whitelistWebsitesText": {
-        "message": "به شما امکان می دهد تا وب سایت های دارای لیست سفید را وارد کنید، به این معنی که اسکن کلمات کلیدی در این وب سایت ها انجام نمی شود و در نتیجه آنها مسدود نمی شوند. در حال حاضر، ما توانایی استفاده از علامت عام (*) برای گنجاندن بسیاری از وب سایت ها در یک ورودی را نداریم (مانند *.io، که در آن همه وب سایت های دارای '.io' مسدود می شوند)، بنابراین این ویژگی چندان مفید نیست، اما وجود دارد."
+        "message": "Allowed websites are plan-owned exceptions. Add them when a site should remain usable while a plan is active; the plan will not scan or block those allowed hosts."
     },
     "passwordManagementTitle": {
         "message": "مدیریت رمز عبور"
     },
     "passwordManagementText": {
-        "message": "به شما امکان می دهد یک رمز عبور برای صفحه برنامه افزودنی تنظیم کنید. هر کسی که صفحه برنامه افزودنی را باز کند باید رمز عبور صحیح را وارد کند تا دسترسی پیدا کند. برای جلوگیری از سفت کردن تصادفی (یا عمدی) تنظیمات توسط دیگران مفید است."
+        "message": "Password protection can require a password before opening the options page. Use it when you want an extra barrier around changing protection settings."
     },
     "contactFeedbackTitle": {
         "message": "تماس و بازخورد"

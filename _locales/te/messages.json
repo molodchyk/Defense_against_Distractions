@@ -372,148 +372,148 @@
         "message": "పరిచయం"
     },
     "introText1": {
-        "message": "హాయ్! ఇంటర్నెట్‌లో దృష్టి మరల్చడం మరియు వాయిదా వేయడం చాలా సులభం. మీరు చూడకూడదనుకునే కీలక పదాల ఆధారంగా వెబ్ పేజీలను బ్లాక్ చేయడానికి ఈ పొడిగింపు మిమ్మల్ని అనుమతిస్తుంది."
+        "message": "Defense Against Distractions lets you create local protection plans that block pages, guide Pomodoro timing, detect possible intent drift, and clean up distracting page UI."
     },
     "introText2": {
-        "message": "ఆడటానికి వేలకొద్దీ వీడియో గేమ్‌లు, చదవడానికి వార్తాకథనాలు, చూడటానికి వీడియోలు మొదలైనవి ఉన్నాయి. మరియు తరచుగా, ప్రాజెక్ట్ గడువులు లేదా పరీక్షలు ఇంకా దూరంగా ఉన్నప్పుడు మనం చేసేది ఇదే. కొన్నిసార్లు, మీరు చేయవలసిన పనిని చేయమని మిమ్మల్ని బలవంతం చేయడం కొంచెం కష్టంగా ఉంటుంది."
+        "message": "A plan combines page entries, allowed websites, schedules, Pomodoro settings, intent-coherence settings, and optional UI cleanup rules. Turn a plan on when you want that protection available."
     },
     "introText3": {
-        "message": "మరియు పరధ్యానాలు ప్రతిచోటా ఉన్నాయి! మీరు కొన్ని వెబ్‌సైట్‌లను వాటి URLల ద్వారా బ్లాక్ చేయడానికి StayFocusd లేదా Cold Turkey లేదా FocusMeని ఉపయోగించినప్పటికీ, మీరు అన్నింటినీ బ్లాక్ చేయలేరు. ఉదాహరణకు, ChatGPTతో కూడా, మీకు నిజంగా చదువుకోవడం లేదా పని చేయడం ఇష్టం లేకుంటే వార్తలు లేదా వీడియో గేమ్‌ల గురించి మాట్లాడవచ్చు."
+        "message": "The extension checks configured pages locally in the browser. It does not send page text, browsing diagnostics, or settings to a remote server."
     },
     "introText4": {
-        "message": "ఈ పొడిగింపుతో, మీరు వెబ్‌సైట్‌లను వాటి టెక్స్ట్‌లోని పదాలు మరియు పదబంధాల ఆధారంగా బ్లాక్ చేయవచ్చు."
+        "message": "Start with one plan, add the pages and words that matter, then make the plan stricter with schedules or Pomodoro when you need stronger defense."
     },
     "howToUseTitle": {
         "message": "పొడిగింపును ఎలా ఉపయోగించాలి"
     },
     "createGroupTitle": {
-        "message": "మొదటి దశ: సమూహాన్ని సృష్టించండి"
+        "message": "First Step: Create a Plan"
     },
     "createGroupText1": {
-        "message": "మీరు 'సమూహాన్ని జోడించు' బటన్‌ను నొక్కవచ్చు లేదా సమూహం పేరును ఇన్‌పుట్ చేయవచ్చు మరియు ఎంటర్ లేదా సమూహాన్ని జోడించు బటన్‌ను నొక్కండి. మీరు బహుళ సమూహాలను సృష్టించవచ్చు."
+        "message": "Enter a plan name and press Add Plan. Open the plan to configure entries, schedules, Pomodoro, intent coherence, allowed websites, and UI cleanup assignments."
     },
     "createGroupText2": {
-        "message": "మీరు గ్రూప్ ప్యానెల్ చూస్తారు."
+        "message": "The default plan is a safe starting point. You can keep it, rename it, or create additional plans for different contexts."
     },
     "websitesTitle": {
-        "message": "వెబ్‌సైట్‌లు"
+        "message": "Entries and Websites"
     },
     "websitesText": {
-        "message": "మీరు వెబ్‌సైట్‌ల లైన్‌కు ఎడమ వైపున ఉన్న 'సవరించు' బటన్‌ను నొక్కడం ద్వారా వెబ్‌సైట్‌లను జోడించడం ప్రారంభించవచ్చు. పొడిగింపు కీలకపదాలను బ్లాక్ చేసే వెబ్‌సైట్‌లకు ఈ ఫీల్డ్ బాధ్యత వహిస్తుంది. ఇక్కడ మీరు వెబ్‌సైట్ URLలను ఇన్‌పుట్ చేయాలి, ఉదాహరణకు, 'google.com'. మీరు బహుళ వెబ్‌సైట్‌లను ఇన్‌పుట్ చేయవచ్చు, ప్రతి కొత్త లైన్ కొత్త వెబ్‌సైట్. కేవలం ఎంటర్ నొక్కండి. మీరు సిద్ధంగా ఉన్నప్పుడు, ఆకుపచ్చ 'సేవ్' బటన్‌ను నొక్కండి. లేదా మీరు రద్దు చేయవచ్చు."
+        "message": "A plan entry has websites and keywords. Add the websites where the keywords should be scanned, one host per line, such as example.com or docs.example.com."
     },
     "keywordsTitle": {
         "message": "కీలకపదాలు"
     },
     "keywordsText1": {
-        "message": "కొత్త కీలకపదాలను జోడించడానికి లేదా ఏవైనా మార్పులు చేయడానికి, 'సవరించు' నొక్కండి. మీరు ఇక్కడ నమోదు చేసిన కీలకపదాలు మీరు ఈ సమూహం కోసం నమోదు చేసిన వెబ్‌సైట్‌లలో స్కాన్ చేయబడతాయి."
+        "message": "Add keywords or phrases to the same entry. The extension scans matching pages locally and blocks the page when the entry score reaches 1000."
     },
     "keywordFormatsIntroduction": {
         "message": "కీలక పదాల కోసం 3 ఫార్మాట్‌లు ఉన్నాయి:"
     },
     "keywordFormat1Title": {
-        "message": "మొదటి ఫార్మాట్:"
+        "message": "Keyword format 1:"
     },
     "keywordFormat1Text": {
-        "message": "కీవర్డ్‌లను నమోదు చేయండి. ఇది ఒక పదం లేదా పదబంధం కావచ్చు. కీవర్డ్‌లో కామా ',' ఉంటే, మీరు దాని ముందు తప్పనిసరిగా '\\' అనే ఎస్కేప్ అక్షరాన్ని ఉపయోగించాలి. కీవర్డ్‌ని గుర్తించిన వెంటనే వెబ్‌సైట్ బ్లాక్ చేయబడుతుంది. మీరు మీకు కావలసినన్ని కీలకపదాలను నమోదు చేయవచ్చు, కేవలం ఎంటర్ నొక్కండి. ప్రతి కొత్త లైన్ కొత్త కీవర్డ్."
+        "message": "Enter a word or phrase. If the keyword contains a comma, put a backslash before the comma. A plain keyword blocks as soon as it is detected."
     },
     "keywordFormat1_2": {
-        "message": "ఉదాహరణ: 'వీడియో గేమ్‌లు' లేదా 'వార్తలు'."
+        "message": "Examples: 'video games', 'news'."
     },
     "keywordFormat2Title": {
-        "message": "రెండవ ఫార్మాట్:"
+        "message": "Keyword format 2:"
     },
     "keywordFormat2Text": {
-        "message": "కీవర్డ్‌ను నమోదు చేయండి, తర్వాత సంఖ్యా విలువను నమోదు చేయండి. మీరు సమూహంలో నమోదు చేసిన ప్రతి వెబ్‌సైట్ తప్పనిసరిగా 1000 స్కోర్‌ను చేరుకోవాలి. వెబ్‌సైట్ 0 విలువతో ప్రారంభమవుతుంది మరియు కీవర్డ్ యొక్క సంఖ్యా విలువ ఆధారంగా, విలువ పెరుగుతుంది. వెబ్‌సైట్ స్కోర్ 1000కి చేరుకున్న తర్వాత, అది బ్లాక్ చేయబడుతుంది."
+        "message": "Add a number after a comma. The page score starts at 0 and increases by that amount each time the keyword is found. At 1000, the page is blocked."
     },
     "keywordFormat2_2": {
         "message": "ఉదాహరణ: 'వార్తలు, 50'"
     },
     "keywordFormat2_3": {
-        "message": "మీరు సమూహంలో నమోదు చేసిన ప్రతి వెబ్‌సైట్ తప్పనిసరిగా 1000 స్కోర్‌ను చేరుకోవాలి. సైట్ 0 విలువతో ప్రారంభమవుతుంది మరియు కీవర్డ్ యొక్క సంఖ్యా విలువ ఆధారంగా, విలువ పెరుగుతుంది. వెబ్‌సైట్ స్కోర్ 1000కి చేరుకున్న తర్వాత, అది బ్లాక్ చేయబడుతుంది."
+        "message": "Use this when a word should matter, but only after repeated or combined signals."
     },
     "keywordFormat3Title": {
-        "message": "మూడవ ఫార్మాట్:"
+        "message": "Keyword format 3:"
     },
     "keywordFormat3Text": {
-        "message": "కీవర్డ్‌ను నమోదు చేయండి, దాని తర్వాత గుణకారం లేదా సంకలనం గుర్తు (* లేదా +), ఆపై సంఖ్యా విలువను నమోదు చేయండి. ఈ దృష్టాంతంలో, కనుగొనబడిన కీవర్డ్ యొక్క సంఖ్యా విలువ ఆధారంగా పేజీ యొక్క స్కోర్ గుణించబడుతుంది."
+        "message": "Use * or + with a number when you want a keyword to multiply or add to the current page score in a more explicit way."
     },
     "keywordFormat3_2": {
         "message": "ఉదాహరణ: 'వార్తలు, *, 10'"
     },
     "keywordFormat3_3": {
-        "message": "ఈ దృష్టాంతంలో, కనుగొనబడిన కీవర్డ్ యొక్క సంఖ్యా విలువ ఆధారంగా పేజీ యొక్క స్కోర్ గుణించబడుతుంది."
+        "message": "Use this for stronger signals that should become decisive only in a specific context."
     },
     "timerCountTitle": {
-        "message": "టైమర్ కౌంట్"
+        "message": "Pomodoro"
     },
     "timerCountText": {
-        "message": "పేజీ బ్లాక్ చేయబడిన తర్వాత, మీరు 'సక్రియం టైమర్' బటన్‌ను నొక్కే ఎంపికను కలిగి ఉంటారు. ఆ తర్వాత, పేజీ మళ్లీ బ్లాక్ చేయబడే ముందు దానిపై కొన్ని చర్యలను చేయడానికి మీకు సమయం ఉంటుంది. టైమర్ కౌంట్ ఫీల్డ్‌లో, మీరు రోజులో ఎన్ని టైమర్‌లను కలిగి ఉండాలనుకుంటున్నారో మీరు నిర్ణయించుకోవచ్చు."
+        "message": "A plan can run Pomodoro work and rest timing. Strict breaks can block or quiet pages during rest so the break is protected."
     },
     "timerDurationTitle": {
-        "message": "టైమర్ వ్యవధి (సెకన్లు)"
+        "message": "Pomodoro Timing"
     },
     "timerDurationText": {
-        "message": "ఈ ఫీల్డ్‌లో, ప్రతి టైమర్‌కి ఎన్ని సెకన్లు ఉండాలో మీరు నిర్ణయించుకుంటారు."
+        "message": "Set work minutes, short breaks, long breaks, and how many work sessions happen before a long break. During an active protected schedule, enabling Pomodoro or making it stricter is allowed; relaxing it is blocked."
     },
     "lockedSchedulesTitle": {
         "message": "లాక్ చేయబడిన షెడ్యూల్‌లు"
     },
     "lockedSchedulesNote": {
-        "message": "! సమయం గడిచే వరకు లాక్ చేయబడిన షెడ్యూల్ అన్‌లాక్ చేయబడదు (మీరు పొడిగింపును అన్‌ఇన్‌స్టాల్ చేయకపోతే)!"
+        "message": "A protected schedule is meant to resist hot-state weakening while the scheduled window is active."
     },
     "lockedSchedulesText1": {
-        "message": "మీరు షెడ్యూల్ పేరు ఫీల్డ్‌లో షెడ్యూల్ పేరును సృష్టించి, ఎంటర్ లేదా షెడ్యూల్ బటన్‌ను నొక్కడం ద్వారా కొత్త లాక్ చేయబడిన షెడ్యూల్‌ను జోడించవచ్చు."
+        "message": "Open a plan, choose Schedule, and add one or more scheduled time blocks. Each block can choose days, start time, end time, and whether it is protected."
     },
     "lockedSchedulesText2": {
-        "message": "మీ షెడ్యూల్ సెట్టింగ్‌లను సవరించడానికి, 'సవరించు' నొక్కండి. రోజు బటన్‌లను నొక్కడం ద్వారా, మీరు ఆ రోజు షెడ్యూల్‌ను ఎనేబుల్ చేయండి (బటన్ ఆకుపచ్చ రంగులోకి మారుతుంది), లేదా ఆ రోజు దానిని డిజేబుల్ చేయండి. ప్రారంభ సమయం మరియు ముగింపు సమయం ఫీల్డ్‌లను సవరించడం ద్వారా, మీరు షెడ్యూల్ సక్రియంగా ఉండే సమయాలను సెట్ చేస్తారు. ప్రతి రోజు తప్పనిసరిగా 1-గంట నిష్క్రియ సమయ విండోను కలిగి ఉండాలి కాబట్టి మీరు ఆ సమయంలో షెడ్యూల్‌ను నిష్క్రియం చేయవచ్చు. ఇన్‌యాక్టివ్/యాక్టివ్ బటన్ షెడ్యూల్‌ను టోగుల్ చేస్తుంది. ప్రస్తుత రోజు ప్రారంభించబడితే (ఆకుపచ్చ రంగులో) మరియు బటన్ 'యాక్టివ్'గా మరియు ఆకుపచ్చగా ఉంటే మరియు ప్రస్తుత సమయం ప్రారంభ మరియు ముగింపు సమయాల మధ్య ఉంటే షెడ్యూల్ లాక్ చేయబడి, సక్రియంగా ఉంటుంది."
+        "message": "A protected active schedule can be made stricter but not more relaxed. For example, you can add entries, raise keyword scores, enable stricter Pomodoro behavior, or add UI cleanup rules, but you cannot remove active protection."
     },
     "lockedSchedulesText3": {
-        "message": "తొలగించు బటన్ లాక్ చేయబడిన షెడ్యూల్‌ను తొలగిస్తుంది. సమూహాలు మరియు వైట్‌లిస్ట్ చేసిన వెబ్‌సైట్‌లకు కూడా ఇది వర్తిస్తుంది."
+        "message": "Delete removes a schedule only when doing so does not relax an active protected window."
     },
     "lockedSchedulesText4": {
-        "message": "లాక్ చేయబడిన షెడ్యూల్ సమయంలో అనేక పరిమితులు వర్తిస్తాయి:"
+        "message": "During an active protected schedule, relaxed changes are refused:"
     },
     "lockedScheduleRestriction1": {
-        "message": "మీరు గుంపు పేర్లను మార్చలేరు."
+        "message": "You cannot disable the active plan."
     },
     "lockedScheduleRestriction2": {
-        "message": "మీరు సమూహాలలో ఇప్పటికే ఉన్న వెబ్‌సైట్‌లను మార్చలేరు లేదా తీసివేయలేరు."
+        "message": "You cannot remove existing plan entries or reduce the websites they protect."
     },
     "lockedScheduleRestriction3": {
-        "message": "మీరు ఇప్పటికే ఉన్న కీలకపదాలను మరియు వాటి విలువలను మార్చలేరు లేదా తీసివేయలేరు."
+        "message": "You cannot remove existing keywords or reduce their weights."
     },
     "lockedScheduleRestriction4": {
-        "message": "మీరు గుణకారం కోసం కీవర్డ్ విలువలను మాత్రమే సెట్ చేయవచ్చు: 1 నుండి 1000 వరకు. అదనంగా: 0 నుండి 1000 వరకు."
+        "message": "New or changed keywords must stay inside the strict allowed scoring ranges."
     },
     "lockedScheduleRestriction5": {
-        "message": "టైమర్ కౌంట్ పెంచడం సాధ్యం కాదు."
+        "message": "You cannot disable Pomodoro, turn off strict breaks, or make Pomodoro easier to bypass."
     },
     "lockedScheduleRestriction6": {
-        "message": "టైమర్ వ్యవధిని పెంచడం సాధ్యం కాదు."
+        "message": "You can enable Pomodoro or make its timing stricter when that increases protection."
     },
     "lockedScheduleRestriction7": {
-        "message": "సక్రియ షెడ్యూల్‌లు తొలగించబడవు."
+        "message": "Active schedules cannot be deleted."
     },
     "lockedScheduleRestriction8": {
-        "message": "మీరు రోజుల ఎంపికను తీసివేయలేరు, షెడ్యూల్‌ను నిష్క్రియం చేయలేరు లేదా సక్రియ షెడ్యూల్‌ల కోసం ప్రారంభ లేదా ముగింపు సమయాలను మార్చలేరు."
+        "message": "You cannot remove active days or shrink an active protected schedule window."
     },
     "lockedScheduleRestriction9": {
-        "message": "మీరు వైట్‌లిస్ట్ చేసిన వెబ్‌సైట్‌లను జోడించలేరు."
+        "message": "You cannot add allowed websites to bypass a protected plan."
     },
     "lockedScheduleRestriction10": {
-        "message": "మీరు పొడిగింపు కోసం పాస్‌వర్డ్‌ను సెట్ చేయలేరు లేదా తొలగించలేరు."
+        "message": "You cannot delete password protection during an active protected schedule."
     },
     "whitelistWebsitesTitle": {
-        "message": "వైట్‌లిస్ట్ వెబ్‌సైట్‌లు"
+        "message": "Allowed Websites"
     },
     "whitelistWebsitesText": {
-        "message": "వైట్‌లిస్ట్ చేయబడిన వెబ్‌సైట్‌లను నమోదు చేయడానికి మిమ్మల్ని అనుమతిస్తుంది, అంటే ఈ వెబ్‌సైట్‌లలో కీవర్డ్ స్కాన్ నిర్వహించబడదు మరియు తద్వారా అవి బ్లాక్ చేయబడవు. ప్రస్తుతం, ఒకే ఎంట్రీలో చాలా వెబ్‌సైట్‌లను చేర్చడానికి వైల్డ్‌కార్డ్ (*)ని ఉపయోగించగల సామర్థ్యం మాకు లేదు (*.io, ఇక్కడ '.io' ఉన్న అన్ని వెబ్‌సైట్‌లు బ్లాక్ చేయబడతాయి), కాబట్టి ఈ ఫీచర్ చాలా ఉపయోగకరంగా లేదు, కానీ అది ఉనికిలో ఉంది."
+        "message": "Allowed websites are plan-owned exceptions. Add them when a site should remain usable while a plan is active; the plan will not scan or block those allowed hosts."
     },
     "passwordManagementTitle": {
         "message": "పాస్వర్డ్ నిర్వహణ"
     },
     "passwordManagementText": {
-        "message": "పొడిగింపు పేజీ కోసం పాస్‌వర్డ్‌ను సెటప్ చేయడానికి మిమ్మల్ని అనుమతిస్తుంది. పొడిగింపు పేజీని తెరిచే ఎవరైనా ప్రాప్యతను పొందడానికి సరైన పాస్‌వర్డ్‌ను నమోదు చేయాలి. ఇతరులు అనుకోకుండా (లేదా ఉద్దేశపూర్వకంగా) సెట్టింగ్‌లను బిగించకుండా నిరోధించడానికి ఉపయోగపడుతుంది."
+        "message": "Password protection can require a password before opening the options page. Use it when you want an extra barrier around changing protection settings."
     },
     "contactFeedbackTitle": {
         "message": "సంప్రదించండి మరియు అభిప్రాయం"

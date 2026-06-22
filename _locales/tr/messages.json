@@ -372,148 +372,148 @@
         "message": "Giriş"
     },
     "introText1": {
-        "message": "Merhaba! İnternette dikkatinizin dağılması ve erteleme yapmanız çok kolay. Bu eklenti, görmek istemediğiniz anahtar kelimeleri içeren web sayfalarını engellemenize olanak tanır."
+        "message": "Defense Against Distractions lets you create local protection plans that block pages, guide Pomodoro timing, detect possible intent drift, and clean up distracting page UI."
     },
     "introText2": {
-        "message": "Oynanacak binlerce video oyunu, okunacak haber hikayeleri, izlenecek videolar ve daha fazlası var. Ve genellikle, proje teslim tarihleri veya sınavlar hala uzakken bunları yaparız. Bazen, yapmanız gereken şeylere kendinizi zorlamak biraz zor olabilir."
+        "message": "A plan combines page entries, allowed websites, schedules, Pomodoro settings, intent-coherence settings, and optional UI cleanup rules. Turn a plan on when you want that protection available."
     },
     "introText3": {
-        "message": "Ve dikkat dağıtıcılar her yerde! StayFocusd, Cold Turkey veya FocusMe gibi bazı web sitelerini URL'leri üzerinden engelleme araçlarını kullansanız bile, her şeyi engelleyemezsiniz. Örneğin, ChatGPT ile bile, çalışmak veya iş yapmak istemediğinizde haberler veya video oyunları hakkında konuşabilirsiniz."
+        "message": "The extension checks configured pages locally in the browser. It does not send page text, browsing diagnostics, or settings to a remote server."
     },
     "introText4": {
-        "message": "Bu eklenti ile, metinlerindeki kelimeler ve ifadeler temel alınarak web sitelerini engelleyebilirsiniz."
+        "message": "Start with one plan, add the pages and words that matter, then make the plan stricter with schedules or Pomodoro when you need stronger defense."
     },
     "howToUseTitle": {
         "message": "Eklentinin Kullanımı"
     },
     "createGroupTitle": {
-        "message": "İlk Adım: Grup Oluştur"
+        "message": "First Step: Create a Plan"
     },
     "createGroupText1": {
-        "message": "'Grup Ekle' düğmesine basabilir veya grup adını girip Enter'a basabilir veya Grup Ekle düğmesine basabilirsiniz. Birden fazla grup oluşturabilirsiniz."
+        "message": "Enter a plan name and press Add Plan. Open the plan to configure entries, schedules, Pomodoro, intent coherence, allowed websites, and UI cleanup assignments."
     },
     "createGroupText2": {
-        "message": "Grup panelini göreceksiniz."
+        "message": "The default plan is a safe starting point. You can keep it, rename it, or create additional plans for different contexts."
     },
     "websitesTitle": {
-        "message": "Web Siteleri"
+        "message": "Entries and Websites"
     },
     "websitesText": {
-        "message": "Web siteleri eklemeye, Web Siteleri satırının solundaki 'Düzenle' düğmesine basarak başlayabilirsiniz. Bu alan, eklentinin anahtar kelimeleri engelleyeceği web sitelerinden sorumludur. Buraya web sitelerinin URL'lerini, örneğin 'google.com' gibi girmeniz gerekmektedir. Birden fazla web sitesi girebilirsiniz, her yeni satır yeni bir web sitesidir. Hazır olduğunuzda, yeşil 'Kaydet' düğmesine basın. Veya İptal edebilirsiniz."
+        "message": "A plan entry has websites and keywords. Add the websites where the keywords should be scanned, one host per line, such as example.com or docs.example.com."
     },
     "keywordsTitle": {
         "message": "Anahtar Kelimeler"
     },
     "keywordsText1": {
-        "message": "Yeni anahtar kelimeler eklemek veya herhangi bir değişiklik yapmak için 'Düzenle'ye basın. Buraya girdiğiniz anahtar kelimeler, bu grup için girdiğiniz web sitelerinde taranacaktır."
+        "message": "Add keywords or phrases to the same entry. The extension scans matching pages locally and blocks the page when the entry score reaches 1000."
     },
     "keywordFormatsIntroduction": {
         "message": "Anahtar kelimeler için 3 format vardır:"
     },
     "keywordFormat1Title": {
-        "message": "İlk Format:"
+        "message": "Keyword format 1:"
     },
     "keywordFormat1Text": {
-        "message": "Sadece anahtar kelimeleri girin. Bu, bir kelime veya bir ifade olabilir. Anahtar kelime bir virgül ',' içeriyorsa, ondan önce bir kaçış karakteri '\\' kullanmanız gerekir. Anahtar kelime tespit edildiği anda web sitesi engellenecektir. İstediğiniz kadar anahtar kelime girebilirsiniz, sadece enter'a basın. Her yeni satır yeni bir anahtar kelimedir."
+        "message": "Enter a word or phrase. If the keyword contains a comma, put a backslash before the comma. A plain keyword blocks as soon as it is detected."
     },
     "keywordFormat1_2": {
-        "message": "Örnek: 'video oyunları' veya 'haberler'."
+        "message": "Examples: 'video games', 'news'."
     },
     "keywordFormat2Title": {
-        "message": "İkinci Format:"
+        "message": "Keyword format 2:"
     },
     "keywordFormat2Text": {
-        "message": "Anahtar kelimeyi girin, ardından sayısal bir değer girin. Her bir grup içinde girdiğiniz web sitesi 1000 puanlık bir skora ulaşmalıdır. Web sitesi 0 değerinden başlar ve anahtar kelimenin sayısal değerine bağlı olarak değer artar. Web sitesi 1000 puanlık skora ulaştığında, engellenir."
+        "message": "Add a number after a comma. The page score starts at 0 and increases by that amount each time the keyword is found. At 1000, the page is blocked."
     },
     "keywordFormat2_2": {
         "message": "Örnek: 'haberler, 50'"
     },
     "keywordFormat2_3": {
-        "message": "Her bir grup içinde girdiğiniz web sitesi 1000 puanlık bir skora ulaşmalıdır. Site 0 değerinden başlar ve anahtar kelimenin sayısal değerine bağlı olarak değer artar. Site 1000 puanlık skora ulaştığında, engellenir."
+        "message": "Use this when a word should matter, but only after repeated or combined signals."
     },
     "keywordFormat3Title": {
-        "message": "Üçüncü Format:"
+        "message": "Keyword format 3:"
     },
     "keywordFormat3Text": {
-        "message": "Anahtar kelimeyi girin, ardından bir çarpma veya toplama işareti (* veya +) ve bir sayısal değer girin. Bu senaryoda, sayfanın skoru bulunan anahtar kelimenin sayısal değerine göre çarpılır."
+        "message": "Use * or + with a number when you want a keyword to multiply or add to the current page score in a more explicit way."
     },
     "keywordFormat3_2": {
         "message": "Örnek: 'haberler, *, 10'"
     },
     "keywordFormat3_3": {
-        "message": "Bu senaryoda, sayfanın skoru bulunan anahtar kelimenin sayısal değerine göre çarpılır."
+        "message": "Use this for stronger signals that should become decisive only in a specific context."
     },
     "timerCountTitle": {
-        "message": "Zamanlayıcı Sayısı"
+        "message": "Pomodoro"
     },
     "timerCountText": {
-        "message": "Sayfa engellendikten sonra, 'Zamanlayıcıyı Aktifleştir' düğmesine basma seçeneğiniz olacak. Bundan sonra, sayfa tekrar engellenmeden önce sayfada bazı işlemler yapmak için zamanınız olacak. Zamanlayıcı Sayısı alanında, günde kaç zamanlayıcı istediğinizi belirleyebilirsiniz."
+        "message": "A plan can run Pomodoro work and rest timing. Strict breaks can block or quiet pages during rest so the break is protected."
     },
     "timerDurationTitle": {
-        "message": "Zamanlayıcı Süresi (saniye)"
+        "message": "Pomodoro Timing"
     },
     "timerDurationText": {
-        "message": "Bu alanda, her zamanlayıcının kaç saniye süreceğine karar verirsiniz."
+        "message": "Set work minutes, short breaks, long breaks, and how many work sessions happen before a long break. During an active protected schedule, enabling Pomodoro or making it stricter is allowed; relaxing it is blocked."
     },
     "lockedSchedulesTitle": {
         "message": "Kilitli Programlar"
     },
     "lockedSchedulesNote": {
-        "message": "! Kilitli bir program, zaman geçene kadar açılamaz (eklentiyi kaldırmadıkça) !"
+        "message": "A protected schedule is meant to resist hot-state weakening while the scheduled window is active."
     },
     "lockedSchedulesText1": {
-        "message": "Program Adı alanında program adını oluşturarak ve Enter'a basarak veya Program Ekle düğmesine basarak yeni kilitli bir program ekleyebilirsiniz."
+        "message": "Open a plan, choose Schedule, and add one or more scheduled time blocks. Each block can choose days, start time, end time, and whether it is protected."
     },
     "lockedSchedulesText2": {
-        "message": "Program ayarlarınızı değiştirmek için 'Düzenle'ye basın. Gün düğmelerine basarak, o gün için programı etkinleştirirsiniz (düğme yeşile döner) ya da devre dışı bırakırsınız. Başlangıç ve Bitiş Zamanı alanlarını değiştirerek, programın aktif olacağı zamanları belirlersiniz. Her gün için en az 1 saatlik etkin olmayan bir zaman penceresi olmalıdır, bu süre zarfında programı devre dışı bırakabilirsiniz. Aktif/Pasif düğmesi programı değiştirir. Şu anki gün etkinleştirilmiş (yeşil) ve düğme 'Aktif' gösteriyorsa ve şu anki zaman Başlangıç ve Bitiş zamanları arasındaysa program kilitlenir ve aktif olur."
+        "message": "A protected active schedule can be made stricter but not more relaxed. For example, you can add entries, raise keyword scores, enable stricter Pomodoro behavior, or add UI cleanup rules, but you cannot remove active protection."
     },
     "lockedSchedulesText3": {
-        "message": "Silme düğmesi, kilitli programı kaldırır. Aynı şey gruplar ve beyaz listeye alınmış web siteleri için de geçerlidir."
+        "message": "Delete removes a schedule only when doing so does not relax an active protected window."
     },
     "lockedSchedulesText4": {
-        "message": "Kilitli program sırasında birkaç kısıtlama uygulanır:"
+        "message": "During an active protected schedule, relaxed changes are refused:"
     },
     "lockedScheduleRestriction1": {
-        "message": "Grup adlarını değiştiremezsiniz."
+        "message": "You cannot disable the active plan."
     },
     "lockedScheduleRestriction2": {
-        "message": "Mevcut gruplardaki web sitelerini değiştiremez veya kaldıramazsınız."
+        "message": "You cannot remove existing plan entries or reduce the websites they protect."
     },
     "lockedScheduleRestriction3": {
-        "message": "Mevcut anahtar kelimeleri ve değerlerini değiştiremez veya kaldıramazsınız."
+        "message": "You cannot remove existing keywords or reduce their weights."
     },
     "lockedScheduleRestriction4": {
-        "message": "Yalnızca çarpım için anahtar kelime değerlerini 1'den 1000'e kadar ayarlayabilirsiniz. Toplama için: 0'dan 1000'e kadar."
+        "message": "New or changed keywords must stay inside the strict allowed scoring ranges."
     },
     "lockedScheduleRestriction5": {
-        "message": "Zamanlayıcı sayısını artıramazsınız."
+        "message": "You cannot disable Pomodoro, turn off strict breaks, or make Pomodoro easier to bypass."
     },
     "lockedScheduleRestriction6": {
-        "message": "Zamanlayıcı süresini artıramazsınız."
+        "message": "You can enable Pomodoro or make its timing stricter when that increases protection."
     },
     "lockedScheduleRestriction7": {
-        "message": "Aktif programları silemezsiniz."
+        "message": "Active schedules cannot be deleted."
     },
     "lockedScheduleRestriction8": {
-        "message": "Aktif programlar için günleri seçemez, programı pasif yapamaz veya başlangıç veya bitiş zamanlarını değiştiremezsiniz."
+        "message": "You cannot remove active days or shrink an active protected schedule window."
     },
     "lockedScheduleRestriction9": {
-        "message": "Beyaz listeye web siteleri ekleyemezsiniz."
+        "message": "You cannot add allowed websites to bypass a protected plan."
     },
     "lockedScheduleRestriction10": {
-        "message": "Eklentinin şifresini ayarlayamaz veya silemezsiniz."
+        "message": "You cannot delete password protection during an active protected schedule."
     },
     "whitelistWebsitesTitle": {
-        "message": "Beyaz Liste Web Siteleri"
+        "message": "Allowed Websites"
     },
     "whitelistWebsitesText": {
-        "message": "Beyaz listeye web siteleri eklemenize izin verir, bu da bu sitelerde anahtar kelime taraması yapılmayacağı ve böylece sitelerin engellenmeyeceği anlamına gelir. Şu anda bir girişte birçok siteyi kapsayacak şekilde joker karakter (*) kullanma yeteneğimiz yok (örneğin, *.io gibi, '.io' içeren tüm siteler engellenecektir), bu nedenle bu özellik çok kullanışlı değildir, ancak mevcuttur."
+        "message": "Allowed websites are plan-owned exceptions. Add them when a site should remain usable while a plan is active; the plan will not scan or block those allowed hosts."
     },
     "passwordManagementTitle": {
         "message": "Şifre Yönetimi"
     },
     "passwordManagementText": {
-        "message": "Eklenti sayfası için bir şifre belirlemenize izin verir. Eklenti sayfasını açan herkes, erişim sağlamak için doğru şifreyi girmek zorundadır. Başkalarının yanlışlıkla (veya kasıtlı olarak) ayarları sıkılaştırmasını önlemek için yararlıdır."
+        "message": "Password protection can require a password before opening the options page. Use it when you want an extra barrier around changing protection settings."
     },
     "contactFeedbackTitle": {
         "message": "İletişim ve Geri Bildirim"

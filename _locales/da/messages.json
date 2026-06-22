@@ -372,148 +372,148 @@
         "message": "Introduktion"
     },
     "introText1": {
-        "message": "Hej! Det er så let at blive distraheret på internettet og at udsætte ting. Denne udvidelse giver dig mulighed for at blokere websider baseret på nøgleord, du ikke ønsker at se."
+        "message": "Defense Against Distractions lets you create local protection plans that block pages, guide Pomodoro timing, detect possible intent drift, and clean up distracting page UI."
     },
     "introText2": {
-        "message": "Der er tusindvis af videospil at spille, nyhedshistorier at læse, videoer at se og så videre. Og ofte er det, hvad vi gør, når projektfrister eller eksamener stadig er langt væk. Nogle gange kan det være lidt svært at tvinge sig selv til at gøre det, man skal."
+        "message": "A plan combines page entries, allowed websites, schedules, Pomodoro settings, intent-coherence settings, and optional UI cleanup rules. Turn a plan on when you want that protection available."
     },
     "introText3": {
-        "message": "Og forstyrrelser er overalt! Selv hvis du bruger StayFocusd eller Cold Turkey eller FocusMe til at blokere nogle websider ved deres URL'er, kan du ikke blokere alt. For eksempel, selv med ChatGPT, kan du tale om nyheder eller videospil, hvis du virkelig ikke har lyst til at studere eller arbejde."
+        "message": "The extension checks configured pages locally in the browser. It does not send page text, browsing diagnostics, or settings to a remote server."
     },
     "introText4": {
-        "message": "Med denne udvidelse kan du blokere websider baseret på ord og sætninger i deres tekst."
+        "message": "Start with one plan, add the pages and words that matter, then make the plan stricter with schedules or Pomodoro when you need stronger defense."
     },
     "howToUseTitle": {
         "message": "Sådan bruges udvidelsen"
     },
     "createGroupTitle": {
-        "message": "Første skridt: Opret en gruppe"
+        "message": "First Step: Create a Plan"
     },
     "createGroupText1": {
-        "message": "Du kan trykke på 'Tilføj gruppe'-knappen eller indtaste gruppenavnet og trykke Enter eller på Tilføj gruppe-knappen. Du kan oprette flere grupper."
+        "message": "Enter a plan name and press Add Plan. Open the plan to configure entries, schedules, Pomodoro, intent coherence, allowed websites, and UI cleanup assignments."
     },
     "createGroupText2": {
-        "message": "Du vil se gruppens panel."
+        "message": "The default plan is a safe starting point. You can keep it, rename it, or create additional plans for different contexts."
     },
     "websitesTitle": {
-        "message": "Websider"
+        "message": "Entries and Websites"
     },
     "websitesText": {
-        "message": "Du kan begynde at tilføje websider ved at trykke på 'Rediger'-knappen til venstre for linjen Websider. Dette felt er ansvarligt for de websider, hvor udvidelsen vil blokere nøgleord. Her skal du indtaste websidernes URL'er, for eksempel 'google.com'. Du kan indtaste flere websider, hver ny linje er en ny webside. Tryk blot Enter. Når du er klar, tryk på den grønne 'Gem'-knap. Eller du kan annullere."
+        "message": "A plan entry has websites and keywords. Add the websites where the keywords should be scanned, one host per line, such as example.com or docs.example.com."
     },
     "keywordsTitle": {
         "message": "Nøgleord"
     },
     "keywordsText1": {
-        "message": "For at tilføje nye nøgleord eller foretage ændringer, tryk på 'Rediger'. De nøgleord, du indtaster her, vil blive scannet på de websider, du har indtastet for denne gruppe."
+        "message": "Add keywords or phrases to the same entry. The extension scans matching pages locally and blocks the page when the entry score reaches 1000."
     },
     "keywordFormatsIntroduction": {
         "message": "Der er 3 formater for nøgleord:"
     },
     "keywordFormat1Title": {
-        "message": "Første format:"
+        "message": "Keyword format 1:"
     },
     "keywordFormat1Text": {
-        "message": "Indtast blot nøgleordene. Det kan være et ord eller en sætning. Hvis nøgleordet indeholder et komma ',', skal du bruge et escape-tegn '\\' før det. Websiden vil blive blokeret, så snart nøgleordet registreres. Du kan indtaste så mange nøgleord som du vil, tryk blot enter. Hver ny linje er et nyt nøgleord."
+        "message": "Enter a word or phrase. If the keyword contains a comma, put a backslash before the comma. A plain keyword blocks as soon as it is detected."
     },
     "keywordFormat1_2": {
-        "message": "Eksempel: 'videospil' eller 'nyheder'."
+        "message": "Examples: 'video games', 'news'."
     },
     "keywordFormat2Title": {
-        "message": "Andet format:"
+        "message": "Keyword format 2:"
     },
     "keywordFormat2Text": {
-        "message": "Indtast nøgleordet, efterfulgt af en numerisk værdi. Hver webside, du har indtastet i en gruppe, skal nå en score på 1000. Websiden starter med en værdi på 0, og baseret på den numeriske værdi af nøgleordet, øges værdien. Når websiden når en score på 1000, vil den blive blokeret."
+        "message": "Add a number after a comma. The page score starts at 0 and increases by that amount each time the keyword is found. At 1000, the page is blocked."
     },
     "keywordFormat2_2": {
         "message": "Eksempel: 'nyheder, 50'"
     },
     "keywordFormat2_3": {
-        "message": "Hver webside, du har indtastet i en gruppe, skal nå en score på 1000. Siden starter med en værdi på 0, og baseret på den numeriske værdi af nøgleordet, øges værdien. Når websiden når en score på 1000, vil den blive blokeret."
+        "message": "Use this when a word should matter, but only after repeated or combined signals."
     },
     "keywordFormat3Title": {
-        "message": "Tredje format:"
+        "message": "Keyword format 3:"
     },
     "keywordFormat3Text": {
-        "message": "Indtast nøgleordet, efterfulgt af et multiplikations- eller additionstegn (* eller +), derefter en numerisk værdi. I dette scenarie multipliceres scoren for siden baseret på den numeriske værdi af det fundne nøgleord."
+        "message": "Use * or + with a number when you want a keyword to multiply or add to the current page score in a more explicit way."
     },
     "keywordFormat3_2": {
         "message": "Eksempel: 'nyheder, *, 10'"
     },
     "keywordFormat3_3": {
-        "message": "I dette scenarie multipliceres scoren for siden baseret på den numeriske værdi af det fundne nøgleord."
+        "message": "Use this for stronger signals that should become decisive only in a specific context."
     },
     "timerCountTitle": {
-        "message": "Timerantal"
+        "message": "Pomodoro"
     },
     "timerCountText": {
-        "message": "Efter siden er blokeret, vil du have mulighed for at trykke på 'Aktiver timer'-knappen. Derefter vil du have tid til at udføre nogle handlinger på siden, før den blokeres igen. I feltet Timerantal kan du beslutte, hvor mange timere du ønsker at have i løbet af dagen."
+        "message": "A plan can run Pomodoro work and rest timing. Strict breaks can block or quiet pages during rest so the break is protected."
     },
     "timerDurationTitle": {
-        "message": "Timer varighed (sekunder)"
+        "message": "Pomodoro Timing"
     },
     "timerDurationText": {
-        "message": "I dette felt bestemmer du, hvor mange sekunder hver timer skal have."
+        "message": "Set work minutes, short breaks, long breaks, and how many work sessions happen before a long break. During an active protected schedule, enabling Pomodoro or making it stricter is allowed; relaxing it is blocked."
     },
     "lockedSchedulesTitle": {
         "message": "Låste Tidsplaner"
     },
     "lockedSchedulesNote": {
-        "message": "! En låst tidsplan kan ikke låses op, før tiden er gået (medmindre du afinstallerer udvidelsen) !"
+        "message": "A protected schedule is meant to resist hot-state weakening while the scheduled window is active."
     },
     "lockedSchedulesText1": {
-        "message": "Du kan tilføje en ny låst tidsplan ved at oprette tidsplansnavnet i feltet Tidsplansnavn og trykke Enter eller på Tilføj Tidsplan-knappen."
+        "message": "Open a plan, choose Schedule, and add one or more scheduled time blocks. Each block can choose days, start time, end time, and whether it is protected."
     },
     "lockedSchedulesText2": {
-        "message": "For at ændre indstillingerne for din tidsplan, tryk på 'Rediger'. Ved at trykke på dagknapperne, enten aktiverer du tidsplanen på den dag (knappen bliver grøn), eller deaktiverer du den for den dag. Ved at ændre feltet Starttid og Sluttid, sætter du de tider, tidsplanen kan være aktiv. Hver dag skal have et 1-times inaktivt tidsvindue, så du kan deaktivere tidsplanen i løbet af den tid. Knappen Inaktiv/Aktiv skifter tidsplanen. Tidsplanen vil være låst og aktiv, hvis den nuværende dag er aktiveret (grøn) og knappen viser 'Aktiv' og er også grøn, og hvis den nuværende tid er mellem start- og sluttider."
+        "message": "A protected active schedule can be made stricter but not more relaxed. For example, you can add entries, raise keyword scores, enable stricter Pomodoro behavior, or add UI cleanup rules, but you cannot remove active protection."
     },
     "lockedSchedulesText3": {
-        "message": "Slet-knappen fjerner den låste tidsplan. Det samme gælder for grupper og hvidlistede websider."
+        "message": "Delete removes a schedule only when doing so does not relax an active protected window."
     },
     "lockedSchedulesText4": {
-        "message": "Flere begrænsninger gælder under den låste tidsplan:"
+        "message": "During an active protected schedule, relaxed changes are refused:"
     },
     "lockedScheduleRestriction1": {
-        "message": "Du kan ikke ændre gruppens navne."
+        "message": "You cannot disable the active plan."
     },
     "lockedScheduleRestriction2": {
-        "message": "Du kan ikke ændre eller fjerne eksisterende websites i grupper."
+        "message": "You cannot remove existing plan entries or reduce the websites they protect."
     },
     "lockedScheduleRestriction3": {
-        "message": "Du kan ikke ændre eller fjerne eksisterende nøgleord og deres værdier."
+        "message": "You cannot remove existing keywords or reduce their weights."
     },
     "lockedScheduleRestriction4": {
-        "message": "Du kan kun indstille nøgleordsværdier for multiplikation: fra 1 til 1000. For addition: fra 0 til 1000."
+        "message": "New or changed keywords must stay inside the strict allowed scoring ranges."
     },
     "lockedScheduleRestriction5": {
-        "message": "Antallet af timere kan ikke øges."
+        "message": "You cannot disable Pomodoro, turn off strict breaks, or make Pomodoro easier to bypass."
     },
     "lockedScheduleRestriction6": {
-        "message": "Tidens varighed kan ikke øges."
+        "message": "You can enable Pomodoro or make its timing stricter when that increases protection."
     },
     "lockedScheduleRestriction7": {
-        "message": "Aktive tidsplaner kan ikke slettes."
+        "message": "Active schedules cannot be deleted."
     },
     "lockedScheduleRestriction8": {
-        "message": "Du kan ikke fravælge dage, gøre tidsplanen inaktiv, eller ændre start- og sluttider for aktive tidsplaner."
+        "message": "You cannot remove active days or shrink an active protected schedule window."
     },
     "lockedScheduleRestriction9": {
-        "message": "Du kan ikke tilføje hvidlistede websites."
+        "message": "You cannot add allowed websites to bypass a protected plan."
     },
     "lockedScheduleRestriction10": {
-        "message": "Du kan ikke indstille eller slette adgangskoden for udvidelsen."
+        "message": "You cannot delete password protection during an active protected schedule."
     },
     "whitelistWebsitesTitle": {
-        "message": "Hvidliste Websider"
+        "message": "Allowed Websites"
     },
     "whitelistWebsitesText": {
-        "message": "Giver dig mulighed for at indtaste hvidlistede websites, hvilket betyder, at nøgleordscanning ikke vil blive udført på disse sider, og de vil derfor ikke blive blokeret. I øjeblikket har vi ikke mulighed for at bruge et wildcard (*) til at inkludere mange sider i en enkelt indtastning (som *.io, hvor alle sider med '.io' ville blive blokeret), så denne funktion er ikke særlig nyttig, men den findes."
+        "message": "Allowed websites are plan-owned exceptions. Add them when a site should remain usable while a plan is active; the plan will not scan or block those allowed hosts."
     },
     "passwordManagementTitle": {
         "message": "Adgangskodeadministration"
     },
     "passwordManagementText": {
-        "message": "Giver dig mulighed for at opsætte en adgangskode for udvidelsessiden. Enhver, der åbner udvidelsessiden, skal indtaste den korrekte adgangskode for at få adgang. Nyttig til at forhindre andre i ved et uheld (eller med vilje) at stramme indstillingerne."
+        "message": "Password protection can require a password before opening the options page. Use it when you want an extra barrier around changing protection settings."
     },
     "contactFeedbackTitle": {
         "message": "Kontakt og Feedback"

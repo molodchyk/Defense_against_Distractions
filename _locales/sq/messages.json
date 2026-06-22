@@ -372,148 +372,148 @@
         "message": "Hyrje"
     },
     "introText1": {
-        "message": "Përshëndetje! Është kaq e lehtë të shpërqendrohesh në internet dhe të zvarritesh. Kjo shtesë ju lejon të bllokoni faqet e internetit bazuar në fjalë kyçe që nuk dëshironi t'i shihni."
+        "message": "Defense Against Distractions lets you create local protection plans that block pages, guide Pomodoro timing, detect possible intent drift, and clean up distracting page UI."
     },
     "introText2": {
-        "message": "Ka mijëra videolojëra për të luajtur, lajme për të lexuar, video për të parë etj. Dhe shpesh, kjo është ajo që ne bëjmë kur afatet e projekteve ose provimet janë ende larg. Ndonjëherë, mund të jetë pak e vështirë të detyrosh veten të bësh atë që duhet të bësh."
+        "message": "A plan combines page entries, allowed websites, schedules, Pomodoro settings, intent-coherence settings, and optional UI cleanup rules. Turn a plan on when you want that protection available."
     },
     "introText3": {
-        "message": "Dhe shpërqendrimet janë kudo! Edhe nëse përdorni StayFocusd ose Cold Turkey ose FocusMe për të bllokuar disa faqe interneti sipas URL-ve të tyre, nuk mund të bllokoni gjithçka. Për shembull, edhe me ChatGPT, mund të flisni për lajme ose video lojëra nëse vërtet nuk keni dëshirë të studioni ose të bëni punë."
+        "message": "The extension checks configured pages locally in the browser. It does not send page text, browsing diagnostics, or settings to a remote server."
     },
     "introText4": {
-        "message": "Me këtë shtesë, ju mund të bllokoni faqet e internetit bazuar në fjalët dhe frazat në tekstin e tyre."
+        "message": "Start with one plan, add the pages and words that matter, then make the plan stricter with schedules or Pomodoro when you need stronger defense."
     },
     "howToUseTitle": {
         "message": "Si të përdorni shtesën"
     },
     "createGroupTitle": {
-        "message": "Hapi i parë: Krijoni një grup"
+        "message": "First Step: Create a Plan"
     },
     "createGroupText1": {
-        "message": "Mund të shtypni butonin 'Shto grup' ose të futni emrin e grupit dhe të shtypni Enter ose butonin Shto grup. Ju mund të krijoni grupe të shumta."
+        "message": "Enter a plan name and press Add Plan. Open the plan to configure entries, schedules, Pomodoro, intent coherence, allowed websites, and UI cleanup assignments."
     },
     "createGroupText2": {
-        "message": "Do të shihni panelin e grupit."
+        "message": "The default plan is a safe starting point. You can keep it, rename it, or create additional plans for different contexts."
     },
     "websitesTitle": {
-        "message": "Faqet e internetit"
+        "message": "Entries and Websites"
     },
     "websitesText": {
-        "message": "Mund të filloni të shtoni faqe interneti duke shtypur butonin \"Ndrysho\" në të majtë të linjës së faqeve të internetit. Kjo fushë është përgjegjëse për faqet e internetit ku zgjerimi do të bllokojë fjalë kyçe. Këtu duhet të futni URL-të e faqeve të internetit, për shembull, 'google.com'. Mund të futni shumë faqe interneti, çdo linjë e re është një faqe interneti e re. Thjesht shtypni Enter. Kur të jeni gati, shtypni butonin e gjelbër \"Ruaj\". Ose mund të Anuloni."
+        "message": "A plan entry has websites and keywords. Add the websites where the keywords should be scanned, one host per line, such as example.com or docs.example.com."
     },
     "keywordsTitle": {
         "message": "Fjalë kyçe"
     },
     "keywordsText1": {
-        "message": "Për të shtuar fjalë kyçe të reja ose për të bërë ndonjë ndryshim, shtypni 'Ndrysho'. Fjalët kyçe që futni këtu do të skanohen në faqet e internetit që keni futur për këtë grup."
+        "message": "Add keywords or phrases to the same entry. The extension scans matching pages locally and blocks the page when the entry score reaches 1000."
     },
     "keywordFormatsIntroduction": {
         "message": "Ekzistojnë 3 formate për fjalët kyçe:"
     },
     "keywordFormat1Title": {
-        "message": "Formati i parë:"
+        "message": "Keyword format 1:"
     },
     "keywordFormat1Text": {
-        "message": "Thjesht futni fjalët kyçe. Mund të jetë një fjalë ose një frazë. Nëse fjala kyçe përmban presje ',', duhet të përdorni një karakter ikje '\\' përpara saj. Faqja e internetit do të bllokohet sapo të zbulohet fjala kyçe. Mund të futni sa më shumë fjalë kyçe që dëshironi, thjesht shtypni enter. Çdo rresht i ri është një fjalë kyçe e re."
+        "message": "Enter a word or phrase. If the keyword contains a comma, put a backslash before the comma. A plain keyword blocks as soon as it is detected."
     },
     "keywordFormat1_2": {
-        "message": "Shembull: 'video lojëra' ose 'lajme'."
+        "message": "Examples: 'video games', 'news'."
     },
     "keywordFormat2Title": {
-        "message": "Formati i dytë:"
+        "message": "Keyword format 2:"
     },
     "keywordFormat2Text": {
-        "message": "Futni fjalën kyçe, e ndjekur nga një vlerë numerike. Çdo faqe interneti që keni futur në një grup duhet të arrijë rezultatin 1000. Faqja e internetit fillon me vlerën 0 dhe në bazë të vlerës numerike të fjalës kyçe, vlera rritet. Pasi faqja e internetit të arrijë rezultatin 1000, ajo do të bllokohet."
+        "message": "Add a number after a comma. The page score starts at 0 and increases by that amount each time the keyword is found. At 1000, the page is blocked."
     },
     "keywordFormat2_2": {
         "message": "Shembull: 'lajme, 50'"
     },
     "keywordFormat2_3": {
-        "message": "Çdo faqe interneti që keni futur në një grup duhet të arrijë rezultatin 1000. Faqja fillon me vlerën 0 dhe në bazë të vlerës numerike të fjalës kyçe, vlera rritet. Pasi faqja e internetit të arrijë rezultatin 1000, ajo do të bllokohet."
+        "message": "Use this when a word should matter, but only after repeated or combined signals."
     },
     "keywordFormat3Title": {
-        "message": "Formati i tretë:"
+        "message": "Keyword format 3:"
     },
     "keywordFormat3Text": {
-        "message": "Futni fjalën kyçe, e ndjekur nga një shenjë shumëzimi ose shtimi (* ose +), më pas një vlerë numerike. Në këtë skenar, rezultati për faqen shumëzohet bazuar në vlerën numerike të fjalës kyçe të gjetur."
+        "message": "Use * or + with a number when you want a keyword to multiply or add to the current page score in a more explicit way."
     },
     "keywordFormat3_2": {
         "message": "Shembull: 'lajme, *, 10'"
     },
     "keywordFormat3_3": {
-        "message": "Në këtë skenar, rezultati për faqen shumëzohet bazuar në vlerën numerike të fjalës kyçe të gjetur."
+        "message": "Use this for stronger signals that should become decisive only in a specific context."
     },
     "timerCountTitle": {
-        "message": "Numërimi i kohëmatësit"
+        "message": "Pomodoro"
     },
     "timerCountText": {
-        "message": "Pasi faqja të jetë bllokuar, do të keni mundësinë të shtypni butonin \"Aktivizo kohëmatësin\". Pas kësaj, do të keni kohë për të kryer disa veprime në faqe përpara se të bllokohet përsëri. Në fushën Timer Count, mund të vendosni se sa kohëmatës dëshironi të keni gjatë ditës."
+        "message": "A plan can run Pomodoro work and rest timing. Strict breaks can block or quiet pages during rest so the break is protected."
     },
     "timerDurationTitle": {
-        "message": "Kohëzgjatja e kohëmatësit (sekonda)"
+        "message": "Pomodoro Timing"
     },
     "timerDurationText": {
-        "message": "Në këtë fushë, ju vendosni se sa sekonda do të ketë çdo kohëmatës."
+        "message": "Set work minutes, short breaks, long breaks, and how many work sessions happen before a long break. During an active protected schedule, enabling Pomodoro or making it stricter is allowed; relaxing it is blocked."
     },
     "lockedSchedulesTitle": {
         "message": "Oraret e mbyllura"
     },
     "lockedSchedulesNote": {
-        "message": "! Një orar i kyçur nuk mund të zhbllokohet derisa të kalojë koha (nëse nuk e çinstaloni shtesën)!"
+        "message": "A protected schedule is meant to resist hot-state weakening while the scheduled window is active."
     },
     "lockedSchedulesText1": {
-        "message": "Mund të shtoni një orar të ri të kyçur duke krijuar emrin e orarit në fushën Emri i orarit dhe duke shtypur Enter ose butonin Shto orar."
+        "message": "Open a plan, choose Schedule, and add one or more scheduled time blocks. Each block can choose days, start time, end time, and whether it is protected."
     },
     "lockedSchedulesText2": {
-        "message": "Për të modifikuar cilësimet e orarit tuaj, shtypni 'Ndrysho'. Duke shtypur butonat e ditës, ose aktivizoni orarin në atë ditë (butoni bëhet i gjelbër), ose çaktivizoni atë për atë ditë. Duke modifikuar fushat Koha e fillimit dhe Koha e mbarimit, ju vendosni oraret që orari mund të jetë aktiv. Çdo ditë duhet të ketë një dritare kohore joaktive 1-orëshe në mënyrë që të mund ta çaktivizoni orarin gjatë asaj kohe. Butoni Joaktiv/Aktiv ndryshon orarin. Orari do të jetë i kyçur dhe aktiv nëse dita aktuale është e aktivizuar (jeshile) dhe butoni tregon 'Aktiv' dhe është gjithashtu jeshil, dhe nëse ora aktuale është midis kohës së fillimit dhe mbarimit."
+        "message": "A protected active schedule can be made stricter but not more relaxed. For example, you can add entries, raise keyword scores, enable stricter Pomodoro behavior, or add UI cleanup rules, but you cannot remove active protection."
     },
     "lockedSchedulesText3": {
-        "message": "Butoni Delete heq orarin e kyçur. E njëjta gjë vlen edhe për grupet dhe faqet e internetit në listën e bardhë."
+        "message": "Delete removes a schedule only when doing so does not relax an active protected window."
     },
     "lockedSchedulesText4": {
-        "message": "Disa kufizime zbatohen gjatë orarit të bllokuar:"
+        "message": "During an active protected schedule, relaxed changes are refused:"
     },
     "lockedScheduleRestriction1": {
-        "message": "Ju nuk mund të ndryshoni emrat e grupeve."
+        "message": "You cannot disable the active plan."
     },
     "lockedScheduleRestriction2": {
-        "message": "Ju nuk mund të ndryshoni ose hiqni faqet e internetit ekzistuese në grupe."
+        "message": "You cannot remove existing plan entries or reduce the websites they protect."
     },
     "lockedScheduleRestriction3": {
-        "message": "Ju nuk mund të ndryshoni ose hiqni fjalë kyçe ekzistuese dhe vlerat e tyre."
+        "message": "You cannot remove existing keywords or reduce their weights."
     },
     "lockedScheduleRestriction4": {
-        "message": "Mund të vendosni vetëm vlerat e fjalëve kyçe për shumëzim: nga 1 në 1000. Për mbledhje: nga 0 në 1000."
+        "message": "New or changed keywords must stay inside the strict allowed scoring ranges."
     },
     "lockedScheduleRestriction5": {
-        "message": "Numri i kohëmatësit nuk mund të rritet."
+        "message": "You cannot disable Pomodoro, turn off strict breaks, or make Pomodoro easier to bypass."
     },
     "lockedScheduleRestriction6": {
-        "message": "Kohëzgjatja e kohëmatësit nuk mund të rritet."
+        "message": "You can enable Pomodoro or make its timing stricter when that increases protection."
     },
     "lockedScheduleRestriction7": {
-        "message": "Oraret aktive nuk mund të fshihen."
+        "message": "Active schedules cannot be deleted."
     },
     "lockedScheduleRestriction8": {
-        "message": "Nuk mund të çaktivizosh ditët, ta bësh orarin joaktiv ose të ndryshosh oraret e fillimit ose të përfundimit për oraret aktive."
+        "message": "You cannot remove active days or shrink an active protected schedule window."
     },
     "lockedScheduleRestriction9": {
-        "message": "Ju nuk mund të shtoni faqe interneti në listën e bardhë."
+        "message": "You cannot add allowed websites to bypass a protected plan."
     },
     "lockedScheduleRestriction10": {
-        "message": "Nuk mund të vendosni ose fshini fjalëkalimin për shtesën."
+        "message": "You cannot delete password protection during an active protected schedule."
     },
     "whitelistWebsitesTitle": {
-        "message": "Faqet e internetit të listës së bardhë"
+        "message": "Allowed Websites"
     },
     "whitelistWebsitesText": {
-        "message": "Ju lejon të futni faqet e internetit në listën e bardhë, që do të thotë se skanimi i fjalëve kyçe nuk do të kryhet në këto faqe interneti dhe kështu ato nuk do të bllokohen. Aktualisht, ne nuk kemi mundësinë të përdorim një karakteristikë të egër (*) për të përfshirë shumë faqe interneti në një hyrje (si *.io, ku të gjitha faqet e internetit me '.io' do të bllokoheshin), kështu që kjo veçori nuk është shumë e dobishme, por ekziston."
+        "message": "Allowed websites are plan-owned exceptions. Add them when a site should remain usable while a plan is active; the plan will not scan or block those allowed hosts."
     },
     "passwordManagementTitle": {
         "message": "Menaxhimi i Fjalëkalimit"
     },
     "passwordManagementText": {
-        "message": "Ju lejon të konfiguroni një fjalëkalim për faqen shtesë. Kushdo që hap faqen shtesë do të duhet të fusë fjalëkalimin e saktë për të fituar akses. I dobishëm për të parandaluar që të tjerët të shtrëngojnë rastësisht (ose qëllimisht) cilësimet."
+        "message": "Password protection can require a password before opening the options page. Use it when you want an extra barrier around changing protection settings."
     },
     "contactFeedbackTitle": {
         "message": "Kontakt dhe komente"

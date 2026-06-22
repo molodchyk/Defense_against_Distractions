@@ -372,148 +372,148 @@
         "message": "Inngangur"
     },
     "introText1": {
-        "message": "Hæ! Það er svo auðvelt að láta trufla sig á netinu og fresta því. Þessi viðbót gerir þér kleift að loka á vefsíður byggðar á leitarorðum sem þú vilt ekki sjá."
+        "message": "Defense Against Distractions lets you create local protection plans that block pages, guide Pomodoro timing, detect possible intent drift, and clean up distracting page UI."
     },
     "introText2": {
-        "message": "Það eru þúsundir tölvuleikja til að spila, fréttir til að lesa, myndbönd til að horfa á og svo framvegis. Og oft er þetta það sem við gerum þegar verkefnafrestir eða próf eru enn langt undan. Stundum getur verið svolítið erfitt að neyða sjálfan sig til að gera það sem þú þarft að gera."
+        "message": "A plan combines page entries, allowed websites, schedules, Pomodoro settings, intent-coherence settings, and optional UI cleanup rules. Turn a plan on when you want that protection available."
     },
     "introText3": {
-        "message": "Og truflanir eru alls staðar! Jafnvel þó þú notir StayFocusd eða Cold Turkey eða FocusMe til að loka á sumar vefsíður með slóðum þeirra, geturðu ekki lokað á allt. Til dæmis, jafnvel með ChatGPT, gætirðu talað um fréttir eða tölvuleiki ef þér finnst virkilega ekki gaman að læra eða vinna."
+        "message": "The extension checks configured pages locally in the browser. It does not send page text, browsing diagnostics, or settings to a remote server."
     },
     "introText4": {
-        "message": "Með þessari viðbót geturðu lokað á vefsíður byggðar á orðum og orðasamböndum í texta þeirra."
+        "message": "Start with one plan, add the pages and words that matter, then make the plan stricter with schedules or Pomodoro when you need stronger defense."
     },
     "howToUseTitle": {
         "message": "Hvernig á að nota viðbótina"
     },
     "createGroupTitle": {
-        "message": "Fyrsta skrefið: Búðu til hóp"
+        "message": "First Step: Create a Plan"
     },
     "createGroupText1": {
-        "message": "Þú getur ýtt á hnappinn 'Bæta við hópi' eða slegið inn nafn hópsins og ýtt á Enter eða hnappinn Bæta við hópi. Þú getur búið til marga hópa."
+        "message": "Enter a plan name and press Add Plan. Open the plan to configure entries, schedules, Pomodoro, intent coherence, allowed websites, and UI cleanup assignments."
     },
     "createGroupText2": {
-        "message": "Þú munt sjá hópspjaldið."
+        "message": "The default plan is a safe starting point. You can keep it, rename it, or create additional plans for different contexts."
     },
     "websitesTitle": {
-        "message": "Vefsíður"
+        "message": "Entries and Websites"
     },
     "websitesText": {
-        "message": "Þú getur byrjað að bæta við vefsíðum með því að ýta á 'Breyta' hnappinn vinstra megin við vefsíðulínuna. Þessi reitur er ábyrgur fyrir vefsíðum þar sem viðbótin mun loka á leitarorð. Hér þarftu að slá inn vefslóðir, til dæmis 'google.com'. Þú getur sett inn margar vefsíður, hver ný lína er ný vefsíða. Ýttu bara á Enter. Þegar þú ert tilbúinn skaltu ýta á græna 'Vista' hnappinn. Eða þú getur Hætta við."
+        "message": "A plan entry has websites and keywords. Add the websites where the keywords should be scanned, one host per line, such as example.com or docs.example.com."
     },
     "keywordsTitle": {
         "message": "Leitarorð"
     },
     "keywordsText1": {
-        "message": "Til að bæta við nýjum leitarorðum eða gera einhverjar breytingar, ýttu á 'Breyta'. Leitarorðin sem þú slærð inn hér verða skönnuð á vefsíðunum sem þú slóst inn fyrir þennan hóp."
+        "message": "Add keywords or phrases to the same entry. The extension scans matching pages locally and blocks the page when the entry score reaches 1000."
     },
     "keywordFormatsIntroduction": {
         "message": "Það eru 3 snið fyrir leitarorð:"
     },
     "keywordFormat1Title": {
-        "message": "Fyrsta snið:"
+        "message": "Keyword format 1:"
     },
     "keywordFormat1Text": {
-        "message": "Sláðu bara inn lykilorðin. Það getur verið orð eða setning. Ef leitarorðið inniheldur kommu ',' verður þú að nota escape-stafinn '\\' á undan því. Vefsvæðinu verður lokað um leið og leitarorðið greinist. Þú getur slegið inn eins mörg leitarorð og þú vilt, ýttu bara á enter. Hver ný lína er nýtt leitarorð."
+        "message": "Enter a word or phrase. If the keyword contains a comma, put a backslash before the comma. A plain keyword blocks as soon as it is detected."
     },
     "keywordFormat1_2": {
-        "message": "Dæmi: 'tölvuleikir' eða 'fréttir'."
+        "message": "Examples: 'video games', 'news'."
     },
     "keywordFormat2Title": {
-        "message": "Annað snið:"
+        "message": "Keyword format 2:"
     },
     "keywordFormat2Text": {
-        "message": "Sláðu inn leitarorðið og síðan tölulegt gildi. Hver vefsíða sem þú slóst inn í hóp verður að ná einkunninni 1000. Vefsíðan byrjar á gildinu 0 og miðað við tölugildi leitarorðsins hækkar gildið. Þegar vefsíðan hefur náð 1000 stigum verður henni lokað."
+        "message": "Add a number after a comma. The page score starts at 0 and increases by that amount each time the keyword is found. At 1000, the page is blocked."
     },
     "keywordFormat2_2": {
         "message": "Dæmi: 'fréttir, 50'"
     },
     "keywordFormat2_3": {
-        "message": "Hver vefsíða sem þú slóst inn í hóp verður að ná einkunninni 1000. Síðan byrjar á gildinu 0 og miðað við tölugildi leitarorðsins hækkar gildið. Þegar vefsíðan hefur náð 1000 stigum verður henni lokað."
+        "message": "Use this when a word should matter, but only after repeated or combined signals."
     },
     "keywordFormat3Title": {
-        "message": "Þriðja snið:"
+        "message": "Keyword format 3:"
     },
     "keywordFormat3Text": {
-        "message": "Sláðu inn leitarorðið, fylgt eftir með margföldunar- eða samlagningarmerki (* eða +), síðan tölugildi. Í þessari atburðarás er stig fyrir síðuna margfaldað miðað við tölugildi leitarorðsins sem fannst."
+        "message": "Use * or + with a number when you want a keyword to multiply or add to the current page score in a more explicit way."
     },
     "keywordFormat3_2": {
         "message": "Dæmi: 'fréttir, *, 10'"
     },
     "keywordFormat3_3": {
-        "message": "Í þessari atburðarás er stig fyrir síðuna margfaldað miðað við tölugildi leitarorðsins sem fannst."
+        "message": "Use this for stronger signals that should become decisive only in a specific context."
     },
     "timerCountTitle": {
-        "message": "Telja tímamælir"
+        "message": "Pomodoro"
     },
     "timerCountText": {
-        "message": "Eftir að síðunni hefur verið lokað hefurðu möguleika á að ýta á hnappinn „Virkja tímamæli“. Eftir það muntu hafa tíma til að framkvæma nokkrar aðgerðir á síðunni áður en henni er lokað aftur. Í teljara reitnum geturðu ákveðið hversu marga tímamæla þú vilt hafa yfir daginn."
+        "message": "A plan can run Pomodoro work and rest timing. Strict breaks can block or quiet pages during rest so the break is protected."
     },
     "timerDurationTitle": {
-        "message": "Lengd tímamælir (sekúndur)"
+        "message": "Pomodoro Timing"
     },
     "timerDurationText": {
-        "message": "Í þessum reit ákveður þú hversu margar sekúndur hver tímamælir hefur."
+        "message": "Set work minutes, short breaks, long breaks, and how many work sessions happen before a long break. During an active protected schedule, enabling Pomodoro or making it stricter is allowed; relaxing it is blocked."
     },
     "lockedSchedulesTitle": {
         "message": "Læst dagskrá"
     },
     "lockedSchedulesNote": {
-        "message": "! Ekki er hægt að opna læsta dagskrá fyrr en tíminn er liðinn (nema þú fjarlægir viðbótina)!"
+        "message": "A protected schedule is meant to resist hot-state weakening while the scheduled window is active."
     },
     "lockedSchedulesText1": {
-        "message": "Þú getur bætt við nýrri læstri áætlun með því að búa til áætlunarheitið í reitnum Heiti áætlunar og ýta á Enter eða hnappinn Bæta við áætlun."
+        "message": "Open a plan, choose Schedule, and add one or more scheduled time blocks. Each block can choose days, start time, end time, and whether it is protected."
     },
     "lockedSchedulesText2": {
-        "message": "Til að breyta stillingum áætlunarinnar þinnar, ýttu á 'Breyta'. Með því að ýta á dagshnappana virkjarðu annað hvort áætlunina á þeim degi (hnappurinn verður grænn) eða gerir hana óvirka fyrir þann dag. Með því að breyta reitunum Upphafstími og Lokatími stillirðu tímana sem áætlunin getur verið virk. Hver dagur verður að hafa 1 klukkustundar óvirkan tímaglugga svo þú getir slökkt á áætluninni á þeim tíma. Óvirkur/virkur hnappurinn skiptir um áætlun. Dagskráin verður læst og virk ef núverandi dagur er virkur (grænn) og hnappurinn sýnir 'Virkur' og er einnig grænn, og ef núverandi tími er á milli upphafs- og lokatíma."
+        "message": "A protected active schedule can be made stricter but not more relaxed. For example, you can add entries, raise keyword scores, enable stricter Pomodoro behavior, or add UI cleanup rules, but you cannot remove active protection."
     },
     "lockedSchedulesText3": {
-        "message": "Eyða hnappurinn fjarlægir læsta áætlun. Sama á við um hópa og vefsíður á hvítlista."
+        "message": "Delete removes a schedule only when doing so does not relax an active protected window."
     },
     "lockedSchedulesText4": {
-        "message": "Nokkrar takmarkanir gilda meðan á læstri dagskrá stendur:"
+        "message": "During an active protected schedule, relaxed changes are refused:"
     },
     "lockedScheduleRestriction1": {
-        "message": "Þú getur ekki breytt hópnöfnum."
+        "message": "You cannot disable the active plan."
     },
     "lockedScheduleRestriction2": {
-        "message": "Þú getur ekki breytt eða fjarlægt núverandi vefsíður í hópum."
+        "message": "You cannot remove existing plan entries or reduce the websites they protect."
     },
     "lockedScheduleRestriction3": {
-        "message": "Þú getur ekki breytt eða fjarlægt núverandi leitarorð og gildi þeirra."
+        "message": "You cannot remove existing keywords or reduce their weights."
     },
     "lockedScheduleRestriction4": {
-        "message": "Þú getur aðeins stillt lykilorðsgildi fyrir margföldun: frá 1 til 1000. Til samlagningar: frá 0 til 1000."
+        "message": "New or changed keywords must stay inside the strict allowed scoring ranges."
     },
     "lockedScheduleRestriction5": {
-        "message": "Ekki er hægt að auka fjölda tímamæla."
+        "message": "You cannot disable Pomodoro, turn off strict breaks, or make Pomodoro easier to bypass."
     },
     "lockedScheduleRestriction6": {
-        "message": "Ekki er hægt að auka tímalengd tímamælisins."
+        "message": "You can enable Pomodoro or make its timing stricter when that increases protection."
     },
     "lockedScheduleRestriction7": {
-        "message": "Ekki er hægt að eyða virkum áætlunum."
+        "message": "Active schedules cannot be deleted."
     },
     "lockedScheduleRestriction8": {
-        "message": "Þú getur ekki valið daga úr valinu, gert áætlunina óvirka eða breytt upphafs- og lokatíma fyrir virkar áætlunir."
+        "message": "You cannot remove active days or shrink an active protected schedule window."
     },
     "lockedScheduleRestriction9": {
-        "message": "Þú getur ekki bætt við vefsíðum á hvítlista."
+        "message": "You cannot add allowed websites to bypass a protected plan."
     },
     "lockedScheduleRestriction10": {
-        "message": "Þú getur ekki stillt eða eytt lykilorðinu fyrir viðbótina."
+        "message": "You cannot delete password protection during an active protected schedule."
     },
     "whitelistWebsitesTitle": {
-        "message": "Hvítlista vefsíður"
+        "message": "Allowed Websites"
     },
     "whitelistWebsitesText": {
-        "message": "Gerir þér kleift að slá inn vefsíður á hvítlista, sem þýðir að leitarorðaskönnun verður ekki framkvæmd á þessum vefsíðum og því verður þeim ekki lokað. Eins og er, höfum við ekki möguleika á að nota algildisstaf (*) til að innihalda margar vefsíður í einni færslu (eins og *.io, þar sem allar vefsíður með '.io' yrðu lokaðar), svo þessi eiginleiki er ekki mjög gagnlegur, en hann er til."
+        "message": "Allowed websites are plan-owned exceptions. Add them when a site should remain usable while a plan is active; the plan will not scan or block those allowed hosts."
     },
     "passwordManagementTitle": {
         "message": "Lykilorðsstjórnun"
     },
     "passwordManagementText": {
-        "message": "Gerir þér kleift að setja upp lykilorð fyrir viðbótasíðuna. Allir sem opna viðbótasíðuna þurfa að slá inn rétt lykilorð til að fá aðgang. Gagnlegt til að koma í veg fyrir að aðrir herti stillingar óvart (eða viljandi)."
+        "message": "Password protection can require a password before opening the options page. Use it when you want an extra barrier around changing protection settings."
     },
     "contactFeedbackTitle": {
         "message": "Hafðu samband og endurgjöf"

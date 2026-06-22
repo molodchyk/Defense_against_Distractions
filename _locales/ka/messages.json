@@ -372,148 +372,148 @@
         "message": "შესავალი"
     },
     "introText1": {
-        "message": "გამარჯობა! ინტერნეტში ყურადღების გაფანტვა და გადადება ძალიან ადვილია. ეს გაფართოება საშუალებას გაძლევთ დაბლოკოთ ვებ გვერდები საკვანძო სიტყვების საფუძველზე, რომელთა ნახვაც არ გსურთ."
+        "message": "Defense Against Distractions lets you create local protection plans that block pages, guide Pomodoro timing, detect possible intent drift, and clean up distracting page UI."
     },
     "introText2": {
-        "message": "ათასობით ვიდეო თამაშია გასათამაშებელი, ახალი ამბების წასაკითხი, ვიდეოების ყურება და ა.შ. და ხშირად, ამას ვაკეთებთ, როდესაც პროექტის ვადები ან გამოცდები ჯერ კიდევ შორს არის. ზოგჯერ შეიძლება ცოტა რთული იყოს საკუთარი თავის იძულება გააკეთო ის, რაც უნდა გააკეთო."
+        "message": "A plan combines page entries, allowed websites, schedules, Pomodoro settings, intent-coherence settings, and optional UI cleanup rules. Turn a plan on when you want that protection available."
     },
     "introText3": {
-        "message": "და ყურადღების გაფანტვა ყველგან არის! მაშინაც კი, თუ იყენებთ StayFocusd-ს ან Cold Turkey-ს ​​ან FocusMe-ს ზოგიერთი ვებსაიტის დაბლოკვისთვის მათი URL-ებით, თქვენ ვერ დაბლოკავთ ყველაფერს. მაგალითად, ChatGPT-ითაც კი, შეგიძლიათ ისაუბროთ სიახლეებზე ან ვიდეო თამაშებზე, თუ ნამდვილად არ გსურთ სწავლა ან სამუშაოს შესრულება."
+        "message": "The extension checks configured pages locally in the browser. It does not send page text, browsing diagnostics, or settings to a remote server."
     },
     "introText4": {
-        "message": "ამ გაფართოებით შეგიძლიათ დაბლოკოთ ვებსაიტები მათ ტექსტში მოცემული სიტყვებისა და ფრაზების საფუძველზე."
+        "message": "Start with one plan, add the pages and words that matter, then make the plan stricter with schedules or Pomodoro when you need stronger defense."
     },
     "howToUseTitle": {
         "message": "როგორ გამოვიყენოთ გაფართოება"
     },
     "createGroupTitle": {
-        "message": "პირველი ნაბიჯი: შექმენით ჯგუფი"
+        "message": "First Step: Create a Plan"
     },
     "createGroupText1": {
-        "message": "შეგიძლიათ დააჭიროთ ღილაკს „ჯგუფის დამატება“ ან შეიყვანოთ ჯგუფის სახელი და დააჭიროთ Enter ან ჯგუფის დამატება ღილაკს. თქვენ შეგიძლიათ შექმნათ მრავალი ჯგუფი."
+        "message": "Enter a plan name and press Add Plan. Open the plan to configure entries, schedules, Pomodoro, intent coherence, allowed websites, and UI cleanup assignments."
     },
     "createGroupText2": {
-        "message": "თქვენ ნახავთ ჯგუფის პანელს."
+        "message": "The default plan is a safe starting point. You can keep it, rename it, or create additional plans for different contexts."
     },
     "websitesTitle": {
-        "message": "ვებსაიტები"
+        "message": "Entries and Websites"
     },
     "websitesText": {
-        "message": "თქვენ შეგიძლიათ დაიწყოთ ვებსაიტების დამატება ვებსაიტების ხაზის მარცხნივ მდებარე ღილაკზე „რედაქტირების“ დაჭერით. ეს ველი პასუხისმგებელია ვებსაიტებზე, სადაც გაფართოება დაბლოკავს საკვანძო სიტყვებს. აქ თქვენ უნდა შეიყვანოთ ვებსაიტების URL, მაგალითად, 'google.com'. შეგიძლიათ შეიყვანოთ მრავალი ვებსაიტი, ყოველი ახალი ხაზი ახალი ვებსაიტია. უბრალოდ დააჭირეთ Enter. როდესაც მზად იქნებით, დააჭირეთ მწვანე ღილაკს \"შენახვა\". ან შეგიძლიათ გააუქმოთ."
+        "message": "A plan entry has websites and keywords. Add the websites where the keywords should be scanned, one host per line, such as example.com or docs.example.com."
     },
     "keywordsTitle": {
         "message": "საკვანძო სიტყვები"
     },
     "keywordsText1": {
-        "message": "ახალი საკვანძო სიტყვების დასამატებლად ან რაიმე ცვლილების შესატანად დააჭირეთ ღილაკს \"რედაქტირება\". თქვენ მიერ აქ შეყვანილი საკვანძო სიტყვები დასკანირებული იქნება თქვენ მიერ ამ ჯგუფისთვის შეყვანილ ვებსაიტებზე."
+        "message": "Add keywords or phrases to the same entry. The extension scans matching pages locally and blocks the page when the entry score reaches 1000."
     },
     "keywordFormatsIntroduction": {
         "message": "საკვანძო სიტყვებისთვის არის 3 ფორმატი:"
     },
     "keywordFormat1Title": {
-        "message": "პირველი ფორმატი:"
+        "message": "Keyword format 1:"
     },
     "keywordFormat1Text": {
-        "message": "უბრალოდ შეიყვანეთ საკვანძო სიტყვები. ეს შეიძლება იყოს სიტყვა ან ფრაზა. თუ საკვანძო სიტყვა შეიცავს მძიმით ',', თქვენ უნდა გამოიყენოთ გაქცევის სიმბოლო '\\' მის წინ. საიტი დაიბლოკება საკვანძო სიტყვის აღმოჩენისთანავე. შეგიძლიათ შეიყვანოთ იმდენი საკვანძო სიტყვა, რამდენიც გსურთ, უბრალოდ დააჭირეთ Enter. ყოველი ახალი ხაზი არის ახალი საკვანძო სიტყვა."
+        "message": "Enter a word or phrase. If the keyword contains a comma, put a backslash before the comma. A plain keyword blocks as soon as it is detected."
     },
     "keywordFormat1_2": {
-        "message": "მაგალითი: „ვიდეო თამაშები“ ან „ახალი ამბები“."
+        "message": "Examples: 'video games', 'news'."
     },
     "keywordFormat2Title": {
-        "message": "მეორე ფორმატი:"
+        "message": "Keyword format 2:"
     },
     "keywordFormat2Text": {
-        "message": "შეიყვანეთ საკვანძო სიტყვა, რასაც მოჰყვება რიცხვითი მნიშვნელობა. ჯგუფში შეყვანილმა თითოეულმა ვებსაიტმა უნდა მიაღწიოს 1000 ქულას. ვებსაიტი იწყება 0 მნიშვნელობით და საკვანძო სიტყვის რიცხვითი მნიშვნელობიდან გამომდინარე, მნიშვნელობა იზრდება. მას შემდეგ რაც საიტი მიაღწევს 1000 ქულას, ის დაიბლოკება."
+        "message": "Add a number after a comma. The page score starts at 0 and increases by that amount each time the keyword is found. At 1000, the page is blocked."
     },
     "keywordFormat2_2": {
         "message": "მაგალითი: 'ახალი ამბები, 50'"
     },
     "keywordFormat2_3": {
-        "message": "ჯგუფში შეყვანილმა თითოეულმა ვებსაიტმა უნდა მიაღწიოს 1000 ქულას. საიტი იწყება 0 მნიშვნელობით და საკვანძო სიტყვის რიცხვითი მნიშვნელობიდან გამომდინარე, მნიშვნელობა იზრდება. მას შემდეგ რაც საიტი მიაღწევს 1000 ქულას, ის დაიბლოკება."
+        "message": "Use this when a word should matter, but only after repeated or combined signals."
     },
     "keywordFormat3Title": {
-        "message": "მესამე ფორმატი:"
+        "message": "Keyword format 3:"
     },
     "keywordFormat3Text": {
-        "message": "შეიყვანეთ საკვანძო სიტყვა, რასაც მოჰყვება გამრავლების ან დამატების ნიშანი (* ან +), შემდეგ რიცხვითი მნიშვნელობა. ამ სცენარში, გვერდის ქულა მრავლდება ნაპოვნი საკვანძო სიტყვის რიცხვითი მნიშვნელობის საფუძველზე."
+        "message": "Use * or + with a number when you want a keyword to multiply or add to the current page score in a more explicit way."
     },
     "keywordFormat3_2": {
         "message": "მაგალითი: 'ახალი ამბები, *, 10'"
     },
     "keywordFormat3_3": {
-        "message": "ამ სცენარში, გვერდის ქულა მრავლდება ნაპოვნი საკვანძო სიტყვის რიცხვითი მნიშვნელობის საფუძველზე."
+        "message": "Use this for stronger signals that should become decisive only in a specific context."
     },
     "timerCountTitle": {
-        "message": "ტაიმერის რაოდენობა"
+        "message": "Pomodoro"
     },
     "timerCountText": {
-        "message": "გვერდის დაბლოკვის შემდეგ გექნებათ საშუალება დააჭიროთ ღილაკს „ტაიმერის გააქტიურება“. ამის შემდეგ გექნებათ დრო, რომ შეასრულოთ რამდენიმე მოქმედება გვერდზე, სანამ ის კვლავ დაიბლოკება. Timer Count ველში შეგიძლიათ გადაწყვიტოთ რამდენი ტაიმერი გსურთ გქონდეთ დღის განმავლობაში."
+        "message": "A plan can run Pomodoro work and rest timing. Strict breaks can block or quiet pages during rest so the break is protected."
     },
     "timerDurationTitle": {
-        "message": "ტაიმერის ხანგრძლივობა (წამები)"
+        "message": "Pomodoro Timing"
     },
     "timerDurationText": {
-        "message": "ამ ველში თქვენ გადაწყვიტეთ რამდენი წამი ექნება თითოეულ ტაიმერს."
+        "message": "Set work minutes, short breaks, long breaks, and how many work sessions happen before a long break. During an active protected schedule, enabling Pomodoro or making it stricter is allowed; relaxing it is blocked."
     },
     "lockedSchedulesTitle": {
         "message": "ჩაკეტილი განრიგი"
     },
     "lockedSchedulesNote": {
-        "message": "! დაბლოკილი განრიგის განბლოკვა შეუძლებელია, სანამ დრო არ გავა (თუ გაფართოების დეინსტალაციას არ აპირებთ)!"
+        "message": "A protected schedule is meant to resist hot-state weakening while the scheduled window is active."
     },
     "lockedSchedulesText1": {
-        "message": "თქვენ შეგიძლიათ დაამატოთ ახალი დაბლოკილი განრიგი განრიგის სახელის შექმნით გრაფიკის სახელის ველში და დააჭირეთ Enter-ს ან განრიგის დამატება ღილაკს."
+        "message": "Open a plan, choose Schedule, and add one or more scheduled time blocks. Each block can choose days, start time, end time, and whether it is protected."
     },
     "lockedSchedulesText2": {
-        "message": "თქვენი განრიგის პარამეტრების შესაცვლელად დააჭირეთ ღილაკს \"რედაქტირება\". დღის ღილაკების დაჭერით ან ჩართავთ განრიგს იმ დღეს (ღილაკი მწვანე ხდება), ან გამორთავთ მას იმ დღისთვის. დაწყების დროისა და დასრულების დროის ველების შეცვლით, თქვენ ადგენთ საათებს, სადაც განრიგი შეიძლება იყოს აქტიური. ყოველ დღეს უნდა ჰქონდეს 1-საათიანი უმოქმედო დროის ფანჯარა, რათა ამ დროის განმავლობაში განრიგის გამორთვა შეძლოთ. არააქტიური/აქტიური ღილაკი ცვლის განრიგს. განრიგი ჩაკეტილი და აქტიური იქნება, თუ მიმდინარე დღე ჩართულია (მწვანე) და ღილაკი აჩვენებს \"აქტიური\" და ასევე მწვანე, და თუ მიმდინარე დრო არის დაწყებისა და დასრულების დროებს შორის."
+        "message": "A protected active schedule can be made stricter but not more relaxed. For example, you can add entries, raise keyword scores, enable stricter Pomodoro behavior, or add UI cleanup rules, but you cannot remove active protection."
     },
     "lockedSchedulesText3": {
-        "message": "წაშლის ღილაკი ხსნის ჩაკეტილ განრიგს. იგივე ეხება ჯგუფებს და თეთრ სიაში შეყვანილ ვებსაიტებს."
+        "message": "Delete removes a schedule only when doing so does not relax an active protected window."
     },
     "lockedSchedulesText4": {
-        "message": "ჩაკეტილი გრაფიკის დროს მოქმედებს რამდენიმე შეზღუდვა:"
+        "message": "During an active protected schedule, relaxed changes are refused:"
     },
     "lockedScheduleRestriction1": {
-        "message": "თქვენ არ შეგიძლიათ შეცვალოთ ჯგუფის სახელები."
+        "message": "You cannot disable the active plan."
     },
     "lockedScheduleRestriction2": {
-        "message": "თქვენ არ შეგიძლიათ შეცვალოთ ან წაშალოთ არსებული ვებსაიტები ჯგუფებში."
+        "message": "You cannot remove existing plan entries or reduce the websites they protect."
     },
     "lockedScheduleRestriction3": {
-        "message": "თქვენ არ შეგიძლიათ შეცვალოთ ან წაშალოთ არსებული საკვანძო სიტყვები და მათი მნიშვნელობები."
+        "message": "You cannot remove existing keywords or reduce their weights."
     },
     "lockedScheduleRestriction4": {
-        "message": "თქვენ შეგიძლიათ დააყენოთ მხოლოდ საკვანძო სიტყვების მნიშვნელობები გამრავლებისთვის: 1-დან 1000-მდე. დამატებით: 0-დან 1000-მდე."
+        "message": "New or changed keywords must stay inside the strict allowed scoring ranges."
     },
     "lockedScheduleRestriction5": {
-        "message": "ტაიმერის რაოდენობის გაზრდა შეუძლებელია."
+        "message": "You cannot disable Pomodoro, turn off strict breaks, or make Pomodoro easier to bypass."
     },
     "lockedScheduleRestriction6": {
-        "message": "ტაიმერის ხანგრძლივობის გაზრდა შეუძლებელია."
+        "message": "You can enable Pomodoro or make its timing stricter when that increases protection."
     },
     "lockedScheduleRestriction7": {
-        "message": "აქტიური განრიგების წაშლა შეუძლებელია."
+        "message": "Active schedules cannot be deleted."
     },
     "lockedScheduleRestriction8": {
-        "message": "თქვენ არ შეგიძლიათ გააუქმოთ დღეები, გახადოთ განრიგი არააქტიური, ან შეცვალოთ დაწყების ან დასრულების დრო აქტიური განრიგებისთვის."
+        "message": "You cannot remove active days or shrink an active protected schedule window."
     },
     "lockedScheduleRestriction9": {
-        "message": "თქვენ არ შეგიძლიათ დაამატოთ თეთრ სიაში შეტანილი ვებსაიტები."
+        "message": "You cannot add allowed websites to bypass a protected plan."
     },
     "lockedScheduleRestriction10": {
-        "message": "თქვენ არ შეგიძლიათ გაფართოების პაროლის დაყენება ან წაშლა."
+        "message": "You cannot delete password protection during an active protected schedule."
     },
     "whitelistWebsitesTitle": {
-        "message": "თეთრი სიის ვებსაიტები"
+        "message": "Allowed Websites"
     },
     "whitelistWebsitesText": {
-        "message": "საშუალებას გაძლევთ შეიყვანოთ თეთრ სიაში შეყვანილი ვებსაიტები, რაც ნიშნავს, რომ საკვანძო სიტყვების სკანირება არ განხორციელდება ამ ვებსაიტებზე და, შესაბამისად, ისინი არ დაიბლოკება. ამჟამად, ჩვენ არ გვაქვს შესაძლებლობა გამოვიყენოთ wildcard (*), რათა ჩავრთოთ ბევრი ვებსაიტი ერთ ჩანაწერში (როგორიცაა *.io, სადაც ყველა ვებსაიტი '.io'-ით დაიბლოკება), ამიტომ ეს ფუნქცია არ არის ძალიან სასარგებლო, მაგრამ ის არსებობს."
+        "message": "Allowed websites are plan-owned exceptions. Add them when a site should remain usable while a plan is active; the plan will not scan or block those allowed hosts."
     },
     "passwordManagementTitle": {
         "message": "პაროლის მართვა"
     },
     "passwordManagementText": {
-        "message": "საშუალებას გაძლევთ დააყენოთ პაროლი გაფართოების გვერდისთვის. ნებისმიერს, ვინც გახსნის გაფართოების გვერდს, უნდა შეიყვანოს სწორი პაროლი წვდომის მისაღებად. სასარგებლოა სხვების შემთხვევით (ან განზრახ) პარამეტრების გამკაცრების თავიდან ასაცილებლად."
+        "message": "Password protection can require a password before opening the options page. Use it when you want an extra barrier around changing protection settings."
     },
     "contactFeedbackTitle": {
         "message": "კონტაქტი და გამოხმაურება"
