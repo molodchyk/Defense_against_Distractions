@@ -1,11 +1,15 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
+import { setBadgeText as setChromeBadgeText } from '../../../platform/chrome/action.js';
+import { sendTabMessage as sendChromeTabMessage } from '../../../platform/chrome/tabs.js';
 import { createBlockedTabMuteController } from './tabMute.js';
 
-export function createContentBlockingBackgroundRuntime(chromeApi, {
+export function createContentBlockingBackgroundRuntime({
   logger = console,
-  tabMuteController = createBlockedTabMuteController(chromeApi)
+  sendTabMessage = sendChromeTabMessage,
+  setBadgeText = setChromeBadgeText,
+  tabMuteController = createBlockedTabMuteController()
 } = {}) {
   function updateBadge(message, sender) {
     const tabId = sender.tab?.id;
@@ -13,7 +17,7 @@ export function createContentBlockingBackgroundRuntime(chromeApi, {
       return;
     }
 
-    chromeApi.action.setBadgeText({ text: String(message.score), tabId });
+    setBadgeText({ text: String(message.score), tabId });
   }
 
   function requestTopFrameBlock(message, sender) {
@@ -22,12 +26,12 @@ export function createContentBlockingBackgroundRuntime(chromeApi, {
       return;
     }
 
-    chromeApi.tabs.sendMessage(tabId, {
+    sendTabMessage(tabId, {
       action: 'forceBlockPage',
       diagnostics: message.diagnostics || null
-    }, { frameId: 0 }, () => {
-      if (chromeApi.runtime.lastError) {
-        logger.error('Failed to request top-frame block:', chromeApi.runtime.lastError);
+    }, { frameId: 0 }).then(response => {
+      if (response === null) {
+        logger.error('Failed to request top-frame block.');
       }
     });
   }

@@ -25,6 +25,10 @@ export function canUpdateTab() {
   return Boolean(chrome.tabs?.update);
 }
 
+export function canGetTab() {
+  return Boolean(chrome.tabs?.get);
+}
+
 export function addTabActivatedListener(listener) {
   chrome.tabs.onActivated.addListener(listener);
   return () => chrome.tabs.onActivated.removeListener(listener);
@@ -66,6 +70,24 @@ export function queryTabs(queryInfo) {
 export async function getActiveCurrentWindowTab() {
   const tabs = await queryTabs({ active: true, currentWindow: true });
   return tabs[0] || null;
+}
+
+export function getTab(tabId) {
+  return new Promise(resolve => {
+    if (!canGetTab()) {
+      resolve(null);
+      return;
+    }
+
+    chrome.tabs.get(tabId, tab => {
+      if (chrome.runtime.lastError) {
+        resolve(null);
+        return;
+      }
+
+      resolve(tab || null);
+    });
+  });
 }
 
 export function createTab(createProperties) {

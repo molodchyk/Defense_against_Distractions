@@ -3,7 +3,7 @@
 
 import assert from 'node:assert/strict';
 import { afterEach, describe, it } from 'node:test';
-import { addActionClickedListener } from '../../../src/platform/chrome/action.js';
+import { addActionClickedListener, setBadgeText } from '../../../src/platform/chrome/action.js';
 
 describe('Chrome action platform wrapper', () => {
   const originalChrome = globalThis.chrome;
@@ -34,5 +34,32 @@ describe('Chrome action platform wrapper', () => {
 
     assert.equal(listener, onClicked);
     assert.equal(removedListener, onClicked);
+  });
+
+  it('sets badge text and reports whether the call succeeded', () => {
+    let badgeDetails = null;
+
+    globalThis.chrome = {
+      action: {
+        setBadgeText(details) {
+          badgeDetails = details;
+        }
+      }
+    };
+
+    assert.equal(setBadgeText({ text: '42', tabId: 9 }), true);
+    assert.deepEqual(badgeDetails, { text: '42', tabId: 9 });
+  });
+
+  it('reports badge update failures without throwing', () => {
+    globalThis.chrome = {
+      action: {
+        setBadgeText() {
+          throw new Error('Badge unavailable.');
+        }
+      }
+    };
+
+    assert.equal(setBadgeText({ text: '42', tabId: 9 }), false);
   });
 });

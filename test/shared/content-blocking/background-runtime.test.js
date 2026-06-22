@@ -5,24 +5,17 @@ import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 import { createContentBlockingBackgroundRuntime } from '../../../src/features/content-blocking/background/runtime.js';
 
-function createFakeChrome() {
+function createFakeRuntimeDependencies() {
   const badgeUpdates = [];
   const sentTabMessages = [];
 
   return {
-    action: {
-      setBadgeText(payload) {
-        badgeUpdates.push(payload);
-      }
+    setBadgeText(payload) {
+      badgeUpdates.push(payload);
     },
-    runtime: {
-      lastError: null
-    },
-    tabs: {
-      sendMessage(tabId, message, options, callback) {
-        sentTabMessages.push({ tabId, message, options });
-        callback?.();
-      }
+    async sendTabMessage(tabId, message, options) {
+      sentTabMessages.push({ tabId, message, options });
+      return { status: 'sent' };
     },
     badgeUpdates,
     sentTabMessages
@@ -52,22 +45,23 @@ function createTabMuteController() {
 
 describe('content-blocking background runtime', () => {
   it('updates the extension badge for sender tabs', () => {
-    const chromeApi = createFakeChrome();
-    const runtime = createContentBlockingBackgroundRuntime(chromeApi, {
+    const dependencies = createFakeRuntimeDependencies();
+    const runtime = createContentBlockingBackgroundRuntime({
+      ...dependencies,
       tabMuteController: createTabMuteController()
     });
 
     runtime.handleRuntimeMessage({ action: 'updateBadge', score: 42 }, { tab: { id: 9 } }, () => {});
 
-    assert.deepEqual(chromeApi.badgeUpdates, [
+    assert.deepEqual(dependencies.badgeUpdates, [
       { text: '42', tabId: 9 }
     ]);
   });
 
   it('routes blocked tab mute messages through the mute controller', () => {
-    const chromeApi = createFakeChrome();
+    const dependencies = createFakeRuntimeDependencies();
     const tabMuteController = createTabMuteController();
-    const runtime = createContentBlockingBackgroundRuntime(chromeApi, { tabMuteController });
+    const runtime = createContentBlockingBackgroundRuntime({ ...dependencies, tabMuteController });
     const responses = [];
 
     runtime.handleRuntimeMessage({ action: 'muteBlockedTab' }, { tab: { id: 9 } }, () => {});
@@ -86,9 +80,10 @@ describe('content-blocking background runtime', () => {
     ]);
   });
 
-  it('requests top-frame blocking with bounded diagnostics', () => {
-    const chromeApi = createFakeChrome();
-    const runtime = createContentBlockingBackgroundRuntime(chromeApi, {
+  it('requests top-frame blocking with bounded diagnostics', async () => {
+    const dependencies = createFakeRuntimeDependencies();
+    const runtime = createContentBlockingBackgroundRuntime({
+      ...dependencies,
       tabMuteController: createTabMuteController()
     });
 
@@ -97,7 +92,9 @@ describe('content-blocking background runtime', () => {
       diagnostics: { trigger: 'keyword' }
     }, { tab: { id: 9 } }, () => {});
 
-    assert.deepEqual(chromeApi.sentTabMessages, [
+    await Promise.resolve();
+
+    assert.deepEqual(dependencies.sentTabMessages, [
       {
         tabId: 9,
         message: {
@@ -110,9 +107,9 @@ describe('content-blocking background runtime', () => {
   });
 
   it('restores mute state only when a tab starts loading', () => {
-    const chromeApi = createFakeChrome();
+    const dependencies = createFakeRuntimeDependencies();
     const tabMuteController = createTabMuteController();
-    const runtime = createContentBlockingBackgroundRuntime(chromeApi, { tabMuteController });
+    const runtime = createContentBlockingBackgroundRuntime({ ...dependencies, tabMuteController });
 
     runtime.handleTabUpdated(9, { status: 'complete' });
     runtime.handleTabUpdated(9, { status: 'loading' });
@@ -123,9 +120,9 @@ describe('content-blocking background runtime', () => {
   });
 
   it('forgets mute state when a tab is removed', () => {
-    const chromeApi = createFakeChrome();
+    const dependencies = createFakeRuntimeDependencies();
     const tabMuteController = createTabMuteController();
-    const runtime = createContentBlockingBackgroundRuntime(chromeApi, { tabMuteController });
+    const runtime = createContentBlockingBackgroundRuntime({ ...dependencies, tabMuteController });
 
     runtime.handleTabRemoved(9);
 
@@ -135,14 +132,14 @@ describe('content-blocking background runtime', () => {
   });
 
   it('ignores malformed runtime messages', () => {
-    const chromeApi = createFakeChrome();
+    const dependencies = createFakeRuntimeDependencies();
     const tabMuteController = createTabMuteController();
-    const runtime = createContentBlockingBackgroundRuntime(chromeApi, { tabMuteController });
+    const runtime = createContentBlockingBackgroundRuntime({ ...dependencies, tabMuteController });
 
     runtime.handleRuntimeMessage(null, { tab: { id: 9 } }, () => {});
 
-    assert.deepEqual(chromeApi.badgeUpdates, []);
-    assert.deepEqual(chromeApi.sentTabMessages, []);
+    assert.deepEqual(dependencies.badgeUpdates, []);
+    assert.deepEqual(dependencies.sentTabMessages, []);
     assert.deepEqual(tabMuteController.calls, []);
   });
 });

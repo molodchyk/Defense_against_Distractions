@@ -14,9 +14,9 @@ Use this checklist before publishing a new extension release.
 - Run `npm run audit:file-sizes`.
 - Run `npm run audit:folder-density`.
 - Run `npm run package`.
-- Run `npm run verify:browser-load`.
 - Run `npm run verify:package`.
 - Run `npm run verify:release`.
+- Run `npm run verify:browser-load` only in an isolated browser environment where launching Chrome, Edge, or Chromium cannot close active user windows or unsaved work.
 - Confirm `dist/Defense_against_Distractions-vX.Y.Z-extension.zip` exists.
 - Confirm `dist/Defense_against_Distractions-vX.Y.Z-source.zip` exists.
 - Confirm `dist/` does not contain package zips for older versions or staging directories.

@@ -15,7 +15,6 @@ Run these from the project root:
 - `npm run audit:file-sizes`
 - `npm run audit:folder-density`
 - `npm run package`
-- `npm run verify:browser-load`
 - `npm run verify:package`
 - `npm run verify:release`
 
@@ -54,7 +53,9 @@ The release verifier checks:
 - StorePilot direct listing files do not start with a title, field label, or extension name.
 - The default locale includes `description.message`.
 
-The package verifier and browser-load smoke check extract the current extension archive into temporary folders when needed. If Chrome, Edge, or Chromium is not discoverable for browser-load, set `DAD_CHROME_PATH` or pass `-BrowserPath` to `scripts/check-unpacked-extension-load.ps1`.
+The package verifier extracts the current extension archive into a temporary folder when needed.
+
+`npm run verify:browser-load` is an optional isolated-environment smoke check. Do not run it on an active workstation where launching Chrome, Edge, or Chromium could close existing browser windows or unsaved work. If it is safe to run and a browser is not discoverable, set `DAD_CHROME_PATH` or pass `-BrowserPath` to `scripts/check-unpacked-extension-load.ps1`.
 
 ## Manual Gates
 

@@ -11,6 +11,7 @@ import {
   createTab,
   discardTab,
   getActiveCurrentWindowTab,
+  getTab,
   moveTabToWindow,
   removeTabs,
   sendTabMessage,
@@ -82,6 +83,36 @@ describe('Chrome tabs platform wrapper', () => {
 
     assert.deepEqual(requestedProperties, { url: 'src/options.html#settingsPanel' });
     assert.deepEqual(tab, { id: 8, url: 'src/options.html#settingsPanel' });
+  });
+
+  it('gets a tab by id', async () => {
+    let requestedTabId = null;
+
+    globalThis.chrome = {
+      runtime: { lastError: null },
+      tabs: {
+        get(tabId, callback) {
+          requestedTabId = tabId;
+          callback({ id: tabId, mutedInfo: { muted: false } });
+        }
+      }
+    };
+
+    assert.deepEqual(await getTab(7), { id: 7, mutedInfo: { muted: false } });
+    assert.equal(requestedTabId, 7);
+  });
+
+  it('resolves null on tab get runtime errors', async () => {
+    globalThis.chrome = {
+      runtime: { lastError: new Error('Tab unavailable.') },
+      tabs: {
+        get(_tabId, callback) {
+          callback(undefined);
+        }
+      }
+    };
+
+    assert.equal(await getTab(7), null);
   });
 
   it('resolves tab-message responses with and without options', async () => {

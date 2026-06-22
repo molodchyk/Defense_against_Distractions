@@ -1,7 +1,12 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
-export function createBlockedTabMuteController(chromeApi, { now = () => new Date() } = {}) {
+import { getTab as getChromeTab, updateTab as updateChromeTab } from '../../../platform/chrome/tabs.js';
+
+export function createBlockedTabMuteController({
+  getTab = getChromeTab,
+  updateTab = updateChromeTab
+} = {}, { now = () => new Date() } = {}) {
   const extensionMutedTabs = new Map();
   const extensionMutedTabEvents = new Map();
 
@@ -9,32 +14,31 @@ export function createBlockedTabMuteController(chromeApi, { now = () => new Date
     return now().toISOString();
   }
 
-  function muteBlockedTab(tabId) {
+  async function muteBlockedTab(tabId) {
     if (tabId === undefined) {
       return;
     }
 
-    chromeApi.tabs.get(tabId, tab => {
-      if (chromeApi.runtime.lastError || !tab) {
-        return;
-      }
+    const tab = await getTab(tabId);
+    if (!tab) {
+      return;
+    }
 
-      const originalMuted = extensionMutedTabs.has(tabId)
-        ? extensionMutedTabs.get(tabId)
-        : Boolean(tab.mutedInfo?.muted);
+    const originalMuted = extensionMutedTabs.has(tabId)
+      ? extensionMutedTabs.get(tabId)
+      : Boolean(tab.mutedInfo?.muted);
 
-      extensionMutedTabs.set(tabId, originalMuted);
-      extensionMutedTabEvents.set(tabId, {
-        originalMuted,
-        mutedAt: getTimestamp(),
-        restoredAt: extensionMutedTabEvents.get(tabId)?.restoredAt || null,
-        lastAction: 'muted'
-      });
-      chromeApi.tabs.update(tabId, { muted: true });
+    extensionMutedTabs.set(tabId, originalMuted);
+    extensionMutedTabEvents.set(tabId, {
+      originalMuted,
+      mutedAt: getTimestamp(),
+      restoredAt: extensionMutedTabEvents.get(tabId)?.restoredAt || null,
+      lastAction: 'muted'
     });
+    await updateTab(tabId, { muted: true });
   }
 
-  function restoreBlockedTabMuteState(tabId) {
+  async function restoreBlockedTabMuteState(tabId) {
     if (tabId === undefined) {
       return;
     }
@@ -56,7 +60,7 @@ export function createBlockedTabMuteController(chromeApi, { now = () => new Date
       restoredMutedState: wasMuted,
       lastAction: 'restored'
     });
-    chromeApi.tabs.update(tabId, { muted: wasMuted });
+    await updateTab(tabId, { muted: wasMuted });
   }
 
   function forgetBlockedTabMuteState(tabId) {

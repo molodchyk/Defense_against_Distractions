@@ -5,48 +5,43 @@ import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 import { createBlockedTabMuteController } from '../../../src/features/content-blocking/background/tabMute.js';
 
-function createFakeChrome({ initialMuted = false } = {}) {
+function createFakeTabDependencies({ initialMuted = false } = {}) {
   const tabs = new Map([
     [7, { id: 7, mutedInfo: { muted: initialMuted } }]
   ]);
   const updates = [];
 
-  const chromeApi = {
-    runtime: {
-      lastError: null
+  const tabDependencies = {
+    async getTab(tabId) {
+      return tabs.get(tabId) || null;
     },
-    tabs: {
-      get(tabId, callback) {
-        callback(tabs.get(tabId) || null);
-      },
-      update(tabId, changes) {
-        updates.push({ tabId, changes });
-        const tab = tabs.get(tabId);
+    async updateTab(tabId, changes) {
+      updates.push({ tabId, changes });
+      const tab = tabs.get(tabId);
 
-        if (tab && Object.prototype.hasOwnProperty.call(changes, 'muted')) {
-          tab.mutedInfo = { muted: changes.muted };
-        }
+      if (tab && Object.prototype.hasOwnProperty.call(changes, 'muted')) {
+        tab.mutedInfo = { muted: changes.muted };
       }
     }
   };
 
-  return { chromeApi, tabs, updates };
+  return { tabDependencies, tabs, updates };
 }
 
-function createController(chromeApi) {
+function createController(tabDependencies) {
   let tick = 0;
 
-  return createBlockedTabMuteController(chromeApi, {
+  return createBlockedTabMuteController(tabDependencies, {
     now: () => new Date(Date.UTC(2026, 0, 1, 0, 0, tick++))
   });
 }
 
 describe('blocked tab mute controller', () => {
-  it('mutes a blocked tab and tracks the original unmuted state', () => {
-    const { chromeApi, updates } = createFakeChrome();
-    const controller = createController(chromeApi);
+  it('mutes a blocked tab and tracks the original unmuted state', async () => {
+    const { tabDependencies, updates } = createFakeTabDependencies();
+    const controller = createController(tabDependencies);
 
-    controller.muteBlockedTab(7);
+    await controller.muteBlockedTab(7);
 
     assert.deepEqual(updates, [
       { tabId: 7, changes: { muted: true } }
@@ -61,12 +56,12 @@ describe('blocked tab mute controller', () => {
     });
   });
 
-  it('restores the pre-existing mute state when the block clears', () => {
-    const { chromeApi, updates } = createFakeChrome({ initialMuted: true });
-    const controller = createController(chromeApi);
+  it('restores the pre-existing mute state when the block clears', async () => {
+    const { tabDependencies, updates } = createFakeTabDependencies({ initialMuted: true });
+    const controller = createController(tabDependencies);
 
-    controller.muteBlockedTab(7);
-    controller.restoreBlockedTabMuteState(7);
+    await controller.muteBlockedTab(7);
+    await controller.restoreBlockedTabMuteState(7);
 
     assert.deepEqual(updates, [
       { tabId: 7, changes: { muted: true } },
@@ -83,11 +78,11 @@ describe('blocked tab mute controller', () => {
     });
   });
 
-  it('records skipped restores without changing tab mute state', () => {
-    const { chromeApi, updates } = createFakeChrome();
-    const controller = createController(chromeApi);
+  it('records skipped restores without changing tab mute state', async () => {
+    const { tabDependencies, updates } = createFakeTabDependencies();
+    const controller = createController(tabDependencies);
 
-    controller.restoreBlockedTabMuteState(7);
+    await controller.restoreBlockedTabMuteState(7);
 
     assert.deepEqual(updates, []);
     assert.deepEqual(controller.getBlockedTabMuteDebugState(7), {
@@ -99,11 +94,11 @@ describe('blocked tab mute controller', () => {
     });
   });
 
-  it('forgets tab mute state when a tab closes', () => {
-    const { chromeApi } = createFakeChrome();
-    const controller = createController(chromeApi);
+  it('forgets tab mute state when a tab closes', async () => {
+    const { tabDependencies } = createFakeTabDependencies();
+    const controller = createController(tabDependencies);
 
-    controller.muteBlockedTab(7);
+    await controller.muteBlockedTab(7);
     controller.forgetBlockedTabMuteState(7);
 
     assert.deepEqual(controller.getBlockedTabMuteDebugState(7), {
@@ -113,12 +108,12 @@ describe('blocked tab mute controller', () => {
     });
   });
 
-  it('reports missing sender tabs without mutating state', () => {
-    const { chromeApi, updates } = createFakeChrome();
-    const controller = createController(chromeApi);
+  it('reports missing sender tabs without mutating state', async () => {
+    const { tabDependencies, updates } = createFakeTabDependencies();
+    const controller = createController(tabDependencies);
 
-    controller.muteBlockedTab(undefined);
-    controller.restoreBlockedTabMuteState(undefined);
+    await controller.muteBlockedTab(undefined);
+    await controller.restoreBlockedTabMuteState(undefined);
 
     assert.deepEqual(updates, []);
     assert.deepEqual(controller.getBlockedTabMuteDebugState(undefined), {

@@ -177,6 +177,8 @@ const [
   tabsWrapper,
   windowsWrapper,
   appBackgroundModule,
+  contentBlockingBackgroundModule,
+  blockedTabMuteModule,
   backgroundDefaultsModule,
   intentInitializerModule,
   intentChromeApiModule,
@@ -226,6 +228,8 @@ const [
   readText('src/platform/chrome/tabs.js'),
   readText('src/platform/chrome/windows.js'),
   readText('src/app/background/index.js'),
+  readText('src/features/content-blocking/background/runtime.js'),
+  readText('src/features/content-blocking/background/tabMute.js'),
   readText('src/js/background/defaults.js'),
   readText('src/js/background/intent/initializer.js'),
   readText('src/js/background/intent/chromeApi.js'),
@@ -365,7 +369,7 @@ assertCondition(
 assertCondition(/src\/platform\/chrome\/downloads\.js/.test(permissionAudit), 'Permission audit must point downloads permission API evidence at the platform wrapper.');
 assertCondition(/src\/platform\/chrome\/alarms\.js/.test(permissionAudit), 'Permission audit must point alarms permission API evidence at the platform wrapper.');
 assertCondition(/src\/platform\/chrome\/navigation\.js/.test(permissionAudit), 'Permission audit must point webNavigation permission API evidence at the platform wrapper.');
-assertCondition(/chrome\.action\.onClicked/.test(actionWrapper), 'Chrome action platform wrapper must own toolbar action click listener registration.');
+assertCondition(/chrome\.action\.onClicked/.test(actionWrapper) && /chrome\.action\.setBadgeText/.test(actionWrapper), 'Chrome action platform wrapper must own toolbar action click listener registration and badge text updates.');
 assertCondition(/chrome\.alarms\.create/.test(alarmsWrapper) && /chrome\.alarms\.clear/.test(alarmsWrapper) && /chrome\.alarms\.onAlarm/.test(alarmsWrapper) && /runtime\.lastError/.test(alarmsWrapper), 'Chrome alarms platform wrapper must own chrome.alarms create/clear/listener and runtime.lastError handling.');
 assertCondition([pomodoroChromeStorageModule, pomodoroInitializerModule, scheduleMonitorModule].every(text => /platform\/chrome\/alarms\.js/.test(text) && !/chrome\.alarms\./.test(text)), 'Background Pomodoro and schedule monitor modules must use the alarms platform wrapper instead of raw chrome.alarms callbacks.');
 assertCondition(/chrome\.idle/.test(idleWrapper) && /setDetectionInterval/.test(idleWrapper) && /onStateChanged/.test(idleWrapper) && /queryState/.test(idleWrapper), 'Chrome idle platform wrapper must own idle detection interval, listener, and initial state query.');
@@ -377,11 +381,13 @@ assertCondition(/platform\/chrome\/downloads\.js/.test(storageTransferModule) &&
 assertCondition(/chrome\.runtime\.onInstalled/.test(runtimeWrapper) && /chrome\.runtime\.onStartup/.test(runtimeWrapper) && /chrome\.runtime\.onMessage/.test(runtimeWrapper) && /chrome\.runtime\.getManifest/.test(runtimeWrapper) && /chrome\.runtime\.getURL/.test(runtimeWrapper) && /chrome\.runtime\.openOptionsPage/.test(runtimeWrapper), 'Chrome runtime platform wrapper must own lifecycle listeners, message listeners, manifest, extension URL, and options-page helpers.');
 assertCondition([appBackgroundModule, backgroundDefaultsModule, pomodoroInitializerModule, releaseNoticeModule, scheduleMonitorModule, intentMessagesModule, popupIndexModule, popupChromeModule, popupDiagnosticsExportModule].every(text => /platform\/chrome\/runtime\.js/.test(text) && !/chrome\.runtime\.(?:onInstalled|onStartup|onMessage|getManifest|getURL|openOptionsPage)/.test(text)), 'Migrated background and popup modules must use the runtime platform wrapper instead of raw chrome.runtime lifecycle/helpers.');
 assertCondition(/chrome\.runtime\.sendMessage/.test(runtimeMessagesWrapper) && /runtime\.lastError/.test(runtimeMessagesWrapper), 'Chrome runtime-message platform wrapper must own chrome.runtime.sendMessage and runtime.lastError handling.');
-assertCondition(/chrome\.tabs\.query/.test(tabsWrapper) && /chrome\.tabs\.create/.test(tabsWrapper) && /chrome\.tabs\.sendMessage/.test(tabsWrapper) && /chrome\.tabs\.update/.test(tabsWrapper) && /chrome\.tabs\.remove/.test(tabsWrapper) && /chrome\.tabs\.move/.test(tabsWrapper) && /chrome\.tabs\.discard/.test(tabsWrapper) && /chrome\.tabs\.onActivated/.test(tabsWrapper) && /chrome\.tabs\.onCreated/.test(tabsWrapper) && /chrome\.tabs\.onRemoved/.test(tabsWrapper) && /chrome\.tabs\.onUpdated/.test(tabsWrapper) && /runtime\.lastError/.test(tabsWrapper), 'Chrome tabs platform wrapper must own tab query/create/message/update/remove/move/discard plus lifecycle listener registration.');
+assertCondition(/chrome\.tabs\.query/.test(tabsWrapper) && /chrome\.tabs\.get/.test(tabsWrapper) && /chrome\.tabs\.create/.test(tabsWrapper) && /chrome\.tabs\.sendMessage/.test(tabsWrapper) && /chrome\.tabs\.update/.test(tabsWrapper) && /chrome\.tabs\.remove/.test(tabsWrapper) && /chrome\.tabs\.move/.test(tabsWrapper) && /chrome\.tabs\.discard/.test(tabsWrapper) && /chrome\.tabs\.onActivated/.test(tabsWrapper) && /chrome\.tabs\.onCreated/.test(tabsWrapper) && /chrome\.tabs\.onRemoved/.test(tabsWrapper) && /chrome\.tabs\.onUpdated/.test(tabsWrapper) && /runtime\.lastError/.test(tabsWrapper), 'Chrome tabs platform wrapper must own tab query/get/create/message/update/remove/move/discard plus lifecycle listener registration.');
 assertCondition([popupChromeModule, elementPickerLauncherModule].every(text => /platform\/chrome\/tabs\.js/.test(text) && !/chrome\.tabs\./.test(text) && !/chrome\.runtime\.lastError/.test(text)), 'Popup tab helpers must use the tabs platform wrapper instead of raw chrome.tabs callbacks.');
 assertCondition(/platform\/chrome\/tabs\.js/.test(pomodoroNotificationsModule) && !/chrome\.tabs\./.test(pomodoroNotificationsModule) && !/chrome\.runtime\.lastError/.test(pomodoroNotificationsModule), 'Background Pomodoro notifications must use the tabs platform wrapper instead of raw chrome.tabs callbacks.');
 assertCondition(/chrome\.windows\.onFocusChanged/.test(windowsWrapper) && /chrome\.windows\.create/.test(windowsWrapper) && /WINDOW_ID_NONE/.test(windowsWrapper), 'Chrome windows platform wrapper must own focus-change listener registration, window creation, and no-focused-window id access.');
 assertCondition([appBackgroundModule, intentInitializerModule, pomodoroInitializerModule].every(text => /platform\/chrome\/(?:action|navigation|tabs|windows)\.js/.test(text) && !/chrome\.(?:action\.onClicked|tabs\.on(?:Activated|Created|Removed|Updated)|webNavigation|windows\.(?:onFocusChanged|WINDOW_ID_NONE))/.test(text)), 'Migrated background event modules must use platform wrappers instead of raw action/tab/navigation/window listener registration.');
+assertCondition(/platform\/chrome\/action\.js/.test(contentBlockingBackgroundModule) && /platform\/chrome\/tabs\.js/.test(contentBlockingBackgroundModule) && !/chromeApi|chrome\.(?:action|tabs|runtime)|runtime\.lastError/.test(contentBlockingBackgroundModule), 'Content-blocking background runtime must use platform wrappers instead of raw chrome action/tabs/runtime callbacks.');
+assertCondition(/platform\/chrome\/tabs\.js/.test(blockedTabMuteModule) && !/chromeApi|chrome\.tabs|runtime\.lastError/.test(blockedTabMuteModule), 'Blocked tab mute controller must use the tabs platform wrapper instead of raw chrome tab callbacks.');
 assertCondition(/platform\/chrome\/tabs\.js/.test(intentChromeApiModule) && /platform\/chrome\/windows\.js/.test(intentChromeApiModule) && /platform\/chrome\/runtime\.js/.test(intentChromeApiModule) && !/chrome\.(?:tabs|windows|runtime)|runtime\.lastError/.test(intentChromeApiModule), 'Background intent Chrome adapter must use platform wrappers instead of raw chrome tabs/windows/runtime callbacks.');
 assertCondition(/platform\/chrome\/storage\.js/.test(blockedPageChromeApiModule) && /platform\/chrome\/runtimeMessages\.js/.test(blockedPageChromeApiModule) && /platform\/chrome\/runtime\.js/.test(blockedPageChromeApiModule) && !/chrome\.(?:storage|runtime)|runtime\.lastError/.test(blockedPageChromeApiModule), 'Blocked-page Chrome facade must use platform wrappers instead of raw chrome storage/runtime callbacks.');
 assertCondition(/platform\/chrome\/i18n\.js/.test(blockedPageLocalizationModule) && /platform\/chrome\/runtime\.js/.test(blockedPageLocalizationModule) && !/chrome\.(?:i18n|runtime)/.test(blockedPageLocalizationModule), 'Blocked-page localization must use platform wrappers instead of raw chrome i18n/runtime helpers.');
@@ -402,7 +408,6 @@ for (const permission of manifest.permissions) {
   assertCondition(new RegExp(`permission\\.${escapedPermission}`).test(storePrivacyForm), `StorePilot privacy form must include permission.${permission}.`);
   assertCondition(new RegExp(`\`${escapedPermission}\``).test(privacy), `PRIVACY.md must include manifest permission: ${permission}.`);
 }
-
 assertCondition(
   packageJson.scripts?.['verify:browser-load']?.includes('scripts/check-unpacked-extension-load.ps1'),
   'package.json must expose npm run verify:browser-load for the unpacked browser-load smoke check.'
@@ -411,27 +416,22 @@ assertCondition(
   packageJson.scripts?.['verify:static-localization'] === 'node scripts/check-static-localization.mjs',
   'package.json must expose npm run verify:static-localization for extension HTML localization checks.'
 );
-
 const storePrivacyFields = parseKeyedBlock(storePrivacyForm, 'privacy');
 for (const field of ['single_purpose', 'host_permission', 'remote_code', 'privacy_policy_url']) {
   assertCondition(storePrivacyFields.has(field), `StorePilot privacy form is missing ${field}.`);
 }
-
 for (const permission of manifestPermissions) {
   assertCondition(
     storePrivacyFields.has(`permission.${permission}`),
     `StorePilot privacy form is missing permission.${permission}.`
   );
 }
-
 for (const field of privacyDataUsageKeys) {
   assertCondition(storePrivacyFields.get(field) === 'no', `StorePilot privacy form must set ${field}: no.`);
 }
-
 for (const field of privacyCertificationKeys) {
   assertCondition(storePrivacyFields.get(field) === 'yes', `StorePilot privacy form must set ${field}: yes.`);
 }
-
 assertCondition(storePrivacyFields.get('remote_code') === 'no', 'StorePilot privacy form must set remote_code: no.');
 assertCondition(!storePrivacyFields.has('remote_code_justification'), 'StorePilot privacy form should omit remote_code_justification when remote_code is no.');
 assertCondition(

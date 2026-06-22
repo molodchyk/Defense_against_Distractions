@@ -5,3 +5,12 @@ export function addActionClickedListener(listener) {
   chrome.action.onClicked.addListener(listener);
   return () => chrome.action.onClicked.removeListener(listener);
 }
+
+export function setBadgeText(details) {
+  try {
+    chrome.action.setBadgeText(details);
+    return true;
+  } catch (error) {
+    return false;
+  }
+}

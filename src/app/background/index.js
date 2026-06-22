@@ -15,7 +15,7 @@ import {
   createTab
 } from '../../platform/chrome/tabs.js';
 
-const contentBlockingRuntime = createContentBlockingBackgroundRuntime(chrome);
+const contentBlockingRuntime = createContentBlockingBackgroundRuntime();
 
 addActionClickedListener(() => {
   createTab({ url: getExtensionUrl('src/options.html') }).catch(() => {});

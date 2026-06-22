@@ -15,6 +15,8 @@ Version 1.6.1:
 - moved toolbar, tab lifecycle, webNavigation, and window-focus listener registration behind Chrome platform wrappers
 - moved background intent tab/window recovery operations behind Chrome platform wrappers
 - moved blocked-page runtime storage, messaging, URL, and i18n access behind Chrome platform wrappers
+- moved content-blocking background badge, top-frame block message, and tab mute operations behind Chrome platform wrappers
+- clarified that the browser-load smoke check is optional and should run only in an isolated browser environment
 - moved user-triggered export downloads behind a Chrome platform wrapper and added a playbook guard against raw `chrome.downloads` use in the options export flow
 - moved options-page background diagnostic and Pomodoro messages behind a Chrome runtime-message platform wrapper
 - moved popup tab query, tab messaging, tab update, and tab creation through a Chrome tabs platform wrapper
