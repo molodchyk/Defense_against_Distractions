@@ -45,6 +45,18 @@ export async function verifyReviewedStoreMediaHashes(rootDir, assetPaths, storeM
 export function getStoreMediaReviewCoverageFailures(assetPaths, storeMediaReview) {
   const failures = [];
   const requiredPatterns = [
+    /# Store Media Review/,
+    /Reviewed Asset Hashes/,
+    /SHA-256/,
+    /Chrome Web Store/i,
+    /screenshots/i,
+    /promo images/i,
+    /personal accounts/i,
+    /private conversations/i,
+    /real rules/i,
+    /real domains/i,
+    /user-specific configuration/i,
+    /example\.test/i,
     /## Store Copy Consistency Map/,
     /precise page blocking/i,
     /allowed websites/i,
@@ -61,9 +73,10 @@ export function getStoreMediaReviewCoverageFailures(assetPaths, storeMediaReview
   ];
 
   for (const pattern of requiredPatterns) {
-    if (!pattern.test(storeMediaReview)) failures.push(`Store media review is missing consistency evidence for: ${pattern}`);
+    if (!pattern.test(storeMediaReview)) failures.push(`Store media review is missing coverage evidence for: ${pattern}`);
   }
   for (const assetPath of assetPaths) {
+    if (!storeMediaReview.includes(`\`${assetPath}\``)) failures.push(`Store media review must cover ${assetPath}.`);
     if (!storeMediaReview.includes(`| \`${assetPath}\` |`)) failures.push(`Store media consistency map must cover ${assetPath}.`);
   }
 

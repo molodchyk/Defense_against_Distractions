@@ -450,29 +450,6 @@ for (const screenshotPath of screenshotPngs) {
 }
 await assertPngDimensions('store/promo/small-promo-440x280.png', 440, 280);
 await assertPngDimensions('store/promo/marquee-promo-1400x560.png', 1400, 560);
-for (const assetPath of storeMediaAssetPaths) {
-  assertCondition(
-    storeMediaReview.includes(`\`${assetPath}\``),
-    `Store media review must cover ${assetPath}.`
-  );
-}
-assertCondition(
-  hasAll(storeMediaReview, [
-    /# Store Media Review/,
-    /Reviewed Asset Hashes/,
-    /SHA-256/,
-    /Chrome Web Store/i,
-    /screenshots/i,
-    /promo images/i,
-    /personal accounts/i,
-    /private conversations/i,
-    /real rules/i,
-    /real domains/i,
-    /user-specific configuration/i,
-    /example\.test/i
-  ]),
-  'Store media review must document screenshot and promo privacy boundaries.'
-);
 failures.push(...getStoreMediaReviewCoverageFailures(storeMediaAssetPaths, storeMediaReview), ...await verifyReviewedStoreMediaHashes(rootDir, storeMediaAssetPaths, storeMediaReview));
 
 assertCondition(/Host access through content scripts \(`<all_urls>`\)/i.test(privacy), 'PRIVACY.md must explain exact <all_urls> host/content-script access.');
