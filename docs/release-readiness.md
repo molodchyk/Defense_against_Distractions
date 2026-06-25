@@ -9,6 +9,7 @@ Use [Release Verification Record](release-verification-record.md) as the short e
 - Automated static and archive gates are covered by `npm run verify:release` after `npm run package`.
 - Browser-load status: not fully browser-verified until `npm run verify:browser-load` is run in an isolated Chromium-based browser/profile.
 - Do not run browser-load on an active workstation where launching Chrome, Edge, or Chromium could close active user windows or unsaved work.
+- The browser-load script refuses to launch when browser-management or blocker software such as Cold Turkey is running, unless explicitly overridden in a safe disposable environment.
 
 ## Release Archive Policy
 
@@ -78,7 +79,7 @@ The release verifier checks:
 
 The package verifier extracts the current extension archive into a temporary folder when needed.
 
-`npm run verify:browser-load` is not an automated gate, but an isolated target-browser smoke check is required before publishing. Run it only in an isolated browser environment where launching Chrome, Edge, or Chromium cannot close active user windows or unsaved work. If that safe environment is not available, leave the release marked as not fully browser-verified instead of running the smoke check on an active workstation. If it is safe to run and a browser is not discoverable, set `DAD_CHROME_PATH` or pass `-BrowserPath` to `scripts/check-unpacked-extension-load.ps1`.
+`npm run verify:browser-load` is not an automated gate, but an isolated target-browser smoke check is required before publishing. Run it only in an isolated browser environment where launching Chrome, Edge, or Chromium cannot close active user windows or unsaved work. The script refuses to launch when browser-management or blocker software such as Cold Turkey is running, unless the operator passes `-AllowBrowserManagementTools` or sets `DAD_ALLOW_BROWSER_LOAD_WITH_BROWSER_MANAGEMENT=1` in a safe disposable environment. If that safe environment is not available, leave the release marked as not fully browser-verified instead of running the smoke check on an active workstation. If it is safe to run and a browser is not discoverable, set `DAD_CHROME_PATH` or pass `-BrowserPath` to `scripts/check-unpacked-extension-load.ps1`.
 
 ## Manual Gates
 

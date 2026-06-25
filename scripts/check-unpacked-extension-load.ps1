@@ -2,7 +2,8 @@ param(
   [string]$ExtensionPath = "",
   [string]$BrowserPath = "",
   [int]$TimeoutSeconds = 10,
-  [switch]$KeepProfile
+  [switch]$KeepProfile,
+  [switch]$AllowBrowserManagementTools
 )
 
 $ErrorActionPreference = "Stop"
@@ -126,6 +127,33 @@ function Get-BrowserExecutable {
   throw "Could not find Chrome, Edge, or Chromium. Set DAD_CHROME_PATH or pass -BrowserPath."
 }
 
+function Get-BrowserManagementProcesses {
+  return @(
+    Get-CimInstance Win32_Process |
+      Where-Object {
+        $processText = "$($_.Name) $($_.CommandLine)"
+        $processText -match "(?i)cold\s*turkey|coldturkey"
+      } |
+      Select-Object ProcessId, Name
+  )
+}
+
+function Assert-BrowserLoadEnvironmentSafe {
+  param([switch]$AllowBrowserManagementTools)
+
+  if ($AllowBrowserManagementTools -or $env:DAD_ALLOW_BROWSER_LOAD_WITH_BROWSER_MANAGEMENT -eq "1") {
+    return
+  }
+
+  $browserManagementProcesses = @(Get-BrowserManagementProcesses)
+  if ($browserManagementProcesses.Count -eq 0) {
+    return
+  }
+
+  $processSummary = ($browserManagementProcesses | ForEach-Object { "$($_.Name)($($_.ProcessId))" }) -join ", "
+  throw "Refusing to run browser-load while browser-management or blocker software is running: $processSummary. Run this check in an isolated browser environment where no active browser windows or unsaved work can be affected. To override only in a safe disposable environment, pass -AllowBrowserManagementTools or set DAD_ALLOW_BROWSER_LOAD_WITH_BROWSER_MANAGEMENT=1."
+}
+
 function New-ArgumentWithPath {
   param(
     [string]$Name,
@@ -229,6 +257,7 @@ if ([string]::IsNullOrWhiteSpace($extensionPathToLoad)) {
 }
 
 $extension = Resolve-ExtensionRoot -RequestedPath $extensionPathToLoad
+Assert-BrowserLoadEnvironmentSafe -AllowBrowserManagementTools:$AllowBrowserManagementTools
 $browser = Get-BrowserExecutable -RequestedPath $BrowserPath
 $profilePath = Join-Path ([System.IO.Path]::GetTempPath()) "dad-unpacked-load-$([System.Guid]::NewGuid().ToString("N"))"
 $profileLeaf = Split-Path -Leaf $profilePath

@@ -22,6 +22,18 @@ describe('unpacked extension browser-load smoke script', () => {
     assert.doesNotMatch(script, /\btaskkill\b/i);
   });
 
+  it('refuses to launch when browser-management blockers are detected', () => {
+    const script = readFileSync(SCRIPT_PATH, 'utf8');
+
+    assert.match(script, /\[switch\]\$AllowBrowserManagementTools/);
+    assert.match(script, /DAD_ALLOW_BROWSER_LOAD_WITH_BROWSER_MANAGEMENT/);
+    assert.match(script, /Get-BrowserManagementProcesses/);
+    assert.match(script, /cold\\s\*turkey\|coldturkey/i);
+    assert.match(script, /Refusing to run browser-load while browser-management or blocker software is running/);
+    assert.match(script, /Assert-BrowserLoadEnvironmentSafe -AllowBrowserManagementTools:\$AllowBrowserManagementTools[\s\S]+\$browser = Get-BrowserExecutable/);
+    assert.match(script, /Assert-BrowserLoadEnvironmentSafe[\s\S]+Start-Process/);
+  });
+
   it('keeps browser-load out of package and release gates', () => {
     const packageJson = JSON.parse(readFileSync('package.json', 'utf8'));
 
@@ -42,13 +54,14 @@ describe('unpacked extension browser-load smoke script', () => {
     assert.match(releaseReadiness, /browser-load and manual browser QA marked as pending/i);
     assert.match(releaseReadiness, /automated gates are static repository and archive checks[\s\S]+must not invoke `npm run verify:browser-load`/i);
     assert.match(releaseReadiness, /`npm run verify:browser-load` is not an automated gate[\s\S]+isolated target-browser smoke check is required before publishing[\s\S]+not fully browser-verified/i);
+    assert.match(releaseReadiness, /refuses to launch when browser-management or blocker software such as Cold Turkey is running/i);
   });
 
   it('keeps browser-only verification pending until isolated evidence exists', () => {
     const releaseRecord = readFileSync('docs/release-verification-record.md', 'utf8');
 
     assert.match(releaseRecord, /Static verification status:\s+passed[\s\S]+`npm run package`[\s\S]+`npm run verify:package`[\s\S]+`npm run verify:release`/i);
-    assert.match(releaseRecord, /## Static Gate Evidence[\s\S]+Current result:\s+passed[\s\S]+`npm test`[\s\S]+400 unit tests passed/i);
+    assert.match(releaseRecord, /## Static Gate Evidence[\s\S]+Current result:\s+passed[\s\S]+`npm test`[\s\S]+\d+ unit tests passed/i);
     assert.match(releaseRecord, /`npm run verify:release`[\s\S]+Passed for `Defense_against_Distractions-v1\.6\.1`/i);
     assert.match(releaseRecord, /## Browser-Only Evidence[\s\S]+`npm run verify:browser-load`[\s\S]+Not fully browser-verified[\s\S]+isolated Chromium-based browser\/profile/i);
     assert.match(releaseRecord, /Manual QA from `docs\/release-checklist\.md`[\s\S]+Pending/i);

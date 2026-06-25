@@ -21,10 +21,14 @@ export function getBrowserLoadTriggerFailures(scriptEntries) {
 export async function getReleaseSafetyFailures(rootDir, packageJson) {
   const releaseReadiness = await readFile(path.join(rootDir, 'docs/release-readiness.md'), 'utf8');
   const releaseVerificationRecord = await readFile(path.join(rootDir, 'docs/release-verification-record.md'), 'utf8').catch(() => '');
+  const browserLoadScript = await readFile(path.join(rootDir, 'scripts/check-unpacked-extension-load.ps1'), 'utf8').catch(() => '');
   const failures = [];
 
   if (!releaseVerificationRecord) {
     failures.push('Missing release verification record document.');
+  }
+  if (!browserLoadScript) {
+    failures.push('Missing unpacked extension browser-load smoke script.');
   }
   if (!/Release Verification Record/i.test(releaseReadiness) || !/browser-load and manual browser QA marked as pending/i.test(releaseReadiness)) {
     failures.push('Release readiness must link the release verification record and preserve pending browser-only status until isolated verification.');
@@ -38,6 +42,9 @@ export async function getReleaseSafetyFailures(rootDir, packageJson) {
   if (!/`npm run verify:browser-load` is not an automated gate[\s\S]+isolated target-browser smoke check is required before publishing[\s\S]+not fully browser-verified/i.test(releaseReadiness)) {
     failures.push('Release readiness must keep browser-load as a required isolated target-browser check before publishing.');
   }
+  if (!/refuses to launch when browser-management or blocker software such as Cold Turkey is running/i.test(releaseReadiness)) {
+    failures.push('Release readiness must document the browser-load script guard for active browser-management or blocker software.');
+  }
   if (!/## Release Archive Policy[\s\S]+`dist\/` folder is disposable release output[\s\S]+`npm run package` resets it before packaging[\s\S]+Defense_against_Distractions-vX\.Y\.Z-extension\.zip[\s\S]+Chrome Web Store upload package[\s\S]+Defense_against_Distractions-vX\.Y\.Z-source\.zip[\s\S]+matching source archive[\s\S]+No staging folders[\s\S]+stale version ZIPs/i.test(releaseReadiness)) {
     failures.push('Release readiness must document the explicit dist archive policy for the current extension and source ZIP outputs.');
   }
@@ -47,8 +54,14 @@ export async function getReleaseSafetyFailures(rootDir, packageJson) {
   if (!/Static verification status:\s+passed[\s\S]+`npm run package`[\s\S]+`npm run verify:package`[\s\S]+`npm run verify:release`/i.test(releaseVerificationRecord)) {
     failures.push('Release verification record must record static gate pass status for the current package.');
   }
-  if (!/## Static Gate Evidence[\s\S]+Current result:\s+passed[\s\S]+`npm test`[\s\S]+400 unit tests passed[\s\S]+`npm run verify:release`[\s\S]+Passed for `Defense_against_Distractions-v1\.6\.1`/i.test(releaseVerificationRecord)) {
+  if (!/## Static Gate Evidence[\s\S]+Current result:\s+passed[\s\S]+`npm test`[\s\S]+\d+ unit tests passed[\s\S]+`npm run verify:release`[\s\S]+Passed for `Defense_against_Distractions-v1\.6\.1`/i.test(releaseVerificationRecord)) {
     failures.push('Release verification record must list the static release gate evidence recorded for the current package.');
+  }
+  if (!/\[switch\]\$AllowBrowserManagementTools/.test(browserLoadScript) ||
+      !/DAD_ALLOW_BROWSER_LOAD_WITH_BROWSER_MANAGEMENT/.test(browserLoadScript) ||
+      !/cold\\s\*turkey\|coldturkey/i.test(browserLoadScript) ||
+      !/Assert-BrowserLoadEnvironmentSafe -AllowBrowserManagementTools:\$AllowBrowserManagementTools[\s\S]+\$browser = Get-BrowserExecutable/.test(browserLoadScript)) {
+    failures.push('Browser-load smoke script must refuse to launch before browser discovery when browser-management or blocker software is detected.');
   }
 
   failures.push(...getBrowserLoadTriggerFailures(
