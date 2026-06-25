@@ -60,14 +60,15 @@ describe('unpacked extension browser-load smoke script', () => {
     assert.match(releaseReadiness, /refuses to launch when browser-management or blocker software such as Cold Turkey is running/i);
   });
 
-  it('keeps browser-only verification pending until isolated evidence exists', () => {
+  it('keeps browser-load command status separate from manual QA evidence', () => {
     const releaseRecord = readFileSync('docs/release-verification-record.md', 'utf8');
 
     assert.match(releaseRecord, /Static verification status:\s+passed[\s\S]+`npm run package`[\s\S]+`npm run verify:package`[\s\S]+`npm run verify:release`/i);
     assert.match(releaseRecord, /## Static Gate Evidence[\s\S]+Current result:\s+passed[\s\S]+`npm test`[\s\S]+\d+ unit tests passed/i);
     assert.match(releaseRecord, /`npm run verify:release`[\s\S]+Passed for `Defense_against_Distractions-v1\.6\.1`/i);
-    assert.match(releaseRecord, /## Browser-Only Evidence[\s\S]+`npm run verify:browser-load`[\s\S]+Not fully browser-verified[\s\S]+isolated Chromium-based browser\/profile/i);
-    assert.match(releaseRecord, /Manual QA from `docs\/release-checklist\.md`[\s\S]+Pending/i);
+    assert.match(releaseRecord, /## Browser-Only Evidence[\s\S]+`npm run verify:browser-load`[\s\S]+Not run[\s\S]+isolated Chromium-based browser\/profile/i);
+    assert.match(releaseRecord, /Manual QA from `docs\/release-checklist\.md`[\s\S]+User-reported pass on 2026-06-25/i);
+    assert.match(releaseRecord, /## Manual QA Evidence[\s\S]+Manual QA result:\s+user reported that manual QA looks working/i);
   });
 
   it('documents the explicit dist archive policy', () => {

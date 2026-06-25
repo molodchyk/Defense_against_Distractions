@@ -8,7 +8,8 @@ It is not a replacement for the release checklist. It is an index for reviewers 
 
 - Static repository, package, locale, store-copy, and release-archive checks are covered by `npm run verify:release` after `npm run package`.
 - Package contents are covered by `npm run verify:package`.
-- The target-browser load check is still a manual isolated check: `npm run verify:browser-load` must only be run in an isolated Chromium-based browser/profile where launching a browser cannot close active user windows or unsaved work.
+- The target-browser behavior has user-reported manual QA evidence recorded in `docs/release-verification-record.md`.
+- The separate `npm run verify:browser-load` command was not run on this active workstation and must only be run in an isolated Chromium-based browser/profile where launching a browser cannot close active user windows or unsaved work.
 
 ## Compliance Matrix
 
@@ -34,4 +35,4 @@ It is not a replacement for the release checklist. It is an index for reviewers 
 
 The shared playbook requires loading the unpacked extension in the target browser before release. That check is intentionally not part of `npm run verify:release`, because launching Chrome on an active workstation can close active browser windows or unsaved work.
 
-Current release status remains "not fully browser-verified" until `npm run verify:browser-load` is run in a safe isolated browser environment, or the same target-browser load behavior is manually verified and recorded.
+Current release status has static gate evidence and user-reported manual target-browser QA recorded. The automated `npm run verify:browser-load` command remains not run on this active workstation and should only be run later in a safe isolated browser environment.

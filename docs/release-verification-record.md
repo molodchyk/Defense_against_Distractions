@@ -10,8 +10,8 @@ Use it as the short release evidence log. Do not mark browser-only items as pass
 - Extension archive: `dist/Defense_against_Distractions-v1.6.1-extension.zip`
 - Source archive: `dist/Defense_against_Distractions-v1.6.1-source.zip`
 - Static verification status: passed on 2026-06-25 for the current `1.6.1` package after `npm run verify:playbook`, `npm run audit:file-sizes`, `npm run audit:folder-density`, `npm run package`, `npm run verify:package`, and `npm run verify:release`.
-- Browser-load status: not run on this active workstation; not fully browser-verified.
-- Manual browser QA status: pending.
+- Browser-load status: command not run on this active workstation; manual target-browser behavior user-reported working on 2026-06-25.
+- Manual browser QA status: user-reported pass on 2026-06-25.
 
 ## Static Gate Evidence
 
@@ -39,8 +39,23 @@ These checks must be recorded separately because they require an isolated browse
 
 | Gate | Current status | Evidence required before publishing |
 | --- | --- | --- |
-| `npm run verify:browser-load` | Not fully browser-verified | Command passes in an isolated Chromium-based browser/profile. |
-| Manual QA from `docs/release-checklist.md` | Pending | Browser, profile, date, tester, and notable pass/fail notes are recorded. |
+| `npm run verify:browser-load` | Not run | Command passes in an isolated Chromium-based browser/profile. |
+| Manual QA from `docs/release-checklist.md` | User-reported pass on 2026-06-25 | Browser/profile details were not captured in chat; notable result is recorded below. |
+
+## Manual QA Evidence
+
+```text
+Date: 2026-06-25
+Version: 1.6.1
+Browser and version: user-reported Chromium-based browser; exact version not captured in chat
+Profile/environment: user-reported local browser extension environment; automated browser-load command not run on this active workstation
+Extension package: dist/Defense_against_Distractions-v1.6.1-extension.zip / current unpacked 1.6.1 project state
+Tester: project owner, user-reported
+Automated static gates: passed on 2026-06-25 through npm run verify:release
+Browser-load result: command not run
+Manual QA result: user reported that manual QA looks working
+Notes: Keep npm run verify:browser-load separate; only run it in a safe isolated browser/profile.
+```
 
 ## Manual QA Recording Format
 

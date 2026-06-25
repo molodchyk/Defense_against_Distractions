@@ -26,7 +26,8 @@ export function getPlaybookComplianceFailures({ claimTraceability, playbookCompl
     /docs\/release-readiness\.md/,
     /docs\/release-checklist\.md/,
     /docs\/release-verification-record\.md/,
-    /not fully browser-verified/i,
+    /user-reported manual target-browser QA/i,
+    /automated `npm run verify:browser-load` command remains not run/i,
     /isolated Chromium-based browser\/profile/i,
     /browser-extension-playbook-requirements\.md/,
     /docs\/claim-traceability\.md/
@@ -56,7 +57,7 @@ export function getPlaybookComplianceFailures({ claimTraceability, playbookCompl
     /File URL, incognito, browser-controlled behavior, reviewer limitations, and package contents are documented/,
     /Release checks validate manifest paths, icons, screenshots, unit tests, package output, stale `dist\/` artifacts, privacy alignment, and store listing footer/,
     /Load the unpacked extension in the target browser before publishing/,
-    /Browser-only pending/,
+    /Manual browser evidence passed/,
     /Run smallest useful checks before reporting completion/
   ]);
   const claimsOk = hasAll(claimTraceability, [
@@ -72,7 +73,7 @@ export function getPlaybookComplianceFailures({ claimTraceability, playbookCompl
     /Runtime ZIP excludes source-only files/,
     /Source ZIP contains reviewer and release evidence/,
     /GPL-3\.0-only/,
-    /browser-load remains pending until isolated verification/,
+    /manual target-browser QA has user-reported pass evidence/,
     /scripts\/check-package-output\.mjs/,
     /scripts\/verify-release\.ps1/,
     /docs\/release-verification-record\.md/

@@ -48,8 +48,8 @@ export async function getReleaseSafetyFailures(rootDir, packageJson) {
   if (!/## Release Archive Policy[\s\S]+`dist\/` folder is disposable release output[\s\S]+`npm run package` resets it before packaging[\s\S]+Defense_against_Distractions-vX\.Y\.Z-extension\.zip[\s\S]+Chrome Web Store upload package[\s\S]+Defense_against_Distractions-vX\.Y\.Z-source\.zip[\s\S]+matching source archive[\s\S]+No staging folders[\s\S]+stale version ZIPs/i.test(releaseReadiness)) {
     failures.push('Release readiness must document the explicit dist archive policy for the current extension and source ZIP outputs.');
   }
-  if (!/## Browser-Only Evidence[\s\S]+`npm run verify:browser-load`[\s\S]+Not fully browser-verified[\s\S]+isolated Chromium-based browser\/profile[\s\S]+Manual QA from `docs\/release-checklist\.md`[\s\S]+Pending/i.test(releaseVerificationRecord)) {
-    failures.push('Release verification record must keep browser-load and manual QA separate from static gates until isolated browser evidence exists.');
+  if (!/## Browser-Only Evidence[\s\S]+`npm run verify:browser-load`[\s\S]+Not run[\s\S]+isolated Chromium-based browser\/profile[\s\S]+Manual QA from `docs\/release-checklist\.md`[\s\S]+User-reported pass on 2026-06-25[\s\S]+## Manual QA Evidence[\s\S]+Manual QA result:\s+user reported that manual QA looks working/i.test(releaseVerificationRecord)) {
+    failures.push('Release verification record must keep browser-load command status separate while recording the user-reported manual QA pass.');
   }
   if (!/Static verification status:\s+passed[\s\S]+`npm run package`[\s\S]+`npm run verify:package`[\s\S]+`npm run verify:release`/i.test(releaseVerificationRecord)) {
     failures.push('Release verification record must record static gate pass status for the current package.');

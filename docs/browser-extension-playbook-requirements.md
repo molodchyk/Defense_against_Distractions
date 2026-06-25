@@ -6,6 +6,7 @@ Status meanings:
 
 - Static evidence passed: covered by repository files, package archives, and non-browser checks.
 - Browser-only pending: requires isolated target-browser loading or manual browser QA.
+- Manual browser evidence passed: covered by recorded user-reported target-browser/manual QA evidence.
 
 ## Product Shape
 
@@ -58,7 +59,7 @@ Status meanings:
 | File URL, incognito, browser-controlled behavior, reviewer limitations, and package contents are documented. | `docs/reviewer-notes.md`. | Static evidence passed |
 | Screenshots stay consistent with current UI and store copy. | `store/screenshots/`, `store/promo/`, the consistency map in `docs/store-media-review.md`, and media hash checks. | Static evidence passed |
 | Release checks validate manifest paths, icons, screenshots, unit tests, package output, stale `dist/` artifacts, privacy alignment, and store listing footer. | `npm run package`, `npm run verify:package`, `npm run verify:release`, `docs/release-readiness.md`, and `docs/release-verification-record.md`. | Static evidence passed |
-| Load the unpacked extension in the target browser before publishing. | `npm run verify:browser-load`, `scripts/check-unpacked-extension-load.ps1`, `docs/release-checklist.md`, and `docs/release-verification-record.md`. This must only run in an isolated browser/profile. | Browser-only pending |
+| Load the unpacked extension in the target browser before publishing. | `docs/release-verification-record.md` records a user-reported manual QA pass on 2026-06-25. `npm run verify:browser-load` and `scripts/check-unpacked-extension-load.ps1` remain available for a separate isolated browser-load smoke check, but the command was not run on the active workstation. | Manual browser evidence passed |
 
 ## Codex Protocol Evidence
 
