@@ -62,6 +62,8 @@ export function getReleaseDocumentationFailures({
     /check-static-localization\.mjs/,
     /check-package-output\.mjs/,
     /content-script-load-order\.md/,
+    /browser-extension-playbook-compliance\.md/,
+    /release-verification-record\.md/,
     /manifestAudit\.mjs/,
     /"assets\/", "docs\/", "store\/", "test\/", "_locales\/", "scripts\/", "src\/"/
   ])) {
