@@ -30,7 +30,10 @@ describe('unpacked extension browser-load smoke script', () => {
     assert.match(script, /Get-BrowserManagementProcesses/);
     assert.match(script, /cold\\s\*turkey\|coldturkey/i);
     assert.match(script, /Refusing to run browser-load while browser-management or blocker software is running/);
+    assert.match(script, /Assert-BrowserLoadEnvironmentSafe -AllowBrowserManagementTools:\$AllowBrowserManagementTools[\s\S]+\$extensionPathToLoad = \$ExtensionPath/);
+    assert.match(script, /Assert-BrowserLoadEnvironmentSafe -AllowBrowserManagementTools:\$AllowBrowserManagementTools[\s\S]+Expand-Archive/);
     assert.match(script, /Assert-BrowserLoadEnvironmentSafe -AllowBrowserManagementTools:\$AllowBrowserManagementTools[\s\S]+\$browser = Get-BrowserExecutable/);
+    assert.match(script, /Assert-BrowserLoadEnvironmentSafe -AllowBrowserManagementTools:\$AllowBrowserManagementTools[\s\S]+New-Item -ItemType Directory -Force -Path \$profilePath/);
     assert.match(script, /Assert-BrowserLoadEnvironmentSafe[\s\S]+Start-Process/);
   });
 

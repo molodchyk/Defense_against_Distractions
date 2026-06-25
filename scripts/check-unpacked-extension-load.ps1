@@ -234,6 +234,8 @@ function Remove-TemporaryProfile {
   throw $lastError
 }
 
+Assert-BrowserLoadEnvironmentSafe -AllowBrowserManagementTools:$AllowBrowserManagementTools
+
 $extensionPathToLoad = $ExtensionPath
 $temporaryExtensionPath = ""
 
@@ -257,7 +259,6 @@ if ([string]::IsNullOrWhiteSpace($extensionPathToLoad)) {
 }
 
 $extension = Resolve-ExtensionRoot -RequestedPath $extensionPathToLoad
-Assert-BrowserLoadEnvironmentSafe -AllowBrowserManagementTools:$AllowBrowserManagementTools
 $browser = Get-BrowserExecutable -RequestedPath $BrowserPath
 $profilePath = Join-Path ([System.IO.Path]::GetTempPath()) "dad-unpacked-load-$([System.Guid]::NewGuid().ToString("N"))"
 $profileLeaf = Split-Path -Leaf $profilePath

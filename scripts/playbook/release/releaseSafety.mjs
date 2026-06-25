@@ -60,8 +60,11 @@ export async function getReleaseSafetyFailures(rootDir, packageJson) {
   if (!/\[switch\]\$AllowBrowserManagementTools/.test(browserLoadScript) ||
       !/DAD_ALLOW_BROWSER_LOAD_WITH_BROWSER_MANAGEMENT/.test(browserLoadScript) ||
       !/cold\\s\*turkey\|coldturkey/i.test(browserLoadScript) ||
-      !/Assert-BrowserLoadEnvironmentSafe -AllowBrowserManagementTools:\$AllowBrowserManagementTools[\s\S]+\$browser = Get-BrowserExecutable/.test(browserLoadScript)) {
-    failures.push('Browser-load smoke script must refuse to launch before browser discovery when browser-management or blocker software is detected.');
+      !/Assert-BrowserLoadEnvironmentSafe -AllowBrowserManagementTools:\$AllowBrowserManagementTools[\s\S]+\$extensionPathToLoad = \$ExtensionPath/.test(browserLoadScript) ||
+      !/Assert-BrowserLoadEnvironmentSafe -AllowBrowserManagementTools:\$AllowBrowserManagementTools[\s\S]+Expand-Archive/.test(browserLoadScript) ||
+      !/Assert-BrowserLoadEnvironmentSafe -AllowBrowserManagementTools:\$AllowBrowserManagementTools[\s\S]+\$browser = Get-BrowserExecutable/.test(browserLoadScript) ||
+      !/Assert-BrowserLoadEnvironmentSafe -AllowBrowserManagementTools:\$AllowBrowserManagementTools[\s\S]+Start-Process/.test(browserLoadScript)) {
+    failures.push('Browser-load smoke script must refuse before extension extraction, browser discovery, and browser launch when browser-management or blocker software is detected.');
   }
 
   failures.push(...getBrowserLoadTriggerFailures(
