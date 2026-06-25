@@ -9,19 +9,19 @@ Use it as the short release evidence log. Do not mark browser-only items as pass
 - Version: `1.6.1`
 - Extension archive: `dist/Defense_against_Distractions-v1.6.1-extension.zip`
 - Source archive: `dist/Defense_against_Distractions-v1.6.1-source.zip`
-- Static verification status: passed on 2026-06-22 for the current `1.6.1` package after `npm run package`, `npm run verify:package`, and `npm run verify:release`.
-- Browser-load status: not fully browser-verified.
+- Static verification status: passed on 2026-06-25 for the current `1.6.1` package after `npm run verify:playbook`, `npm run audit:file-sizes`, `npm run audit:folder-density`, `npm run package`, `npm run verify:package`, and `npm run verify:release`.
+- Browser-load status: not run on this active workstation; not fully browser-verified.
 - Manual browser QA status: pending.
 
 ## Static Gate Evidence
 
-Current result: passed on 2026-06-22 for version `1.6.1`.
+Current result: passed on 2026-06-25 for version `1.6.1`.
 
 Commands run from the repository root:
 
 | Gate | Recorded evidence |
 | --- | --- |
-| `npm test` | Covered by `npm run verify:release`; 400 unit tests passed. |
+| `npm test` | Covered by `npm run verify:release`; 400 unit tests passed on 2026-06-25. |
 | `npm run verify:manifest` | Covered by `npm run verify:release`; manifest-referenced paths exist. |
 | `npm run verify:imports` | Covered by `npm run verify:release`; relative source imports resolve. |
 | `npm run verify:locales` | Covered by `npm run verify:release`; 68 locales match the English message keys. |
@@ -31,7 +31,7 @@ Commands run from the repository root:
 | `npm run audit:folder-density` | Passed directly and through `npm run verify:release`; no folders exceed documented budgets. |
 | `npm run package` | Generated the current extension and source ZIPs in `dist/`. |
 | `npm run verify:package` | Passed directly and through `npm run verify:release`; 337 packaged runtime files scanned and 76 manifest references verified. |
-| `npm run verify:release` | Passed for `Defense_against_Distractions-v1.6.1`. |
+| `npm run verify:release` | Passed for `Defense_against_Distractions-v1.6.1` on 2026-06-25. |
 
 ## Browser-Only Evidence
 
