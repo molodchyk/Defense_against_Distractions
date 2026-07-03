@@ -19,6 +19,7 @@ import {
 } from '../pageSignalsPanel.js';
 import {
   applySelectedTextQuickAdd,
+  getDefaultQuickAddGroupId,
   getDefaultQuickAddTarget,
   normalizeQuickAddScore,
   quickAddGroupMatchesUrl,
@@ -94,13 +95,14 @@ export function createSelectedTextQuickAddPanel({
       return;
     }
 
+    const selectedPlanDefaultGroupId = getDefaultQuickAddGroupId(selectedPlan, latestActiveTab?.url || '');
     const groupExists = selectedPlan.groups.some(group => group.id === selectedGroupId);
     if (!groupExists && selectedGroupId !== QUICK_ADD_CREATE_ENTRY_VALUE) {
-      selectedGroupId = target.planId === selectedPlan.id ? target.groupId : QUICK_ADD_CREATE_ENTRY_VALUE;
+      selectedGroupId = selectedPlanDefaultGroupId;
     }
 
     if (!selectedGroupId) {
-      selectedGroupId = target.planId === selectedPlan.id ? target.groupId : QUICK_ADD_CREATE_ENTRY_VALUE;
+      selectedGroupId = selectedPlanDefaultGroupId;
     }
   }
 

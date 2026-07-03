@@ -61,11 +61,16 @@ export function getDefaultQuickAddTarget(plans = [], url = '', now = new Date())
     };
   }
 
-  const preferredGroup = preferredPlan.groups.find(group => quickAddGroupMatchesUrl(group, url));
   return {
     planId: preferredPlan.id,
-    groupId: preferredGroup?.id || QUICK_ADD_CREATE_ENTRY_VALUE
+    groupId: getDefaultQuickAddGroupId(preferredPlan, url)
   };
+}
+
+export function getDefaultQuickAddGroupId(plan = null, url = '') {
+  const normalizedPlan = normalizePlan(plan || {});
+  const preferredGroup = normalizedPlan.groups.find(group => quickAddGroupMatchesUrl(group, url));
+  return preferredGroup?.id || QUICK_ADD_CREATE_ENTRY_VALUE;
 }
 
 export function formatQuickAddKeywordLine(candidate = null, score = null) {

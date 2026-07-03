@@ -198,7 +198,7 @@ If the later right-click context-menu variant adds `contextMenus`, update the ma
 - Implemented: saved quick-add rules use the same protected-schedule strictness comparator as plan editing before storage writes.
 - `hideImages` and `disableControls` presets compile to the existing reversible, capped, scoped UI cleanup actions.
 - The feature works without adding `contextMenus` unless the right-click variant is explicitly chosen.
-- Partly implemented tests: candidate normalization, editable-field flagging, score estimation, invalid-selection rejection, text caps, snapshot inclusion, popup display formatting, keyword-editor copy formatting, quick-add keyword-line formatting, default target selection, current-host entry creation, duplicate/raise behavior, and popup markup are covered. Action preset compilation remains for the action UI slice.
+- Partly implemented tests: candidate normalization, editable-field flagging, score estimation, invalid-selection rejection, text caps, snapshot inclusion, popup display formatting, keyword-editor copy formatting, quick-add keyword-line formatting, default target selection, selected-plan current-site entry selection, current-host entry creation, duplicate/raise behavior, protected-schedule strictness compatibility, and popup markup are covered. Action preset compilation remains for the action UI slice.
 
 ## Open Questions
 

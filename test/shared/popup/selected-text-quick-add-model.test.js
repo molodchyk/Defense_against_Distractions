@@ -7,11 +7,15 @@ import {
   QUICK_ADD_CREATE_ENTRY_VALUE,
   applySelectedTextQuickAdd,
   formatQuickAddKeywordLine,
+  getDefaultQuickAddGroupId,
   getDefaultQuickAddTarget,
   getQuickAddHostPattern,
   normalizeQuickAddScore,
   upsertQuickAddKeyword
 } from '../../../src/js/popup/quick-add/selectedTextQuickAddModel.js';
+import {
+  isPlanChangeAllowedDuringProtectedSchedule
+} from '../../../src/js/shared/plans.js';
 
 const ACTIVE_NOW = new Date('2026-07-03T12:00:00Z');
 
@@ -61,6 +65,29 @@ describe('selected text quick-add model', () => {
       planId: 'default',
       groupId: 'entry_matching'
     });
+  });
+
+  it('picks the current-page entry inside the user-selected plan', () => {
+    const secondPlan = basePlan({
+      id: 'second',
+      name: 'Second plan',
+      groups: [{
+        id: 'second_matching',
+        groupName: 'Second matching',
+        websites: ['mail.google.com'],
+        keywords: []
+      }]
+    });
+
+    assert.deepEqual(getDefaultQuickAddTarget(
+      [basePlan(), secondPlan],
+      'https://mail.google.com/mail/u/0/#inbox',
+      ACTIVE_NOW
+    ), {
+      planId: 'default',
+      groupId: 'entry_matching'
+    });
+    assert.equal(getDefaultQuickAddGroupId(secondPlan, 'https://mail.google.com/mail/u/0/#inbox'), 'second_matching');
   });
 
   it('appends a selected text keyword to an existing matching entry', () => {
@@ -122,5 +149,42 @@ describe('selected text quick-add model', () => {
       keywords: ['Rama Aurora, *, 2'],
       reason: 'alreadyCovered'
     });
+  });
+
+  it('produces stricter plan changes accepted by the protected-schedule comparator', () => {
+    const originalPlan = basePlan();
+    const added = applySelectedTextQuickAdd([originalPlan], {
+      planId: 'default',
+      groupId: 'entry_matching',
+      candidate: { text: 'Rama Aurora', estimatedScore100: 36 },
+      score: 36,
+      url: 'https://mail.google.com/mail/u/0/#inbox',
+      now: ACTIVE_NOW
+    });
+    const raised = applySelectedTextQuickAdd([basePlan({
+      groups: [{
+        id: 'entry_matching',
+        groupName: 'Matching',
+        websites: ['mail.google.com'],
+        keywords: ['Rama Aurora, 20/100']
+      }]
+    })], {
+      planId: 'default',
+      groupId: 'entry_matching',
+      candidate: { text: 'Rama Aurora', estimatedScore100: 60 },
+      score: 60,
+      url: 'https://mail.google.com/mail/u/0/#inbox',
+      now: ACTIVE_NOW
+    });
+
+    assert.equal(isPlanChangeAllowedDuringProtectedSchedule(originalPlan, added.plan), true);
+    assert.equal(isPlanChangeAllowedDuringProtectedSchedule(basePlan({
+      groups: [{
+        id: 'entry_matching',
+        groupName: 'Matching',
+        websites: ['mail.google.com'],
+        keywords: ['Rama Aurora, 20/100']
+      }]
+    }), raised.plan), true);
   });
 });
