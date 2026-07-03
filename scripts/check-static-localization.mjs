@@ -4,6 +4,7 @@
 import { readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
+import { getDataI18nAttributeFailures } from './static-localization/htmlAttributes.mjs';
 
 const rootDir = process.cwd();
 const htmlFiles = [
@@ -226,7 +227,11 @@ function isLocalizedAttribute({ file, attributes, attributeName, id, config }) {
   return Boolean(id && config.localizedAttributeIdsByFile.get(file)?.has(id));
 }
 
-function scanHtmlFile(file, html, config) {
+function scanDataI18nAttributes(file, tagName, attributes, englishMessages) {
+  failures.push(...getDataI18nAttributeFailures({ file, tagName, attributes, englishMessages }));
+}
+
+function scanHtmlFile(file, html, config, englishMessages) {
   const cleanedHtml = stripHtmlComments(html);
   const textPattern = /<([a-z][\w:-]*)([^>]*)>([^<]*[A-Za-z][^<]*)</gi;
   const tagPattern = /<([a-z][\w:-]*)([^>]*)>/gi;
@@ -247,6 +252,7 @@ function scanHtmlFile(file, html, config) {
   for (const match of cleanedHtml.matchAll(tagPattern)) {
     const [, tagName, attributes] = match;
     const id = getAttribute(attributes, 'id');
+    scanDataI18nAttributes(file, tagName, attributes, englishMessages);
     for (const attributeName of checkedAttributes) {
       const value = normalizeText(getAttribute(attributes, attributeName));
       if (!value || !/[A-Za-z]/.test(value) || /^__MSG_[A-Za-z0-9_]+__$/.test(value)) {
@@ -380,7 +386,7 @@ for (const messageKey of config.referencedMessageKeys) {
   }
 }
 
-htmlFiles.forEach((file, index) => scanHtmlFile(file, htmlTexts[index], config));
+htmlFiles.forEach((file, index) => scanHtmlFile(file, htmlTexts[index], config, englishMessages));
 await scanOptionsSourceFiles();
 await scanFallbackMessageMaps(englishMessages);
 await scanElementRuleSourceFiles(englishMessages);
