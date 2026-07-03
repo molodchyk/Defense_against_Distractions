@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
-import { extractSection } from './registry.mjs';
+import { countBullets, extractSection } from './registry.mjs';
 
 export const requiredResearchBriefSections = [
   'Question ID',
@@ -12,6 +12,7 @@ export const requiredResearchBriefSections = [
   'Scope',
   'Evidence Needed',
   'Novelty Target',
+  'Novelty Proof Obligations',
   'Product Decisions This Could Change',
   'Privacy Risks',
   'Autonomy Risks',
@@ -63,6 +64,14 @@ export function getResearchBriefFailures({
       } else if (body.trim().length === 0) {
         failures.push(`Research brief ${brief.file} has an empty required section: ${section}.`);
       }
+    }
+
+    const noveltyProofSection = extractSection(brief.text, 'Novelty Proof Obligations');
+    const noveltyProofBulletCount = countBullets(noveltyProofSection);
+    if (noveltyProofSection !== null && noveltyProofBulletCount < 3) {
+      failures.push(
+        `Research brief ${brief.file} needs at least 3 novelty proof obligation bullets; found ${noveltyProofBulletCount}.`
+      );
     }
 
     const questionIdSection = extractSection(brief.text, 'Question ID') || '';

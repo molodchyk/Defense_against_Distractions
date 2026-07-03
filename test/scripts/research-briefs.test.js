@@ -36,7 +36,7 @@ describe('research brief checks', () => {
     const questionRows = await readCurrentQuestionRows();
     const weakenedBrief = {
       ...briefs[0],
-      text: briefs[0].text.replace(/\n## Novelty Target[\s\S]*?(?=\n## Product Decisions This Could Change)/, '')
+      text: briefs[0].text.replace(/\n## Novelty Target[\s\S]*?(?=\n## Novelty Proof Obligations)/, '')
     };
 
     assert.deepEqual(getResearchBriefFailures({
@@ -44,6 +44,24 @@ describe('research brief checks', () => {
       questionRows,
       statusesRequiringBrief: new Set()
     }), [`Research brief ${briefs[0].file} is missing required section: Novelty Target.`]);
+  });
+
+  it('rejects research briefs with placeholder novelty proof obligations', async () => {
+    const briefs = await readCurrentResearchBriefs();
+    const questionRows = await readCurrentQuestionRows();
+    const weakenedBrief = {
+      ...briefs[0],
+      text: briefs[0].text.replace(
+        /\n## Novelty Proof Obligations[\s\S]*?(?=\n## Product Decisions This Could Change)/,
+        '\n## Novelty Proof Obligations\n\n- Find something novel.\n'
+      )
+    };
+
+    assert.deepEqual(getResearchBriefFailures({
+      briefs: [weakenedBrief],
+      questionRows,
+      statusesRequiringBrief: new Set()
+    }), [`Research brief ${briefs[0].file} needs at least 3 novelty proof obligation bullets; found 1.`]);
   });
 
   it('rejects research briefs for unknown research questions', async () => {

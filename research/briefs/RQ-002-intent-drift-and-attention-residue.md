@@ -63,6 +63,12 @@ Excluded:
 
 This pass should surface mechanisms and numbers that change the intent system, not generic warnings about distraction. Useful findings include measured resumption delays, interruption-lag effects, when external reminders reduce versus increase cognitive load, whether graph-like representations improve recovery, which media-multitasking findings are causal versus correlational, and boundary cases where low topical similarity is legitimate exploration.
 
+## Novelty Proof Obligations
+
+- Identify measured resumption, interruption-lag, or revisit-recovery effects that justify a specific Return, Continue, Isolate, or Show graph behavior.
+- Separate causal mechanisms from correlations for media multitasking and passive browsing so scoring weights do not inherit popular myths.
+- Find boundary conditions where low similarity is legitimate work, such as orienteering, exploratory search, external memory use, or delayed task resumption.
+
 ## Product Decisions This Could Change
 
 - Whether Return should be a primary action.

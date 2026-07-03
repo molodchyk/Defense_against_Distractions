@@ -63,6 +63,12 @@ Excluded:
 
 This pass should produce design-relevant reactance detail rather than "avoid shame." Useful findings include effect sizes or moderators for freedom-threatening language, whether choice framing changes compliance under restriction, when autonomy support preserves enforcement legitimacy, how users bypass or abandon digital self-control tools, and which escape-valve designs reduce hostility without making the commitment meaningless.
 
+## Novelty Proof Obligations
+
+- Identify measured moderators of reactance, compliance, abandonment, or bypass behavior under restrictive digital self-control tools.
+- Distinguish autonomy-supportive enforcement from weaker enforcement, including cases where stronger restrictions work better but need legitimacy scaffolding.
+- Convert evidence into concrete intervention contracts, such as explanation requirements, bounded choices, queued relaxation, emergency escape, or hard-lock limits.
+
 ## Product Decisions This Could Change
 
 - Whether DaD uses hard blocks or delayed relaxation in different states.

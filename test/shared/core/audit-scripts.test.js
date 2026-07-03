@@ -183,6 +183,12 @@ Excluded:
 
 Fixture novelty target.
 
+## Novelty Proof Obligations
+
+- Fixture measured result.
+- Fixture non-obvious mechanism.
+- Fixture product decision change.
+
 ## Product Decisions This Could Change
 
 - Fixture decision.

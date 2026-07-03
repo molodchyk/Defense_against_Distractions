@@ -52,6 +52,12 @@ Examples:
 - effect sizes;
 - design implications we would not infer ourselves.
 
+## Novelty Proof Obligations
+
+- Which measured result, mechanism, contradiction, or boundary condition would change DaD?
+- Which implementation assumption could be falsified by the literature?
+- Which local metric or product decision would be different if the evidence is strong?
+
 ## Product Decisions This Could Change
 
 - Decision 1.

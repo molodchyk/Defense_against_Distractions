@@ -59,6 +59,12 @@ Excluded:
 
 This pass should find information that changes lock policy beyond "commitment can help." Useful findings include measured commitment take-up rates, abandonment or non-use rates, penalty-size effects, deadline-miscalibration effects, who benefits from hard versus soft commitment, how people behave when escape remains possible, and cases where public strictness or overcommitment makes outcomes worse.
 
+## Novelty Proof Obligations
+
+- Identify measured take-up, abandonment, completion, or welfare differences for hard commitments versus soft/default commitments.
+- Find at least one boundary condition where stricter commitment backfires, such as miscalibrated deadlines, penalty avoidance, overcommitment, or public strictness distortion.
+- Translate the evidence into a lock-policy rule DaD would not infer from intuition alone, such as delayed relaxation, emergency escape, temporary weakening, or stricter-only edit boundaries.
+
 ## Product Decisions This Could Change
 
 - Which edits are allowed during locked schedules.
