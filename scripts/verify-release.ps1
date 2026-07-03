@@ -397,6 +397,7 @@ $requiredSourceEntries = @(
   "scripts/playbook/storeAutomation.mjs",
   "scripts/playbook/storeMediaReview.mjs",
   "scripts/playbook-utils.mjs",
+  "scripts/research/evidence.mjs",
   "scripts/research/registry.mjs",
   "scripts/verify-package-output.ps1",
   "scripts/verify-release.ps1",

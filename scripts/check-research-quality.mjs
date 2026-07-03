@@ -1,9 +1,10 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
-import { access, readFile } from 'node:fs/promises';
+import { access, readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
+import { getEvidenceCardFailures } from './research/evidence.mjs';
 import {
   countBullets,
   countTableDataRows,
@@ -51,6 +52,25 @@ async function exists(relativePath) {
   } catch {
     return false;
   }
+}
+
+async function readEvidenceCards() {
+  const evidenceDir = path.join(rootDir, 'research', 'evidence');
+  if (!(await exists(path.join('research', 'evidence')))) return [];
+
+  const entries = await readdir(evidenceDir, { withFileTypes: true });
+  const cards = [];
+  for (const entry of entries.sort((left, right) => left.name.localeCompare(right.name))) {
+    if (!entry.isFile() || !entry.name.endsWith('.md')) continue;
+    if (entry.name === 'README.md') continue;
+    const relativePath = path.join('research', 'evidence', entry.name);
+    cards.push({
+      file: relativePath.replaceAll('\\', '/'),
+      text: await readText(relativePath)
+    });
+  }
+
+  return cards;
 }
 
 async function verifyAnsweredQuestion(id, answerPath) {
@@ -110,18 +130,21 @@ const questionsText = await readText(questionsPath);
 failures.push(...getResearchRegistryFailures(questionsText));
 const questionRows = parseQuestionRows(questionsText);
 const answerLinks = parseAnswerLinks(questionsText);
+const linkedQuestionIds = new Set();
 let answeredCount = 0;
 let revisitCount = 0;
 
 for (const [id, row] of questionRows.entries()) {
   if (qualityCheckedStatuses.has(row.status)) {
     answeredCount += 1;
+    linkedQuestionIds.add(id);
     assertCondition(answerLinks.has(id), `${id} has status ${row.status} in the registry but has no answer link.`);
     if (answerLinks.has(id)) {
       await verifyAnsweredQuestion(id, answerLinks.get(id));
     }
   } else if (revisitStatuses.has(row.status)) {
     revisitCount += 1;
+    linkedQuestionIds.add(id);
     assertCondition(answerLinks.has(id), `${id} has status ${row.status} in the registry but has no revisit answer link.`);
     if (answerLinks.has(id)) {
       await verifyRevisitQuestion(id, answerLinks.get(id));
@@ -131,6 +154,11 @@ for (const [id, row] of questionRows.entries()) {
   }
 }
 
+failures.push(...getEvidenceCardFailures({
+  evidenceCards: await readEvidenceCards(),
+  linkedQuestionIds,
+  questionRows
+}));
 assertCondition(answeredCount > 0, 'Research registry has no answered or implemented questions to verify.');
 
 if (failures.length) {

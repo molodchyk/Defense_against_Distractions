@@ -132,6 +132,63 @@ Revisit required. This answer is useful as a draft, but it is not finished produ
 `;
 }
 
+function buildEvidenceCard(id, suffix = 'fixture') {
+  return `# Evidence Card
+
+## Source
+
+Citation: Fixture source for ${id} ${suffix}.
+
+Link:
+
+DOI:
+
+## Source Type
+
+- primary study
+
+## Research Context
+
+Fixture context.
+
+## Main Finding
+
+Fixture finding.
+
+## Empirical Detail
+
+- Fixture empirical detail.
+
+## Non-Obvious Mechanism
+
+Fixture mechanism.
+
+## Limitations
+
+Fixture limitation.
+
+## Evidence Grade
+
+moderate
+
+## Relevance To DaD
+
+Fixture relevance.
+
+## Design Consequence
+
+Fixture consequence.
+
+## What Changes
+
+Fixture design assumption changes.
+
+## Notes
+
+Fixture note.
+`;
+}
+
 describe('audit scripts', () => {
   it('reports file-size audit scope and budget coverage', () => {
     const output = runNodeScript('scripts/audit-file-sizes.mjs');
@@ -209,6 +266,9 @@ describe('audit scripts', () => {
 | RQ-002 | Not started |
 `);
       await writeText(projectRoot, 'research/answers/RQ-001-fixture.md', buildResearchAnswer('RQ-001'));
+      for (const suffix of ['a', 'b', 'c']) {
+        await writeText(projectRoot, `research/evidence/RQ-001-${suffix}.md`, buildEvidenceCard('RQ-001', suffix));
+      }
 
       const output = runNodeScriptInCwd('scripts/check-research-quality.mjs', projectRoot);
 
@@ -247,6 +307,11 @@ describe('audit scripts', () => {
 `);
       await writeText(projectRoot, 'research/answers/RQ-001-revisit.md', buildRevisitResearchAnswer('RQ-001'));
       await writeText(projectRoot, 'research/answers/RQ-002-fixture.md', buildResearchAnswer('RQ-002'));
+      for (const id of ['RQ-001', 'RQ-002']) {
+        for (const suffix of ['a', 'b', 'c']) {
+          await writeText(projectRoot, `research/evidence/${id}-${suffix}.md`, buildEvidenceCard(id, suffix));
+        }
+      }
 
       const output = runNodeScriptInCwd('scripts/check-research-quality.mjs', projectRoot);
 
