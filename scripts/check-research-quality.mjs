@@ -4,6 +4,14 @@
 import { access, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
+import {
+  countBullets,
+  countTableDataRows,
+  extractSection,
+  getResearchRegistryFailures,
+  parseAnswerLinks,
+  parseQuestionRows
+} from './research/registry.mjs';
 
 const rootDir = process.cwd();
 const failures = [];
@@ -43,81 +51,6 @@ async function exists(relativePath) {
   } catch {
     return false;
   }
-}
-
-function parseMarkdownTableCells(line) {
-  const trimmed = line.trim();
-  if (!trimmed.startsWith('|') || !trimmed.endsWith('|')) return null;
-
-  return trimmed
-    .slice(1, -1)
-    .split('|')
-    .map((cell) => cell.trim());
-}
-
-function extractSection(text, heading) {
-  const pattern = new RegExp(`^## ${heading.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s*$`, 'm');
-  const match = pattern.exec(text);
-  if (!match) return null;
-
-  const start = match.index + match[0].length;
-  const rest = text.slice(start);
-  const nextHeading = /\n## [^\n]+\n/.exec(rest);
-  return (nextHeading ? rest.slice(0, nextHeading.index) : rest).trim();
-}
-
-function countTableDataRows(section) {
-  if (!section) return 0;
-
-  const rows = section
-    .split(/\r?\n/)
-    .map(parseMarkdownTableCells)
-    .filter(Boolean)
-    .filter((cells) => cells.length >= 4);
-  const separatorIndex = rows.findIndex((cells) => cells.every((cell) => /^:?-{3,}:?$/.test(cell)));
-
-  if (separatorIndex === -1) return 0;
-  return rows.slice(separatorIndex + 1).length;
-}
-
-function countBullets(section) {
-  if (!section) return 0;
-  return section.split(/\r?\n/).filter((line) => /^\s*-\s+\S/.test(line)).length;
-}
-
-function parseQuestionRows(questionsText) {
-  const rows = new Map();
-  const questionsSection = extractSection(questionsText, 'Questions') || '';
-
-  for (const line of questionsSection.split(/\r?\n/)) {
-    const cells = parseMarkdownTableCells(line);
-    if (!cells || !/^RQ-\d{3}$/.test(cells[0]) || cells.length < 7) continue;
-
-    rows.set(cells[0], {
-      area: cells[3],
-      expectedOutput: cells[6],
-      status: cells[1]
-    });
-  }
-
-  return rows;
-}
-
-function parseAnswerLinks(questionsText) {
-  const links = new Map();
-  const answerSection = extractSection(questionsText, 'Answer Linking') || '';
-
-  for (const line of answerSection.split(/\r?\n/)) {
-    const cells = parseMarkdownTableCells(line);
-    if (!cells || !/^RQ-\d{3}$/.test(cells[0]) || cells.length !== 2) continue;
-
-    const linkMatch = /\]\((answers\/[^)]+\.md)\)/.exec(cells[1]);
-    if (linkMatch) {
-      links.set(cells[0], linkMatch[1]);
-    }
-  }
-
-  return links;
 }
 
 async function verifyAnsweredQuestion(id, answerPath) {
@@ -174,6 +107,7 @@ async function verifyRevisitQuestion(id, answerPath) {
 }
 
 const questionsText = await readText(questionsPath);
+failures.push(...getResearchRegistryFailures(questionsText));
 const questionRows = parseQuestionRows(questionsText);
 const answerLinks = parseAnswerLinks(questionsText);
 let answeredCount = 0;

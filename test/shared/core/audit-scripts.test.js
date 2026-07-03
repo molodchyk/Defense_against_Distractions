@@ -190,6 +190,10 @@ describe('audit scripts', () => {
     try {
       await writeText(projectRoot, 'research/questions.md', `# DaD Research Question Registry
 
+## Recommended First Sequence
+
+1. \`RQ-001\`: fixture implemented question.
+
 ## Questions
 
 | ID | Status | Priority | Area | Research Question | Why DaD Needs It | Expected Output |
@@ -219,6 +223,11 @@ describe('audit scripts', () => {
 
     try {
       await writeText(projectRoot, 'research/questions.md', `# DaD Research Question Registry
+
+## Recommended First Sequence
+
+1. \`RQ-001\`: fixture revisit question.
+2. \`RQ-002\`: fixture answered question.
 
 ## Questions
 
