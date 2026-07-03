@@ -6,6 +6,7 @@ import { readFileSync } from 'node:fs';
 import { describe, it } from 'node:test';
 import {
   chromeWebStoreFieldLimit,
+  manifestPermissions,
   privacyCertificationKeys,
   privacyDataUsageKeys,
   repositoryUrl,
@@ -18,6 +19,9 @@ const ADDITIONAL_FIELDS_PATH = 'docs/chrome-web-store-additional-fields.md';
 const CATEGORY_PATH = 'docs/chrome-web-store-category.md';
 const STOREPILOT_INDEX_PATH = 'docs/storepilot-automation.md';
 const RELEASE_CHECKLIST_PATH = 'docs/release-checklist.md';
+const PERMISSION_AUDIT_PATH = 'docs/permission-audit.md';
+const PRIVACY_PATH = 'PRIVACY.md';
+const SELECTED_TEXT_QUICK_ADD_PATH = 'docs/selected-text-quick-add.md';
 const MANIFEST_PATH = 'manifest.json';
 
 describe('Chrome Web Store privacy form', () => {
@@ -60,6 +64,37 @@ describe('Chrome Web Store privacy form', () => {
     for (const key of privacyCertificationKeys) {
       assert.equal(fields.get(key), 'yes', `${key} should be yes`);
     }
+  });
+
+  it('keeps manifest permissions synchronized across audited release surfaces', () => {
+    const privacyForm = readFileSync(PRIVACY_FORM_PATH, 'utf8');
+    const privacyFields = parseKeyedBlock(privacyForm, 'privacy');
+    const manifest = JSON.parse(readFileSync(MANIFEST_PATH, 'utf8'));
+    const permissionAudit = readFileSync(PERMISSION_AUDIT_PATH, 'utf8');
+    const privacyPolicy = readFileSync(PRIVACY_PATH, 'utf8');
+    const storePilotIndex = readFileSync(STOREPILOT_INDEX_PATH, 'utf8');
+    const selectedTextQuickAdd = readFileSync(SELECTED_TEXT_QUICK_ADD_PATH, 'utf8');
+
+    const currentPermissionAuditSection = permissionAudit.match(/## Current Manifest Permissions([\s\S]*?)\n## Host Access Through Content Scripts/)?.[1] || '';
+    const permissionAuditHeadings = [...currentPermissionAuditSection.matchAll(/^### `([^`]+)`$/gm)].map(match => match[1]);
+    const privacyPermissionBullets = [...privacyPolicy.matchAll(/^- `([^`]+)`: /gm)].map(match => match[1]);
+    const storePilotPermissionKeys = [...storePilotIndex.matchAll(/^- `permission\.([^`]+)`$/gm)].map(match => match[1]);
+    const privacyFormPermissionKeys = [...privacyFields.keys()]
+      .filter(key => key.startsWith('permission.'))
+      .map(key => key.slice('permission.'.length))
+      .sort();
+    const expectedPermissionKeys = [...manifestPermissions].sort();
+
+    assert.deepEqual(manifest.permissions, manifestPermissions, 'manifest permissions must exactly match the audited list');
+    assert.deepEqual(permissionAuditHeadings, manifestPermissions, 'permission audit headings must exactly match manifest permissions');
+    assert.deepEqual(privacyPermissionBullets, manifestPermissions, 'privacy permission bullets must exactly match manifest permissions');
+    assert.deepEqual(storePilotPermissionKeys, manifestPermissions, 'StorePilot index permission keys must exactly match manifest permissions');
+    assert.deepEqual(privacyFormPermissionKeys, expectedPermissionKeys, 'StorePilot privacy fields must exactly match manifest permissions');
+
+    assert.equal(manifest.permissions.includes('contextMenus'), false);
+    assert.equal(privacyFields.has('permission.contextMenus'), false);
+    assert.match(permissionAudit, /`contextMenus`: not requested[\s\S]*right-click context-menu variant[\s\S]*StorePilot privacy permission keys/i);
+    assert.match(selectedTextQuickAdd, /right-click context-menu variant adds `contextMenus`[\s\S]*StorePilot privacy form[\s\S]*Chrome Web Store permission justification/i);
   });
 });
 

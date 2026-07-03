@@ -62,6 +62,7 @@ This document records why each current manifest permission and broad content-scr
 - `webRequest`: not requested. DaD does not intercept network requests.
 - `declarativeNetRequest`: not requested. Blocking is page/content based, not URL-rule based.
 - `notifications`: not requested. Pomodoro and protection state are shown in extension surfaces instead.
+- `contextMenus`: not requested. The current DaD Select flow uses the popup page-signal snapshot rather than a browser right-click menu. If a later right-click context-menu variant is added, treat it as a manifest permission change and update StorePilot privacy permission keys, Chrome Web Store permission justification, release notes, and tests in the same release.
 - `cookies`, `history`, `identity`, `debugger`, `nativeMessaging`, and `offscreen`: not requested.
 
 ## Manifest Surfaces Deliberately Not Used

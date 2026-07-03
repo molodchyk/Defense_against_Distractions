@@ -362,6 +362,9 @@ assertCondition(
     /`tabs`/,
     /`scripting`/,
     /`webRequest`/,
+    /`contextMenus`: not requested/,
+    /right-click context-menu variant/i,
+    /StorePilot privacy permission keys/i,
     /chrome_settings_overrides/,
     /externally_connectable/
   ]),
