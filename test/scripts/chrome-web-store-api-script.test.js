@@ -8,6 +8,7 @@ import { describe, it } from 'node:test';
 const script = readFileSync('scripts/chrome-web-store-api.ps1', 'utf8');
 const docs = readFileSync('docs/chrome-web-store-api.md', 'utf8');
 const manifest = JSON.parse(readFileSync('manifest.json', 'utf8'));
+const releaseVerifier = readFileSync('scripts/verify-release.ps1', 'utf8');
 
 describe('Chrome Web Store API script safety', () => {
   it('requires an exact publish confirmation token before real publish calls', () => {
@@ -26,5 +27,11 @@ describe('Chrome Web Store API script safety', () => {
     assert.match(docs, /The version suffix must match `manifest\.json`/);
     assert.ok(docs.includes(`$env:CWS_CONFIRM_PUBLISH = "${expectedVersionToken}"`));
     assert.match(docs, /set `CWS_CONFIRM_PUBLISH` for the exact item\/version/);
+  });
+
+  it('keeps CWS publish automation evidence in the source archive requirements', () => {
+    assert.match(releaseVerifier, /"docs\/chrome-web-store-api\.md"/);
+    assert.match(releaseVerifier, /"scripts\/chrome-web-store-api\.ps1"/);
+    assert.match(releaseVerifier, /"test\/scripts\/chrome-web-store-api-script\.test\.js"/);
   });
 });
