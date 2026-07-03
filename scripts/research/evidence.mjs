@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
-import { extractSection } from './registry.mjs';
+import { countBullets, extractSection } from './registry.mjs';
 
 export const requiredEvidenceCardSections = [
   'Source',
@@ -58,6 +58,13 @@ export function getEvidenceCardFailures({
       } else if (body.trim().length === 0) {
         failures.push(`Evidence card ${card.file} has an empty required section: ${section}.`);
       }
+    }
+    const empiricalDetailSection = extractSection(card.text, 'Empirical Detail');
+    const empiricalDetailBulletCount = countBullets(empiricalDetailSection);
+    if (empiricalDetailSection !== null && empiricalDetailBulletCount < 3) {
+      failures.push(
+        `Evidence card ${card.file} needs at least 3 empirical-detail bullets; found ${empiricalDetailBulletCount}.`
+      );
     }
     if (!/^Citation:\s+\S/m.test(extractSection(card.text, 'Source') || '')) {
       failures.push(`Evidence card ${card.file} must include a non-empty Citation line.`);

@@ -242,7 +242,9 @@ Fixture finding.
 
 ## Empirical Detail
 
-- Fixture empirical detail.
+- Fixture sample or context.
+- Fixture measure or intervention.
+- Fixture result direction.
 
 ## Non-Obvious Mechanism
 

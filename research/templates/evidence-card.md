@@ -37,6 +37,9 @@ Capture concrete details where available:
 - effect size, rate, frequency, or direction of effect;
 - time horizon.
 
+Use at least three bullets. If the source lacks three concrete empirical details,
+say what is missing and consider whether the source is too weak to foreground.
+
 ## Non-Obvious Mechanism
 
 What did this source explain that common sense would not reliably provide?

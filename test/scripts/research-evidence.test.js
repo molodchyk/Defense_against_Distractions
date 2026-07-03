@@ -48,6 +48,23 @@ describe('research evidence card checks', () => {
     }), [`Evidence card ${evidenceCards[0].file} is missing required section: What Changes.`]);
   });
 
+  it('rejects evidence cards with too little empirical detail', async () => {
+    const evidenceCards = await readCurrentEvidenceCards();
+    const questionRows = await readCurrentQuestionRows();
+    const weakenedCard = {
+      ...evidenceCards[0],
+      text: evidenceCards[0].text.replace(
+        /\n## Empirical Detail[\s\S]*?(?=\n## Non-Obvious Mechanism)/,
+        '\n## Empirical Detail\n\n- Generic result summary.\n'
+      )
+    };
+
+    assert.deepEqual(getEvidenceCardFailures({
+      evidenceCards: [weakenedCard],
+      questionRows
+    }), [`Evidence card ${evidenceCards[0].file} needs at least 3 empirical-detail bullets; found 1.`]);
+  });
+
   it('rejects evidence cards whose title is not the first content in the file', async () => {
     const evidenceCards = await readCurrentEvidenceCards();
     const questionRows = await readCurrentQuestionRows();
