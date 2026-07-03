@@ -5,6 +5,7 @@ param(
   [string]$PublisherId = $env:CWS_PUBLISHER_ID,
   [string]$ExtensionId = $env:CWS_EXTENSION_ID,
   [string]$PackagePath = $env:CWS_PACKAGE_PATH,
+  [string]$PublishConfirmation = $env:CWS_CONFIRM_PUBLISH,
   [double]$DeployPercentage = -1,
 
   [switch]$DryRun
@@ -31,6 +32,31 @@ function Get-DefaultPackagePath {
   $manifest = Get-Content -LiteralPath $manifestPath -Raw | ConvertFrom-Json
   $releaseName = "Defense_against_Distractions-v$($manifest.version)"
   return Join-Path $projectRoot "dist\$releaseName-extension.zip"
+}
+
+function Get-ManifestVersion {
+  $manifest = Get-Content -LiteralPath $manifestPath -Raw | ConvertFrom-Json
+  return $manifest.version
+}
+
+function Get-PublishConfirmationToken {
+  return "publish:$($ExtensionId):v$(Get-ManifestVersion)"
+}
+
+function Assert-PublishConfirmed {
+  if ($DryRun) {
+    return
+  }
+
+  $expectedConfirmation = Get-PublishConfirmationToken
+  Assert-Value `
+    -Value $PublishConfirmation `
+    -Name "CWS_CONFIRM_PUBLISH" `
+    -Hint "After package, release verification, dashboard review, and final human approval, set it to '$expectedConfirmation'."
+
+  if ($PublishConfirmation -ne $expectedConfirmation) {
+    throw "CWS_CONFIRM_PUBLISH does not match the required publish confirmation token. Expected '$expectedConfirmation'."
+  }
 }
 
 function Get-AccessToken {
@@ -130,6 +156,7 @@ switch ($Action) {
   }
 
   "publish" {
+    Assert-PublishConfirmed
     Invoke-CwsRequest -Method "Post" -Uri "${itemUri}:publish"
   }
 

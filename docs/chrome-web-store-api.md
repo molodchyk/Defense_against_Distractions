@@ -62,6 +62,14 @@ $env:CWS_REFRESH_TOKEN = "oauth-refresh-token"
 
 Alternatively, `CWS_ACCESS_TOKEN` can be set directly for short-lived manual testing.
 
+Publishing has an extra local safety gate. After the package has been verified, the dashboard has been inspected, and a human has chosen to publish, set:
+
+```powershell
+$env:CWS_CONFIRM_PUBLISH = "publish:$env:CWS_EXTENSION_ID:v1.6.1"
+```
+
+The version suffix must match `manifest.json`. The script accepts this token only for the current item/version pair. Dry runs do not require the token.
+
 ## Commands
 
 Check the item status:
@@ -82,6 +90,7 @@ npm run cws:upload
 Submit the uploaded draft for review:
 
 ```powershell
+$env:CWS_CONFIRM_PUBLISH = "publish:$env:CWS_EXTENSION_ID:v1.6.1"
 npm run cws:publish
 ```
 
@@ -100,6 +109,7 @@ Do not automate `publish` blindly. The intended flow is:
 3. verify release
 4. upload through CWS API
 5. inspect CWS dashboard status and listing fields
-6. publish through CWS API or dashboard
+6. set `CWS_CONFIRM_PUBLISH` for the exact item/version
+7. publish through CWS API or dashboard
 
 The API can make the release process faster, but it should not bypass final human review while the extension is still changing rapidly.
