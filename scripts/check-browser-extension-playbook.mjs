@@ -15,6 +15,7 @@ import {
   storeMediaAssetPaths,
   storageKeyFamilies
 } from './playbook/constants.mjs';
+import { getArchitectureDocumentationFailures } from './playbook/architecture/docs.mjs';
 import { getManifestAuditFailures } from './playbook/manifestAudit.mjs';
 import { getInstructionGuideFailures } from './playbook/instructionGuide.mjs';
 import { getIntentDiagnosticsLocalizationFailures, getUsageStatsLocalizationFailures } from './playbook/localization.mjs';
@@ -126,7 +127,7 @@ const [
   storeMediaReview,
   decisionRecords,
   playbookCompliance, playbookRequirements, claimTraceability,
-  codeStructure, protectionModel,
+  codeStructure, protectionModel, modularizationPlaybook, architectureResearch,
   localizationDoc,
   contentScriptLoadOrderDoc,
   actionWrapper,
@@ -185,7 +186,7 @@ const [
   readText('docs/store-media-review.md'),
   readText('docs/decision-records.md'),
   readText('docs/browser-extension-playbook-compliance.md'), readText('docs/browser-extension-playbook-requirements.md'), readText('docs/claim-traceability.md'),
-  readText('docs/code-structure.md'), readText('docs/protection-model.md'),
+  readText('docs/code-structure.md'), readText('docs/protection-model.md'), readText('docs/extension-modularization-playbook.md'), readText('docs/extension-architecture-research.md'),
   readText('docs/localization.md'),
   readText('docs/content-script-load-order.md'),
   readText('src/platform/chrome/action.js'),
@@ -514,6 +515,7 @@ assertCondition(
 );
 
 failures.push(...getPlaybookComplianceFailures({ claimTraceability, playbookCompliance, playbookRequirements }));
+failures.push(...getArchitectureDocumentationFailures({ architectureResearch, codeStructure, modularizationPlaybook }));
 
 assertCondition(
   hasAll(codeStructure, [
