@@ -6,6 +6,8 @@ Do not use the old public Chrome extension i18n locale list as the only source o
 
 UI direction is part of localization. Arabic (`ar`), Persian (`fa`), Hebrew (`he`), and Urdu (`ur`) are right-to-left locales. DaD applies `dir="rtl"` and a matching `lang` attribute on extension pages, mirrors fixed-inline controls such as the plan schedule board and compact Pomodoro metadata, and mirrors fixed injected panels such as the intent prompt and UI picker. Injected extension-owned surfaces such as the block overlay, intent prompt, UI picker, and Pomodoro mini panel get their own direction without changing the host page direction.
 
+Keep the RTL locale list synchronized across shared UI helpers, classic content-script UI, blocked-page localization, and this document.
+
 ## Chrome Web Store Visible Languages
 
 The Chrome Web Store has been observed showing broad language hover lists on extension listings. DaD tracks the following visible or supported locale codes for extension locale folders and store listing text:

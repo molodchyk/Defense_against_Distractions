@@ -2,6 +2,7 @@
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import { describe, it } from 'node:test';
 import {
   applyUiLanguageAttributes,
@@ -10,6 +11,8 @@ import {
   normalizeUiLanguage,
   setActiveUiLanguage
 } from '../../../src/js/shared/ui/uiLanguage.js';
+
+const EXPECTED_RTL_CODES = ['ar', 'fa', 'he', 'ur'];
 
 describe('UI language helpers', () => {
   it('normalizes supported browser locale codes', () => {
@@ -84,6 +87,22 @@ describe('UI language helpers', () => {
       }
     }, ['DaD', 'Deutsch']), 'Selected Deutsch for DaD');
   });
+
+  it('keeps right-to-left locale lists synchronized across UI surfaces and docs', () => {
+    const sharedUiLanguage = readFileSync('src/js/shared/ui/uiLanguage.js', 'utf8');
+    const contentUiLanguage = readFileSync('src/js/content/uiLanguage.js', 'utf8');
+    const blockedPageLocalization = readFileSync('src/features/content-blocking/blocked-page/localization.js', 'utf8');
+    const localizationDoc = readFileSync('docs/localization.md', 'utf8');
+
+    assert.deepEqual(getSetValues(sharedUiLanguage, 'RTL_UI_LANGUAGE_BASE_CODES'), EXPECTED_RTL_CODES);
+    assert.deepEqual(getSetValues(contentUiLanguage, 'RTL_LANGUAGE_CODES'), EXPECTED_RTL_CODES);
+    assert.deepEqual(getSetValues(blockedPageLocalization, 'RTL_LANGUAGE_CODES'), EXPECTED_RTL_CODES);
+    assert.match(
+      localizationDoc,
+      /Arabic \(`ar`\), Persian \(`fa`\), Hebrew \(`he`\), and Urdu \(`ur`\) are right-to-left locales/
+    );
+    assert.match(localizationDoc, /Keep the RTL locale list synchronized across shared UI helpers, classic content-script UI, blocked-page localization, and this document/);
+  });
 });
 
 function createAttributeTarget() {
@@ -94,4 +113,11 @@ function createAttributeTarget() {
       this.attributes[name] = value;
     }
   };
+}
+
+function getSetValues(source, constName) {
+  const escapedName = constName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const match = source.match(new RegExp(`const\\s+${escapedName}\\s*=\\s*new Set\\(\\[([^\\]]+)\\]\\)`));
+  assert.ok(match, `Missing ${constName}`);
+  return [...match[1].matchAll(/['"]([^'"]+)['"]/g)].map(valueMatch => valueMatch[1]);
 }
