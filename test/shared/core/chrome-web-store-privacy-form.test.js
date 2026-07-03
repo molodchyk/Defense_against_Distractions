@@ -66,6 +66,21 @@ describe('Chrome Web Store privacy form', () => {
     }
   });
 
+  it('preserves specific idle and webNavigation permission justifications', () => {
+    const markdown = readFileSync(PRIVACY_FORM_PATH, 'utf8');
+    const fields = parseKeyedBlock(markdown, 'privacy');
+
+    assert.match(fields.get('permission.idle') || '', /active, idle, or locked/i);
+    assert.match(fields.get('permission.idle') || '', /Pomodoro timing/i);
+    assert.match(fields.get('permission.idle') || '', /credit .*away time.*required rest period/i);
+    assert.match(fields.get('permission.idle') || '', /not sent to a server/i);
+
+    assert.match(fields.get('permission.webNavigation') || '', /top-frame navigation events and transition types/i);
+    assert.match(fields.get('permission.webNavigation') || '', /link clicks, typed navigation, reloads, history-state changes, and redirects/i);
+    assert.match(fields.get('permission.webNavigation') || '', /intent-coherence system, drift detection, recovery prompts, and diagnostics/i);
+    assert.match(fields.get('permission.webNavigation') || '', /does not send navigation data to a server/i);
+  });
+
   it('keeps manifest permissions synchronized across audited release surfaces', () => {
     const privacyForm = readFileSync(PRIVACY_FORM_PATH, 'utf8');
     const privacyFields = parseKeyedBlock(privacyForm, 'privacy');
