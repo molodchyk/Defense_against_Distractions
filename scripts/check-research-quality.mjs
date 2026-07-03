@@ -4,6 +4,7 @@
 import { access, readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
+import { getResearchBriefFailures } from './research/briefs.mjs';
 import { getEvidenceCardFailures } from './research/evidence.mjs';
 import {
   countBullets,
@@ -71,6 +72,25 @@ async function readEvidenceCards() {
   }
 
   return cards;
+}
+
+async function readResearchBriefs() {
+  const briefDir = path.join(rootDir, 'research', 'briefs');
+  if (!(await exists(path.join('research', 'briefs')))) return [];
+
+  const entries = await readdir(briefDir, { withFileTypes: true });
+  const briefs = [];
+  for (const entry of entries.sort((left, right) => left.name.localeCompare(right.name))) {
+    if (!entry.isFile() || !entry.name.endsWith('.md')) continue;
+    if (entry.name === 'README.md') continue;
+    const relativePath = path.join('research', 'briefs', entry.name);
+    briefs.push({
+      file: relativePath.replaceAll('\\', '/'),
+      text: await readText(relativePath)
+    });
+  }
+
+  return briefs;
 }
 
 async function verifyAnsweredQuestion(id, answerPath) {
@@ -157,6 +177,10 @@ for (const [id, row] of questionRows.entries()) {
 failures.push(...getEvidenceCardFailures({
   evidenceCards: await readEvidenceCards(),
   linkedQuestionIds,
+  questionRows
+}));
+failures.push(...getResearchBriefFailures({
+  briefs: await readResearchBriefs(),
   questionRows
 }));
 assertCondition(answeredCount > 0, 'Research registry has no answered or implemented questions to verify.');

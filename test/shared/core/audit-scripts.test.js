@@ -132,6 +132,75 @@ Revisit required. This answer is useful as a draft, but it is not finished produ
 `;
 }
 
+function buildResearchBrief(id) {
+  return `# Research Question Brief
+
+## Question ID
+
+\`${id}\`
+
+## Working Title
+
+Fixture title.
+
+## Exact Question
+
+Fixture question?
+
+## Why DaD Needs This
+
+Fixture product decision.
+
+## Affected Features
+
+- Fixture feature.
+
+## Scope
+
+Included:
+
+- Fixture scope.
+
+Excluded:
+
+- Fixture exclusion.
+
+## Evidence Needed
+
+- Fixture evidence.
+
+## Novelty Target
+
+Fixture novelty target.
+
+## Product Decisions This Could Change
+
+- Fixture decision.
+
+## Privacy Risks
+
+Fixture privacy risk.
+
+## Autonomy Risks
+
+Fixture autonomy risk.
+
+## Possible Outcomes
+
+If evidence is strong:
+
+- Fixture direction.
+
+If evidence is weak:
+
+- Fixture fallback.
+
+If evidence is negative:
+
+- Fixture downgrade.
+`;
+}
+
 function buildEvidenceCard(id, suffix = 'fixture') {
   return `# Evidence Card
 
@@ -266,6 +335,7 @@ describe('audit scripts', () => {
 | RQ-002 | Not started |
 `);
       await writeText(projectRoot, 'research/answers/RQ-001-fixture.md', buildResearchAnswer('RQ-001'));
+      await writeText(projectRoot, 'research/briefs/RQ-001-fixture.md', buildResearchBrief('RQ-001'));
       for (const suffix of ['a', 'b', 'c']) {
         await writeText(projectRoot, `research/evidence/RQ-001-${suffix}.md`, buildEvidenceCard('RQ-001', suffix));
       }
@@ -308,6 +378,7 @@ describe('audit scripts', () => {
       await writeText(projectRoot, 'research/answers/RQ-001-revisit.md', buildRevisitResearchAnswer('RQ-001'));
       await writeText(projectRoot, 'research/answers/RQ-002-fixture.md', buildResearchAnswer('RQ-002'));
       for (const id of ['RQ-001', 'RQ-002']) {
+        await writeText(projectRoot, `research/briefs/${id}-fixture.md`, buildResearchBrief(id));
         for (const suffix of ['a', 'b', 'c']) {
           await writeText(projectRoot, `research/evidence/${id}-${suffix}.md`, buildEvidenceCard(id, suffix));
         }

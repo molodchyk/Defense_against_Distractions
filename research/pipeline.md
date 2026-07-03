@@ -54,6 +54,7 @@ The brief must define:
 - affected features;
 - possible product decisions;
 - evidence needed;
+- novelty target;
 - privacy and autonomy risks;
 - what would change if the answer is weak or negative.
 

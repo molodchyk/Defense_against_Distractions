@@ -59,6 +59,10 @@ Excluded:
 - Cognitive offloading or external-representation literature for the graph view.
 - Digital self-control intervention reviews for visual feedback and blocking patterns.
 
+## Novelty Target
+
+This pass should surface mechanisms and numbers that change the intent system, not generic warnings about distraction. Useful findings include measured resumption delays, interruption-lag effects, when external reminders reduce versus increase cognitive load, whether graph-like representations improve recovery, which media-multitasking findings are causal versus correlational, and boundary cases where low topical similarity is legitimate exploration.
+
 ## Product Decisions This Could Change
 
 - Whether Return should be a primary action.

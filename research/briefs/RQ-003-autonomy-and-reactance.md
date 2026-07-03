@@ -59,6 +59,10 @@ Excluded:
 - Digital self-control tool research on autonomy-supportive design.
 - HCI research on lockouts, interventions, and user agency.
 
+## Novelty Target
+
+This pass should produce design-relevant reactance detail rather than "avoid shame." Useful findings include effect sizes or moderators for freedom-threatening language, whether choice framing changes compliance under restriction, when autonomy support preserves enforcement legitimacy, how users bypass or abandon digital self-control tools, and which escape-valve designs reduce hostility without making the commitment meaningless.
+
 ## Product Decisions This Could Change
 
 - Whether DaD uses hard blocks or delayed relaxation in different states.

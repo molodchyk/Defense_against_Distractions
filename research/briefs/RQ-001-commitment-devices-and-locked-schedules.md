@@ -55,6 +55,10 @@ Excluded:
 - HCI/digital wellbeing studies about lockout tools and bypass behavior.
 - Reactance/autonomy research where strong restriction can backfire.
 
+## Novelty Target
+
+This pass should find information that changes lock policy beyond "commitment can help." Useful findings include measured commitment take-up rates, abandonment or non-use rates, penalty-size effects, deadline-miscalibration effects, who benefits from hard versus soft commitment, how people behave when escape remains possible, and cases where public strictness or overcommitment makes outcomes worse.
+
 ## Product Decisions This Could Change
 
 - Which edits are allowed during locked schedules.
