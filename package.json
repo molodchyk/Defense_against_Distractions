@@ -24,6 +24,7 @@
     "verify:locales": "node scripts/check-locale-coverage.mjs",
     "verify:static-localization": "node scripts/check-static-localization.mjs",
     "verify:playbook": "node scripts/check-browser-extension-playbook.mjs",
+    "verify:research": "node scripts/check-research-quality.mjs",
     "verify:browser-load": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/check-unpacked-extension-load.ps1",
     "verify:package": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/verify-package-output.ps1",
     "audit:folder-density": "node scripts/audit-folder-density.mjs",

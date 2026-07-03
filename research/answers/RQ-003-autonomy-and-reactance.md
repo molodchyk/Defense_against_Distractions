@@ -118,6 +118,17 @@ DaD implication: local bypass-like behavior should be interpreted by pattern:
 | Muraven et al. 2008 | three experiments | autonomy support during self-control improved later self-control performance; effects not explained by stress, anxiety, unpleasantness, or lower motivation | The same restriction can cost less when self-endorsed. |
 | Scheibehenne et al. 2010 | 63 conditions from 50 experiments, N=5,036 | mean choice-overload effect virtually zero with high variance | Use bounded choice because of prompt context, not a universal anti-choice doctrine. |
 
+## Evidence Map
+
+| Evidence | Grade | Relevance | Caveat |
+| --- | --- | --- | --- |
+| Smartphone lockout and GoalKeeper field studies show friction and restriction can reduce use more than warnings. | moderate | Supports strong DaD locks and dose-shaped friction. | App-launch studies are adjacent to browser-extension protection, not identical. |
+| HabitLab studies show effective interventions can increase attrition, while explanation and ask-later patterns change acceptance. | moderate | Supports just-in-time legitimacy explanations, queued relaxation, and expiring weakening. | HabitLab users and intervention ecology differ from DaD. |
+| Reactance meta-analyses support freedom threat, anger, and counterarguing as a coherent mechanism. | strong | Supports treating bypass pressure and source rejection as local diagnostics. | General persuasion/health evidence must be translated carefully to software locks. |
+| Autonomy and choice studies show real choice can help, while controlled choice can add self-control cost. | moderate | Supports bounded meaningful actions over friendly copy alone. | Lab and health-message results do not directly set DaD prompt thresholds. |
+| Choice-overload meta-analysis shows the simple "fewer options always helps" rule is false. | strong | Supports small action sets because of intervention context, not as universal doctrine. | Does not identify the exact optimal DaD action count. |
+| Facebook self-control intervention evidence shows bypass-like cross-device shifts can coexist with successful self-control. | moderate | Supports classifying bypass patterns as ambiguous diagnostics instead of moral failure. | Cross-device behavior may not be observable or desirable for DaD to monitor. |
+
 ## Assumptions Updated
 
 - Old assumption: Reactance mainly means the UI should sound less harsh.

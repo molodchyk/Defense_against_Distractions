@@ -1,0 +1,187 @@
+// SPDX-License-Identifier: GPL-3.0-only
+// Copyright (C) 2023-2026 Oleksandr Molodchyk
+
+import { access, readFile } from 'node:fs/promises';
+import path from 'node:path';
+import process from 'node:process';
+
+const rootDir = process.cwd();
+const failures = [];
+const questionsPath = 'research/questions.md';
+const requiredAnsweredSections = [
+  'Question',
+  'Short Answer',
+  'Non-Obvious Findings',
+  'Mechanisms',
+  'Empirical Details',
+  'Evidence Map',
+  'Assumptions Updated',
+  'DaD Design Implications',
+  'Scoring Implications',
+  'Intervention Implications',
+  'Privacy Implications',
+  'Local Validation Metrics',
+  'Implementation Handoff',
+  'Revisit Triggers',
+  'Current Answer Status'
+];
+
+function assertCondition(condition, message) {
+  if (!condition) failures.push(message);
+}
+
+async function readText(relativePath) {
+  return readFile(path.join(rootDir, relativePath), 'utf8');
+}
+
+async function exists(relativePath) {
+  try {
+    await access(path.join(rootDir, relativePath));
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function parseMarkdownTableCells(line) {
+  const trimmed = line.trim();
+  if (!trimmed.startsWith('|') || !trimmed.endsWith('|')) return null;
+
+  return trimmed
+    .slice(1, -1)
+    .split('|')
+    .map((cell) => cell.trim());
+}
+
+function extractSection(text, heading) {
+  const pattern = new RegExp(`^## ${heading.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s*$`, 'm');
+  const match = pattern.exec(text);
+  if (!match) return null;
+
+  const start = match.index + match[0].length;
+  const rest = text.slice(start);
+  const nextHeading = /\n## [^\n]+\n/.exec(rest);
+  return (nextHeading ? rest.slice(0, nextHeading.index) : rest).trim();
+}
+
+function countTableDataRows(section) {
+  if (!section) return 0;
+
+  const rows = section
+    .split(/\r?\n/)
+    .map(parseMarkdownTableCells)
+    .filter(Boolean)
+    .filter((cells) => cells.length >= 4);
+  const separatorIndex = rows.findIndex((cells) => cells.every((cell) => /^:?-{3,}:?$/.test(cell)));
+
+  if (separatorIndex === -1) return 0;
+  return rows.slice(separatorIndex + 1).length;
+}
+
+function countBullets(section) {
+  if (!section) return 0;
+  return section.split(/\r?\n/).filter((line) => /^\s*-\s+\S/.test(line)).length;
+}
+
+function parseQuestionRows(questionsText) {
+  const rows = new Map();
+  const questionsSection = extractSection(questionsText, 'Questions') || '';
+
+  for (const line of questionsSection.split(/\r?\n/)) {
+    const cells = parseMarkdownTableCells(line);
+    if (!cells || !/^RQ-\d{3}$/.test(cells[0]) || cells.length < 7) continue;
+
+    rows.set(cells[0], {
+      area: cells[3],
+      expectedOutput: cells[6],
+      status: cells[1]
+    });
+  }
+
+  return rows;
+}
+
+function parseAnswerLinks(questionsText) {
+  const links = new Map();
+  const answerSection = extractSection(questionsText, 'Answer Linking') || '';
+
+  for (const line of answerSection.split(/\r?\n/)) {
+    const cells = parseMarkdownTableCells(line);
+    if (!cells || !/^RQ-\d{3}$/.test(cells[0]) || cells.length !== 2) continue;
+
+    const linkMatch = /\]\((answers\/[^)]+\.md)\)/.exec(cells[1]);
+    if (linkMatch) {
+      links.set(cells[0], linkMatch[1]);
+    }
+  }
+
+  return links;
+}
+
+async function verifyAnsweredQuestion(id, answerPath) {
+  assertCondition(await exists(path.join('research', answerPath)), `${id} is marked answered but missing ${answerPath}`);
+  if (!(await exists(path.join('research', answerPath)))) return;
+
+  const text = await readText(path.join('research', answerPath));
+  assertCondition(text.includes(`\`${id}\``), `${answerPath} does not name ${id} in the question body.`);
+
+  for (const section of requiredAnsweredSections) {
+    assertCondition(extractSection(text, section) !== null, `${answerPath} is missing required section: ${section}`);
+  }
+
+  const nonObviousCount = countTableDataRows(extractSection(text, 'Non-Obvious Findings'));
+  const empiricalCount = countTableDataRows(extractSection(text, 'Empirical Details'));
+  const evidenceMapCount = countTableDataRows(extractSection(text, 'Evidence Map'));
+  const handoffBulletCount = countBullets(extractSection(text, 'Implementation Handoff'));
+  const statusSection = extractSection(text, 'Current Answer Status') || '';
+
+  assertCondition(
+    nonObviousCount >= 5,
+    `${answerPath} needs at least 5 non-obvious finding rows; found ${nonObviousCount}.`
+  );
+  assertCondition(
+    empiricalCount >= 5,
+    `${answerPath} needs at least 5 empirical-detail rows; found ${empiricalCount}.`
+  );
+  assertCondition(
+    evidenceMapCount >= 3,
+    `${answerPath} needs at least 3 evidence-map rows; found ${evidenceMapCount}.`
+  );
+  assertCondition(
+    handoffBulletCount >= 5,
+    `${answerPath} needs an implementation handoff with at least 5 concrete bullets; found ${handoffBulletCount}.`
+  );
+  assertCondition(
+    /Answered under the revised quality bar\./.test(statusSection),
+    `${answerPath} current status must explicitly say it is answered under the revised quality bar.`
+  );
+}
+
+const questionsText = await readText(questionsPath);
+const questionRows = parseQuestionRows(questionsText);
+const answerLinks = parseAnswerLinks(questionsText);
+let answeredCount = 0;
+
+for (const [id, row] of questionRows.entries()) {
+  if (row.status === 'answered') {
+    answeredCount += 1;
+    assertCondition(answerLinks.has(id), `${id} is answered in the registry but has no answer link.`);
+    if (answerLinks.has(id)) {
+      await verifyAnsweredQuestion(id, answerLinks.get(id));
+    }
+  } else {
+    assertCondition(!answerLinks.has(id), `${id} has status ${row.status} but links to an answered synthesis.`);
+  }
+}
+
+assertCondition(answeredCount > 0, 'Research registry has no answered questions to verify.');
+
+if (failures.length) {
+  console.error('Research quality check failed:');
+  for (const failure of failures) {
+    console.error(`- ${failure}`);
+  }
+  process.exit(1);
+}
+
+console.log(`Research quality check passed: ${answeredCount} answered syntheses verified.`);

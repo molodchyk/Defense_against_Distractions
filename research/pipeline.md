@@ -127,6 +127,7 @@ Gate:
 
 - The synthesis must contain at least five non-obvious findings that change a DaD design decision, hypothesis, score, threshold, local validation metric, or implementation priority.
 - A synthesis dominated by obvious UX hygiene or claim-policing must be marked `revisit`, not `answered`.
+- `npm run verify:research` must pass before a synthesis is kept as `answered`.
 
 ## Stage 5: Implementation Handoff
 

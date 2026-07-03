@@ -60,4 +60,10 @@ describe('audit scripts', () => {
 
     assert.match(output, /Platform boundary check passed\./);
   });
+
+  it('verifies research answers against the revised quality bar', () => {
+    const output = runNodeScript('scripts/check-research-quality.mjs');
+
+    assert.match(output, /Research quality check passed: \d+ answered syntheses verified\./);
+  });
 });

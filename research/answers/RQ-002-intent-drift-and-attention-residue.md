@@ -86,6 +86,17 @@ DaD implication: default cleanup actions should preserve memory first: return, m
 | Chang et al. 2021 | surveys/interviews on browser tab usage | tab retention reasons and costs | tabs used as reminders; users feared losing items out of sight; about 25 percent reported crashes in one study aspect | Do not equate open tabs with useless clutter. |
 | Parry & le Roux 2021 | meta-analysis of media multitasking and cognitive control | cognitive-control associations | small associations for some outcomes; no causal conclusion; no associations for interference/task management | Media/feed should be modifier-only. |
 
+## Evidence Map
+
+| Evidence | Grade | Relevance | Caveat |
+| --- | --- | --- | --- |
+| Workplace interruption and resumption studies show delayed return and breakpoint-sensitive cost. | moderate | Supports trajectory recoverability, Return, and prompt timing as product primitives. | Stronger for work interruptions than free-form browsing. |
+| Task-switching and attention-residue studies show unfinished goals can remain activated and impair the next task. | moderate | Supports preserving last coherent target, closure cues, and ready-to-resume behavior. | Mostly lab or work-task evidence, not direct browser-extension trials. |
+| Browser history, SearchBar, and PadPrints studies show ordinary history under-supports re-finding while graphical/task-centered views can help. | moderate | Supports Show graph as recovery infrastructure rather than decoration. | Older studies and small samples; graph design still needs local validation. |
+| Web orienteering research shows directed search often moves through contextual navigation, not direct keyword search. | moderate | Supports Isolate and Mark coherent as legitimate-branch actions. | Expert-user search does not cover every browsing drift case. |
+| Tab-overload research shows tabs often function as reminders and prospective memory objects. | moderate | Supports Return/move/suspend before destructive close. | Survey/interview evidence needs DaD-specific outcome checks. |
+| Media multitasking reviews and meta-analyses show mixed, small, and non-causal associations. | moderate | Supports media/feed pressure as a modifier only. | Does not prove any single browsing moment is harmful. |
+
 ## Assumptions Updated
 
 - Old assumption: low current-origin similarity is the main drift signal.
