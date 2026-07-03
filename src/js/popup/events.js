@@ -10,6 +10,7 @@ export function bindPopupEvents({
   focusStatePanel,
   blockDiagnosticsPanel,
   pageSignalsPanel,
+  selectedTextQuickAddPanel,
   intentDiagnosticsPanel,
   diagnosticsExporter
 }) {
@@ -40,6 +41,7 @@ export function bindPopupEvents({
   bindClick('cleanIntentDriftTabsButton', () => intentDiagnosticsPanel.cleanDriftTabs());
   bindClick('copyKeywordIdeasButton', () => pageSignalsPanel.copyKeywordSuggestions());
   bindClick('copySelectedTextButton', () => pageSignalsPanel.copySelectedTextCandidate());
+  bindClick('addSelectedTextRuleButton', () => selectedTextQuickAddPanel.saveSelectedTextRule());
   bindClick('refreshBlockDiagnosticsButton', () => blockDiagnosticsPanel.refresh());
   bindClick('copyDiagnosticsButton', () => diagnosticsExporter.copyDiagnostics());
   bindClick('copyDiagnosticsFeedbackButton', async () => {
@@ -49,4 +51,5 @@ export function bindPopupEvents({
   });
   bindClick('refreshIntentButton', () => intentDiagnosticsPanel.refresh());
   bindClick('clearIntentButton', () => intentDiagnosticsPanel.clear());
+  selectedTextQuickAddPanel.bindEvents();
 }

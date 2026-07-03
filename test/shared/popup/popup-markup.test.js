@@ -103,6 +103,8 @@ describe('popup markup', () => {
     const audibleIndex = popupHtml.indexOf('pageSignalAudibleMediaCount');
     const passiveRegionsIndex = popupHtml.indexOf('pageSignalPassiveRegions');
     const selectedTextIndex = popupHtml.indexOf('pageSignalSelectedTextCandidate');
+    const quickAddIndex = popupHtml.indexOf('selectedTextQuickAddPanel');
+    const addRuleIndex = popupHtml.indexOf('addSelectedTextRuleButton');
     const keywordIdeasIndex = popupHtml.indexOf('pageSignalKeywordIdeasText');
     const copySelectedIndex = popupHtml.indexOf('copySelectedTextButton');
     const copyIndex = popupHtml.indexOf('copyKeywordIdeasButton');
@@ -112,13 +114,17 @@ describe('popup markup', () => {
     assert.ok(passiveRegionsIndex > audibleIndex);
     assert.ok(selectedTextIndex > passiveRegionsIndex);
     assert.ok(keywordIdeasIndex > selectedTextIndex);
-    assert.ok(copySelectedIndex > keywordIdeasIndex);
+    assert.ok(quickAddIndex > keywordIdeasIndex);
+    assert.ok(addRuleIndex > quickAddIndex);
+    assert.ok(copySelectedIndex > addRuleIndex);
     assert.ok(copyIndex > copySelectedIndex);
     assert.ok(copyIndex > keywordIdeasIndex);
     assert.match(popupHtml, /popupAudibleMediaLabel[\s\S]+pageSignalAudibleMediaCount/);
     assert.match(popupHtml, /popupPassiveRegionsLabel[\s\S]+pageSignalPassiveRegions/);
     assert.match(popupHtml, /popupSelectedTextLabel[\s\S]+pageSignalSelectedTextCandidate/);
     assert.match(popupHtml, /popupKeywordIdeasLabel[\s\S]+pageSignalKeywordIdeasText/);
+    assert.match(popupHtml, /selectedTextQuickAddPanel[\s\S]+popupQuickAddSelectedTextTitle[\s\S]+selectedTextQuickAddPlanSelect[\s\S]+selectedTextQuickAddEntrySelect[\s\S]+selectedTextQuickAddScoreInput/);
+    assert.match(popupHtml, /addSelectedTextRuleButton[\s\S]+popupQuickAddAddRuleButton/);
     assert.match(popupHtml, /copySelectedTextButton[\s\S]+popupCopySelectedTextButton/);
     assert.match(popupHtml, /copyKeywordIdeasButton[\s\S]+popupCopyKeywordIdeasButton/);
   });

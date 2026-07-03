@@ -89,6 +89,48 @@
     font-size: 12px;
 }
 
+.selected-text-quick-add {
+    display: grid;
+    gap: 8px;
+    margin-top: 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--surface-raised);
+    padding: 8px;
+}
+
+.selected-text-quick-add[hidden] {
+    display: none;
+}
+
+.selected-text-quick-add h3 {
+    margin: 0;
+    color: var(--text);
+    font-size: 13px;
+    line-height: 1.2;
+}
+
+.selected-text-quick-add-fields {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.selected-text-quick-add-simulation {
+    margin: 0;
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+}
+
+.selected-text-quick-add button {
+    width: 100%;
+    min-height: 34px;
+    padding: 6px 8px;
+    font-size: 12px;
+}
+
 .block-diagnostics-grid dd {
     color: var(--text);
     font-size: 12px;

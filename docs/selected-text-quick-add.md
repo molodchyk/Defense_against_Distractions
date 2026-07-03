@@ -32,7 +32,7 @@ Recommended first slice:
 - Saving adds a keyword line to an existing plan entry using the current 0-100 authoring syntax.
 - Optional action presets can be attached only if they map to existing or explicitly designed bounded actions.
 
-Implemented foundation: the content script can now produce the bounded active-selection candidate for the popup snapshot, and the popup Page Signals card can show and copy that candidate as a keyword-editor line. The direct save path is still pending.
+Implemented keyword-only first version: the content script can now produce the bounded active-selection candidate for the popup snapshot; the popup Page Signals card can show and copy that candidate as a keyword-editor line; and the popup can save the selected text into an existing plan entry or a new current-site entry with an editable 1-100 positive keyword score. Action presets are still pending.
 
 A true browser right-click context menu is a later variant because it requires adding `contextMenus` to the manifest and store privacy/permission documentation. That may still be worth doing, but it should be a deliberate release decision rather than a hidden side effect of the popup feature.
 
@@ -64,7 +64,7 @@ Rules:
 
 The selected text becomes persistent only if the user saves it as a keyword. Unsaved candidates should remain ephemeral.
 
-Implementation state: unsaved candidates are computed on demand from the active page selection and included in the popup snapshot response. The popup can copy the candidate as a keyword-editor line such as `selected phrase, 25/100`. Unsaved candidates are not written to sync or local storage.
+Implementation state: unsaved candidates are computed on demand from the active page selection and included in the popup snapshot response. The popup can copy the candidate as a keyword-editor line such as `selected phrase, 25/100`, or save it only after the user chooses `Add rule`. Unsaved candidates are not written to sync or local storage.
 
 ## Score Estimate
 
@@ -99,6 +99,8 @@ The popup quick-add panel should be small and operational:
 - optional action preset selector;
 - `Add rule` button;
 - current-page simulation line such as `Current page: would add 25 / 100`.
+
+Implementation state: the popup exposes plan selection, entry selection or current-site entry creation, editable positive keyword score, Add rule, and a current-page keyword-alone simulation. Optional action presets are not exposed yet.
 
 Avoid long explanatory copy. The panel should be useful in a high-friction moment, not educational.
 
@@ -190,13 +192,13 @@ If the later right-click context-menu variant adds `contextMenus`, update the ma
 - Implemented: collapsed, punctuation-only, oversized, or token-empty selections return no candidate.
 - Implemented: with text selected on a supported page, opening the popup can show a bounded selected-text candidate in Page Signals.
 - Implemented: with no valid selection, the popup selected-text row stays empty and the copy button stays disabled.
-- Saving a keyword through quick add produces the same normalized rule format as manual entry editing.
-- The score estimate is editable and uses the 0-100 authoring scale.
-- The popup can simulate whether the new score would block the current page before saving.
-- Saved quick-add rules participate in locked-schedule strictness checks.
+- Implemented: saving a keyword through quick add produces the same normalized rule format as manual entry editing.
+- Implemented: the score estimate is editable and uses the positive 1-100 keyword-authoring range, because `0/100` is a no-op rather than a valid saved strengthening rule.
+- Implemented: the popup can simulate whether the new score would block the current page by this keyword alone before saving.
+- Implemented: saved quick-add rules use the same protected-schedule strictness comparator as plan editing before storage writes.
 - `hideImages` and `disableControls` presets compile to the existing reversible, capped, scoped UI cleanup actions.
 - The feature works without adding `contextMenus` unless the right-click variant is explicitly chosen.
-- Partly implemented tests: candidate normalization, editable-field flagging, score estimation, invalid-selection rejection, text caps, snapshot inclusion, popup display formatting, and keyword-editor copy formatting are covered. Protected-plan strictness and action preset compilation remain for the save/action UI slice.
+- Partly implemented tests: candidate normalization, editable-field flagging, score estimation, invalid-selection rejection, text caps, snapshot inclusion, popup display formatting, keyword-editor copy formatting, quick-add keyword-line formatting, default target selection, current-host entry creation, duplicate/raise behavior, and popup markup are covered. Action preset compilation remains for the action UI slice.
 
 ## Open Questions
 

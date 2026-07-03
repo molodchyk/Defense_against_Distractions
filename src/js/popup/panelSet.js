@@ -20,6 +20,9 @@ import {
   createProtectionSummaryPanel
 } from './protectionSummaryPanel.js';
 import {
+  createSelectedTextQuickAddPanel
+} from './quick-add/selectedTextQuickAddPanel.js';
+import {
   createUsageStatsPanel
 } from './usage/usageStatsPanel.js';
 
@@ -34,14 +37,26 @@ export function createPopupPanelSet({
   setStatus
 }) {
   let protectionSummaryPanel = null;
+  let selectedTextQuickAddPanel = null;
 
   function setProtectionActiveTab(activeTab) {
     protectionSummaryPanel?.setActiveTab(activeTab);
+    selectedTextQuickAddPanel?.setActiveTab(activeTab);
   }
 
   function renderProtectionSummary() {
     protectionSummaryPanel?.render();
   }
+
+  selectedTextQuickAddPanel = createSelectedTextQuickAddPanel({
+    getMessage,
+    getActiveTab,
+    sendTabMessage,
+    setStatus,
+    onPlansChange(plans) {
+      protectionSummaryPanel?.setPlans(plans);
+    }
+  });
 
   const pageSignalsPanel = createPageSignalsPanel({
     getMessage,
@@ -53,6 +68,9 @@ export function createPopupPanelSet({
     onActiveTabChange(activeTab) {
       setProtectionActiveTab(activeTab);
       renderProtectionSummary();
+    },
+    onSelectionCandidateChange(candidate) {
+      selectedTextQuickAddPanel.setCandidate(candidate);
     }
   });
 
@@ -143,6 +161,7 @@ export function createPopupPanelSet({
     intentDiagnosticsPanel,
     pageSignalsPanel,
     pomodoroPanel,
+    selectedTextQuickAddPanel,
     usageStatsPanel,
     protectionSummaryPanel,
     renderProtectionSummary,

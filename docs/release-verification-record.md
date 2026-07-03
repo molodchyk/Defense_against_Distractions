@@ -21,17 +21,17 @@ Commands run from the repository root:
 
 | Gate | Recorded evidence |
 | --- | --- |
-| `npm test` | Covered by `npm run verify:release`; 414 unit tests passed on 2026-07-03. |
+| `npm test` | Covered by `npm run verify:release`; 419 unit tests passed on 2026-07-03. |
 | `npm run verify:manifest` | Covered by `npm run verify:release`; manifest-referenced paths exist. |
 | `npm run verify:imports` | Covered by `npm run verify:release`; relative source imports resolve. |
-| `npm run verify:locales` | Covered by `npm run verify:release`; 68 locales match 901 English message keys. |
+| `npm run verify:locales` | Covered by `npm run verify:release`; 68 locales match 918 English message keys. |
 | `npm run verify:static-localization` | Covered by `npm run verify:release`; 4 static extension HTML surfaces scanned. |
 | `npm run verify:playbook` | Passed directly and through `npm run verify:release`; 68 localized store listings verified. |
 | `npm run verify:research` | Passed directly and through `npm run verify:release`; 3 answered or implemented research syntheses verified. |
 | `npm run audit:file-sizes` | Passed directly and through `npm run verify:release`; no files exceed documented budgets. |
 | `npm run audit:folder-density` | Passed directly and through `npm run verify:release`; no folders exceed documented budgets. |
 | `npm run package` | Generated the current extension and source ZIPs in `dist/`. |
-| `npm run verify:package` | Passed directly and through `npm run verify:release`; 341 packaged runtime files scanned and 80 manifest references verified. |
+| `npm run verify:package` | Passed directly and through `npm run verify:release`; 343 packaged runtime files scanned and 80 manifest references verified. |
 | `npm run verify:release` | Passed for `Defense_against_Distractions-v1.6.1` on 2026-07-03. |
 
 ## Browser-Only Evidence

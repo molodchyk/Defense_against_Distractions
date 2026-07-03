@@ -308,6 +308,25 @@
                         <dd id="pageSignalKeywordIdeasText" data-i18n="popupNoKeywordIdeas">None detected</dd>
                     </div>
                 </dl>
+                <div id="selectedTextQuickAddPanel" class="selected-text-quick-add" hidden>
+                    <h3 data-i18n="popupQuickAddSelectedTextTitle">Add selected text</h3>
+                    <div class="selected-text-quick-add-fields">
+                        <label class="field full-width-field" for="selectedTextQuickAddPlanSelect">
+                            <span data-i18n="popupQuickAddPlanLabel">Plan</span>
+                            <select id="selectedTextQuickAddPlanSelect"></select>
+                        </label>
+                        <label class="field full-width-field" for="selectedTextQuickAddEntrySelect">
+                            <span data-i18n="popupQuickAddEntryLabel">Entry</span>
+                            <select id="selectedTextQuickAddEntrySelect"></select>
+                        </label>
+                        <label class="field" for="selectedTextQuickAddScoreInput">
+                            <span data-i18n="popupQuickAddScoreLabel">Score</span>
+                            <input id="selectedTextQuickAddScoreInput" type="number" min="1" max="100" step="1" value="25">
+                        </label>
+                    </div>
+                    <p id="selectedTextQuickAddSimulation" class="selected-text-quick-add-simulation" data-i18n="popupNoKeywordIdeas">None detected</p>
+                    <button id="addSelectedTextRuleButton" class="primary-action-button" type="button" disabled data-i18n="popupQuickAddAddRuleButton">Add rule</button>
+                </div>
                 <div class="diagnostic-actions">
                     <button id="copySelectedTextButton" class="secondary-button" type="button" disabled data-i18n="popupCopySelectedTextButton">Copy selected keyword</button>
                     <button id="copyKeywordIdeasButton" class="secondary-button" type="button" disabled data-i18n="popupCopyKeywordIdeasButton">Copy keyword ideas</button>

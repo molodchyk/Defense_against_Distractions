@@ -20,24 +20,12 @@ import {
   updateTabUrl
 } from '../../js/popup/chrome.js';
 import { getMessage, localizePopup } from '../../js/popup/i18n.js';
-import {
-  createPopupPanelSet
-} from '../../js/popup/panelSet.js';
-import {
-  createElementPickerLauncher
-} from '../../js/popup/elementPickerLauncher.js';
-import {
-  createPopupDiagnosticsExporter
-} from '../../js/popup/diagnosticsExport.js';
-import {
-  bindPopupEvents
-} from '../../js/popup/events.js';
-import {
-  createPopupRefreshLoop
-} from '../../js/popup/refreshLoop.js';
-import {
-  createPopupShell
-} from '../../js/popup/shell.js';
+import { createPopupPanelSet } from '../../js/popup/panelSet.js';
+import { createElementPickerLauncher } from '../../js/popup/elementPickerLauncher.js';
+import { createPopupDiagnosticsExporter } from '../../js/popup/diagnosticsExport.js';
+import { bindPopupEvents } from '../../js/popup/events.js';
+import { createPopupRefreshLoop } from '../../js/popup/refreshLoop.js';
+import { createPopupShell } from '../../js/popup/shell.js';
 
 const popupShell = createPopupShell();
 const panels = createPopupPanelSet({
@@ -95,6 +83,7 @@ function handleStorageChange(changes, areaName) {
 
   if (areaName === 'sync' && changes[PLANS_STORAGE_KEY]) {
     panels.protectionSummaryPanel.setPlans(changes[PLANS_STORAGE_KEY].newValue);
+    panels.selectedTextQuickAddPanel.setPlans(changes[PLANS_STORAGE_KEY].newValue);
   }
 
   if (areaName === 'local' && changes.usageStats) {
@@ -122,6 +111,7 @@ async function initializePopup() {
   popupShell.loadTheme();
   redirectExtensionTabsToOptions();
   panels.protectionSummaryPanel.refreshPlans();
+  panels.selectedTextQuickAddPanel.refreshPlans();
   panels.focusStatePanel.refresh();
   panels.usageStatsPanel.refresh();
   panels.intentDiagnosticsPanel.refresh();

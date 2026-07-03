@@ -1984,6 +1984,57 @@
     "popupSelectedTextCopyFailed": {
         "message": "Could not copy selected keyword."
     },
+    "popupQuickAddSelectedTextTitle": {
+        "message": "Add selected text"
+    },
+    "popupQuickAddPlanLabel": {
+        "message": "Plan"
+    },
+    "popupQuickAddEntryLabel": {
+        "message": "Entry"
+    },
+    "popupQuickAddScoreLabel": {
+        "message": "Score"
+    },
+    "popupQuickAddActivePlanOption": {
+        "message": "$1 - active"
+    },
+    "popupQuickAddMatchingEntryOption": {
+        "message": "$1 - current site"
+    },
+    "popupQuickAddCreateEntryOption": {
+        "message": "Create current-site entry"
+    },
+    "popupQuickAddEntryName": {
+        "message": "Quick add"
+    },
+    "popupQuickAddAddRuleButton": {
+        "message": "Add rule"
+    },
+    "popupQuickAddNoPlans": {
+        "message": "Create a plan before quick add."
+    },
+    "popupQuickAddSimulationWouldBlock": {
+        "message": "Current page: $1/100 would block by this keyword alone."
+    },
+    "popupQuickAddSimulationWouldNotBlock": {
+        "message": "Current page: adds $1/100; alone would not block."
+    },
+    "popupQuickAddSimulationNoMatch": {
+        "message": "Current page: selected entry does not match this site."
+    },
+    "popupQuickAddSaved": {
+        "message": "Selected text rule saved."
+    },
+    "popupQuickAddAlreadyCovered": {
+        "message": "Selected text is already covered."
+    },
+    "popupQuickAddLockedRejected": {
+        "message": "Cannot weaken protection during an active protected schedule."
+    },
+    "popupQuickAddFailed": {
+        "message": "Could not save selected text rule."
+    },
     "popupKeywordIdeasLabel": {
         "message": "Keyword ideas"
     },

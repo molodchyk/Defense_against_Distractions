@@ -126,7 +126,8 @@ export function createPageSignalsPanel({
   sendRuntimeMessage,
   sendTabMessage,
   setStatus,
-  onActiveTabChange
+  onActiveTabChange,
+  onSelectionCandidateChange
 }) {
   let latestSnapshot = null;
   let latestTabPressure = null;
@@ -137,6 +138,7 @@ export function createPageSignalsPanel({
     latestSnapshot = null;
     latestKeywordSuggestions = [];
     latestSelectionCandidate = null;
+    onSelectionCandidateChange?.(latestSelectionCandidate);
     document.getElementById('pageSignalsStatus').textContent = message;
     PAGE_SIGNAL_COUNT_IDS.forEach(elementId => {
       document.getElementById(elementId).textContent = '--';
@@ -204,6 +206,7 @@ export function createPageSignalsPanel({
     latestSnapshot = response;
     latestKeywordSuggestions = buildKeywordSuggestionCandidates(signals);
     latestSelectionCandidate = normalizeSelectedTextCandidate(response?.selectionCandidate);
+    onSelectionCandidateChange?.(latestSelectionCandidate);
     document.getElementById('pageSignalsStatus').textContent = getMessage('popupCurrentTabStatus');
     document.getElementById('pageSignalImageCount').textContent = formatCount(signals.media?.imageCount);
     document.getElementById('pageSignalVideoCount').textContent = formatCount(signals.media?.videoCount);
