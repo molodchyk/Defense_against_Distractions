@@ -25,6 +25,7 @@ Preserve this order when moving content-script files. A move must update `manife
 - `src/js/content/pomodoro/miniPanelRender.js`
 - `src/js/content/pomodoro/miniPanel.js`
 - `src/js/content/page-signals/contextTokens.js`
+- `src/js/content/page-signals/selectionCandidate.js`
 - `src/js/content/page-signals/recommenderZones.js`
 - `src/js/content/page-signals/activityScroll.js`
 - `src/js/content/page-signals/activityInput.js`

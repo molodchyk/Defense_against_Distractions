@@ -15,6 +15,10 @@
     reporter.schedulePageSignalReport();
   }
 
+  function getActiveSelectionCandidate() {
+    return global.DAD.PageSignalSelectionCandidate?.getActiveSelectionCandidate?.() || null;
+  }
+
   function initializePageSignalReporting() {
     activity.resetActivitySignals();
     reporter.installHistoryHooks();
@@ -45,6 +49,7 @@
 
   global.DAD.PageSignals = {
     collectPageSignals,
+    getActiveSelectionCandidate,
     schedulePageSignalReport
   };
 
@@ -58,7 +63,8 @@
     if (message.action === 'getPageSignalSnapshot') {
       sendResponse({
         status: 'ok',
-        signals: collectPageSignals()
+        signals: collectPageSignals(),
+        selectionCandidate: getActiveSelectionCandidate()
       });
       return false;
     }

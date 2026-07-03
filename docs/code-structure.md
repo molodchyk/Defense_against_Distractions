@@ -230,6 +230,7 @@ The first local signal collector is split by runtime:
 
 - `src/features/page-signals/core/collectorModel.js` is the tested ES-module collector shape. `src/js/shared/pageSignals.js` remains the compatibility barrel for existing imports.
 - `src/js/content/page-signals/contextTokens.js` owns bounded clicked-link and selected-text token extraction for transient click context.
+- `src/js/content/page-signals/selectionCandidate.js` owns bounded active-selection extraction for DaD Select quick add, including candidate text caps, editable-field detection, token extraction, and an initial 0-100 score estimate without storing unsaved selected text.
 - `src/js/content/page-signals/recommenderZones.js` owns generic, conservative repeated-card/grid, and site-specific recommendation/feed/comment zone classification for page activity signals.
 - `src/js/content/page-signals/activityScroll.js` owns bounded scroll counts, distance in viewport units, direction reversals, depth, and recent-scroll timing.
 - `src/js/content/page-signals/activityInput.js` owns bounded key/input counts and active editable-field focus duration without storing field values, labels, selectors, or typed text.

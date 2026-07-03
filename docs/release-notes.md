@@ -8,6 +8,7 @@ Release focus:
 
 - Current plan-based protection model: plans, schedules, allowed websites, keywords, locked-schedule rules, Pomodoro, intent coherence, and optional UI cleanup.
 - UI cleanup actions now include scoped `Hide images` and `Disable controls` presets in addition to hide, click-once, clear-field, and pause-media rules.
+- DaD Select groundwork: current-page snapshots can now include a bounded active selected-text candidate with an initial 0-100 score estimate for future popup quick add.
 - Store-ready media: five 1280x800 screenshots, a 440x280 small promo, and a 1400x560 marquee promo verified by the package checks and documented in [Store Media Review](store-media-review.md).
 - StorePilot preparation: localized listing text, privacy form answers, category selection, additional fields, and permission justifications for the current manifest.
 - Privacy and package posture: local-first behavior, no analytics, no remote executable code, and no unexpected remote network access in the runtime package.

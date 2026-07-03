@@ -45,6 +45,7 @@
         "src/js/content/pomodoro/miniPanelRender.js",
         "src/js/content/pomodoro/miniPanel.js",
         "src/js/content/page-signals/contextTokens.js",
+        "src/js/content/page-signals/selectionCandidate.js",
         "src/js/content/page-signals/recommenderZones.js",
         "src/js/content/page-signals/activityScroll.js",
         "src/js/content/page-signals/activityInput.js",
