@@ -53,4 +53,17 @@ describe('product spec checks', () => {
       selectedTextQuickAdd: weakenedSelectedTextQuickAdd
     }), [selectedTextQuickAddSpecFailure]);
   });
+
+  it('rejects quick-add specs that lose the contextMenus permission boundary', async () => {
+    const docs = await readDocs();
+    const weakenedSelectedTextQuickAdd = docs.selectedTextQuickAdd.replace(
+      'The first version should avoid adding a new permission if the popup path is enough.',
+      'The first version may add a context menu whenever useful.'
+    );
+
+    assert.deepEqual(getProductSpecFailures({
+      ...docs,
+      selectedTextQuickAdd: weakenedSelectedTextQuickAdd
+    }), [selectedTextQuickAddSpecFailure]);
+  });
 });
