@@ -77,6 +77,8 @@ The preview count updates when the page adds or removes matching elements.
 
 `Pause media` is a bounded media-cleanup action. It pauses playing `audio` or `video` elements that directly match the rule, or playing media inside the first matched container, once per page URL. It does not save media URLs, captions, titles, or playback history.
 
+Future bounded actions such as `hideImages` and `disableControls` should follow the same model: scoped, reversible, capped, and user-created through a picker or action-chain editor. The product shape is specified in [DaD Select quick add](selected-text-quick-add.md).
+
 DaD does not fill forms, type text, run arbitrary JavaScript, or repeatedly click, clear, or pause matching elements. Broader automation would need a separate safety model.
 
 ## Match Strategy

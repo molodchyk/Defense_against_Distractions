@@ -125,6 +125,8 @@ Safe first-step types can reuse existing bounded UI element actions:
 - `clearField`: clear one matched editable field once.
 - `pauseMedia`: pause matched media once.
 - `hideElement`: hide matched elements.
+- `hideImages`: hide image-like elements inside a bounded action scope.
+- `disableControls`: make matched interactive controls inert while the action is active.
 - `blockPage`: show the normal block overlay.
 - `waitForElement`: wait briefly for an expected target before the next step.
 - `stop`: end the chain without blocking.
@@ -196,6 +198,8 @@ Possible UI:
 - Reuse the existing UI picker to select each target element.
 
 The action list should stay compact. Advanced actions should be behind an expand/edit control so this does not turn plan editing into a general scripting IDE.
+
+DaD Select quick add is a related creation shortcut: selected page text can become a keyword with an editable score estimate and optional safe action presets, while ordered steps, scenario guards, and fallbacks still belong in this triggered-action editor. See [DaD Select quick add](selected-text-quick-add.md).
 
 ## Implementation Phases
 
