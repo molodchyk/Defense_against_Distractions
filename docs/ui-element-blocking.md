@@ -77,7 +77,9 @@ The preview count updates when the page adds or removes matching elements.
 
 `Pause media` is a bounded media-cleanup action. It pauses playing `audio` or `video` elements that directly match the rule, or playing media inside the first matched container, once per page URL. It does not save media URLs, captions, titles, or playback history.
 
-Future bounded actions such as `hideImages` and `disableControls` should follow the same model: scoped, reversible, capped, and user-created through a picker or action-chain editor. The product shape is specified in [DaD Select quick add](selected-text-quick-add.md).
+`Hide images` is a scoped visual cleanup action. It hides image-like elements inside matched targets, including `img`, `picture`, `svg`, `canvas`, role-image elements, and inline background-image elements. It does not inspect, download, classify, or store image content. It is capped per matched scope and restores the original page state when the rule is removed, disabled, or reset.
+
+`Disable controls` is a scoped interaction cleanup action. It makes matched interactive controls or controls inside a matched target temporarily inert by using extension-owned disabled, aria-disabled, tabindex, pointer-events, and contenteditable state where applicable. It does not click, submit, delete, type into, or permanently mutate site data, and it restores original state when the rule is removed, disabled, or reset.
 
 DaD does not fill forms, type text, run arbitrary JavaScript, or repeatedly click, clear, or pause matching elements. Broader automation would need a separate safety model.
 

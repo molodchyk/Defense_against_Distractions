@@ -1094,8 +1094,20 @@
     "elementRuleActionClickSummary": {
         "message": "click once"
     },
+    "elementRuleActionDisableControls": {
+        "message": "Disable controls"
+    },
+    "elementRuleActionDisableControlsSummary": {
+        "message": "disable controls"
+    },
     "elementRuleActionHideElement": {
         "message": "Hide element"
+    },
+    "elementRuleActionHideImages": {
+        "message": "Hide images"
+    },
+    "elementRuleActionHideImagesSummary": {
+        "message": "hide images"
     },
     "elementRuleActionHideSummary": {
         "message": "hide"
@@ -2086,6 +2098,12 @@
     "elementPickerPauseMediaActionOption": {
         "message": "Pause media"
     },
+    "elementPickerHideImagesActionOption": {
+        "message": "Hide images"
+    },
+    "elementPickerDisableControlsActionOption": {
+        "message": "Disable controls"
+    },
     "elementPickerPreviewLabel": {
         "message": "Preview"
     },
@@ -2169,6 +2187,12 @@
     },
     "elementPickerPreviewPausingMediaVerb": {
         "message": "pausing media in"
+    },
+    "elementPickerPreviewHidingImagesVerb": {
+        "message": "hiding images in"
+    },
+    "elementPickerPreviewDisablingControlsVerb": {
+        "message": "disabling controls in"
     },
     "elementPickerElementSingular": {
         "message": "element"

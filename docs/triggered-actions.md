@@ -2,7 +2,7 @@
 
 Triggered action chains are a future generalization of keyword blocking and UI element cleanup.
 
-DaD can already detect configured page content and block the page. DaD can also already hide, click once, clear a field, or pause media through user-configured UI element rules. The missing product layer is to let a triggered block run one or more bounded page actions before, after, or instead of full-page blocking.
+DaD can already detect configured page content and block the page. DaD can also already hide elements, hide images, disable controls, click once, clear a field, or pause media through user-configured UI element rules. The missing product layer is to let a triggered block run one or more bounded page actions before, after, or instead of full-page blocking.
 
 ## Product Intent
 

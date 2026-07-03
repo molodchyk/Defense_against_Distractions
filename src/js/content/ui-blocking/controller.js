@@ -45,6 +45,10 @@
     isPickerPanelEvent
   } = elementBlocking.pickerPanel;
   const {
+    getEffectivePreviewMode,
+    getPreviewVerbKey
+  } = elementBlocking.pickerPreview;
+  const {
     applyBuiltInElementRules,
     observeBuiltInElementRules
   } = elementBlocking.builtInRules || {};
@@ -180,17 +184,9 @@
       if (!selectedElement || !pickerPanel) return;
 
       previewRule = buildPreviewRule();
-      const effectivePreviewMode = ['click', 'clear', 'pauseMedia'].includes(pickerControls.action) ? 'outline' : pickerControls.previewMode;
+      const effectivePreviewMode = getEffectivePreviewMode(pickerControls.action, pickerControls.previewMode);
       const matchCount = previewElementRule(previewRule, effectivePreviewMode);
-      const verbKey = pickerControls.action === 'click'
-        ? 'elementPickerPreviewClickingVerb'
-        : pickerControls.action === 'clear'
-          ? 'elementPickerPreviewClearingVerb'
-          : pickerControls.action === 'pauseMedia'
-            ? 'elementPickerPreviewPausingMediaVerb'
-            : effectivePreviewMode === 'outline'
-              ? 'elementPickerPreviewOutliningVerb'
-              : 'elementPickerPreviewHidingVerb';
+      const verbKey = getPreviewVerbKey(pickerControls.action, effectivePreviewMode);
       const verb = getPickerMessage(verbKey);
       const noun = getPickerMessage(matchCount === 1 ? 'elementPickerElementSingular' : 'elementPickerElementPlural');
       pickerPanel.setSelection(getRuleTargetElement(selectedElement, pickerControls.targetLevel));

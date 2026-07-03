@@ -13,6 +13,11 @@
     ORIGINAL_DISPLAY_PRIORITY_ATTRIBUTE: 'data-dad-original-display-priority',
     ORIGINAL_DISABLED_ATTRIBUTE: 'data-dad-original-disabled',
     ORIGINAL_ARIA_HIDDEN_ATTRIBUTE: 'data-dad-original-aria-hidden',
+    ORIGINAL_ARIA_DISABLED_ATTRIBUTE: 'data-dad-original-aria-disabled',
+    ORIGINAL_TAB_INDEX_ATTRIBUTE: 'data-dad-original-tabindex',
+    ORIGINAL_POINTER_EVENTS_ATTRIBUTE: 'data-dad-original-pointer-events',
+    ORIGINAL_POINTER_EVENTS_PRIORITY_ATTRIBUTE: 'data-dad-original-pointer-events-priority',
+    ORIGINAL_CONTENT_EDITABLE_ATTRIBUTE: 'data-dad-original-contenteditable',
     AUTO_CLICK_ATTRIBUTE: 'data-dad-element-auto-clicked',
     AUTO_CLEAR_ATTRIBUTE: 'data-dad-element-auto-cleared',
     AUTO_PAUSE_MEDIA_ATTRIBUTE: 'data-dad-element-auto-paused-media',
@@ -40,7 +45,9 @@
       HIDE: 'hide',
       CLICK: 'click',
       CLEAR: 'clear',
-      PAUSE_MEDIA: 'pauseMedia'
+      PAUSE_MEDIA: 'pauseMedia',
+      HIDE_IMAGES: 'hideImages',
+      DISABLE_CONTROLS: 'disableControls'
     },
     DEFAULT_PREVIEW_MODE: 'hide',
     DEFAULT_PICKER_ACTION_MODE: 'pick',

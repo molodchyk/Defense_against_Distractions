@@ -24,7 +24,9 @@ export const ELEMENT_RULE_ACTIONS = [
   ['hide', 'elementRuleActionHideElement', 'Hide element'],
   ['click', 'elementRuleActionClickOnce', 'Click once'],
   ['clear', 'elementRuleActionClearField', 'Clear field'],
-  ['pauseMedia', 'elementRuleActionPauseMedia', 'Pause media']
+  ['pauseMedia', 'elementRuleActionPauseMedia', 'Pause media'],
+  ['hideImages', 'elementRuleActionHideImages', 'Hide images'],
+  ['disableControls', 'elementRuleActionDisableControls', 'Disable controls']
 ];
 
 export const FINGERPRINT_FIELDS = [
@@ -48,7 +50,11 @@ export const ELEMENT_RULE_MESSAGES = {
   elementRuleActionClearSummary: 'clear field',
   elementRuleActionClickOnce: 'Click once',
   elementRuleActionClickSummary: 'click once',
+  elementRuleActionDisableControls: 'Disable controls',
+  elementRuleActionDisableControlsSummary: 'disable controls',
   elementRuleActionHideElement: 'Hide element',
+  elementRuleActionHideImages: 'Hide images',
+  elementRuleActionHideImagesSummary: 'hide images',
   elementRuleActionHideSummary: 'hide',
   elementRuleActionLabel: 'Action',
   elementRuleActionPauseMedia: 'Pause media',

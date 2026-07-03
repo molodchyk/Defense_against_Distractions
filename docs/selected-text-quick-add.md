@@ -113,13 +113,13 @@ Initial preset candidates:
 
 `hideImages` should be a reversible page action. It should not download, inspect, classify, or store image content.
 
-Possible first behavior:
+Implemented UI-rule behavior:
 
-- hide `img`, `picture`, visible image-like `svg`, and CSS background images inside the chosen action scope;
-- show a small extension-owned placeholder only when needed to preserve layout;
+- hide `img`, `picture`, visible image-like `svg`, `canvas`, role-image elements, and inline background-image elements inside the chosen action scope;
+- hide matched image-like elements directly without downloading, classifying, or storing image content;
 - restore images when the rule is disabled, the intervention clears, or the page unloads;
 - cap the number of elements modified per run;
-- report only counts in diagnostics.
+- keep diagnostics to the normal user-created UI rule fingerprint, not image URLs or image content.
 
 Scope matters:
 
@@ -131,12 +131,11 @@ Scope matters:
 
 `disableControls` should mean "make matched interactive controls inert while the rule is active." It should not click, submit, delete, or permanently mutate site data.
 
-Possible first behavior:
+Implemented UI-rule behavior:
 
-- target `button`, link-like controls, form submit controls, and elements with button/menuitem roles;
-- prevent pointer and keyboard activation through extension-owned event capture;
-- add `aria-disabled="true"` only as an extension-owned temporary state when safe;
-- visually dim controls without hiding them completely;
+- target `button`, link-like controls, form controls, summary controls, contenteditable controls, and common interactive ARIA roles;
+- prevent ordinary pointer and keyboard activation through temporary disabled, `aria-disabled`, `tabindex`, `pointer-events`, and `contenteditable` state where applicable;
+- keep the target visible instead of hiding it completely;
 - restore original state when the rule is disabled, the intervention clears, or the page unloads;
 - cap the number of controls modified per run.
 
@@ -188,7 +187,7 @@ If the later right-click context-menu variant adds `contextMenus`, update the ma
 - The score estimate is editable and uses the 0-100 authoring scale.
 - The popup can simulate whether the new score would block the current page before saving.
 - Saved quick-add rules participate in locked-schedule strictness checks.
-- `hideImages` and `disableControls`, if implemented, are reversible, capped, scoped, and visible in diagnostics.
+- `hideImages` and `disableControls` presets compile to the existing reversible, capped, scoped UI cleanup actions.
 - The feature works without adding `contextMenus` unless the right-click variant is explicitly chosen.
 - Tests cover candidate normalization, score estimation, protected-plan strictness, and action preset compilation.
 

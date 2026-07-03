@@ -5,11 +5,6 @@
   global.DAD = global.DAD || {};
   const elementBlocking = global.DAD.ElementBlocking = global.DAD.ElementBlocking || {};
   const {
-    BLOCKED_ATTRIBUTE,
-    ORIGINAL_DISPLAY_ATTRIBUTE,
-    ORIGINAL_DISPLAY_PRIORITY_ATTRIBUTE,
-    ORIGINAL_DISABLED_ATTRIBUTE,
-    ORIGINAL_ARIA_HIDDEN_ATTRIBUTE,
     AUTO_CLICK_ATTRIBUTE,
     AUTO_CLEAR_ATTRIBUTE,
     AUTO_PAUSE_MEDIA_ATTRIBUTE,
@@ -18,6 +13,16 @@
   } = elementBlocking.constants;
   const { normalizeToken } = elementBlocking.fingerprint;
   const { matchesElementRule } = elementBlocking.matcher;
+  const {
+    disableControlsInScope,
+    hideImagesInScope
+  } = elementBlocking.scopedActions;
+  const {
+    hideElement,
+    rememberElementState,
+    resetElementBlocks,
+    restoreElement
+  } = elementBlocking.elementState;
 
   const clickedRuleKeys = new Set();
   const clearedRuleKeys = new Set();
@@ -36,60 +41,6 @@
     'url',
     'week'
   ]);
-
-  function hideElement(element) {
-    if (!element.hasAttribute(BLOCKED_ATTRIBUTE)) {
-      element.setAttribute(ORIGINAL_DISPLAY_ATTRIBUTE, element.style.getPropertyValue('display'));
-      element.setAttribute(ORIGINAL_DISPLAY_PRIORITY_ATTRIBUTE, element.style.getPropertyPriority('display'));
-      element.setAttribute(ORIGINAL_ARIA_HIDDEN_ATTRIBUTE, element.getAttribute('aria-hidden') || '');
-
-      if ('disabled' in element) {
-        element.setAttribute(ORIGINAL_DISABLED_ATTRIBUTE, element.disabled ? 'true' : 'false');
-      }
-    }
-
-    element.setAttribute(BLOCKED_ATTRIBUTE, 'true');
-    element.setAttribute('aria-hidden', 'true');
-    element.style.setProperty('display', 'none', 'important');
-
-    if ('disabled' in element) {
-      element.disabled = true;
-    }
-  }
-
-  function restoreElement(element) {
-    const originalDisplay = element.getAttribute(ORIGINAL_DISPLAY_ATTRIBUTE) || '';
-    const originalDisplayPriority = element.getAttribute(ORIGINAL_DISPLAY_PRIORITY_ATTRIBUTE) || '';
-    const originalAriaHidden = element.getAttribute(ORIGINAL_ARIA_HIDDEN_ATTRIBUTE) || '';
-    const originalDisabled = element.getAttribute(ORIGINAL_DISABLED_ATTRIBUTE);
-
-    element.removeAttribute(BLOCKED_ATTRIBUTE);
-
-    if (originalDisplay) {
-      element.style.setProperty('display', originalDisplay, originalDisplayPriority);
-    } else {
-      element.style.removeProperty('display');
-    }
-
-    if (originalAriaHidden) {
-      element.setAttribute('aria-hidden', originalAriaHidden);
-    } else {
-      element.removeAttribute('aria-hidden');
-    }
-
-    if ('disabled' in element && originalDisabled !== null) {
-      element.disabled = originalDisabled === 'true';
-    }
-
-    element.removeAttribute(ORIGINAL_DISPLAY_ATTRIBUTE);
-    element.removeAttribute(ORIGINAL_DISPLAY_PRIORITY_ATTRIBUTE);
-    element.removeAttribute(ORIGINAL_DISABLED_ATTRIBUTE);
-    element.removeAttribute(ORIGINAL_ARIA_HIDDEN_ATTRIBUTE);
-  }
-
-  function resetElementBlocks() {
-    document.querySelectorAll(`[${BLOCKED_ATTRIBUTE}="true"]`).forEach(restoreElement);
-  }
 
   function ruleAppliesToCurrentUrl(rule) {
     const normalizedUrl = global.DAD.normalizeUrl(location.href);
@@ -272,6 +223,14 @@
 
     if (getRuleAction(rule) === ELEMENT_RULE_ACTIONS.PAUSE_MEDIA) {
       return pauseMediaOnce(element, rule);
+    }
+
+    if (getRuleAction(rule) === ELEMENT_RULE_ACTIONS.HIDE_IMAGES) {
+      return hideImagesInScope(element, hideElement);
+    }
+
+    if (getRuleAction(rule) === ELEMENT_RULE_ACTIONS.DISABLE_CONTROLS) {
+      return disableControlsInScope(element, rememberElementState);
     }
 
     hideElement(element);

@@ -176,6 +176,14 @@ function formatRuleAction(action) {
     return getElementRuleMessage('elementRuleActionPauseSummary');
   }
 
+  if (action === 'hideImages') {
+    return getElementRuleMessage('elementRuleActionHideImagesSummary');
+  }
+
+  if (action === 'disableControls') {
+    return getElementRuleMessage('elementRuleActionDisableControlsSummary');
+  }
+
   return getElementRuleMessage('elementRuleActionHideSummary');
 }
 

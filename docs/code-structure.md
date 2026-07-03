@@ -164,11 +164,14 @@ UI element blocking is split into ordered content-script modules:
 - `src/js/content/ui-blocking/fingerprint.js`: element fingerprints, labels, roles, target selection, and picker hit testing.
 - `src/js/content/ui-blocking/matcher.js`: structural matching and match scoring.
 - `src/js/content/ui-blocking/storage.js`: sync storage migration, split-rule storage, quota reserve checks, and rule persistence.
-- `src/js/content/ui-blocking/actions.js`: applying saved rules, hiding/restoring elements, and bounded click-once / clear-field / pause-media rule actions.
+- `src/js/content/ui-blocking/elementState.js`: reversible element state capture and restoration for hidden or disabled UI cleanup targets.
+- `src/js/content/ui-blocking/scopedActions.js`: scoped image-hiding and control-disabling helpers used by bounded UI cleanup actions.
+- `src/js/content/ui-blocking/actions.js`: applying saved rules and coordinating bounded click-once / clear-field / pause-media / scoped cleanup rule actions.
 - `src/js/content/ui-blocking/dom.js`: previewing candidate rules and mutation observation.
 - `src/js/content/ui-blocking/builtInRules.js`: narrow built-in cosmetic cleanup rules such as ChatGPT message action controls.
 - `src/js/content/ui-blocking/pickerStyle.js`: picker highlight and panel CSS injection.
 - `src/js/content/ui-blocking/pickerPanel.js`: picker copy, theme sync, draggable panel rendering, and picker controls.
+- `src/js/content/ui-blocking/pickerPreview.js`: action-specific picker preview mode and wording selection.
 - `src/js/content/ui-blocking/controller.js`: public entry points, picker lifecycle, rule creation, preview orchestration, and content-script event wiring.
 
 The public content-script API remains:

@@ -7,6 +7,8 @@ import { describe, it } from 'node:test';
 import vm from 'node:vm';
 
 const CONSTANTS_PATH = 'src/js/content/ui-blocking/constants.js';
+const ELEMENT_STATE_PATH = 'src/js/content/ui-blocking/elementState.js';
+const SCOPED_ACTIONS_PATH = 'src/js/content/ui-blocking/scopedActions.js';
 const ACTIONS_PATH = 'src/js/content/ui-blocking/actions.js';
 const DOM_PATH = 'src/js/content/ui-blocking/dom.js';
 
@@ -32,12 +34,17 @@ function createElement({
   matchesRule = true,
   rect = { width: 20, height: 10 },
   tagName = 'BUTTON',
+  role = '',
+  href = '',
   type = 'button',
   value = '',
   readOnly = false,
   contentEditable = false,
+  contentEditableAttribute = null,
   textContent = '',
   mediaChildren = [],
+  imageChildren = [],
+  controlChildren = [],
   paused = true,
   pauseThrows = false
 } = {}) {
@@ -46,6 +53,15 @@ function createElement({
   let pauses = 0;
   let isPaused = paused;
   const dispatchedEvents = [];
+  if (role) {
+    attributes.set('role', role);
+  }
+  if (href) {
+    attributes.set('href', href);
+  }
+  if (contentEditableAttribute !== null) {
+    attributes.set('contenteditable', contentEditableAttribute);
+  }
 
   return {
     disabled,
@@ -87,16 +103,42 @@ function createElement({
       dispatchedEvents.push(event.type);
       return true;
     },
-    querySelectorAll: selector => (selector === 'audio, video' ? mediaChildren : []),
+    matches: selector => {
+      const selectorText = String(selector || '').toLowerCase();
+      const normalizedTag = String(tagName || '').toLowerCase();
+      const normalizedRole = String(attributes.get('role') || '').toLowerCase();
+      if (selectorText.split(',').some(part => part.trim() === normalizedTag)) return true;
+      if (selectorText.includes(`[role="${normalizedRole}"]`) && normalizedRole) return true;
+      if (selectorText.includes('a[href]') && normalizedTag === 'a' && attributes.has('href')) return true;
+      if (selectorText.includes('[contenteditable=""]') && attributes.get('contenteditable') === '') return true;
+      if (selectorText.includes('[contenteditable="true"]') && attributes.get('contenteditable') === 'true') return true;
+      if (selectorText.includes('[contenteditable="plaintext-only"]') && attributes.get('contenteditable') === 'plaintext-only') return true;
+      return false;
+    },
+    querySelectorAll: selector => {
+      const selectorText = String(selector || '').toLowerCase();
+      if (selectorText === 'audio, video') return mediaChildren;
+      if (selectorText.includes('img') || selectorText.includes('[role="img"]')) return imageChildren;
+      if (selectorText.includes('button') || selectorText.includes('[role="button"]') || selectorText.includes('a[href]')) {
+        return controlChildren;
+      }
+      return [];
+    },
     getAttribute: name => attributes.get(name) || null,
     getBoundingClientRect: () => rect,
     hasAttribute: name => attributes.has(name),
     removeAttribute: name => attributes.delete(name),
-    setAttribute: (name, value) => attributes.set(name, String(value))
+    setAttribute: (name, value) => attributes.set(name, String(value)),
+    _children: [...mediaChildren, ...imageChildren, ...controlChildren]
   };
 }
 
 function loadDom(elements, href = 'https://example.com/page') {
+  const collectElements = roots => roots.flatMap(element => [
+    element,
+    ...collectElements(element._children || [])
+  ]);
+  const allElements = () => collectElements(elements);
   const window = {
     DAD: {
       ElementBlocking: {},
@@ -112,7 +154,12 @@ function loadDom(elements, href = 'https://example.com/page') {
       },
       createElement: () => ({ style: {}, appendChild: () => {} }),
       getElementById: () => null,
-      querySelectorAll: () => []
+      querySelectorAll: selector => {
+        if (selector === '[data-dad-element-blocked="true"]') {
+          return allElements().filter(element => element.getAttribute('data-dad-element-blocked') === 'true');
+        }
+        return [];
+      }
     },
     innerHeight: 800,
     innerWidth: 1200,
@@ -135,6 +182,8 @@ function loadDom(elements, href = 'https://example.com/page') {
   window.DAD.ElementBlocking.matcher = {
     matchesElementRule: element => element.matchesRule
   };
+  vm.runInContext(readFileSync(ELEMENT_STATE_PATH, 'utf8'), window);
+  vm.runInContext(readFileSync(SCOPED_ACTIONS_PATH, 'utf8'), window);
   vm.runInContext(readFileSync(ACTIONS_PATH, 'utf8'), window);
   vm.runInContext(readFileSync(DOM_PATH, 'utf8'), window);
   return window;
@@ -315,5 +364,65 @@ describe('UI element rule actions', () => {
     assert.equal(firstVideo.pauseCount, 1);
     assert.equal(firstAudio.pauseCount, 1);
     assert.equal(secondVideo.pauseCount, 0);
+  });
+
+  it('hides image-like elements inside each matching scope', () => {
+    const image = createElement({ tagName: 'IMG', matchesRule: false });
+    const icon = createElement({ tagName: 'SVG', matchesRule: false });
+    const container = createElement({ tagName: 'DIV', imageChildren: [image, icon] });
+    const window = loadDom([container]);
+
+    window.DAD.ElementBlocking.dom.applyElementRules([{
+      id: 'rule_hide_images',
+      action: 'hideImages',
+      enabled: true,
+      urlPattern: 'example.com'
+    }]);
+
+    assert.equal(container.getAttribute('data-dad-element-blocked'), null);
+    assert.equal(image.getAttribute('data-dad-element-blocked'), 'true');
+    assert.equal(icon.getAttribute('data-dad-element-blocked'), 'true');
+    assert.equal(image.style.getPropertyValue('display'), 'none');
+    assert.equal(icon.style.getPropertyValue('display'), 'none');
+
+    window.DAD.ElementBlocking.dom.resetElementBlocks();
+
+    assert.equal(image.getAttribute('data-dad-element-blocked'), null);
+    assert.equal(icon.getAttribute('data-dad-element-blocked'), null);
+    assert.equal(image.style.getPropertyValue('display'), '');
+    assert.equal(icon.style.getPropertyValue('display'), '');
+  });
+
+  it('disables interactive controls inside each matching scope', () => {
+    const button = createElement({ tagName: 'BUTTON', matchesRule: false });
+    const link = createElement({ tagName: 'A', href: 'https://example.com/next', matchesRule: false });
+    const container = createElement({ tagName: 'DIV', controlChildren: [button, link] });
+    const window = loadDom([container]);
+
+    window.DAD.ElementBlocking.dom.applyElementRules([{
+      id: 'rule_disable_controls',
+      action: 'disableControls',
+      enabled: true,
+      urlPattern: 'example.com'
+    }]);
+
+    assert.equal(container.getAttribute('data-dad-element-blocked'), null);
+    assert.equal(button.disabled, true);
+    assert.equal(button.getAttribute('aria-disabled'), 'true');
+    assert.equal(button.getAttribute('tabindex'), '-1');
+    assert.equal(button.style.getPropertyValue('pointer-events'), 'none');
+    assert.equal(link.getAttribute('aria-disabled'), 'true');
+    assert.equal(link.getAttribute('tabindex'), '-1');
+    assert.equal(link.style.getPropertyValue('pointer-events'), 'none');
+
+    window.DAD.ElementBlocking.dom.resetElementBlocks();
+
+    assert.equal(button.disabled, false);
+    assert.equal(button.getAttribute('aria-disabled'), null);
+    assert.equal(button.getAttribute('tabindex'), null);
+    assert.equal(button.style.getPropertyValue('pointer-events'), '');
+    assert.equal(link.getAttribute('aria-disabled'), null);
+    assert.equal(link.getAttribute('tabindex'), null);
+    assert.equal(link.style.getPropertyValue('pointer-events'), '');
   });
 });

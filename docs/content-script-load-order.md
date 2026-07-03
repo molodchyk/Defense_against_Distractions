@@ -50,11 +50,14 @@ Preserve this order when moving content-script files. A move must update `manife
 - `src/js/content/ui-blocking/fingerprint.js`
 - `src/js/content/ui-blocking/matcher.js`
 - `src/js/content/ui-blocking/storage.js`
+- `src/js/content/ui-blocking/elementState.js`
+- `src/js/content/ui-blocking/scopedActions.js`
 - `src/js/content/ui-blocking/actions.js`
 - `src/js/content/ui-blocking/dom.js`
 - `src/js/content/ui-blocking/builtInRules.js`
 - `src/js/content/ui-blocking/pickerStyle.js`
 - `src/js/content/ui-blocking/pickerPanel.js`
+- `src/js/content/ui-blocking/pickerPreview.js`
 - `src/js/content/plans.js`
 - `src/js/content/ui-blocking/controller.js`
 - `src/js/content/content-blocking/constants.js`

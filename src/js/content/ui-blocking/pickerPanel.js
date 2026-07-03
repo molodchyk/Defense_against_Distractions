@@ -20,6 +20,8 @@
     elementPickerClickActionOption: 'Click once',
     elementPickerClearActionOption: 'Clear field',
     elementPickerPauseMediaActionOption: 'Pause media',
+    elementPickerHideImagesActionOption: 'Hide images',
+    elementPickerDisableControlsActionOption: 'Disable controls',
     elementPickerPreviewLabel: 'Preview',
     elementPickerHideMatchedOption: 'Hide matched',
     elementPickerOutlineMatchedOption: 'Outline matched',
@@ -48,6 +50,8 @@
     elementPickerPreviewClickingVerb: 'clicking once on',
     elementPickerPreviewClearingVerb: 'clearing once in',
     elementPickerPreviewPausingMediaVerb: 'pausing media in',
+    elementPickerPreviewHidingImagesVerb: 'hiding images in',
+    elementPickerPreviewDisablingControlsVerb: 'disabling controls in',
     elementPickerElementSingular: 'element',
     elementPickerElementPlural: 'elements',
     elementPickerPreviewMessage: 'Preview is $1 $2 $3. Adjust settings, save, choose again, or cancel.',
@@ -258,7 +262,9 @@
         ['hide', getPickerMessage('elementPickerHideActionOption')],
         ['click', getPickerMessage('elementPickerClickActionOption')],
         ['clear', getPickerMessage('elementPickerClearActionOption')],
-        ['pauseMedia', getPickerMessage('elementPickerPauseMediaActionOption')]
+        ['pauseMedia', getPickerMessage('elementPickerPauseMediaActionOption')],
+        ['hideImages', getPickerMessage('elementPickerHideImagesActionOption')],
+        ['disableControls', getPickerMessage('elementPickerDisableControlsActionOption')]
       ], controls.action, value => onControlsChange({ action: value }))
     ));
     controlGrid.appendChild(createPickerControl(
