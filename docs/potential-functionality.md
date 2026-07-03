@@ -50,6 +50,7 @@ This section preserves the original phrasing of ideas before they are clarified 
 - DaD algorithm could save keywords it finds on websites and proactively suggest other keywords based on if those appear only on blocked websites, employ machine learning
 - grayscale on websites
 - establish research pipeline
+- DaD select (right select) word, add with popup, estimate score, able to disable buttons + block images
 
 Research pipeline infrastructure now lives in [`../research`](../research/README.md). Use it to turn broad research needs into bounded questions, evidence cards, synthesis notes, and implementation handoffs.
 
