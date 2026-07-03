@@ -21,6 +21,7 @@ import { getInstructionGuideFailures } from './playbook/instructionGuide.mjs';
 import { getIntentDiagnosticsLocalizationFailures, getUsageStatsLocalizationFailures } from './playbook/localization.mjs';
 import { getPlaybookComplianceFailures } from './playbook/playbookCompliance.mjs';
 import { getProductModelFailures } from './playbook/productModel.mjs';
+import { getProductSpecFailures } from './playbook/product/specs.mjs';
 import { getReleaseDocumentationFailures } from './playbook/release/releaseDocs.mjs';
 import { getReleaseSafetyFailures } from './playbook/release/releaseSafety.mjs';
 import { getStoreAutomationFailures } from './playbook/storeAutomation.mjs';
@@ -128,6 +129,7 @@ const [
   decisionRecords,
   playbookCompliance, playbookRequirements, claimTraceability,
   codeStructure, protectionModel, modularizationPlaybook, architectureResearch,
+  potentialFunctionality, selectedTextQuickAdd, triggeredActions,
   localizationDoc,
   contentScriptLoadOrderDoc,
   actionWrapper,
@@ -187,6 +189,7 @@ const [
   readText('docs/decision-records.md'),
   readText('docs/browser-extension-playbook-compliance.md'), readText('docs/browser-extension-playbook-requirements.md'), readText('docs/claim-traceability.md'),
   readText('docs/code-structure.md'), readText('docs/protection-model.md'), readText('docs/extension-modularization-playbook.md'), readText('docs/extension-architecture-research.md'),
+  readText('docs/potential-functionality.md'), readText('docs/selected-text-quick-add.md'), readText('docs/triggered-actions.md'),
   readText('docs/localization.md'),
   readText('docs/content-script-load-order.md'),
   readText('src/platform/chrome/action.js'),
@@ -575,6 +578,7 @@ assertCondition(
 failures.push(...getUsageStatsLocalizationFailures({ englishMessages, usageStatsModule }));
 failures.push(...getIntentDiagnosticsLocalizationFailures({ englishMessages, intentDiagnosticsModule: `${intentDiagnosticsModule}\n${intentDiagnosticsMessagesModule}` }));
 failures.push(...getProductModelFailures({ protectionModel }));
+failures.push(...getProductSpecFailures({ potentialFunctionality, selectedTextQuickAdd, triggeredActions }));
 
 assertCondition(
   hasAll(reviewerNotes, [
