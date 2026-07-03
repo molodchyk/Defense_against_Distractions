@@ -58,6 +58,46 @@ export const allowedResearchPriorities = new Set([
   'low'
 ]);
 
+function duplicateIds(ids) {
+  const seen = new Set();
+  const duplicates = new Set();
+  for (const id of ids) {
+    if (seen.has(id)) {
+      duplicates.add(id);
+    } else {
+      seen.add(id);
+    }
+  }
+
+  return [...duplicates];
+}
+
+function parseQuestionRowIds(questionsText) {
+  const ids = [];
+  const questionsSection = extractSection(questionsText, 'Questions') || '';
+
+  for (const line of questionsSection.split(/\r?\n/)) {
+    const cells = parseMarkdownTableCells(line);
+    if (!cells || !/^RQ-\d{3}$/.test(cells[0]) || cells.length < 7) continue;
+    ids.push(cells[0]);
+  }
+
+  return ids;
+}
+
+function parseAnswerRowIds(questionsText) {
+  const ids = [];
+  const answerSection = extractSection(questionsText, 'Answer Linking') || '';
+
+  for (const line of answerSection.split(/\r?\n/)) {
+    const cells = parseMarkdownTableCells(line);
+    if (!cells || !/^RQ-\d{3}$/.test(cells[0]) || cells.length !== 2) continue;
+    ids.push(cells[0]);
+  }
+
+  return ids;
+}
+
 export function parseQuestionRows(questionsText) {
   const rows = new Map();
   const questionsSection = extractSection(questionsText, 'Questions') || '';
@@ -113,6 +153,8 @@ export function getResearchRegistryFailures(questionsText) {
   const questionRows = parseQuestionRows(questionsText);
   const answerRows = parseAnswerRows(questionsText);
   const recommendedIds = parseRecommendedSequenceIds(questionsText);
+  const questionRowIds = parseQuestionRowIds(questionsText);
+  const answerRowIds = parseAnswerRowIds(questionsText);
   const questionIds = [...questionRows.keys()];
   const answerIds = [...answerRows.keys()];
 
@@ -123,6 +165,15 @@ export function getResearchRegistryFailures(questionsText) {
     failures.push('Research registry must list a recommended first sequence.');
   }
 
+  for (const id of duplicateIds(questionRowIds)) {
+    failures.push(`Research Questions table contains duplicate question ID: ${id}.`);
+  }
+  for (const id of duplicateIds(answerRowIds)) {
+    failures.push(`Research Answer Linking table contains duplicate question ID: ${id}.`);
+  }
+  for (const id of duplicateIds(recommendedIds)) {
+    failures.push(`Research recommended first sequence contains duplicate question ID: ${id}.`);
+  }
   for (const id of recommendedIds) {
     if (!questionRows.has(id)) {
       failures.push(`Research recommended first sequence references unknown question: ${id}.`);

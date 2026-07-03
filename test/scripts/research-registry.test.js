@@ -45,6 +45,34 @@ describe('research registry checks', () => {
     ]);
   });
 
+  it('rejects duplicate question rows', async () => {
+    const questions = await readQuestions();
+    const row = '| RQ-004 | backlog | high | Digital self-control | Which digital self-control interventions work best: blocking, friction, timers, usage stats, prompts, rewards, or environmental modification? | DaD uses multiple intervention types and needs an evidence-informed ladder. | Intervention ladder and severity mapping. |';
+    const weakenedQuestions = questions.replace(row, `${row}\n${row}`);
+
+    assert.deepEqual(getResearchRegistryFailures(weakenedQuestions), [
+      'Research Questions table contains duplicate question ID: RQ-004.'
+    ]);
+  });
+
+  it('rejects duplicate answer-link rows', async () => {
+    const questions = await readQuestions();
+    const weakenedQuestions = questions.replace('| RQ-004 | Not started |', '| RQ-004 | Not started |\n| RQ-004 | Not started |');
+
+    assert.deepEqual(getResearchRegistryFailures(weakenedQuestions), [
+      'Research Answer Linking table contains duplicate question ID: RQ-004.'
+    ]);
+  });
+
+  it('rejects duplicate recommended sequence entries', async () => {
+    const questions = await readQuestions();
+    const weakenedQuestions = questions.replace('5. `RQ-005`: safe scoring signals for passive drift.', '5. `RQ-004`: repeated digital self-control.');
+
+    assert.deepEqual(getResearchRegistryFailures(weakenedQuestions), [
+      'Research recommended first sequence contains duplicate question ID: RQ-004.'
+    ]);
+  });
+
   it('rejects recommended sequence entries that do not exist in the registry', async () => {
     const questions = await readQuestions();
     const weakenedQuestions = questions.replace('`RQ-005`: safe scoring signals for passive drift.', '`RQ-999`: missing question.');
