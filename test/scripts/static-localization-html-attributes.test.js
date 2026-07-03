@@ -46,4 +46,19 @@ describe('static localization HTML attribute checks', () => {
       'src/options.html: <section> data-i18n-aria-label has an empty localization key.'
     ]);
   });
+
+  it('rejects direct HTML i18n attribute names that runtime localization does not apply', () => {
+    const failures = getDataI18nAttributeFailures({
+      file: 'src/popup.html',
+      tagName: 'button',
+      attributes: 'data-i18n-aria-lable="popupOkAriaLabel"',
+      englishMessages: {
+        popupOkAriaLabel: { message: 'Confirm' }
+      }
+    });
+
+    assert.deepEqual(failures, [
+      'src/popup.html: <button> data-i18n-aria-lable is not a supported direct HTML localization attribute.'
+    ]);
+  });
 });
