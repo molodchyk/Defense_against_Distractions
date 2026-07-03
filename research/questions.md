@@ -16,7 +16,7 @@ This order is practical because these questions affect already-implemented or re
 
 | ID | Status | Priority | Area | Research Question | Why DaD Needs It | Expected Output |
 | --- | --- | --- | --- | --- | --- | --- |
-| RQ-001 | answered | high | Commitment devices | When do locked schedules and stricter-only edits help self-control, and when do they backfire? | DaD blocks relaxation during locked schedules but allows stricter changes such as enabling Pomodoro. | Evidence-backed lock calibration model, including miscalibration failure, soft-vs-hard commitment, public strictness distortion, and local validation metrics. |
+| RQ-001 | revisit | high | Commitment devices | When do locked schedules and stricter-only edits help self-control, and when do they backfire? | DaD blocks relaxation during locked schedules but allows stricter changes such as enabling Pomodoro. | Evidence-backed lock calibration model, including miscalibration failure, soft-vs-hard commitment, public strictness distortion, and local validation metrics. |
 | RQ-002 | answered | high | Intent coherence | Does evidence around attention residue, task switching, and media multitasking support Return, Isolate, and graph-based drift recovery? | Intent coherence is a core differentiator and needs disciplined justification. | Recoverability model for drift chains, including resumption delay, prompt timing, tab-as-memory, legitimate orienteering, actionable graph design, and modifier-only media pressure. |
 | RQ-003 | answered | high | Autonomy and reactance | How can DaD enforce precommitted protection without creating reactance, bypass pressure, abandonment, or hostile UX? | Strong defense needs legitimacy, not weak defaults. | Evidence-backed legitimacy contract for strong interventions, including friction dose, queued relaxation, emergency escape, bypass diagnostics, and bounded real choice. |
 | RQ-004 | backlog | high | Digital self-control | Which digital self-control interventions work best: blocking, friction, timers, usage stats, prompts, rewards, or environmental modification? | DaD uses multiple intervention types and needs an evidence-informed ladder. | Intervention ladder and severity mapping. |
@@ -48,7 +48,7 @@ When a question is answered, link the synthesis file here:
 
 | ID | Answer |
 | --- | --- |
-| RQ-001 | [Commitment devices and lock calibration](answers/RQ-001-commitment-devices-and-locked-schedules.md) - answered under the revised quality bar |
+| RQ-001 | [Commitment devices and lock calibration](answers/RQ-001-commitment-devices-and-locked-schedules.md) - revisit required before using as finished guidance |
 | RQ-002 | [Intent drift and trajectory recoverability](answers/RQ-002-intent-drift-and-attention-residue.md) - answered under the revised quality bar |
 | RQ-003 | [Autonomy, reactance, and legitimate constraint](answers/RQ-003-autonomy-and-reactance.md) - answered under the revised quality bar |
 | RQ-004 | Not started |

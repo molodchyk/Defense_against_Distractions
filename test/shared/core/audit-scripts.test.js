@@ -119,6 +119,19 @@ Answered under the revised quality bar.
 `;
 }
 
+function buildRevisitResearchAnswer(id) {
+  return `# Research Synthesis
+
+## Question
+
+\`${id}\`: fixture question.
+
+## Current Answer Status
+
+Revisit required. This answer is useful as a draft, but it is not finished product guidance.
+`;
+}
+
 describe('audit scripts', () => {
   it('reports file-size audit scope and budget coverage', () => {
     const output = runNodeScript('scripts/audit-file-sizes.mjs');
@@ -168,7 +181,7 @@ describe('audit scripts', () => {
   it('verifies research answers against the revised quality bar', () => {
     const output = runNodeScript('scripts/check-research-quality.mjs');
 
-    assert.match(output, /Research quality check passed: \d+ answered or implemented syntheses verified\./);
+    assert.match(output, /Research quality check passed: \d+ answered or implemented syntheses verified(?:; \d+ revisit syntheses tracked)?\./);
   });
 
   it('allows implemented research questions to keep validated answer links', async () => {
@@ -196,6 +209,39 @@ describe('audit scripts', () => {
       const output = runNodeScriptInCwd('scripts/check-research-quality.mjs', projectRoot);
 
       assert.match(output, /Research quality check passed: 1 answered or implemented syntheses verified\./);
+    } finally {
+      await rm(projectRoot, { force: true, recursive: true });
+    }
+  });
+
+  it('allows revisit research questions to keep explicit draft answer links', async () => {
+    const projectRoot = await mkdtemp(path.join(tmpdir(), 'dad-research-revisit-'));
+
+    try {
+      await writeText(projectRoot, 'research/questions.md', `# DaD Research Question Registry
+
+## Questions
+
+| ID | Status | Priority | Area | Research Question | Why DaD Needs It | Expected Output |
+| --- | --- | --- | --- | --- | --- | --- |
+| RQ-001 | revisit | high | Fixture | Question? | Reason. | Output. |
+| RQ-002 | answered | high | Fixture | Question? | Reason. | Output. |
+| RQ-003 | backlog | medium | Fixture | Question? | Reason. | Output. |
+
+## Answer Linking
+
+| ID | Answer |
+| --- | --- |
+| RQ-001 | [Fixture revisit](answers/RQ-001-revisit.md) - revisit required |
+| RQ-002 | [Fixture answer](answers/RQ-002-fixture.md) - answered under the revised quality bar |
+| RQ-003 | Not started |
+`);
+      await writeText(projectRoot, 'research/answers/RQ-001-revisit.md', buildRevisitResearchAnswer('RQ-001'));
+      await writeText(projectRoot, 'research/answers/RQ-002-fixture.md', buildResearchAnswer('RQ-002'));
+
+      const output = runNodeScriptInCwd('scripts/check-research-quality.mjs', projectRoot);
+
+      assert.match(output, /Research quality check passed: 1 answered or implemented syntheses verified; 1 revisit syntheses tracked\./);
     } finally {
       await rm(projectRoot, { force: true, recursive: true });
     }

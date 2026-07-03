@@ -281,4 +281,4 @@ Rollout risk:
 
 ## Current Answer Status
 
-Answered under the revised quality bar. The key product-changing conclusion is that DaD needs lock calibration, not just lock enforcement.
+Revisit required. This answer has useful structure and evidence cards, but user review flagged it as not novel enough to treat as finished product guidance. Use it as a repair starting point, not as a completed synthesis, until a follow-up pass finds stronger non-obvious mechanisms, empirical details, and product-changing implications.

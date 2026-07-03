@@ -9,6 +9,7 @@ const rootDir = process.cwd();
 const failures = [];
 const questionsPath = 'research/questions.md';
 const qualityCheckedStatuses = new Set(['answered', 'implemented']);
+const revisitStatuses = new Set(['revisit']);
 const requiredAnsweredSections = [
   'Question',
   'Short Answer',
@@ -158,10 +159,25 @@ async function verifyAnsweredQuestion(id, answerPath) {
   );
 }
 
+async function verifyRevisitQuestion(id, answerPath) {
+  assertCondition(await exists(path.join('research', answerPath)), `${id} is marked revisit but missing ${answerPath}`);
+  if (!(await exists(path.join('research', answerPath)))) return;
+
+  const text = await readText(path.join('research', answerPath));
+  assertCondition(text.includes(`\`${id}\``), `${answerPath} does not name ${id} in the question body.`);
+  assertCondition(extractSection(text, 'Question') !== null, `${answerPath} is missing required section: Question`);
+  const statusSection = extractSection(text, 'Current Answer Status') || '';
+  assertCondition(
+    /Revisit required\./.test(statusSection),
+    `${answerPath} current status must explicitly say "Revisit required."`
+  );
+}
+
 const questionsText = await readText(questionsPath);
 const questionRows = parseQuestionRows(questionsText);
 const answerLinks = parseAnswerLinks(questionsText);
 let answeredCount = 0;
+let revisitCount = 0;
 
 for (const [id, row] of questionRows.entries()) {
   if (qualityCheckedStatuses.has(row.status)) {
@@ -169,6 +185,12 @@ for (const [id, row] of questionRows.entries()) {
     assertCondition(answerLinks.has(id), `${id} has status ${row.status} in the registry but has no answer link.`);
     if (answerLinks.has(id)) {
       await verifyAnsweredQuestion(id, answerLinks.get(id));
+    }
+  } else if (revisitStatuses.has(row.status)) {
+    revisitCount += 1;
+    assertCondition(answerLinks.has(id), `${id} has status ${row.status} in the registry but has no revisit answer link.`);
+    if (answerLinks.has(id)) {
+      await verifyRevisitQuestion(id, answerLinks.get(id));
     }
   } else {
     assertCondition(!answerLinks.has(id), `${id} has status ${row.status} but links to an answered synthesis.`);
@@ -185,4 +207,5 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log(`Research quality check passed: ${answeredCount} answered or implemented syntheses verified.`);
+const revisitSuffix = revisitCount > 0 ? `; ${revisitCount} revisit syntheses tracked` : '';
+console.log(`Research quality check passed: ${answeredCount} answered or implemented syntheses verified${revisitSuffix}.`);

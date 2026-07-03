@@ -191,6 +191,8 @@ Use these labels in [`questions.md`](questions.md):
 - `implemented`: product/spec changes were made from an answer that still passes `npm run verify:research`.
 - `revisit`: answer exists but is too shallow, too obvious, too claim-focused, or needs more evidence/local validation before it can guide development.
 
+`revisit` questions may keep a link in the answer table so the draft is findable, but that linked synthesis must mark its `Current Answer Status` as `Revisit required.` and does not count as completed research in `npm run verify:research`.
+
 ## File Naming
 
 Use question IDs in filenames:
