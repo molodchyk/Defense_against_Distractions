@@ -8,6 +8,7 @@ import process from 'node:process';
 const rootDir = process.cwd();
 const failures = [];
 const questionsPath = 'research/questions.md';
+const qualityCheckedStatuses = new Set(['answered', 'implemented']);
 const requiredAnsweredSections = [
   'Question',
   'Short Answer',
@@ -163,9 +164,9 @@ const answerLinks = parseAnswerLinks(questionsText);
 let answeredCount = 0;
 
 for (const [id, row] of questionRows.entries()) {
-  if (row.status === 'answered') {
+  if (qualityCheckedStatuses.has(row.status)) {
     answeredCount += 1;
-    assertCondition(answerLinks.has(id), `${id} is answered in the registry but has no answer link.`);
+    assertCondition(answerLinks.has(id), `${id} has status ${row.status} in the registry but has no answer link.`);
     if (answerLinks.has(id)) {
       await verifyAnsweredQuestion(id, answerLinks.get(id));
     }
@@ -174,7 +175,7 @@ for (const [id, row] of questionRows.entries()) {
   }
 }
 
-assertCondition(answeredCount > 0, 'Research registry has no answered questions to verify.');
+assertCondition(answeredCount > 0, 'Research registry has no answered or implemented questions to verify.');
 
 if (failures.length) {
   console.error('Research quality check failed:');
@@ -184,4 +185,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log(`Research quality check passed: ${answeredCount} answered syntheses verified.`);
+console.log(`Research quality check passed: ${answeredCount} answered or implemented syntheses verified.`);

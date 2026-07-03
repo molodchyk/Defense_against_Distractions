@@ -187,8 +187,8 @@ Use these labels in [`questions.md`](questions.md):
 - `searching`: sources are being gathered.
 - `evidence-cards`: evidence cards are being written.
 - `synthesizing`: answer is being written.
-- `answered`: synthesis complete.
-- `implemented`: product/spec changes were made from the answer.
+- `answered`: synthesis complete and passing `npm run verify:research`.
+- `implemented`: product/spec changes were made from an answer that still passes `npm run verify:research`.
 - `revisit`: answer exists but is too shallow, too obvious, too claim-focused, or needs more evidence/local validation before it can guide development.
 
 ## File Naming

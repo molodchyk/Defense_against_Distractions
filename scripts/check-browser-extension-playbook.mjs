@@ -419,7 +419,7 @@ assertCondition(
 );
 assertCondition(
   packageJson.scripts?.['verify:research'] === 'node scripts/check-research-quality.mjs',
-  'package.json must expose npm run verify:research for answered research quality checks.'
+  'package.json must expose npm run verify:research for answered or implemented research quality checks.'
 );
 failures.push(...getStoreAutomationFailures({ storePrivacyForm, storeAdditionalFields, storeCategory, storeAutomationIndex, manifestPermissions }));
 for (const iconPath of Object.values(manifest.icons || {})) {

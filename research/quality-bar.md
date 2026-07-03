@@ -90,7 +90,9 @@ If it cannot affect the product, do not foreground it.
 
 ## Status Policy
 
-Use `answered` only when the synthesis passes the novelty, detail, mechanism, and product translation gates.
+Use `answered` only when the synthesis passes the novelty, detail, mechanism, product translation, and `npm run verify:research` gates.
+
+Use `implemented` only for a previously answered synthesis that still passes `npm run verify:research` after product/spec changes are made from it.
 
 Use `revisit` when an answer has useful structure but is too shallow, too obvious, too claim-focused, or missing empirical detail.
 
