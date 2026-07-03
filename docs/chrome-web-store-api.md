@@ -87,6 +87,12 @@ npm run verify:release
 npm run cws:upload
 ```
 
+The upload wrapper expects the current extension archive:
+
+`dist/Defense_against_Distractions-v1.6.1-extension.zip`
+
+It refuses stale version ZIPs, source archives, and arbitrary custom package names. If `CWS_PACKAGE_PATH` is set, it must still point to the current extension ZIP whose version matches `manifest.json`.
+
 Submit the uploaded draft for review:
 
 ```powershell

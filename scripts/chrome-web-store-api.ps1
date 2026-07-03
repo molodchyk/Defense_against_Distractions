@@ -29,14 +29,30 @@ function Assert-Value {
 }
 
 function Get-DefaultPackagePath {
-  $manifest = Get-Content -LiteralPath $manifestPath -Raw | ConvertFrom-Json
-  $releaseName = "Defense_against_Distractions-v$($manifest.version)"
-  return Join-Path $projectRoot "dist\$releaseName-extension.zip"
+  $expectedPackageName = Get-ExpectedExtensionPackageName
+  return Join-Path $projectRoot "dist\$expectedPackageName"
 }
 
 function Get-ManifestVersion {
   $manifest = Get-Content -LiteralPath $manifestPath -Raw | ConvertFrom-Json
   return $manifest.version
+}
+
+function Get-ExpectedExtensionPackageName {
+  return "Defense_against_Distractions-v$(Get-ManifestVersion)-extension.zip"
+}
+
+function Assert-UploadPackageMatchesManifest {
+  param(
+    [string]$ResolvedPackagePath
+  )
+
+  $expectedPackageName = Get-ExpectedExtensionPackageName
+  $actualPackageName = Split-Path -Leaf $ResolvedPackagePath
+
+  if ($actualPackageName -ne $expectedPackageName) {
+    throw "CWS upload package must be the current extension ZIP: $expectedPackageName. Got $actualPackageName."
+  }
 }
 
 function Get-PublishConfirmationToken {
@@ -151,7 +167,8 @@ switch ($Action) {
       $PackagePath = Get-DefaultPackagePath
     }
 
-    $resolvedPackagePath = Resolve-Path -LiteralPath $PackagePath
+    $resolvedPackagePath = (Resolve-Path -LiteralPath $PackagePath).Path
+    Assert-UploadPackageMatchesManifest -ResolvedPackagePath $resolvedPackagePath
     Invoke-CwsRequest -Method "Post" -Uri "${uploadUri}:upload" -InputFile $resolvedPackagePath -ContentType "application/zip"
   }
 

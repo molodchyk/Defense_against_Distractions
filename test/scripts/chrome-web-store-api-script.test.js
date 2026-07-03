@@ -29,6 +29,17 @@ describe('Chrome Web Store API script safety', () => {
     assert.match(docs, /set `CWS_CONFIRM_PUBLISH` for the exact item\/version/);
   });
 
+  it('requires upload packages to be the current extension ZIP', () => {
+    const expectedPackageName = `Defense_against_Distractions-v${manifest.version}-extension.zip`;
+
+    assert.match(script, /function Get-ExpectedExtensionPackageName[\s\S]+Defense_against_Distractions-v\$\(Get-ManifestVersion\)-extension\.zip/);
+    assert.match(script, /function Assert-UploadPackageMatchesManifest[\s\S]+Split-Path -Leaf \$ResolvedPackagePath/);
+    assert.match(script, /CWS upload package must be the current extension ZIP/);
+    assert.match(script, /"upload" \{[\s\S]+\$resolvedPackagePath = \(Resolve-Path -LiteralPath \$PackagePath\)\.Path[\s\S]+Assert-UploadPackageMatchesManifest -ResolvedPackagePath \$resolvedPackagePath[\s\S]+Invoke-CwsRequest -Method "Post" -Uri "\$\{uploadUri\}:upload"/);
+    assert.ok(docs.includes(`dist/${expectedPackageName}`));
+    assert.match(docs, /refuses stale version ZIPs, source archives, and arbitrary custom package names/);
+  });
+
   it('keeps CWS publish automation evidence in the source archive requirements', () => {
     assert.match(releaseVerifier, /"docs\/chrome-web-store-api\.md"/);
     assert.match(releaseVerifier, /"scripts\/chrome-web-store-api\.ps1"/);
