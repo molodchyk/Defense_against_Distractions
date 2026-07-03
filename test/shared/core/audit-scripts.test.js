@@ -224,9 +224,9 @@ function buildEvidenceCard(id, suffix = 'fixture') {
 
 Citation: Fixture source for ${id} ${suffix}.
 
-Link:
+Link: https://example.test/research/${id.toLowerCase()}-${suffix}
 
-DOI:
+DOI: 10.1000/${id.toLowerCase()}-${suffix}
 
 ## Source Type
 

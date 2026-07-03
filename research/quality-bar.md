@@ -59,6 +59,8 @@ Look for:
 - contradictory evidence;
 - confounds and causality limits.
 
+Every evidence card must remain traceable to the source, with at least one non-empty link or DOI locator. If the source cannot be located again, it is not strong enough to guide implementation.
+
 If a paper does not provide enough actionable detail, the card should say so.
 
 ## Mechanism Gate

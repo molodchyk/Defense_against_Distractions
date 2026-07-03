@@ -5,7 +5,7 @@ import assert from 'node:assert/strict';
 import { readFile, readdir } from 'node:fs/promises';
 import { describe, it } from 'node:test';
 
-import { getEvidenceCardFailures } from '../../scripts/research/evidence.mjs';
+import { getEvidenceCardFailures, hasSourceLocator } from '../../scripts/research/evidence.mjs';
 import { parseQuestionRows } from '../../scripts/research/registry.mjs';
 
 async function readCurrentEvidenceCards() {
@@ -24,6 +24,14 @@ async function readCurrentQuestionRows() {
 }
 
 describe('research evidence card checks', () => {
+  it('accepts singular and plural source locators', () => {
+    assert.equal(hasSourceLocator('Citation: A.\n\nLink: https://example.test/paper'), true);
+    assert.equal(hasSourceLocator('Citation: A.\n\nDOI: 10.1000/example'), true);
+    assert.equal(hasSourceLocator('Citation: A.\n\nLinks:\n\n- https://example.test/a\n- https://example.test/b'), true);
+    assert.equal(hasSourceLocator('Citation: A.\n\nDOIs:\n\n- https://doi.org/10.1000/a\n- https://doi.org/10.1000/b'), true);
+    assert.equal(hasSourceLocator('Citation: A.\n\nLink:\n\nDOI:'), false);
+  });
+
   it('accepts the current evidence card corpus', async () => {
     const evidenceCards = await readCurrentEvidenceCards();
     const questionRows = await readCurrentQuestionRows();
@@ -77,6 +85,22 @@ describe('research evidence card checks', () => {
       evidenceCards: [shiftedCard],
       questionRows
     }), [`Evidence card ${evidenceCards[0].file} must start with "# Evidence Card".`]);
+  });
+
+  it('rejects evidence cards without a source locator', async () => {
+    const evidenceCards = await readCurrentEvidenceCards();
+    const questionRows = await readCurrentQuestionRows();
+    const untraceableCard = {
+      ...evidenceCards[0],
+      text: evidenceCards[0].text
+        .replace(/^Link:.*$/m, 'Link:')
+        .replace(/^DOI:.*$/m, 'DOI:')
+    };
+
+    assert.deepEqual(getEvidenceCardFailures({
+      evidenceCards: [untraceableCard],
+      questionRows
+    }), [`Evidence card ${evidenceCards[0].file} must include at least one non-empty Link, Links, DOI, or DOIs source locator.`]);
   });
 
   it('rejects markdown files in the evidence directory without RQ filenames', async () => {

@@ -8,6 +8,8 @@ Link:
 
 DOI:
 
+Every card must include at least one non-empty `Link`, `Links`, `DOI`, or `DOIs` locator. Use plural labels when one card intentionally covers multiple tightly coupled sources.
+
 ## Source Type
 
 - systematic review

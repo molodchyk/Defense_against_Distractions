@@ -24,6 +24,13 @@ export function getEvidenceQuestionId(file) {
   return match?.[1] || null;
 }
 
+export function hasSourceLocator(sourceSection) {
+  if (!sourceSection) return false;
+
+  return /^(?:Link|DOI):[^\S\r\n]+\S/im.test(sourceSection)
+    || /^(?:Links|DOIs):[^\S\r\n]*(?:\r?\n[^\S\r\n]*)+-[^\S\r\n]*\S/im.test(sourceSection);
+}
+
 export function getEvidenceCardFailures({
   evidenceCards,
   linkedQuestionIds = new Set(),
@@ -68,6 +75,9 @@ export function getEvidenceCardFailures({
     }
     if (!/^Citation:\s+\S/m.test(extractSection(card.text, 'Source') || '')) {
       failures.push(`Evidence card ${card.file} must include a non-empty Citation line.`);
+    }
+    if (!hasSourceLocator(extractSection(card.text, 'Source'))) {
+      failures.push(`Evidence card ${card.file} must include at least one non-empty Link, Links, DOI, or DOIs source locator.`);
     }
   }
 
