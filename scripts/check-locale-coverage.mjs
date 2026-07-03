@@ -7,6 +7,7 @@ import process from 'node:process';
 
 const rootDir = process.cwd();
 const localesDir = path.join(rootDir, '_locales');
+const storeListingDir = path.join(rootDir, 'store', 'store-listing');
 const defaultLocale = 'en';
 
 async function readMessages(locale) {
@@ -25,6 +26,14 @@ async function getLocaleDirectories() {
   }
 
   return locales.sort((left, right) => left.localeCompare(right));
+}
+
+async function getStoreListingEntries() {
+  try {
+    return await readdir(storeListingDir, { withFileTypes: true });
+  } catch {
+    return null;
+  }
 }
 
 function getPlaceholderNames(entry = {}) {
@@ -74,8 +83,40 @@ for (const locale of locales) {
   }
 }
 
+const storeListingEntries = await getStoreListingEntries();
+let storeListingLocales = [];
+if (storeListingEntries === null) {
+  failures.push('Store listing directory is missing: store/store-listing.');
+} else {
+  const unexpectedStoreListingEntries = storeListingEntries
+    .filter(entry => !entry.isFile() || !entry.name.endsWith('.txt'))
+    .map(entry => entry.name)
+    .sort((left, right) => left.localeCompare(right));
+  storeListingLocales = storeListingEntries
+    .filter(entry => entry.isFile() && entry.name.endsWith('.txt'))
+    .map(entry => entry.name.slice(0, -'.txt'.length))
+    .sort((left, right) => left.localeCompare(right));
+  const storeListingLocaleSet = new Set(storeListingLocales);
+  const localeSet = new Set(locales);
+
+  for (const entryName of unexpectedStoreListingEntries) {
+    failures.push(`Store listing folder must contain only direct .txt locale files: ${entryName}.`);
+  }
+  for (const locale of locales) {
+    if (!storeListingLocaleSet.has(locale)) {
+      failures.push(`Missing store listing for locale: ${locale}.`);
+    }
+  }
+  for (const locale of storeListingLocales) {
+    if (!localeSet.has(locale)) {
+      failures.push(`Store listing file has no matching _locales directory: ${locale}.txt.`);
+    }
+  }
+}
+
 if (failures.length === 0) {
   console.log(`Locale coverage check passed: ${locales.length} locales match ${defaultKeys.length} ${defaultLocale} message keys.`);
+  console.log(`Store listing coverage passed: ${storeListingLocales.length} locale listing files match _locales.`);
   process.exit(0);
 }
 

@@ -28,6 +28,16 @@ function runNodeScriptInCwd(scriptPath, cwd) {
   return `${result.stdout}${result.stderr}`;
 }
 
+function runNodeScriptFailureInCwd(scriptPath, cwd) {
+  const result = spawnSync(process.execPath, [path.join(process.cwd(), scriptPath)], {
+    cwd,
+    encoding: 'utf8'
+  });
+
+  assert.notEqual(result.status, 0, 'Expected script to fail.');
+  return `${result.stdout}${result.stderr}`;
+}
+
 async function writeText(root, relativePath, text) {
   const absolutePath = path.join(root, relativePath);
   await mkdir(path.dirname(absolutePath), { recursive: true });
@@ -282,6 +292,25 @@ describe('audit scripts', () => {
 
     assert.match(output, /Locale coverage check passed:/);
     assert.match(output, /\d+ locales match \d+ en message keys\./);
+    assert.match(output, /Store listing coverage passed:/);
+    assert.match(output, /\d+ locale listing files match _locales\./);
+  });
+
+  it('rejects locale coverage when store listing files do not match locale folders', async () => {
+    const projectRoot = await mkdtemp(path.join(tmpdir(), 'dad-locale-coverage-'));
+
+    try {
+      const messages = JSON.stringify({ description: { message: 'Fixture description.' } }, null, 2);
+      await writeText(projectRoot, '_locales/en/messages.json', messages);
+      await writeText(projectRoot, '_locales/de/messages.json', messages);
+      await writeText(projectRoot, 'store/store-listing/en.txt', 'Fixture listing.\n');
+
+      const output = runNodeScriptFailureInCwd('scripts/check-locale-coverage.mjs', projectRoot);
+
+      assert.match(output, /Missing store listing for locale: de\./);
+    } finally {
+      await rm(projectRoot, { force: true, recursive: true });
+    }
   });
 
   it('verifies static extension surface localization coverage', () => {
