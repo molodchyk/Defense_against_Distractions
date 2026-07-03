@@ -130,6 +130,7 @@ $sourceFiles = @(
   "README.md",
   "manifest.json",
   "package.json",
+  "research",
   "scripts",
   "store",
   "src",

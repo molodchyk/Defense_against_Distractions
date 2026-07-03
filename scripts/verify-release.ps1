@@ -210,6 +210,8 @@ try {
   Assert-Condition ($LASTEXITCODE -eq 0) "Relative import verification failed"
   node scripts/check-browser-extension-playbook.mjs
   Assert-Condition ($LASTEXITCODE -eq 0) "Browser extension playbook verification failed"
+  node scripts/check-research-quality.mjs
+  Assert-Condition ($LASTEXITCODE -eq 0) "Research quality verification failed"
   node scripts/audit-file-sizes.mjs
   Assert-Condition ($LASTEXITCODE -eq 0) "File-size audit failed"
   node scripts/audit-folder-density.mjs
@@ -373,6 +375,7 @@ $requiredSourceEntries = @(
   "scripts/check-manifest-references.mjs",
   "scripts/check-package-output.mjs",
   "scripts/check-platform-boundaries.mjs",
+  "scripts/check-research-quality.mjs",
   "scripts/check-relative-imports.mjs",
   "scripts/check-static-localization.mjs",
   "scripts/audit-file-sizes.mjs",
@@ -388,6 +391,10 @@ $requiredSourceEntries = @(
   "scripts/playbook-utils.mjs",
   "scripts/verify-package-output.ps1",
   "scripts/verify-release.ps1",
+  "research/README.md",
+  "research/pipeline.md",
+  "research/quality-bar.md",
+  "research/questions.md",
   "store/store-listing/en.txt",
   "assets/icons/extension-icon-source.svg"
 )
@@ -396,7 +403,7 @@ foreach ($entry in $requiredSourceEntries) {
   Assert-ZipContains -Entries $sourceEntries -EntryName $entry -ArchiveName "Source archive"
 }
 
-foreach ($prefix in @("assets/", "docs/", "store/", "test/", "_locales/", "scripts/", "src/")) {
+foreach ($prefix in @("assets/", "docs/", "research/", "store/", "test/", "_locales/", "scripts/", "src/")) {
   Assert-ZipContainsPrefix -Entries $sourceEntries -Prefix $prefix -ArchiveName "Source archive"
 }
 Assert-ZipFileEntriesMatchProjectFiles -ZipPath $sourceZipPath -ArchiveName "Source archive" -Entries $sourceEntries

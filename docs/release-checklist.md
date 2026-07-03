@@ -11,6 +11,7 @@ Use this checklist before publishing a new extension release.
 - Run `npm run verify:locales`.
 - Run `npm run verify:static-localization`.
 - Run `npm run verify:playbook`.
+- Run `npm run verify:research`.
 - Run `npm run audit:file-sizes`.
 - Run `npm run audit:folder-density`.
 - Run `npm run package`.
@@ -27,7 +28,7 @@ Use this checklist before publishing a new extension release.
 
 - Inspect the extension zip contents.
 - Confirm it includes `manifest.json`, `_locales/`, `src/blocked.html`, `src/instructions.html`, `src/options.html`, `src/app/`, `src/css/`, `src/features/`, `src/js/`, `src/platform/`, and `assets/icons/`.
-- Confirm it excludes docs, tests, scripts, screenshots, promotional images, store listing text, source-only files, and `src/img`.
+- Confirm it excludes docs, research, tests, scripts, screenshots, promotional images, store listing text, source-only files, and `src/img`.
 
 ## Manual QA
 

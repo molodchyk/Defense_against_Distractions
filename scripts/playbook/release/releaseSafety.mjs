@@ -5,7 +5,7 @@ import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 
 export const browserLoadTriggerPattern = /check-unpacked-extension-load\.ps1|verify:browser-load|--load-extension|--user-data-dir|Start-Process/i;
-export const staticPackageScriptNames = ['package', 'verify:package', 'verify:release'];
+export const staticPackageScriptNames = ['package', 'verify:package', 'verify:research', 'verify:release'];
 export const staticReleaseScriptPaths = [
   'scripts/package-extension.ps1',
   'scripts/verify-package-output.ps1',

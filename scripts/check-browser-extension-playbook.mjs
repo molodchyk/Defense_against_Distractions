@@ -98,6 +98,7 @@ assertCondition(await exists('docs/claim-traceability.md'), 'Missing visible-cla
 assertCondition(await exists('docs/localization.md'), 'Missing localization workflow document.');
 assertCondition(await exists('docs/content-script-load-order.md'), 'Missing content-script load-order document.');
 assertCondition(await exists('scripts/check-static-localization.mjs'), 'Missing static localization verification script.');
+assertCondition(await exists('scripts/check-research-quality.mjs'), 'Missing research quality verification script.');
 assertCondition(await exists('scripts/check-unpacked-extension-load.ps1'), 'Missing unpacked extension browser-load smoke script.');
 for (const platformWrapper of ['action', 'alarms', 'contentBridge', 'downloads', 'i18n', 'idle', 'navigation', 'runtime', 'runtimeMessages', 'tabs', 'windows']) {
   assertCondition(await exists(`src/platform/chrome/${platformWrapper}.js`), `Missing Chrome ${platformWrapper} platform wrapper.`);
@@ -415,6 +416,10 @@ assertCondition(
 assertCondition(
   packageJson.scripts?.['verify:static-localization'] === 'node scripts/check-static-localization.mjs',
   'package.json must expose npm run verify:static-localization for extension HTML localization checks.'
+);
+assertCondition(
+  packageJson.scripts?.['verify:research'] === 'node scripts/check-research-quality.mjs',
+  'package.json must expose npm run verify:research for answered research quality checks.'
 );
 failures.push(...getStoreAutomationFailures({ storePrivacyForm, storeAdditionalFields, storeCategory, storeAutomationIndex, manifestPermissions }));
 for (const iconPath of Object.values(manifest.icons || {})) {

@@ -65,9 +65,9 @@ export function getReleaseDocumentationFailures({
     /browser-extension-playbook-compliance\.md/,
     /release-verification-record\.md/,
     /manifestAudit\.mjs/,
-    /"assets\/", "docs\/", "store\/", "test\/", "_locales\/", "scripts\/", "src\/"/
+    /"assets\/", "docs\/", "research\/", "store\/", "test\/", "_locales\/", "scripts\/", "src\/"/
   ])) {
-    failures.push('Release verifier must run unit tests, manifest, import, playbook, file-size, folder-density, locale, static-localization, package-output, and source-archive prefix gates.');
+    failures.push('Release verifier must run unit tests, manifest, import, playbook, research, file-size, folder-density, locale, static-localization, package-output, and source-archive prefix gates.');
   }
 
   return failures;
