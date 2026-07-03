@@ -7,7 +7,7 @@
   const UI_LANGUAGE_STORAGE_KEY = 'uiLanguage';
   const DEFAULT_UI_LANGUAGE = 'system';
   const AVAILABLE_LANGUAGE_CODES = new Set([
-    'af', 'am', 'ar', 'az', 'bg', 'bn', 'ca', 'cs', 'da', 'de', 'el', 'en', 'en_GB', 'en_US',
+    'af', 'am', 'ar', 'az', 'bg', 'bn', 'ca', 'cs', 'da', 'de', 'el', 'en', 'en_AU', 'en_GB', 'en_US',
     'es', 'es_419', 'et', 'eu', 'fa', 'fi', 'fil', 'fr', 'gu', 'he', 'hi', 'hr', 'hu', 'hy',
     'id', 'is', 'it', 'ja', 'ka', 'kn', 'ko', 'lt', 'lv', 'mk', 'ml', 'mr', 'ms', 'ne', 'nl',
     'no', 'pa', 'pl', 'pt_BR', 'pt_PT', 'ro', 'ru', 'si', 'sk', 'sl', 'sq', 'sr', 'sv', 'sw',

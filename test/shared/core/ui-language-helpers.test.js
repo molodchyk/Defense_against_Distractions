@@ -2,7 +2,7 @@
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { readdirSync, readFileSync, statSync } from 'node:fs';
 import { describe, it } from 'node:test';
 import {
   applyUiLanguageAttributes,
@@ -18,6 +18,7 @@ describe('UI language helpers', () => {
   it('normalizes supported browser locale codes', () => {
     assert.equal(normalizeUiLanguage('system'), 'system');
     assert.equal(normalizeUiLanguage('de-DE'), 'de');
+    assert.equal(normalizeUiLanguage('en-AU'), 'en_AU');
     assert.equal(normalizeUiLanguage('pt-BR'), 'pt_BR');
     assert.equal(normalizeUiLanguage('es-419'), 'es_419');
     assert.equal(normalizeUiLanguage('unknown-locale'), 'system');
@@ -103,6 +104,17 @@ describe('UI language helpers', () => {
     );
     assert.match(localizationDoc, /Keep the RTL locale list synchronized across shared UI helpers, classic content-script UI, blocked-page localization, and this document/);
   });
+
+  it('keeps selectable UI language codes synchronized with locale folders', () => {
+    const localeCodes = readdirSync('_locales')
+      .filter(name => statSync(`_locales/${name}`).isDirectory())
+      .sort();
+    const sharedUiLanguage = readFileSync('src/js/shared/ui/uiLanguage.js', 'utf8');
+    const contentUiLanguage = readFileSync('src/js/content/uiLanguage.js', 'utf8');
+
+    assert.deepEqual(getSharedUiLanguageCodes(sharedUiLanguage), ['system', ...localeCodes]);
+    assert.deepEqual(getSetValues(contentUiLanguage, 'AVAILABLE_LANGUAGE_CODES'), localeCodes);
+  });
 });
 
 function createAttributeTarget() {
@@ -120,4 +132,9 @@ function getSetValues(source, constName) {
   const match = source.match(new RegExp(`const\\s+${escapedName}\\s*=\\s*new Set\\(\\[([^\\]]+)\\]\\)`));
   assert.ok(match, `Missing ${constName}`);
   return [...match[1].matchAll(/['"]([^'"]+)['"]/g)].map(valueMatch => valueMatch[1]);
+}
+
+function getSharedUiLanguageCodes(source) {
+  return [...source.matchAll(/\{\s*code:\s*(DEFAULT_UI_LANGUAGE|'[^']+')/g)]
+    .map(match => (match[1] === 'DEFAULT_UI_LANGUAGE' ? 'system' : match[1].slice(1, -1)));
 }

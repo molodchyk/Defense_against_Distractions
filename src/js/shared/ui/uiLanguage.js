@@ -23,6 +23,7 @@ export const AVAILABLE_UI_LANGUAGES = Object.freeze([
   { code: 'de', label: 'Deutsch' },
   { code: 'el', label: 'Ελληνικά' },
   { code: 'en', label: 'English' },
+  { code: 'en_AU', label: 'English (Australia)' },
   { code: 'en_GB', label: 'English (United Kingdom)' },
   { code: 'en_US', label: 'English (United States)' },
   { code: 'es', label: 'español' },
