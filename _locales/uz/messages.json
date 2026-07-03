@@ -1969,6 +1969,21 @@
     "popupOpenWindowsLabel": {
         "message": "Windows"
     },
+    "popupSelectedTextLabel": {
+        "message": "Selected text"
+    },
+    "popupSelectedTextEditableMarker": {
+        "message": "editable"
+    },
+    "popupCopySelectedTextButton": {
+        "message": "Copy selected keyword"
+    },
+    "popupSelectedTextCopied": {
+        "message": "Selected keyword copied."
+    },
+    "popupSelectedTextCopyFailed": {
+        "message": "Could not copy selected keyword."
+    },
     "popupKeywordIdeasLabel": {
         "message": "Keyword ideas"
     },

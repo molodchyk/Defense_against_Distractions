@@ -102,17 +102,24 @@ describe('popup markup', () => {
     const audioIndex = popupHtml.indexOf('pageSignalAudioCount');
     const audibleIndex = popupHtml.indexOf('pageSignalAudibleMediaCount');
     const passiveRegionsIndex = popupHtml.indexOf('pageSignalPassiveRegions');
+    const selectedTextIndex = popupHtml.indexOf('pageSignalSelectedTextCandidate');
     const keywordIdeasIndex = popupHtml.indexOf('pageSignalKeywordIdeasText');
+    const copySelectedIndex = popupHtml.indexOf('copySelectedTextButton');
     const copyIndex = popupHtml.indexOf('copyKeywordIdeasButton');
 
     assert.ok(audioIndex > pageSignalsIndex);
     assert.ok(audibleIndex > audioIndex);
     assert.ok(passiveRegionsIndex > audibleIndex);
-    assert.ok(keywordIdeasIndex > pageSignalsIndex);
+    assert.ok(selectedTextIndex > passiveRegionsIndex);
+    assert.ok(keywordIdeasIndex > selectedTextIndex);
+    assert.ok(copySelectedIndex > keywordIdeasIndex);
+    assert.ok(copyIndex > copySelectedIndex);
     assert.ok(copyIndex > keywordIdeasIndex);
     assert.match(popupHtml, /popupAudibleMediaLabel[\s\S]+pageSignalAudibleMediaCount/);
     assert.match(popupHtml, /popupPassiveRegionsLabel[\s\S]+pageSignalPassiveRegions/);
+    assert.match(popupHtml, /popupSelectedTextLabel[\s\S]+pageSignalSelectedTextCandidate/);
     assert.match(popupHtml, /popupKeywordIdeasLabel[\s\S]+pageSignalKeywordIdeasText/);
+    assert.match(popupHtml, /copySelectedTextButton[\s\S]+popupCopySelectedTextButton/);
     assert.match(popupHtml, /copyKeywordIdeasButton[\s\S]+popupCopyKeywordIdeasButton/);
   });
 });

@@ -21,10 +21,10 @@ Commands run from the repository root:
 
 | Gate | Recorded evidence |
 | --- | --- |
-| `npm test` | Covered by `npm run verify:release`; 412 unit tests passed on 2026-07-03. |
+| `npm test` | Covered by `npm run verify:release`; 414 unit tests passed on 2026-07-03. |
 | `npm run verify:manifest` | Covered by `npm run verify:release`; manifest-referenced paths exist. |
 | `npm run verify:imports` | Covered by `npm run verify:release`; relative source imports resolve. |
-| `npm run verify:locales` | Covered by `npm run verify:release`; 68 locales match the English message keys. |
+| `npm run verify:locales` | Covered by `npm run verify:release`; 68 locales match 901 English message keys. |
 | `npm run verify:static-localization` | Covered by `npm run verify:release`; 4 static extension HTML surfaces scanned. |
 | `npm run verify:playbook` | Passed directly and through `npm run verify:release`; 68 localized store listings verified. |
 | `npm run verify:research` | Passed directly and through `npm run verify:release`; 3 answered or implemented research syntheses verified. |

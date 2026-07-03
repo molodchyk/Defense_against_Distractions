@@ -28,11 +28,11 @@ Recommended first slice:
 - User opens the extension popup.
 - The popup asks the content script for the active selection.
 - The content script returns a bounded active-selection candidate through the existing `getPageSignalSnapshot` message.
-- The popup shows a compact quick-add panel when a bounded selection exists.
+- The popup shows a compact selected-text candidate when a bounded selection exists.
 - Saving adds a keyword line to an existing plan entry using the current 0-100 authoring syntax.
 - Optional action presets can be attached only if they map to existing or explicitly designed bounded actions.
 
-Implemented foundation: the content script can now produce the bounded active-selection candidate for the popup snapshot. The visible quick-add panel and save path are still pending.
+Implemented foundation: the content script can now produce the bounded active-selection candidate for the popup snapshot, and the popup Page Signals card can show and copy that candidate as a keyword-editor line. The direct save path is still pending.
 
 A true browser right-click context menu is a later variant because it requires adding `contextMenus` to the manifest and store privacy/permission documentation. That may still be worth doing, but it should be a deliberate release decision rather than a hidden side effect of the popup feature.
 
@@ -64,7 +64,7 @@ Rules:
 
 The selected text becomes persistent only if the user saves it as a keyword. Unsaved candidates should remain ephemeral.
 
-Implementation state: unsaved candidates are computed on demand from the active page selection and included in the popup snapshot response. They are not written to sync or local storage.
+Implementation state: unsaved candidates are computed on demand from the active page selection and included in the popup snapshot response. The popup can copy the candidate as a keyword-editor line such as `selected phrase, 25/100`. Unsaved candidates are not written to sync or local storage.
 
 ## Score Estimate
 
@@ -188,15 +188,15 @@ If the later right-click context-menu variant adds `contextMenus`, update the ma
 
 - Implemented: with valid selected text, the content script returns a bounded quick-add candidate in the current page-signal snapshot.
 - Implemented: collapsed, punctuation-only, oversized, or token-empty selections return no candidate.
-- Pending UI: with text selected on a supported page, opening the popup shows a bounded quick-add candidate.
-- Pending UI: with no valid selection, the popup shows no quick-add panel and does not create stale suggestions.
+- Implemented: with text selected on a supported page, opening the popup can show a bounded selected-text candidate in Page Signals.
+- Implemented: with no valid selection, the popup selected-text row stays empty and the copy button stays disabled.
 - Saving a keyword through quick add produces the same normalized rule format as manual entry editing.
 - The score estimate is editable and uses the 0-100 authoring scale.
 - The popup can simulate whether the new score would block the current page before saving.
 - Saved quick-add rules participate in locked-schedule strictness checks.
 - `hideImages` and `disableControls` presets compile to the existing reversible, capped, scoped UI cleanup actions.
 - The feature works without adding `contextMenus` unless the right-click variant is explicitly chosen.
-- Partly implemented tests: candidate normalization, editable-field flagging, score estimation, invalid-selection rejection, text caps, and snapshot inclusion are covered. Protected-plan strictness and action preset compilation remain for the save/action UI slice.
+- Partly implemented tests: candidate normalization, editable-field flagging, score estimation, invalid-selection rejection, text caps, snapshot inclusion, popup display formatting, and keyword-editor copy formatting are covered. Protected-plan strictness and action preset compilation remain for the save/action UI slice.
 
 ## Open Questions
 

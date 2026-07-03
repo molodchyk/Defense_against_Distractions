@@ -39,6 +39,7 @@ export function bindPopupEvents({
   bindClick('suspendIntentDriftTabsButton', () => intentDiagnosticsPanel.suspendDriftTabs());
   bindClick('cleanIntentDriftTabsButton', () => intentDiagnosticsPanel.cleanDriftTabs());
   bindClick('copyKeywordIdeasButton', () => pageSignalsPanel.copyKeywordSuggestions());
+  bindClick('copySelectedTextButton', () => pageSignalsPanel.copySelectedTextCandidate());
   bindClick('refreshBlockDiagnosticsButton', () => blockDiagnosticsPanel.refresh());
   bindClick('copyDiagnosticsButton', () => diagnosticsExporter.copyDiagnostics());
   bindClick('copyDiagnosticsFeedbackButton', async () => {

@@ -5,7 +5,10 @@ import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 import {
   buildKeywordSuggestionCandidates,
-  formatKeywordSuggestionEditorText
+  formatKeywordSuggestionEditorText,
+  formatSelectedTextCandidateEditorText,
+  formatSelectedTextCandidateSummary,
+  normalizeSelectedTextCandidate
 } from '../../../src/js/popup/pageSignalsPanel.js';
 
 describe('popup page signals panel helpers', () => {
@@ -34,5 +37,27 @@ describe('popup page signals panel helpers', () => {
       { token: 'sildenafil', score: 50 },
       { token: 'pde5', score: 45 }
     ]), 'sildenafil, 50/100\npde5, 45/100');
+  });
+
+  it('formats selected text candidates as one editable keyword line', () => {
+    const candidate = normalizeSelectedTextCandidate({
+      text: '  Rama Aurora, thread  ',
+      estimatedScore100: 36,
+      insideEditable: true
+    });
+
+    assert.deepEqual(candidate, {
+      text: 'Rama Aurora, thread',
+      estimatedScore100: 36,
+      insideEditable: true
+    });
+    assert.equal(formatSelectedTextCandidateSummary(candidate, 'editable'), 'Rama Aurora, thread - 36/100 - editable');
+    assert.equal(formatSelectedTextCandidateEditorText(candidate), 'Rama Aurora\\, thread, 36/100');
+  });
+
+  it('rejects empty selected text candidates before popup rendering or copy', () => {
+    assert.equal(normalizeSelectedTextCandidate({ text: ' .' }), null);
+    assert.equal(formatSelectedTextCandidateSummary(null), '');
+    assert.equal(formatSelectedTextCandidateEditorText(null), '');
   });
 });

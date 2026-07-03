@@ -32,6 +32,7 @@ const KEYWORD_SUGGESTION_SOURCES = [
   ['description', 'descriptionTokens', 35],
   ['page', 'topTokens', 25]
 ];
+const SELECTED_TEXT_CANDIDATE_LIMIT = 160;
 
 export function buildKeywordSuggestionCandidates(signals = {}, options = {}) {
   const text = signals?.text || {};
@@ -77,6 +78,47 @@ export function formatKeywordSuggestionEditorText(candidates = []) {
     .join('\n');
 }
 
+export function normalizeSelectedTextCandidate(candidate = null) {
+  const text = String(candidate?.text || '').replace(/\s+/g, ' ').trim();
+  if (text.length < 2 || !/[\p{L}\p{N}]/u.test(text)) {
+    return null;
+  }
+
+  const score = Number(candidate?.estimatedScore100);
+  return {
+    text: text.slice(0, SELECTED_TEXT_CANDIDATE_LIMIT).trimEnd(),
+    estimatedScore100: Number.isFinite(score) ? Math.min(Math.max(Math.round(score), 0), 100) : 25,
+    insideEditable: candidate?.insideEditable === true
+  };
+}
+
+export function formatSelectedTextCandidateSummary(candidate = null, editableLabel = 'editable') {
+  const normalizedCandidate = normalizeSelectedTextCandidate(candidate);
+  if (!normalizedCandidate) {
+    return '';
+  }
+
+  const parts = [
+    normalizedCandidate.text,
+    `${normalizedCandidate.estimatedScore100}/100`
+  ];
+
+  if (normalizedCandidate.insideEditable) {
+    parts.push(editableLabel);
+  }
+
+  return parts.join(' - ');
+}
+
+export function formatSelectedTextCandidateEditorText(candidate = null) {
+  const normalizedCandidate = normalizeSelectedTextCandidate(candidate);
+  if (!normalizedCandidate) {
+    return '';
+  }
+
+  return `${escapeKeywordPhrase(normalizedCandidate.text)}, ${normalizedCandidate.estimatedScore100}/100`;
+}
+
 export function createPageSignalsPanel({
   getMessage,
   getActiveTab,
@@ -89,15 +131,18 @@ export function createPageSignalsPanel({
   let latestSnapshot = null;
   let latestTabPressure = null;
   let latestKeywordSuggestions = [];
+  let latestSelectionCandidate = null;
 
   function setUnavailable(message = getMessage('popupUnavailableLabel')) {
     latestSnapshot = null;
     latestKeywordSuggestions = [];
+    latestSelectionCandidate = null;
     document.getElementById('pageSignalsStatus').textContent = message;
     PAGE_SIGNAL_COUNT_IDS.forEach(elementId => {
       document.getElementById(elementId).textContent = '--';
     });
     renderKeywordSuggestions();
+    renderSelectionCandidate();
   }
 
   function setTabPressureUnavailable() {
@@ -158,6 +203,7 @@ export function createPageSignalsPanel({
 
     latestSnapshot = response;
     latestKeywordSuggestions = buildKeywordSuggestionCandidates(signals);
+    latestSelectionCandidate = normalizeSelectedTextCandidate(response?.selectionCandidate);
     document.getElementById('pageSignalsStatus').textContent = getMessage('popupCurrentTabStatus');
     document.getElementById('pageSignalImageCount').textContent = formatCount(signals.media?.imageCount);
     document.getElementById('pageSignalVideoCount').textContent = formatCount(signals.media?.videoCount);
@@ -168,6 +214,7 @@ export function createPageSignalsPanel({
     document.getElementById('pageSignalLinkCount').textContent = formatCount(signals.interaction?.linkCount);
     document.getElementById('pageSignalPassiveRegions').textContent = formatPassiveRegions(signals.structure);
     renderKeywordSuggestions();
+    renderSelectionCandidate();
   }
 
   async function refreshTabPressure() {
@@ -211,8 +258,27 @@ export function createPageSignalsPanel({
     return {
       ...(latestSnapshot || {}),
       keywordSuggestions: latestKeywordSuggestions,
+      selectionCandidate: latestSelectionCandidate,
       tabPressure: latestTabPressure
     };
+  }
+
+  function renderSelectionCandidate() {
+    const candidateText = document.getElementById('pageSignalSelectedTextCandidate');
+    const copyButton = document.getElementById('copySelectedTextButton');
+    const summary = formatSelectedTextCandidateSummary(
+      latestSelectionCandidate,
+      getMessage('popupSelectedTextEditableMarker')
+    );
+
+    if (candidateText) {
+      candidateText.textContent = summary || getMessage('popupNoKeywordIdeas');
+      candidateText.title = summary || '';
+    }
+
+    if (copyButton) {
+      copyButton.disabled = !latestSelectionCandidate;
+    }
   }
 
   function renderKeywordSuggestions() {
@@ -246,8 +312,26 @@ export function createPageSignalsPanel({
     }
   }
 
+  async function copySelectedTextCandidate() {
+    const editorText = formatSelectedTextCandidateEditorText(latestSelectionCandidate);
+    if (!editorText) {
+      setStatus?.(getMessage('popupNoKeywordIdeas'));
+      return false;
+    }
+
+    try {
+      await copyTextToClipboard(editorText);
+      setStatus?.(getMessage('popupSelectedTextCopied'));
+      return true;
+    } catch (error) {
+      setStatus?.(getMessage('popupSelectedTextCopyFailed'));
+      return false;
+    }
+  }
+
   return {
     copyKeywordSuggestions,
+    copySelectedTextCandidate,
     getSnapshot,
     refresh,
     render,
@@ -266,4 +350,8 @@ function normalizeKeywordSuggestionToken(value) {
   }
 
   return token;
+}
+
+function escapeKeywordPhrase(value) {
+  return String(value || '').replace(/,/g, '\\,');
 }
