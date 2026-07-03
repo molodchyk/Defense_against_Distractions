@@ -194,6 +194,14 @@ Use these labels in [`questions.md`](questions.md):
 
 `revisit` questions may keep a link in the answer table so the draft is findable, but that linked synthesis must mark its `Current Answer Status` as `Revisit required.` and does not count as completed research in `npm run verify:research`.
 
+## Priority Labels
+
+Use these priority labels in [`questions.md`](questions.md):
+
+- `high`: affects already-implemented behavior, release readiness, privacy, autonomy, or core scoring/intervention logic.
+- `medium`: affects important product direction but can wait behind release-critical behavior.
+- `low`: affects future-facing, public-explanation, or personalization decisions that should not block current hardening.
+
 ## File Naming
 
 Use question IDs in filenames:

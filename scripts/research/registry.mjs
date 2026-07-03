@@ -41,6 +41,23 @@ export function countBullets(section) {
   return section.split(/\r?\n/).filter((line) => /^\s*-\s+\S/.test(line)).length;
 }
 
+export const allowedResearchStatuses = new Set([
+  'backlog',
+  'briefed',
+  'searching',
+  'evidence-cards',
+  'synthesizing',
+  'answered',
+  'implemented',
+  'revisit'
+]);
+
+export const allowedResearchPriorities = new Set([
+  'high',
+  'medium',
+  'low'
+]);
+
 export function parseQuestionRows(questionsText) {
   const rows = new Map();
   const questionsSection = extractSection(questionsText, 'Questions') || '';
@@ -52,6 +69,7 @@ export function parseQuestionRows(questionsText) {
     rows.set(cells[0], {
       area: cells[3],
       expectedOutput: cells[6],
+      priority: cells[2],
       status: cells[1]
     });
   }
@@ -111,6 +129,13 @@ export function getResearchRegistryFailures(questionsText) {
     }
   }
   for (const id of questionIds) {
+    const row = questionRows.get(id);
+    if (!allowedResearchStatuses.has(row.status)) {
+      failures.push(`Research question ${id} has unknown status: ${row.status}.`);
+    }
+    if (!allowedResearchPriorities.has(row.priority)) {
+      failures.push(`Research question ${id} has unknown priority: ${row.priority}.`);
+    }
     if (!answerRows.has(id)) {
       failures.push(`Research Answer Linking table is missing ${id}.`);
     }

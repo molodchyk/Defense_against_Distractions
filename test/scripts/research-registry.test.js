@@ -27,6 +27,24 @@ describe('research registry checks', () => {
     ]);
   });
 
+  it('rejects unknown research status labels', async () => {
+    const questions = await readQuestions();
+    const weakenedQuestions = questions.replace('| RQ-004 | backlog | high |', '| RQ-004 | done | high |');
+
+    assert.deepEqual(getResearchRegistryFailures(weakenedQuestions), [
+      'Research question RQ-004 has unknown status: done.'
+    ]);
+  });
+
+  it('rejects unknown research priority labels', async () => {
+    const questions = await readQuestions();
+    const weakenedQuestions = questions.replace('| RQ-015 | backlog | low |', '| RQ-015 | backlog | urgent |');
+
+    assert.deepEqual(getResearchRegistryFailures(weakenedQuestions), [
+      'Research question RQ-015 has unknown priority: urgent.'
+    ]);
+  });
+
   it('rejects recommended sequence entries that do not exist in the registry', async () => {
     const questions = await readQuestions();
     const weakenedQuestions = questions.replace('`RQ-005`: safe scoring signals for passive drift.', '`RQ-999`: missing question.');
