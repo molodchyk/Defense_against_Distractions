@@ -32,7 +32,7 @@ Recommended first slice:
 - Saving adds a keyword line to an existing plan entry using the current 0-100 authoring syntax.
 - Optional action presets can be attached only if they map to existing or explicitly designed bounded actions.
 
-Implemented keyword-first version: the content script can now produce the bounded active-selection candidate for the popup snapshot; the popup Page Signals card can show and copy that candidate as a keyword-editor line; and the popup can save the selected text into an existing plan entry or a new current-site entry with an editable 1-100 positive keyword score. The action-preset compiler now has a tested model contract, but the popup does not expose action preset controls yet.
+Implemented keyword-first version: the content script can now produce the bounded active-selection candidate for the popup snapshot; the popup Page Signals card can show and copy that candidate as a keyword-editor line; and the popup can save the selected text into an existing plan entry or a new current-site entry with an editable 1-100 positive keyword score. The popup exposes `Keyword only` and `Block page` action presets; scoped cleanup presets remain model-only until the picker can supply a real element scope.
 
 A true browser right-click context menu is a later variant because it requires adding `contextMenus` to the manifest and store privacy/permission documentation. That may still be worth doing, but it should be a deliberate release decision rather than a hidden side effect of the popup feature.
 
@@ -100,7 +100,7 @@ The popup quick-add panel should be small and operational:
 - `Add rule` button;
 - current-page simulation line such as `Current page: would add 25 / 100`.
 
-Implementation state: the popup exposes plan selection, entry selection or current-site entry creation, editable positive keyword score, Add rule, and a current-page keyword-alone simulation. Optional action presets are not exposed yet.
+Implementation state: the popup exposes plan selection, entry selection or current-site entry creation, `Keyword only` versus `Block page` action selection, editable positive keyword score for keyword-only rules, Add rule, and a current-page simulation. `Block page` forces the saved selected-text score to `100/100` and locks the score input. Scoped cleanup presets are not exposed yet.
 
 Avoid long explanatory copy. The panel should be useful in a high-friction moment, not educational.
 
@@ -200,7 +200,7 @@ If the later right-click context-menu variant adds `contextMenus`, update the ma
 - Implemented: saved quick-add rules use the same protected-schedule strictness comparator as plan editing before storage writes.
 - Implemented model: `hideImages` and `disableControls` presets compile to the existing reversible, capped, scoped UI cleanup actions only when a picker-produced scope rule is supplied; otherwise they are rejected as needing an element scope.
 - The feature works without adding `contextMenus` unless the right-click variant is explicitly chosen.
-- Partly implemented tests: candidate normalization, editable-field flagging, score estimation, invalid-selection rejection, text caps, snapshot inclusion, popup display formatting, keyword-editor copy formatting, quick-add keyword-line formatting, default target selection, selected-plan current-site entry selection, current-host entry creation, duplicate/raise behavior, block-page preset scoring, cleanup-preset scope requirement, scoped UI-rule compilation, protected-schedule strictness compatibility, and popup markup are covered. Popup action-preset controls remain for the action UI slice.
+- Partly implemented tests: candidate normalization, editable-field flagging, score estimation, invalid-selection rejection, text caps, snapshot inclusion, popup display formatting, keyword-editor copy formatting, quick-add keyword-line formatting, default target selection, selected-plan current-site entry selection, current-host entry creation, duplicate/raise behavior, block-page preset scoring, cleanup-preset scope requirement, scoped UI-rule compilation, protected-schedule strictness compatibility, and popup markup are covered. Popup scoped-cleanup controls remain for the picker-backed action UI slice.
 
 ## Open Questions
 

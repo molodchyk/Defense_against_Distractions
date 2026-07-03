@@ -123,7 +123,8 @@ describe('popup markup', () => {
     assert.match(popupHtml, /popupPassiveRegionsLabel[\s\S]+pageSignalPassiveRegions/);
     assert.match(popupHtml, /popupSelectedTextLabel[\s\S]+pageSignalSelectedTextCandidate/);
     assert.match(popupHtml, /popupKeywordIdeasLabel[\s\S]+pageSignalKeywordIdeasText/);
-    assert.match(popupHtml, /selectedTextQuickAddPanel[\s\S]+popupQuickAddSelectedTextTitle[\s\S]+selectedTextQuickAddPlanSelect[\s\S]+selectedTextQuickAddEntrySelect[\s\S]+selectedTextQuickAddScoreInput/);
+    assert.match(popupHtml, /selectedTextQuickAddPanel[\s\S]+popupQuickAddSelectedTextTitle[\s\S]+selectedTextQuickAddPlanSelect[\s\S]+selectedTextQuickAddEntrySelect[\s\S]+selectedTextQuickAddActionSelect[\s\S]+selectedTextQuickAddScoreInput/);
+    assert.match(popupHtml, /selectedTextQuickAddActionSelect[\s\S]+popupQuickAddKeywordOnlyOption[\s\S]+popupQuickAddBlockPageOption/);
     assert.match(popupHtml, /addSelectedTextRuleButton[\s\S]+popupQuickAddAddRuleButton/);
     assert.match(popupHtml, /copySelectedTextButton[\s\S]+popupCopySelectedTextButton/);
     assert.match(popupHtml, /copyKeywordIdeasButton[\s\S]+popupCopyKeywordIdeasButton/);

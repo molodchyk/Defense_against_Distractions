@@ -1993,6 +1993,15 @@
     "popupQuickAddEntryLabel": {
         "message": "Entry"
     },
+    "popupQuickAddActionLabel": {
+        "message": "Action"
+    },
+    "popupQuickAddKeywordOnlyOption": {
+        "message": "Keyword only"
+    },
+    "popupQuickAddBlockPageOption": {
+        "message": "Block page"
+    },
     "popupQuickAddScoreLabel": {
         "message": "Score"
     },

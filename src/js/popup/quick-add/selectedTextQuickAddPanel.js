@@ -18,9 +18,11 @@ import {
   normalizeSelectedTextCandidate
 } from '../pageSignalsPanel.js';
 import {
+  QUICK_ADD_ACTION_PRESETS,
   applySelectedTextQuickAdd,
   getDefaultQuickAddGroupId,
   getDefaultQuickAddTarget,
+  normalizeQuickAddActionPreset,
   normalizeQuickAddScore,
   quickAddGroupMatchesUrl,
   QUICK_ADD_CREATE_ENTRY_VALUE,
@@ -41,13 +43,16 @@ export function createSelectedTextQuickAddPanel({
   let latestActiveTab = null;
   let selectedPlanId = '';
   let selectedGroupId = QUICK_ADD_CREATE_ENTRY_VALUE;
+  let selectedActionPreset = QUICK_ADD_ACTION_PRESETS.KEYWORD_ONLY;
   let scoreTouched = false;
+  let lastKeywordScoreValue = '';
 
   function getElements() {
     return {
       panel: document.getElementById('selectedTextQuickAddPanel'),
       planSelect: document.getElementById('selectedTextQuickAddPlanSelect'),
       groupSelect: document.getElementById('selectedTextQuickAddEntrySelect'),
+      actionSelect: document.getElementById('selectedTextQuickAddActionSelect'),
       scoreInput: document.getElementById('selectedTextQuickAddScoreInput'),
       simulation: document.getElementById('selectedTextQuickAddSimulation'),
       saveButton: document.getElementById('addSelectedTextRuleButton')
@@ -65,7 +70,8 @@ export function createSelectedTextQuickAddPanel({
     scoreTouched = false;
     const { scoreInput } = getElements();
     if (scoreInput && latestCandidate) {
-      scoreInput.value = String(latestCandidate.estimatedScore100);
+      lastKeywordScoreValue = String(latestCandidate.estimatedScore100);
+      scoreInput.value = isBlockPagePreset() ? '100' : lastKeywordScoreValue;
     }
     ensureSelectedTarget();
     render();
@@ -152,6 +158,32 @@ export function createSelectedTextQuickAddPanel({
     replaceSelectOptions(groupSelect, groupOptions, selectedGroupId);
   }
 
+  function populateActionSelect(actionSelect) {
+    if (!actionSelect) {
+      return;
+    }
+
+    replaceSelectOptions(actionSelect, [{
+      value: QUICK_ADD_ACTION_PRESETS.KEYWORD_ONLY,
+      label: getMessage('popupQuickAddKeywordOnlyOption')
+    }, {
+      value: QUICK_ADD_ACTION_PRESETS.BLOCK_PAGE,
+      label: getMessage('popupQuickAddBlockPageOption')
+    }], selectedActionPreset);
+  }
+
+  function isBlockPagePreset() {
+    return selectedActionPreset === QUICK_ADD_ACTION_PRESETS.BLOCK_PAGE;
+  }
+
+  function getSelectedScore(scoreInput) {
+    if (isBlockPagePreset()) {
+      return 100;
+    }
+
+    return normalizeQuickAddScore(scoreInput?.value, latestCandidate?.estimatedScore100);
+  }
+
   function renderSimulation() {
     const { simulation, scoreInput } = getElements();
     if (!simulation) {
@@ -159,7 +191,7 @@ export function createSelectedTextQuickAddPanel({
     }
 
     const selectedPlan = getSelectedPlan();
-    const score = normalizeQuickAddScore(scoreInput?.value, latestCandidate?.estimatedScore100);
+    const score = getSelectedScore(scoreInput);
     const selectedGroup = selectedPlan?.groups.find(group => group.id === selectedGroupId) || null;
     const matchesCurrentPage = selectedGroupId === QUICK_ADD_CREATE_ENTRY_VALUE
       ? Boolean(latestActiveTab?.url)
@@ -183,6 +215,7 @@ export function createSelectedTextQuickAddPanel({
       panel,
       planSelect,
       groupSelect,
+      actionSelect,
       scoreInput,
       saveButton
     } = getElements();
@@ -194,15 +227,20 @@ export function createSelectedTextQuickAddPanel({
     panel.hidden = !latestCandidate;
     populatePlanSelect(planSelect);
     populateGroupSelect(groupSelect);
+    populateActionSelect(actionSelect);
 
     if (scoreInput && latestCandidate && !scoreTouched && !scoreInput.value) {
-      scoreInput.value = String(latestCandidate.estimatedScore100);
+      lastKeywordScoreValue = lastKeywordScoreValue || String(latestCandidate.estimatedScore100);
+      scoreInput.value = isBlockPagePreset() ? '100' : lastKeywordScoreValue;
+    } else if (scoreInput && latestCandidate && isBlockPagePreset()) {
+      scoreInput.value = '100';
     }
 
     const disabled = !latestCandidate || latestPlans.length === 0 || !selectedPlanId;
     if (planSelect) planSelect.disabled = !latestCandidate || latestPlans.length === 0;
     if (groupSelect) groupSelect.disabled = !latestCandidate || latestPlans.length === 0;
-    if (scoreInput) scoreInput.disabled = !latestCandidate || latestPlans.length === 0;
+    if (actionSelect) actionSelect.disabled = !latestCandidate || latestPlans.length === 0;
+    if (scoreInput) scoreInput.disabled = !latestCandidate || latestPlans.length === 0 || isBlockPagePreset();
     if (saveButton) saveButton.disabled = disabled;
     renderSimulation();
   }
@@ -215,7 +253,7 @@ export function createSelectedTextQuickAddPanel({
     }
 
     const activeTab = latestActiveTab || await getActiveTab?.();
-    const score = normalizeQuickAddScore(scoreInput?.value, latestCandidate.estimatedScore100);
+    const score = getSelectedScore(scoreInput);
     if (saveButton) saveButton.disabled = true;
 
     try {
@@ -225,6 +263,7 @@ export function createSelectedTextQuickAddPanel({
       const result = applySelectedTextQuickAdd(currentPlans, {
         planId: selectedPlanId,
         groupId: selectedGroupId,
+        actionPreset: selectedActionPreset,
         candidate: latestCandidate,
         score,
         url: activeTab?.url || '',
@@ -271,7 +310,7 @@ export function createSelectedTextQuickAddPanel({
   }
 
   function bindEvents() {
-    const { planSelect, groupSelect, scoreInput } = getElements();
+    const { planSelect, groupSelect, actionSelect, scoreInput } = getElements();
     planSelect?.addEventListener('change', event => {
       selectedPlanId = event.currentTarget.value;
       selectedGroupId = '';
@@ -282,8 +321,24 @@ export function createSelectedTextQuickAddPanel({
       selectedGroupId = event.currentTarget.value || QUICK_ADD_CREATE_ENTRY_VALUE;
       render();
     });
+    actionSelect?.addEventListener('change', event => {
+      if (scoreInput && !isBlockPagePreset()) {
+        lastKeywordScoreValue = scoreInput.value || lastKeywordScoreValue;
+      }
+
+      selectedActionPreset = normalizeQuickAddActionPreset(event.currentTarget.value);
+      if (scoreInput) {
+        scoreInput.value = isBlockPagePreset()
+          ? '100'
+          : (lastKeywordScoreValue || String(latestCandidate?.estimatedScore100 || 25));
+      }
+      render();
+    });
     scoreInput?.addEventListener('input', () => {
       scoreTouched = true;
+      if (!isBlockPagePreset()) {
+        lastKeywordScoreValue = scoreInput.value;
+      }
       renderSimulation();
     });
   }
