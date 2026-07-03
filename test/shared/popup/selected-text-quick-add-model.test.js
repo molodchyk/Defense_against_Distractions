@@ -4,12 +4,15 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 import {
+  QUICK_ADD_ACTION_PRESETS,
   QUICK_ADD_CREATE_ENTRY_VALUE,
   applySelectedTextQuickAdd,
+  compileQuickAddActionPreset,
   formatQuickAddKeywordLine,
   getDefaultQuickAddGroupId,
   getDefaultQuickAddTarget,
   getQuickAddHostPattern,
+  normalizeQuickAddActionPreset,
   normalizeQuickAddScore,
   upsertQuickAddKeyword
 } from '../../../src/js/popup/quick-add/selectedTextQuickAddModel.js';
@@ -108,6 +111,116 @@ describe('selected text quick-add model', () => {
       'old topic, 10/100',
       'Rama Aurora, 36/100'
     ]);
+  });
+
+  it('normalizes quick-add action presets and makes block-page scoring explicit', () => {
+    assert.equal(normalizeQuickAddActionPreset('unknown'), QUICK_ADD_ACTION_PRESETS.KEYWORD_ONLY);
+    assert.deepEqual(compileQuickAddActionPreset({
+      actionPreset: QUICK_ADD_ACTION_PRESETS.BLOCK_PAGE,
+      candidate: { text: 'Rama Aurora', estimatedScore100: 36 },
+      score: 36
+    }), {
+      status: 'compiled',
+      preset: QUICK_ADD_ACTION_PRESETS.BLOCK_PAGE,
+      score100: 100,
+      requiresElementScope: false,
+      elementRules: []
+    });
+
+    const result = applySelectedTextQuickAdd([basePlan()], {
+      actionPreset: QUICK_ADD_ACTION_PRESETS.BLOCK_PAGE,
+      planId: 'default',
+      groupId: 'entry_matching',
+      candidate: { text: 'Rama Aurora', estimatedScore100: 36 },
+      score: 36,
+      url: 'https://mail.google.com/mail/u/0/#inbox',
+      now: ACTIVE_NOW
+    });
+
+    assert.equal(result.keywordLine, 'Rama Aurora, 100/100');
+    assert.equal(result.score100, 100);
+    assert.equal(result.currentPage.wouldBlockByKeywordAlone, true);
+  });
+
+  it('requires a picked element scope before compiling cleanup action presets', () => {
+    assert.deepEqual(compileQuickAddActionPreset({
+      actionPreset: QUICK_ADD_ACTION_PRESETS.HIDE_IMAGES,
+      candidate: { text: 'Rama Aurora', estimatedScore100: 36 },
+      score: 36,
+      url: 'https://mail.google.com/mail/u/0/#inbox'
+    }), {
+      status: 'needsElementScope',
+      preset: QUICK_ADD_ACTION_PRESETS.HIDE_IMAGES,
+      score100: 36,
+      requiresElementScope: true,
+      elementRules: []
+    });
+
+    const result = applySelectedTextQuickAdd([basePlan()], {
+      actionPreset: QUICK_ADD_ACTION_PRESETS.DISABLE_CONTROLS,
+      planId: 'default',
+      groupId: 'entry_matching',
+      candidate: { text: 'Rama Aurora', estimatedScore100: 36 },
+      score: 36,
+      url: 'https://mail.google.com/mail/u/0/#inbox',
+      now: ACTIVE_NOW
+    });
+
+    assert.equal(result.changed, false);
+    assert.equal(result.status, 'needsElementScope');
+    assert.deepEqual(result.plans[0].groups, basePlan().groups);
+    assert.deepEqual(result.plans[0].uiRuleIds, []);
+  });
+
+  it('compiles cleanup action presets into scoped UI rules and plan assignments', () => {
+    const result = applySelectedTextQuickAdd([basePlan()], {
+      actionPreset: QUICK_ADD_ACTION_PRESETS.HIDE_IMAGES,
+      planId: 'default',
+      groupId: 'entry_matching',
+      candidate: { text: 'Rama Aurora', estimatedScore100: 36 },
+      score: 36,
+      url: 'https://mail.google.com/mail/u/0/#inbox',
+      now: ACTIVE_NOW,
+      scopeRule: {
+        strategy: 'similar',
+        minScore: 18,
+        ancestorDepth: 3,
+        labelMatch: 'require',
+        name: 'Message card',
+        fingerprint: {
+          tag: 'div',
+          role: '',
+          classTokens: ['message-card'],
+          directTextTokens: ['rama', 'aurora']
+        }
+      }
+    });
+
+    assert.equal(result.changed, true);
+    assert.equal(result.status, 'added');
+    assert.equal(result.elementRules.length, 1);
+    assert.deepEqual(result.elementRules[0], {
+      id: 'default_quick_add_hideimages_mr4vslc0',
+      version: 1,
+      enabled: true,
+      strategy: 'similar',
+      minScore: 18,
+      ancestorDepth: 3,
+      labelMatch: 'require',
+      action: QUICK_ADD_ACTION_PRESETS.HIDE_IMAGES,
+      name: 'Message card',
+      urlPattern: 'mail.google.com',
+      urlScope: 'host',
+      createdAt: '2026-07-03T12:00:00.000Z',
+      fingerprint: {
+        tag: 'div',
+        role: '',
+        classTokens: ['message-card'],
+        directTextTokens: ['rama', 'aurora']
+      }
+    });
+    assert.deepEqual(result.plan.uiRuleIds, ['default_quick_add_hideimages_mr4vslc0']);
+    assert.equal(isPlanChangeAllowedDuringProtectedSchedule(basePlan(), result.plan), true);
   });
 
   it('creates a current-host entry when no selected entry exists', () => {

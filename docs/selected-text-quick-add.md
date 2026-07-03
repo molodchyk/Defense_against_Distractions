@@ -32,7 +32,7 @@ Recommended first slice:
 - Saving adds a keyword line to an existing plan entry using the current 0-100 authoring syntax.
 - Optional action presets can be attached only if they map to existing or explicitly designed bounded actions.
 
-Implemented keyword-only first version: the content script can now produce the bounded active-selection candidate for the popup snapshot; the popup Page Signals card can show and copy that candidate as a keyword-editor line; and the popup can save the selected text into an existing plan entry or a new current-site entry with an editable 1-100 positive keyword score. Action presets are still pending.
+Implemented keyword-first version: the content script can now produce the bounded active-selection candidate for the popup snapshot; the popup Page Signals card can show and copy that candidate as a keyword-editor line; and the popup can save the selected text into an existing plan entry or a new current-site entry with an editable 1-100 positive keyword score. The action-preset compiler now has a tested model contract, but the popup does not expose action preset controls yet.
 
 A true browser right-click context menu is a later variant because it requires adding `contextMenus` to the manifest and store privacy/permission documentation. That may still be worth doing, but it should be a deliberate release decision rather than a hidden side effect of the popup feature.
 
@@ -116,6 +116,8 @@ Initial preset candidates:
 - `Keyword + disable controls`: add the keyword and attach a bounded control-disabling action for matching pages or matching containers.
 - `Keyword + action chain`: open the fuller triggered-action editor when that exists.
 
+Implementation state: `Keyword only` preserves the edited score; `Keyword + block page` compiles by raising the saved keyword to `100/100`; `Keyword + hide images` and `Keyword + disable controls` compile only when the caller provides a picker-produced element scope rule with a fingerprint. Without that picked scope, cleanup presets return `needsElementScope` and do not mutate plans or create UI rules. When a scope is present, the compiler creates a normal enabled UI cleanup rule using the existing `hideImages` or `disableControls` action and adds that rule ID to the selected plan's `uiRuleIds`.
+
 ## Hide Images
 
 `hideImages` should be a reversible page action. It should not download, inspect, classify, or store image content.
@@ -196,9 +198,9 @@ If the later right-click context-menu variant adds `contextMenus`, update the ma
 - Implemented: the score estimate is editable and uses the positive 1-100 keyword-authoring range, because `0/100` is a no-op rather than a valid saved strengthening rule.
 - Implemented: the popup can simulate whether the new score would block the current page by this keyword alone before saving.
 - Implemented: saved quick-add rules use the same protected-schedule strictness comparator as plan editing before storage writes.
-- `hideImages` and `disableControls` presets compile to the existing reversible, capped, scoped UI cleanup actions.
+- Implemented model: `hideImages` and `disableControls` presets compile to the existing reversible, capped, scoped UI cleanup actions only when a picker-produced scope rule is supplied; otherwise they are rejected as needing an element scope.
 - The feature works without adding `contextMenus` unless the right-click variant is explicitly chosen.
-- Partly implemented tests: candidate normalization, editable-field flagging, score estimation, invalid-selection rejection, text caps, snapshot inclusion, popup display formatting, keyword-editor copy formatting, quick-add keyword-line formatting, default target selection, selected-plan current-site entry selection, current-host entry creation, duplicate/raise behavior, protected-schedule strictness compatibility, and popup markup are covered. Action preset compilation remains for the action UI slice.
+- Partly implemented tests: candidate normalization, editable-field flagging, score estimation, invalid-selection rejection, text caps, snapshot inclusion, popup display formatting, keyword-editor copy formatting, quick-add keyword-line formatting, default target selection, selected-plan current-site entry selection, current-host entry creation, duplicate/raise behavior, block-page preset scoring, cleanup-preset scope requirement, scoped UI-rule compilation, protected-schedule strictness compatibility, and popup markup are covered. Popup action-preset controls remain for the action UI slice.
 
 ## Open Questions
 
