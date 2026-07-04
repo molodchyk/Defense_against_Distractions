@@ -29,7 +29,7 @@ describe('research registry checks', () => {
 
   it('rejects unknown research status labels', async () => {
     const questions = await readQuestions();
-    const weakenedQuestions = questions.replace('| RQ-004 | backlog | high |', '| RQ-004 | done | high |');
+    const weakenedQuestions = questions.replace('| RQ-004 | briefed | high |', '| RQ-004 | done | high |');
 
     assert.deepEqual(getResearchRegistryFailures(weakenedQuestions), [
       'Research question RQ-004 has unknown status: done.'
@@ -47,7 +47,7 @@ describe('research registry checks', () => {
 
   it('rejects duplicate question rows', async () => {
     const questions = await readQuestions();
-    const row = '| RQ-004 | backlog | high | Digital self-control | Which digital self-control interventions work best: blocking, friction, timers, usage stats, prompts, rewards, or environmental modification? | DaD uses multiple intervention types and needs an evidence-informed ladder. | Intervention ladder and severity mapping. |';
+    const row = '| RQ-004 | briefed | high | Digital self-control | Which digital self-control interventions work best: blocking, friction, timers, usage stats, prompts, rewards, or environmental modification? | DaD uses multiple intervention types and needs an evidence-informed ladder. | Intervention ladder and severity mapping. |';
     const weakenedQuestions = questions.replace(row, `${row}\n${row}`);
 
     assert.deepEqual(getResearchRegistryFailures(weakenedQuestions), [
@@ -57,7 +57,8 @@ describe('research registry checks', () => {
 
   it('rejects duplicate answer-link rows', async () => {
     const questions = await readQuestions();
-    const weakenedQuestions = questions.replace('| RQ-004 | Not started |', '| RQ-004 | Not started |\n| RQ-004 | Not started |');
+    const row = '| RQ-004 | Briefed in [Digital self-control intervention ladder](briefs/RQ-004-digital-self-control-intervention-ladder.md); no synthesis yet |';
+    const weakenedQuestions = questions.replace(row, `${row}\n${row}`);
 
     assert.deepEqual(getResearchRegistryFailures(weakenedQuestions), [
       'Research Answer Linking table contains duplicate question ID: RQ-004.'
