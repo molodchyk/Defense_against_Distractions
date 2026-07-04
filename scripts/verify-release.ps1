@@ -202,8 +202,24 @@ Assert-Condition ($packageJson.license -eq "GPL-3.0-only") "package.json license
 
 Push-Location $projectRoot
 try {
-  node --test "test/**/*.test.js"
-  Assert-Condition ($LASTEXITCODE -eq 0) "Unit test suite failed"
+  $unitTestOutput = @(node --test "test/**/*.test.js" 2>&1)
+  $unitTestExitCode = $LASTEXITCODE
+  $unitTestOutput | Write-Output
+  Assert-Condition ($unitTestExitCode -eq 0) "Unit test suite failed"
+
+  $unitTestCount = $null
+  foreach ($line in $unitTestOutput) {
+    if ([string]$line -match "\btests\s+(\d+)\s*$") {
+      $unitTestCount = [int]$Matches[1]
+    }
+  }
+  Assert-Condition ($null -ne $unitTestCount -and $unitTestCount -gt 0) "Unit test suite output did not report a test count"
+
+  $releaseVerificationRecordPath = Join-Path $projectRoot "docs\release-verification-record.md"
+  $releaseVerificationRecord = Get-Content -LiteralPath $releaseVerificationRecordPath -Raw
+  $escapedUnitTestCount = [System.Text.RegularExpressions.Regex]::Escape([string]$unitTestCount)
+  Assert-Condition ($releaseVerificationRecord -match "$escapedUnitTestCount\s+unit tests passed") `
+    "Release verification record unit test count does not match current npm test output: $unitTestCount"
   node scripts/check-manifest-references.mjs
   Assert-Condition ($LASTEXITCODE -eq 0) "Manifest reference verification failed"
   node scripts/check-relative-imports.mjs

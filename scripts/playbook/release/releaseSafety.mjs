@@ -22,6 +22,7 @@ export async function getReleaseSafetyFailures(rootDir, packageJson) {
   const releaseReadiness = await readFile(path.join(rootDir, 'docs/release-readiness.md'), 'utf8');
   const releaseVerificationRecord = await readFile(path.join(rootDir, 'docs/release-verification-record.md'), 'utf8').catch(() => '');
   const browserLoadScript = await readFile(path.join(rootDir, 'scripts/check-unpacked-extension-load.ps1'), 'utf8').catch(() => '');
+  const releaseVerifier = await readFile(path.join(rootDir, 'scripts/verify-release.ps1'), 'utf8').catch(() => '');
   const failures = [];
 
   if (!releaseVerificationRecord) {
@@ -29,6 +30,9 @@ export async function getReleaseSafetyFailures(rootDir, packageJson) {
   }
   if (!browserLoadScript) {
     failures.push('Missing unpacked extension browser-load smoke script.');
+  }
+  if (!releaseVerifier) {
+    failures.push('Missing release verification script.');
   }
   if (!/Release Verification Record/i.test(releaseReadiness) || !/browser-load and manual browser QA marked as pending/i.test(releaseReadiness)) {
     failures.push('Release readiness must link the release verification record and preserve pending browser-only status until isolated verification.');
@@ -56,6 +60,13 @@ export async function getReleaseSafetyFailures(rootDir, packageJson) {
   }
   if (!/## Static Gate Evidence[\s\S]+Current result:\s+passed[\s\S]+`npm test`[\s\S]+\d+ unit tests passed[\s\S]+`npm run verify:release`[\s\S]+Passed for `Defense_against_Distractions-v1\.6\.1`/i.test(releaseVerificationRecord)) {
     failures.push('Release verification record must list the static release gate evidence recorded for the current package.');
+  }
+  if (!/\$unitTestOutput\s*=\s*@\(node --test "test\/\*\*\/\*\.test\.js" 2>&1\)/.test(releaseVerifier) ||
+      !/\\btests\\s\+\(\\d\+\)\\s\*\$/.test(releaseVerifier) ||
+      !/Unit test suite output did not report a test count/.test(releaseVerifier) ||
+      !/docs\\release-verification-record\.md/.test(releaseVerifier) ||
+      !/Release verification record unit test count does not match current npm test output/.test(releaseVerifier)) {
+    failures.push('Release verifier must bind the recorded unit test count to current node --test output.');
   }
   if (!/\[switch\]\$AllowBrowserManagementTools/.test(browserLoadScript) ||
       !/DAD_ALLOW_BROWSER_LOAD_WITH_BROWSER_MANAGEMENT/.test(browserLoadScript) ||

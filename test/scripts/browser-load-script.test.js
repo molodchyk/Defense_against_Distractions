@@ -48,6 +48,13 @@ describe('unpacked extension browser-load smoke script', () => {
       const script = readFileSync(scriptPath, 'utf8');
       assert.doesNotMatch(script, browserLoadTriggerPattern, `${scriptPath} must not launch browser-load`);
     }
+
+    const releaseVerifier = readFileSync('scripts/verify-release.ps1', 'utf8');
+    assert.match(releaseVerifier, /\$unitTestOutput\s*=\s*@\(node --test "test\/\*\*\/\*\.test\.js" 2>&1\)/);
+    assert.match(releaseVerifier, /\\btests\\s\+\(\\d\+\)\\s\*\$/);
+    assert.match(releaseVerifier, /Unit test suite output did not report a test count/);
+    assert.match(releaseVerifier, /docs\\release-verification-record\.md/);
+    assert.match(releaseVerifier, /Release verification record unit test count does not match current npm test output/);
   });
 
   it('keeps browser-load required but isolated in release readiness', () => {
