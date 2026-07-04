@@ -51,4 +51,38 @@ describe('RTL UI CSS', () => {
     assert.match(bulletRule, /margin-right:\s*0/);
     assert.match(bulletRule, /margin-left:\s*7px/);
   });
+
+  it('mirrors the injected UI picker panel for right-to-left languages', () => {
+    const source = readFileSync('src/js/content/ui-blocking/pickerStyle.js', 'utf8');
+
+    const pickerRule = getCssRule(source, '#${PICKER_PANEL_ID}[dir="rtl"]');
+    assert.match(pickerRule, /right:\s*auto/);
+    assert.match(pickerRule, /left:\s*16px/);
+  });
+
+  it('mirrors blocked-page Pomodoro details for right-to-left languages', () => {
+    const source = readFileSync('src/js/content/content-blocking/overlayStyle.js', 'utf8');
+
+    const pomodoroRule = getCssRule(source, '#${BLOCK_OVERLAY_ID}[dir="rtl"] [data-dad-pomodoro]');
+    assert.match(pomodoroRule, /text-align:\s*right/);
+
+    const timeRule = getCssRule(source, '#${BLOCK_OVERLAY_ID}[dir="rtl"] [data-dad-pomodoro-time]');
+    assert.match(timeRule, /margin-right:\s*0/);
+    assert.match(timeRule, /margin-left:\s*8px/);
+  });
+
+  it('mirrors the injected Pomodoro mini panel for right-to-left languages', () => {
+    const source = readFileSync('src/js/content/pomodoro/miniPanelStyleCss.js', 'utf8');
+
+    const panelRule = getCssRule(source, '#${constants.PANEL_ID}[dir="rtl"]');
+    assert.match(panelRule, /right:\s*auto/);
+    assert.match(panelRule, /left:\s*16px/);
+    assert.match(panelRule, /text-align:\s*right/);
+
+    const valueRule = getCssRule(source, '#${constants.PANEL_ID}[dir="rtl"] dd');
+    assert.match(valueRule, /text-align:\s*left/);
+
+    const compactValueRule = getCssRule(source, '#${constants.PANEL_ID}[dir="rtl"][data-size="compact"] dd');
+    assert.match(compactValueRule, /text-align:\s*right/);
+  });
 });
