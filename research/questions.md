@@ -18,6 +18,7 @@ This registry breaks the larger research agenda into bounded questions. Each que
 12. `RQ-012`: content reinforcement and platform affordances.
 13. `RQ-013`: machine learning and transparent heuristics.
 14. `RQ-014`: public explanation and audience transfer.
+15. `RQ-015`: personalization and generalizable defaults.
 
 This order is practical because these questions affect already-implemented or release-relevant behavior.
 
@@ -39,7 +40,7 @@ This order is practical because these questions affect already-implemented or re
 | RQ-012 | briefed | medium | Content and reinforcement | What does research actually support about dopamine, reward, variable reinforcement, autoplay, infinite scroll, and algorithmic feeds? | The product should avoid pop-neuroscience while still addressing high-lock-in design. | Mechanism-level reward/reinforcement map, measured platform-design effects, and scoring implications. |
 | RQ-013 | briefed | low | Machine learning | Would ML add meaningful value over transparent local heuristics for keyword suggestions, score estimation, risk classification, UI cleanup, or personalization? | Original notes mention machine learning on blocked keywords, text, and text recognition, but the product needs evidence that beats transparent local baselines. | Task-by-task ML/no-ML recommendation, evidence thresholds, privacy constraints, and explainability requirements. |
 | RQ-014 | briefed | low | Public explanation | How should DaD be explained publicly when it began as a personal nervous-system exoskeleton and may reach users with different needs? | Wider release, videos, screenshots, and store copy can make personal defaults, scores, graphs, and scientific language seem more universal or authoritative than intended. | Public explanation architecture, audience-transfer risks, evidence-backed caveat placement, and launch/support boundaries. |
-| RQ-015 | backlog | low | Personalization | Which DaD defaults are likely generalizable, and which should remain personal/configurable? | DaD is built first around one user's nervous system. | Defaults vs configuration guidance. |
+| RQ-015 | briefed | low | Personalization | Which DaD behaviors are safe as general defaults, which should be presets, and which should remain personal or plan-specific? | DaD is built first around one user's nervous system, but release needs a disciplined model for heterogeneous users, strictness tolerance, privacy expectations, and configuration burden. | Default-classification model, personalization moderators, local misfit signals, and configuration guidance. |
 
 ## Question Intake Rules
 
@@ -71,4 +72,4 @@ When a question is answered, link the synthesis file here:
 | RQ-012 | Briefed in [Content reinforcement and platform affordances](briefs/RQ-012-content-reinforcement-and-platform-affordances.md); no synthesis yet |
 | RQ-013 | Briefed in [Machine learning and transparent heuristics](briefs/RQ-013-machine-learning-and-transparent-heuristics.md); no synthesis yet |
 | RQ-014 | Briefed in [Public explanation and audience transfer](briefs/RQ-014-public-explanation-and-audience-transfer.md); no synthesis yet |
-| RQ-015 | Not started |
+| RQ-015 | Briefed in [Personalization and generalizable defaults](briefs/RQ-015-personalization-and-generalizable-defaults.md); no synthesis yet |

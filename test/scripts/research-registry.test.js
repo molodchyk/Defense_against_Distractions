@@ -29,7 +29,10 @@ describe('research registry checks', () => {
 
   it('rejects answer-link tables that omit a question row', async () => {
     const questions = await readQuestions();
-    const weakenedQuestions = questions.replace('| RQ-015 | Not started |\n', '');
+    const rq015AnswerLinkRow = getAnswerLinkRows(questions).find((row) => row.startsWith('| RQ-015 |'));
+    assert.ok(rq015AnswerLinkRow);
+    const weakenedQuestions = questions.replace(`${rq015AnswerLinkRow}\n`, '');
+    assert.notEqual(weakenedQuestions, questions);
 
     assert.deepEqual(getResearchRegistryFailures(weakenedQuestions), [
       'Research Answer Linking table is missing RQ-015.'
@@ -47,7 +50,8 @@ describe('research registry checks', () => {
 
   it('rejects unknown research priority labels', async () => {
     const questions = await readQuestions();
-    const weakenedQuestions = questions.replace('| RQ-015 | backlog | low |', '| RQ-015 | backlog | urgent |');
+    const weakenedQuestions = questions.replace('| RQ-015 | briefed | low |', '| RQ-015 | briefed | urgent |');
+    assert.notEqual(weakenedQuestions, questions);
 
     assert.deepEqual(getResearchRegistryFailures(weakenedQuestions), [
       'Research question RQ-015 has unknown priority: urgent.'
