@@ -9,6 +9,7 @@ This registry breaks the larger research agenda into bounded questions. Each que
 3. `RQ-003`: proportional interventions and reactance.
 4. `RQ-004`: digital self-control tool effectiveness.
 5. `RQ-005`: safe scoring signals for passive drift.
+6. `RQ-006`: high-risk browsing context map.
 
 This order is practical because these questions affect already-implemented or release-relevant behavior.
 
@@ -21,7 +22,7 @@ This order is practical because these questions affect already-implemented or re
 | RQ-003 | answered | high | Autonomy and reactance | How can DaD enforce precommitted protection without creating reactance, bypass pressure, abandonment, or hostile UX? | Strong defense needs legitimacy, not weak defaults. | Evidence-backed legitimacy contract for strong interventions, including friction dose, queued relaxation, emergency escape, bypass diagnostics, and bounded real choice. |
 | RQ-004 | briefed | high | Digital self-control | Which digital self-control interventions work best: blocking, friction, timers, usage stats, prompts, rewards, or environmental modification? | DaD uses multiple intervention types and needs an evidence-informed ladder. | Intervention ladder and severity mapping. |
 | RQ-005 | briefed | high | Scoring signals | Which local browser signals are plausible indicators of passive drift or vulnerable state, and which should be avoided? | DaD collects bounded local signals and needs scoring discipline. | Signal table: core, modifier, diagnostic-only, avoid. |
-| RQ-006 | backlog | high | Problematic internet use | Which browsing contexts are associated with high-risk loops: feeds, recommendations, short video, adult content, comments, news, shopping, search loops, or social validation? | Structural keywords and intent scoring should not be guessed casually. | Risk-context map and cautious scoring guidance. |
+| RQ-006 | briefed | high | Problematic internet use | Which browsing contexts are associated with high-risk loops: feeds, recommendations, short video, adult content, comments, news, shopping, search loops, or social validation? | Structural keywords and intent scoring should not be guessed casually. | Risk-context map and cautious scoring guidance. |
 | RQ-007 | backlog | medium | UI cleanup | Does hiding cues, feeds, recommendations, comments, or controls reduce compulsive loops or support self-control? | DaD can block UI elements and reduce noisy page surfaces. | Guidance for UI cleanup actions and false-positive risks. |
 | RQ-008 | backlog | medium | Pomodoro and breaks | What evidence supports Pomodoro-like work/rest cycles, strict breaks, microbreaks, and counting idle time as rest? | DaD has plan-owned Pomodoro and strict breaks. | Mechanisms and measurements for fatigue, break timing, idle recovery, strict-break failure modes, and timer policy. |
 | RQ-009 | backlog | medium | Implementation intentions | Can short reason prompts and if-then recovery choices restore intentionality without becoming performative friction? | Continue requires a reason in some drift prompts. | Prompt wording and bypass-risk guidance. |
@@ -53,7 +54,7 @@ When a question is answered, link the synthesis file here:
 | RQ-003 | [Autonomy, reactance, and legitimate constraint](answers/RQ-003-autonomy-and-reactance.md) - answered under the revised quality bar |
 | RQ-004 | Briefed in [Digital self-control intervention ladder](briefs/RQ-004-digital-self-control-intervention-ladder.md); no synthesis yet |
 | RQ-005 | Briefed in [Safe scoring signals for passive drift](briefs/RQ-005-safe-scoring-signals-for-passive-drift.md); no synthesis yet |
-| RQ-006 | Not started |
+| RQ-006 | Briefed in [High-risk browsing context map](briefs/RQ-006-high-risk-browsing-context-map.md); no synthesis yet |
 | RQ-007 | Not started |
 | RQ-008 | Not started |
 | RQ-009 | Not started |
