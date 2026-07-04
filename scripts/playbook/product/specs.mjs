@@ -6,6 +6,7 @@ import { hasAll } from '../../playbook-utils.mjs';
 export const triggeredActionSpecFailure = 'Triggered action specs must preserve bounded, picker-scoped, scenario-guarded action chains rather than arbitrary browser automation.';
 export const selectedTextQuickAddSpecFailure = 'DaD Select specs must keep quick-add presets separate from the full triggered-action execution model.';
 export const potentialFunctionalityTraceFailure = 'Potential functionality must preserve the raw triggered-action wording and link it to the structured triggered-action spec.';
+export const selectedTextQuickAddTraceFailure = 'Potential functionality must preserve the raw DaD Select wording and link it to the structured quick-add spec.';
 
 export function getProductSpecFailures({ potentialFunctionality, selectedTextQuickAdd, triggeredActions }) {
   const failures = [];
@@ -85,6 +86,18 @@ export function getProductSpecFailures({ potentialFunctionality, selectedTextQui
     /reuse the existing picker and bounded action model rather than introducing arbitrary JavaScript automation/i
   ])) {
     failures.push(potentialFunctionalityTraceFailure);
+  }
+
+  if (!hasAll(potentialFunctionality, [
+    /DaD select \(right select\) word, add with popup, estimate score, able to disable buttons \+ block images/,
+    /\[DaD Select quick add\]\(selected-text-quick-add\.md\)/,
+    /user-selected page text into a popup-based keyword creation flow/i,
+    /editable score estimate/i,
+    /optional bounded action presets such as hide images or disable controls/i,
+    /without adding a right-click `contextMenus` permission/i,
+    /true context-menu variant should be a deliberate release decision with store permission documentation/i
+  ])) {
+    failures.push(selectedTextQuickAddTraceFailure);
   }
 
   return failures;

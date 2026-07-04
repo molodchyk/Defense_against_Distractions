@@ -7,6 +7,7 @@ import { describe, it } from 'node:test';
 
 import {
   getProductSpecFailures,
+  selectedTextQuickAddTraceFailure,
   selectedTextQuickAddSpecFailure,
   triggeredActionSpecFailure
 } from '../../../scripts/playbook/product/specs.mjs';
@@ -65,5 +66,18 @@ describe('product spec checks', () => {
       ...docs,
       selectedTextQuickAdd: weakenedSelectedTextQuickAdd
     }), [selectedTextQuickAddSpecFailure]);
+  });
+
+  it('rejects potential-functionality traces that lose the DaD Select raw wording', async () => {
+    const docs = await readDocs();
+    const weakenedPotentialFunctionality = docs.potentialFunctionality.replace(
+      '- DaD select (right select) word, add with popup, estimate score, able to disable buttons + block images',
+      '- DaD select shortcut'
+    );
+
+    assert.deepEqual(getProductSpecFailures({
+      ...docs,
+      potentialFunctionality: weakenedPotentialFunctionality
+    }), [selectedTextQuickAddTraceFailure]);
   });
 });
