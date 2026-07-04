@@ -162,6 +162,8 @@ The safe default is `action -> block fallback`, with stop-on-failure.
 
 The first implementation should be current-page only. A chain may inspect the current top-frame document, match picker-created targets in that document, and run bounded actions there. It must not continue across top-frame navigation, follow a workflow into another mailbox folder, or run a second page's actions from the previous page's state. If an action causes navigation or unload, the chain stops; the next page must be evaluated from fresh trigger and scenario state.
 
+This resolves the first-version boundary: v1 is current-page only. Multi-page chains are a future product, not a hidden extension of this model. If they are ever reconsidered, they need a separate design, permission/privacy review, destructive-action safety model, and tests before they can be treated as part of DaD's bounded action-chain system.
+
 Scenario selection must be deterministic:
 
 - evaluate all enabled scenarios for the active trigger;
@@ -258,6 +260,6 @@ DaD Select quick add is a related creation shortcut: selected page text can beco
 - Should action chains belong to plan entries, keyword entries, UI element rules, or a separate "automations" section?
 - Should `fillField` exist at all, or should the first version only support clearing?
 - Should a destructive click require a confirmation state, a cooldown, or a locked-plan flag?
-- Should multi-page chains be allowed, or should v1 be current-page only?
+- Post-v1 only: if multi-page chains are ever considered, what separate permission/privacy/safety model would make them acceptable?
 - Should action chains run before the block overlay, from inside the overlay, or both depending on order?
 - How should DaD display "action succeeded, then block happened" on the blocked page?

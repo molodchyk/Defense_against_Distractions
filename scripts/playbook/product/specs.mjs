@@ -40,6 +40,7 @@ export function getProductSpecFailures({ potentialFunctionality, selectedTextQui
     /## Execution Contract/,
     /first implementation should be current-page only/i,
     /must not continue across top-frame navigation/i,
+    /This resolves the first-version boundary:[\s\S]*v1 is current-page only[\s\S]*Multi-page chains are a future product[\s\S]*separate design, permission\/privacy review, destructive-action safety model, and tests/i,
     /exactly one scenario matches/i,
     /if zero scenarios match, use the configured fallback/i,
     /if multiple scenarios match, treat the run as ambiguous/i,
@@ -60,6 +61,7 @@ export function getProductSpecFailures({ potentialFunctionality, selectedTextQui
     /local diagnostics record only action outcome, not raw page text/i,
     /locked schedules treat disabling a triggered action chain as relaxing protection/i,
     /destructive multi-step actions such as "delete forever from bin" should require a stronger explicit confirmation/i,
+    /Post-v1 only:[\s\S]*multi-page chains[\s\S]*separate permission\/privacy\/safety model/i,
     /DaD Select quick add is a related creation shortcut/i,
     /ordered steps, scenario guards, and fallbacks still belong in this triggered-action editor/i
   ])) {

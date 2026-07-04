@@ -55,6 +55,22 @@ describe('product spec checks', () => {
     }), [triggeredActionSpecFailure]);
   });
 
+  it('rejects triggered-action specs that reopen multi-page chains as a first-version question', async () => {
+    const docs = await readDocs();
+    const weakenedTriggeredActions = docs.triggeredActions.replace(
+      'This resolves the first-version boundary: v1 is current-page only. Multi-page chains are a future product, not a hidden extension of this model. If they are ever reconsidered, they need a separate design, permission/privacy review, destructive-action safety model, and tests before they can be treated as part of DaD\'s bounded action-chain system.',
+      'The first version may optionally support multi-page chains when useful.'
+    ).replace(
+      'Post-v1 only: if multi-page chains are ever considered, what separate permission/privacy/safety model would make them acceptable?',
+      'Should multi-page chains be allowed, or should v1 be current-page only?'
+    );
+
+    assert.deepEqual(getProductSpecFailures({
+      ...docs,
+      triggeredActions: weakenedTriggeredActions
+    }), [triggeredActionSpecFailure]);
+  });
+
   it('rejects quick-add specs that blur creation shortcuts with action execution', async () => {
     const docs = await readDocs();
     const weakenedSelectedTextQuickAdd = docs.selectedTextQuickAdd.replace(
