@@ -258,18 +258,13 @@ The roadmap's feature-first structure is still the right direction, with these r
 7. Keep sync storage small and treat forced schedules/plans as highest-priority data.
 8. Keep local diagnostics local, bounded, exportable, and clearable.
 
-## Immediate Next Engineering Steps
+## Current Next Engineering Steps
 
-1. Add a file-size audit script and report threshold breaches.
-2. Add a manifest-file reference check for content scripts and web-accessible resources.
-3. Keep `src/app/popup/index.js` as a thin bootstrap after the completed popup split:
-   - bootstrap,
-   - Chrome message helpers,
-   - protection summary,
-   - Pomodoro card,
-   - block diagnostics,
-   - page signals,
-   - intent diagnostics,
-   - diagnostics export.
-4. Add a basic Playwright or Puppeteer E2E harness that loads the unpacked extension.
-5. Continue splitting `src/js/options/plans/controller.js` after the plan-specific files have been moved into `src/js/options/plans/`.
+This section should describe the next architecture pressure points, not stale setup work. The first guardrails already exist: file-size and folder-density audits, manifest reference checks, relative import checks, platform-boundary checks, package-output checks, and release verification all run through the current scripts. Do not re-add those as "future" tasks.
+
+1. Keep `src/app/popup/index.js`, `src/app/options/index.js`, `src/app/background/index.js`, and `src/app/blocked/index.js` as thin runtime entries. New behavior should move to the narrowest feature or platform owner and only be wired from the entry.
+2. Continue reducing remaining migration inventory under `src/js/` when a focused feature change already touches that responsibility. Prefer small responsibility moves over rename-only path churn.
+3. Keep the browser-load smoke check outside automated release/package gates. It is still useful before publishing, but it must remain an explicit isolated browser action because local browser-management tools can interfere with active work.
+4. Add true browser E2E coverage only as a deliberate infrastructure slice, with an isolated profile and no dependency on the user's normal browser session.
+5. Continue splitting options plan and intent surfaces by owner when they grow: controller wiring, DOM helpers, pure models, background adapters, diagnostics formatting, and CSS should stay separate.
+6. Treat any future bundler or TypeScript migration as a product-risk decision: justify it by content-script module composition, package verification, schema safety, or cross-surface contracts, not by aesthetics.

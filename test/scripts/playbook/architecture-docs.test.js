@@ -69,4 +69,19 @@ describe('architecture documentation checks', () => {
       'Architecture documentation must preserve the feature-first, ES-module, generated-output modularization target and distinguish it from DaD migration inventory.'
     ]);
   });
+
+  it('rejects architecture research that loses the current next-step map', async () => {
+    const docs = await readDocs();
+    const weakenedResearch = docs.architectureResearch.replace(
+      '## Current Next Engineering Steps',
+      '## Immediate Next Engineering Steps'
+    );
+
+    assert.deepEqual(getArchitectureDocumentationFailures({
+      ...docs,
+      architectureResearch: weakenedResearch
+    }), [
+      'Architecture documentation must preserve the feature-first, ES-module, generated-output modularization target and distinguish it from DaD migration inventory.'
+    ]);
+  });
 });

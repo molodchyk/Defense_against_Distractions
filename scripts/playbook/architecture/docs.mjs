@@ -41,7 +41,11 @@ export function getArchitectureDocumentationFailures({ architectureResearch, cod
     /Permissions Must Be Narrow, Current, And Explainable/,
     /No Remote Hosted Code/,
     /Testing Needs A Browser Layer, Not Only Unit Tests/,
-    /Do not add a bundler just to make the tree look modern/
+    /Do not add a bundler just to make the tree look modern/,
+    /Current Next Engineering Steps/,
+    /file-size and folder-density audits, manifest reference checks, relative import checks, platform-boundary checks, package-output checks, and release verification all run through the current scripts/i,
+    /Keep the browser-load smoke check outside automated release\/package gates/i,
+    /future bundler or TypeScript migration as a product-risk decision/i
   ]);
 
   const codeStructureOk = hasAll(codeStructure, [
