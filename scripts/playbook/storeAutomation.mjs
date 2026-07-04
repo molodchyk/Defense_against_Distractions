@@ -10,6 +10,19 @@ import {
 } from './constants.mjs';
 import { getDuplicateKeyedBlockFields, hasAll, parseKeyedBlock } from '../playbook-utils.mjs';
 
+function sortedPermissionFields(fields) {
+  return [...fields]
+    .filter(field => field.startsWith('permission.'))
+    .map(field => field.slice('permission.'.length))
+    .sort();
+}
+
+function sortedStorePilotIndexPermissionFields(storeAutomationIndex) {
+  return [...storeAutomationIndex.matchAll(/^- `permission\.([^`]+)`$/gm)]
+    .map(match => match[1])
+    .sort();
+}
+
 export function getStoreAutomationFailures({
   storePrivacyForm,
   storeAdditionalFields,
@@ -40,6 +53,12 @@ export function getStoreAutomationFailures({
       `StorePilot privacy form is missing permission.${permission}.`
     );
   }
+  const expectedPermissionFields = [...manifestPermissions].sort();
+  const actualPrivacyPermissionFields = sortedPermissionFields(storePrivacyFields.keys());
+  assertCondition(
+    JSON.stringify(actualPrivacyPermissionFields) === JSON.stringify(expectedPermissionFields),
+    `StorePilot privacy permission fields must exactly match manifest permissions. Expected: ${expectedPermissionFields.join(', ')}. Found: ${actualPrivacyPermissionFields.join(', ')}.`
+  );
   for (const field of privacyDataUsageKeys) {
     assertCondition(storePrivacyFields.get(field) === 'no', `StorePilot privacy form must set ${field}: no.`);
   }
@@ -100,6 +119,11 @@ export function getStoreAutomationFailures({
       `StorePilot automation index must include permission.${permission}.`
     );
   }
+  const actualStorePilotIndexPermissionFields = sortedStorePilotIndexPermissionFields(storeAutomationIndex);
+  assertCondition(
+    JSON.stringify(actualStorePilotIndexPermissionFields) === JSON.stringify(expectedPermissionFields),
+    `StorePilot automation index permission keys must exactly match manifest permissions. Expected: ${expectedPermissionFields.join(', ')}. Found: ${actualStorePilotIndexPermissionFields.join(', ')}.`
+  );
 
   return failures;
 }
