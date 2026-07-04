@@ -3,7 +3,7 @@
 
 import { hasAll } from '../../playbook-utils.mjs';
 
-export function getArchitectureDocumentationFailures({ architectureResearch, codeStructure, modularizationPlaybook }) {
+export function getArchitectureDocumentationFailures({ architectureResearch, codeStructure, modularizationPlaybook, modularizationRoadmap }) {
   const modularizationPlaybookOk = hasAll(modularizationPlaybook, [
     /# Extension Modularization Playbook/,
     /prescriptive target/i,
@@ -54,7 +54,16 @@ export function getArchitectureDocumentationFailures({ architectureResearch, cod
     /Future options styling should go into the narrowest matching CSS module/
   ]);
 
-  if (modularizationPlaybookOk && architectureResearchOk && codeStructureOk) {
+  const modularizationRoadmapOk = hasAll(modularizationRoadmap, [
+    /# DaD Modularization Roadmap/,
+    /project-specific migration plan/i,
+    /does not replace the reusable playbook as the architecture standard/i,
+    /transitional paths under `src\/js`, classic content-script globals, or compatibility barrels/i,
+    /current migration inventory and delivery constraints/i,
+    /do not override the playbook's feature-first ES-module source target/i
+  ]);
+
+  if (modularizationPlaybookOk && architectureResearchOk && codeStructureOk && modularizationRoadmapOk) {
     return [];
   }
 

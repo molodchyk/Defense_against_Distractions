@@ -128,7 +128,7 @@ const [
   storeMediaReview,
   decisionRecords,
   playbookCompliance, playbookRequirements, claimTraceability,
-  codeStructure, protectionModel, modularizationPlaybook, architectureResearch,
+  codeStructure, protectionModel, modularizationPlaybook, modularizationRoadmap, architectureResearch,
   potentialFunctionality, selectedTextQuickAdd, triggeredActions,
   localizationDoc,
   contentScriptLoadOrderDoc,
@@ -188,7 +188,7 @@ const [
   readText('docs/store-media-review.md'),
   readText('docs/decision-records.md'),
   readText('docs/browser-extension-playbook-compliance.md'), readText('docs/browser-extension-playbook-requirements.md'), readText('docs/claim-traceability.md'),
-  readText('docs/code-structure.md'), readText('docs/protection-model.md'), readText('docs/extension-modularization-playbook.md'), readText('docs/extension-architecture-research.md'),
+  readText('docs/code-structure.md'), readText('docs/protection-model.md'), readText('docs/extension-modularization-playbook.md'), readText('docs/modularization-roadmap.md'), readText('docs/extension-architecture-research.md'),
   readText('docs/potential-functionality.md'), readText('docs/selected-text-quick-add.md'), readText('docs/triggered-actions.md'),
   readText('docs/localization.md'),
   readText('docs/content-script-load-order.md'),
@@ -521,7 +521,7 @@ assertCondition(
 );
 
 failures.push(...getPlaybookComplianceFailures({ claimTraceability, playbookCompliance, playbookRequirements }));
-failures.push(...getArchitectureDocumentationFailures({ architectureResearch, codeStructure, modularizationPlaybook }));
+failures.push(...getArchitectureDocumentationFailures({ architectureResearch, codeStructure, modularizationPlaybook, modularizationRoadmap }));
 
 assertCondition(
   hasAll(codeStructure, [

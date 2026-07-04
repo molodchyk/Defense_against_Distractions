@@ -8,6 +8,8 @@ The reusable cross-extension version of this architecture discipline lives in [E
 
 The source-backed Chrome extension constraints behind this roadmap are summarized in [Extension Architecture Research](extension-architecture-research.md). When more than one developer is active, ownership and handoff rules live in [Parallel Development Coordination](parallel-development.md).
 
+This roadmap is DaD's project-specific migration plan. It does not replace the reusable playbook as the architecture standard. When this roadmap names transitional paths under `src/js`, classic content-script globals, or compatibility barrels, read them as current migration inventory and delivery constraints. They do not override the playbook's feature-first ES-module source target.
+
 ## Problems To Fix
 
 Current pressure points:

@@ -8,13 +8,14 @@ import { describe, it } from 'node:test';
 import { getArchitectureDocumentationFailures } from '../../../scripts/playbook/architecture/docs.mjs';
 
 async function readDocs() {
-  const [architectureResearch, codeStructure, modularizationPlaybook] = await Promise.all([
+  const [architectureResearch, codeStructure, modularizationPlaybook, modularizationRoadmap] = await Promise.all([
     readFile('docs/extension-architecture-research.md', 'utf8'),
     readFile('docs/code-structure.md', 'utf8'),
-    readFile('docs/extension-modularization-playbook.md', 'utf8')
+    readFile('docs/extension-modularization-playbook.md', 'utf8'),
+    readFile('docs/modularization-roadmap.md', 'utf8')
   ]);
 
-  return { architectureResearch, codeStructure, modularizationPlaybook };
+  return { architectureResearch, codeStructure, modularizationPlaybook, modularizationRoadmap };
 }
 
 describe('architecture documentation checks', () => {
@@ -49,6 +50,21 @@ describe('architecture documentation checks', () => {
     assert.deepEqual(getArchitectureDocumentationFailures({
       ...docs,
       modularizationPlaybook: weakenedPlaybook
+    }), [
+      'Architecture documentation must preserve the feature-first, ES-module, generated-output modularization target and distinguish it from DaD migration inventory.'
+    ]);
+  });
+
+  it('rejects roadmap guidance that lets DaD migration inventory override the playbook target', async () => {
+    const docs = await readDocs();
+    const weakenedRoadmap = docs.modularizationRoadmap.replace(
+      "This roadmap is DaD's project-specific migration plan. It does not replace the reusable playbook as the architecture standard.",
+      "This roadmap is DaD's architecture standard when it differs from the reusable playbook."
+    );
+
+    assert.deepEqual(getArchitectureDocumentationFailures({
+      ...docs,
+      modularizationRoadmap: weakenedRoadmap
     }), [
       'Architecture documentation must preserve the feature-first, ES-module, generated-output modularization target and distinguish it from DaD migration inventory.'
     ]);
