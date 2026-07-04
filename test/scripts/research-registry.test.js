@@ -11,6 +11,15 @@ async function readQuestions() {
   return readFile('research/questions.md', 'utf8');
 }
 
+function getAnswerLinkRows(questions) {
+  const answerLinkingStart = questions.indexOf('## Answer Linking');
+  assert.notEqual(answerLinkingStart, -1);
+
+  return questions
+    .slice(answerLinkingStart)
+    .match(/^\| RQ-\d{3} \| .+ \|$/gm) || [];
+}
+
 describe('research registry checks', () => {
   it('accepts the current question registry shape', async () => {
     const questions = await readQuestions();
@@ -105,8 +114,13 @@ describe('research registry checks', () => {
 
   it('rejects answer-link tables that reorder question IDs', async () => {
     const questions = await readQuestions();
+    const answerLinkRows = getAnswerLinkRows(questions);
+    const rowsToSwap = answerLinkRows.slice(-2);
+    assert.equal(rowsToSwap.length, 2);
+
     const weakenedQuestions = questions
-      .replace('| RQ-014 | Not started |\n| RQ-015 | Not started |', '| RQ-015 | Not started |\n| RQ-014 | Not started |');
+      .replace(rowsToSwap.join('\n'), [...rowsToSwap].reverse().join('\n'));
+    assert.notEqual(weakenedQuestions, questions);
 
     assert.deepEqual(getResearchRegistryFailures(weakenedQuestions), [
       'Research Answer Linking table must list the same question IDs as Questions, in the same order.'
