@@ -16,6 +16,7 @@ This registry breaks the larger research agenda into bounded questions. Each que
 10. `RQ-010`: local validation and privacy-preserving metrics.
 11. `RQ-011`: state framing and configuration reliability.
 12. `RQ-012`: content reinforcement and platform affordances.
+13. `RQ-013`: machine learning and transparent heuristics.
 
 This order is practical because these questions affect already-implemented or release-relevant behavior.
 
@@ -35,7 +36,7 @@ This order is practical because these questions affect already-implemented or re
 | RQ-010 | briefed | medium | Local validation | What local-only metrics can validate whether DaD interventions help without collecting sensitive data? | DaD needs improvement data without violating trust. | Local validation plan and data-minimization rules. |
 | RQ-011 | briefed | medium | Mental state framing | How should DaD discuss low-lucidity, vulnerable state, override reliability, and configuration safety without claiming lie detection or diagnosis? | Original wording mentions detecting when users lie or are destructive; this needs safer framing. | Replacement language and ethical boundaries. |
 | RQ-012 | briefed | medium | Content and reinforcement | What does research actually support about dopamine, reward, variable reinforcement, autoplay, infinite scroll, and algorithmic feeds? | The product should avoid pop-neuroscience while still addressing high-lock-in design. | Mechanism-level reward/reinforcement map, measured platform-design effects, and scoring implications. |
-| RQ-013 | backlog | low | Machine learning | Would ML add meaningful value over transparent local heuristics for keyword suggestions or risk scoring? | Original notes mention machine learning, but privacy and explainability are concerns. | ML/no-ML recommendation, privacy constraints. |
+| RQ-013 | briefed | low | Machine learning | Would ML add meaningful value over transparent local heuristics for keyword suggestions, score estimation, risk classification, UI cleanup, or personalization? | Original notes mention machine learning on blocked keywords, text, and text recognition, but the product needs evidence that beats transparent local baselines. | Task-by-task ML/no-ML recommendation, evidence thresholds, privacy constraints, and explainability requirements. |
 | RQ-014 | backlog | low | Public explanation | How can DaD explain itself publicly without flattening the science or overgeneralizing from one nervous system? | Wider release can attract users with different needs and sensitivities. | Communication model grounded in the research, with caveats only where needed. |
 | RQ-015 | backlog | low | Personalization | Which DaD defaults are likely generalizable, and which should remain personal/configurable? | DaD is built first around one user's nervous system. | Defaults vs configuration guidance. |
 
@@ -67,6 +68,6 @@ When a question is answered, link the synthesis file here:
 | RQ-010 | Briefed in [Local validation and privacy-preserving metrics](briefs/RQ-010-local-validation-and-privacy-preserving-metrics.md); no synthesis yet |
 | RQ-011 | Briefed in [State framing and configuration reliability](briefs/RQ-011-state-framing-and-configuration-reliability.md); no synthesis yet |
 | RQ-012 | Briefed in [Content reinforcement and platform affordances](briefs/RQ-012-content-reinforcement-and-platform-affordances.md); no synthesis yet |
-| RQ-013 | Not started |
+| RQ-013 | Briefed in [Machine learning and transparent heuristics](briefs/RQ-013-machine-learning-and-transparent-heuristics.md); no synthesis yet |
 | RQ-014 | Not started |
 | RQ-015 | Not started |
