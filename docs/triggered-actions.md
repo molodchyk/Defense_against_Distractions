@@ -158,6 +158,30 @@ Users should be able to order steps because different defensive tactics have dif
 
 The safe default is `action -> block fallback`, with stop-on-failure.
 
+## Execution Contract
+
+The first implementation should be current-page only. A chain may inspect the current top-frame document, match picker-created targets in that document, and run bounded actions there. It must not continue across top-frame navigation, follow a workflow into another mailbox folder, or run a second page's actions from the previous page's state. If an action causes navigation or unload, the chain stops; the next page must be evaluated from fresh trigger and scenario state.
+
+Scenario selection must be deterministic:
+
+- evaluate all enabled scenarios for the active trigger;
+- if exactly one scenario matches, run that scenario's ordered steps;
+- if zero scenarios match, use the configured fallback;
+- if multiple scenarios match, treat the run as ambiguous;
+- ambiguous runs must not click, clear, fill, submit, delete, or otherwise mutate the page;
+- after the first failed step, stop the chain and use the configured fallback.
+
+Every run should produce a bounded local outcome event for diagnostics and future local validation. The event may include chain ID, scenario ID, trigger type, step type, step index, result enum, fallback type, coarse hostname, and timestamp bucket. It must not include raw trigger text, surrounding page text, form contents, full URLs, page screenshots, or remote telemetry.
+
+Useful result enums:
+
+- `notMatched`: trigger fired, but no scenario matched.
+- `ambiguous`: more than one scenario matched, so no action ran.
+- `ran`: at least one step completed.
+- `failed`: a selected scenario step could not be safely run.
+- `fallbackBlocked`: fallback block was shown after no match, ambiguity, or failure.
+- `blocked`: the chain intentionally reached a `blockPage` step.
+
 ## Safety Rules
 
 Triggered action chains must be narrower than arbitrary browser automation.

@@ -42,6 +42,19 @@ describe('product spec checks', () => {
     }), [triggeredActionSpecFailure]);
   });
 
+  it('rejects triggered-action specs that lose the current-page execution contract', async () => {
+    const docs = await readDocs();
+    const weakenedTriggeredActions = docs.triggeredActions.replace(
+      'The first implementation should be current-page only.',
+      'The first implementation can continue across pages when useful.'
+    );
+
+    assert.deepEqual(getProductSpecFailures({
+      ...docs,
+      triggeredActions: weakenedTriggeredActions
+    }), [triggeredActionSpecFailure]);
+  });
+
   it('rejects quick-add specs that blur creation shortcuts with action execution', async () => {
     const docs = await readDocs();
     const weakenedSelectedTextQuickAdd = docs.selectedTextQuickAdd.replace(
