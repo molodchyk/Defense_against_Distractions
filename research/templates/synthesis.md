@@ -11,10 +11,11 @@ Answer in one to three paragraphs.
 ## Non-Obvious Findings
 
 List only findings that taught us something not obvious from product intuition.
+Each row must name a concrete source, include a mechanism or measured result, explain why common sense was insufficient, and state what changes in DaD.
 
 | Finding | Source | Why It Is Non-Obvious | DaD Consequence |
 | --- | --- | --- | --- |
-| Finding | Source | Reason | Product change |
+| Mechanism or measured result | Author/year or review | Why product intuition would miss or misread it | Specific design, score, threshold, metric, privacy, or implementation change |
 
 ## Mechanisms
 

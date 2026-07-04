@@ -59,11 +59,11 @@ Fixture answer.
 
 | Finding | Source | Why It Is Non-Obvious | DaD Consequence |
 | --- | --- | --- | --- |
-| Finding 1 | Source | Reason | Change |
-| Finding 2 | Source | Reason | Change |
-| Finding 3 | Source | Reason | Change |
-| Finding 4 | Source | Reason | Change |
-| Finding 5 | Source | Reason | Change |
+| Recovery lag can continue for 10-15 minutes after a short alert-driven switch. | Iqbal & Horvitz 2007 | The visible interruption is shorter than the measured recovery cost. | Add a local recovery metric that separates immediate return from delayed chain recovery. |
+| A small access pause discouraged 13.1% of launches, while a harder task discouraged 47.5%. | Kim et al. 2019 | Friction behaves like a dose, not a binary warning-versus-block switch. | Treat friction level as a tunable intervention threshold instead of a single block mode. |
+| Graphical history reduced return-task time to 61.2% of baseline. | Hightower et al. 1998 | A graph is not only explanation; it can be an active navigation aid. | Keep Show graph compact, chain-scoped, and paired with Return actions. |
+| Public commitment raised demand from 41% to 65% in an experiment. | Exley & Naecker 2017 | More demand can reflect identity signaling rather than better self-knowledge. | Keep lock strictness private by default and avoid visible strictness badges. |
+| Reactance combines anger and counterarguing, not only dislike. | Dillard & Shen 2005; Rains 2013 | A user may become motivated to reject or bypass the source of control. | Track local bypass pressure and repeated intervention rejection as calibration signals. |
 
 ## Mechanisms
 
@@ -370,6 +370,57 @@ describe('research quality script', () => {
       const output = runNodeScriptFailureInCwd('scripts/check-research-quality.mjs', projectRoot);
 
       assert.match(output, /needs at least 3 explicit old-assumption\/updated pairs; found 0\./);
+    } finally {
+      await rm(projectRoot, { force: true, recursive: true });
+    }
+  });
+
+  it('rejects answered research syntheses with placeholder non-obvious findings', async () => {
+    const projectRoot = await mkdtemp(path.join(tmpdir(), 'dad-research-generic-findings-'));
+
+    try {
+      await writeText(projectRoot, 'research/questions.md', `# DaD Research Question Registry
+
+## Recommended First Sequence
+
+1. \`RQ-001\`: fixture answered question.
+
+## Questions
+
+| ID | Status | Priority | Area | Research Question | Why DaD Needs It | Expected Output |
+| --- | --- | --- | --- | --- | --- | --- |
+| RQ-001 | answered | high | Fixture | Question? | Reason. | Output. |
+
+## Answer Linking
+
+| ID | Answer |
+| --- | --- |
+| RQ-001 | [Fixture answer](answers/RQ-001-fixture.md) - answered under the revised quality bar |
+`);
+      const weakFindings = `## Non-Obvious Findings
+
+| Finding | Source | Why It Is Non-Obvious | DaD Consequence |
+| --- | --- | --- | --- |
+| Finding 1 | Source | Reason | Change |
+| Finding 2 | Source | Reason | Change |
+| Finding 3 | Source | Reason | Change |
+| Finding 4 | Source | Reason | Change |
+| Finding 5 | Source | Reason | Change |
+`;
+      const weakAnswer = buildResearchAnswer('RQ-001').replace(
+        /\n## Non-Obvious Findings[\s\S]*?(?=\n## Mechanisms)/,
+        `\n${weakFindings}`
+      );
+      await writeText(projectRoot, 'research/answers/RQ-001-fixture.md', weakAnswer);
+      await writeText(projectRoot, 'research/briefs/RQ-001-fixture.md', buildResearchBrief('RQ-001'));
+      for (const suffix of ['a', 'b', 'c']) {
+        await writeText(projectRoot, `research/evidence/RQ-001-${suffix}.md`, buildEvidenceCard('RQ-001', suffix));
+      }
+
+      const output = runNodeScriptFailureInCwd('scripts/check-research-quality.mjs', projectRoot);
+
+      assert.match(output, /non-obvious finding row 1 uses placeholder or generic content\./);
+      assert.match(output, /non-obvious finding row 1 needs a specific source, not placeholder text\./);
     } finally {
       await rm(projectRoot, { force: true, recursive: true });
     }

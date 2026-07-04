@@ -11,6 +11,7 @@ import {
   countTableDataRows,
   extractSection,
   getResearchRegistryFailures,
+  parseMarkdownTableCells,
   parseAnswerLinks,
   parseQuestionRows
 } from './research/registry.mjs';
@@ -48,6 +49,88 @@ function countAssumptionUpdatePairs(text) {
   const updatedAssumptionCount = (section.match(/\bUpdated\s*:/g) || []).length;
 
   return Math.min(oldAssumptionCount, updatedAssumptionCount);
+}
+
+function normalizeHeaderCell(cell) {
+  return String(cell || '').toLowerCase().replace(/[^a-z0-9]+/g, '');
+}
+
+function parseMarkdownTable(section) {
+  const rows = (section || '')
+    .split(/\r?\n/)
+    .map(parseMarkdownTableCells)
+    .filter(Boolean);
+  const separatorIndex = rows.findIndex((cells) => cells.every((cell) => /^:?-{3,}:?$/.test(cell)));
+  if (separatorIndex <= 0) {
+    return { headers: [], rows: [] };
+  }
+
+  return {
+    headers: rows[separatorIndex - 1],
+    rows: rows.slice(separatorIndex + 1)
+  };
+}
+
+function findColumnIndex(headers, acceptedNames) {
+  const normalizedNames = acceptedNames.map(normalizeHeaderCell);
+  return headers.findIndex((header) => normalizedNames.includes(normalizeHeaderCell(header)));
+}
+
+function isPlaceholderCell(cell) {
+  return /^(finding|finding\s+\d+|source|source\s+\d+|reason|change|product change|detail|caveat|fixture\s+\w+)$/i.test(String(cell || '').trim());
+}
+
+function hasMechanismOrMeasuredResult(text) {
+  return /(\b\d+(?:\.\d+)?\b|%|percent|percentage|minutes?|hours?|weeks?|months?|effect|rate|lag|frequency|sample|mechanism|memory|cue|cognitive|friction|reactance|autonomy|choice|attention|resumption|interruption|workload|strain|pressure|commitment|depletion|counterarguing|orientation|externalization|offloading|timing|context|threshold|dose|future self|weakened|re-strengthen)/i.test(text);
+}
+
+function getNonObviousFindingFailures(answerPath, section) {
+  const failures = [];
+  const table = parseMarkdownTable(section);
+  const findingIndex = findColumnIndex(table.headers, ['Finding']);
+  const sourceIndex = findColumnIndex(table.headers, ['Source']);
+  const whyIndex = findColumnIndex(table.headers, ['Why It Is Non-Obvious', 'Why Non-Obvious']);
+  const consequenceIndex = findColumnIndex(table.headers, ['DaD Consequence', 'DaD Design Consequence', 'What Changes In DaD']);
+
+  if ([findingIndex, sourceIndex, whyIndex, consequenceIndex].some((index) => index === -1)) {
+    failures.push(
+      `${answerPath} non-obvious findings table must include Finding, Source, Why It Is Non-Obvious, and DaD Consequence columns.`
+    );
+    return failures;
+  }
+
+  table.rows.forEach((row, index) => {
+    const rowNumber = index + 1;
+    const finding = row[findingIndex] || '';
+    const source = row[sourceIndex] || '';
+    const why = row[whyIndex] || '';
+    const consequence = row[consequenceIndex] || '';
+    const keyCells = [finding, source, why, consequence];
+
+    if (keyCells.some(isPlaceholderCell)) {
+      failures.push(`${answerPath} non-obvious finding row ${rowNumber} uses placeholder or generic content.`);
+    }
+    if (source.length < 8 || !/(\b\d{4}\b|et al\.|&|,)/i.test(source) || isPlaceholderCell(source)) {
+      failures.push(`${answerPath} non-obvious finding row ${rowNumber} needs a specific source, not placeholder text.`);
+    }
+    if (why.length < 30 || isPlaceholderCell(why)) {
+      failures.push(
+        `${answerPath} non-obvious finding row ${rowNumber} needs enough non-obvious explanation to show why common sense was insufficient.`
+      );
+    }
+    if (consequence.length < 35 || isPlaceholderCell(consequence)) {
+      failures.push(
+        `${answerPath} non-obvious finding row ${rowNumber} needs a concrete DaD design, scoring, threshold, metric, privacy, or implementation consequence.`
+      );
+    }
+    if (!hasMechanismOrMeasuredResult(`${finding} ${why}`)) {
+      failures.push(
+        `${answerPath} non-obvious finding row ${rowNumber} needs a mechanism or measured result in the finding or non-obviousness explanation.`
+      );
+    }
+  });
+
+  return failures;
 }
 
 async function readText(relativePath) {
@@ -123,6 +206,7 @@ async function verifyAnsweredQuestion(id, answerPath) {
     nonObviousCount >= 5,
     `${answerPath} needs at least 5 non-obvious finding rows; found ${nonObviousCount}.`
   );
+  failures.push(...getNonObviousFindingFailures(answerPath, extractSection(text, 'Non-Obvious Findings')));
   assertCondition(
     empiricalCount >= 5,
     `${answerPath} needs at least 5 empirical-detail rows; found ${empiricalCount}.`
