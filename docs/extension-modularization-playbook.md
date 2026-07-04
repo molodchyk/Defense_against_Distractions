@@ -205,6 +205,36 @@ Avoid:
 - duplicating the same rule in UI and background code;
 - hiding storage migrations inside UI rendering files.
 
+## Feature Public API Rule
+
+Each feature should expose an intentional public API. Other features and runtime entries should import through that API instead of reaching into arbitrary internal files.
+
+Recommended shape:
+
+```text
+features/
+  intent/
+    index.js
+    core/
+      scoring.js
+      policy.js
+    popup/
+      IntentRecoveryCard.js
+    background/
+      runtime.js
+```
+
+Rules:
+
+- `features/feature-name/index.js` exports the stable cross-feature API.
+- Surface-specific APIs may use `features/feature-name/popup/index.js`, `options/index.js`, `content/index.js`, or `background/index.js` when the caller is tied to that surface.
+- Files inside a feature may deep-import that feature's own internals.
+- Other features should not deep-import another feature's `core`, `ui`, `popup`, `options`, `content`, or `background` internals unless a migration note names the reason and follow-up cleanup.
+- Shared primitives that many features need should move to `shared` or `platform`, not become informal imports from whichever feature used them first.
+- Public APIs should be narrow and named. Avoid exporting every internal helper just to make imports convenient.
+
+This rule keeps feature boundaries real. Without it, a feature-first tree can decay into a better-looking version of the old file-type split.
+
 ## Pure Core Rule
 
 Pure core modules are the safest place for logic.

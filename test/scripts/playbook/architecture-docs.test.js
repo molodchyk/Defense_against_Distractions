@@ -38,4 +38,19 @@ describe('architecture documentation checks', () => {
       'Architecture documentation must preserve the feature-first, ES-module, generated-output modularization target and distinguish it from DaD migration inventory.'
     ]);
   });
+
+  it('rejects modularization guidance that loses feature public API boundaries', async () => {
+    const docs = await readDocs();
+    const weakenedPlaybook = docs.modularizationPlaybook.replace(
+      'Each feature should expose an intentional public API.',
+      'Each feature can expose whichever files callers happen to need.'
+    );
+
+    assert.deepEqual(getArchitectureDocumentationFailures({
+      ...docs,
+      modularizationPlaybook: weakenedPlaybook
+    }), [
+      'Architecture documentation must preserve the feature-first, ES-module, generated-output modularization target and distinguish it from DaD migration inventory.'
+    ]);
+  });
 });
