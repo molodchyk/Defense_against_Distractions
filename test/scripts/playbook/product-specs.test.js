@@ -81,6 +81,22 @@ describe('product spec checks', () => {
     }), [selectedTextQuickAddSpecFailure]);
   });
 
+  it('rejects quick-add specs that expose cleanup presets without picker scope', async () => {
+    const docs = await readDocs();
+    const weakenedSelectedTextQuickAdd = docs.selectedTextQuickAdd.replace(
+      'Do not expose `Keyword + hide images` or `Keyword + disable controls` as selectable popup controls until the picker can attach a concrete action scope in the same flow.',
+      'Expose `Keyword + hide images` and `Keyword + disable controls` as selectable popup controls whenever selected text exists.'
+    ).replace(
+      'Whole-page fallback is not an acceptable implicit scope for these presets.',
+      'Whole-page fallback can be used as the implicit scope for these presets.'
+    );
+
+    assert.deepEqual(getProductSpecFailures({
+      ...docs,
+      selectedTextQuickAdd: weakenedSelectedTextQuickAdd
+    }), [selectedTextQuickAddSpecFailure]);
+  });
+
   it('rejects potential-functionality traces that lose the DaD Select raw wording', async () => {
     const docs = await readDocs();
     const weakenedPotentialFunctionality = docs.potentialFunctionality.replace(

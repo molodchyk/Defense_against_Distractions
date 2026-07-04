@@ -118,6 +118,12 @@ Initial preset candidates:
 
 Implementation state: `Keyword only` preserves the edited score; `Keyword + block page` compiles by raising the saved keyword to `100/100`; `Keyword + hide images` and `Keyword + disable controls` compile only when the caller provides a picker-produced element scope rule with a fingerprint. Without that picked scope, cleanup presets return `needsElementScope` and do not mutate plans or create UI rules. When a scope is present, the compiler creates a normal enabled UI cleanup rule using the existing `hideImages` or `disableControls` action and adds that rule ID to the selected plan's `uiRuleIds`.
 
+### Picker-Backed Cleanup Gate
+
+Do not expose `Keyword + hide images` or `Keyword + disable controls` as selectable popup controls until the picker can attach a concrete action scope in the same flow. Selected text is a trigger candidate, not an element scope.
+
+If no picker-produced scope exists, compiling these presets must return a typed non-mutating result and leave plans and UI rules untouched. Whole-page fallback is not an acceptable implicit scope for these presets.
+
 ## Hide Images
 
 `hideImages` should be a reversible page action. It should not download, inspect, classify, or store image content.
