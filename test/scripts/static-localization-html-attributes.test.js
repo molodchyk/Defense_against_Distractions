@@ -11,10 +11,12 @@ describe('static localization HTML attribute checks', () => {
     const failures = getDataI18nAttributeFailures({
       file: 'src/popup.html',
       tagName: 'button',
-      attributes: 'id="okButton" data-i18n="popupOkButton" data-i18n-aria-label="popupOkAriaLabel"',
+      attributes: 'id="okButton" data-i18n="popupOkButton" data-i18n-aria-label="popupOkAriaLabel" data-i18n-placeholder="popupOkPlaceholder" data-i18n-title="popupOkTitle"',
       englishMessages: {
         popupOkButton: { message: 'OK' },
-        popupOkAriaLabel: { message: 'Confirm' }
+        popupOkAriaLabel: { message: 'Confirm' },
+        popupOkPlaceholder: { message: 'Type OK' },
+        popupOkTitle: { message: 'Confirm action' }
       }
     });
 
@@ -59,6 +61,22 @@ describe('static localization HTML attribute checks', () => {
 
     assert.deepEqual(failures, [
       'src/popup.html: <button> data-i18n-aria-lable is not a supported direct HTML localization attribute.'
+    ]);
+  });
+
+  it('rejects duplicated direct HTML i18n attributes on one element', () => {
+    const failures = getDataI18nAttributeFailures({
+      file: 'src/popup.html',
+      tagName: 'button',
+      attributes: 'data-i18n-title="popupOkTitle" DATA-I18N-TITLE="popupOtherTitle"',
+      englishMessages: {
+        popupOkTitle: { message: 'Confirm action' },
+        popupOtherTitle: { message: 'Other action' }
+      }
+    });
+
+    assert.deepEqual(failures, [
+      'src/popup.html: <button> DATA-I18N-TITLE is duplicated on the same element.'
     ]);
   });
 });

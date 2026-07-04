@@ -10,11 +10,18 @@ const supportedDataI18nAttributes = new Set([
 
 export function getDataI18nAttributeFailures({ file, tagName, attributes, englishMessages }) {
   const failures = [];
+  const seenAttributeNames = new Set();
 
   for (const match of attributes.matchAll(/\b(data-i18n(?:-[a-z-]+)?)=([\"'])(.*?)\2/gi)) {
     const [, attributeName, , rawMessageKey] = match;
+    const normalizedAttributeName = attributeName.toLowerCase();
     const messageKey = rawMessageKey.trim();
-    if (!supportedDataI18nAttributes.has(attributeName.toLowerCase())) {
+    if (seenAttributeNames.has(normalizedAttributeName)) {
+      failures.push(`${file}: <${tagName}> ${attributeName} is duplicated on the same element.`);
+    }
+    seenAttributeNames.add(normalizedAttributeName);
+
+    if (!supportedDataI18nAttributes.has(normalizedAttributeName)) {
       failures.push(`${file}: <${tagName}> ${attributeName} is not a supported direct HTML localization attribute.`);
     }
 
