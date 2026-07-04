@@ -13,6 +13,7 @@ This registry breaks the larger research agenda into bounded questions. Each que
 7. `RQ-007`: UI cleanup and cue reduction.
 8. `RQ-008`: Pomodoro, breaks, and rest credit.
 9. `RQ-009`: implementation intentions and reason prompts.
+10. `RQ-010`: local validation and privacy-preserving metrics.
 
 This order is practical because these questions affect already-implemented or release-relevant behavior.
 
@@ -29,7 +30,7 @@ This order is practical because these questions affect already-implemented or re
 | RQ-007 | briefed | medium | UI cleanup | Does hiding cues, feeds, recommendations, comments, or controls reduce compulsive loops or support self-control? | DaD can block UI elements and reduce noisy page surfaces. | Guidance for UI cleanup actions and false-positive risks. |
 | RQ-008 | briefed | medium | Pomodoro and breaks | What evidence supports Pomodoro-like work/rest cycles, strict breaks, microbreaks, and counting idle time as rest? | DaD has plan-owned Pomodoro and strict breaks. | Mechanisms and measurements for fatigue, break timing, idle recovery, strict-break failure modes, and timer policy. |
 | RQ-009 | briefed | medium | Implementation intentions | Can short reason prompts and if-then recovery choices restore intentionality without becoming performative friction? | Continue requires a reason in some drift prompts. | Prompt wording and bypass-risk guidance. |
-| RQ-010 | backlog | medium | Local validation | What local-only metrics can validate whether DaD interventions help without collecting sensitive data? | DaD needs improvement data without violating trust. | Local validation plan and data-minimization rules. |
+| RQ-010 | briefed | medium | Local validation | What local-only metrics can validate whether DaD interventions help without collecting sensitive data? | DaD needs improvement data without violating trust. | Local validation plan and data-minimization rules. |
 | RQ-011 | backlog | medium | Mental state framing | How should DaD discuss low-lucidity, vulnerable state, override reliability, and configuration safety without claiming lie detection or diagnosis? | Original wording mentions detecting when users lie or are destructive; this needs safer framing. | Replacement language and ethical boundaries. |
 | RQ-012 | backlog | medium | Content and reinforcement | What does research actually support about dopamine, reward, variable reinforcement, autoplay, infinite scroll, and algorithmic feeds? | The product should avoid pop-neuroscience while still addressing high-lock-in design. | Mechanism-level reward/reinforcement map, measured platform-design effects, and scoring implications. |
 | RQ-013 | backlog | low | Machine learning | Would ML add meaningful value over transparent local heuristics for keyword suggestions or risk scoring? | Original notes mention machine learning, but privacy and explainability are concerns. | ML/no-ML recommendation, privacy constraints. |
@@ -61,7 +62,7 @@ When a question is answered, link the synthesis file here:
 | RQ-007 | Briefed in [UI cleanup and cue reduction](briefs/RQ-007-ui-cleanup-and-cue-reduction.md); no synthesis yet |
 | RQ-008 | Briefed in [Pomodoro, breaks, and rest credit](briefs/RQ-008-pomodoro-breaks-and-rest-credit.md); no synthesis yet |
 | RQ-009 | Briefed in [Implementation intentions and reason prompts](briefs/RQ-009-implementation-intentions-and-reason-prompts.md); no synthesis yet |
-| RQ-010 | Not started |
+| RQ-010 | Briefed in [Local validation and privacy-preserving metrics](briefs/RQ-010-local-validation-and-privacy-preserving-metrics.md); no synthesis yet |
 | RQ-011 | Not started |
 | RQ-012 | Not started |
 | RQ-013 | Not started |
