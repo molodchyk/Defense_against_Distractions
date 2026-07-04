@@ -20,7 +20,7 @@ This order is practical because these questions affect already-implemented or re
 | RQ-002 | answered | high | Intent coherence | Does evidence around attention residue, task switching, and media multitasking support Return, Isolate, and graph-based drift recovery? | Intent coherence is a core differentiator and needs disciplined justification. | Recoverability model for drift chains, including resumption delay, prompt timing, tab-as-memory, legitimate orienteering, actionable graph design, and modifier-only media pressure. |
 | RQ-003 | answered | high | Autonomy and reactance | How can DaD enforce precommitted protection without creating reactance, bypass pressure, abandonment, or hostile UX? | Strong defense needs legitimacy, not weak defaults. | Evidence-backed legitimacy contract for strong interventions, including friction dose, queued relaxation, emergency escape, bypass diagnostics, and bounded real choice. |
 | RQ-004 | briefed | high | Digital self-control | Which digital self-control interventions work best: blocking, friction, timers, usage stats, prompts, rewards, or environmental modification? | DaD uses multiple intervention types and needs an evidence-informed ladder. | Intervention ladder and severity mapping. |
-| RQ-005 | backlog | high | Scoring signals | Which local browser signals are plausible indicators of passive drift or vulnerable state, and which should be avoided? | DaD collects bounded local signals and needs scoring discipline. | Signal table: core, modifier, diagnostic-only, avoid. |
+| RQ-005 | briefed | high | Scoring signals | Which local browser signals are plausible indicators of passive drift or vulnerable state, and which should be avoided? | DaD collects bounded local signals and needs scoring discipline. | Signal table: core, modifier, diagnostic-only, avoid. |
 | RQ-006 | backlog | high | Problematic internet use | Which browsing contexts are associated with high-risk loops: feeds, recommendations, short video, adult content, comments, news, shopping, search loops, or social validation? | Structural keywords and intent scoring should not be guessed casually. | Risk-context map and cautious scoring guidance. |
 | RQ-007 | backlog | medium | UI cleanup | Does hiding cues, feeds, recommendations, comments, or controls reduce compulsive loops or support self-control? | DaD can block UI elements and reduce noisy page surfaces. | Guidance for UI cleanup actions and false-positive risks. |
 | RQ-008 | backlog | medium | Pomodoro and breaks | What evidence supports Pomodoro-like work/rest cycles, strict breaks, microbreaks, and counting idle time as rest? | DaD has plan-owned Pomodoro and strict breaks. | Mechanisms and measurements for fatigue, break timing, idle recovery, strict-break failure modes, and timer policy. |
@@ -52,7 +52,7 @@ When a question is answered, link the synthesis file here:
 | RQ-002 | [Intent drift and trajectory recoverability](answers/RQ-002-intent-drift-and-attention-residue.md) - answered under the revised quality bar |
 | RQ-003 | [Autonomy, reactance, and legitimate constraint](answers/RQ-003-autonomy-and-reactance.md) - answered under the revised quality bar |
 | RQ-004 | Briefed in [Digital self-control intervention ladder](briefs/RQ-004-digital-self-control-intervention-ladder.md); no synthesis yet |
-| RQ-005 | Not started |
+| RQ-005 | Briefed in [Safe scoring signals for passive drift](briefs/RQ-005-safe-scoring-signals-for-passive-drift.md); no synthesis yet |
 | RQ-006 | Not started |
 | RQ-007 | Not started |
 | RQ-008 | Not started |
