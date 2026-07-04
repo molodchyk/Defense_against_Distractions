@@ -75,6 +75,16 @@ describe('research registry checks', () => {
     ]);
   });
 
+  it('rejects answered or revisit questions without a synthesis link in answer linking', async () => {
+    const questions = await readQuestions();
+    const row = '| RQ-002 | [Intent drift and trajectory recoverability](answers/RQ-002-intent-drift-and-attention-residue.md) - answered under the revised quality bar |';
+    const weakenedQuestions = questions.replace(row, '| RQ-002 | Briefed in [Intent drift](briefs/RQ-002-intent-drift-and-attention-residue.md); no synthesis yet |');
+
+    assert.deepEqual(getResearchRegistryFailures(weakenedQuestions), [
+      'Research question RQ-002 has status answered but Answer Linking does not link its synthesis.'
+    ]);
+  });
+
   it('rejects duplicate recommended sequence entries', async () => {
     const questions = await readQuestions();
     const weakenedQuestions = questions.replace('5. `RQ-005`: safe scoring signals for passive drift.', '5. `RQ-004`: repeated digital self-control.');

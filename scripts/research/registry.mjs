@@ -65,6 +65,12 @@ export const statusesRequiringBriefAnswerLink = new Set([
   'synthesizing'
 ]);
 
+export const statusesRequiringSynthesisAnswerLink = new Set([
+  'answered',
+  'implemented',
+  'revisit'
+]);
+
 function duplicateIds(ids) {
   const seen = new Set();
   const duplicates = new Set();
@@ -202,6 +208,14 @@ export function getResearchRegistryFailures(questionsText) {
       if (!expectedBriefPattern.test(answerCell)) {
         failures.push(
           `Research question ${id} has status ${row.status} but Answer Linking does not link its brief.`
+        );
+      }
+    } else if (statusesRequiringSynthesisAnswerLink.has(row.status)) {
+      const answerCell = answerRows.get(id);
+      const expectedAnswerPattern = new RegExp(`\\]\\(answers/${id}-[^)]+\\.md\\)`);
+      if (!expectedAnswerPattern.test(answerCell)) {
+        failures.push(
+          `Research question ${id} has status ${row.status} but Answer Linking does not link its synthesis.`
         );
       }
     }
