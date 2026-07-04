@@ -8,6 +8,7 @@ import process from 'node:process';
 const rootDir = process.cwd();
 const localesDir = path.join(rootDir, '_locales');
 const storeListingDir = path.join(rootDir, 'store', 'store-listing');
+const localizationDocPath = path.join(rootDir, 'docs', 'localization.md');
 const defaultLocale = 'en';
 
 async function readMessages(locale) {
@@ -43,6 +44,38 @@ function getPlaceholderNames(entry = {}) {
 function formatKeyList(keys) {
   const shown = keys.slice(0, 8).join(', ');
   return keys.length > 8 ? `${shown}, +${keys.length - 8} more` : shown;
+}
+
+function extractMarkdownSection(markdown, heading) {
+  const match = new RegExp(`^## ${heading.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s*$`, 'm').exec(markdown);
+  if (!match) {
+    return '';
+  }
+
+  const sectionStart = match.index + match[0].length;
+  const rest = markdown.slice(sectionStart);
+  const nextHeading = /^## /m.exec(rest);
+  return nextHeading ? rest.slice(0, nextHeading.index) : rest;
+}
+
+function getDocumentedLocaleCodes(localizationDoc, heading) {
+  const section = extractMarkdownSection(localizationDoc, heading);
+  return [...section.matchAll(/^- `([^`]+)` - /gm)].map(match => match[1]);
+}
+
+function getDuplicateCodes(codes) {
+  const seen = new Set();
+  const duplicates = new Set();
+
+  for (const code of codes) {
+    if (seen.has(code)) {
+      duplicates.add(code);
+    } else {
+      seen.add(code);
+    }
+  }
+
+  return [...duplicates].sort((left, right) => left.localeCompare(right));
 }
 
 const defaultMessages = await readMessages(defaultLocale);
@@ -110,6 +143,44 @@ if (storeListingEntries === null) {
   for (const locale of storeListingLocales) {
     if (!localeSet.has(locale)) {
       failures.push(`Store listing file has no matching _locales directory: ${locale}.txt.`);
+    }
+  }
+}
+
+const localizationDoc = await readFile(localizationDocPath, 'utf8').catch(() => '');
+if (!localizationDoc) {
+  failures.push('Localization workflow document is missing: docs/localization.md.');
+} else {
+  const visibleLocaleCodes = getDocumentedLocaleCodes(localizationDoc, 'Chrome Web Store Visible Languages');
+  const extraLocaleCodes = getDocumentedLocaleCodes(localizationDoc, 'Extra Prepared Locales');
+  const documentedLocaleCodes = [...visibleLocaleCodes, ...extraLocaleCodes];
+  const extraLocaleSet = new Set(extraLocaleCodes);
+  const documentedLocaleSet = new Set(documentedLocaleCodes);
+  const localeSet = new Set(locales);
+
+  if (visibleLocaleCodes.length === 0) {
+    failures.push('docs/localization.md must list Chrome Web Store visible locale codes.');
+  }
+
+  for (const duplicateCode of getDuplicateCodes(visibleLocaleCodes)) {
+    failures.push(`docs/localization.md duplicates visible locale code: ${duplicateCode}.`);
+  }
+  for (const duplicateCode of getDuplicateCodes(extraLocaleCodes)) {
+    failures.push(`docs/localization.md duplicates extra prepared locale code: ${duplicateCode}.`);
+  }
+  for (const locale of visibleLocaleCodes) {
+    if (extraLocaleSet.has(locale)) {
+      failures.push(`docs/localization.md lists locale as both visible and extra prepared: ${locale}.`);
+    }
+  }
+  for (const locale of locales) {
+    if (!documentedLocaleSet.has(locale)) {
+      failures.push(`${locale}: missing from docs/localization.md visible or extra locale lists.`);
+    }
+  }
+  for (const locale of documentedLocaleCodes) {
+    if (!localeSet.has(locale)) {
+      failures.push(`docs/localization.md lists locale without matching _locales directory: ${locale}.`);
     }
   }
 }

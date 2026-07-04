@@ -312,10 +312,41 @@ describe('audit scripts', () => {
       await writeText(projectRoot, '_locales/en/messages.json', messages);
       await writeText(projectRoot, '_locales/de/messages.json', messages);
       await writeText(projectRoot, 'store/store-listing/en.txt', 'Fixture listing.\n');
+      await writeText(projectRoot, 'docs/localization.md', `# Localization
+
+## Chrome Web Store Visible Languages
+
+- \`en\` - English
+- \`de\` - Deutsch
+`);
 
       const output = runNodeScriptFailureInCwd('scripts/check-locale-coverage.mjs', projectRoot);
 
       assert.match(output, /Missing store listing for locale: de\./);
+    } finally {
+      await rm(projectRoot, { force: true, recursive: true });
+    }
+  });
+
+  it('rejects locale coverage when locale folders are missing from localization docs', async () => {
+    const projectRoot = await mkdtemp(path.join(tmpdir(), 'dad-locale-doc-coverage-'));
+
+    try {
+      const messages = JSON.stringify({ description: { message: 'Fixture description.' } }, null, 2);
+      await writeText(projectRoot, '_locales/en/messages.json', messages);
+      await writeText(projectRoot, '_locales/de/messages.json', messages);
+      await writeText(projectRoot, 'store/store-listing/en.txt', 'Fixture listing.\n');
+      await writeText(projectRoot, 'store/store-listing/de.txt', 'Fixture listing.\n');
+      await writeText(projectRoot, 'docs/localization.md', `# Localization
+
+## Chrome Web Store Visible Languages
+
+- \`en\` - English
+`);
+
+      const output = runNodeScriptFailureInCwd('scripts/check-locale-coverage.mjs', projectRoot);
+
+      assert.match(output, /de: missing from docs\/localization\.md visible or extra locale lists\./);
     } finally {
       await rm(projectRoot, { force: true, recursive: true });
     }
