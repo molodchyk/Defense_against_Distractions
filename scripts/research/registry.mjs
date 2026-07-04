@@ -58,6 +58,13 @@ export const allowedResearchPriorities = new Set([
   'low'
 ]);
 
+export const statusesRequiringBriefAnswerLink = new Set([
+  'briefed',
+  'searching',
+  'evidence-cards',
+  'synthesizing'
+]);
+
 function duplicateIds(ids) {
   const seen = new Set();
   const duplicates = new Set();
@@ -189,6 +196,14 @@ export function getResearchRegistryFailures(questionsText) {
     }
     if (!answerRows.has(id)) {
       failures.push(`Research Answer Linking table is missing ${id}.`);
+    } else if (statusesRequiringBriefAnswerLink.has(row.status)) {
+      const answerCell = answerRows.get(id);
+      const expectedBriefPattern = new RegExp(`\\]\\(briefs/${id}-[^)]+\\.md\\)`);
+      if (!expectedBriefPattern.test(answerCell)) {
+        failures.push(
+          `Research question ${id} has status ${row.status} but Answer Linking does not link its brief.`
+        );
+      }
     }
   }
   for (const id of answerIds) {

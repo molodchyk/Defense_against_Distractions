@@ -65,6 +65,16 @@ describe('research registry checks', () => {
     ]);
   });
 
+  it('rejects brief-stage questions without a brief link in answer linking', async () => {
+    const questions = await readQuestions();
+    const row = '| RQ-005 | Briefed in [Safe scoring signals for passive drift](briefs/RQ-005-safe-scoring-signals-for-passive-drift.md); no synthesis yet |';
+    const weakenedQuestions = questions.replace(row, '| RQ-005 | Not started |');
+
+    assert.deepEqual(getResearchRegistryFailures(weakenedQuestions), [
+      'Research question RQ-005 has status briefed but Answer Linking does not link its brief.'
+    ]);
+  });
+
   it('rejects duplicate recommended sequence entries', async () => {
     const questions = await readQuestions();
     const weakenedQuestions = questions.replace('5. `RQ-005`: safe scoring signals for passive drift.', '5. `RQ-004`: repeated digital self-control.');

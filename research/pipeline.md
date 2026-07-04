@@ -61,6 +61,7 @@ The brief must define:
 Gate:
 
 - The question must be small enough to answer in one research pass.
+- When a question moves to `briefed`, `searching`, `evidence-cards`, or `synthesizing`, its row in [`questions.md`](questions.md) must link the canonical brief in the Answer Linking table so the active research artifact is findable before a synthesis exists.
 
 ## Stage 2: Search And Source Collection
 
