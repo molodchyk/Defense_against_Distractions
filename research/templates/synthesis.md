@@ -36,7 +36,14 @@ Summarize numbers where available.
 
 ## Assumptions Updated
 
-- What changed in our model of DaD?
+- Old assumption:
+- Updated:
+
+- Old assumption:
+- Updated:
+
+- Old assumption:
+- Updated:
 
 ## What Remains Uncertain
 

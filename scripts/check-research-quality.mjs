@@ -42,6 +42,14 @@ function assertCondition(condition, message) {
   if (!condition) failures.push(message);
 }
 
+function countAssumptionUpdatePairs(text) {
+  const section = text || '';
+  const oldAssumptionCount = (section.match(/\bOld assumption\s*:/g) || []).length;
+  const updatedAssumptionCount = (section.match(/\bUpdated\s*:/g) || []).length;
+
+  return Math.min(oldAssumptionCount, updatedAssumptionCount);
+}
+
 async function readText(relativePath) {
   return readFile(path.join(rootDir, relativePath), 'utf8');
 }
@@ -107,6 +115,7 @@ async function verifyAnsweredQuestion(id, answerPath) {
   const nonObviousCount = countTableDataRows(extractSection(text, 'Non-Obvious Findings'));
   const empiricalCount = countTableDataRows(extractSection(text, 'Empirical Details'));
   const evidenceMapCount = countTableDataRows(extractSection(text, 'Evidence Map'));
+  const assumptionUpdateCount = countAssumptionUpdatePairs(extractSection(text, 'Assumptions Updated'));
   const handoffBulletCount = countBullets(extractSection(text, 'Implementation Handoff'));
   const statusSection = extractSection(text, 'Current Answer Status') || '';
 
@@ -121,6 +130,10 @@ async function verifyAnsweredQuestion(id, answerPath) {
   assertCondition(
     evidenceMapCount >= 3,
     `${answerPath} needs at least 3 evidence-map rows; found ${evidenceMapCount}.`
+  );
+  assertCondition(
+    assumptionUpdateCount >= 3,
+    `${answerPath} needs at least 3 explicit old-assumption/updated pairs; found ${assumptionUpdateCount}.`
   );
   assertCondition(
     handoffBulletCount >= 5,

@@ -90,6 +90,17 @@ Every useful research point should become one of:
 
 If it cannot affect the product, do not foreground it.
 
+## Assumption Update Gate
+
+An answered synthesis must name at least three assumptions that changed because of the literature.
+
+Use paired bullets:
+
+- Old assumption: what DaD would have believed or designed without the research.
+- Updated: what changes after the evidence is considered.
+
+This gate prevents research from becoming a pile of interesting facts. The answer should make it visible where the product model moved.
+
 ## Status Policy
 
 Use `answered` only when the synthesis passes the novelty, detail, mechanism, product translation, and `npm run verify:research` gates.
