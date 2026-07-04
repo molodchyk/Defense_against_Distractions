@@ -5,7 +5,7 @@ import assert from 'node:assert/strict';
 import { readFile, readdir } from 'node:fs/promises';
 import { describe, it } from 'node:test';
 
-import { getEvidenceCardFailures, hasSourceLocator } from '../../scripts/research/evidence.mjs';
+import { getEvidenceCardFailures, hasAllowedEvidenceGrade, hasSourceLocator } from '../../scripts/research/evidence.mjs';
 import { parseQuestionRows } from '../../scripts/research/registry.mjs';
 
 async function readCurrentEvidenceCards() {
@@ -30,6 +30,13 @@ describe('research evidence card checks', () => {
     assert.equal(hasSourceLocator('Citation: A.\n\nLinks:\n\n- https://example.test/a\n- https://example.test/b'), true);
     assert.equal(hasSourceLocator('Citation: A.\n\nDOIs:\n\n- https://doi.org/10.1000/a\n- https://doi.org/10.1000/b'), true);
     assert.equal(hasSourceLocator('Citation: A.\n\nLink:\n\nDOI:'), false);
+  });
+
+  it('accepts controlled evidence grade labels with optional explanation', () => {
+    assert.equal(hasAllowedEvidenceGrade('strong for mechanism evidence; moderate for DaD thresholds.'), true);
+    assert.equal(hasAllowedEvidenceGrade('moderate to strong.'), true);
+    assert.equal(hasAllowedEvidenceGrade('- weak for causal claims.'), true);
+    assert.equal(hasAllowedEvidenceGrade('pretty convincing but not exact.'), false);
   });
 
   it('accepts the current evidence card corpus', async () => {
@@ -101,6 +108,23 @@ describe('research evidence card checks', () => {
       evidenceCards: [untraceableCard],
       questionRows
     }), [`Evidence card ${evidenceCards[0].file} must include at least one non-empty Link, Links, DOI, or DOIs source locator.`]);
+  });
+
+  it('rejects evidence cards with uncontrolled evidence grade labels', async () => {
+    const evidenceCards = await readCurrentEvidenceCards();
+    const questionRows = await readCurrentQuestionRows();
+    const vagueGradeCard = {
+      ...evidenceCards[0],
+      text: evidenceCards[0].text.replace(
+        /\n## Evidence Grade[\s\S]*?(?=\n## Relevance To DaD)/,
+        '\n## Evidence Grade\n\npretty convincing but not exact.\n'
+      )
+    };
+
+    assert.deepEqual(getEvidenceCardFailures({
+      evidenceCards: [vagueGradeCard],
+      questionRows
+    }), [`Evidence card ${evidenceCards[0].file} must start Evidence Grade with one of: strong, moderate, weak, speculative.`]);
   });
 
   it('rejects markdown files in the evidence directory without RQ filenames', async () => {

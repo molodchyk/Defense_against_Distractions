@@ -18,6 +18,13 @@ export const requiredEvidenceCardSections = [
   'Notes'
 ];
 
+export const allowedEvidenceGrades = [
+  'strong',
+  'moderate',
+  'weak',
+  'speculative'
+];
+
 export function getEvidenceQuestionId(file) {
   const fileName = file.replaceAll('\\', '/').split('/').pop() || '';
   const match = /^(RQ-\d{3})-.+\.md$/.exec(fileName);
@@ -29,6 +36,12 @@ export function hasSourceLocator(sourceSection) {
 
   return /^(?:Link|DOI):[^\S\r\n]+\S/im.test(sourceSection)
     || /^(?:Links|DOIs):[^\S\r\n]*(?:\r?\n[^\S\r\n]*)+-[^\S\r\n]*\S/im.test(sourceSection);
+}
+
+export function hasAllowedEvidenceGrade(evidenceGradeSection) {
+  if (!evidenceGradeSection) return false;
+
+  return new RegExp(`^\\s*-?\\s*(?:${allowedEvidenceGrades.join('|')})\\b`, 'i').test(evidenceGradeSection);
 }
 
 export function getEvidenceCardFailures({
@@ -78,6 +91,9 @@ export function getEvidenceCardFailures({
     }
     if (!hasSourceLocator(extractSection(card.text, 'Source'))) {
       failures.push(`Evidence card ${card.file} must include at least one non-empty Link, Links, DOI, or DOIs source locator.`);
+    }
+    if (!hasAllowedEvidenceGrade(extractSection(card.text, 'Evidence Grade'))) {
+      failures.push(`Evidence card ${card.file} must start Evidence Grade with one of: ${allowedEvidenceGrades.join(', ')}.`);
     }
   }
 

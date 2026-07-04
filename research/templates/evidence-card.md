@@ -57,6 +57,8 @@ What the source does not show, or why it may not generalize to DaD.
 - weak
 - speculative
 
+Start this section with one of those four labels. Explanation can follow after the label, for example: `strong for mechanism evidence; moderate for DaD thresholds`.
+
 ## Relevance To DaD
 
 How this source relates to DaD features or philosophy.
