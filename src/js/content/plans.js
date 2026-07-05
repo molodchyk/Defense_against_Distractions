@@ -19,6 +19,7 @@
       groups: Array.isArray(plan?.groups) ? plan.groups.map(normalizePlanGroup) : [],
       allowedSites: normalizeArray(plan?.allowedSites).map(global.DAD.normalizeUrl),
       uiRuleIds: normalizeArray(plan?.uiRuleIds),
+      triggeredActionChains: Array.isArray(plan?.triggeredActionChains) ? plan.triggeredActionChains : [],
       schedules: Array.isArray(plan?.schedules) ? plan.schedules : []
     };
   }
@@ -133,6 +134,21 @@
       .flatMap(group => Array.isArray(group.keywords) ? group.keywords : []);
   }
 
+  function getEffectiveTriggeredActionChainsForUrl(items, normalizedUrl, now = new Date()) {
+    const plans = normalizePlans(items?.plans);
+    if (plans.length === 0) {
+      return [];
+    }
+
+    return plans
+      .filter(plan => isPlanActive(plan, now) && !isUrlAllowedByPlan(plan, normalizedUrl))
+      .flatMap(plan => plan.triggeredActionChains.map(chain => ({
+        ...chain,
+        planId: plan.id,
+        planName: plan.name
+      })));
+  }
+
   function filterElementRulesForActivePlans(rules, items, now = new Date()) {
     const plans = normalizePlans(items?.plans);
     if (plans.length === 0) {
@@ -155,6 +171,7 @@
     filterElementRulesForActivePlans,
     getEffectiveGroupsForUrl,
     getEffectiveKeywordsForUrl,
+    getEffectiveTriggeredActionChainsForUrl,
     isPlanActive
   };
 })(window);

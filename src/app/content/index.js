@@ -39,7 +39,8 @@
       finalScore: diagnostics.finalScore ?? null,
       triggerCount: triggers.length,
       latestTrigger: triggers.at(-1) || null,
-      recentTriggers
+      recentTriggers,
+      triggeredActionOutcomes: Array.isArray(diagnostics.triggeredActionOutcomes) ? diagnostics.triggeredActionOutcomes.slice(-3) : []
     } : null;
   }
 

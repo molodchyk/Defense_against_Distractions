@@ -232,6 +232,26 @@ describe('UI element rule actions', () => {
     assert.equal(second.clickCount, 0);
   });
 
+  it('applies a single referenced element rule and reports target availability', () => {
+    const first = createElement({ matchesRule: false });
+    const second = createElement();
+    const window = loadDom([first, second]);
+    const rule = {
+      id: 'rule_single_click',
+      action: 'click',
+      enabled: true,
+      urlPattern: 'example.com'
+    };
+
+    assert.equal(window.DAD.ElementBlocking.actions.hasElementRuleTarget(rule), true);
+    assert.equal(window.DAD.ElementBlocking.actions.applyElementRule(rule), true);
+    assert.equal(first.clickCount, 0);
+    assert.equal(second.clickCount, 1);
+
+    assert.equal(window.DAD.ElementBlocking.actions.applyElementRule(rule), false);
+    assert.equal(second.clickCount, 1);
+  });
+
   it('skips disabled auto-click matches and tries the next matching element', () => {
     const disabled = createElement({ disabled: true });
     const enabled = createElement();

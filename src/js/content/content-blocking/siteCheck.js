@@ -236,24 +236,33 @@
       const fullUrl = global.location.href;
       const normalizedUrl = global.DAD.normalizeUrl(fullUrl);
       const allKeywords = global.DAD.Plans.getEffectiveKeywordsForUrl(items, normalizedUrl);
+      global.DAD.activeTriggeredActionChains = global.DAD.Plans.getEffectiveTriggeredActionChainsForUrl(items, normalizedUrl);
 
       const whitelistedSites = items.whitelistedSites || [];
       const isWhitelisted = whitelistedSites.some(whitelistedUrl => normalizedUrl.includes(whitelistedUrl));
       if (isWhitelisted) return;
-      global.DAD.applyElementBlockRules();
 
-      if (allKeywords.length > 0) {
-        global.parsedKeywords = allKeywords.map(global.DAD.parseKeyword);
-        const rootElement = document.querySelector('body');
-        if (!rootElement) {
-          return;
+      const runKeywordChecks = () => {
+        if (allKeywords.length > 0) {
+          global.parsedKeywords = allKeywords.map(global.DAD.parseKeyword);
+          const rootElement = document.querySelector('body');
+          if (!rootElement) {
+            return;
+          }
+          scanStructuralTriggers(global.parsedKeywords, calculateScore, document);
+          syncStructuralTimeTriggerMonitor(global.parsedKeywords);
+          scanTextNodes(rootElement, calculateScore);
+          observeMutations(allKeywords || []);
+        } else {
+          syncStructuralTimeTriggerMonitor([]);
         }
-        scanStructuralTriggers(global.parsedKeywords, calculateScore, document);
-        syncStructuralTimeTriggerMonitor(global.parsedKeywords);
-        scanTextNodes(rootElement, calculateScore);
-        observeMutations(allKeywords || []);
+      };
+
+      if (typeof global.DAD.syncElementBlockRulesForItems === 'function') {
+        global.DAD.syncElementBlockRulesForItems(items, runKeywordChecks);
       } else {
-        syncStructuralTimeTriggerMonitor([]);
+        global.DAD.applyElementBlockRules();
+        runKeywordChecks();
       }
     }));
   }

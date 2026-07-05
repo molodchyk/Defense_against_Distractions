@@ -94,20 +94,27 @@
     };
   };
 
-  global.DAD.applyElementBlockRules = function() {
+  function syncElementBlockRulesForItems(items, callback = null) {
     applyBuiltInElementRules?.();
     observeBuiltInElementRules?.();
-
     loadElementRules(rules => {
-      global.DAD.safeSyncStorageGet('plans', items => {
-        if (!items) {
-          return;
-        }
+      const activeRules = global.DAD.Plans.filterElementRulesForActivePlans(rules, items || {});
+      global.DAD.activeElementBlockRules = activeRules;
+      applyElementRules(activeRules);
+      observeElementRules(activeRules);
+      if (typeof callback === 'function') callback(activeRules);
+    });
+  }
 
-        const activeRules = global.DAD.Plans.filterElementRulesForActivePlans(rules, items);
-        applyElementRules(activeRules);
-        observeElementRules(activeRules);
-      });
+  global.DAD.syncElementBlockRulesForItems = syncElementBlockRulesForItems;
+
+  global.DAD.applyElementBlockRules = function(callback = null) {
+    global.DAD.safeSyncStorageGet('plans', items => {
+      if (!items) {
+        if (typeof callback === 'function') callback([]);
+        return;
+      }
+      syncElementBlockRulesForItems(items, callback);
     });
   };
 
@@ -120,18 +127,13 @@
     }
 
     if (areaName !== 'sync' || (!hasElementRuleChange(changes) && !changes.plans)) return;
+    global.DAD.safeSyncStorageGet('plans', items => {
+      if (!items) {
+        return;
+      }
 
-    loadElementRules(rules => {
-      global.DAD.safeSyncStorageGet('plans', items => {
-        if (!items) {
-          return;
-        }
-
-        const activeRules = global.DAD.Plans.filterElementRulesForActivePlans(rules, items);
-        resetElementBlocks();
-        applyElementRules(activeRules);
-        observeElementRules(activeRules);
-      });
+      resetElementBlocks();
+      syncElementBlockRulesForItems(items);
     });
   });
 

@@ -8,6 +8,7 @@ Release focus:
 
 - Current plan-based protection model: plans, schedules, allowed websites, keywords, locked-schedule rules, Pomodoro, intent coherence, and optional UI cleanup.
 - UI cleanup actions now include scoped `Hide images` and `Disable controls` presets in addition to hide, click-once, clear-field, and pause-media rules.
+- Triggered action chains now have a first live current-page runtime: active plan-owned chains can reuse existing picker-created UI rule targets when a keyword or structural score reaches the block threshold, with deterministic scenario selection and fallback blocking.
 - DaD Select groundwork: current-page snapshots can now include a bounded active selected-text candidate with an initial score estimate, and the popup can show/copy or save that candidate as a keyword rule in an existing or new current-site plan entry without adding a context-menu permission.
 - Store-ready media: five 1280x800 screenshots, a 440x280 small promo, and a 1400x560 marquee promo verified by the package checks and documented in [Store Media Review](store-media-review.md).
 - StorePilot preparation: localized listing text, privacy form answers, category selection, additional fields, and permission justifications for the current manifest.

@@ -52,7 +52,7 @@
           if (matches && matches.length > 0) {
             matches.forEach(() => {
               const contextText = extractContext(text, keyword);
-              calculateScore(operation, value, keyword, contextText);
+              calculateScore(operation, value, keyword, contextText, 'keyword', node);
               valueToSubtract += value;
             });
           }
@@ -81,7 +81,7 @@
                 matches.forEach(() => {
                   const contextText = extractContext(text, keyword);
                   if (value - valueToSubtract > 0) {
-                    calculateScore(operation, value, keyword, contextText);
+                    calculateScore(operation, value, keyword, contextText, 'keyword', node);
                     valueToSubtract -= value;
                   }
                 });
@@ -118,7 +118,24 @@
     global.DAD.safeRuntimeSendMessage({ action: 'updateBadge', score: badgeText });
   }
 
-  function recordScoreTrigger(operation, value, keyword, contextText, scoreAfter, source = 'keyword') {
+  function getTriggerLocationForNode(node) {
+    const element = node?.nodeType === Node.ELEMENT_NODE ? node : node?.parentElement;
+    if (!element || typeof element.closest !== 'function') {
+      return '';
+    }
+
+    return element.closest([
+      'textarea',
+      'input:not([type="hidden"])',
+      '[contenteditable=""]',
+      '[contenteditable="true"]',
+      '[contenteditable="plaintext-only"]'
+    ].join(', '))
+      ? 'editableField'
+      : 'outsideEditable';
+  }
+
+  function recordScoreTrigger(operation, value, keyword, contextText, scoreAfter, source = 'keyword', triggerLocation = '') {
     const diagnostics = global.blockDiagnostics || {
       triggers: [],
       blockedAt: null,
@@ -132,6 +149,7 @@
       contextText: contextText || '',
       scoreAfter,
       source,
+      triggerLocation,
       matchedAt: new Date().toISOString()
     });
 
@@ -140,18 +158,31 @@
     global.blockDiagnostics = diagnostics;
   }
 
-  function calculateScore(operation, value, keyword, contextText, source = 'keyword') {
+  function calculateScore(operation, value, keyword, contextText, source = 'keyword', triggerNode = null) {
     if (global.pageBlocked) return;
     if (operation === '*') {
       global.pageScore = global.pageScore === 0 ? value : global.pageScore * value;
     } else if (operation === '+') {
       global.pageScore += value;
     }
-    recordScoreTrigger(operation, value, keyword, contextText, global.pageScore, source);
+    recordScoreTrigger(
+      operation,
+      value,
+      keyword,
+      contextText,
+      global.pageScore,
+      source,
+      getTriggerLocationForNode(triggerNode)
+    );
     updateBadgeScore();
     if (global.pageScore >= BLOCK_SCORE_THRESHOLD && !global.pageBlocked) {
       global.blockDiagnostics.blockedAt = new Date().toISOString();
-      blockPage();
+      const handledByTriggeredAction = global.DAD.TriggeredActions?.runner?.runTriggeredActionChainsForBlock?.({
+        diagnostics: global.blockDiagnostics
+      });
+      if (!handledByTriggeredAction && !global.pageBlocked) {
+        blockPage();
+      }
     }
   }
 

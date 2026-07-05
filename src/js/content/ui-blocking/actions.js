@@ -267,8 +267,47 @@
     });
   }
 
+  function applyElementRule(rule) {
+    if (!rule || rule.enabled === false || !ruleAppliesToCurrentUrl(rule) || !document.body) {
+      return false;
+    }
+
+    const action = getRuleAction(rule);
+    const candidates = Array.from(document.body.querySelectorAll('*'));
+    for (const element of candidates) {
+      if (!matchesElementRule(element, rule)) {
+        continue;
+      }
+
+      const didApply = applyRuleToElement(element, rule);
+      if (
+        action === ELEMENT_RULE_ACTIONS.CLICK
+          || action === ELEMENT_RULE_ACTIONS.CLEAR
+          || action === ELEMENT_RULE_ACTIONS.PAUSE_MEDIA
+      ) {
+        return Boolean(didApply);
+      }
+
+      if (didApply) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  function hasElementRuleTarget(rule) {
+    if (!rule || rule.enabled === false || !ruleAppliesToCurrentUrl(rule) || !document.body) {
+      return false;
+    }
+
+    return Array.from(document.body.querySelectorAll('*')).some(element => matchesElementRule(element, rule));
+  }
+
   elementBlocking.actions = {
+    applyElementRule,
     applyElementRules,
+    hasElementRuleTarget,
     hideElement,
     resetElementBlocks,
     restoreElement

@@ -470,7 +470,7 @@ The highest product-value target remains the plan editor because it owns the pro
 
 Recent checkpoint:
 
-- Triggered action chain phase 1 now has a pure feature core under `src/features/triggered-actions/core/` for chain normalization, scenario selection, bounded outcome events, and protected-schedule strictness classification. It is intentionally not wired into live page actions until target reuse and editor phases are implemented.
+- Triggered action chain phase 1 has a pure feature core under `src/features/triggered-actions/core/` for chain normalization, scenario selection, bounded outcome events, and protected-schedule strictness classification. A first classic content-script runtime under `src/js/content/triggered-actions/` now wires active plan-owned chains into live keyword/structural block-threshold handling by reusing existing picker-created UI rule targets; the dedicated editor and richer scenario guards remain follow-up work.
 - Store-facing playbook verification now lives under `scripts/playbook/store/` for StorePilot automation and store-media review helpers, leaving the root `scripts/playbook/` folder within the folder-density budget.
 - Global Blocked UI options behavior now lives under `src/js/options/element-rules/` for constants/messages, formatting, storage/quota, and rule-card rendering. `src/js/options/elementRules.js` remains the thin list/sync entry.
 - Shared usage stats now live under `src/features/usage-stats/core/` for constants, sanitizers, metric aggregation, state normalization, page-signal recording, summaries, and export payloads. `src/js/shared/usageStats.js` remains the compatibility barrel for current callers, and feature tests live under `test/features/usage-stats/`.

@@ -73,6 +73,10 @@ Preserve this order when moving content-script files. A move must update `manife
 - `src/js/content/content-blocking/navigationGuards.js`
 - `src/js/content/content-blocking/media.js`
 - `src/js/content/content-blocking/blocker.js`
+- `src/js/content/triggered-actions/constants.js`
+- `src/js/content/triggered-actions/utils.js`
+- `src/js/content/triggered-actions/model.js`
+- `src/js/content/triggered-actions/runner.js`
 - `src/js/content/content-blocking/structuralTriggers.js`
 - `src/js/content/content-blocking/keywords.js`
 - `src/js/content/content-blocking/siteCheck.js`

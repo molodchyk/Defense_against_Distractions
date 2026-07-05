@@ -21,7 +21,7 @@ Commands run from the repository root:
 
 | Gate | Recorded evidence |
 | --- | --- |
-| `npm test` | Passed directly and through `npm run verify:release`; 509 unit tests passed on 2026-07-05. |
+| `npm test` | Passed directly and through `npm run verify:release`; 515 unit tests passed on 2026-07-05. |
 | `npm run verify:manifest` | Covered by `npm run verify:release`; manifest-referenced paths exist. |
 | `npm run verify:imports` | Covered by `npm run verify:release`; relative source imports resolve. |
 | `npm run verify:locales` | Covered by `npm run verify:release`; 68 locales match 921 English message keys and 68 store listing files match `_locales`. |
@@ -31,7 +31,7 @@ Commands run from the repository root:
 | `npm run audit:file-sizes` | Passed directly and through `npm run verify:release`; no files exceed documented budgets. |
 | `npm run audit:folder-density` | Passed directly and through `npm run verify:release`; no folders exceed documented budgets. |
 | `npm run package` | Generated the current extension and source ZIPs in `dist/`. |
-| `npm run verify:package` | Passed directly and through `npm run verify:release`; 343 packaged runtime files scanned and 80 manifest references verified. |
+| `npm run verify:package` | Passed through `npm run verify:release`; 350 packaged runtime files scanned and 84 manifest references verified. |
 | `npm run verify:release` | Passed for `Defense_against_Distractions-v1.6.1` on 2026-07-05. |
 
 ## Browser-Only Evidence

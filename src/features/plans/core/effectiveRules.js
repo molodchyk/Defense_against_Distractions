@@ -46,6 +46,21 @@ export function getEffectiveKeywordsForUrl(items = {}, normalizedUrl, now = new 
     .flatMap(group => Array.isArray(group.keywords) ? group.keywords : []);
 }
 
+export function getEffectiveTriggeredActionChainsForUrl(items = {}, normalizedUrl, now = new Date()) {
+  const plans = normalizePlans(items[PLANS_STORAGE_KEY]);
+  if (plans.length === 0) {
+    return [];
+  }
+
+  return plans
+    .filter(plan => isPlanActive(plan, now) && !isUrlAllowedByPlan(plan, normalizedUrl))
+    .flatMap(plan => plan.triggeredActionChains.map(chain => ({
+      ...chain,
+      planId: plan.id,
+      planName: plan.name
+    })));
+}
+
 export function filterElementRulesForActivePlans(rules = [], items = {}, now = new Date()) {
   const plans = normalizePlans(items[PLANS_STORAGE_KEY]);
   if (plans.length === 0) {

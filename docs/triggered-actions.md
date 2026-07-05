@@ -1,8 +1,8 @@
 # Triggered Action Chains
 
-Triggered action chains are a future generalization of keyword blocking and UI element cleanup.
+Triggered action chains began as a future generalization of keyword blocking and UI element cleanup, and now have a first current-page runtime slice.
 
-DaD can already detect configured page content and block the page. DaD can also already hide elements, hide images, disable controls, click once, clear a field, or pause media through user-configured UI element rules. The missing product layer is to let a triggered block run one or more bounded page actions before, after, or instead of full-page blocking.
+DaD can already detect configured page content and block the page. DaD can also already hide elements, hide images, disable controls, click once, clear a field, or pause media through user-configured UI element rules. Triggered action chains connect those two systems: when a configured keyword or structural block reaches the threshold, DaD can run one or more bounded page actions on the current page before, after, or instead of full-page blocking.
 
 ## Product Intent
 
@@ -203,6 +203,23 @@ Required safety rules:
 
 For email-like products, destructive multi-step actions such as "delete forever from bin" should require a stronger explicit confirmation than a normal click-once rule.
 
+## Current Runtime Slice
+
+The first live runtime slice is implemented for current-page chains:
+
+- active plan-owned chains are exposed to the content runtime only when the owning plan is active and the current URL is not allowed by that plan;
+- keyword and structural score triggers can select enabled chains by current host, trigger type, trigger keyword/structural id when provided, and minimum normalized 0-100 score;
+- the chain runner evaluates deterministic scenarios before the normal block overlay is shown;
+- scenario guards can use trigger location (`editableField` or `outsideEditable`) and existing UI rule target availability such as `target:<ruleId>` or `<ruleId>-present`;
+- matched steps can reuse existing picker-created UI element rules for `clickOnce`, `clearField`, `pauseMedia`, `hideElement`, `hideImages`, and `disableControls`;
+- `blockPage` uses the normal DaD block overlay;
+- `stop` ends the chain without blocking;
+- ambiguous scenarios do not click, clear, hide, disable, or pause anything and use the configured fallback;
+- failed steps stop the chain and use the configured fallback;
+- bounded outcome events are attached to the current block diagnostics without raw trigger text, surrounding page text, form contents, full URLs, screenshots, or remote telemetry.
+
+This slice makes stored chains executable for manually or programmatically created plan records. It still does not include a full user-facing chain editor.
+
 ## UI Implications
 
 Triggered actions should not be hidden inside the existing keyword textarea. They need their own editor because order, targets, scenarios, and fallbacks matter.
@@ -235,23 +252,31 @@ DaD Select quick add is a related creation shortcut: selected page text can beco
    - Define run outcome events.
    - Add tests for strictness classification during locked schedules.
 
-   Implementation state: the pure core model now lives in `src/features/triggered-actions/core/`. It normalizes bounded current-page action chains, trigger metadata, scenario guards, ordered steps, explicit fallbacks, run policy, deterministic scenario selection, bounded local outcome events, and conservative protected-schedule strictness classification. It is not yet wired into live keyword blocking or page mutation.
+   Implementation state: the pure core model now lives in `src/features/triggered-actions/core/`. It normalizes bounded current-page action chains, trigger metadata, scenario guards, ordered steps, explicit fallbacks, run policy, deterministic scenario selection, bounded local outcome events, and conservative protected-schedule strictness classification. Plan records preserve normalized chains, and the content runtime now has a first live executor for active plan-owned chains.
 
 2. **Reuse UI element rule targets**
    - Let action chains reference existing element rule fingerprints as targets.
    - Keep click/clear/pause once-per-page safeguards.
 
+   Implementation state: the content runner now executes referenced existing UI element rules for matched current-page chains. It uses the same one-per-page safeguards for click, clear, and pause-media actions that normal UI cleanup rules use.
+
 3. **Keyword-trigger integration**
    - When a plan keyword reaches the block threshold, evaluate enabled chains before rendering the block overlay.
    - Respect chain order and fallback.
+
+   Implementation state: when page scoring reaches the block threshold, the content runtime tries active plan-owned triggered action chains before the default block overlay. A chain can run bounded cleanup and then block, block immediately, stop without blocking, or use fallback blocking when no safe scenario or step succeeds.
 
 4. **Scenario recognition**
    - Add guards for editable-field versus non-editable trigger location.
    - Add required-target-present and forbidden-target-absent guards.
 
+   Implementation state: first runtime guards cover trigger location and required target-rule presence. Broader page-mode guards, forbidden-target guards, trigger-container fingerprints, and richer app-state recognition remain follow-up work.
+
 5. **UI editor**
    - Add an `On trigger` editor to plan entries.
    - Add test-run/outline diagnostics before enabling.
+
+   Implementation state: not implemented yet. DaD Select can create selected-text keyword rules and picker-backed cleanup rules, but ordered chain authoring still needs a dedicated editor.
 
 6. **Gmail-style examples**
    - Do not hard-code Gmail as the core feature.
