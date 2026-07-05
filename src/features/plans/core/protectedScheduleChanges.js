@@ -8,6 +8,7 @@ import {
 } from '../../../js/shared/groupRules.js';
 import { isIntentSettingsAtLeastAsStrict } from '../../../js/shared/intentCoherence.js';
 import { isPomodoroSettingsAtLeastAsStrict } from '../../../js/shared/pomodoro.js';
+import { areTriggeredActionChainsAtLeastAsStrict } from '../../triggered-actions/core/index.js';
 import { normalizePlan } from './model.js';
 
 function indexGroupsById(groups = []) {
@@ -70,6 +71,10 @@ export function isPlanChangeAllowedDuringProtectedSchedule(originalPlan = {}, ne
     JSON.stringify(original.intent) !== JSON.stringify(next.intent)
       && !isIntentSettingsAtLeastAsStrict(original.intent, next.intent)
   ) {
+    return false;
+  }
+
+  if (!areTriggeredActionChainsAtLeastAsStrict(original.triggeredActionChains, next.triggeredActionChains)) {
     return false;
   }
 

@@ -47,7 +47,8 @@ describe('plan helpers', () => {
       uiRuleIds: [],
       schedules: [],
       pomodoro: { ...DEFAULT_POMODORO_SETTINGS },
-      intent: { ...DEFAULT_INTENT_SETTINGS }
+      intent: { ...DEFAULT_INTENT_SETTINGS },
+      triggeredActionChains: []
     }]);
   });
 
@@ -62,7 +63,8 @@ describe('plan helpers', () => {
       uiRuleIds: [],
       schedules: [],
       pomodoro: { ...DEFAULT_POMODORO_SETTINGS },
-      intent: { ...DEFAULT_INTENT_SETTINGS }
+      intent: { ...DEFAULT_INTENT_SETTINGS },
+      triggeredActionChains: []
     });
   });
 
@@ -90,8 +92,73 @@ describe('plan helpers', () => {
       uiRuleIds: [],
       schedules: [legacySchedule],
       pomodoro: { ...DEFAULT_POMODORO_SETTINGS },
-      intent: { ...DEFAULT_INTENT_SETTINGS }
+      intent: { ...DEFAULT_INTENT_SETTINGS },
+      triggeredActionChains: []
     });
+  });
+
+  it('normalizes plan-owned triggered action chains as durable plan configuration', () => {
+    const [plan] = normalizePlans([{
+      id: 'plan_1',
+      triggeredActionChains: [{
+        id: 'delete_received',
+        hostPattern: 'https://mail.google.com/mail/u/0',
+        trigger: {
+          type: 'keywordBlock',
+          minimumScore: 80,
+          keywordIds: ['name']
+        },
+        scenarios: [{
+          id: 'received',
+          guards: ['message-row-present'],
+          steps: [
+            { type: 'clickOnce', targetRuleId: 'trash_button' },
+            { type: 'blockPage' }
+          ]
+        }]
+      }]
+    }]);
+
+    assert.deepEqual(plan.triggeredActionChains, [{
+      id: 'delete_received',
+      version: 1,
+      name: 'Triggered action chain',
+      enabled: true,
+      hostPattern: 'mail.google.com',
+      trigger: {
+        type: 'keywordBlock',
+        keywordIds: ['name'],
+        structuralIds: [],
+        minimumScore: 80
+      },
+      scenarios: [{
+        id: 'received',
+        guards: [{ type: 'named', id: 'message-row-present', invert: false }],
+        triggerLocation: '',
+        steps: [{
+          type: 'clickOnce',
+          targetRuleId: 'trash_button',
+          waitMs: 0,
+          reason: '',
+          destructive: true,
+          index: 0
+        }, {
+          type: 'blockPage',
+          targetRuleId: '',
+          waitMs: 0,
+          reason: '',
+          destructive: false,
+          index: 1
+        }],
+        fallback: { type: 'blockPage', reason: '' }
+      }],
+      fallback: { type: 'blockPage', reason: '' },
+      runPolicy: {
+        oncePerPageVisit: true,
+        cooldownSeconds: 30,
+        stopOnFirstFailure: true
+      }
+    }]);
   });
 
   it('infers group IDs from storage keys for legacy group records', () => {

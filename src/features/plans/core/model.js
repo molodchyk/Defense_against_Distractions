@@ -4,6 +4,7 @@
 import { normalizeUrl } from '../../../js/shared/url.js';
 import { normalizePomodoroSettings } from '../../../js/shared/pomodoro.js';
 import { normalizeIntentSettings } from '../../../js/shared/intentCoherence.js';
+import { normalizeTriggeredActionChains } from '../../triggered-actions/core/index.js';
 import {
   DEFAULT_PLAN_ID,
   PLANS_STORAGE_KEY
@@ -20,7 +21,8 @@ export function normalizePlan(plan = {}) {
     uiRuleIds: normalizeStringArray(plan.uiRuleIds),
     schedules: Array.isArray(plan.schedules) ? plan.schedules.map(normalizePlanSchedule).filter(hasScheduleDays) : [],
     pomodoro: normalizePomodoroSettings(plan.pomodoro),
-    intent: normalizeIntentSettings(plan.intent)
+    intent: normalizeIntentSettings(plan.intent),
+    triggeredActionChains: normalizeTriggeredActionChains(plan.triggeredActionChains)
   };
 }
 
@@ -57,7 +59,8 @@ export function createDefaultPlanFromItems(items = {}, name = 'Default plan') {
     uiRuleIds: [],
     schedules: Array.isArray(items.schedules) ? items.schedules : [],
     pomodoro: {},
-    intent: {}
+    intent: {},
+    triggeredActionChains: []
   });
 }
 

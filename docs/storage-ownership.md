@@ -23,7 +23,7 @@ Chrome sync storage is reserved for compact user configuration and mission-criti
 - Keys: `plans`, `planCounter`, `planMigrationState`.
 - Storage area: `chrome.storage.sync`.
 - Owner feature: `src/features/plans/core/` for the model, `src/js/options/plans/` for options-page mutation, and `src/features/plans/storage/criticalScheduleStorage.js` for priority saves under quota pressure.
-- Data shape/version: current unversioned plan array plus counter and migration-state object. Each plan owns enabled state, groups, allowed sites, schedules, UI rule assignments, Pomodoro settings, and intent settings.
+- Data shape/version: current unversioned plan array plus counter and migration-state object. Each plan owns enabled state, groups, allowed sites, schedules, UI rule assignments, Pomodoro settings, intent settings, and bounded triggered-action chain configuration.
 - Migration path: `src/js/options/plans/migration.js` creates and normalizes plan records, moves legacy standalone schedules and whitelists into plans, and records one-way migration flags in `planMigrationState`.
 - Retention or pruning: durable until the user edits plans, imports replacement settings, deletes plans, or resets extension data. Empty schedule placeholders are normalized out on options startup.
 - Quota risk: high because plans can contain website and keyword entries. Critical schedule storage preserves plan data first and may remove non-critical UI cleanup rules before retrying plan or schedule saves.

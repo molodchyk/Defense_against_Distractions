@@ -35,7 +35,17 @@ describe('protected-schedule plan changes', () => {
         lockedThreshold: 20,
         pomodoroInfluence: INTENT_POMODORO_INFLUENCE_MODES.BOTH,
         diagnosticsRetentionDays: 14
-      }
+      },
+      triggeredActionChains: [{
+        id: 'chain_1',
+        trigger: { minimumScore: 90 },
+        scenarios: [{
+          id: 'received',
+          guards: ['target-present'],
+          steps: [{ type: 'hideImages', targetRuleId: 'image_scope' }],
+          fallback: { type: 'blockPage' }
+        }]
+      }]
     };
     const stricterPlan = {
       ...originalPlan,
@@ -57,7 +67,22 @@ describe('protected-schedule plan changes', () => {
         lockedThreshold: 35,
         pomodoroInfluence: INTENT_POMODORO_INFLUENCE_MODES.WORK_STRICTER,
         diagnosticsRetentionDays: 7
-      }
+      },
+      triggeredActionChains: [{
+        ...originalPlan.triggeredActionChains[0],
+        trigger: { minimumScore: 70 },
+        scenarios: [{
+          ...originalPlan.triggeredActionChains[0].scenarios[0],
+          steps: [
+            ...originalPlan.triggeredActionChains[0].scenarios[0].steps,
+            { type: 'blockPage' }
+          ]
+        }]
+      }, {
+        id: 'chain_2',
+        trigger: { minimumScore: 100 },
+        scenarios: []
+      }]
     };
 
     assert.equal(isPlanChangeAllowedDuringProtectedSchedule(originalPlan, stricterPlan), true);
@@ -118,7 +143,20 @@ describe('protected-schedule plan changes', () => {
         interventionThreshold: 50,
         lockedThreshold: 25,
         diagnosticsRetentionDays: 7
-      }
+      },
+      triggeredActionChains: [{
+        id: 'chain_1',
+        trigger: { minimumScore: 70 },
+        scenarios: [{
+          id: 'received',
+          guards: ['target-present'],
+          steps: [
+            { type: 'clickOnce', targetRuleId: 'delete_button' },
+            { type: 'blockPage' }
+          ],
+          fallback: { type: 'blockPage' }
+        }]
+      }]
     };
 
     [
@@ -129,7 +167,20 @@ describe('protected-schedule plan changes', () => {
       { ...protectedPlan, allowedSites: ['example.com'] },
       { ...protectedPlan, uiRuleIds: [] },
       { ...protectedPlan, pomodoro: { ...protectedPlan.pomodoro, enabled: false } },
-      { ...protectedPlan, intent: { ...protectedPlan.intent, action: INTENT_INTERVENTION_ACTIONS.WARN } }
+      { ...protectedPlan, intent: { ...protectedPlan.intent, action: INTENT_INTERVENTION_ACTIONS.WARN } },
+      { ...protectedPlan, triggeredActionChains: [] },
+      { ...protectedPlan, triggeredActionChains: [{ ...protectedPlan.triggeredActionChains[0], enabled: false }] },
+      { ...protectedPlan, triggeredActionChains: [{ ...protectedPlan.triggeredActionChains[0], trigger: { minimumScore: 95 } }] },
+      {
+        ...protectedPlan,
+        triggeredActionChains: [{
+          ...protectedPlan.triggeredActionChains[0],
+          scenarios: [{
+            ...protectedPlan.triggeredActionChains[0].scenarios[0],
+            steps: [{ type: 'clickOnce', targetRuleId: 'delete_button' }]
+          }]
+        }]
+      }
     ].forEach(nextPlan => {
       assert.equal(isPlanChangeAllowedDuringProtectedSchedule(protectedPlan, nextPlan), false);
     });
