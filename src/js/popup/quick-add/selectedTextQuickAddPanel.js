@@ -35,6 +35,7 @@ export function createSelectedTextQuickAddPanel({
   getMessage,
   getActiveTab,
   sendTabMessage,
+  startElementPicker,
   setStatus,
   onPlansChange
 }) {
@@ -169,11 +170,22 @@ export function createSelectedTextQuickAddPanel({
     }, {
       value: QUICK_ADD_ACTION_PRESETS.BLOCK_PAGE,
       label: getMessage('popupQuickAddBlockPageOption')
+    }, {
+      value: QUICK_ADD_ACTION_PRESETS.HIDE_IMAGES,
+      label: getMessage('elementPickerHideImagesActionOption')
+    }, {
+      value: QUICK_ADD_ACTION_PRESETS.DISABLE_CONTROLS,
+      label: getMessage('elementPickerDisableControlsActionOption')
     }], selectedActionPreset);
   }
 
   function isBlockPagePreset() {
     return selectedActionPreset === QUICK_ADD_ACTION_PRESETS.BLOCK_PAGE;
+  }
+
+  function isCleanupPreset() {
+    return selectedActionPreset === QUICK_ADD_ACTION_PRESETS.HIDE_IMAGES
+      || selectedActionPreset === QUICK_ADD_ACTION_PRESETS.DISABLE_CONTROLS;
   }
 
   function getSelectedScore(scoreInput) {
@@ -263,7 +275,9 @@ export function createSelectedTextQuickAddPanel({
       const result = applySelectedTextQuickAdd(currentPlans, {
         planId: selectedPlanId,
         groupId: selectedGroupId,
-        actionPreset: selectedActionPreset,
+        actionPreset: isCleanupPreset()
+          ? QUICK_ADD_ACTION_PRESETS.KEYWORD_ONLY
+          : selectedActionPreset,
         candidate: latestCandidate,
         score,
         url: activeTab?.url || '',
@@ -286,15 +300,30 @@ export function createSelectedTextQuickAddPanel({
         return false;
       }
 
-      if (!result.changed) {
+      if (!result.changed && !isCleanupPreset()) {
         setStatus?.(getMessage('popupQuickAddAlreadyCovered'));
         return false;
       }
 
-      await savePlansWithPriority(result.plans);
-      latestPlans = result.plans;
-      onPlansChange?.(result.plans);
-      render();
+      if (!result.changed && isCleanupPreset() && !startElementPicker) {
+        setStatus?.(getMessage('popupQuickAddAlreadyCovered'));
+        return false;
+      }
+
+      if (result.changed) {
+        await savePlansWithPriority(result.plans);
+        latestPlans = result.plans;
+        onPlansChange?.(result.plans);
+        render();
+      }
+
+      if (isCleanupPreset() && startElementPicker) {
+        await startElementPicker({
+          initialAction: selectedActionPreset,
+          assignRuleToPlanId: selectedPlanId
+        });
+        return true;
+      }
       if (activeTab?.id && sendTabMessage) {
         sendTabMessage(activeTab.id, { action: SITE_CHECK_MESSAGE }).catch(() => {});
       }

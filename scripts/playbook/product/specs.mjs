@@ -76,7 +76,7 @@ export function getProductSpecFailures({ potentialFunctionality, selectedTextQui
     /`Keyword \+ hide images`/,
     /`Keyword \+ disable controls`/,
     /###+ Picker-Backed Cleanup Gate/,
-    /Do not expose `Keyword \+ hide images` or `Keyword \+ disable controls` as selectable popup controls until the picker can attach a concrete action scope/i,
+    /Do not expose `Keyword \+ hide images` or `Keyword \+ disable controls` as selectable popup controls unless the picker can attach a concrete action scope/i,
     /Selected text is a trigger candidate, not an element scope/i,
     /cleanup presets return `needsElementScope` and do not mutate plans or create UI rules/i,
     /typed non-mutating result and leave plans and UI rules untouched/i,

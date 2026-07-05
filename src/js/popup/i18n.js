@@ -102,6 +102,8 @@ export const POPUP_MESSAGES = {
   popupQuickAddActionLabel: 'Action',
   popupQuickAddKeywordOnlyOption: 'Keyword only',
   popupQuickAddBlockPageOption: 'Block page',
+  elementPickerHideImagesActionOption: 'Hide images',
+  elementPickerDisableControlsActionOption: 'Disable controls',
   popupQuickAddScoreLabel: 'Score',
   popupQuickAddActivePlanOption: '$1 - active',
   popupQuickAddMatchingEntryOption: '$1 - current site',

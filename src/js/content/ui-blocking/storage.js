@@ -91,10 +91,11 @@
     });
   }
 
-  function persistElementRules(rules) {
+  function persistElementRules(rules, extraItems = {}) {
     return new Promise((resolve, reject) => {
       const nextRules = dedupeRules(rules);
       const items = {
+        ...extraItems,
         [ELEMENT_RULE_IDS_STORAGE_KEY]: nextRules.map(rule => rule.id)
       };
 
@@ -173,12 +174,86 @@
     });
   }
 
+  function assignElementRuleIdToPlans(plans, planId, ruleId) {
+    const normalizedPlanId = String(planId || '').trim();
+    const normalizedRuleId = String(ruleId || '').trim();
+    const rawPlans = Array.isArray(plans) ? plans : [];
+    let found = false;
+    let changed = false;
+
+    const nextPlans = rawPlans.map(plan => {
+      if (!plan || typeof plan !== 'object' || plan.id !== normalizedPlanId) {
+        return plan;
+      }
+
+      found = true;
+      const existingRuleIds = Array.isArray(plan.uiRuleIds)
+        ? plan.uiRuleIds.map(value => String(value || '').trim()).filter(Boolean)
+        : [];
+
+      if (!normalizedRuleId || existingRuleIds.includes(normalizedRuleId)) {
+        return plan;
+      }
+
+      changed = true;
+      return {
+        ...plan,
+        uiRuleIds: [...existingRuleIds, normalizedRuleId]
+      };
+    });
+
+    return {
+      changed,
+      found,
+      plans: nextPlans
+    };
+  }
+
+  function saveElementRuleWithPlanAssignment(rule, planId) {
+    const normalizedPlanId = String(planId || '').trim();
+    if (!normalizedPlanId) {
+      return saveElementRule(rule);
+    }
+
+    return new Promise((resolve, reject) => {
+      global.DAD.safeSyncStorageGet({ plans: [] }, items => {
+        if (!items) {
+          reject(createElementPickerStorageError(
+            'elementPickerStorageUnavailableError',
+            'Cannot save this UI rule because extension storage is unavailable.'
+          ));
+          return;
+        }
+
+        const assignment = assignElementRuleIdToPlans(items.plans, normalizedPlanId, rule?.id);
+        if (!assignment.found) {
+          reject(createElementPickerStorageError(
+            'elementPickerStorageUnavailableError',
+            'Cannot save this UI rule because extension storage is unavailable.'
+          ));
+          return;
+        }
+
+        loadElementRules(rules => {
+          const nextRules = dedupeRules([...rules, rule]);
+          persistElementRules(nextRules, { plans: assignment.plans })
+            .then(() => {
+              resolve(nextRules);
+            })
+            .catch(reject);
+        });
+      });
+    });
+  }
+
   elementBlocking.storage = {
+    assignElementRuleIdToPlans,
     dedupeRules,
     getElementRuleStorageKey,
     hasElementRuleChange,
     loadElementRules,
     persistElementRules,
-    saveElementRule
+    saveElementRule,
+    saveElementRuleWithPlanAssignment
   };
 })(window);

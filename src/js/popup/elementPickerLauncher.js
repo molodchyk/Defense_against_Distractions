@@ -18,7 +18,7 @@ export function createElementPickerLauncher({
   sendMessageToTab = sendTabMessage,
   setStatus
 }) {
-  return async function startElementPicker() {
+  return async function startElementPicker(options = {}) {
     const settings = readPickerSettings();
     const activeTab = await getActiveTab();
 
@@ -27,10 +27,18 @@ export function createElementPickerLauncher({
       return;
     }
 
-    const response = await sendMessageToTab(activeTab.id, {
+    const message = {
       action: 'startElementPicker',
       ...settings
-    });
+    };
+    if (options.initialAction) {
+      message.initialAction = options.initialAction;
+    }
+    if (options.assignRuleToPlanId) {
+      message.assignRuleToPlanId = options.assignRuleToPlanId;
+    }
+
+    const response = await sendMessageToTab(activeTab.id, message);
 
     if (response === null) {
       setStatus(getMessage('popupReloadBeforePicking'));

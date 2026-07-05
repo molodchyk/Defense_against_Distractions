@@ -94,4 +94,35 @@ describe('popup element picker launcher', () => {
     assert.deepEqual(statuses, ['picker-started']);
     assert.equal(closeCount, 1);
   });
+
+  it('passes requested quick-add action and plan assignment to the picker', async () => {
+    installPickerDom();
+
+    let sentMessage = null;
+    globalThis.window = { close() {} };
+    const launcher = createElementPickerLauncher({
+      getActiveTab: async () => ({ id: 7 }),
+      getMessage: key => key,
+      sendMessageToTab: async (_tabId, message) => {
+        sentMessage = message;
+        return { status: 'picker-started' };
+      },
+      setStatus: () => {}
+    });
+
+    await launcher({
+      initialAction: 'hideImages',
+      assignRuleToPlanId: 'default'
+    });
+
+    assert.deepEqual(sentMessage, {
+      action: 'startElementPicker',
+      strategy: 'same-position',
+      minScore: 18,
+      ancestorDepth: 3,
+      labelMatch: 'prefer-label',
+      initialAction: 'hideImages',
+      assignRuleToPlanId: 'default'
+    });
+  });
 });

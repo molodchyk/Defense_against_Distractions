@@ -100,7 +100,7 @@ describe('product spec checks', () => {
   it('rejects quick-add specs that expose cleanup presets without picker scope', async () => {
     const docs = await readDocs();
     const weakenedSelectedTextQuickAdd = docs.selectedTextQuickAdd.replace(
-      'Do not expose `Keyword + hide images` or `Keyword + disable controls` as selectable popup controls until the picker can attach a concrete action scope in the same flow.',
+      'Do not expose `Keyword + hide images` or `Keyword + disable controls` as selectable popup controls unless the picker can attach a concrete action scope in the same flow.',
       'Expose `Keyword + hide images` and `Keyword + disable controls` as selectable popup controls whenever selected text exists.'
     ).replace(
       'Whole-page fallback is not an acceptable implicit scope for these presets.',

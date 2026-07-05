@@ -82,7 +82,9 @@
         strategy: message.strategy || 'samePosition',
         minScore: message.minScore,
         ancestorDepth: message.ancestorDepth,
-        labelMatch: message.labelMatch || 'prefer'
+        labelMatch: message.labelMatch || 'prefer',
+        initialAction: message.initialAction,
+        assignRuleToPlanId: message.assignRuleToPlanId
       });
       sendResponse({ status: 'Element picker started' });
       return false;

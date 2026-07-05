@@ -28,7 +28,8 @@
   const {
     hasElementRuleChange,
     loadElementRules,
-    saveElementRule
+    saveElementRule,
+    saveElementRuleWithPlanAssignment
   } = elementBlocking.storage;
   const {
     applyElementRules,
@@ -55,6 +56,7 @@
 
   let highlightedElement = null;
   let pickerCleanup = null;
+  const ALLOWED_PICKER_ACTIONS = new Set(['hide', 'click', 'clear', 'pauseMedia', 'hideImages', 'disableControls']);
 
   function getUrlPattern() {
     return normalizeToken(location.hostname);
@@ -143,7 +145,7 @@
     strategy = 'samePosition',
     minScore = DEFAULT_MIN_SCORE,
     ancestorDepth = DEFAULT_ANCESTOR_DEPTH,
-    labelMatch = 'prefer'
+    labelMatch = 'prefer', initialAction = DEFAULT_RULE_ACTION, assignRuleToPlanId = ''
   } = {}) {
     stopPicker();
     ensurePickerStyle();
@@ -157,7 +159,7 @@
       minScore: normalizeNumber(minScore, DEFAULT_MIN_SCORE, 6, 24),
       ancestorDepth: normalizeNumber(ancestorDepth, DEFAULT_ANCESTOR_DEPTH, 0, 6),
       labelMatch,
-      action: DEFAULT_RULE_ACTION,
+      action: ALLOWED_PICKER_ACTIONS.has(initialAction) ? initialAction : DEFAULT_RULE_ACTION,
       previewMode: DEFAULT_PREVIEW_MODE,
       actionMode: DEFAULT_PICKER_ACTION_MODE,
       targetLevel: DEFAULT_TARGET_LEVEL
@@ -252,7 +254,7 @@
 
       const continuePicking = shouldContinueAfterSave;
       clearPreviewBlocks();
-      const updatedRules = await saveElementRule(previewRule);
+      const updatedRules = await (assignRuleToPlanId ? saveElementRuleWithPlanAssignment(previewRule, assignRuleToPlanId) : saveElementRule(previewRule));
       applyElementRules(updatedRules);
       observeElementRules(updatedRules);
 

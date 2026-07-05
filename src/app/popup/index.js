@@ -28,22 +28,23 @@ import { createPopupRefreshLoop } from '../../js/popup/refreshLoop.js';
 import { createPopupShell } from '../../js/popup/shell.js';
 
 const popupShell = createPopupShell();
+const startElementPicker = createElementPickerLauncher({
+  getActiveTab,
+  getMessage,
+  setStatus
+});
 const panels = createPopupPanelSet({
   getMessage,
   getActiveTab,
   getSyncStorage,
   isExtensionPage,
+  startElementPicker,
   sendRuntimeMessage,
   sendTabMessage,
   updateTabUrl,
   setStatus
 });
 const refreshLoop = createPopupRefreshLoop(panels);
-const startElementPicker = createElementPickerLauncher({
-  getActiveTab,
-  getMessage,
-  setStatus
-});
 const diagnosticsExporter = createPopupDiagnosticsExporter({
   getMessage,
   setStatus,
