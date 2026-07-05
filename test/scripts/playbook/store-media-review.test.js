@@ -9,7 +9,7 @@ import { storeMediaAssetPaths } from '../../../scripts/playbook/constants.mjs';
 import {
   getStoreMediaReviewCoverageFailures,
   verifyReviewedStoreMediaHashes
-} from '../../../scripts/playbook/storeMediaReview.mjs';
+} from '../../../scripts/playbook/store/mediaReview.mjs';
 
 async function readStoreMediaReview() {
   return readFile('docs/store-media-review.md', 'utf8');

@@ -470,6 +470,7 @@ The highest product-value target remains the plan editor because it owns the pro
 
 Recent checkpoint:
 
+- Store-facing playbook verification now lives under `scripts/playbook/store/` for StorePilot automation and store-media review helpers, leaving the root `scripts/playbook/` folder within the folder-density budget.
 - Global Blocked UI options behavior now lives under `src/js/options/element-rules/` for constants/messages, formatting, storage/quota, and rule-card rendering. `src/js/options/elementRules.js` remains the thin list/sync entry.
 - Shared usage stats now live under `src/features/usage-stats/core/` for constants, sanitizers, metric aggregation, state normalization, page-signal recording, summaries, and export payloads. `src/js/shared/usageStats.js` remains the compatibility barrel for current callers, and feature tests live under `test/features/usage-stats/`.
 - Background intent coherence now lives under `src/js/background/intent/` for Chrome API wrappers, storage mutation, effective-policy lookup, page-signal recording, tab lineage, diagnostics, runtime messages, and listener registration. `src/js/background/intentCoherence.js` remains the compatibility barrel for `src/app/background/index.js`.

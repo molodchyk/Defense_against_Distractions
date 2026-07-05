@@ -6,7 +6,7 @@ import { readFile } from 'node:fs/promises';
 import { describe, it } from 'node:test';
 
 import { manifestPermissions } from '../../../scripts/playbook/constants.mjs';
-import { getStoreAutomationFailures } from '../../../scripts/playbook/storeAutomation.mjs';
+import { getStoreAutomationFailures } from '../../../scripts/playbook/store/automation.mjs';
 
 async function readStoreAutomationDocs() {
   const [

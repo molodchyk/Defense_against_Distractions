@@ -7,8 +7,8 @@ import {
   privacyDataUsageKeys,
   repositoryUrl,
   storeCategories
-} from './constants.mjs';
-import { getDuplicateKeyedBlockFields, hasAll, parseKeyedBlock } from '../playbook-utils.mjs';
+} from '../constants.mjs';
+import { getDuplicateKeyedBlockFields, hasAll, parseKeyedBlock } from '../../playbook-utils.mjs';
 
 function sortedPermissionFields(fields) {
   return [...fields]
