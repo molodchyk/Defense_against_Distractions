@@ -9,19 +9,19 @@ Use it as the short release evidence log. Do not mark browser-only items as pass
 - Version: `1.6.1`
 - Extension archive: `dist/Defense_against_Distractions-v1.6.1-extension.zip`
 - Source archive: `dist/Defense_against_Distractions-v1.6.1-source.zip`
-- Static verification status: passed on 2026-07-04 for the current `1.6.1` package after `npm run verify:playbook`, `npm run verify:research`, `npm test`, `npm run package`, `npm run verify:package`, and `npm run verify:release`.
+- Static verification status: passed on 2026-07-05 for the current `1.6.1` package after `npm run verify:playbook`, `npm run verify:research`, `npm test`, `npm run package`, `npm run verify:package`, and `npm run verify:release`.
 - Browser-load status: command not run on this active workstation; manual target-browser behavior user-reported working on 2026-06-25.
 - Manual browser QA status: user-reported pass on 2026-06-25.
 
 ## Static Gate Evidence
 
-Current result: passed on 2026-07-04 for version `1.6.1`.
+Current result: passed on 2026-07-05 for version `1.6.1`.
 
 Commands run from the repository root:
 
 | Gate | Recorded evidence |
 | --- | --- |
-| `npm test` | Passed directly and through `npm run verify:release`; 500 unit tests passed on 2026-07-04. |
+| `npm test` | Passed directly and through `npm run verify:release`; 505 unit tests passed on 2026-07-05. |
 | `npm run verify:manifest` | Covered by `npm run verify:release`; manifest-referenced paths exist. |
 | `npm run verify:imports` | Covered by `npm run verify:release`; relative source imports resolve. |
 | `npm run verify:locales` | Covered by `npm run verify:release`; 68 locales match 921 English message keys and 68 store listing files match `_locales`. |
@@ -32,7 +32,7 @@ Commands run from the repository root:
 | `npm run audit:folder-density` | Passed directly and through `npm run verify:release`; no folders exceed documented budgets. |
 | `npm run package` | Generated the current extension and source ZIPs in `dist/`. |
 | `npm run verify:package` | Passed directly and through `npm run verify:release`; 343 packaged runtime files scanned and 80 manifest references verified. |
-| `npm run verify:release` | Passed for `Defense_against_Distractions-v1.6.1` on 2026-07-04. |
+| `npm run verify:release` | Passed for `Defense_against_Distractions-v1.6.1` on 2026-07-05. |
 
 ## Browser-Only Evidence
 
@@ -52,7 +52,7 @@ Browser and version: user-reported Chromium-based browser; exact version not cap
 Profile/environment: user-reported local browser extension environment; automated browser-load command not run on this active workstation
 Extension package: dist/Defense_against_Distractions-v1.6.1-extension.zip / current unpacked 1.6.1 project state
 Tester: project owner, user-reported
-Automated static gates: passed on 2026-07-04 through npm run verify:release
+Automated static gates: passed on 2026-07-05 through npm run verify:release
 Browser-load result: command not run
 Manual QA result: user reported that manual QA looks working
 Notes: Keep npm run verify:browser-load separate; only run it in a safe isolated browser/profile.

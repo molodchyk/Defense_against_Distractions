@@ -235,6 +235,8 @@ DaD Select quick add is a related creation shortcut: selected page text can beco
    - Define run outcome events.
    - Add tests for strictness classification during locked schedules.
 
+   Implementation state: the pure core model now lives in `src/features/triggered-actions/core/`. It normalizes bounded current-page action chains, trigger metadata, scenario guards, ordered steps, explicit fallbacks, run policy, deterministic scenario selection, bounded local outcome events, and conservative protected-schedule strictness classification. It is not yet wired into live keyword blocking or page mutation.
+
 2. **Reuse UI element rule targets**
    - Let action chains reference existing element rule fingerprints as targets.
    - Keep click/clear/pause once-per-page safeguards.
