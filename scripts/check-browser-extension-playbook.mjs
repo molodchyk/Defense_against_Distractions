@@ -26,6 +26,7 @@ import { getReleaseDocumentationFailures } from './playbook/release/releaseDocs.
 import { getReleaseSafetyFailures } from './playbook/release/releaseSafety.mjs';
 import { getStoreAutomationFailures } from './playbook/storeAutomation.mjs';
 import { getStoreMediaReviewCoverageFailures, verifyReviewedStoreMediaHashes } from './playbook/storeMediaReview.mjs';
+import { getStorageOwnershipFailures } from './playbook/storageOwnership.mjs';
 import { getFirstNonEmptyLine, getPngDimensionFailure, hasAll } from './playbook-utils.mjs';
 const rootDir = process.cwd(), failures = [];
 async function exists(relativePath) {
@@ -539,12 +540,7 @@ assertCondition(
 );
 assertCondition(hasAll(localizationDoc, [/Chrome Web Store Visible Languages/, /en_AU/, /Persian \(`fa`\)/, /Arabic \(`ar`\), Persian \(`fa`\), Hebrew \(`he`\), and Urdu \(`ur`\) are right-to-left locales/, /without changing the host page direction/, /store\/store-listing\/<locale>\.txt/, /local-processing privacy boundary/, /npm run verify:locales/]), 'Localization document must cover visible store languages, RTL locales, store-listing coverage, privacy-boundary preservation, and locale verification.');
 
-for (const storageKeyFamily of storageKeyFamilies) {
-  assertCondition(
-    storageOwnership.includes(`\`${storageKeyFamily}\``),
-    `Storage ownership document must cover ${storageKeyFamily}.`
-  );
-}
+failures.push(...getStorageOwnershipFailures({ storageOwnership, storageKeyFamilies }));
 
 const resetMessages = [englishMessages.resetExtensionButton?.message, englishMessages.resetExtensionHint?.message, englishMessages.resetExtensionConfirm?.message, englishMessages.resetExtensionLockedError?.message].join('\n');
 assertCondition(
