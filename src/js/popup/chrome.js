@@ -37,12 +37,22 @@ export function getOptionsPagePath(panelId = '') {
   return normalizedPanelId ? `src/options.html#${normalizedPanelId}` : 'src/options.html';
 }
 
-export function getPlanActionsPanelId(planId = '') {
+export function getPlanActionsPanelId(planId = '', options = {}) {
   const normalizedPlanId = String(planId || '').trim();
-  const planQuery = normalizedPlanId
-    ? `?planId=${encodeURIComponent(normalizedPlanId)}&view=actions`
-    : '';
-  return `plansPanel${planQuery}`;
+  if (!normalizedPlanId) {
+    return 'plansPanel';
+  }
+
+  const params = new URLSearchParams({
+    planId: normalizedPlanId,
+    view: 'actions'
+  });
+  const triggerFilter = String(options.triggerFilter || '').trim();
+  if (triggerFilter) {
+    params.set('triggerType', String(options.triggerType || 'keywordBlock').trim() || 'keywordBlock');
+    params.set('triggerFilter', triggerFilter);
+  }
+  return `plansPanel?${params.toString()}`;
 }
 
 export function openOptions() {
@@ -65,8 +75,8 @@ export function openIntentDiagnostics() {
   openOptionsPanel('intentDiagnosticsPanel');
 }
 
-export function openPlanActions(planId) {
-  openOptionsPanel(getPlanActionsPanelId(planId));
+export function openPlanActions(planId, options) {
+  openOptionsPanel(getPlanActionsPanelId(planId, options));
 }
 
 export function openFeedback() {

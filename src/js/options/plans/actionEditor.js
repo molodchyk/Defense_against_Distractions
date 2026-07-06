@@ -2,6 +2,7 @@
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
 import {
+  SIMPLE_CHAIN_TRIGGER_TYPES,
   TRIGGERED_ACTION_STEP_TYPES,
   TRIGGERED_ACTION_TRIGGER_TYPES,
   createSimpleTriggeredActionChain
@@ -35,17 +36,31 @@ export function createPlanActionEditor({
   plan,
   elementRules,
   isLocked,
+  draftPreset,
   onUpdateTriggeredActionChains
 }) {
   const wrapper = document.createElement('div');
   wrapper.className = 'plan-details';
 
-  wrapper.appendChild(createChainAddSection({ plan, elementRules, isLocked, onUpdateTriggeredActionChains }));
+  wrapper.appendChild(createChainAddSection({ plan, elementRules, isLocked, draftPreset, onUpdateTriggeredActionChains }));
   wrapper.appendChild(createChainListSection({ plan, elementRules, isLocked, onUpdateTriggeredActionChains }));
   return wrapper;
 }
 
-function createChainAddSection({ plan, elementRules, isLocked, onUpdateTriggeredActionChains }) {
+export function normalizePlanActionDraftPreset(plan = {}, draftPreset = {}) {
+  const triggerType = SIMPLE_CHAIN_TRIGGER_TYPES.includes(draftPreset?.triggerType)
+    ? draftPreset.triggerType
+    : TRIGGERED_ACTION_TRIGGER_TYPES.BLOCK_SCORE;
+  const triggerFilter = String(draftPreset?.triggerFilter || '').replace(/\s+/g, ' ').trim();
+  const filterOptions = collectPlanTriggerFilterOptions(plan, triggerType);
+  const matchedFilter = filterOptions.find(option => option.toLowerCase() === triggerFilter.toLowerCase());
+
+  return matchedFilter && triggerType !== TRIGGERED_ACTION_TRIGGER_TYPES.BLOCK_SCORE
+    ? { triggerType, triggerFilter: matchedFilter }
+    : {};
+}
+
+function createChainAddSection({ plan, elementRules, isLocked, draftPreset, onUpdateTriggeredActionChains }) {
   const section = createPlanSubsection('planActionsLabel');
 
   if (elementRules.length === 0) {
@@ -59,6 +74,7 @@ function createChainAddSection({ plan, elementRules, isLocked, onUpdateTriggered
   const grid = document.createElement('div');
   grid.className = 'plan-action-form-grid';
 
+  const initialDraft = normalizePlanActionDraftPreset(plan, draftPreset);
   const initialRule = elementRules[0];
   const nameInput = createTextInput(getPlanMessage('planActionDefaultName'));
   const hostInput = createTextInput(initialRule?.urlPattern || '');
@@ -67,8 +83,8 @@ function createChainAddSection({ plan, elementRules, isLocked, onUpdateTriggered
     initialRule?.id || '',
     false
   );
-  const triggerTypeSelect = createSelectInput(createTriggerOptions(), TRIGGERED_ACTION_TRIGGER_TYPES.BLOCK_SCORE, false);
-  const triggerFilterInput = createTextInput('', getPlanMessage('planActionTriggerFilterPlaceholder'));
+  const triggerTypeSelect = createSelectInput(createTriggerOptions(), initialDraft.triggerType || TRIGGERED_ACTION_TRIGGER_TYPES.BLOCK_SCORE, false);
+  const triggerFilterInput = createTextInput(initialDraft.triggerFilter || '', getPlanMessage('planActionTriggerFilterPlaceholder'));
   const triggerFilterDatalist = createTriggerFilterDatalist();
   triggerFilterInput.setAttribute('list', triggerFilterDatalist.id);
   const stepSelect = createSelectInput(createStepOptions(), TRIGGERED_ACTION_STEP_TYPES.HIDE_ELEMENT, false);

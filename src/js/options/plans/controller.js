@@ -21,6 +21,10 @@ import {
 } from './dom.js';
 import { createPlanActionEditor } from './actionEditor.js';
 import { uniqueStrings } from './collections.js';
+import {
+  getPlanViewFromOptionsHash,
+  planViewStatesEqual
+} from '../deepLinks.js';
 import { createPlanEntriesEditor } from './entriesEditor.js';
 import { ELEMENT_RULE_IDS_STORAGE_KEY, ELEMENT_RULE_ITEM_PREFIX, getElementRuleSummaries } from './elementRules.js';
 import { createPlanFactList } from './facts.js';
@@ -31,7 +35,7 @@ import { createPlanPomodoroEditor, startPlanPomodoroStatusPolling, stopPlanPomod
 import { clearPlanScheduleState, createPlanScheduleEditor } from './scheduleEditor.js';
 
 let activePlanView = null;
-const PLAN_VIEW_NAMES = new Set(['schedule', 'entries', 'actions', 'pomodoro', 'intent']);
+export { getPlanViewFromOptionsHash } from '../deepLinks.js';
 
 export function initializePlans() {
   localizePlanShell();
@@ -61,25 +65,13 @@ export function initializePlans() {
   });
 }
 
-export function getPlanViewFromOptionsHash(hash = '') {
-  const [panelId, query = ''] = String(hash || '').trim().replace(/^#/, '').split('?');
-  if (panelId !== 'plansPanel') {
-    return null;
-  }
-
-  const params = new URLSearchParams(query);
-  const planId = String(params.get('planId') || '').trim();
-  const view = String(params.get('view') || 'entries').trim();
-  return planId && PLAN_VIEW_NAMES.has(view) ? { planId, view } : null;
-}
-
 function syncPlanViewFromHash() {
   const nextPlanView = getPlanViewFromOptionsHash(window.location.hash);
   if (!nextPlanView) {
     return false;
   }
 
-  const changed = !activePlanView || activePlanView.planId !== nextPlanView.planId || activePlanView.view !== nextPlanView.view;
+  const changed = !planViewStatesEqual(activePlanView, nextPlanView);
   activePlanView = nextPlanView;
   return changed;
 }
@@ -249,6 +241,7 @@ function createPlanPage(plan, plans, elementRules, isLocked) {
       plan,
       elementRules,
       isLocked,
+      draftPreset: activePlanView.actionDraft,
       onUpdateTriggeredActionChains: (planId, triggeredActionChains) => {
         updatePlan(planId, next => ({ ...next, triggeredActionChains }));
       }

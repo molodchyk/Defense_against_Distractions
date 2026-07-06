@@ -12,6 +12,7 @@ import {
   getDefaultQuickAddGroupId,
   getDefaultQuickAddTarget,
   getQuickAddHostPattern,
+  getQuickAddKeywordTriggerFilter,
   normalizeQuickAddActionPreset,
   normalizeQuickAddScore,
   upsertQuickAddKeyword
@@ -139,6 +140,7 @@ describe('selected text quick-add model', () => {
     });
 
     assert.equal(result.keywordLine, 'Rama Aurora, 100/100');
+    assert.equal(result.keywordTriggerFilter, 'Rama Aurora');
     assert.equal(result.score100, 100);
     assert.equal(result.currentPage.wouldBlockByKeywordAlone, true);
   });
@@ -157,6 +159,8 @@ describe('selected text quick-add model', () => {
     assert.equal(result.changed, true);
     assert.equal(result.actionPreset.preset, QUICK_ADD_ACTION_PRESETS.ACTION_CHAIN);
     assert.equal(result.actionPreset.requiresElementScope, false);
+    assert.equal(result.keywordTriggerFilter, 'Rama Aurora');
+    assert.equal(getQuickAddKeywordTriggerFilter('Rama Aurora\\, thread, 36/100'), '');
     assert.deepEqual(result.elementRules, []);
     assert.deepEqual(result.plans[0].groups[0].keywords, [
       'old topic, 10/100',

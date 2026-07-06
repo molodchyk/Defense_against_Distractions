@@ -5,6 +5,7 @@ import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 
 import { TRIGGERED_ACTION_TRIGGER_TYPES } from '../../../src/features/triggered-actions/core/index.js';
+import { normalizePlanActionDraftPreset } from '../../../src/js/options/plans/actionEditor.js';
 import { collectPlanTriggerFilterOptions } from '../../../src/js/options/plans/actionEditorTriggers.js';
 
 describe('plan action editor trigger filters', () => {
@@ -44,5 +45,19 @@ describe('plan action editor trigger filters', () => {
       collectPlanTriggerFilterOptions(plan, TRIGGERED_ACTION_TRIGGER_TYPES.BLOCK_SCORE),
       []
     );
+  });
+
+  it('accepts DaD Select action-chain prefill only for an existing plan keyword', () => {
+    assert.deepEqual(normalizePlanActionDraftPreset(plan, {
+      triggerType: TRIGGERED_ACTION_TRIGGER_TYPES.KEYWORD_BLOCK,
+      triggerFilter: 'rama aurora'
+    }), {
+      triggerType: TRIGGERED_ACTION_TRIGGER_TYPES.KEYWORD_BLOCK,
+      triggerFilter: 'Rama Aurora'
+    });
+    assert.deepEqual(normalizePlanActionDraftPreset(plan, {
+      triggerType: TRIGGERED_ACTION_TRIGGER_TYPES.KEYWORD_BLOCK,
+      triggerFilter: 'unknown'
+    }), {});
   });
 });

@@ -38,6 +38,7 @@ Version 1.6.1:
 - added plan-derived keyword and structural-token suggestions to the plan Actions trigger filter so action chains can be attached to existing plan triggers without retyping them from memory
 - added a live draft outline to the plan Actions editor so a triggered-action chain is summarized before it is saved or enabled
 - added a DaD Select action-chain preset that saves the selected keyword and opens the selected plan's Actions editor
+- improved the DaD Select action-chain preset so the Actions editor preselects the saved keyword trigger when the selected text can be represented as a simple trigger filter
 
 Version 1.6.0:
 

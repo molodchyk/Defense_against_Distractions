@@ -15,7 +15,11 @@ describe('popup Chrome helpers', () => {
     assert.equal(getOptionsPagePath('#settingsPanel'), 'src/options.html#settingsPanel');
     assert.equal(
       getOptionsPagePath(getPlanActionsPanelId('default plan')),
-      'src/options.html#plansPanel?planId=default%20plan&view=actions'
+      'src/options.html#plansPanel?planId=default+plan&view=actions'
+    );
+    assert.equal(
+      getOptionsPagePath(getPlanActionsPanelId('default plan', { triggerFilter: 'Rama Aurora' })),
+      'src/options.html#plansPanel?planId=default+plan&view=actions&triggerType=keywordBlock&triggerFilter=Rama+Aurora'
     );
   });
 });

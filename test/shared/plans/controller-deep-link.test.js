@@ -14,6 +14,17 @@ describe('plan controller deep links', () => {
         view: 'actions'
       }
     );
+    assert.deepEqual(
+      getPlanViewFromOptionsHash('#plansPanel?planId=default&view=actions&triggerType=keywordBlock&triggerFilter=Rama+Aurora'),
+      {
+        planId: 'default',
+        view: 'actions',
+        actionDraft: {
+          triggerType: 'keywordBlock',
+          triggerFilter: 'Rama Aurora'
+        }
+      }
+    );
   });
 
   it('ignores unrelated or unsupported options hashes', () => {

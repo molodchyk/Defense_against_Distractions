@@ -7,7 +7,8 @@ import {
   normalizePlans
 } from '../../shared/plans.js';
 import {
-  parseKeywordForEditing
+  parseKeywordForEditing,
+  parseKeywordForScanning
 } from '../../shared/keywords.js';
 import {
   normalizeUrl
@@ -230,6 +231,7 @@ export function applySelectedTextQuickAdd(plans = [], options = {}) {
 
   const score100 = actionPreset.score100;
   const normalizedKeywordLine = formatQuickAddKeywordLine(candidate, score100);
+  const keywordTriggerFilter = getQuickAddKeywordTriggerFilter(normalizedKeywordLine);
   const group = createsEntry
     ? {
         id: createQuickAddGroupId(originalPlan.id, options.now),
@@ -263,6 +265,7 @@ export function applySelectedTextQuickAdd(plans = [], options = {}) {
     plan: nextPlan,
     group: nextGroup,
     keywordLine: normalizedKeywordLine,
+    keywordTriggerFilter,
     score100,
     createdEntry: createsEntry,
     actionPreset,
@@ -272,6 +275,11 @@ export function applySelectedTextQuickAdd(plans = [], options = {}) {
       wouldBlockByKeywordAlone: matchesCurrentPage && score100 >= 100
     }
   };
+}
+
+export function getQuickAddKeywordTriggerFilter(keywordLine = '') {
+  const keyword = parseKeywordForScanning(keywordLine).keyword.trim();
+  return keyword && !keyword.includes(',') ? keyword : '';
 }
 
 function createQuickAddGroupId(planId, now = new Date()) {

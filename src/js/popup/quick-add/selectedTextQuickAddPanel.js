@@ -362,7 +362,7 @@ export function createSelectedTextQuickAddPanel({
       }
       if (isActionChainPreset() && openPlanActions) {
         setStatus?.(getMessage(result.changed ? 'popupQuickAddSavedOpenActions' : 'popupQuickAddOpenActions'));
-        openPlanActions(selectedPlanId);
+        openPlanActions(selectedPlanId, { triggerFilter: result.keywordTriggerFilter });
         return true;
       }
       if (activeTab?.id && sendTabMessage) {
