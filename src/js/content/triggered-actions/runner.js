@@ -41,6 +41,42 @@
     return false;
   }
 
+  function previewTriggeredActionChain({
+    chain = null,
+    elementRules = global.DAD.activeElementBlockRules || [],
+    diagnostics = global.blockDiagnostics || null
+  } = {}) {
+    const normalizedChain = chain ? normalizeChains([chain])[0] : null;
+    const activeRules = Array.isArray(elementRules) ? elementRules : [];
+    if (!normalizedChain) {
+      return null;
+    }
+
+    const context = buildScenarioContext(activeRules, diagnostics);
+    const selection = selectScenario(normalizedChain, context);
+    const hasTriggerDiagnostics = Boolean(diagnostics && Array.isArray(diagnostics.triggers));
+    const triggerEligible = hasTriggerDiagnostics
+      ? triggerMatchesDiagnostics(normalizedChain, diagnostics)
+      : null;
+
+    return {
+      status: selection.status,
+      chainId: normalizedChain.id,
+      scenarioId: selection.scenarioId,
+      matchingScenarioIds: Array.isArray(selection.matchingScenarioIds) ? selection.matchingScenarioIds : [],
+      host: selection.host || context.host || '',
+      triggerEligible,
+      triggerDiagnosticsAvailable: hasTriggerDiagnostics,
+      triggerLocation: context.triggerLocation || '',
+      fallbackType: selection.fallback?.type || normalizedChain.fallback.type,
+      targetAvailability: getTargetAvailability(normalizedChain, activeRules),
+      steps: selection.steps.map(step => getPreviewStep(step, activeRules)),
+      wouldRun: selection.status === RESULTS.MATCHED && selection.steps.length > 0,
+      wouldMutate: selection.status === RESULTS.MATCHED && selection.steps.some(step => Boolean(STEP_TO_ELEMENT_ACTION[step.type])),
+      wouldBlock: wouldPreviewBlock(selection, normalizedChain)
+    };
+  }
+
   function runTriggeredActionChain(chain, elementRules, diagnostics) {
     const context = buildScenarioContext(elementRules, diagnostics);
     const selection = selectScenario(chain, context);
@@ -67,6 +103,47 @@
     }
 
     return { considered: true, handled: true, blocked: false };
+  }
+
+  function getPreviewStep(step, elementRules) {
+    return {
+      type: step.type,
+      targetRuleId: step.targetRuleId || '',
+      targetAvailable: step.targetRuleId ? hasTargetRule(step.targetRuleId, elementRules) : null
+    };
+  }
+
+  function getTargetAvailability(chain, elementRules) {
+    const targetIds = new Set();
+    chain.scenarios.forEach(scenario => {
+      scenario.guards.forEach(guard => {
+        if (guard.type === 'target') {
+          targetIds.add(guard.id);
+        }
+      });
+      scenario.steps.forEach(step => {
+        if (step.targetRuleId) {
+          targetIds.add(step.targetRuleId);
+        }
+      });
+    });
+
+    return Array.from(targetIds).map(targetRuleId => ({
+      targetRuleId,
+      available: hasTargetRule(targetRuleId, elementRules)
+    }));
+  }
+
+  function wouldPreviewBlock(selection, chain) {
+    if ([RESULTS.DISABLED, RESULTS.HOST_MISMATCH].includes(selection.status)) {
+      return false;
+    }
+
+    if (selection.status === RESULTS.MATCHED) {
+      return selection.steps.some(step => step.type === STEP_TYPES.BLOCK_PAGE);
+    }
+
+    return (selection.fallback || chain.fallback).type === STEP_TYPES.BLOCK_PAGE;
   }
 
   function runTriggeredActionStep(step, elementRules, diagnostics) {
@@ -160,6 +237,7 @@
   }
 
   triggeredActions.runner = {
+    previewTriggeredActionChain,
     runTriggeredActionChainsForBlock,
     runTriggeredActionChain
   };

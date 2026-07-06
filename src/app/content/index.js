@@ -127,23 +127,20 @@
       return true;
     }
 
+    const actionPreview = global.DAD.TriggeredActions?.previewMessage?.handlePreviewMessage?.(message, sendResponse);
+    if (actionPreview !== undefined) return actionPreview;
+
     return false;
   });
 
   global.onpageshow = function(event) {
-    if (event.persisted) {
-      global.DAD.resetPageState();
-
-      document.addEventListener('DOMContentLoaded', function() {
-        performSiteCheck();
-      });
-
-      const readyStateCheckInterval = global.setInterval(function() {
-        if (document.readyState === 'complete') {
-          global.clearInterval(readyStateCheckInterval);
-          performSiteCheck();
-        }
-      }, 10);
-    }
+    if (!event.persisted) return;
+    global.DAD.resetPageState();
+    document.addEventListener('DOMContentLoaded', () => performSiteCheck());
+    const readyStateCheckInterval = global.setInterval(() => {
+      if (document.readyState !== 'complete') return;
+      global.clearInterval(readyStateCheckInterval);
+      performSiteCheck();
+    }, 10);
   };
 })(window);
