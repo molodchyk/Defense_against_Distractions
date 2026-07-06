@@ -34,6 +34,7 @@ Version 1.6.1:
 - added a non-mutating triggered-action preview message for current-page scenario, target, selected-step, trigger-diagnostics, and would-block status
 - added a popup Inspect preview panel for active saved triggered actions on the current tab
 - extended the simple triggered-action compiler with a bounded alternative-scenario draft for two-state cases such as received content versus editable composition
+- exposed bounded alternative-scenario authoring in the plan Actions editor so a chain can target a second page state with its own target, action, absent-target guard, and trigger-location guard
 
 Version 1.6.0:
 

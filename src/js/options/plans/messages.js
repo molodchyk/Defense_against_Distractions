@@ -51,6 +51,7 @@ const PLAN_MESSAGES = {
   planActionAbsentTargetNoneLabel: 'No absent target guard',
   planActionMinimumScoreLabel: 'Minimum score',
   planActionLocationLabel: 'Trigger location',
+  planActionAlternativeScenarioLabel: 'Alternative scenario',
   planActionBlockAfterLabel: 'Block after action',
   planActionEnabledLabel: 'Enabled',
   planActionNoUiRulesLabel: 'Create a UI cleanup rule first, then attach it here as a triggered action target.',

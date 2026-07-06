@@ -2,8 +2,6 @@
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
 import {
-  SIMPLE_CHAIN_TRIGGER_LOCATIONS,
-  SIMPLE_CHAIN_TRIGGER_TYPES,
   TRIGGERED_ACTION_STEP_TYPES,
   TRIGGERED_ACTION_TRIGGER_TYPES,
   createSimpleTriggeredActionChain
@@ -18,33 +16,16 @@ import {
   createPlanSubsection,
   createSelectInput
 } from './dom.js';
+import {
+  chainBlocksAfterAction,
+  createAbsentTargetOptions,
+  createLocationOptions,
+  createSecondStepOptions,
+  createStepOptions,
+  createTriggerOptions,
+  formatChainSummary
+} from './actionEditorSummary.js';
 import { getPlanMessage } from './messages.js';
-
-const STEP_OPTIONS = [
-  [TRIGGERED_ACTION_STEP_TYPES.HIDE_ELEMENT, 'planActionStepHideElementLabel'],
-  [TRIGGERED_ACTION_STEP_TYPES.CLICK_ONCE, 'planActionStepClickOnceLabel'],
-  [TRIGGERED_ACTION_STEP_TYPES.CLEAR_FIELD, 'planActionStepClearFieldLabel'],
-  [TRIGGERED_ACTION_STEP_TYPES.PAUSE_MEDIA, 'planActionStepPauseMediaLabel'],
-  [TRIGGERED_ACTION_STEP_TYPES.HIDE_IMAGES, 'planActionStepHideImagesLabel'],
-  [TRIGGERED_ACTION_STEP_TYPES.DISABLE_CONTROLS, 'planActionStepDisableControlsLabel']
-];
-
-const SECOND_STEP_OPTIONS = [
-  ['', 'planActionSecondStepNoneLabel'],
-  ...STEP_OPTIONS
-];
-
-const LOCATION_OPTIONS = [
-  ['', 'planActionLocationAnyLabel'],
-  ['outsideEditable', 'planActionLocationOutsideEditableLabel'],
-  ['editableField', 'planActionLocationEditableLabel']
-];
-
-const TRIGGER_OPTIONS = [
-  [TRIGGERED_ACTION_TRIGGER_TYPES.BLOCK_SCORE, 'planActionTriggerAnyScoreLabel'],
-  [TRIGGERED_ACTION_TRIGGER_TYPES.KEYWORD_BLOCK, 'planActionTriggerKeywordLabel'],
-  [TRIGGERED_ACTION_TRIGGER_TYPES.STRUCTURAL, 'planActionTriggerStructuralLabel']
-];
 
 export function createPlanActionEditor({
   plan,
@@ -94,6 +75,15 @@ function createChainAddSection({ plan, elementRules, isLocked, onUpdateTriggered
   const absentTargetSelect = createSelectInput(createAbsentTargetOptions(elementRules), '', false);
   const scoreInput = createNumberInput(100, 1, 100, false);
   const locationSelect = createSelectInput(createLocationOptions(), '', false);
+  const alternativeScenarioInput = createCheckboxInput(false, false);
+  const alternativeTargetSelect = createSelectInput(
+    elementRules.map(rule => [rule.id, rule.name || rule.id]),
+    initialRule?.id || '',
+    false
+  );
+  const alternativeStepSelect = createSelectInput(createStepOptions(), TRIGGERED_ACTION_STEP_TYPES.CLEAR_FIELD, false);
+  const alternativeAbsentTargetSelect = createSelectInput(createAbsentTargetOptions(elementRules), '', false);
+  const alternativeLocationSelect = createSelectInput(createLocationOptions(), 'editableField', false);
   const blockAfterInput = createCheckboxInput(true, isLocked);
   const enabledInput = createCheckboxInput(true, false);
 
@@ -108,6 +98,14 @@ function createChainAddSection({ plan, elementRules, isLocked, onUpdateTriggered
   });
   secondStepSelect.addEventListener('change', () => {
     syncSecondActionState(secondStepSelect, secondTargetSelect);
+  });
+  alternativeScenarioInput.addEventListener('change', () => {
+    syncAlternativeScenarioState(alternativeScenarioInput, alternativeGrid, [
+      alternativeTargetSelect,
+      alternativeStepSelect,
+      alternativeAbsentTargetSelect,
+      alternativeLocationSelect
+    ]);
   });
   syncTriggerFilterState(triggerTypeSelect, triggerFilterInput);
   syncSecondActionState(secondStepSelect, secondTargetSelect);
@@ -124,6 +122,25 @@ function createChainAddSection({ plan, elementRules, isLocked, onUpdateTriggered
   grid.appendChild(createLabeledControl(getPlanMessage('planActionMinimumScoreLabel'), scoreInput));
   grid.appendChild(createLabeledControl(getPlanMessage('planActionLocationLabel'), locationSelect));
   section.appendChild(grid);
+
+  const alternativeToggle = document.createElement('div');
+  alternativeToggle.className = 'plan-checkbox-grid';
+  alternativeToggle.appendChild(createCheckboxLabel(getPlanMessage('planActionAlternativeScenarioLabel'), alternativeScenarioInput));
+  section.appendChild(alternativeToggle);
+
+  const alternativeGrid = document.createElement('div');
+  alternativeGrid.className = 'plan-action-form-grid';
+  alternativeGrid.appendChild(createLabeledControl(getPlanMessage('planActionTargetLabel'), alternativeTargetSelect));
+  alternativeGrid.appendChild(createLabeledControl(getPlanMessage('planActionStepLabel'), alternativeStepSelect));
+  alternativeGrid.appendChild(createLabeledControl(getPlanMessage('planActionAbsentTargetLabel'), alternativeAbsentTargetSelect));
+  alternativeGrid.appendChild(createLabeledControl(getPlanMessage('planActionLocationLabel'), alternativeLocationSelect));
+  section.appendChild(alternativeGrid);
+  syncAlternativeScenarioState(alternativeScenarioInput, alternativeGrid, [
+    alternativeTargetSelect,
+    alternativeStepSelect,
+    alternativeAbsentTargetSelect,
+    alternativeLocationSelect
+  ]);
 
   const toggles = document.createElement('div');
   toggles.className = 'plan-checkbox-grid';
@@ -155,6 +172,12 @@ function createChainAddSection({ plan, elementRules, isLocked, onUpdateTriggered
       absentTargetRuleId: absentTargetSelect.value,
       minimumScore: scoreInput.value,
       triggerLocation: locationSelect.value,
+      scenarioDrafts: alternativeScenarioInput.checked ? [{
+        targetRuleId: alternativeTargetSelect.value,
+        stepType: alternativeStepSelect.value,
+        absentTargetRuleId: alternativeAbsentTargetSelect.value,
+        triggerLocation: alternativeLocationSelect.value
+      }] : [],
       blockAfterAction: blockAfterInput.checked,
       enabled: enabledInput.checked
     }, plan.triggeredActionChains);
@@ -237,136 +260,6 @@ function createChainItem({ plan, chain, elementRules, isLocked, onUpdateTriggere
   return item;
 }
 
-function formatChainSummary(chain, elementRules) {
-  const scenario = chain.scenarios[0];
-  const actionSteps = getTargetActionSteps(scenario);
-  const actionSummary = formatActionStepSequence(actionSteps, elementRules);
-  const absentTargetSummary = formatAbsentTargetSummary(scenario, elementRules);
-  const parts = [
-    chain.enabled ? getPlanMessage('planEnabledLabel') : getPlanMessage('planDisabledLabel'),
-    chain.hostPattern || getPlanMessage('planActionAnyHostLabel'),
-    getTriggerSummary(chain.trigger),
-    actionSummary,
-    absentTargetSummary,
-    getLocationLabel(scenario?.triggerLocation || ''),
-    hasBlockStep(scenario) ? getPlanMessage('planActionBlocksAfterSummary') : getPlanMessage('planActionOnlySummary')
-  ];
-  return parts.filter(Boolean).join(' · ');
-}
-
-function getTargetActionSteps(scenario) {
-  return Array.isArray(scenario?.steps)
-    ? scenario.steps.filter(step => step.targetRuleId)
-    : [];
-}
-
-function formatActionStepSequence(actionSteps, elementRules) {
-  if (actionSteps.length === 0) {
-    return getPlanMessage('planActionNoTargetLabel');
-  }
-
-  return actionSteps
-    .map(step => formatActionStepSummary(step, elementRules))
-    .reduce((summary, stepSummary) => (
-      summary
-        ? getPlanMessage('planActionStepSequenceSummary', [summary, stepSummary])
-        : stepSummary
-    ), '');
-}
-
-function formatActionStepSummary(step, elementRules) {
-  const targetRule = elementRules.find(rule => rule.id === step.targetRuleId);
-  return getPlanMessage('planActionTargetStepSummary', [
-    getStepLabel(step.type),
-    targetRule?.name || step.targetRuleId || getPlanMessage('planActionNoTargetLabel')
-  ]);
-}
-
-function formatAbsentTargetSummary(scenario, elementRules) {
-  const absentGuards = Array.isArray(scenario?.guards)
-    ? scenario.guards.filter(guard => guard?.type === 'target' && guard.invert)
-    : [];
-
-  if (absentGuards.length === 0) {
-    return '';
-  }
-
-  const guardLabels = absentGuards.map(guard => {
-    const targetRule = elementRules.find(rule => rule.id === guard.id);
-    return targetRule?.name || guard.id;
-  });
-
-  return getPlanMessage('planActionAbsentTargetSummary', [guardLabels.join(', ')]);
-}
-
-function hasBlockStep(scenario) {
-  return Array.isArray(scenario?.steps) && scenario.steps.some(step => step.type === TRIGGERED_ACTION_STEP_TYPES.BLOCK_PAGE);
-}
-
-function chainBlocksAfterAction(chain) {
-  return Array.isArray(chain.scenarios)
-    && chain.scenarios.length > 0
-    && chain.scenarios.every(hasBlockStep);
-}
-
-function createStepOptions() {
-  return STEP_OPTIONS.map(([value, key]) => [value, getPlanMessage(key)]);
-}
-
-function createSecondStepOptions() {
-  return SECOND_STEP_OPTIONS.map(([value, key]) => [value, getPlanMessage(key)]);
-}
-
-function createAbsentTargetOptions(elementRules) {
-  return [
-    ['', getPlanMessage('planActionAbsentTargetNoneLabel')],
-    ...elementRules.map(rule => [rule.id, rule.name || rule.id])
-  ];
-}
-
-function createLocationOptions() {
-  return LOCATION_OPTIONS.map(([value, key]) => [value, getPlanMessage(key)]);
-}
-
-function createTriggerOptions() {
-  return TRIGGER_OPTIONS.map(([value, key]) => [value, getPlanMessage(key)]);
-}
-
-function getStepLabel(type) {
-  const option = STEP_OPTIONS.find(([value]) => value === type);
-  return option ? getPlanMessage(option[1]) : String(type || '');
-}
-
-function getTriggerSummary(trigger = {}) {
-  const type = SIMPLE_CHAIN_TRIGGER_TYPES.includes(trigger.type)
-    ? trigger.type
-    : TRIGGERED_ACTION_TRIGGER_TYPES.BLOCK_SCORE;
-
-  if (type === TRIGGERED_ACTION_TRIGGER_TYPES.BLOCK_SCORE) {
-    return getPlanMessage('planActionTriggerAnyScoreLabel');
-  }
-
-  const ids = type === TRIGGERED_ACTION_TRIGGER_TYPES.STRUCTURAL
-    ? trigger.structuralIds
-    : trigger.keywordIds;
-
-  if (Array.isArray(ids) && ids.length > 0) {
-    return type === TRIGGERED_ACTION_TRIGGER_TYPES.STRUCTURAL
-      ? getPlanMessage('planActionStructuralFilterSummary', [ids.join(', ')])
-      : getPlanMessage('planActionKeywordFilterSummary', [ids.join(', ')]);
-  }
-
-  return type === TRIGGERED_ACTION_TRIGGER_TYPES.STRUCTURAL
-    ? getPlanMessage('planActionAnyStructuralSummary')
-    : getPlanMessage('planActionAnyKeywordSummary');
-}
-
-function getLocationLabel(location) {
-  const normalizedLocation = SIMPLE_CHAIN_TRIGGER_LOCATIONS.includes(location) ? location : '';
-  const option = LOCATION_OPTIONS.find(([value]) => value === normalizedLocation);
-  return option ? getPlanMessage(option[1]) : '';
-}
-
 function createTextInput(value, placeholder = '') {
   const input = document.createElement('input');
   input.type = 'text';
@@ -387,6 +280,14 @@ function syncTriggerFilterState(triggerTypeSelect, triggerFilterInput) {
 
 function syncSecondActionState(secondStepSelect, secondTargetSelect) {
   secondTargetSelect.disabled = !secondStepSelect.value;
+}
+
+function syncAlternativeScenarioState(alternativeScenarioInput, alternativeGrid, controls) {
+  const enabled = alternativeScenarioInput.checked;
+  alternativeGrid.hidden = !enabled;
+  controls.forEach(control => {
+    control.disabled = !enabled;
+  });
 }
 
 function createCheckboxLabel(labelText, input) {

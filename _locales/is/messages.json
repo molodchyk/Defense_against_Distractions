@@ -1412,6 +1412,9 @@
     "planActionLocationLabel": {
         "message": "Trigger location"
     },
+    "planActionAlternativeScenarioLabel": {
+        "message": "Alternative scenario"
+    },
     "planActionBlockAfterLabel": {
         "message": "Block after action"
     },
