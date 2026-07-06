@@ -4,3 +4,4 @@
 export * from './model.js';
 export * from './constants.js';
 export * from './editorModel.js';
+export * from './strictness.js';

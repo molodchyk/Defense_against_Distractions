@@ -65,6 +65,30 @@ describe('triggered action editor model', () => {
     assert.equal(chain.trigger.minimumScore, 1);
   });
 
+  it('can compile keyword-specific and structural trigger filters', () => {
+    const keywordChain = createSimpleTriggeredActionChain({
+      id: 'delete_matching_mail',
+      targetRuleId: 'gmail_trash_button',
+      triggerType: TRIGGERED_ACTION_TRIGGER_TYPES.KEYWORD_BLOCK,
+      triggerFilter: 'Rama Aurora, Rama Aurora',
+      stepType: TRIGGERED_ACTION_STEP_TYPES.CLICK_ONCE
+    });
+    assert.equal(keywordChain.trigger.type, TRIGGERED_ACTION_TRIGGER_TYPES.KEYWORD_BLOCK);
+    assert.deepEqual(keywordChain.trigger.keywordIds, ['Rama Aurora']);
+    assert.deepEqual(keywordChain.trigger.structuralIds, []);
+
+    const structuralChain = createSimpleTriggeredActionChain({
+      id: 'hide_video_area',
+      targetRuleId: 'video_scope',
+      triggerType: TRIGGERED_ACTION_TRIGGER_TYPES.STRUCTURAL,
+      triggerIds: ['has:video', 'has:audible'],
+      stepType: TRIGGERED_ACTION_STEP_TYPES.HIDE_ELEMENT
+    });
+    assert.equal(structuralChain.trigger.type, TRIGGERED_ACTION_TRIGGER_TYPES.STRUCTURAL);
+    assert.deepEqual(structuralChain.trigger.keywordIds, []);
+    assert.deepEqual(structuralChain.trigger.structuralIds, ['has:video', 'has:audible']);
+  });
+
   it('rejects drafts without a concrete target or supported action', () => {
     assert.deepEqual(getSimpleTriggeredActionChainDraftErrors({
       stepType: TRIGGERED_ACTION_STEP_TYPES.HIDE_ELEMENT
@@ -73,8 +97,9 @@ describe('triggered action editor model', () => {
     assert.deepEqual(getSimpleTriggeredActionChainDraftErrors({
       targetRuleId: 'target',
       stepType: 'submitForm',
-      triggerLocation: 'pageMode'
-    }), ['stepType', 'triggerLocation']);
+      triggerLocation: 'pageMode',
+      triggerType: 'formSubmit'
+    }), ['stepType', 'triggerLocation', 'triggerType']);
 
     assert.equal(createSimpleTriggeredActionChain({
       targetRuleId: '',

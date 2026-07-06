@@ -90,7 +90,7 @@ Plans should be compact by default. A compact plan row should show:
 - Active/time-block schedule summary.
 - Counts for websites, keywords, allowed websites, and UI rules.
 
-Compact plan rows navigate into plan-owned pages instead of expanding inline. `Schedule` opens the weekly schedule editor for that plan. `Entries` opens the plan name, website/keyword entries, allowed websites, and UI-rule assignment controls. `Actions` opens the compact triggered-action editor for attaching existing UI cleanup targets to plan block triggers. Workdays, weekend, all-days, and clear-days shortcuts live in the plan schedule editor.
+Compact plan rows navigate into plan-owned pages instead of expanding inline. `Schedule` opens the weekly schedule editor for that plan. `Entries` opens the plan name, website/keyword entries, allowed websites, and UI-rule assignment controls. `Actions` opens the compact triggered-action editor for attaching existing UI cleanup targets to plan block triggers, with optional keyword or structural-token trigger filters. Workdays, weekend, all-days, and clear-days shortcuts live in the plan schedule editor.
 
 Destructive plan actions should be explicit and inspectable: plan rows use icon-based delete controls on the left, and deleting a plan, entry, allowed website, or schedule time block uses an in-page confirmation dialog instead of a native browser prompt.
 
@@ -203,7 +203,7 @@ UI element blocking is also plan-aware:
 
 Triggered actions are plan-owned:
 
-- The plan Actions tab can create a simple current-page chain from an existing picker-created UI cleanup rule.
+- The plan Actions tab can create a simple current-page chain from an existing picker-created UI cleanup rule and can filter that chain to any block score, keyword triggers, or structural triggers.
 - The first editor slice supports a block-score trigger, one target-present scenario, optional editable-field trigger location, one bounded action step, fallback blocking, and optional block-after-action.
 - During a protected schedule, adding or enabling action-only chains that could suppress normal blocking is rejected. Adding a chain that still blocks after the action remains allowed because it makes the plan stricter or equal.
 

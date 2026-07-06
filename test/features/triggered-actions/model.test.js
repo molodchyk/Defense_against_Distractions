@@ -207,6 +207,52 @@ describe('triggered action chain model', () => {
       }]
     }]), true);
 
+    assert.equal(isTriggeredActionChainAtLeastAsStrict({
+      ...baseChain,
+      trigger: {
+        type: 'blockScore',
+        minimumScore: 80
+      }
+    }, {
+      ...baseChain,
+      trigger: {
+        type: 'keywordBlock',
+        keywordIds: ['person-name'],
+        minimumScore: 80
+      }
+    }), false);
+
+    assert.equal(isTriggeredActionChainAtLeastAsStrict({
+      ...baseChain,
+      trigger: {
+        type: 'keywordBlock',
+        keywordIds: ['person-name'],
+        minimumScore: 80
+      }
+    }, {
+      ...baseChain,
+      trigger: {
+        type: 'keywordBlock',
+        keywordIds: ['person-name', 'other-name'],
+        minimumScore: 80
+      }
+    }), true);
+
+    assert.equal(isTriggeredActionChainAtLeastAsStrict({
+      ...baseChain,
+      trigger: {
+        type: 'keywordBlock',
+        minimumScore: 80
+      }
+    }, {
+      ...baseChain,
+      trigger: {
+        type: 'keywordBlock',
+        keywordIds: ['person-name'],
+        minimumScore: 80
+      }
+    }), false);
+
     [
       { ...baseChain, enabled: false },
       { ...baseChain, trigger: { ...baseChain.trigger, minimumScore: 95 } },

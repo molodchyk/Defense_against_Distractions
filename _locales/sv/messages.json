@@ -1373,6 +1373,15 @@
     "planActionTargetLabel": {
         "message": "Target UI rule"
     },
+    "planActionTriggerTypeLabel": {
+        "message": "Trigger source"
+    },
+    "planActionTriggerFilterLabel": {
+        "message": "Keyword or token"
+    },
+    "planActionTriggerFilterPlaceholder": {
+        "message": "Optional exact keyword or structural token"
+    },
     "planActionStepLabel": {
         "message": "Action"
     },
@@ -1408,6 +1417,27 @@
     },
     "planActionOnlySummary": {
         "message": "action only"
+    },
+    "planActionTriggerAnyScoreLabel": {
+        "message": "Any block score"
+    },
+    "planActionTriggerKeywordLabel": {
+        "message": "Keyword trigger"
+    },
+    "planActionTriggerStructuralLabel": {
+        "message": "Structural trigger"
+    },
+    "planActionAnyKeywordSummary": {
+        "message": "any keyword"
+    },
+    "planActionAnyStructuralSummary": {
+        "message": "any structural trigger"
+    },
+    "planActionKeywordFilterSummary": {
+        "message": "keyword: $1"
+    },
+    "planActionStructuralFilterSummary": {
+        "message": "structural: $1"
     },
     "planActionStepHideElementLabel": {
         "message": "Hide element"

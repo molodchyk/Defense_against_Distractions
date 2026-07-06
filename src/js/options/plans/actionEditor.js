@@ -3,7 +3,9 @@
 
 import {
   SIMPLE_CHAIN_TRIGGER_LOCATIONS,
+  SIMPLE_CHAIN_TRIGGER_TYPES,
   TRIGGERED_ACTION_STEP_TYPES,
+  TRIGGERED_ACTION_TRIGGER_TYPES,
   createSimpleTriggeredActionChain
 } from '../../../features/triggered-actions/core/index.js';
 import {
@@ -31,6 +33,12 @@ const LOCATION_OPTIONS = [
   ['', 'planActionLocationAnyLabel'],
   ['outsideEditable', 'planActionLocationOutsideEditableLabel'],
   ['editableField', 'planActionLocationEditableLabel']
+];
+
+const TRIGGER_OPTIONS = [
+  [TRIGGERED_ACTION_TRIGGER_TYPES.BLOCK_SCORE, 'planActionTriggerAnyScoreLabel'],
+  [TRIGGERED_ACTION_TRIGGER_TYPES.KEYWORD_BLOCK, 'planActionTriggerKeywordLabel'],
+  [TRIGGERED_ACTION_TRIGGER_TYPES.STRUCTURAL, 'planActionTriggerStructuralLabel']
 ];
 
 export function createPlanActionEditor({
@@ -69,6 +77,8 @@ function createChainAddSection({ plan, elementRules, isLocked, onUpdateTriggered
     initialRule?.id || '',
     false
   );
+  const triggerTypeSelect = createSelectInput(createTriggerOptions(), TRIGGERED_ACTION_TRIGGER_TYPES.BLOCK_SCORE, false);
+  const triggerFilterInput = createTextInput('', getPlanMessage('planActionTriggerFilterPlaceholder'));
   const stepSelect = createSelectInput(createStepOptions(), TRIGGERED_ACTION_STEP_TYPES.HIDE_ELEMENT, false);
   const scoreInput = createNumberInput(100, 1, 100, false);
   const locationSelect = createSelectInput(createLocationOptions(), '', false);
@@ -81,10 +91,16 @@ function createChainAddSection({ plan, elementRules, isLocked, onUpdateTriggered
       hostInput.value = selectedRule.urlPattern;
     }
   });
+  triggerTypeSelect.addEventListener('change', () => {
+    syncTriggerFilterState(triggerTypeSelect, triggerFilterInput);
+  });
+  syncTriggerFilterState(triggerTypeSelect, triggerFilterInput);
 
   grid.appendChild(createLabeledControl(getPlanMessage('planActionNameLabel'), nameInput));
   grid.appendChild(createLabeledControl(getPlanMessage('planActionHostLabel'), hostInput));
   grid.appendChild(createLabeledControl(getPlanMessage('planActionTargetLabel'), targetSelect));
+  grid.appendChild(createLabeledControl(getPlanMessage('planActionTriggerTypeLabel'), triggerTypeSelect));
+  grid.appendChild(createLabeledControl(getPlanMessage('planActionTriggerFilterLabel'), triggerFilterInput));
   grid.appendChild(createLabeledControl(getPlanMessage('planActionStepLabel'), stepSelect));
   grid.appendChild(createLabeledControl(getPlanMessage('planActionMinimumScoreLabel'), scoreInput));
   grid.appendChild(createLabeledControl(getPlanMessage('planActionLocationLabel'), locationSelect));
@@ -110,6 +126,8 @@ function createChainAddSection({ plan, elementRules, isLocked, onUpdateTriggered
       name: nameInput.value,
       hostPattern: hostInput.value,
       targetRuleId: targetSelect.value,
+      triggerType: triggerTypeSelect.value,
+      triggerFilter: triggerFilterInput.value,
       stepType: stepSelect.value,
       minimumScore: scoreInput.value,
       triggerLocation: locationSelect.value,
@@ -202,6 +220,7 @@ function formatChainSummary(chain, elementRules) {
   const parts = [
     chain.enabled ? getPlanMessage('planEnabledLabel') : getPlanMessage('planDisabledLabel'),
     chain.hostPattern || getPlanMessage('planActionAnyHostLabel'),
+    getTriggerSummary(chain.trigger),
     getStepLabel(actionStep?.type),
     targetRule?.name || actionStep?.targetRuleId || getPlanMessage('planActionNoTargetLabel'),
     getLocationLabel(scenario?.triggerLocation || ''),
@@ -228,9 +247,37 @@ function createLocationOptions() {
   return LOCATION_OPTIONS.map(([value, key]) => [value, getPlanMessage(key)]);
 }
 
+function createTriggerOptions() {
+  return TRIGGER_OPTIONS.map(([value, key]) => [value, getPlanMessage(key)]);
+}
+
 function getStepLabel(type) {
   const option = STEP_OPTIONS.find(([value]) => value === type);
   return option ? getPlanMessage(option[1]) : String(type || '');
+}
+
+function getTriggerSummary(trigger = {}) {
+  const type = SIMPLE_CHAIN_TRIGGER_TYPES.includes(trigger.type)
+    ? trigger.type
+    : TRIGGERED_ACTION_TRIGGER_TYPES.BLOCK_SCORE;
+
+  if (type === TRIGGERED_ACTION_TRIGGER_TYPES.BLOCK_SCORE) {
+    return getPlanMessage('planActionTriggerAnyScoreLabel');
+  }
+
+  const ids = type === TRIGGERED_ACTION_TRIGGER_TYPES.STRUCTURAL
+    ? trigger.structuralIds
+    : trigger.keywordIds;
+
+  if (Array.isArray(ids) && ids.length > 0) {
+    return type === TRIGGERED_ACTION_TRIGGER_TYPES.STRUCTURAL
+      ? getPlanMessage('planActionStructuralFilterSummary', [ids.join(', ')])
+      : getPlanMessage('planActionKeywordFilterSummary', [ids.join(', ')]);
+  }
+
+  return type === TRIGGERED_ACTION_TRIGGER_TYPES.STRUCTURAL
+    ? getPlanMessage('planActionAnyStructuralSummary')
+    : getPlanMessage('planActionAnyKeywordSummary');
 }
 
 function getLocationLabel(location) {
@@ -239,11 +286,22 @@ function getLocationLabel(location) {
   return option ? getPlanMessage(option[1]) : '';
 }
 
-function createTextInput(value) {
+function createTextInput(value, placeholder = '') {
   const input = document.createElement('input');
   input.type = 'text';
   input.value = value || '';
+  if (placeholder) {
+    input.placeholder = placeholder;
+  }
   return input;
+}
+
+function syncTriggerFilterState(triggerTypeSelect, triggerFilterInput) {
+  const needsFilter = triggerTypeSelect.value !== TRIGGERED_ACTION_TRIGGER_TYPES.BLOCK_SCORE;
+  triggerFilterInput.disabled = !needsFilter;
+  if (!needsFilter) {
+    triggerFilterInput.value = '';
+  }
 }
 
 function createCheckboxLabel(labelText, input) {

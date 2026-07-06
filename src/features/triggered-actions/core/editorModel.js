@@ -22,6 +22,12 @@ export const SIMPLE_CHAIN_TRIGGER_LOCATIONS = Object.freeze([
   'editableField'
 ]);
 
+export const SIMPLE_CHAIN_TRIGGER_TYPES = Object.freeze([
+  TRIGGERED_ACTION_TRIGGER_TYPES.BLOCK_SCORE,
+  TRIGGERED_ACTION_TRIGGER_TYPES.KEYWORD_BLOCK,
+  TRIGGERED_ACTION_TRIGGER_TYPES.STRUCTURAL
+]);
+
 export function getSimpleTriggeredActionChainDraftErrors(draft = {}) {
   const errors = [];
 
@@ -37,6 +43,10 @@ export function getSimpleTriggeredActionChainDraftErrors(draft = {}) {
     errors.push('triggerLocation');
   }
 
+  if (!SIMPLE_CHAIN_TRIGGER_TYPES.includes(draft.triggerType || TRIGGERED_ACTION_TRIGGER_TYPES.BLOCK_SCORE)) {
+    errors.push('triggerType');
+  }
+
   return errors;
 }
 
@@ -49,6 +59,8 @@ export function createSimpleTriggeredActionChain(draft = {}, existingChains = []
   const targetRuleId = normalizeId(draft.targetRuleId);
   const stepType = draft.stepType;
   const blockAfterAction = draft.blockAfterAction !== false;
+  const triggerType = normalizeTriggerType(draft.triggerType);
+  const triggerIds = normalizeTriggerIds(draft.triggerIds ?? draft.triggerFilter);
   const steps = [
     { type: stepType, targetRuleId }
   ];
@@ -66,7 +78,9 @@ export function createSimpleTriggeredActionChain(draft = {}, existingChains = []
     enabled: draft.enabled !== false,
     hostPattern: normalizeDisplayText(draft.hostPattern, ''),
     trigger: {
-      type: TRIGGERED_ACTION_TRIGGER_TYPES.BLOCK_SCORE,
+      type: triggerType,
+      keywordIds: triggerType === TRIGGERED_ACTION_TRIGGER_TYPES.KEYWORD_BLOCK ? triggerIds : [],
+      structuralIds: triggerType === TRIGGERED_ACTION_TRIGGER_TYPES.STRUCTURAL ? triggerIds : [],
       minimumScore: normalizeInteger(draft.minimumScore, 100, 1, 100)
     },
     scenarios: [{
@@ -83,6 +97,31 @@ export function createSimpleTriggeredActionChain(draft = {}, existingChains = []
       stopOnFirstFailure: true
     }
   });
+}
+
+function normalizeTriggerType(value) {
+  return SIMPLE_CHAIN_TRIGGER_TYPES.includes(value)
+    ? value
+    : TRIGGERED_ACTION_TRIGGER_TYPES.BLOCK_SCORE;
+}
+
+function normalizeTriggerIds(value) {
+  const rawValues = Array.isArray(value)
+    ? value
+    : String(value || '').split(/[\n,;]+/);
+
+  const seen = new Set();
+  const ids = [];
+  rawValues.forEach(rawValue => {
+    const normalized = normalizeDisplayText(rawValue, '');
+    if (!normalized || seen.has(normalized)) {
+      return;
+    }
+
+    seen.add(normalized);
+    ids.push(normalized);
+  });
+  return ids;
 }
 
 function getAvailableChainId(draft, existingChains) {
