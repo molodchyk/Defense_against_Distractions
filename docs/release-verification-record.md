@@ -21,17 +21,17 @@ Commands run from the repository root:
 
 | Gate | Recorded evidence |
 | --- | --- |
-| `npm test` | Passed directly and through `npm run verify:release`; 528 unit tests passed on 2026-07-06. |
+| `npm test` | Passed directly and through `npm run verify:release`; 540 unit tests passed on 2026-07-06. |
 | `npm run verify:manifest` | Covered by `npm run verify:release`; manifest-referenced paths exist. |
-| `npm run verify:imports` | Covered by `npm run verify:release`; relative source imports resolve. |
-| `npm run verify:locales` | Covered by `npm run verify:release`; 68 locales match 991 English message keys and 68 store listing files match `_locales`. |
+| `npm run verify:imports` | Covered by `npm run verify:release`; 392 relative source imports resolve. |
+| `npm run verify:locales` | Covered by `npm run verify:release`; 68 locales match 992 English message keys and 68 store listing files match `_locales`. |
 | `npm run verify:static-localization` | Covered by `npm run verify:release`; 4 static extension HTML surfaces scanned. |
 | `npm run verify:playbook` | Passed directly and through `npm run verify:release`; 68 localized store listings verified. |
 | `npm run verify:research` | Passed directly and through `npm run verify:release`; 2 answered or implemented research syntheses verified and 1 revisit synthesis tracked. |
-| `npm run audit:file-sizes` | Passed directly and through `npm run verify:release`; no files exceed documented budgets. |
-| `npm run audit:folder-density` | Passed directly and through `npm run verify:release`; no folders exceed documented budgets. |
+| `npm run audit:file-sizes` | Passed directly and through `npm run verify:release`; 416 budgeted files checked and no files exceed documented budgets. |
+| `npm run audit:folder-density` | Passed directly and through `npm run verify:release`; 87 budgeted folders checked and no folders exceed documented budgets. |
 | `npm run package` | Generated the current extension and source ZIPs in `dist/`. |
-| `npm run verify:package` | Passed through `npm run verify:release`; 353 packaged runtime files scanned and 84 manifest references verified. |
+| `npm run verify:package` | Passed through `npm run verify:release`; 356 packaged runtime files scanned and 84 manifest references verified. |
 | `npm run verify:release` | Passed for `Defense_against_Distractions-v1.6.1` on 2026-07-06. |
 
 ## Browser-Only Evidence
@@ -55,7 +55,7 @@ Tester: project owner, user-reported
 Automated static gates: passed on 2026-07-06 through npm run verify:release
 Browser-load result: command not run
 Manual QA result: user reported that manual QA looks working
-Notes: Keep npm run verify:browser-load separate; only run it in a safe isolated browser/profile.
+Notes: Keep npm run verify:browser-load separate; only run it in a safe isolated browser/profile. DaD Select right-click quick add was added after the earlier manual QA pass and should be checked manually before publishing.
 ```
 
 ## Manual QA Recording Format

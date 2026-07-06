@@ -10,6 +10,7 @@
     "downloads",
     "activeTab",
     "idle",
+    "contextMenus",
     "webNavigation"
   ],
   "action": {

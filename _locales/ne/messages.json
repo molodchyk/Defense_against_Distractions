@@ -1001,6 +1001,9 @@
     "description": {
         "message": "तपाइँलाई वेबसाइटहरूलाई तिनीहरूको पृष्ठहरूमा देखा पर्ने पाठको आधारमा ब्लक गर्न अनुमति दिन्छ।"
     },
+    "contextMenuAddSelectedText": {
+        "message": "\"%s\" लाई DaD मा थप्नुहोस्"
+    },
     "dailyLimitReached": {
         "message": "दैनिक सीमा पुग्यो"
     },

@@ -1001,6 +1001,9 @@
     "description": {
         "message": "Lehetővé teszi a weboldalak blokkolását az oldalaikon megjelenő szöveg alapján."
     },
+    "contextMenuAddSelectedText": {
+        "message": "\"%s\" hozzáadása a DaD-hez"
+    },
     "dailyLimitReached": {
         "message": "Napi limit elérve"
     },

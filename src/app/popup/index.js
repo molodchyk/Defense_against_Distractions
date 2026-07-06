@@ -113,6 +113,7 @@ async function initializePopup() {
   redirectExtensionTabsToOptions();
   panels.protectionSummaryPanel.refreshPlans();
   panels.selectedTextQuickAddPanel.refreshPlans();
+  panels.selectedTextQuickAddPanel.refreshPendingCandidate();
   panels.focusStatePanel.refresh();
   panels.usageStatsPanel.refresh();
   panels.intentDiagnosticsPanel.refresh();

@@ -1001,6 +1001,9 @@
     "description": {
         "message": "വെബ്‌സൈറ്റുകളുടെ പേജുകളിൽ ദൃശ്യമാകുന്ന വാചകത്തെ അടിസ്ഥാനമാക്കി അവരെ തടയാൻ നിങ്ങളെ അനുവദിക്കുന്നു."
     },
+    "contextMenuAddSelectedText": {
+        "message": "\"%s\" DaD-ലേക്ക് ചേർക്കുക"
+    },
     "dailyLimitReached": {
         "message": "പ്രതിദിന പരിധി എത്തി"
     },

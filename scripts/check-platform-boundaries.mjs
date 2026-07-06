@@ -7,7 +7,7 @@ import process from 'node:process';
 
 const rootDir = process.cwd();
 const failures = [];
-const rawChromeApiPattern = /\b(?:global|globalThis)\.chrome\b|\bchrome\.(?:runtime|storage|i18n|tabs|action|alarms|idle|webNavigation|downloads|windows)\b|\bruntime\.lastError\b/;
+const rawChromeApiPattern = /\b(?:global|globalThis)\.chrome\b|\bchrome\.(?:runtime|storage|i18n|tabs|action|alarms|idle|contextMenus|webNavigation|downloads|windows)\b|\bruntime\.lastError\b/;
 const sourceRoot = 'src';
 const platformChromeRoot = path.join('src', 'platform', 'chrome');
 

@@ -1001,6 +1001,9 @@
     "description": {
         "message": "ವೆಬ್‌ಸೈಟ್‌ಗಳ ಪುಟಗಳಲ್ಲಿ ಕಂಡುಬರುವ ಪಠ್ಯವನ್ನು ಆಧರಿಸಿ ನಿರ್ಬಂಧಿಸಲು ನಿಮಗೆ ಅನುಮತಿಸುತ್ತದೆ."
     },
+    "contextMenuAddSelectedText": {
+        "message": "\"%s\" ಅನ್ನು DaD ಗೆ ಸೇರಿಸಿ"
+    },
     "dailyLimitReached": {
         "message": "ದೈನಂದಿನ ಮಿತಿಯನ್ನು ತಲುಪಿದೆ"
     },

@@ -1001,6 +1001,9 @@
     "description": {
         "message": "Binibigyang-daan kang i-block ang mga website batay sa text na lumalabas sa kanilang mga pahina."
     },
+    "contextMenuAddSelectedText": {
+        "message": "Idagdag ang \"%s\" sa DaD"
+    },
     "dailyLimitReached": {
         "message": "Naabot na ang pang-araw-araw na limitasyon"
     },

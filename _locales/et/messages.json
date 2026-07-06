@@ -1001,6 +1001,9 @@
     "description": {
         "message": "Võimaldab blokeerida veebisaite nende lehtedel kuvatava teksti alusel."
     },
+    "contextMenuAddSelectedText": {
+        "message": "Lisa \"%s\" DaD-i"
+    },
     "dailyLimitReached": {
         "message": "Päevalimiit on täis"
     },

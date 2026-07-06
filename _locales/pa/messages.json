@@ -1001,6 +1001,9 @@
     "description": {
         "message": "ਤੁਹਾਨੂੰ ਉਹਨਾਂ ਦੇ ਪੰਨਿਆਂ 'ਤੇ ਦਿਖਾਈ ਦੇਣ ਵਾਲੇ ਟੈਕਸਟ ਦੇ ਅਧਾਰ ਤੇ ਵੈਬਸਾਈਟਾਂ ਨੂੰ ਬਲੌਕ ਕਰਨ ਦੀ ਆਗਿਆ ਦਿੰਦਾ ਹੈ।"
     },
+    "contextMenuAddSelectedText": {
+        "message": "\"%s\" ਨੂੰ DaD ਵਿੱਚ ਜੋੜੋ"
+    },
     "dailyLimitReached": {
         "message": "ਰੋਜ਼ਾਨਾ ਦੀ ਸੀਮਾ ਪੂਰੀ ਹੋ ਗਈ ਹੈ"
     },

@@ -81,10 +81,13 @@ export function getProductSpecFailures({ potentialFunctionality, selectedTextQui
     /cleanup presets return `needsElementScope` and do not mutate plans or create UI rules/i,
     /typed non-mutating result and leave plans and UI rules untouched/i,
     /Whole-page fallback is not an acceptable implicit scope/i,
-    /first version should avoid adding a new permission/i,
-    /right-click context menu is a later variant because it requires adding `contextMenus` to the manifest/i,
-    /works without adding `contextMenus` unless the right-click variant is explicitly chosen/i,
-    /If the later right-click context-menu variant adds `contextMenus`, update the manifest, permission audit, StorePilot privacy form, release notes, and Chrome Web Store permission justification in the same release/i,
+    /## Implemented Boundary/,
+    /Popup path:[\s\S]*active selection[\s\S]*getPageSignalSnapshot/i,
+    /Right-click path:[\s\S]*selection-only DaD Select context-menu item[\s\S]*bounded pending candidate[\s\S]*popup consumes that pending candidate/i,
+    /right-click `contextMenus` path can hand selected text to the popup as a bounded pending candidate/i,
+    /Unsaved candidates are never written to sync storage and never become rules without popup confirmation/i,
+    /right-click DaD Select may store a bounded pending local candidate only until the popup consumes it or it expires/i,
+    /manifest permission docs, the permission audit, StorePilot privacy form, release notes, and Chrome Web Store permission justification must stay synchronized/i,
     /## Relationship To Triggered Action Chains/,
     /DaD Select is a creation shortcut\. Triggered action chains are the execution model\./,
     /Advanced order, scenario guards, destructive actions, and fallback behavior belong in the triggered-action editor/i,
@@ -113,8 +116,8 @@ export function getProductSpecFailures({ potentialFunctionality, selectedTextQui
     /user-selected page text into a popup-based keyword creation flow/i,
     /editable score estimate/i,
     /optional bounded action presets such as hide images or disable controls/i,
-    /without adding a right-click `contextMenus` permission/i,
-    /true context-menu variant should be a deliberate release decision with store permission documentation/i
+    /right-click path uses the audited `contextMenus` permission/i,
+    /without saving a rule until the user confirms it/i
   ])) {
     failures.push(selectedTextQuickAddTraceFailure);
   }

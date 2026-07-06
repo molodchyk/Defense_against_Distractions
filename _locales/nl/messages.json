@@ -1001,6 +1001,9 @@
     "description": {
         "message": "Hiermee kunt u websites blokkeren op basis van de tekst die op hun pagina's verschijnt."
     },
+    "contextMenuAddSelectedText": {
+        "message": "\"%s\" toevoegen aan DaD"
+    },
     "dailyLimitReached": {
         "message": "Dagelijkse limiet bereikt"
     },

@@ -1001,6 +1001,9 @@
     "description": {
         "message": "ඔවුන්ගේ පිටුවල දිස්වන පාඨ මත පදනම්ව වෙබ් අඩවි අවහිර කිරීමට ඔබට ඉඩ සලසයි."
     },
+    "contextMenuAddSelectedText": {
+        "message": "\"%s\" DaD වෙත එක් කරන්න"
+    },
     "dailyLimitReached": {
         "message": "දෛනික සීමාව ළඟා විය"
     },

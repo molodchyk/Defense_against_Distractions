@@ -32,6 +32,7 @@ The document owns the `[privacy]` block and canonical StorePilot keys. Current p
 - `permission.downloads`
 - `permission.activeTab`
 - `permission.idle`
+- `permission.contextMenus`
 - `permission.webNavigation`
 
 The host-access explanation is stored under `host_permission`, and the current remote-code answer is `remote_code: no`.

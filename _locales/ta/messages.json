@@ -1001,6 +1001,9 @@
     "description": {
         "message": "வலைத்தளங்களின் பக்கங்களில் தோன்றும் உரையின் அடிப்படையில் அவற்றைத் தடுக்க உங்களை அனுமதிக்கிறது."
     },
+    "contextMenuAddSelectedText": {
+        "message": "\"%s\" ஐ DaD-ல் சேர்க்கவும்"
+    },
     "dailyLimitReached": {
         "message": "தினசரி வரம்பை அடைந்தது"
     },

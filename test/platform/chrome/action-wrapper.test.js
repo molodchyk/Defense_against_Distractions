@@ -3,7 +3,7 @@
 
 import assert from 'node:assert/strict';
 import { afterEach, describe, it } from 'node:test';
-import { addActionClickedListener, setBadgeText } from '../../../src/platform/chrome/action.js';
+import { addActionClickedListener, openActionPopup, setBadgeText } from '../../../src/platform/chrome/action.js';
 
 describe('Chrome action platform wrapper', () => {
   const originalChrome = globalThis.chrome;
@@ -61,5 +61,38 @@ describe('Chrome action platform wrapper', () => {
     };
 
     assert.equal(setBadgeText({ text: '42', tabId: 9 }), false);
+  });
+
+  it('opens the action popup when Chrome supports it', async () => {
+    let popupOptions = null;
+
+    globalThis.chrome = {
+      action: {
+        async openPopup(options) {
+          popupOptions = options;
+        }
+      }
+    };
+
+    assert.equal(await openActionPopup({ windowId: 2 }), true);
+    assert.deepEqual(popupOptions, { windowId: 2 });
+  });
+
+  it('reports unavailable action popup support without throwing', async () => {
+    globalThis.chrome = {
+      action: {}
+    };
+
+    assert.equal(await openActionPopup({ windowId: 2 }), false);
+
+    globalThis.chrome = {
+      action: {
+        async openPopup() {
+          throw new Error('popup unavailable');
+        }
+      }
+    };
+
+    assert.equal(await openActionPopup({ windowId: 2 }), false);
   });
 });

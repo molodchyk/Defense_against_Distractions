@@ -166,6 +166,17 @@ Chrome local storage is used for local-only runtime state, diagnostics, history,
 - Quota risk: low.
 - Classification: local UI state.
 
+### DaD Select Pending Candidate
+
+- Key: `pendingSelectedTextQuickAdd`.
+- Storage area: `chrome.storage.local`.
+- Owner feature: `src/js/background/selectedTextQuickAdd.js` for creation/consumption and `src/js/popup/quick-add/selectedTextQuickAddPanel.js` for popup consumption.
+- Data shape/version: unversioned object containing bounded selected text, estimated score, editable-field flag, source, coarse host, tab id, URL, frame metadata, and creation timestamp.
+- Migration path: no migration. Missing, malformed, expired, or context-mismatched pending candidates are ignored or removed.
+- Retention or pruning: short-lived local handoff state. It is removed after popup consumption and expires after five minutes if the popup does not consume it.
+- Quota risk: low because the selected text is capped before storage and there is only one pending candidate.
+- Classification: temporary runtime state.
+
 ### Password Local State
 
 - Keys: `key`, `attempts`, `lastAttempt`.

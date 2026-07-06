@@ -1001,6 +1001,9 @@
     "description": {
         "message": "तुम्हाला वेबसाइट्स त्यांच्या पृष्ठांवर दिसणाऱ्या मजकुरावर आधारित ब्लॉक करण्याची अनुमती देते."
     },
+    "contextMenuAddSelectedText": {
+        "message": "\"%s\" DaD मध्ये जोडा"
+    },
     "dailyLimitReached": {
         "message": "दैनिक मर्यादा गाठली"
     },

@@ -57,6 +57,7 @@ Use this checklist before publishing a new extension release.
 - Run a long passive feed/media session and confirm Options Intent diagnostics shows Long-session load; repeat with long focused reading/input and confirm the load stays low, without storing URLs, titles, page text, or typed values.
 - On a local infinite-scroll-style page, append cards after scrolling and confirm Intent diagnostics show dynamic scroll appends without exposing added text, selectors, or scroll positions.
 - Confirm the popup Page Signals panel shows current-page keyword ideas when bounded page tokens exist, and that `Copy keyword ideas` copies keyword-editor lines without saving them automatically.
+- Select text on a normal web page, choose the DaD Select right-click menu item, confirm the popup opens with the selected text candidate, adjust score/action if needed, save it, and confirm no rule is saved if the popup is closed without confirmation.
 - Confirm the popup Inspect pane exposes Copy Diagnostics as a pane-level action, and that Block Diagnostics keeps block-specific refresh/status controls.
 - Switch UI mode between light, dark, and system; confirm popup, options, blocked page, and UI picker follow it.
 - Confirm blank states are intentional for empty plans, empty UI cleanup rules, empty usage stats, and empty intent diagnostics.

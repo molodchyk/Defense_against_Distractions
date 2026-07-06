@@ -1001,6 +1001,9 @@
     "description": {
         "message": "તમને વેબસાઇટ્સને તેમના પૃષ્ઠો પર દેખાતા ટેક્સ્ટના આધારે અવરોધિત કરવાની મંજૂરી આપે છે."
     },
+    "contextMenuAddSelectedText": {
+        "message": "\"%s\" ને DaD માં ઉમેરો"
+    },
     "dailyLimitReached": {
         "message": "દૈનિક મર્યાદા પહોંચી"
     },

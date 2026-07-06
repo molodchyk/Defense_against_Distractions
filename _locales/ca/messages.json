@@ -1001,6 +1001,9 @@
     "description": {
         "message": "Et permet bloquejar llocs web en funció del text que apareix a les seves pàgines."
     },
+    "contextMenuAddSelectedText": {
+        "message": "Afegeix \"%s\" a DaD"
+    },
     "dailyLimitReached": {
         "message": "S'ha arribat al límit diari"
     },

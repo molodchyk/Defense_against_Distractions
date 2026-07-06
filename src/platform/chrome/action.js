@@ -14,3 +14,16 @@ export function setBadgeText(details) {
     return false;
   }
 }
+
+export async function openActionPopup(options = undefined) {
+  try {
+    if (!chrome.action?.openPopup) {
+      return false;
+    }
+
+    await chrome.action.openPopup(options);
+    return true;
+  } catch (error) {
+    return false;
+  }
+}

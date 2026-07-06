@@ -1001,6 +1001,9 @@
     "description": {
         "message": "Ti permette di bloccare siti web in base al testo che appare sulle loro pagine."
     },
+    "contextMenuAddSelectedText": {
+        "message": "Aggiungi \"%s\" a DaD"
+    },
     "dailyLimitReached": {
         "message": "Limite giornaliero raggiunto"
     },

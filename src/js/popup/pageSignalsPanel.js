@@ -7,6 +7,17 @@ import {
 import {
   formatCount
 } from './format.js';
+import {
+  formatSelectedTextCandidateEditorText,
+  formatSelectedTextCandidateSummary,
+  normalizeSelectedTextCandidate
+} from '../../features/selected-text/candidate.js';
+
+export {
+  formatSelectedTextCandidateEditorText,
+  formatSelectedTextCandidateSummary,
+  normalizeSelectedTextCandidate
+} from '../../features/selected-text/candidate.js';
 
 const PAGE_SIGNAL_COUNT_IDS = [
   'pageSignalImageCount',
@@ -32,7 +43,6 @@ const KEYWORD_SUGGESTION_SOURCES = [
   ['description', 'descriptionTokens', 35],
   ['page', 'topTokens', 25]
 ];
-const SELECTED_TEXT_CANDIDATE_LIMIT = 160;
 
 export function buildKeywordSuggestionCandidates(signals = {}, options = {}) {
   const text = signals?.text || {};
@@ -76,47 +86,6 @@ export function formatKeywordSuggestionEditorText(candidates = []) {
   return candidates
     .map(candidate => `${candidate.token}, ${candidate.score}/100`)
     .join('\n');
-}
-
-export function normalizeSelectedTextCandidate(candidate = null) {
-  const text = String(candidate?.text || '').replace(/\s+/g, ' ').trim();
-  if (text.length < 2 || !/[\p{L}\p{N}]/u.test(text)) {
-    return null;
-  }
-
-  const score = Number(candidate?.estimatedScore100);
-  return {
-    text: text.slice(0, SELECTED_TEXT_CANDIDATE_LIMIT).trimEnd(),
-    estimatedScore100: Number.isFinite(score) ? Math.min(Math.max(Math.round(score), 0), 100) : 25,
-    insideEditable: candidate?.insideEditable === true
-  };
-}
-
-export function formatSelectedTextCandidateSummary(candidate = null, editableLabel = 'editable') {
-  const normalizedCandidate = normalizeSelectedTextCandidate(candidate);
-  if (!normalizedCandidate) {
-    return '';
-  }
-
-  const parts = [
-    normalizedCandidate.text,
-    `${normalizedCandidate.estimatedScore100}/100`
-  ];
-
-  if (normalizedCandidate.insideEditable) {
-    parts.push(editableLabel);
-  }
-
-  return parts.join(' - ');
-}
-
-export function formatSelectedTextCandidateEditorText(candidate = null) {
-  const normalizedCandidate = normalizeSelectedTextCandidate(candidate);
-  if (!normalizedCandidate) {
-    return '';
-  }
-
-  return `${escapeKeywordPhrase(normalizedCandidate.text)}, ${normalizedCandidate.estimatedScore100}/100`;
 }
 
 export function createPageSignalsPanel({
@@ -353,8 +322,4 @@ function normalizeKeywordSuggestionToken(value) {
   }
 
   return token;
-}
-
-function escapeKeywordPhrase(value) {
-  return String(value || '').replace(/,/g, '\\,');
 }

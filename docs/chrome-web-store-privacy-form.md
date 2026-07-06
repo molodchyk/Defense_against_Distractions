@@ -19,6 +19,9 @@ The extension uses downloads only for user-triggered export features. Users can 
 permission.activeTab:
 The extension uses activeTab when the user interacts with the popup on the currently active tab. The popup can start the UI element picker and send commands to the active page so the user can select and preview page elements to hide or clean up with bounded actions such as hide-images, disable-controls, click-once, clear-field, or pause-media rules. This access is initiated by the user from the extension popup and is needed to apply the picker to the tab the user is currently viewing.
 
+permission.contextMenus:
+The extension uses contextMenus only to add a selection-only "Add selected text to DaD" right-click item. When the user chooses that item, DaD reads the selected text from the explicit context-menu click, stores a bounded pending candidate locally, and opens the popup so the user can review the plan, entry, score, and optional action preset before saving. It does not run on every right-click, does not save a keyword until the user confirms in the popup, and does not send selected text to a server.
+
 permission.idle:
 Defense Against Distractions uses idle only to detect whether the device is active, idle, or locked for local plan-owned Pomodoro timing. When the device is locked or idle during a work phase, the extension can credit that away time toward the required rest period while keeping the work-session anchor fixed. This lets the timer avoid treating real away time as screen work. The idle state is processed locally and is not sent to a server. Without this permission, the extension cannot reliably distinguish active browser use from away or locked time and cannot calculate rest credit correctly.
 

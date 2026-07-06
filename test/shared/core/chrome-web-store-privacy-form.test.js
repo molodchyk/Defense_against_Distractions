@@ -106,10 +106,11 @@ describe('Chrome Web Store privacy form', () => {
     assert.deepEqual(storePilotPermissionKeys, manifestPermissions, 'StorePilot index permission keys must exactly match manifest permissions');
     assert.deepEqual(privacyFormPermissionKeys, expectedPermissionKeys, 'StorePilot privacy fields must exactly match manifest permissions');
 
-    assert.equal(manifest.permissions.includes('contextMenus'), false);
-    assert.equal(privacyFields.has('permission.contextMenus'), false);
-    assert.match(permissionAudit, /`contextMenus`: not requested[\s\S]*right-click context-menu variant[\s\S]*StorePilot privacy permission keys/i);
-    assert.match(selectedTextQuickAdd, /right-click context-menu variant adds `contextMenus`[\s\S]*StorePilot privacy form[\s\S]*Chrome Web Store permission justification/i);
+    assert.equal(manifest.permissions.includes('contextMenus'), true);
+    assert.match(privacyFields.get('permission.contextMenus') || '', /selection-only "Add selected text to DaD" right-click item/i);
+    assert.match(privacyFields.get('permission.contextMenus') || '', /does not save a keyword until the user confirms in the popup/i);
+    assert.match(permissionAudit, /### `contextMenus`[\s\S]*DaD Select right-click[\s\S]*bounded local pending candidate/i);
+    assert.match(selectedTextQuickAdd, /right-click context-menu variant uses `contextMenus`[\s\S]*permission audit[\s\S]*StorePilot privacy form/i);
   });
 });
 

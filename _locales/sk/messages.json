@@ -1001,6 +1001,9 @@
     "description": {
         "message": "Umožňuje blokovať webové stránky na základe textu, ktorý sa na nich zobrazuje."
     },
+    "contextMenuAddSelectedText": {
+        "message": "Pridať „%s“ do DaD"
+    },
     "dailyLimitReached": {
         "message": "Dosiahnutý denný limit"
     },

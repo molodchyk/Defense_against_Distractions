@@ -1001,6 +1001,9 @@
     "description": {
         "message": "आपको उनके पृष्ठों पर दिखाई देने वाले पाठ के आधार पर वेबसाइटों को अवरुद्ध करने की अनुमति देता है।"
     },
+    "contextMenuAddSelectedText": {
+        "message": "\"%s\" को DaD में जोड़ें"
+    },
     "dailyLimitReached": {
         "message": "दैनिक सीमा पहुँच गई"
     },

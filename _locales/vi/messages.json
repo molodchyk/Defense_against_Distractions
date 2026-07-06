@@ -1001,6 +1001,9 @@
     "description": {
         "message": "Cho phép bạn chặn các trang web dựa trên văn bản xuất hiện trên trang của họ."
     },
+    "contextMenuAddSelectedText": {
+        "message": "Thêm \"%s\" vào DaD"
+    },
     "dailyLimitReached": {
         "message": "Đã đạt giới hạn hàng ngày"
     },

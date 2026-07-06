@@ -1,6 +1,6 @@
 # DaD Select Quick Add
 
-DaD Select is a proposed configuration shortcut for turning something the user sees on a page into a protection rule without leaving the current browsing context.
+DaD Select is a configuration shortcut for turning something the user sees on a page into a protection rule without leaving the current browsing context.
 
 The raw original wording is preserved in [potential-functionality.md](potential-functionality.md#original-wording-not-to-be-edited):
 
@@ -11,30 +11,26 @@ The raw original wording is preserved in [potential-functionality.md](potential-
 The current popup can expose current-page keyword ideas, but saving a rule still requires manual transfer into the options page. DaD Select should close that loop:
 
 1. The user selects a word or phrase on the page.
-2. The popup detects the current selection and offers `Add to DaD`.
-3. DaD estimates a reasonable keyword score on the 0-100 authoring scale.
-4. The user chooses the plan/entry and optional actions.
-5. DaD saves the rule locally and re-evaluates the current page.
+2. The user either opens the popup with the selection still active or chooses the selection-only DaD Select right-click menu item.
+3. The popup shows `Add to DaD` controls for the selected text.
+4. DaD estimates a reasonable keyword score on the 0-100 authoring scale.
+5. The user chooses the plan/entry and optional actions.
+6. DaD saves the rule locally and re-evaluates the current page.
 
 The feature should feel like picking up a piece of the page and turning it into defense. It should not feel like a general automation IDE.
 
-## First Version Boundary
+## Implemented Boundary
 
-The first version should avoid adding a new permission if the popup path is enough.
-
-Recommended first slice:
+The current version has two entry points:
 
 - User selects visible text on a page.
-- User opens the extension popup.
-- The popup asks the content script for the active selection.
-- The content script returns a bounded active-selection candidate through the existing `getPageSignalSnapshot` message.
+- Popup path: the user opens the extension popup; the popup asks the content script for the active selection; the content script returns a bounded active-selection candidate through the existing `getPageSignalSnapshot` message.
+- Right-click path: the user chooses the selection-only DaD Select context-menu item; the background stores a bounded pending candidate in local storage and asks Chrome to open the popup; the popup consumes that pending candidate and removes it.
 - The popup shows a compact selected-text candidate when a bounded selection exists.
 - Saving adds a keyword line to an existing plan entry using the current 0-100 authoring syntax.
 - Optional action presets can be attached only if they map to existing or explicitly designed bounded actions.
 
-Implemented keyword-first version: the content script can now produce the bounded active-selection candidate for the popup snapshot; the popup Page Signals card can show and copy that candidate as a keyword-editor line; and the popup can save the selected text into an existing plan entry or a new current-site entry with an editable 1-100 positive keyword score. The popup exposes `Keyword only`, `Block page`, `Hide images`, and `Disable controls` action presets. Cleanup presets save the selected keyword first, then start the UI picker with the chosen cleanup action preselected so the user must still choose a concrete page scope before the UI rule is saved.
-
-A true browser right-click context menu is a later variant because it requires adding `contextMenus` to the manifest and store privacy/permission documentation. That may still be worth doing, but it should be a deliberate release decision rather than a hidden side effect of the popup feature.
+Implemented keyword-first version: the content script can produce the bounded active-selection candidate for the popup snapshot; the right-click `contextMenus` path can hand selected text to the popup as a bounded pending candidate; the popup Page Signals card can show and copy the active-selection candidate as a keyword-editor line; and the popup can save the selected text into an existing plan entry or a new current-site entry with an editable 1-100 positive keyword score. The popup exposes `Keyword only`, `Block page`, `Hide images`, and `Disable controls` action presets. Cleanup presets save the selected keyword first, then start the UI picker with the chosen cleanup action preselected so the user must still choose a concrete page scope before the UI rule is saved.
 
 ## Selection Candidate
 
@@ -64,7 +60,7 @@ Rules:
 
 The selected text becomes persistent only if the user saves it as a keyword. Unsaved candidates should remain ephemeral.
 
-Implementation state: unsaved candidates are computed on demand from the active page selection and included in the popup snapshot response. The popup can copy the candidate as a keyword-editor line such as `selected phrase, 25/100`, or save it only after the user chooses `Add rule`. Unsaved candidates are not written to sync or local storage.
+Implementation state: popup-path unsaved candidates are computed on demand from the active page selection and included in the popup snapshot response. Right-click-path unsaved candidates are written only as short-lived local pending state so the popup can receive the explicit context-menu selection; the pending state is removed when consumed and expires if it is not consumed. The popup can copy the candidate as a keyword-editor line such as `selected phrase, 25/100`, or save it only after the user chooses `Add rule`. Unsaved candidates are never written to sync storage and never become rules without popup confirmation.
 
 ## Score Estimate
 
@@ -188,19 +184,21 @@ The feature should stay local-first:
 
 - no remote lookup;
 - no analytics event;
-- no selected-text storage unless the user saves the keyword;
+- no durable selected-text storage unless the user saves the keyword;
+- right-click DaD Select may store a bounded pending local candidate only until the popup consumes it or it expires;
 - no raw surrounding page text in diagnostics;
 - no image URLs, captions, or media metadata;
 - no full-page screenshots;
 - no selector storage beyond normal user-created UI rule fingerprints.
 
-If the later right-click context-menu variant adds `contextMenus`, update the manifest, permission audit, StorePilot privacy form, release notes, and Chrome Web Store permission justification in the same release.
+The right-click context-menu variant uses `contextMenus`; manifest permission docs, the permission audit, StorePilot privacy form, release notes, and Chrome Web Store permission justification must stay synchronized in the same release.
 
 ## Acceptance Criteria
 
 - Implemented: with valid selected text, the content script returns a bounded quick-add candidate in the current page-signal snapshot.
 - Implemented: collapsed, punctuation-only, oversized, or token-empty selections return no candidate.
 - Implemented: with text selected on a supported page, opening the popup can show a bounded selected-text candidate in Page Signals.
+- Implemented: with selected text on a supported page, the DaD Select right-click context menu can pass a bounded pending candidate to the popup quick-add controls without saving a rule first.
 - Implemented: with no valid selection, the popup selected-text row stays empty and the copy button stays disabled.
 - Implemented: saving a keyword through quick add produces the same normalized rule format as manual entry editing.
 - Implemented: the score estimate is editable and uses the positive 1-100 keyword-authoring range, because `0/100` is a no-op rather than a valid saved strengthening rule.
@@ -208,13 +206,11 @@ If the later right-click context-menu variant adds `contextMenus`, update the ma
 - Implemented: saved quick-add rules use the same protected-schedule strictness comparator as plan editing before storage writes.
 - Implemented model: `hideImages` and `disableControls` presets compile to the existing reversible, capped, scoped UI cleanup actions only when a picker-produced scope rule is supplied; otherwise they are rejected as needing an element scope.
 - Implemented UI slice: the popup exposes `Hide images` and `Disable controls` quick-add presets by saving the selected keyword and launching the UI picker with the selected cleanup action preselected; the picker saves the scoped UI rule and appends its ID to the selected plan without normalizing away other plan-owned fields.
-- The feature works without adding `contextMenus` unless the right-click variant is explicitly chosen.
-- Partly implemented tests: candidate normalization, editable-field flagging, score estimation, invalid-selection rejection, text caps, snapshot inclusion, popup display formatting, keyword-editor copy formatting, quick-add keyword-line formatting, default target selection, selected-plan current-site entry selection, current-host entry creation, duplicate/raise behavior, block-page preset scoring, cleanup-preset scope requirement, scoped UI-rule compilation, picker launch options, picker-backed plan assignment, protected-schedule strictness compatibility, and popup markup are covered.
+- Partly implemented tests: candidate normalization, editable-field flagging, score estimation, invalid-selection rejection, text caps, snapshot inclusion, popup display formatting, keyword-editor copy formatting, quick-add keyword-line formatting, right-click pending-candidate handoff, default target selection, selected-plan current-site entry selection, current-host entry creation, duplicate/raise behavior, block-page preset scoring, cleanup-preset scope requirement, scoped UI-rule compilation, picker launch options, picker-backed plan assignment, protected-schedule strictness compatibility, and popup markup are covered.
 
 ## Open Questions
 
 - Should quick add create a new entry automatically or require choosing an existing entry?
 - Should the default score depend on the selected plan's current threshold or stay globally consistent?
 - Should selected text inside editable fields default to a lower score because it may be user-authored?
-- Should the right-click context-menu variant wait for the action-chain editor so the permission is justified by more than keyword creation?
 - Should image hiding and control disabling be plan-wide interventions, action-chain steps, UI cleanup rule actions, or all three with the same underlying engine?

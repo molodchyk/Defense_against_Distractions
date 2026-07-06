@@ -1001,6 +1001,9 @@
     "description": {
         "message": "Webguneak blokeatzeko aukera ematen du haien orrialdeetan agertzen den testuaren arabera."
     },
+    "contextMenuAddSelectedText": {
+        "message": "Gehitu \"%s\" DaD-ra"
+    },
     "dailyLimitReached": {
         "message": "Eguneko mugara iritsi da"
     },

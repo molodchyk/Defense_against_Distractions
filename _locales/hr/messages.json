@@ -1001,6 +1001,9 @@
     "description": {
         "message": "Omogućuje vam blokiranje web stranica na temelju teksta koji se pojavljuje na njihovim stranicama."
     },
+    "contextMenuAddSelectedText": {
+        "message": "Dodaj \"%s\" u DaD"
+    },
     "dailyLimitReached": {
         "message": "Dnevni limit je dostignut"
     },

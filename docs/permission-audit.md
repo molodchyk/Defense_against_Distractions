@@ -39,6 +39,13 @@ This document records why each current manifest permission and broad content-scr
 - Why retained: DaD needs local active/idle/locked state to distinguish screen work from away time and to credit locked or idle time toward required rest.
 - Removal trigger: remove if Pomodoro rest credit stops using browser idle/locked state.
 
+### `contextMenus`
+
+- Feature owner: DaD Select right-click selected-text quick add.
+- API evidence: `src/platform/chrome/contextMenus.js`, used by `src/js/background/selectedTextQuickAdd.js`.
+- Why retained: the browser context menu gives users a deliberate selection-only path from selected page text into the existing popup quick-add flow. DaD stores only a bounded local pending candidate until the popup opens, and the keyword or cleanup preset is not saved unless the user confirms it in the popup.
+- Removal trigger: remove if DaD Select no longer offers a right-click selected-text entry point and returns to popup-only page-signal selection.
+
 ### `webNavigation`
 
 - Feature owner: local intent-coherence lineage, transition diagnostics, and drift recovery.
@@ -62,7 +69,6 @@ This document records why each current manifest permission and broad content-scr
 - `webRequest`: not requested. DaD does not intercept network requests.
 - `declarativeNetRequest`: not requested. Blocking is page/content based, not URL-rule based.
 - `notifications`: not requested. Pomodoro and protection state are shown in extension surfaces instead.
-- `contextMenus`: not requested. The current DaD Select flow uses the popup page-signal snapshot rather than a browser right-click menu. If a later right-click context-menu variant is added, treat it as a manifest permission change and update StorePilot privacy permission keys, Chrome Web Store permission justification, release notes, and tests in the same release.
 - `cookies`, `history`, `identity`, `debugger`, `nativeMessaging`, and `offscreen`: not requested.
 
 ## Manifest Surfaces Deliberately Not Used

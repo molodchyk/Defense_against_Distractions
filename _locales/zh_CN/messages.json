@@ -1001,6 +1001,9 @@
     "description": {
         "message": "允许您根据网页上出现的文本来阻止网站。"
     },
+    "contextMenuAddSelectedText": {
+        "message": "将“%s”添加到 DaD"
+    },
     "dailyLimitReached": {
         "message": "已达到每日限额"
     },

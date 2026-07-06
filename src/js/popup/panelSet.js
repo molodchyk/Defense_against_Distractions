@@ -52,6 +52,7 @@ export function createPopupPanelSet({
   selectedTextQuickAddPanel = createSelectedTextQuickAddPanel({
     getMessage,
     getActiveTab,
+    sendRuntimeMessage,
     sendTabMessage,
     startElementPicker,
     setStatus,

@@ -28,6 +28,7 @@ Version 1.6.1:
 - aligned README blocking copy with the current overlay-first page blocking behavior
 - added package verification for screenshot and promotional image dimensions, runtime archive contents, and unexpected remote network access
 - added release and source archive verification for store listing format, localized descriptions, changelog consistency, and browser-load smoke checks
+- added a DaD Select right-click selected-text menu item that hands a bounded local candidate to the popup quick-add flow before any keyword or cleanup preset is saved
 
 Version 1.6.0:
 

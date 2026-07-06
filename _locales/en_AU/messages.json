@@ -1001,6 +1001,9 @@
     "description": {
         "message": "Create plans that block pages by keywords, schedules, Pomodoro state, intent coherence, and optional UI cleanup."
     },
+    "contextMenuAddSelectedText": {
+        "message": "Add \"%s\" to DaD"
+    },
     "dailyLimitReached": {
         "message": "Daily limit reached"
     },

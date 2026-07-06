@@ -39,14 +39,14 @@ describe('StorePilot automation checks', () => {
     const docs = await readStoreAutomationDocs();
     const stalePrivacyForm = docs.storePrivacyForm.replace(
       'host_permission:',
-      'permission.contextMenus:\nLegacy right-click menu justification.\n\nhost_permission:'
+      'permission.tabs:\nLegacy broad tab metadata justification.\n\nhost_permission:'
     );
 
     assert.deepEqual(getStoreAutomationFailures({
       ...docs,
       storePrivacyForm: stalePrivacyForm
     }), [
-      'StorePilot privacy permission fields must exactly match manifest permissions. Expected: activeTab, alarms, downloads, idle, storage, webNavigation. Found: activeTab, alarms, contextMenus, downloads, idle, storage, webNavigation.'
+      'StorePilot privacy permission fields must exactly match manifest permissions. Expected: activeTab, alarms, contextMenus, downloads, idle, storage, webNavigation. Found: activeTab, alarms, contextMenus, downloads, idle, storage, tabs, webNavigation.'
     ]);
   });
 
@@ -54,14 +54,14 @@ describe('StorePilot automation checks', () => {
     const docs = await readStoreAutomationDocs();
     const staleStoreAutomationIndex = docs.storeAutomationIndex.replace(
       '- `permission.webNavigation`',
-      '- `permission.webNavigation`\n- `permission.contextMenus`'
+      '- `permission.webNavigation`\n- `permission.tabs`'
     );
 
     assert.deepEqual(getStoreAutomationFailures({
       ...docs,
       storeAutomationIndex: staleStoreAutomationIndex
     }), [
-      'StorePilot automation index permission keys must exactly match manifest permissions. Expected: activeTab, alarms, downloads, idle, storage, webNavigation. Found: activeTab, alarms, contextMenus, downloads, idle, storage, webNavigation.'
+      'StorePilot automation index permission keys must exactly match manifest permissions. Expected: activeTab, alarms, contextMenus, downloads, idle, storage, webNavigation. Found: activeTab, alarms, contextMenus, downloads, idle, storage, tabs, webNavigation.'
     ]);
   });
 });

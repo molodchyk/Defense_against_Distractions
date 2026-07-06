@@ -1001,6 +1001,9 @@
     "description": {
         "message": "Veb-saytlarni sahifalarida paydo bo'lgan matn asosida bloklash imkonini beradi."
     },
+    "contextMenuAddSelectedText": {
+        "message": "\"%s\"ni DaD-ga qo‘shish"
+    },
     "dailyLimitReached": {
         "message": "Kunlik limitga yetdi"
     },

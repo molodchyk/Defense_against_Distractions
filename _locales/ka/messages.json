@@ -1001,6 +1001,9 @@
     "description": {
         "message": "საშუალებას გაძლევთ დაბლოკოთ ვებსაიტები მათ გვერდებზე გამოსახული ტექსტის საფუძველზე."
     },
+    "contextMenuAddSelectedText": {
+        "message": "დაამატეთ „%s“ DaD-ში"
+    },
     "dailyLimitReached": {
         "message": "მიღწეულია ყოველდღიური ლიმიტი"
     },

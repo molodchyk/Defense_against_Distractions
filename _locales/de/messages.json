@@ -1001,6 +1001,9 @@
     "description": {
         "message": "Ermöglicht Ihnen, Websites zu blockieren, basierend auf dem Text, der auf ihren Seiten erscheint."
     },
+    "contextMenuAddSelectedText": {
+        "message": "„%s“ zu DaD hinzufügen"
+    },
     "dailyLimitReached": {
         "message": "Tageslimit erreicht"
     },

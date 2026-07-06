@@ -1001,6 +1001,9 @@
     "description": {
         "message": "আপনাকে ওয়েবসাইটগুলিকে তাদের পৃষ্ঠাগুলিতে প্রদর্শিত পাঠ্যের উপর ভিত্তি করে ব্লক করার অনুমতি দেয়৷"
     },
+    "contextMenuAddSelectedText": {
+        "message": "\"%s\" DaD-এ যোগ করুন"
+    },
     "dailyLimitReached": {
         "message": "দৈনিক সীমা পৌঁছেছে"
     },

@@ -1001,6 +1001,9 @@
     "description": {
         "message": "ช่วยให้คุณสามารถบล็อกเว็บไซต์ตามข้อความที่ปรากฏบนหน้าเว็บของพวกเขา"
     },
+    "contextMenuAddSelectedText": {
+        "message": "เพิ่ม \"%s\" ใน DaD"
+    },
     "dailyLimitReached": {
         "message": "ถึงขีดจำกัดรายวันแล้ว"
     },

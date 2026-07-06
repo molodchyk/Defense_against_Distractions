@@ -1001,6 +1001,9 @@
     "description": {
         "message": "በገጾቻቸው ላይ በሚታየው ጽሑፍ ላይ ተመስርተው ድር ጣቢያዎችን እንዲያግዱ ይፈቅድልዎታል።"
     },
+    "contextMenuAddSelectedText": {
+        "message": "«%s»ን ወደ DaD አክል"
+    },
     "dailyLimitReached": {
         "message": "ዕለታዊ ገደብ ላይ ደርሷል"
     },

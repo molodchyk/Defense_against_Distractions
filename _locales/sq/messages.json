@@ -1001,6 +1001,9 @@
     "description": {
         "message": "Ju lejon të bllokoni faqet e internetit bazuar në tekstin që shfaqet në faqet e tyre."
     },
+    "contextMenuAddSelectedText": {
+        "message": "Shto \"%s\" në DaD"
+    },
     "dailyLimitReached": {
         "message": "U arrit kufiri ditor"
     },

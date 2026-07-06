@@ -1001,6 +1001,9 @@
     "description": {
         "message": "Mahdollistaa verkkosivustojen estämisen niiden sivuilla esiintyvän tekstin perusteella."
     },
+    "contextMenuAddSelectedText": {
+        "message": "Lisää \"%s\" DaD:hen"
+    },
     "dailyLimitReached": {
         "message": "Päivittäinen raja saavutettu"
     },

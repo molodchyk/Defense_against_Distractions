@@ -1001,6 +1001,9 @@
     "description": {
         "message": "Σας επιτρέπει να μπλοκάρετε ιστότοπους με βάση το κείμενο που εμφανίζεται στις σελίδες τους."
     },
+    "contextMenuAddSelectedText": {
+        "message": "Προσθήκη του «%s» στο DaD"
+    },
     "dailyLimitReached": {
         "message": "Επιτεύχθηκε το ημερήσιο όριο"
     },

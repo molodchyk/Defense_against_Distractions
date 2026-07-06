@@ -1001,6 +1001,9 @@
     "description": {
         "message": "Laat jou toe om webwerwe te blokkeer op grond van die teks wat op hul bladsye verskyn."
     },
+    "contextMenuAddSelectedText": {
+        "message": "Voeg \"%s\" by DaD"
+    },
     "dailyLimitReached": {
         "message": "Daaglikse limiet bereik"
     },

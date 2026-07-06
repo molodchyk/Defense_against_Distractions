@@ -154,7 +154,7 @@ Initial implementation note: Settings can also export a local `dad.ruleset.v1` r
 
 Initial implementation note: the popup Page Signals card now derives non-persistent keyword ideas from the current page's bounded top-text, heading, description, selected-text, and clicked-link tokens. The user can copy those ideas as keyword-editor lines such as `token, 25/100`; DaD does not automatically save them, add them to a plan, upload them, or store them in usage stats. This is a local, deterministic first slice of "save/suggest keywords" without claiming machine learning or server-backed community rules.
 
-Clarified future design: [DaD Select quick add](selected-text-quick-add.md) turns user-selected page text into a popup-based keyword creation flow with an editable score estimate and optional bounded action presets such as hide images or disable controls. The first version should work from the popup without adding a right-click `contextMenus` permission; a true context-menu variant should be a deliberate release decision with store permission documentation.
+Initial implementation note: [DaD Select quick add](selected-text-quick-add.md) turns user-selected page text into a popup-based keyword creation flow with an editable score estimate and optional bounded action presets such as hide images or disable controls. The popup path reads the active selection through page signals, and the right-click path uses the audited `contextMenus` permission to hand an explicit selected-text candidate to the popup without saving a rule until the user confirms it.
 
 ## User Interface
 

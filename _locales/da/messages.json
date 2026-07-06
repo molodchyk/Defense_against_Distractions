@@ -1001,6 +1001,9 @@
     "description": {
         "message": "Giver dig mulighed for at blokere websteder baseret på teksten, der vises på deres sider."
     },
+    "contextMenuAddSelectedText": {
+        "message": "Føj \"%s\" til DaD"
+    },
     "dailyLimitReached": {
         "message": "Daglig grænse nået"
     },

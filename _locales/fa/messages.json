@@ -1001,6 +1001,9 @@
     "description": {
         "message": "به شما امکان می دهد وب سایت ها را بر اساس متنی که در صفحات آنها ظاهر می شود مسدود کنید."
     },
+    "contextMenuAddSelectedText": {
+        "message": "افزودن «%s» به DaD"
+    },
     "dailyLimitReached": {
         "message": "به حد مجاز روزانه رسیده است"
     },

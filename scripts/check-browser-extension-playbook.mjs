@@ -103,7 +103,7 @@ assertCondition(await exists('docs/content-script-load-order.md'), 'Missing cont
 assertCondition(await exists('scripts/check-static-localization.mjs'), 'Missing static localization verification script.');
 assertCondition(await exists('scripts/check-research-quality.mjs'), 'Missing research quality verification script.');
 assertCondition(await exists('scripts/check-unpacked-extension-load.ps1'), 'Missing unpacked extension browser-load smoke script.');
-for (const platformWrapper of ['action', 'alarms', 'contentBridge', 'downloads', 'i18n', 'idle', 'navigation', 'runtime', 'runtimeMessages', 'tabs', 'windows']) {
+for (const platformWrapper of ['action', 'alarms', 'contentBridge', 'contextMenus', 'downloads', 'i18n', 'idle', 'navigation', 'runtime', 'runtimeMessages', 'tabs', 'windows']) {
   assertCondition(await exists(`src/platform/chrome/${platformWrapper}.js`), `Missing Chrome ${platformWrapper} platform wrapper.`);
 }
 const [
@@ -135,6 +135,7 @@ const [
   contentScriptLoadOrderDoc,
   actionWrapper,
   alarmsWrapper,
+  contextMenusWrapper,
   downloadsWrapper,
   i18nWrapper,
   idleWrapper,
@@ -154,6 +155,7 @@ const [
   pomodoroNotificationsModule,
   releaseNoticeModule,
   scheduleMonitorModule,
+  selectedTextQuickAddBackgroundModule,
   intentMessagesModule,
   passwordManagerModule,
   popupIndexModule,
@@ -195,6 +197,7 @@ const [
   readText('docs/content-script-load-order.md'),
   readText('src/platform/chrome/action.js'),
   readText('src/platform/chrome/alarms.js'),
+  readText('src/platform/chrome/contextMenus.js'),
   readText('src/platform/chrome/downloads.js'),
   readText('src/platform/chrome/i18n.js'),
   readText('src/platform/chrome/idle.js'),
@@ -214,6 +217,7 @@ const [
   readText('src/js/background/pomodoro/notifications.js'),
   readText('src/js/background/releaseNotice.js'),
   readText('src/js/background/scheduleMonitor.js'),
+  readText('src/js/background/selectedTextQuickAdd.js'),
   readText('src/js/background/intent/messages.js'),
   readText('src/js/options/password/manager.js'),
   readText('src/app/popup/index.js'),
@@ -363,9 +367,9 @@ assertCondition(
     /`tabs`/,
     /`scripting`/,
     /`webRequest`/,
-    /`contextMenus`: not requested/,
-    /right-click context-menu variant/i,
-    /StorePilot privacy permission keys/i,
+    /### `contextMenus`/,
+    /DaD Select right-click/i,
+    /selected page text/i,
     /chrome_settings_overrides/,
     /externally_connectable/
   ]),
@@ -373,9 +377,11 @@ assertCondition(
 );
 assertCondition(/src\/platform\/chrome\/downloads\.js/.test(permissionAudit), 'Permission audit must point downloads permission API evidence at the platform wrapper.');
 assertCondition(/src\/platform\/chrome\/alarms\.js/.test(permissionAudit), 'Permission audit must point alarms permission API evidence at the platform wrapper.');
+assertCondition(/src\/platform\/chrome\/contextMenus\.js/.test(permissionAudit), 'Permission audit must point contextMenus permission API evidence at the platform wrapper.');
 assertCondition(/src\/platform\/chrome\/navigation\.js/.test(permissionAudit), 'Permission audit must point webNavigation permission API evidence at the platform wrapper.');
-assertCondition(/chrome\.action\.onClicked/.test(actionWrapper) && /chrome\.action\.setBadgeText/.test(actionWrapper), 'Chrome action platform wrapper must own toolbar action click listener registration and badge text updates.');
+assertCondition(/chrome\.action\.onClicked/.test(actionWrapper) && /chrome\.action\.setBadgeText/.test(actionWrapper) && /chrome\.action\?\.openPopup/.test(actionWrapper), 'Chrome action platform wrapper must own toolbar action click listener registration, badge text updates, and guarded popup opening.');
 assertCondition(/chrome\.alarms\.create/.test(alarmsWrapper) && /chrome\.alarms\.clear/.test(alarmsWrapper) && /chrome\.alarms\.onAlarm/.test(alarmsWrapper) && /runtime\.lastError/.test(alarmsWrapper), 'Chrome alarms platform wrapper must own chrome.alarms create/clear/listener and runtime.lastError handling.');
+assertCondition(/chrome\.contextMenus\.create/.test(contextMenusWrapper) && /chrome\.contextMenus\.removeAll/.test(contextMenusWrapper) && /chrome\.contextMenus\.onClicked/.test(contextMenusWrapper) && /runtime.*lastError/.test(contextMenusWrapper), 'Chrome contextMenus platform wrapper must own menu create/remove/listener and runtime.lastError handling.');
 assertCondition([pomodoroChromeStorageModule, pomodoroInitializerModule, scheduleMonitorModule].every(text => /platform\/chrome\/alarms\.js/.test(text) && !/chrome\.alarms\./.test(text)), 'Background Pomodoro and schedule monitor modules must use the alarms platform wrapper instead of raw chrome.alarms callbacks.');
 assertCondition(/chrome\.idle/.test(idleWrapper) && /setDetectionInterval/.test(idleWrapper) && /onStateChanged/.test(idleWrapper) && /queryState/.test(idleWrapper), 'Chrome idle platform wrapper must own idle detection interval, listener, and initial state query.');
 assertCondition(/platform\/chrome\/idle\.js/.test(pomodoroInitializerModule) && !/chrome\.idle/.test(pomodoroInitializerModule), 'Background Pomodoro initializer must use the idle platform wrapper instead of raw chrome.idle calls.');
@@ -391,6 +397,7 @@ assertCondition([popupChromeModule, elementPickerLauncherModule].every(text => /
 assertCondition(/platform\/chrome\/tabs\.js/.test(pomodoroNotificationsModule) && !/chrome\.tabs\./.test(pomodoroNotificationsModule) && !/chrome\.runtime\.lastError/.test(pomodoroNotificationsModule), 'Background Pomodoro notifications must use the tabs platform wrapper instead of raw chrome.tabs callbacks.');
 assertCondition(/chrome\.windows\.onFocusChanged/.test(windowsWrapper) && /chrome\.windows\.create/.test(windowsWrapper) && /WINDOW_ID_NONE/.test(windowsWrapper), 'Chrome windows platform wrapper must own focus-change listener registration, window creation, and no-focused-window id access.');
 assertCondition([appBackgroundModule, intentInitializerModule, pomodoroInitializerModule].every(text => /platform\/chrome\/(?:action|navigation|tabs|windows)\.js/.test(text) && !/chrome\.(?:action\.onClicked|tabs\.on(?:Activated|Created|Removed|Updated)|webNavigation|windows\.(?:onFocusChanged|WINDOW_ID_NONE))/.test(text)), 'Migrated background event modules must use platform wrappers instead of raw action/tab/navigation/window listener registration.');
+assertCondition(/platform\/chrome\/contextMenus\.js/.test(selectedTextQuickAddBackgroundModule) && /platform\/chrome\/action\.js/.test(selectedTextQuickAddBackgroundModule) && /platform\/chrome\/storage\.js/.test(selectedTextQuickAddBackgroundModule) && !/chrome\.(?:contextMenus|action|storage)|runtime\.lastError/.test(selectedTextQuickAddBackgroundModule), 'Selected-text quick-add background module must use platform wrappers instead of raw contextMenus/action/storage callbacks.');
 assertCondition(/platform\/chrome\/action\.js/.test(contentBlockingBackgroundModule) && /platform\/chrome\/tabs\.js/.test(contentBlockingBackgroundModule) && !/chromeApi|chrome\.(?:action|tabs|runtime)|runtime\.lastError/.test(contentBlockingBackgroundModule), 'Content-blocking background runtime must use platform wrappers instead of raw chrome action/tabs/runtime callbacks.');
 assertCondition(/platform\/chrome\/tabs\.js/.test(blockedTabMuteModule) && !/chromeApi|chrome\.tabs|runtime\.lastError/.test(blockedTabMuteModule), 'Blocked tab mute controller must use the tabs platform wrapper instead of raw chrome tab callbacks.');
 assertCondition(/platform\/chrome\/tabs\.js/.test(intentChromeApiModule) && /platform\/chrome\/windows\.js/.test(intentChromeApiModule) && /platform\/chrome\/runtime\.js/.test(intentChromeApiModule) && !/chrome\.(?:tabs|windows|runtime)|runtime\.lastError/.test(intentChromeApiModule), 'Background intent Chrome adapter must use platform wrappers instead of raw chrome tabs/windows/runtime callbacks.');

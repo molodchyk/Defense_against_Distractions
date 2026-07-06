@@ -1001,6 +1001,9 @@
     "description": {
         "message": "Ви овозможува да блокирате веб-локации врз основа на текстот што се појавува на нивните страници."
     },
+    "contextMenuAddSelectedText": {
+        "message": "Додај „%s“ во DaD"
+    },
     "dailyLimitReached": {
         "message": "Достигнато е дневниот лимит"
     },

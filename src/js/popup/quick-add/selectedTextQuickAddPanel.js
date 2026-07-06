@@ -30,10 +30,12 @@ import {
 } from './selectedTextQuickAddModel.js';
 
 const SITE_CHECK_MESSAGE = 'performSiteCheck';
+const CONSUME_PENDING_SELECTED_TEXT_QUICK_ADD_ACTION = 'consumePendingSelectedTextQuickAdd';
 
 export function createSelectedTextQuickAddPanel({
   getMessage,
   getActiveTab,
+  sendRuntimeMessage,
   sendTabMessage,
   startElementPicker,
   setStatus,
@@ -88,6 +90,41 @@ export function createSelectedTextQuickAddPanel({
     const items = await getSync({ [PLANS_STORAGE_KEY]: [] });
     setPlans(items?.[PLANS_STORAGE_KEY]);
     return latestPlans;
+  }
+
+  async function refreshPendingCandidate() {
+    if (!sendRuntimeMessage) {
+      return null;
+    }
+
+    const activeTab = latestActiveTab || await getActiveTab?.();
+    if (activeTab) {
+      setActiveTab(activeTab);
+    }
+
+    if (!activeTab?.id && !activeTab?.url) {
+      return null;
+    }
+
+    const response = await sendRuntimeMessage({
+      action: CONSUME_PENDING_SELECTED_TEXT_QUICK_ADD_ACTION,
+      tabId: activeTab?.id,
+      url: activeTab?.url || ''
+    });
+    if (!response?.candidate) {
+      return null;
+    }
+
+    if (response.tab?.id || response.tab?.url) {
+      latestActiveTab = {
+        ...activeTab,
+        id: response.tab.id || activeTab?.id,
+        url: response.tab.url || activeTab?.url || ''
+      };
+    }
+
+    setCandidate(response.candidate);
+    return latestCandidate;
   }
 
   function ensureSelectedTarget() {
@@ -374,6 +411,7 @@ export function createSelectedTextQuickAddPanel({
 
   return {
     bindEvents,
+    refreshPendingCandidate,
     refreshPlans,
     render,
     saveSelectedTextRule,

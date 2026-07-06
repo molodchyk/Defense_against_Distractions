@@ -1001,6 +1001,9 @@
     "description": {
         "message": "Səhifələrində görünən mətn əsasında vebsaytları bloklamağa imkan verir."
     },
+    "contextMenuAddSelectedText": {
+        "message": "\"%s\" DaD-ə əlavə et"
+    },
     "dailyLimitReached": {
         "message": "Gündəlik limitə çatdı"
     },

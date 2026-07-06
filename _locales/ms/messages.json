@@ -1001,6 +1001,9 @@
     "description": {
         "message": "Membolehkan anda menyekat laman web berdasarkan teks yang muncul di halaman mereka."
     },
+    "contextMenuAddSelectedText": {
+        "message": "Tambah \"%s\" pada DaD"
+    },
     "dailyLimitReached": {
         "message": "Had harian dicapai"
     },

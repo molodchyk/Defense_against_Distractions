@@ -84,11 +84,11 @@ describe('product spec checks', () => {
     }), [selectedTextQuickAddSpecFailure]);
   });
 
-  it('rejects quick-add specs that lose the contextMenus permission boundary', async () => {
+  it('rejects quick-add specs that lose the contextMenus confirmation boundary', async () => {
     const docs = await readDocs();
     const weakenedSelectedTextQuickAdd = docs.selectedTextQuickAdd.replace(
-      'The first version should avoid adding a new permission if the popup path is enough.',
-      'The first version may add a context menu whenever useful.'
+      'Unsaved candidates are never written to sync storage and never become rules without popup confirmation.',
+      'Unsaved candidates can be saved directly from the context menu when useful.'
     );
 
     assert.deepEqual(getProductSpecFailures({

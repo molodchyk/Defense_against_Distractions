@@ -1001,6 +1001,9 @@
     "description": {
         "message": "Թույլ է տալիս արգելափակել կայքերը՝ հիմնվելով դրանց էջերում հայտնված տեքստի վրա:"
     },
+    "contextMenuAddSelectedText": {
+        "message": "Ավելացնել «%s»-ը DaD-ում"
+    },
     "dailyLimitReached": {
         "message": "Օրվա սահմանաչափը հասել է"
     },

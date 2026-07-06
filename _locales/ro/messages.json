@@ -1001,6 +1001,9 @@
     "description": {
         "message": "Vă permite să blocați site-uri web pe baza textului care apare pe paginile lor."
     },
+    "contextMenuAddSelectedText": {
+        "message": "Adaugă „%s” la DaD"
+    },
     "dailyLimitReached": {
         "message": "Limita zilnică atinsă"
     },

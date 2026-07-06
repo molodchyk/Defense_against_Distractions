@@ -7,6 +7,7 @@ import { initializeIntentCoherence } from '../../js/background/intentCoherence.j
 import { initializePomodoroRuntime } from '../../js/background/pomodoro.js';
 import { initializeReleaseBackupNoticeEligibility } from '../../js/background/releaseNotice.js';
 import { initializeScheduleMonitor } from '../../js/background/scheduleMonitor.js';
+import { createSelectedTextQuickAddBackgroundRuntime } from '../../js/background/selectedTextQuickAdd.js';
 import { addActionClickedListener } from '../../platform/chrome/action.js';
 import { addRuntimeMessageListener, getExtensionUrl } from '../../platform/chrome/runtime.js';
 import {
@@ -16,12 +17,14 @@ import {
 } from '../../platform/chrome/tabs.js';
 
 const contentBlockingRuntime = createContentBlockingBackgroundRuntime();
+const selectedTextQuickAddRuntime = createSelectedTextQuickAddBackgroundRuntime();
 
 addActionClickedListener(() => {
   createTab({ url: getExtensionUrl('src/options.html') }).catch(() => {});
 });
 
 addRuntimeMessageListener(contentBlockingRuntime.handleRuntimeMessage);
+addRuntimeMessageListener(selectedTextQuickAddRuntime.handleRuntimeMessage);
 addTabUpdatedListener(contentBlockingRuntime.handleTabUpdated);
 addTabRemovedListener(contentBlockingRuntime.handleTabRemoved);
 
@@ -30,4 +33,5 @@ initializeIntentCoherence();
 initializePomodoroRuntime();
 initializeReleaseBackupNoticeEligibility();
 initializeScheduleMonitor();
+selectedTextQuickAddRuntime.initialize();
 

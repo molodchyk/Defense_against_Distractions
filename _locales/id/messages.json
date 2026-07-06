@@ -1001,6 +1001,9 @@
     "description": {
         "message": "Memungkinkan Anda untuk memblokir situs web berdasarkan teks yang muncul di halaman mereka."
     },
+    "contextMenuAddSelectedText": {
+        "message": "Tambahkan \"%s\" ke DaD"
+    },
     "dailyLimitReached": {
         "message": "Batas harian tercapai"
     },

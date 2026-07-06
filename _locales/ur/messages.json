@@ -1001,6 +1001,9 @@
     "description": {
         "message": "آپ کو ویب سائٹس کو ان کے صفحات پر ظاہر ہونے والے متن کی بنیاد پر بلاک کرنے کی اجازت دیتا ہے۔"
     },
+    "contextMenuAddSelectedText": {
+        "message": "\"%s\" کو DaD میں شامل کریں"
+    },
     "dailyLimitReached": {
         "message": "روزانہ کی حد تک پہنچ گئی۔"
     },
