@@ -18,7 +18,9 @@ export async function getElementRuleSummaries(items) {
     const rule = ruleItems[`${ELEMENT_RULE_ITEM_PREFIX}${ruleId}`];
     return rule ? {
       id: ruleId,
-      name: rule.name || rule.urlPattern || ruleId
+      name: rule.name || rule.urlPattern || ruleId,
+      urlPattern: rule.urlPattern || '',
+      action: rule.action || ''
     } : null;
   }).filter(Boolean);
 }

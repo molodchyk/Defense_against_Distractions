@@ -185,6 +185,27 @@ describe('triggered action chain model', () => {
       id: 'new-chain',
       scenarios: []
     }]), true);
+    assert.equal(areTriggeredActionChainsAtLeastAsStrict([], [{
+      ...baseChain,
+      id: 'new-blocking-chain'
+    }]), true);
+    assert.equal(areTriggeredActionChainsAtLeastAsStrict([], [{
+      ...baseChain,
+      id: 'new-action-only-chain',
+      scenarios: [{
+        ...baseChain.scenarios[0],
+        steps: [{ type: 'hideImages', targetRuleId: 'image_scope' }]
+      }]
+    }]), false);
+    assert.equal(areTriggeredActionChainsAtLeastAsStrict([], [{
+      ...baseChain,
+      id: 'new-disabled-action-only-chain',
+      enabled: false,
+      scenarios: [{
+        ...baseChain.scenarios[0],
+        steps: [{ type: 'hideImages', targetRuleId: 'image_scope' }]
+      }]
+    }]), true);
 
     [
       { ...baseChain, enabled: false },

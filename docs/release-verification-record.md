@@ -21,17 +21,17 @@ Commands run from the repository root:
 
 | Gate | Recorded evidence |
 | --- | --- |
-| `npm test` | Passed directly and through `npm run verify:release`; 515 unit tests passed on 2026-07-05. |
+| `npm test` | Passed directly and through `npm run verify:release`; 519 unit tests passed on 2026-07-05. |
 | `npm run verify:manifest` | Covered by `npm run verify:release`; manifest-referenced paths exist. |
 | `npm run verify:imports` | Covered by `npm run verify:release`; relative source imports resolve. |
-| `npm run verify:locales` | Covered by `npm run verify:release`; 68 locales match 921 English message keys and 68 store listing files match `_locales`. |
+| `npm run verify:locales` | Covered by `npm run verify:release`; 68 locales match 951 English message keys and 68 store listing files match `_locales`. |
 | `npm run verify:static-localization` | Covered by `npm run verify:release`; 4 static extension HTML surfaces scanned. |
 | `npm run verify:playbook` | Passed directly and through `npm run verify:release`; 68 localized store listings verified. |
 | `npm run verify:research` | Passed directly and through `npm run verify:release`; 2 answered or implemented research syntheses verified and 1 revisit synthesis tracked. |
 | `npm run audit:file-sizes` | Passed directly and through `npm run verify:release`; no files exceed documented budgets. |
 | `npm run audit:folder-density` | Passed directly and through `npm run verify:release`; no folders exceed documented budgets. |
 | `npm run package` | Generated the current extension and source ZIPs in `dist/`. |
-| `npm run verify:package` | Passed through `npm run verify:release`; 350 packaged runtime files scanned and 84 manifest references verified. |
+| `npm run verify:package` | Passed through `npm run verify:release`; 352 packaged runtime files scanned and 84 manifest references verified. |
 | `npm run verify:release` | Passed for `Defense_against_Distractions-v1.6.1` on 2026-07-05. |
 
 ## Browser-Only Evidence

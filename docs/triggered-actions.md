@@ -218,7 +218,7 @@ The first live runtime slice is implemented for current-page chains:
 - failed steps stop the chain and use the configured fallback;
 - bounded outcome events are attached to the current block diagnostics without raw trigger text, surrounding page text, form contents, full URLs, screenshots, or remote telemetry.
 
-This slice makes stored chains executable for manually or programmatically created plan records. It still does not include a full user-facing chain editor.
+This slice makes stored chains executable for plan records and gives Options a first compact authoring path. The editor is intentionally narrow: it creates simple plan-owned chains that run one existing picker-created UI rule when the plan reaches a block-score trigger, require that target to be present, optionally constrain editable versus non-editable trigger location, and either block after the action or keep the action-only behavior outside protected schedules. Rich multi-scenario authoring, keyword-specific chain selection, forbidden-target guards, and test-run diagnostics remain follow-up work.
 
 ## UI Implications
 
@@ -276,7 +276,7 @@ DaD Select quick add is a related creation shortcut: selected page text can beco
    - Add an `On trigger` editor to plan entries.
    - Add test-run/outline diagnostics before enabling.
 
-   Implementation state: not implemented yet. DaD Select can create selected-text keyword rules and picker-backed cleanup rules, but ordered chain authoring still needs a dedicated editor.
+   Implementation state: first compact editor slice implemented. A plan now has an `Actions` tab where existing UI cleanup rules can be attached as triggered actions with a target-present scenario, one bounded action step, explicit fallback blocking, optional trigger-location guard, and optional block-after-action step. During protected schedules, the shared strictness comparator rejects enabling or adding action-only chains that could suppress normal blocking. The fuller ordered multi-scenario editor with keyword-specific triggers, richer guard authoring, current-page outline/test diagnostics, and Gmail-style authored examples remains follow-up work.
 
 6. **Gmail-style examples**
    - Do not hard-code Gmail as the core feature.

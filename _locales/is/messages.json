@@ -1331,6 +1331,9 @@
     "planUiFactLabel": {
         "message": "UI"
     },
+    "planActionFactLabel": {
+        "message": "Actions"
+    },
     "planPomodoroFactLabel": {
         "message": "Pomodoro"
     },
@@ -1351,6 +1354,90 @@
     },
     "planUiRulesLabel": {
         "message": "UI cleanup rules"
+    },
+    "planActionsLabel": {
+        "message": "Actions"
+    },
+    "planActionChainsLabel": {
+        "message": "Triggered actions"
+    },
+    "planActionDefaultName": {
+        "message": "Triggered action"
+    },
+    "planActionNameLabel": {
+        "message": "Name"
+    },
+    "planActionHostLabel": {
+        "message": "Host pattern"
+    },
+    "planActionTargetLabel": {
+        "message": "Target UI rule"
+    },
+    "planActionStepLabel": {
+        "message": "Action"
+    },
+    "planActionMinimumScoreLabel": {
+        "message": "Minimum score"
+    },
+    "planActionLocationLabel": {
+        "message": "Trigger location"
+    },
+    "planActionBlockAfterLabel": {
+        "message": "Block after action"
+    },
+    "planActionEnabledLabel": {
+        "message": "Enabled"
+    },
+    "planActionNoUiRulesLabel": {
+        "message": "Create a UI cleanup rule first, then attach it here as a triggered action target."
+    },
+    "planActionNoChainsLabel": {
+        "message": "No triggered actions yet."
+    },
+    "planActionInvalidDraft": {
+        "message": "Choose a target UI rule and supported action before saving."
+    },
+    "planActionAnyHostLabel": {
+        "message": "any host"
+    },
+    "planActionNoTargetLabel": {
+        "message": "no target"
+    },
+    "planActionBlocksAfterSummary": {
+        "message": "blocks after action"
+    },
+    "planActionOnlySummary": {
+        "message": "action only"
+    },
+    "planActionStepHideElementLabel": {
+        "message": "Hide element"
+    },
+    "planActionStepClickOnceLabel": {
+        "message": "Click once"
+    },
+    "planActionStepClearFieldLabel": {
+        "message": "Clear field"
+    },
+    "planActionStepPauseMediaLabel": {
+        "message": "Pause media"
+    },
+    "planActionStepHideImagesLabel": {
+        "message": "Hide images"
+    },
+    "planActionStepDisableControlsLabel": {
+        "message": "Disable controls"
+    },
+    "planActionLocationAnyLabel": {
+        "message": "Any location"
+    },
+    "planActionLocationOutsideEditableLabel": {
+        "message": "Outside editable fields"
+    },
+    "planActionLocationEditableLabel": {
+        "message": "Inside editable field"
+    },
+    "addPlanActionButton": {
+        "message": "Add action"
     },
     "planSchedulesLabel": {
         "message": "Schedule"
@@ -1420,6 +1507,9 @@
     },
     "confirmDeleteAllowedSite": {
         "message": "Delete this allowed website?"
+    },
+    "confirmDeleteActionChain": {
+        "message": "Delete this triggered action?"
     },
     "confirmDeletePlanSchedule": {
         "message": "Delete this schedule time block?"

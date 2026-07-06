@@ -19,6 +19,7 @@ export function createPlanFactList(plan) {
     [getPlanMessage('planKeywordsFactLabel'), String(getPlanKeywordCount(plan))],
     [getPlanMessage('planAllowedFactLabel'), String(plan.allowedSites.length)],
     [getPlanMessage('planUiFactLabel'), String(plan.uiRuleIds.length)],
+    [getPlanMessage('planActionFactLabel'), String(plan.triggeredActionChains.length)],
     [getPlanMessage('planPomodoroFactLabel'), plan.pomodoro.enabled ? getPlanMessage('planEnabledLabel') : getPlanMessage('planOffLabel')],
     [getPlanMessage('planIntentFactLabel'), plan.intent.enabled ? getIntentActionLabel(plan.intent.action) : getPlanMessage('planOffLabel')]
   ].forEach(([label, value]) => {

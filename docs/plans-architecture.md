@@ -27,6 +27,7 @@ The options page now treats plans as the main protection surface:
 - Plans own allowed websites.
 - Plans own their schedules.
 - UI element blocking rules remain a global feature, but can be attached to plans.
+- Plans own triggered action chains that run bounded actions from existing UI rules when plan blocking triggers.
 - Plans own intent-coherence settings.
 - Password protection, theme settings, language, import/export, billing, and instructions remain global settings shown in the Settings panel.
 
@@ -40,6 +41,7 @@ A plan should be able to own or reference:
 - Keyword groups.
 - Allowed websites.
 - UI blocked elements.
+- Triggered actions.
 - Schedules.
 - Pomodoro settings, as defined in [DaD Pomodoro Implementation Spec](pomodoro-implementation.md).
 - Intervention mode.
@@ -70,7 +72,7 @@ The navigation is a left sidebar on wider screens and collapses into a horizonta
 
 Section ownership:
 
-- Plans owns plan creation, compact plan rows, plan entry editing, plan-owned schedules, allowed websites, plan-owned Pomodoro settings, and plan-owned intent policy.
+- Plans owns plan creation, compact plan rows, plan entry editing, plan-owned schedules, allowed websites, plan-owned triggered actions, plan-owned Pomodoro settings, and plan-owned intent policy.
 - Blocked UI owns global and plan-assigned UI element hiding rules.
 - Intent owns local intent-coherence diagnostics, score reasons, recent trajectory, export, clear, and refresh controls.
 - Usage owns bounded local hostname-level usage aggregates, export, clear, and refresh controls.
@@ -88,7 +90,7 @@ Plans should be compact by default. A compact plan row should show:
 - Active/time-block schedule summary.
 - Counts for websites, keywords, allowed websites, and UI rules.
 
-Compact plan rows navigate into plan-owned pages instead of expanding inline. `Schedule` opens the weekly schedule editor for that plan. `Entries` opens the plan name, website/keyword entries, allowed websites, and UI-rule assignment controls. Workdays, weekend, all-days, and clear-days shortcuts live in the plan schedule editor.
+Compact plan rows navigate into plan-owned pages instead of expanding inline. `Schedule` opens the weekly schedule editor for that plan. `Entries` opens the plan name, website/keyword entries, allowed websites, and UI-rule assignment controls. `Actions` opens the compact triggered-action editor for attaching existing UI cleanup targets to plan block triggers. Workdays, weekend, all-days, and clear-days shortcuts live in the plan schedule editor.
 
 Destructive plan actions should be explicit and inspectable: plan rows use icon-based delete controls on the left, and deleting a plan, entry, allowed website, or schedule time block uses an in-page confirmation dialog instead of a native browser prompt.
 
@@ -179,6 +181,7 @@ Plans are now stored in `chrome.storage.sync` under the `plans` key. Each plan h
 - `uiRuleIds`
 - `schedules`
 - `intent`
+- `triggeredActionChains`
 
 If existing users have website groups but no plans, the options page creates a default enabled plan and copies those groups into plan-owned entries. This keeps website and keyword blocking behavior stable while introducing plans as the new control surface.
 
@@ -197,6 +200,12 @@ UI element blocking is also plan-aware:
 - UI rules assigned only to disabled or inactive plans become inactive immediately.
 - The Blocked UI section shows whether each rule is global or plan-scoped, and can assign or unassign rules from plans directly.
 - Deleting a UI rule removes its plan assignments so stale plan references do not remain behind. During a protected schedule, deleting or disabling an enabled UI rule is blocked because it relaxes protection; enabling a disabled UI rule remains allowed.
+
+Triggered actions are plan-owned:
+
+- The plan Actions tab can create a simple current-page chain from an existing picker-created UI cleanup rule.
+- The first editor slice supports a block-score trigger, one target-present scenario, optional editable-field trigger location, one bounded action step, fallback blocking, and optional block-after-action.
+- During a protected schedule, adding or enabling action-only chains that could suppress normal blocking is rejected. Adding a chain that still blocks after the action remains allowed because it makes the plan stricter or equal.
 
 Intent coherence is plan-aware:
 

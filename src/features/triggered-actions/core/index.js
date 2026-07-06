@@ -3,3 +3,4 @@
 
 export * from './model.js';
 export * from './constants.js';
+export * from './editorModel.js';

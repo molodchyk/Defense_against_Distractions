@@ -88,7 +88,9 @@ export function createTriggeredActionOutcomeEvent(options = {}) {
 
 export function areTriggeredActionChainsAtLeastAsStrict(originalChains = [], nextChains = []) {
   const original = normalizeTriggeredActionChains(originalChains);
-  const nextById = new Map(normalizeTriggeredActionChains(nextChains).map(chain => [chain.id, chain]));
+  const next = normalizeTriggeredActionChains(nextChains);
+  const nextById = new Map(next.map(chain => [chain.id, chain]));
+  const originalEnabledIds = new Set(original.filter(chain => chain.enabled).map(chain => chain.id));
 
   for (const originalChain of original) {
     if (!originalChain.enabled) {
@@ -101,7 +103,11 @@ export function areTriggeredActionChainsAtLeastAsStrict(originalChains = [], nex
     }
   }
 
-  return true;
+  return next.every(nextChain => (
+    originalEnabledIds.has(nextChain.id)
+      || !nextChain.enabled
+      || isNewChainAtLeastAsStrict(nextChain)
+  ));
 }
 
 export function isTriggeredActionChainAtLeastAsStrict(originalChain = {}, nextChain = {}) {
@@ -343,6 +349,13 @@ function isRunPolicyAtLeastAsStrict(originalPolicy, nextPolicy) {
   }
 
   return nextPolicy.cooldownSeconds <= originalPolicy.cooldownSeconds;
+}
+
+function isNewChainAtLeastAsStrict(chain) {
+  return chain.scenarios.length === 0
+    || chain.scenarios.every(scenario => (
+      scenario.steps.some(step => step.type === TRIGGERED_ACTION_STEP_TYPES.BLOCK_PAGE)
+    ));
 }
 
 function haveSameGuardSet(originalGuards, nextGuards) {

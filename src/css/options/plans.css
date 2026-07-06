@@ -273,12 +273,14 @@
 }
 
 .plan-entry-list,
-.allowed-site-list {
+.allowed-site-list,
+.plan-action-chain-list {
     display: grid;
     gap: 10px;
 }
 
-.plan-entry-item {
+.plan-entry-item,
+.plan-action-chain-item {
     display: grid;
     grid-template-columns: minmax(180px, 0.8fr) minmax(220px, 1fr) minmax(220px, 1fr) auto;
     gap: 10px;
@@ -289,9 +291,24 @@
     background: var(--surface);
 }
 
+.plan-action-chain-item {
+    grid-template-columns: minmax(180px, 0.8fr) minmax(260px, 1fr) auto;
+    align-items: center;
+}
+
+.plan-action-chain-item p {
+    margin: 0;
+}
+
 .plan-entry-field {
     display: grid;
     gap: 6px;
+}
+
+.plan-action-form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 10px;
 }
 
 .plan-pomodoro-grid {

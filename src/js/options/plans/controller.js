@@ -19,6 +19,7 @@ import {
   createIconButton,
   createTextNavigationButton
 } from './dom.js';
+import { createPlanActionEditor } from './actionEditor.js';
 import { uniqueStrings } from './collections.js';
 import { createPlanEntriesEditor } from './entriesEditor.js';
 import {
@@ -161,6 +162,7 @@ function createPlanItem(plan, isLocked) {
   navigation.className = 'plan-row-navigation';
   navigation.appendChild(createTextNavigationButton(getPlanMessage('planSchedulesLabel'), () => openPlanView(normalizedPlan.id, 'schedule')));
   navigation.appendChild(createTextNavigationButton(getPlanMessage('planEntriesLabel'), () => openPlanView(normalizedPlan.id, 'entries')));
+  navigation.appendChild(createTextNavigationButton(getPlanMessage('planActionsLabel'), () => openPlanView(normalizedPlan.id, 'actions')));
   navigation.appendChild(createTextNavigationButton(getPlanMessage('planPomodoroLabel'), () => openPlanView(normalizedPlan.id, 'pomodoro')));
   navigation.appendChild(createTextNavigationButton(getPlanMessage('planIntentLabel'), () => openPlanView(normalizedPlan.id, 'intent')));
 
@@ -210,6 +212,7 @@ function createPlanPage(plan, plans, elementRules, isLocked) {
   navigation.className = 'plan-page-navigation';
   navigation.appendChild(createPlanPageTab('schedule', getPlanMessage('planSchedulesLabel')));
   navigation.appendChild(createPlanPageTab('entries', getPlanMessage('planEntriesLabel')));
+  navigation.appendChild(createPlanPageTab('actions', getPlanMessage('planActionsLabel')));
   navigation.appendChild(createPlanPageTab('pomodoro', getPlanMessage('planPomodoroLabel')));
   navigation.appendChild(createPlanPageTab('intent', getPlanMessage('planIntentLabel')));
 
@@ -220,6 +223,15 @@ function createPlanPage(plan, plans, elementRules, isLocked) {
 
   if (activePlanView.view === 'schedule') {
     page.appendChild(createPlanScheduleEditor(plan, isLocked, { onRender: renderPlans }));
+  } else if (activePlanView.view === 'actions') {
+    page.appendChild(createPlanActionEditor({
+      plan,
+      elementRules,
+      isLocked,
+      onUpdateTriggeredActionChains: (planId, triggeredActionChains) => {
+        updatePlan(planId, next => ({ ...next, triggeredActionChains }));
+      }
+    }));
   } else if (activePlanView.view === 'pomodoro') {
     page.appendChild(createPlanPomodoroEditor(plan, isLocked, {
       onSaveSettings: (planId, pomodoro) => updatePlan(planId, next => ({ ...next, pomodoro }))

@@ -88,6 +88,7 @@ Use this checklist before publishing a new extension release.
 - Use the UI element picker to hide one repeated control, outline matched controls, test bounded click-once, clear-field, and pause-media actions on harmless targets, adjust match settings, save a rule, and delete it from options.
 - During an active locked schedule, confirm enabling a disabled UI element rule still works, while disabling or deleting an enabled UI element rule is rejected.
 - Confirm UI element rules sync live between popup/content picker/options without reloading the options page.
+- Open a plan's Actions tab, create a triggered action from an existing UI cleanup rule, confirm it appears in the plan fact count, and during an active locked schedule confirm action-only chains cannot be added or enabled while block-after-action chains remain allowed.
 - With an active plan intent policy that uses `block`, trigger a hard chain quarantine, confirm the on-page prompt shows count-only drift-tab scope, wait for the cooldown, and confirm the current tab plus known same-chain drift descendants return to the last coherent page without closing the current tab when auto-close is off.
 - Enable the plan's stricter auto-close current-tab setting, trigger a hard chain quarantine, wait for the cooldown, and confirm only the current quarantined tab closes while Return remains available during the cooldown.
 - Test export and import.
