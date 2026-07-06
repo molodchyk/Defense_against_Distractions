@@ -22,7 +22,8 @@ export const QUICK_ADD_ACTION_PRESETS = Object.freeze({
   KEYWORD_ONLY: 'keywordOnly',
   BLOCK_PAGE: 'blockPage',
   HIDE_IMAGES: 'hideImages',
-  DISABLE_CONTROLS: 'disableControls'
+  DISABLE_CONTROLS: 'disableControls',
+  ACTION_CHAIN: 'actionChain'
 });
 
 const QUICK_ADD_ELEMENT_ACTION_PRESETS = new Set([

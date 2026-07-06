@@ -2158,6 +2158,9 @@
     "popupQuickAddBlockPageOption": {
         "message": "Block page"
     },
+    "popupQuickAddActionChainOption": {
+        "message": "Action chain"
+    },
     "popupQuickAddScoreLabel": {
         "message": "Score"
     },
@@ -2190,6 +2193,12 @@
     },
     "popupQuickAddSaved": {
         "message": "Selected text rule saved."
+    },
+    "popupQuickAddSavedOpenActions": {
+        "message": "Selected text rule saved. Opening Actions."
+    },
+    "popupQuickAddOpenActions": {
+        "message": "Opening Actions for this plan."
     },
     "popupQuickAddAlreadyCovered": {
         "message": "Selected text is already covered."

@@ -1,9 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2023-2026 Oleksandr Molodchyk
 
-import {
-  getSync
-} from '../../../platform/chrome/storage.js';
+import { getSync } from '../../../platform/chrome/storage.js';
 import {
   savePlansWithPriority
 } from '../../../features/plans/storage/criticalScheduleStorage.js';
@@ -14,9 +12,7 @@ import {
   normalizePlans,
   PLANS_STORAGE_KEY
 } from '../../shared/plans.js';
-import {
-  normalizeSelectedTextCandidate
-} from '../pageSignalsPanel.js';
+import { normalizeSelectedTextCandidate } from '../pageSignalsPanel.js';
 import {
   QUICK_ADD_ACTION_PRESETS,
   applySelectedTextQuickAdd,
@@ -38,6 +34,7 @@ export function createSelectedTextQuickAddPanel({
   sendRuntimeMessage,
   sendTabMessage,
   startElementPicker,
+  openPlanActions,
   setStatus,
   onPlansChange
 }) {
@@ -213,6 +210,9 @@ export function createSelectedTextQuickAddPanel({
     }, {
       value: QUICK_ADD_ACTION_PRESETS.DISABLE_CONTROLS,
       label: getMessage('elementPickerDisableControlsActionOption')
+    }, {
+      value: QUICK_ADD_ACTION_PRESETS.ACTION_CHAIN,
+      label: getMessage('popupQuickAddActionChainOption')
     }], selectedActionPreset);
   }
 
@@ -223,6 +223,10 @@ export function createSelectedTextQuickAddPanel({
   function isCleanupPreset() {
     return selectedActionPreset === QUICK_ADD_ACTION_PRESETS.HIDE_IMAGES
       || selectedActionPreset === QUICK_ADD_ACTION_PRESETS.DISABLE_CONTROLS;
+  }
+
+  function isActionChainPreset() {
+    return selectedActionPreset === QUICK_ADD_ACTION_PRESETS.ACTION_CHAIN;
   }
 
   function getSelectedScore(scoreInput) {
@@ -337,12 +341,7 @@ export function createSelectedTextQuickAddPanel({
         return false;
       }
 
-      if (!result.changed && !isCleanupPreset()) {
-        setStatus?.(getMessage('popupQuickAddAlreadyCovered'));
-        return false;
-      }
-
-      if (!result.changed && isCleanupPreset() && !startElementPicker) {
+      if (!result.changed && !canContinueWithoutPlanChange()) {
         setStatus?.(getMessage('popupQuickAddAlreadyCovered'));
         return false;
       }
@@ -361,6 +360,11 @@ export function createSelectedTextQuickAddPanel({
         });
         return true;
       }
+      if (isActionChainPreset() && openPlanActions) {
+        setStatus?.(getMessage(result.changed ? 'popupQuickAddSavedOpenActions' : 'popupQuickAddOpenActions'));
+        openPlanActions(selectedPlanId);
+        return true;
+      }
       if (activeTab?.id && sendTabMessage) {
         sendTabMessage(activeTab.id, { action: SITE_CHECK_MESSAGE }).catch(() => {});
       }
@@ -373,6 +377,10 @@ export function createSelectedTextQuickAddPanel({
     } finally {
       render();
     }
+  }
+
+  function canContinueWithoutPlanChange() {
+    return (isCleanupPreset() && startElementPicker) || (isActionChainPreset() && openPlanActions);
   }
 
   function bindEvents() {

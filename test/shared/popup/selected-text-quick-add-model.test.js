@@ -115,6 +115,7 @@ describe('selected text quick-add model', () => {
 
   it('normalizes quick-add action presets and makes block-page scoring explicit', () => {
     assert.equal(normalizeQuickAddActionPreset('unknown'), QUICK_ADD_ACTION_PRESETS.KEYWORD_ONLY);
+    assert.equal(normalizeQuickAddActionPreset('actionChain'), QUICK_ADD_ACTION_PRESETS.ACTION_CHAIN);
     assert.deepEqual(compileQuickAddActionPreset({
       actionPreset: QUICK_ADD_ACTION_PRESETS.BLOCK_PAGE,
       candidate: { text: 'Rama Aurora', estimatedScore100: 36 },
@@ -140,6 +141,27 @@ describe('selected text quick-add model', () => {
     assert.equal(result.keywordLine, 'Rama Aurora, 100/100');
     assert.equal(result.score100, 100);
     assert.equal(result.currentPage.wouldBlockByKeywordAlone, true);
+  });
+
+  it('saves selected text before routing action-chain authoring to the plan Actions editor', () => {
+    const result = applySelectedTextQuickAdd([basePlan()], {
+      actionPreset: QUICK_ADD_ACTION_PRESETS.ACTION_CHAIN,
+      planId: 'default',
+      groupId: 'entry_matching',
+      candidate: { text: 'Rama Aurora', estimatedScore100: 36 },
+      score: 36,
+      url: 'https://mail.google.com/mail/u/0/#inbox',
+      now: ACTIVE_NOW
+    });
+
+    assert.equal(result.changed, true);
+    assert.equal(result.actionPreset.preset, QUICK_ADD_ACTION_PRESETS.ACTION_CHAIN);
+    assert.equal(result.actionPreset.requiresElementScope, false);
+    assert.deepEqual(result.elementRules, []);
+    assert.deepEqual(result.plans[0].groups[0].keywords, [
+      'old topic, 10/100',
+      'Rama Aurora, 36/100'
+    ]);
   });
 
   it('requires a picked element scope before compiling cleanup action presets', () => {

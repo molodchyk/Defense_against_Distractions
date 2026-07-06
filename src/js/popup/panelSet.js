@@ -35,6 +35,7 @@ export function createPopupPanelSet({
   getSyncStorage,
   isExtensionPage,
   startElementPicker,
+  openPlanActions,
   sendRuntimeMessage,
   sendTabMessage,
   updateTabUrl,
@@ -58,6 +59,7 @@ export function createPopupPanelSet({
     sendRuntimeMessage,
     sendTabMessage,
     startElementPicker,
+    openPlanActions,
     setStatus,
     onPlansChange(plans) {
       protectionSummaryPanel?.setPlans(plans);

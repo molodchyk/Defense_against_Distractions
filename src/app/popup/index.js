@@ -15,6 +15,7 @@ import {
   openFeedback,
   openIntentDiagnostics,
   openOptions,
+  openPlanActions,
   sendRuntimeMessage,
   sendTabMessage,
   updateTabUrl
@@ -39,6 +40,7 @@ const panels = createPopupPanelSet({
   getSyncStorage,
   isExtensionPage,
   startElementPicker,
+  openPlanActions,
   sendRuntimeMessage,
   sendTabMessage,
   updateTabUrl,

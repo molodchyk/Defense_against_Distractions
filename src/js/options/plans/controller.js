@@ -22,30 +22,22 @@ import {
 import { createPlanActionEditor } from './actionEditor.js';
 import { uniqueStrings } from './collections.js';
 import { createPlanEntriesEditor } from './entriesEditor.js';
-import {
-  ELEMENT_RULE_IDS_STORAGE_KEY,
-  ELEMENT_RULE_ITEM_PREFIX,
-  getElementRuleSummaries
-} from './elementRules.js';
+import { ELEMENT_RULE_IDS_STORAGE_KEY, ELEMENT_RULE_ITEM_PREFIX, getElementRuleSummaries } from './elementRules.js';
 import { createPlanFactList } from './facts.js';
 import { createPlanIntentEditor } from './intentEditor.js';
 import { ensureDefaultPlan } from './migration.js';
 import { getPlanMessage } from './messages.js';
-import {
-  createPlanPomodoroEditor,
-  startPlanPomodoroStatusPolling,
-  stopPlanPomodoroStatusPolling
-} from './pomodoroEditor.js';
-import {
-  clearPlanScheduleState,
-  createPlanScheduleEditor
-} from './scheduleEditor.js';
+import { createPlanPomodoroEditor, startPlanPomodoroStatusPolling, stopPlanPomodoroStatusPolling } from './pomodoroEditor.js';
+import { clearPlanScheduleState, createPlanScheduleEditor } from './scheduleEditor.js';
 
 let activePlanView = null;
+const PLAN_VIEW_NAMES = new Set(['schedule', 'entries', 'actions', 'pomodoro', 'intent']);
 
 export function initializePlans() {
   localizePlanShell();
   bindPlanShellEvents();
+  syncPlanViewFromHash();
+  window.addEventListener('hashchange', handlePlanHashChange);
   ensureDefaultPlan().then(renderPlans).catch(error => {
     console.error('Failed to initialize plans:', error);
   });
@@ -67,6 +59,35 @@ export function initializePlans() {
       });
     }
   });
+}
+
+export function getPlanViewFromOptionsHash(hash = '') {
+  const [panelId, query = ''] = String(hash || '').trim().replace(/^#/, '').split('?');
+  if (panelId !== 'plansPanel') {
+    return null;
+  }
+
+  const params = new URLSearchParams(query);
+  const planId = String(params.get('planId') || '').trim();
+  const view = String(params.get('view') || 'entries').trim();
+  return planId && PLAN_VIEW_NAMES.has(view) ? { planId, view } : null;
+}
+
+function syncPlanViewFromHash() {
+  const nextPlanView = getPlanViewFromOptionsHash(window.location.hash);
+  if (!nextPlanView) {
+    return false;
+  }
+
+  const changed = !activePlanView || activePlanView.planId !== nextPlanView.planId || activePlanView.view !== nextPlanView.view;
+  activePlanView = nextPlanView;
+  return changed;
+}
+
+function handlePlanHashChange() {
+  if (syncPlanViewFromHash()) {
+    renderPlans();
+  }
 }
 
 function localizePlanShell() {

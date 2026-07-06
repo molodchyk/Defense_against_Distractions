@@ -21,14 +21,14 @@ Commands run from the repository root:
 
 | Gate | Recorded evidence |
 | --- | --- |
-| `npm test` | Passed directly and through `npm run verify:release`; 558 unit tests passed on 2026-07-06. |
+| `npm test` | Passed directly and through `npm run verify:release`; 561 unit tests passed on 2026-07-06. |
 | `npm run verify:manifest` | Covered by `npm run verify:release`; 85 manifest-referenced paths exist. |
-| `npm run verify:imports` | Passed directly and covered by `npm run verify:release`; 400 relative source files scanned. |
-| `npm run verify:locales` | Passed directly and covered by `npm run verify:release`; 68 locales match 995 English message keys and 68 store listing files match `_locales`. |
+| `npm run verify:imports` | Passed directly and covered by `npm run verify:release`; 401 relative source files scanned. |
+| `npm run verify:locales` | Passed directly and covered by `npm run verify:release`; 68 locales match 998 English message keys and 68 store listing files match `_locales`. |
 | `npm run verify:static-localization` | Covered by `npm run verify:release`; 4 static extension HTML surfaces scanned. |
 | `npm run verify:playbook` | Passed directly and through `npm run verify:release`; 68 localized store listings verified. |
 | `npm run verify:research` | Passed directly and through `npm run verify:release`; 2 answered or implemented research syntheses verified and 1 revisit synthesis tracked. |
-| `npm run audit:file-sizes` | Passed directly and through `npm run verify:release`; 424 budgeted files checked and no files exceed documented budgets. |
+| `npm run audit:file-sizes` | Passed directly and through `npm run verify:release`; 425 budgeted files checked and no files exceed documented budgets. |
 | `npm run audit:folder-density` | Passed directly and through `npm run verify:release`; 88 budgeted folders checked and no folders exceed documented budgets. |
 | `npm run package` | Generated the current extension and source ZIPs in `dist/`. |
 | `npm run verify:package` | Passed directly and through `npm run verify:release`; 360 packaged runtime files scanned and 85 manifest references verified. |
@@ -55,7 +55,7 @@ Tester: project owner, user-reported
 Automated static gates: passed on 2026-07-06 through npm run verify:release
 Browser-load result: command not run
 Manual QA result: user reported that manual QA looks working
-Notes: Keep npm run verify:browser-load separate; only run it in a safe isolated browser/profile. Popup triggered-action preview and the plan Actions draft outline were added after the broad manual QA pass and should be checked manually before publishing.
+Notes: Keep npm run verify:browser-load separate; only run it in a safe isolated browser/profile. Popup triggered-action preview, the plan Actions draft outline, and the DaD Select action-chain preset were added after the broad manual QA pass and should be checked manually before publishing.
 ```
 
 ## Manual QA Recording Format

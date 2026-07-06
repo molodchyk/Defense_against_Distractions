@@ -37,6 +37,14 @@ export function getOptionsPagePath(panelId = '') {
   return normalizedPanelId ? `src/options.html#${normalizedPanelId}` : 'src/options.html';
 }
 
+export function getPlanActionsPanelId(planId = '') {
+  const normalizedPlanId = String(planId || '').trim();
+  const planQuery = normalizedPlanId
+    ? `?planId=${encodeURIComponent(normalizedPlanId)}&view=actions`
+    : '';
+  return `plansPanel${planQuery}`;
+}
+
 export function openOptions() {
   openOptionsPage();
   window.close();
@@ -55,6 +63,10 @@ export function openOptionsPanel(panelId) {
 
 export function openIntentDiagnostics() {
   openOptionsPanel('intentDiagnosticsPanel');
+}
+
+export function openPlanActions(planId) {
+  openOptionsPanel(getPlanActionsPanelId(planId));
 }
 
 export function openFeedback() {

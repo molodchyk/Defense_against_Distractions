@@ -242,7 +242,7 @@ Possible UI:
 
 The action list should stay compact. Advanced actions should be behind an expand/edit control so this does not turn plan editing into a general scripting IDE.
 
-DaD Select quick add is a related creation shortcut: selected page text can become a keyword with an editable score estimate and optional safe action presets, while ordered steps, scenario guards, and fallbacks still belong in this triggered-action editor. See [DaD Select quick add](selected-text-quick-add.md).
+DaD Select quick add is a related creation shortcut: selected page text can become a keyword with an editable score estimate and optional safe action presets. Its action-chain preset saves or confirms the selected keyword and opens the selected plan's Actions editor, while ordered steps, scenario guards, and fallbacks still belong in this triggered-action editor. See [DaD Select quick add](selected-text-quick-add.md).
 
 ## Implementation Phases
 
