@@ -47,6 +47,33 @@ describe('triggered action editor model', () => {
     assert.equal(chain.scenarios[0].fallback.type, TRIGGERED_ACTION_STEP_TYPES.BLOCK_PAGE);
   });
 
+  it('compiles a second ordered target-backed action before optional blocking', () => {
+    const chain = createSimpleTriggeredActionChain({
+      id: 'gmail_remove_thread',
+      targetRuleId: 'gmail_trash_button',
+      stepType: TRIGGERED_ACTION_STEP_TYPES.CLICK_ONCE,
+      additionalSteps: [{
+        targetRuleId: 'gmail_thread_row',
+        stepType: TRIGGERED_ACTION_STEP_TYPES.HIDE_ELEMENT
+      }]
+    });
+
+    assert.deepEqual(chain.scenarios[0].guards, [{
+      type: 'target',
+      id: 'gmail_trash_button',
+      invert: false
+    }, {
+      type: 'target',
+      id: 'gmail_thread_row',
+      invert: false
+    }]);
+    assert.deepEqual(chain.scenarios[0].steps.map(step => [step.type, step.targetRuleId]), [
+      [TRIGGERED_ACTION_STEP_TYPES.CLICK_ONCE, 'gmail_trash_button'],
+      [TRIGGERED_ACTION_STEP_TYPES.HIDE_ELEMENT, 'gmail_thread_row'],
+      [TRIGGERED_ACTION_STEP_TYPES.BLOCK_PAGE, '']
+    ]);
+  });
+
   it('can compile an action-only chain while keeping fallback block explicit', () => {
     const chain = createSimpleTriggeredActionChain({
       id: 'quiet_page',
@@ -104,6 +131,36 @@ describe('triggered action editor model', () => {
     assert.equal(createSimpleTriggeredActionChain({
       targetRuleId: '',
       stepType: TRIGGERED_ACTION_STEP_TYPES.HIDE_ELEMENT
+    }), null);
+  });
+
+  it('rejects unsupported or unbounded additional action steps', () => {
+    assert.deepEqual(getSimpleTriggeredActionChainDraftErrors({
+      targetRuleId: 'target',
+      stepType: TRIGGERED_ACTION_STEP_TYPES.HIDE_ELEMENT,
+      additionalSteps: [{
+        targetRuleId: '',
+        stepType: TRIGGERED_ACTION_STEP_TYPES.CLICK_ONCE
+      }]
+    }), ['additionalSteps[0].targetRuleId']);
+
+    assert.deepEqual(getSimpleTriggeredActionChainDraftErrors({
+      targetRuleId: 'target',
+      stepType: TRIGGERED_ACTION_STEP_TYPES.HIDE_ELEMENT,
+      secondTargetRuleId: 'second-target',
+      secondStepType: 'submitForm'
+    }), ['additionalSteps[0].stepType']);
+
+    assert.equal(createSimpleTriggeredActionChain({
+      targetRuleId: 'target',
+      stepType: TRIGGERED_ACTION_STEP_TYPES.HIDE_ELEMENT,
+      additionalSteps: [{
+        targetRuleId: 'second',
+        stepType: TRIGGERED_ACTION_STEP_TYPES.HIDE_ELEMENT
+      }, {
+        targetRuleId: 'third',
+        stepType: TRIGGERED_ACTION_STEP_TYPES.HIDE_ELEMENT
+      }]
     }), null);
   });
 

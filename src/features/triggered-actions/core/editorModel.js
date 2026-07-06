@@ -28,6 +28,8 @@ export const SIMPLE_CHAIN_TRIGGER_TYPES = Object.freeze([
   TRIGGERED_ACTION_TRIGGER_TYPES.STRUCTURAL
 ]);
 
+export const MAX_SIMPLE_CHAIN_ACTION_STEPS = 2;
+
 export function getSimpleTriggeredActionChainDraftErrors(draft = {}) {
   const errors = [];
 
@@ -47,6 +49,21 @@ export function getSimpleTriggeredActionChainDraftErrors(draft = {}) {
     errors.push('triggerType');
   }
 
+  const additionalSteps = getAdditionalActionStepDrafts(draft);
+  if (additionalSteps.length > MAX_SIMPLE_CHAIN_ACTION_STEPS - 1) {
+    errors.push('additionalSteps');
+  }
+
+  additionalSteps.forEach((step, index) => {
+    if (!normalizeId(step.targetRuleId)) {
+      errors.push(`additionalSteps[${index}].targetRuleId`);
+    }
+
+    if (!SIMPLE_CHAIN_STEP_TYPES.includes(step.stepType)) {
+      errors.push(`additionalSteps[${index}].stepType`);
+    }
+  });
+
   return errors;
 }
 
@@ -62,8 +79,15 @@ export function createSimpleTriggeredActionChain(draft = {}, existingChains = []
   const triggerType = normalizeTriggerType(draft.triggerType);
   const triggerIds = normalizeTriggerIds(draft.triggerIds ?? draft.triggerFilter);
   const steps = [
-    { type: stepType, targetRuleId }
+    { type: stepType, targetRuleId },
+    ...getAdditionalActionStepDrafts(draft).map(step => ({
+      type: step.stepType,
+      targetRuleId: normalizeId(step.targetRuleId)
+    }))
   ];
+  const guards = steps
+    .filter(step => normalizeId(step.targetRuleId))
+    .map(step => ({ type: 'target', id: normalizeId(step.targetRuleId) }));
 
   if (blockAfterAction) {
     steps.push({
@@ -85,7 +109,7 @@ export function createSimpleTriggeredActionChain(draft = {}, existingChains = []
     },
     scenarios: [{
       id: 'target-present',
-      guards: [{ type: 'target', id: targetRuleId }],
+      guards,
       triggerLocation: String(draft.triggerLocation || ''),
       steps,
       fallback: { type: TRIGGERED_ACTION_STEP_TYPES.BLOCK_PAGE }
@@ -97,6 +121,21 @@ export function createSimpleTriggeredActionChain(draft = {}, existingChains = []
       stopOnFirstFailure: true
     }
   });
+}
+
+function getAdditionalActionStepDrafts(draft = {}) {
+  const rawSteps = Array.isArray(draft.additionalSteps) ? draft.additionalSteps : [];
+  const legacySecondStep = draft.secondStepType || draft.secondTargetRuleId
+    ? [{ stepType: draft.secondStepType, targetRuleId: draft.secondTargetRuleId }]
+    : [];
+
+  return [...rawSteps, ...legacySecondStep]
+    .filter(step => step && typeof step === 'object')
+    .map(step => ({
+      stepType: step.stepType,
+      targetRuleId: step.targetRuleId
+    }))
+    .filter(step => step.stepType || normalizeId(step.targetRuleId));
 }
 
 function normalizeTriggerType(value) {

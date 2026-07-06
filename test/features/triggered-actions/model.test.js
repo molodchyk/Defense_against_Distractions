@@ -132,6 +132,35 @@ describe('triggered action chain model', () => {
     assert.deepEqual(ambiguous.steps, []);
   });
 
+  it('treats removing ordered target-backed action steps as less strict', () => {
+    const multiActionChain = {
+      ...baseChain,
+      scenarios: [{
+        ...baseChain.scenarios[0],
+        guards: [
+          { type: 'target', id: 'trash-button-present' },
+          { type: 'target', id: 'gmail-thread-row' }
+        ],
+        steps: [
+          { type: 'clickOnce', targetRuleId: 'gmail-trash-button' },
+          { type: 'hideElement', targetRuleId: 'gmail-thread-row' },
+          { type: 'blockPage', reason: 'cleanup-complete' }
+        ]
+      }]
+    };
+
+    assert.equal(isTriggeredActionChainAtLeastAsStrict(multiActionChain, {
+      ...multiActionChain,
+      scenarios: [{
+        ...multiActionChain.scenarios[0],
+        steps: [
+          { type: 'clickOnce', targetRuleId: 'gmail-trash-button' },
+          { type: 'blockPage', reason: 'cleanup-complete' }
+        ]
+      }]
+    }), false);
+  });
+
   it('creates bounded local outcome events without raw trigger text or page content', () => {
     const event = createTriggeredActionOutcomeEvent({
       chain: baseChain,

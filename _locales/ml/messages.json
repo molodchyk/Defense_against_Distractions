@@ -1385,6 +1385,15 @@
     "planActionStepLabel": {
         "message": "Action"
     },
+    "planActionSecondStepLabel": {
+        "message": "Then action"
+    },
+    "planActionSecondTargetLabel": {
+        "message": "Then target UI rule"
+    },
+    "planActionSecondStepNoneLabel": {
+        "message": "No second action"
+    },
     "planActionMinimumScoreLabel": {
         "message": "Minimum score"
     },
@@ -1417,6 +1426,12 @@
     },
     "planActionOnlySummary": {
         "message": "action only"
+    },
+    "planActionTargetStepSummary": {
+        "message": "$1: $2"
+    },
+    "planActionStepSequenceSummary": {
+        "message": "$1 then $2"
     },
     "planActionTriggerAnyScoreLabel": {
         "message": "Any block score"

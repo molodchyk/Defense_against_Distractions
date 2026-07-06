@@ -114,7 +114,7 @@ Initial preset candidates:
 - `Keyword + block page`: add the keyword with a score high enough to block under the chosen entry threshold.
 - `Keyword + hide images`: add the keyword and attach a bounded image-hiding action for matching pages or matching containers.
 - `Keyword + disable controls`: add the keyword and attach a bounded control-disabling action for matching pages or matching containers.
-- `Keyword + action chain`: open the fuller triggered-action editor when that exists.
+- `Keyword + action chain`: open the plan Actions editor so the user can attach ordered bounded actions to the keyword trigger.
 
 Implementation state: `Keyword only` preserves the edited score; `Keyword + block page` compiles by raising the saved keyword to `100/100`; `Keyword + hide images` and `Keyword + disable controls` are exposed through a picker-backed two-step flow. The popup saves the selected keyword, then opens the page picker with `hideImages` or `disableControls` preselected. The picker creates a normal enabled UI cleanup rule only after the user chooses a concrete scope, then adds that rule ID to the selected plan's `uiRuleIds`. The lower-level compiler still makes cleanup presets return `needsElementScope` and do not mutate plans or create UI rules when a caller requests a cleanup preset without a picker-produced scope.
 

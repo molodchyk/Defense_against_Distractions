@@ -10,8 +10,8 @@ Use it as the short release evidence log. Do not mark browser-only items as pass
 - Extension archive: `dist/Defense_against_Distractions-v1.6.1-extension.zip`
 - Source archive: `dist/Defense_against_Distractions-v1.6.1-source.zip`
 - Static verification status: passed on 2026-07-06 for the current `1.6.1` package after `npm run verify:playbook`, `npm run verify:research`, `npm test`, `npm run package`, `npm run verify:package`, and `npm run verify:release`.
-- Browser-load status: command not run on this active workstation; manual target-browser behavior user-reported working on 2026-06-25.
-- Manual browser QA status: user-reported pass on 2026-06-25.
+- Browser-load status: command not run on this active workstation; manual target-browser behavior user-reported working on 2026-07-06.
+- Manual browser QA status: user-reported pass on 2026-07-06.
 
 ## Static Gate Evidence
 
@@ -21,10 +21,10 @@ Commands run from the repository root:
 
 | Gate | Recorded evidence |
 | --- | --- |
-| `npm test` | Passed directly and through `npm run verify:release`; 522 unit tests passed on 2026-07-06. |
+| `npm test` | Passed directly and through `npm run verify:release`; 525 unit tests passed on 2026-07-06. |
 | `npm run verify:manifest` | Covered by `npm run verify:release`; manifest-referenced paths exist. |
 | `npm run verify:imports` | Covered by `npm run verify:release`; relative source imports resolve. |
-| `npm run verify:locales` | Covered by `npm run verify:release`; 68 locales match 983 English message keys and 68 store listing files match `_locales`. |
+| `npm run verify:locales` | Covered by `npm run verify:release`; 68 locales match 988 English message keys and 68 store listing files match `_locales`. |
 | `npm run verify:static-localization` | Covered by `npm run verify:release`; 4 static extension HTML surfaces scanned. |
 | `npm run verify:playbook` | Passed directly and through `npm run verify:release`; 68 localized store listings verified. |
 | `npm run verify:research` | Passed directly and through `npm run verify:release`; 2 answered or implemented research syntheses verified and 1 revisit synthesis tracked. |
@@ -46,7 +46,7 @@ These checks must be recorded separately because they require an isolated browse
 ## Manual QA Evidence
 
 ```text
-Date: 2026-06-25
+Date: 2026-07-06
 Version: 1.6.1
 Browser and version: user-reported Chromium-based browser; exact version not captured in chat
 Profile/environment: user-reported local browser extension environment; automated browser-load command not run on this active workstation
