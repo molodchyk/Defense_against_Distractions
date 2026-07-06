@@ -35,6 +35,7 @@ Version 1.6.1:
 - added a popup Inspect preview panel for active saved triggered actions on the current tab
 - extended the simple triggered-action compiler with a bounded alternative-scenario draft for two-state cases such as received content versus editable composition
 - exposed bounded alternative-scenario authoring in the plan Actions editor so a chain can target a second page state with its own target, action, absent-target guard, and trigger-location guard
+- added plan-derived keyword and structural-token suggestions to the plan Actions trigger filter so action chains can be attached to existing plan triggers without retyping them from memory
 
 Version 1.6.0:
 

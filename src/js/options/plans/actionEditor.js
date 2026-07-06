@@ -25,7 +25,10 @@ import {
   createTriggerOptions,
   formatChainSummary
 } from './actionEditorSummary.js';
+import { collectPlanTriggerFilterOptions } from './actionEditorTriggers.js';
 import { getPlanMessage } from './messages.js';
+
+let triggerFilterDatalistCounter = 0;
 
 export function createPlanActionEditor({
   plan,
@@ -65,6 +68,8 @@ function createChainAddSection({ plan, elementRules, isLocked, onUpdateTriggered
   );
   const triggerTypeSelect = createSelectInput(createTriggerOptions(), TRIGGERED_ACTION_TRIGGER_TYPES.BLOCK_SCORE, false);
   const triggerFilterInput = createTextInput('', getPlanMessage('planActionTriggerFilterPlaceholder'));
+  const triggerFilterDatalist = createTriggerFilterDatalist();
+  triggerFilterInput.setAttribute('list', triggerFilterDatalist.id);
   const stepSelect = createSelectInput(createStepOptions(), TRIGGERED_ACTION_STEP_TYPES.HIDE_ELEMENT, false);
   const secondStepSelect = createSelectInput(createSecondStepOptions(), '', false);
   const secondTargetSelect = createSelectInput(
@@ -94,7 +99,7 @@ function createChainAddSection({ plan, elementRules, isLocked, onUpdateTriggered
     }
   });
   triggerTypeSelect.addEventListener('change', () => {
-    syncTriggerFilterState(triggerTypeSelect, triggerFilterInput);
+    syncTriggerFilterState(plan, triggerTypeSelect, triggerFilterInput, triggerFilterDatalist);
   });
   secondStepSelect.addEventListener('change', () => {
     syncSecondActionState(secondStepSelect, secondTargetSelect);
@@ -107,14 +112,16 @@ function createChainAddSection({ plan, elementRules, isLocked, onUpdateTriggered
       alternativeLocationSelect
     ]);
   });
-  syncTriggerFilterState(triggerTypeSelect, triggerFilterInput);
+  syncTriggerFilterState(plan, triggerTypeSelect, triggerFilterInput, triggerFilterDatalist);
   syncSecondActionState(secondStepSelect, secondTargetSelect);
 
   grid.appendChild(createLabeledControl(getPlanMessage('planActionNameLabel'), nameInput));
   grid.appendChild(createLabeledControl(getPlanMessage('planActionHostLabel'), hostInput));
   grid.appendChild(createLabeledControl(getPlanMessage('planActionTargetLabel'), targetSelect));
   grid.appendChild(createLabeledControl(getPlanMessage('planActionTriggerTypeLabel'), triggerTypeSelect));
-  grid.appendChild(createLabeledControl(getPlanMessage('planActionTriggerFilterLabel'), triggerFilterInput));
+  const triggerFilterField = createLabeledControl(getPlanMessage('planActionTriggerFilterLabel'), triggerFilterInput);
+  triggerFilterField.appendChild(triggerFilterDatalist);
+  grid.appendChild(triggerFilterField);
   grid.appendChild(createLabeledControl(getPlanMessage('planActionStepLabel'), stepSelect));
   grid.appendChild(createLabeledControl(getPlanMessage('planActionSecondStepLabel'), secondStepSelect));
   grid.appendChild(createLabeledControl(getPlanMessage('planActionSecondTargetLabel'), secondTargetSelect));
@@ -270,12 +277,38 @@ function createTextInput(value, placeholder = '') {
   return input;
 }
 
-function syncTriggerFilterState(triggerTypeSelect, triggerFilterInput) {
-  const needsFilter = triggerTypeSelect.value !== TRIGGERED_ACTION_TRIGGER_TYPES.BLOCK_SCORE;
+function createTriggerFilterDatalist() {
+  const datalist = document.createElement('datalist');
+  triggerFilterDatalistCounter += 1;
+  datalist.id = `plan-action-trigger-filter-${triggerFilterDatalistCounter}`;
+  return datalist;
+}
+
+function syncTriggerFilterState(plan, triggerTypeSelect, triggerFilterInput, triggerFilterDatalist) {
+  const triggerType = triggerTypeSelect.value;
+  const previousTriggerType = triggerFilterInput.dataset.triggerType || '';
+  if (previousTriggerType && previousTriggerType !== triggerType) {
+    triggerFilterInput.value = '';
+  }
+
+  triggerFilterInput.dataset.triggerType = triggerType;
+
+  const needsFilter = triggerType !== TRIGGERED_ACTION_TRIGGER_TYPES.BLOCK_SCORE;
   triggerFilterInput.disabled = !needsFilter;
   if (!needsFilter) {
     triggerFilterInput.value = '';
   }
+
+  syncTriggerFilterOptions(plan, triggerType, triggerFilterDatalist);
+}
+
+function syncTriggerFilterOptions(plan, triggerType, triggerFilterDatalist) {
+  triggerFilterDatalist.replaceChildren();
+  collectPlanTriggerFilterOptions(plan, triggerType).forEach(value => {
+    const option = document.createElement('option');
+    option.value = value;
+    triggerFilterDatalist.appendChild(option);
+  });
 }
 
 function syncSecondActionState(secondStepSelect, secondTargetSelect) {
