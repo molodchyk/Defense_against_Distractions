@@ -151,7 +151,7 @@
   }
 
   function isGuardSatisfied(guard, guardSet) {
-    const key = getGuardKey(guard);
+    const key = getPresenceGuardKey(guard);
     const present = guardSet.has(key) || guardSet.has(guard.id);
     return guard.invert ? !present : present;
   }
@@ -262,6 +262,10 @@
 
   function getGuardKey(guard) {
     return `${guard.invert ? 'not:' : ''}${guard.type}:${guard.id}`;
+  }
+
+  function getPresenceGuardKey(guard) {
+    return `${guard.type}:${guard.id}`;
   }
 
   function getLatestTriggerLocation(diagnostics) {

@@ -52,6 +52,7 @@ describe('triggered action editor model', () => {
       id: 'gmail_remove_thread',
       targetRuleId: 'gmail_trash_button',
       stepType: TRIGGERED_ACTION_STEP_TYPES.CLICK_ONCE,
+      absentTargetRuleId: 'gmail_compose_editor',
       additionalSteps: [{
         targetRuleId: 'gmail_thread_row',
         stepType: TRIGGERED_ACTION_STEP_TYPES.HIDE_ELEMENT
@@ -66,6 +67,10 @@ describe('triggered action editor model', () => {
       type: 'target',
       id: 'gmail_thread_row',
       invert: false
+    }, {
+      type: 'target',
+      id: 'gmail_compose_editor',
+      invert: true
     }]);
     assert.deepEqual(chain.scenarios[0].steps.map(step => [step.type, step.targetRuleId]), [
       [TRIGGERED_ACTION_STEP_TYPES.CLICK_ONCE, 'gmail_trash_button'],
@@ -132,6 +137,24 @@ describe('triggered action editor model', () => {
       targetRuleId: '',
       stepType: TRIGGERED_ACTION_STEP_TYPES.HIDE_ELEMENT
     }), null);
+  });
+
+  it('rejects absent target guards that conflict with required action targets', () => {
+    assert.deepEqual(getSimpleTriggeredActionChainDraftErrors({
+      targetRuleId: 'target',
+      absentTargetRuleId: 'target',
+      stepType: TRIGGERED_ACTION_STEP_TYPES.HIDE_ELEMENT
+    }), ['absentTargetRuleId']);
+
+    assert.deepEqual(getSimpleTriggeredActionChainDraftErrors({
+      targetRuleId: 'target',
+      stepType: TRIGGERED_ACTION_STEP_TYPES.HIDE_ELEMENT,
+      absentTargetRuleId: 'second',
+      additionalSteps: [{
+        targetRuleId: 'second',
+        stepType: TRIGGERED_ACTION_STEP_TYPES.CLICK_ONCE
+      }]
+    }), ['absentTargetRuleId']);
   });
 
   it('rejects unsupported or unbounded additional action steps', () => {

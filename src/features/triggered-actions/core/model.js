@@ -210,7 +210,7 @@ function scenarioMatchesContext(scenario, context) {
 
 function isGuardSatisfied(guard, context = {}) {
   const guardSet = getContextGuardSet(context);
-  const guardKey = getGuardKey(guard);
+  const guardKey = getPresenceGuardKey(guard);
   const isPresent = guardSet.has(guardKey) || guardSet.has(guard.id);
   return guard.invert ? !isPresent : isPresent;
 }
@@ -247,6 +247,10 @@ function createSelectionResult(status, chain, scenario, host) {
 
 function getGuardKey(guard) {
   return `${guard.invert ? 'not:' : ''}${guard.type}:${guard.id}`;
+}
+
+function getPresenceGuardKey(guard) {
+  return `${guard.type}:${guard.id}`;
 }
 
 function hostMatches(pattern, host) {

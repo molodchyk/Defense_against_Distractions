@@ -107,7 +107,7 @@ function isTriggerIdSetAtLeastAsStrict(originalIds, nextIds) {
 }
 
 function isScenarioAtLeastAsStrict(originalScenario, nextScenario) {
-  if (!haveSameGuardSet(originalScenario.guards, nextScenario.guards)) {
+  if (!isGuardSetAtLeastAsStrict(originalScenario, nextScenario)) {
     return false;
   }
 
@@ -163,10 +163,26 @@ function isNewChainAtLeastAsStrict(chain) {
     ));
 }
 
-function haveSameGuardSet(originalGuards, nextGuards) {
-  const originalKeys = originalGuards.map(getGuardKey).sort();
-  const nextKeys = nextGuards.map(getGuardKey).sort();
-  return JSON.stringify(originalKeys) === JSON.stringify(nextKeys);
+function isGuardSetAtLeastAsStrict(originalScenario, nextScenario) {
+  const originalKeys = originalScenario.guards.map(getGuardKey).sort();
+  const nextKeys = nextScenario.guards.map(getGuardKey).sort();
+  const nextKeySet = new Set(nextKeys);
+
+  if (!originalKeys.every(key => nextKeySet.has(key))) {
+    return false;
+  }
+
+  if (originalKeys.length === nextKeys.length) {
+    return true;
+  }
+
+  return getStepStrictnessRank(nextScenario.fallback.type) >= getHighestStepStrictnessRank(originalScenario.steps);
+}
+
+function getHighestStepStrictnessRank(steps = []) {
+  return steps.reduce((highestRank, step) => (
+    Math.max(highestRank, getStepStrictnessRank(step.type))
+  ), 0);
 }
 
 function getGuardKey(guard) {

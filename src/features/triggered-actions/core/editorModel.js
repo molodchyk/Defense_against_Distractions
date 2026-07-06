@@ -64,6 +64,11 @@ export function getSimpleTriggeredActionChainDraftErrors(draft = {}) {
     }
   });
 
+  const absentTargetRuleId = normalizeId(draft.absentTargetRuleId ?? draft.forbiddenTargetRuleId);
+  if (absentTargetRuleId && getRequiredTargetRuleIds(draft).includes(absentTargetRuleId)) {
+    errors.push('absentTargetRuleId');
+  }
+
   return errors;
 }
 
@@ -78,16 +83,23 @@ export function createSimpleTriggeredActionChain(draft = {}, existingChains = []
   const blockAfterAction = draft.blockAfterAction !== false;
   const triggerType = normalizeTriggerType(draft.triggerType);
   const triggerIds = normalizeTriggerIds(draft.triggerIds ?? draft.triggerFilter);
-  const steps = [
+  const actionSteps = [
     { type: stepType, targetRuleId },
     ...getAdditionalActionStepDrafts(draft).map(step => ({
       type: step.stepType,
       targetRuleId: normalizeId(step.targetRuleId)
     }))
   ];
-  const guards = steps
+  const absentTargetRuleId = normalizeId(draft.absentTargetRuleId ?? draft.forbiddenTargetRuleId);
+  const guards = actionSteps
     .filter(step => normalizeId(step.targetRuleId))
     .map(step => ({ type: 'target', id: normalizeId(step.targetRuleId) }));
+
+  if (absentTargetRuleId) {
+    guards.push({ type: 'target', id: absentTargetRuleId, invert: true });
+  }
+
+  const steps = [...actionSteps];
 
   if (blockAfterAction) {
     steps.push({
@@ -136,6 +148,13 @@ function getAdditionalActionStepDrafts(draft = {}) {
       targetRuleId: step.targetRuleId
     }))
     .filter(step => step.stepType || normalizeId(step.targetRuleId));
+}
+
+function getRequiredTargetRuleIds(draft = {}) {
+  return [
+    normalizeId(draft.targetRuleId),
+    ...getAdditionalActionStepDrafts(draft).map(step => normalizeId(step.targetRuleId))
+  ].filter(Boolean);
 }
 
 function normalizeTriggerType(value) {

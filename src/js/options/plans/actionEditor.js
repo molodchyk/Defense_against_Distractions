@@ -91,6 +91,7 @@ function createChainAddSection({ plan, elementRules, isLocked, onUpdateTriggered
     initialRule?.id || '',
     false
   );
+  const absentTargetSelect = createSelectInput(createAbsentTargetOptions(elementRules), '', false);
   const scoreInput = createNumberInput(100, 1, 100, false);
   const locationSelect = createSelectInput(createLocationOptions(), '', false);
   const blockAfterInput = createCheckboxInput(true, isLocked);
@@ -119,6 +120,7 @@ function createChainAddSection({ plan, elementRules, isLocked, onUpdateTriggered
   grid.appendChild(createLabeledControl(getPlanMessage('planActionStepLabel'), stepSelect));
   grid.appendChild(createLabeledControl(getPlanMessage('planActionSecondStepLabel'), secondStepSelect));
   grid.appendChild(createLabeledControl(getPlanMessage('planActionSecondTargetLabel'), secondTargetSelect));
+  grid.appendChild(createLabeledControl(getPlanMessage('planActionAbsentTargetLabel'), absentTargetSelect));
   grid.appendChild(createLabeledControl(getPlanMessage('planActionMinimumScoreLabel'), scoreInput));
   grid.appendChild(createLabeledControl(getPlanMessage('planActionLocationLabel'), locationSelect));
   section.appendChild(grid);
@@ -150,6 +152,7 @@ function createChainAddSection({ plan, elementRules, isLocked, onUpdateTriggered
         targetRuleId: secondTargetSelect.value,
         stepType: secondStepSelect.value
       }] : [],
+      absentTargetRuleId: absentTargetSelect.value,
       minimumScore: scoreInput.value,
       triggerLocation: locationSelect.value,
       blockAfterAction: blockAfterInput.checked,
@@ -238,11 +241,13 @@ function formatChainSummary(chain, elementRules) {
   const scenario = chain.scenarios[0];
   const actionSteps = getTargetActionSteps(scenario);
   const actionSummary = formatActionStepSequence(actionSteps, elementRules);
+  const absentTargetSummary = formatAbsentTargetSummary(scenario, elementRules);
   const parts = [
     chain.enabled ? getPlanMessage('planEnabledLabel') : getPlanMessage('planDisabledLabel'),
     chain.hostPattern || getPlanMessage('planActionAnyHostLabel'),
     getTriggerSummary(chain.trigger),
     actionSummary,
+    absentTargetSummary,
     getLocationLabel(scenario?.triggerLocation || ''),
     hasBlockStep(scenario) ? getPlanMessage('planActionBlocksAfterSummary') : getPlanMessage('planActionOnlySummary')
   ];
@@ -277,6 +282,23 @@ function formatActionStepSummary(step, elementRules) {
   ]);
 }
 
+function formatAbsentTargetSummary(scenario, elementRules) {
+  const absentGuards = Array.isArray(scenario?.guards)
+    ? scenario.guards.filter(guard => guard?.type === 'target' && guard.invert)
+    : [];
+
+  if (absentGuards.length === 0) {
+    return '';
+  }
+
+  const guardLabels = absentGuards.map(guard => {
+    const targetRule = elementRules.find(rule => rule.id === guard.id);
+    return targetRule?.name || guard.id;
+  });
+
+  return getPlanMessage('planActionAbsentTargetSummary', [guardLabels.join(', ')]);
+}
+
 function hasBlockStep(scenario) {
   return Array.isArray(scenario?.steps) && scenario.steps.some(step => step.type === TRIGGERED_ACTION_STEP_TYPES.BLOCK_PAGE);
 }
@@ -293,6 +315,13 @@ function createStepOptions() {
 
 function createSecondStepOptions() {
   return SECOND_STEP_OPTIONS.map(([value, key]) => [value, getPlanMessage(key)]);
+}
+
+function createAbsentTargetOptions(elementRules) {
+  return [
+    ['', getPlanMessage('planActionAbsentTargetNoneLabel')],
+    ...elementRules.map(rule => [rule.id, rule.name || rule.id])
+  ];
 }
 
 function createLocationOptions() {

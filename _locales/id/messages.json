@@ -1394,6 +1394,12 @@
     "planActionSecondStepNoneLabel": {
         "message": "No second action"
     },
+    "planActionAbsentTargetLabel": {
+        "message": "Must be absent UI rule"
+    },
+    "planActionAbsentTargetNoneLabel": {
+        "message": "No absent target guard"
+    },
     "planActionMinimumScoreLabel": {
         "message": "Minimum score"
     },
@@ -1432,6 +1438,9 @@
     },
     "planActionStepSequenceSummary": {
         "message": "$1 then $2"
+    },
+    "planActionAbsentTargetSummary": {
+        "message": "without: $1"
     },
     "planActionTriggerAnyScoreLabel": {
         "message": "Any block score"

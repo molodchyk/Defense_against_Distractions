@@ -210,7 +210,7 @@ The first live runtime slice is implemented for current-page chains:
 - active plan-owned chains are exposed to the content runtime only when the owning plan is active and the current URL is not allowed by that plan;
 - keyword and structural score triggers can select enabled chains by current host, trigger type, trigger keyword/structural id when provided, and minimum normalized 0-100 score;
 - the chain runner evaluates deterministic scenarios before the normal block overlay is shown;
-- scenario guards can use trigger location (`editableField` or `outsideEditable`) and existing UI rule target availability such as `target:<ruleId>` or `<ruleId>-present`;
+- scenario guards can use trigger location (`editableField` or `outsideEditable`), existing UI rule target availability such as `target:<ruleId>` or `<ruleId>-present`, and inverted target guards for cases where a selected UI rule must be absent;
 - matched steps can reuse existing picker-created UI element rules for `clickOnce`, `clearField`, `pauseMedia`, `hideElement`, `hideImages`, and `disableControls`;
 - `blockPage` uses the normal DaD block overlay;
 - `stop` ends the chain without blocking;
@@ -218,7 +218,7 @@ The first live runtime slice is implemented for current-page chains:
 - failed steps stop the chain and use the configured fallback;
 - bounded outcome events are attached to the current block diagnostics and surfaced in the popup Block Diagnostics panel without raw trigger text, surrounding page text, form contents, full URLs, screenshots, selectors, or remote telemetry.
 
-This slice makes stored chains executable for plan records, gives Options a first compact authoring path, and makes the latest bounded action outcomes visible in popup Block Diagnostics as action/result pairs such as `click once: ran` or `block page: fallback blocked`. The editor is intentionally narrow: it creates simple plan-owned chains that run one or two existing picker-created UI rules in order when the plan reaches a chosen trigger source, require every selected target to be present, optionally filter to a specific keyword or structural token, optionally constrain editable versus non-editable trigger location, and either block after the ordered action sequence or keep the action-only behavior outside protected schedules. Rich multi-scenario authoring, forbidden-target guards, and current-page outline/test diagnostics remain follow-up work.
+This slice makes stored chains executable for plan records, gives Options a first compact authoring path, and makes the latest bounded action outcomes visible in popup Block Diagnostics as action/result pairs such as `click once: ran` or `block page: fallback blocked`. The editor is intentionally narrow: it creates simple plan-owned chains that run one or two existing picker-created UI rules in order when the plan reaches a chosen trigger source, require every selected action target to be present, optionally require one selected UI rule to be absent, optionally filter to a specific keyword or structural token, optionally constrain editable versus non-editable trigger location, and either block after the ordered action sequence or keep the action-only behavior outside protected schedules. Rich multi-scenario authoring, broader app-mode guards, and current-page outline/test diagnostics remain follow-up work.
 
 ## UI Implications
 
@@ -270,13 +270,13 @@ DaD Select quick add is a related creation shortcut: selected page text can beco
    - Add guards for editable-field versus non-editable trigger location.
    - Add required-target-present and forbidden-target-absent guards.
 
-   Implementation state: first runtime guards cover trigger location and required target-rule presence. Broader page-mode guards, forbidden-target guards, trigger-container fingerprints, and richer app-state recognition remain follow-up work.
+   Implementation state: first runtime guards cover trigger location, required target-rule presence, and inverted target-rule absence. Broader page-mode guards, trigger-container fingerprints, and richer app-state recognition remain follow-up work.
 
 5. **UI editor**
    - Add an `On trigger` editor to plan entries.
    - Add test-run/outline diagnostics before enabling.
 
-   Implementation state: first compact editor slice implemented. A plan now has an `Actions` tab where existing UI cleanup rules can be attached as triggered actions with a target-present scenario, one or two ordered bounded action steps, explicit fallback blocking, optional trigger-location guard, optional trigger-source filter for any block score, keyword triggers, or structural triggers, and optional block-after-action step. During protected schedules, the shared strictness comparator rejects enabling or adding action-only chains that could suppress normal blocking, rejects narrowing an existing trigger source or trigger id set, and treats removing existing ordered steps as weakening protection. The fuller ordered multi-scenario editor with richer guard authoring, current-page outline/test diagnostics, and Gmail-style authored examples remains follow-up work.
+   Implementation state: first compact editor slice implemented. A plan now has an `Actions` tab where existing UI cleanup rules can be attached as triggered actions with a target-present scenario, one or two ordered bounded action steps, optional absent-target guard, explicit fallback blocking, optional trigger-location guard, optional trigger-source filter for any block score, keyword triggers, or structural triggers, and optional block-after-action step. During protected schedules, the shared strictness comparator rejects enabling or adding action-only chains that could suppress normal blocking, rejects narrowing an existing trigger source or trigger id set, treats removing existing ordered steps as weakening protection, and allows adding an extra scenario guard only when the configured fallback remains at least as protective as the original matched steps. The fuller ordered multi-scenario editor with richer guard authoring, current-page outline/test diagnostics, and Gmail-style authored examples remains follow-up work.
 
 6. **Gmail-style examples**
    - Do not hard-code Gmail as the core feature.

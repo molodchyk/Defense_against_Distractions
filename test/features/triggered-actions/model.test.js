@@ -110,6 +110,34 @@ describe('triggered action chain model', () => {
     assert.equal(hostMismatch.status, TRIGGERED_ACTION_RESULTS.HOST_MISMATCH);
   });
 
+  it('uses inverted target guards to require an element rule to be absent', () => {
+    const chain = {
+      ...baseChain,
+      scenarios: [{
+        ...baseChain.scenarios[0],
+        guards: [
+          { type: 'target', id: 'trash-button-present' },
+          { type: 'target', id: 'compose-editor-present', invert: true }
+        ]
+      }]
+    };
+
+    const receivedMessage = selectTriggeredActionScenario(chain, {
+      host: 'mail.google.com',
+      triggerLocation: 'outsideEditable',
+      guards: ['target:trash-button-present']
+    });
+    assert.equal(receivedMessage.status, TRIGGERED_ACTION_RESULTS.MATCHED);
+
+    const composeOpen = selectTriggeredActionScenario(chain, {
+      host: 'mail.google.com',
+      triggerLocation: 'outsideEditable',
+      guards: ['target:trash-button-present', 'target:compose-editor-present']
+    });
+    assert.equal(composeOpen.status, TRIGGERED_ACTION_RESULTS.NOT_MATCHED);
+    assert.equal(composeOpen.fallback.type, TRIGGERED_ACTION_STEP_TYPES.BLOCK_PAGE);
+  });
+
   it('treats multiple matching scenarios as ambiguous and does not select steps', () => {
     const ambiguous = selectTriggeredActionScenario({
       ...baseChain,
@@ -157,6 +185,41 @@ describe('triggered action chain model', () => {
           { type: 'clickOnce', targetRuleId: 'gmail-trash-button' },
           { type: 'blockPage', reason: 'cleanup-complete' }
         ]
+      }]
+    }), false);
+  });
+
+  it('treats adding an absent-target guard as strict only when fallback stays protective', () => {
+    const guardedChain = {
+      ...baseChain,
+      scenarios: [{
+        ...baseChain.scenarios[0],
+        guards: [
+          ...baseChain.scenarios[0].guards,
+          { type: 'target', id: 'compose-editor-present', invert: true }
+        ]
+      }, baseChain.scenarios[1]]
+    };
+
+    assert.equal(isTriggeredActionChainAtLeastAsStrict(baseChain, guardedChain), true);
+
+    assert.equal(isTriggeredActionChainAtLeastAsStrict({
+      ...baseChain,
+      scenarios: [{
+        ...baseChain.scenarios[0],
+        steps: [{ type: 'clickOnce', targetRuleId: 'gmail-trash-button' }],
+        fallback: { type: 'stop' }
+      }]
+    }, {
+      ...baseChain,
+      scenarios: [{
+        ...baseChain.scenarios[0],
+        guards: [
+          ...baseChain.scenarios[0].guards,
+          { type: 'target', id: 'compose-editor-present', invert: true }
+        ],
+        steps: [{ type: 'clickOnce', targetRuleId: 'gmail-trash-button' }],
+        fallback: { type: 'stop' }
       }]
     }), false);
   });
