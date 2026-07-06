@@ -5,6 +5,31 @@
   global.DAD = global.DAD || {};
   const contentBlocking = global.DAD.ContentBlocking = global.DAD.ContentBlocking || {};
   const getLocalizedMessage = contentBlocking.overlayMessages?.getLocalizedMessage || ((key, fallback) => fallback);
+  const MAX_VISIBLE_ACTION_OUTCOMES = 3;
+
+  const TRIGGERED_ACTION_STEP_LABEL_KEYS = {
+    blockPage: 'popupTriggeredActionStepBlockPage',
+    clearField: 'popupTriggeredActionStepClearField',
+    clickOnce: 'popupTriggeredActionStepClickOnce',
+    disableControls: 'popupTriggeredActionStepDisableControls',
+    hideElement: 'popupTriggeredActionStepHideElement',
+    hideImages: 'popupTriggeredActionStepHideImages',
+    pauseMedia: 'popupTriggeredActionStepPauseMedia',
+    stop: 'popupTriggeredActionStepStop',
+    waitForElement: 'popupTriggeredActionStepWaitForElement'
+  };
+
+  const TRIGGERED_ACTION_RESULT_LABEL_KEYS = {
+    ambiguous: 'popupTriggeredActionResultAmbiguous',
+    blocked: 'popupTriggeredActionResultBlocked',
+    disabled: 'popupTriggeredActionResultDisabled',
+    failed: 'popupTriggeredActionResultFailed',
+    fallbackBlocked: 'popupTriggeredActionResultFallbackBlocked',
+    hostMismatch: 'popupTriggeredActionResultHostMismatch',
+    matched: 'popupTriggeredActionResultMatched',
+    notMatched: 'popupTriggeredActionResultNotMatched',
+    ran: 'popupTriggeredActionResultRan'
+  };
 
   function getBlockedPageDiagnostics() {
     const diagnostics = global.blockDiagnostics;
@@ -20,8 +45,51 @@
       operation: latestTrigger.operation,
       value: latestTrigger.value,
       contextText: latestTrigger.contextText,
-      finalScore: diagnostics.finalScore || global.pageScore || latestTrigger.scoreAfter
+      finalScore: diagnostics.finalScore || global.pageScore || latestTrigger.scoreAfter,
+      triggeredActionOutcomes: getRecentTriggeredActionOutcomes(diagnostics)
     };
+  }
+
+  function getRecentTriggeredActionOutcomes(diagnostics = {}) {
+    return Array.isArray(diagnostics.triggeredActionOutcomes)
+      ? diagnostics.triggeredActionOutcomes.slice(-MAX_VISIBLE_ACTION_OUTCOMES)
+      : [];
+  }
+
+  function getOutcomeStepType(outcome = {}) {
+    const result = String(outcome.result || '').trim();
+    return String(outcome.stepType || (result === 'fallbackBlocked' ? outcome.fallbackType : '') || '').trim();
+  }
+
+  function formatTriggeredActionOutcome(outcome = {}) {
+    const result = String(outcome.result || '').trim();
+    const stepType = getOutcomeStepType(outcome);
+    const stepLabelKey = TRIGGERED_ACTION_STEP_LABEL_KEYS[stepType] || null;
+    const resultLabelKey = TRIGGERED_ACTION_RESULT_LABEL_KEYS[result] || null;
+    const stepLabel = stepLabelKey
+      ? getLocalizedMessage(stepLabelKey, stepType)
+      : (stepType || getLocalizedMessage('popupTriggeredActionStepFallback', 'fallback'));
+    const resultLabel = resultLabelKey
+      ? getLocalizedMessage(resultLabelKey, result)
+      : (result || getLocalizedMessage('popupUnknownLabel', 'unknown'));
+
+    return getLocalizedMessage('popupTriggeredActionOutcomeEntry', '$1: $2', [stepLabel, resultLabel]);
+  }
+
+  function formatTriggeredActionOutcomeTrail(outcomes = []) {
+    const visibleOutcomes = Array.isArray(outcomes) ? outcomes.slice(-MAX_VISIBLE_ACTION_OUTCOMES) : [];
+    return visibleOutcomes
+      .reverse()
+      .map(formatTriggeredActionOutcome)
+      .join('; ');
+  }
+
+  function createStrongLabel(datasetKey, messageKey, fallback) {
+    const strong = document.createElement('strong');
+    strong.dataset[datasetKey] = 'true';
+    strong.style.color = 'var(--dad-block-text)';
+    strong.textContent = getLocalizedMessage(messageKey, fallback);
+    return strong;
   }
 
   function createElement(diagnostics) {
@@ -41,19 +109,13 @@
     }
 
     const trigger = document.createElement('div');
-    const triggerStrong = document.createElement('strong');
-    triggerStrong.dataset.dadBlockTriggerLabel = 'true';
-    triggerStrong.style.color = 'var(--dad-block-text)';
-    triggerStrong.textContent = getLocalizedMessage('blockedTriggeredByLabel', 'Triggered by:');
+    const triggerStrong = createStrongLabel('dadBlockTriggerLabel', 'blockedTriggeredByLabel', 'Triggered by:');
     trigger.appendChild(triggerStrong);
     trigger.appendChild(document.createTextNode(' '));
     trigger.appendChild(document.createTextNode(diagnostics.keyword || 'unknown'));
 
     const score = document.createElement('div');
-    const scoreStrong = document.createElement('strong');
-    scoreStrong.dataset.dadBlockScoreLabel = 'true';
-    scoreStrong.style.color = 'var(--dad-block-text)';
-    scoreStrong.textContent = getLocalizedMessage('blockedScoreLabel', 'Score:');
+    const scoreStrong = createStrongLabel('dadBlockScoreLabel', 'blockedScoreLabel', 'Score:');
     score.appendChild(scoreStrong);
     score.appendChild(document.createTextNode(' '));
     score.appendChild(document.createTextNode(`${Math.round(diagnostics.finalScore)} (${diagnostics.operation}${diagnostics.value})`));
@@ -62,22 +124,36 @@
     context.dataset.dadBlockContext = 'true';
     context.style.cssText = 'margin-top:8px;color:var(--dad-block-diagnostics);overflow-wrap:anywhere';
     if (diagnostics.contextText) {
-      const contextStrong = document.createElement('strong');
-      contextStrong.dataset.dadBlockContextLabel = 'true';
-      contextStrong.style.color = 'var(--dad-block-text)';
-      contextStrong.textContent = getLocalizedMessage('blockedContextLabel', 'Context:');
+      const contextStrong = createStrongLabel('dadBlockContextLabel', 'blockedContextLabel', 'Context:');
       context.appendChild(contextStrong);
       context.appendChild(document.createTextNode(` ${diagnostics.contextText}`));
+    }
+
+    const actionTrail = formatTriggeredActionOutcomeTrail(diagnostics.triggeredActionOutcomes);
+    const action = document.createElement('div');
+    action.dataset.dadBlockActionOutcome = 'true';
+    action.style.cssText = 'margin-top:8px;color:var(--dad-block-diagnostics);overflow-wrap:anywhere';
+    action.hidden = !actionTrail;
+    if (actionTrail) {
+      const actionStrong = createStrongLabel('dadBlockActionLabel', 'blockedActionLabel', 'Action:');
+      const actionText = document.createElement('span');
+      actionText.dataset.dadBlockActionOutcomes = 'true';
+      actionText.textContent = ` ${actionTrail}`;
+      action.appendChild(actionStrong);
+      action.appendChild(actionText);
     }
 
     wrapper.appendChild(trigger);
     wrapper.appendChild(score);
     wrapper.appendChild(context);
+    wrapper.appendChild(action);
     return wrapper;
   }
 
   contentBlocking.overlayDiagnostics = {
     createElement,
+    formatTriggeredActionOutcome,
+    formatTriggeredActionOutcomeTrail,
     getBlockedPageDiagnostics
   };
 })(window);

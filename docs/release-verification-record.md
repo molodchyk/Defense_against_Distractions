@@ -21,14 +21,14 @@ Commands run from the repository root:
 
 | Gate | Recorded evidence |
 | --- | --- |
-| `npm test` | Passed directly and through `npm run verify:release`; 540 unit tests passed on 2026-07-06. |
+| `npm test` | Passed directly and through `npm run verify:release`; 542 unit tests passed on 2026-07-06. |
 | `npm run verify:manifest` | Covered by `npm run verify:release`; manifest-referenced paths exist. |
-| `npm run verify:imports` | Covered by `npm run verify:release`; 392 relative source imports resolve. |
-| `npm run verify:locales` | Covered by `npm run verify:release`; 68 locales match 992 English message keys and 68 store listing files match `_locales`. |
+| `npm run verify:imports` | Covered by `npm run verify:release`; 393 relative source imports resolve. |
+| `npm run verify:locales` | Covered by `npm run verify:release`; 68 locales match 993 English message keys and 68 store listing files match `_locales`. |
 | `npm run verify:static-localization` | Covered by `npm run verify:release`; 4 static extension HTML surfaces scanned. |
 | `npm run verify:playbook` | Passed directly and through `npm run verify:release`; 68 localized store listings verified. |
 | `npm run verify:research` | Passed directly and through `npm run verify:release`; 2 answered or implemented research syntheses verified and 1 revisit synthesis tracked. |
-| `npm run audit:file-sizes` | Passed directly and through `npm run verify:release`; 416 budgeted files checked and no files exceed documented budgets. |
+| `npm run audit:file-sizes` | Passed directly and through `npm run verify:release`; 417 budgeted files checked and no files exceed documented budgets. |
 | `npm run audit:folder-density` | Passed directly and through `npm run verify:release`; 87 budgeted folders checked and no folders exceed documented budgets. |
 | `npm run package` | Generated the current extension and source ZIPs in `dist/`. |
 | `npm run verify:package` | Passed through `npm run verify:release`; 356 packaged runtime files scanned and 84 manifest references verified. |

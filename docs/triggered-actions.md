@@ -218,7 +218,7 @@ The first live runtime slice is implemented for current-page chains:
 - failed steps stop the chain and use the configured fallback;
 - bounded outcome events are attached to the current block diagnostics and surfaced in the popup Block Diagnostics panel without raw trigger text, surrounding page text, form contents, full URLs, screenshots, selectors, or remote telemetry.
 
-This slice makes stored chains executable for plan records, gives Options a first compact authoring path, and makes the latest bounded action outcomes visible in popup Block Diagnostics as action/result pairs such as `click once: ran` or `block page: fallback blocked`. The editor is intentionally narrow: it creates simple plan-owned chains that run one or two existing picker-created UI rules in order when the plan reaches a chosen trigger source, require every selected action target to be present, optionally require one selected UI rule to be absent, optionally filter to a specific keyword or structural token, optionally constrain editable versus non-editable trigger location, and either block after the ordered action sequence or keep the action-only behavior outside protected schedules. Rich multi-scenario authoring, broader app-mode guards, and current-page outline/test diagnostics remain follow-up work.
+This slice makes stored chains executable for plan records, gives Options a first compact authoring path, and makes the latest bounded action outcomes visible in popup Block Diagnostics and on the blocked-page overlay as action/result pairs such as `click once: ran` or `block page: fallback blocked`. The editor is intentionally narrow: it creates simple plan-owned chains that run one or two existing picker-created UI rules in order when the plan reaches a chosen trigger source, require every selected action target to be present, optionally require one selected UI rule to be absent, optionally filter to a specific keyword or structural token, optionally constrain editable versus non-editable trigger location, and either block after the ordered action sequence or keep the action-only behavior outside protected schedules. Rich multi-scenario authoring, broader app-mode guards, and current-page outline/test diagnostics remain follow-up work.
 
 ## UI Implications
 
@@ -264,7 +264,7 @@ DaD Select quick add is a related creation shortcut: selected page text can beco
    - When a plan keyword reaches the block threshold, evaluate enabled chains before rendering the block overlay.
    - Respect chain order and fallback.
 
-   Implementation state: when page scoring reaches the block threshold, the content runtime tries active plan-owned triggered action chains before the default block overlay. A chain can run bounded cleanup and then block, block immediately, stop without blocking, or use fallback blocking when no safe scenario or step succeeds. The latest bounded action outcomes are exposed in the popup Block Diagnostics panel without exposing page text, full URLs, selectors, or raw trigger context.
+   Implementation state: when page scoring reaches the block threshold, the content runtime tries active plan-owned triggered action chains before the default block overlay. A chain can run bounded cleanup and then block, block immediately, stop without blocking, or use fallback blocking when no safe scenario or step succeeds. The latest bounded action outcomes are exposed in the popup Block Diagnostics panel and on the blocked-page overlay without exposing page text, full URLs, selectors, or raw trigger context.
 
 4. **Scenario recognition**
    - Add guards for editable-field versus non-editable trigger location.
@@ -289,4 +289,3 @@ DaD Select quick add is a related creation shortcut: selected page text can beco
 - Should a destructive click require a confirmation state, a cooldown, or a locked-plan flag?
 - Post-v1 only: if multi-page chains are ever considered, what separate permission/privacy/safety model would make them acceptable?
 - Should action chains run before the block overlay, from inside the overlay, or both depending on order?
-- How should DaD display "action succeeded, then block happened" on the blocked page?

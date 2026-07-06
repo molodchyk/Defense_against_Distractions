@@ -242,6 +242,9 @@
     "blockedContextLabel": {
         "message": "Context:"
     },
+    "blockedActionLabel": {
+        "message": "Action:"
+    },
     "blockedPomodoroBreakMessage": {
         "message": "$1: $2 active. Return when this reaches zero."
     },

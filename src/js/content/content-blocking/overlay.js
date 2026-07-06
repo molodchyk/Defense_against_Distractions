@@ -80,6 +80,8 @@
     const triggerLabel = overlay.querySelector('[data-dad-block-trigger-label]');
     const scoreLabel = overlay.querySelector('[data-dad-block-score-label]');
     const contextLabel = overlay.querySelector('[data-dad-block-context-label]');
+    const actionLabel = overlay.querySelector('[data-dad-block-action-label]');
+    const actionOutcomes = overlay.querySelector('[data-dad-block-action-outcomes]');
     const pomodoroTitle = overlay.querySelector('[data-dad-pomodoro-title]');
 
     if (title) {
@@ -99,6 +101,14 @@
     }
     if (contextLabel) {
       contextLabel.textContent = getLocalizedMessage('blockedContextLabel', 'Context:');
+    }
+    if (actionLabel) {
+      actionLabel.textContent = getLocalizedMessage('blockedActionLabel', 'Action:');
+    }
+    if (actionOutcomes) {
+      const diagnostics = overlayDiagnostics.getBlockedPageDiagnostics?.();
+      const actionTrail = overlayDiagnostics.formatTriggeredActionOutcomeTrail?.(diagnostics?.triggeredActionOutcomes) || '';
+      actionOutcomes.textContent = actionTrail ? ` ${actionTrail}` : '';
     }
     if (pomodoroTitle) {
       pomodoroTitle.textContent = getLocalizedMessage('popupPomodoroTitle', 'Pomodoro');
