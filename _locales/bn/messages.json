@@ -1430,6 +1430,9 @@
     "planActionInvalidDraft": {
         "message": "Choose a target UI rule and supported action before saving."
     },
+    "planActionDraftPreviewLabel": {
+        "message": "Draft outline: $1"
+    },
     "planActionAnyHostLabel": {
         "message": "any host"
     },

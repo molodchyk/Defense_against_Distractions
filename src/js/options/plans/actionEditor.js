@@ -23,7 +23,8 @@ import {
   createSecondStepOptions,
   createStepOptions,
   createTriggerOptions,
-  formatChainSummary
+  formatChainSummary,
+  formatDraftChainSummary
 } from './actionEditorSummary.js';
 import { collectPlanTriggerFilterOptions } from './actionEditorTriggers.js';
 import { getPlanMessage } from './messages.js';
@@ -155,6 +156,31 @@ function createChainAddSection({ plan, elementRules, isLocked, onUpdateTriggered
   toggles.appendChild(createCheckboxLabel(getPlanMessage('planActionEnabledLabel'), enabledInput));
   section.appendChild(toggles);
 
+  const draftPreview = createDraftPreview();
+  section.appendChild(draftPreview);
+
+  const draftControls = {
+    nameInput,
+    hostInput,
+    targetSelect,
+    triggerTypeSelect,
+    triggerFilterInput,
+    stepSelect,
+    secondStepSelect,
+    secondTargetSelect,
+    absentTargetSelect,
+    scoreInput,
+    locationSelect,
+    alternativeScenarioInput,
+    alternativeTargetSelect,
+    alternativeStepSelect,
+    alternativeAbsentTargetSelect,
+    alternativeLocationSelect,
+    blockAfterInput,
+    enabledInput
+  };
+  bindDraftPreview(plan, elementRules, draftPreview, draftControls);
+
   const actions = document.createElement('div');
   actions.className = 'plan-entry-actions';
   const addButton = createButton(getPlanMessage('addPlanActionButton'), () => {
@@ -163,31 +189,7 @@ function createChainAddSection({ plan, elementRules, isLocked, onUpdateTriggered
       return;
     }
 
-    const chain = createSimpleTriggeredActionChain({
-      planId: plan.id,
-      idSeed: Date.now().toString(36),
-      name: nameInput.value,
-      hostPattern: hostInput.value,
-      targetRuleId: targetSelect.value,
-      triggerType: triggerTypeSelect.value,
-      triggerFilter: triggerFilterInput.value,
-      stepType: stepSelect.value,
-      additionalSteps: secondStepSelect.value ? [{
-        targetRuleId: secondTargetSelect.value,
-        stepType: secondStepSelect.value
-      }] : [],
-      absentTargetRuleId: absentTargetSelect.value,
-      minimumScore: scoreInput.value,
-      triggerLocation: locationSelect.value,
-      scenarioDrafts: alternativeScenarioInput.checked ? [{
-        targetRuleId: alternativeTargetSelect.value,
-        stepType: alternativeStepSelect.value,
-        absentTargetRuleId: alternativeAbsentTargetSelect.value,
-        triggerLocation: alternativeLocationSelect.value
-      }] : [],
-      blockAfterAction: blockAfterInput.checked,
-      enabled: enabledInput.checked
-    }, plan.triggeredActionChains);
+    const chain = createSimpleTriggeredActionChain(getActionDraft(plan, draftControls), plan.triggeredActionChains);
 
     if (!chain) {
       alert(getPlanMessage('planActionInvalidDraft'));
@@ -282,6 +284,55 @@ function createTriggerFilterDatalist() {
   triggerFilterDatalistCounter += 1;
   datalist.id = `plan-action-trigger-filter-${triggerFilterDatalistCounter}`;
   return datalist;
+}
+
+function createDraftPreview() {
+  const wrapper = document.createElement('p');
+  wrapper.className = 'plan-action-draft-preview muted-text';
+  return wrapper;
+}
+
+function updateDraftPreview(plan, elementRules, draftPreview, draft) {
+  draftPreview.textContent = getPlanMessage('planActionDraftPreviewLabel', [
+    formatDraftChainSummary(draft, elementRules, plan.triggeredActionChains)
+  ]);
+}
+
+function bindDraftPreview(plan, elementRules, draftPreview, controls) {
+  const update = () => updateDraftPreview(plan, elementRules, draftPreview, getActionDraft(plan, controls));
+  Object.values(controls).forEach(control => {
+    control.addEventListener('input', update);
+    control.addEventListener('change', update);
+  });
+  update();
+}
+
+function getActionDraft(plan, controls) {
+  return {
+    planId: plan.id,
+    idSeed: Date.now().toString(36),
+    name: controls.nameInput.value,
+    hostPattern: controls.hostInput.value,
+    targetRuleId: controls.targetSelect.value,
+    triggerType: controls.triggerTypeSelect.value,
+    triggerFilter: controls.triggerFilterInput.value,
+    stepType: controls.stepSelect.value,
+    additionalSteps: controls.secondStepSelect.value ? [{
+      targetRuleId: controls.secondTargetSelect.value,
+      stepType: controls.secondStepSelect.value
+    }] : [],
+    absentTargetRuleId: controls.absentTargetSelect.value,
+    minimumScore: controls.scoreInput.value,
+    triggerLocation: controls.locationSelect.value,
+    scenarioDrafts: controls.alternativeScenarioInput.checked ? [{
+      targetRuleId: controls.alternativeTargetSelect.value,
+      stepType: controls.alternativeStepSelect.value,
+      absentTargetRuleId: controls.alternativeAbsentTargetSelect.value,
+      triggerLocation: controls.alternativeLocationSelect.value
+    }] : [],
+    blockAfterAction: controls.blockAfterInput.checked,
+    enabled: controls.enabledInput.checked
+  };
 }
 
 function syncTriggerFilterState(plan, triggerTypeSelect, triggerFilterInput, triggerFilterDatalist) {

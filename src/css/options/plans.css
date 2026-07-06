@@ -311,6 +311,14 @@
     gap: 10px;
 }
 
+.plan-action-draft-preview {
+    margin: 0;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--field);
+}
+
 .plan-pomodoro-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));

@@ -57,6 +57,7 @@ const PLAN_MESSAGES = {
   planActionNoUiRulesLabel: 'Create a UI cleanup rule first, then attach it here as a triggered action target.',
   planActionNoChainsLabel: 'No triggered actions yet.',
   planActionInvalidDraft: 'Choose a target UI rule and supported action before saving.',
+  planActionDraftPreviewLabel: 'Draft outline: $1',
   planActionAnyHostLabel: 'any host',
   planActionNoTargetLabel: 'no target',
   planActionBlocksAfterSummary: 'blocks after action',

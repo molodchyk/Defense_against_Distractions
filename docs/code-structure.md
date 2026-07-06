@@ -128,8 +128,8 @@ Plan behavior is split by runtime and feature folder:
 - `src/js/options/plans/dom.js` owns reusable plan-editor DOM controls, destructive confirmation dialogs, and guarded action dispatch.
 - `src/js/options/plans/collections.js` owns small plan-editor collection helpers shared by migration and editing flows.
 - `src/js/options/plans/entriesEditor.js` owns plan detail rendering for the plan name, website/keyword entries, allowed sites, and assigned UI cleanup rules.
-- `src/js/options/plans/actionEditor.js` owns the compact plan Actions tab that creates and lists simple plan-owned triggered action chains backed by existing UI cleanup rules, including trigger-source and keyword/structural-token filters plus one bounded alternative scenario.
-- `src/js/options/plans/actionEditorSummary.js` owns the compact action-editor option lists and localized chain summaries used by the plan Actions tab.
+- `src/js/options/plans/actionEditor.js` owns the compact plan Actions tab that creates and lists simple plan-owned triggered action chains backed by existing UI cleanup rules, including trigger-source and keyword/structural-token filters, one bounded alternative scenario, and the live draft outline.
+- `src/js/options/plans/actionEditorSummary.js` owns the compact action-editor option lists and localized saved/draft chain summaries used by the plan Actions tab.
 - `src/js/options/plans/actionEditorTriggers.js` owns the pure extraction of existing plan keywords and structural tokens used as action trigger-filter suggestions.
 - `src/features/triggered-actions/core/strictness.js` owns protected-schedule strictness comparison for triggered-action chain edits.
 - `src/js/options/plans/elementRules.js` owns compact UI-rule summaries and storage keys used when plan rows reference global UI cleanup rules.

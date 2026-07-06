@@ -5,7 +5,8 @@ import {
   SIMPLE_CHAIN_TRIGGER_LOCATIONS,
   SIMPLE_CHAIN_TRIGGER_TYPES,
   TRIGGERED_ACTION_STEP_TYPES,
-  TRIGGERED_ACTION_TRIGGER_TYPES
+  TRIGGERED_ACTION_TRIGGER_TYPES,
+  createSimpleTriggeredActionChain
 } from '../../../features/triggered-actions/core/index.js';
 import { getPlanMessage } from './messages.js';
 
@@ -67,6 +68,13 @@ export function formatChainSummary(chain, elementRules) {
     scenarioSummary
   ];
   return parts.filter(Boolean).join(' · ');
+}
+
+export function formatDraftChainSummary(draft, elementRules, existingChains = []) {
+  const chain = createSimpleTriggeredActionChain(draft, existingChains);
+  return chain
+    ? formatChainSummary(chain, elementRules)
+    : getPlanMessage('planActionInvalidDraft');
 }
 
 export function chainBlocksAfterAction(chain) {
