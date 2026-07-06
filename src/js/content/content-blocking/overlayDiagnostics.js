@@ -6,6 +6,8 @@
   const contentBlocking = global.DAD.ContentBlocking = global.DAD.ContentBlocking || {};
   const getLocalizedMessage = contentBlocking.overlayMessages?.getLocalizedMessage || ((key, fallback) => fallback);
   const MAX_VISIBLE_ACTION_OUTCOMES = 3;
+  const LEGACY_SCORE_THRESHOLD = 1000;
+  const NORMALIZED_SCORE_THRESHOLD = 100;
 
   const TRIGGERED_ACTION_STEP_LABEL_KEYS = {
     blockPage: 'popupTriggeredActionStepBlockPage',
@@ -84,6 +86,55 @@
       .join('; ');
   }
 
+  function clampNumber(value, min, max) {
+    const number = Number(value);
+    if (!Number.isFinite(number)) {
+      return min;
+    }
+
+    return Math.min(Math.max(number, min), max);
+  }
+
+  function getScoreThreshold() {
+    const threshold = Number(contentBlocking.constants?.BLOCK_SCORE_THRESHOLD);
+    return Number.isFinite(threshold) && threshold > 0
+      ? threshold
+      : LEGACY_SCORE_THRESHOLD;
+  }
+
+  function normalizeScoreValue(value) {
+    const normalized = (clampNumber(value, 0, Number.MAX_SAFE_INTEGER) / getScoreThreshold()) * NORMALIZED_SCORE_THRESHOLD;
+    return Math.round(clampNumber(normalized, 0, NORMALIZED_SCORE_THRESHOLD));
+  }
+
+  function normalizeScoreDelta(value) {
+    const normalized = (clampNumber(value, -Number.MAX_SAFE_INTEGER, Number.MAX_SAFE_INTEGER) / getScoreThreshold()) * NORMALIZED_SCORE_THRESHOLD;
+    return Math.round(clampNumber(normalized, -NORMALIZED_SCORE_THRESHOLD, NORMALIZED_SCORE_THRESHOLD));
+  }
+
+  function formatScoreOperation(operation, value) {
+    const normalizedOperation = String(operation || '+').trim() || '+';
+    const rawValue = Number(value);
+    if (!Number.isFinite(rawValue)) {
+      return '';
+    }
+
+    if (normalizedOperation === '*') {
+      return ` (*${rawValue})`;
+    }
+
+    return ` (${normalizedOperation}${normalizeScoreDelta(rawValue)}/100)`;
+  }
+
+  function formatBlockedScore(diagnostics = {}) {
+    const rawScore = Number(diagnostics.finalScore);
+    if (!Number.isFinite(rawScore)) {
+      return '--';
+    }
+
+    return `${normalizeScoreValue(rawScore)}/100${formatScoreOperation(diagnostics.operation, diagnostics.value)}`;
+  }
+
   function createStrongLabel(datasetKey, messageKey, fallback) {
     const strong = document.createElement('strong');
     strong.dataset[datasetKey] = 'true';
@@ -118,7 +169,7 @@
     const scoreStrong = createStrongLabel('dadBlockScoreLabel', 'blockedScoreLabel', 'Score:');
     score.appendChild(scoreStrong);
     score.appendChild(document.createTextNode(' '));
-    score.appendChild(document.createTextNode(`${Math.round(diagnostics.finalScore)} (${diagnostics.operation}${diagnostics.value})`));
+    score.appendChild(document.createTextNode(formatBlockedScore(diagnostics)));
 
     const context = document.createElement('div');
     context.dataset.dadBlockContext = 'true';
@@ -152,6 +203,7 @@
 
   contentBlocking.overlayDiagnostics = {
     createElement,
+    formatBlockedScore,
     formatTriggeredActionOutcome,
     formatTriggeredActionOutcomeTrail,
     getBlockedPageDiagnostics

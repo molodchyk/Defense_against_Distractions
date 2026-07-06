@@ -30,6 +30,7 @@ Version 1.6.1:
 - added release and source archive verification for store listing format, localized descriptions, changelog consistency, and browser-load smoke checks
 - added a DaD Select right-click selected-text menu item that hands a bounded local candidate to the popup quick-add flow before any keyword or cleanup preset is saved
 - added triggered-action outcome details to the blocked-page overlay so action cleanup and fallback blocking are visible without showing raw page details
+- changed blocked-page score diagnostics to display the user-facing 100-point scale while keeping the legacy threshold compatibility behavior unchanged
 
 Version 1.6.0:
 

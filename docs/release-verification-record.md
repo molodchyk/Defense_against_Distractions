@@ -21,7 +21,7 @@ Commands run from the repository root:
 
 | Gate | Recorded evidence |
 | --- | --- |
-| `npm test` | Passed directly and through `npm run verify:release`; 542 unit tests passed on 2026-07-06. |
+| `npm test` | Passed directly and through `npm run verify:release`; 543 unit tests passed on 2026-07-06. |
 | `npm run verify:manifest` | Covered by `npm run verify:release`; manifest-referenced paths exist. |
 | `npm run verify:imports` | Covered by `npm run verify:release`; 393 relative source imports resolve. |
 | `npm run verify:locales` | Covered by `npm run verify:release`; 68 locales match 993 English message keys and 68 store listing files match `_locales`. |

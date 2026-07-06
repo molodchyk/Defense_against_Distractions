@@ -24,6 +24,7 @@ function createWindow() {
   const window = {
     DAD: {
       ContentBlocking: {
+        constants: { BLOCK_SCORE_THRESHOLD: 1000 },
         overlayMessages: {
           getLocalizedMessage(key, fallback, substitutions) {
             const template = messages[key] || fallback;
@@ -46,6 +47,29 @@ function createWindow() {
 }
 
 describe('blocked overlay diagnostics', () => {
+  it('formats legacy block scores on the user-facing 100-point scale', () => {
+    const window = createWindow();
+    const diagnostics = window.DAD.ContentBlocking.overlayDiagnostics;
+
+    assert.equal(diagnostics.formatBlockedScore({
+      finalScore: 1005,
+      operation: '+',
+      value: 15
+    }), '100/100 (+2/100)');
+
+    assert.equal(diagnostics.formatBlockedScore({
+      finalScore: 500,
+      operation: '-',
+      value: 250
+    }), '50/100 (-25/100)');
+
+    assert.equal(diagnostics.formatBlockedScore({
+      finalScore: 1000,
+      operation: '*',
+      value: 2
+    }), '100/100 (*2)');
+  });
+
   it('formats triggered action outcomes without raw page details', () => {
     const window = createWindow();
     const diagnostics = window.DAD.ContentBlocking.overlayDiagnostics;
