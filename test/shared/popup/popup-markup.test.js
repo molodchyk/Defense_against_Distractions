@@ -91,10 +91,13 @@ describe('popup markup', () => {
     const triggerIndex = popupHtml.indexOf('blockTriggerText');
     const scoreIndex = popupHtml.indexOf('blockScoreText');
     const contributorIndex = popupHtml.indexOf('blockContributorText');
+    const actionOutcomeIndex = popupHtml.indexOf('blockActionOutcomeText');
 
     assert.ok(scoreIndex > triggerIndex);
     assert.ok(contributorIndex > scoreIndex);
+    assert.ok(actionOutcomeIndex > contributorIndex);
     assert.match(popupHtml, /popupContributorsLabel[\s\S]+blockContributorText/);
+    assert.match(popupHtml, /popupActionOutcomesLabel[\s\S]+blockActionOutcomeText/);
   });
 
   it('shows audible media and current-page keyword ideas in Page Signals', () => {

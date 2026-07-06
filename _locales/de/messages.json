@@ -2606,6 +2606,9 @@
     "popupContributorsLabel": {
         "message": "Contributors"
     },
+    "popupActionOutcomesLabel": {
+        "message": "Actions"
+    },
     "popupUnavailableLabel": {
         "message": "Unavailable"
     },
@@ -2728,6 +2731,69 @@
     },
     "popupEarlierContributors": {
         "message": "+$1 earlier"
+    },
+    "popupNoActionOutcomeRecorded": {
+        "message": "No action outcomes recorded"
+    },
+    "popupTriggeredActionOutcomeEntry": {
+        "message": "$1: $2"
+    },
+    "popupTriggeredActionStepBlockPage": {
+        "message": "block page"
+    },
+    "popupTriggeredActionStepClearField": {
+        "message": "clear field"
+    },
+    "popupTriggeredActionStepClickOnce": {
+        "message": "click once"
+    },
+    "popupTriggeredActionStepDisableControls": {
+        "message": "disable controls"
+    },
+    "popupTriggeredActionStepFallback": {
+        "message": "fallback"
+    },
+    "popupTriggeredActionStepHideElement": {
+        "message": "hide element"
+    },
+    "popupTriggeredActionStepHideImages": {
+        "message": "hide images"
+    },
+    "popupTriggeredActionStepPauseMedia": {
+        "message": "pause media"
+    },
+    "popupTriggeredActionStepStop": {
+        "message": "stop"
+    },
+    "popupTriggeredActionStepWaitForElement": {
+        "message": "wait for element"
+    },
+    "popupTriggeredActionResultAmbiguous": {
+        "message": "ambiguous"
+    },
+    "popupTriggeredActionResultBlocked": {
+        "message": "blocked"
+    },
+    "popupTriggeredActionResultDisabled": {
+        "message": "disabled"
+    },
+    "popupTriggeredActionResultFailed": {
+        "message": "failed"
+    },
+    "popupTriggeredActionResultFallbackBlocked": {
+        "message": "fallback blocked"
+    },
+    "popupTriggeredActionResultHostMismatch": {
+        "message": "host mismatch"
+    },
+    "popupTriggeredActionResultMatched": {
+        "message": "matched"
+    },
+    "popupTriggeredActionResultNotMatched": {
+        "message": "not matched"
+    },
+    "popupTriggeredActionResultRan": {
+        "message": "ran"
     },
     "popupUnknownLabel": {
         "message": "unknown"

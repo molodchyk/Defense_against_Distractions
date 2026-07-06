@@ -17,10 +17,36 @@ const BLOCK_DIAGNOSTIC_TEXT_IDS = [
   'blockTabMuteStateText',
   'blockTriggerText',
   'blockScoreText',
-  'blockContributorText'
+  'blockContributorText',
+  'blockActionOutcomeText'
 ];
 
 const MAX_VISIBLE_BLOCK_CONTRIBUTORS = 3;
+const MAX_VISIBLE_TRIGGERED_ACTION_OUTCOMES = 3;
+
+const TRIGGERED_ACTION_STEP_LABEL_KEYS = {
+  blockPage: 'popupTriggeredActionStepBlockPage',
+  clearField: 'popupTriggeredActionStepClearField',
+  clickOnce: 'popupTriggeredActionStepClickOnce',
+  disableControls: 'popupTriggeredActionStepDisableControls',
+  hideElement: 'popupTriggeredActionStepHideElement',
+  hideImages: 'popupTriggeredActionStepHideImages',
+  pauseMedia: 'popupTriggeredActionStepPauseMedia',
+  stop: 'popupTriggeredActionStepStop',
+  waitForElement: 'popupTriggeredActionStepWaitForElement'
+};
+
+const TRIGGERED_ACTION_RESULT_LABEL_KEYS = {
+  ambiguous: 'popupTriggeredActionResultAmbiguous',
+  blocked: 'popupTriggeredActionResultBlocked',
+  disabled: 'popupTriggeredActionResultDisabled',
+  failed: 'popupTriggeredActionResultFailed',
+  fallbackBlocked: 'popupTriggeredActionResultFallbackBlocked',
+  hostMismatch: 'popupTriggeredActionResultHostMismatch',
+  matched: 'popupTriggeredActionResultMatched',
+  notMatched: 'popupTriggeredActionResultNotMatched',
+  ran: 'popupTriggeredActionResultRan'
+};
 
 export function getRecentBlockTriggers(debugState = {}) {
   const diagnostics = debugState.blockDiagnostics || {};
@@ -61,6 +87,37 @@ export function formatBlockContributorTrail(debugState = {}, getMessage) {
   }
 
   return entries.join('; ');
+}
+
+export function formatTriggeredActionOutcome(outcome = {}, getMessage) {
+  const result = String(outcome.result || '').trim();
+  const stepType = String(outcome.stepType || (result === 'fallbackBlocked' ? outcome.fallbackType : '') || '').trim();
+  const stepLabelKey = TRIGGERED_ACTION_STEP_LABEL_KEYS[stepType] || null;
+  const resultLabelKey = TRIGGERED_ACTION_RESULT_LABEL_KEYS[result] || null;
+  const stepLabel = stepLabelKey
+    ? getMessage(stepLabelKey)
+    : (stepType || getMessage('popupTriggeredActionStepFallback'));
+  const resultLabel = resultLabelKey
+    ? getMessage(resultLabelKey)
+    : (result || getMessage('popupUnknownLabel'));
+
+  return getMessage('popupTriggeredActionOutcomeEntry', [stepLabel, resultLabel]);
+}
+
+export function formatTriggeredActionOutcomeTrail(debugState = {}, getMessage) {
+  const outcomes = Array.isArray(debugState.blockDiagnostics?.triggeredActionOutcomes)
+    ? debugState.blockDiagnostics.triggeredActionOutcomes
+    : [];
+
+  if (outcomes.length === 0) {
+    return getMessage('popupNoActionOutcomeRecorded');
+  }
+
+  return outcomes
+    .slice(-MAX_VISIBLE_TRIGGERED_ACTION_OUTCOMES)
+    .reverse()
+    .map(outcome => formatTriggeredActionOutcome(outcome, getMessage))
+    .join('; ');
 }
 
 export function createBlockDiagnosticsPanel({
@@ -186,6 +243,7 @@ export function createBlockDiagnosticsPanel({
     setTextWithTitle('blockTriggerText', formatBlockTrigger(debugState));
     setTextWithTitle('blockScoreText', formatBlockScore(debugState));
     setTextWithTitle('blockContributorText', formatBlockContributorTrail(debugState, getMessage));
+    setTextWithTitle('blockActionOutcomeText', formatTriggeredActionOutcomeTrail(debugState, getMessage));
     onStateChange?.(latestDebugState);
   }
 

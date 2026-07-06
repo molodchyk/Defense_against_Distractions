@@ -216,9 +216,9 @@ The first live runtime slice is implemented for current-page chains:
 - `stop` ends the chain without blocking;
 - ambiguous scenarios do not click, clear, hide, disable, or pause anything and use the configured fallback;
 - failed steps stop the chain and use the configured fallback;
-- bounded outcome events are attached to the current block diagnostics without raw trigger text, surrounding page text, form contents, full URLs, screenshots, or remote telemetry.
+- bounded outcome events are attached to the current block diagnostics and surfaced in the popup Block Diagnostics panel without raw trigger text, surrounding page text, form contents, full URLs, screenshots, selectors, or remote telemetry.
 
-This slice makes stored chains executable for plan records and gives Options a first compact authoring path. The editor is intentionally narrow: it creates simple plan-owned chains that run one existing picker-created UI rule when the plan reaches a block-score trigger, require that target to be present, optionally constrain editable versus non-editable trigger location, and either block after the action or keep the action-only behavior outside protected schedules. Rich multi-scenario authoring, keyword-specific chain selection, forbidden-target guards, and test-run diagnostics remain follow-up work.
+This slice makes stored chains executable for plan records, gives Options a first compact authoring path, and makes the latest bounded action outcomes visible in popup Block Diagnostics as action/result pairs such as `click once: ran` or `block page: fallback blocked`. The editor is intentionally narrow: it creates simple plan-owned chains that run one existing picker-created UI rule when the plan reaches a block-score trigger, require that target to be present, optionally constrain editable versus non-editable trigger location, and either block after the action or keep the action-only behavior outside protected schedules. Rich multi-scenario authoring, keyword-specific chain selection, forbidden-target guards, and current-page outline/test diagnostics remain follow-up work.
 
 ## UI Implications
 
@@ -264,7 +264,7 @@ DaD Select quick add is a related creation shortcut: selected page text can beco
    - When a plan keyword reaches the block threshold, evaluate enabled chains before rendering the block overlay.
    - Respect chain order and fallback.
 
-   Implementation state: when page scoring reaches the block threshold, the content runtime tries active plan-owned triggered action chains before the default block overlay. A chain can run bounded cleanup and then block, block immediately, stop without blocking, or use fallback blocking when no safe scenario or step succeeds.
+   Implementation state: when page scoring reaches the block threshold, the content runtime tries active plan-owned triggered action chains before the default block overlay. A chain can run bounded cleanup and then block, block immediately, stop without blocking, or use fallback blocking when no safe scenario or step succeeds. The latest bounded action outcomes are exposed in the popup Block Diagnostics panel without exposing page text, full URLs, selectors, or raw trigger context.
 
 4. **Scenario recognition**
    - Add guards for editable-field versus non-editable trigger location.

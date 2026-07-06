@@ -6,6 +6,8 @@ import { describe, it } from 'node:test';
 import {
   formatBlockContributor,
   formatBlockContributorTrail,
+  formatTriggeredActionOutcome,
+  formatTriggeredActionOutcomeTrail,
   getRecentBlockTriggers
 } from '../../../src/js/popup/blockDiagnosticsPanel.js';
 
@@ -14,7 +16,16 @@ describe('popup block diagnostics panel helpers', () => {
     const messages = {
       popupUnknownLabel: 'unknown',
       popupNoContributorRecorded: 'No contributors recorded',
-      popupEarlierContributors: '+$1 earlier'
+      popupEarlierContributors: '+$1 earlier',
+      popupNoActionOutcomeRecorded: 'No action outcomes recorded',
+      popupTriggeredActionOutcomeEntry: '$1: $2',
+      popupTriggeredActionStepBlockPage: 'block page',
+      popupTriggeredActionStepClickOnce: 'click once',
+      popupTriggeredActionStepFallback: 'fallback',
+      popupTriggeredActionStepHideImages: 'hide images',
+      popupTriggeredActionResultBlocked: 'blocked',
+      popupTriggeredActionResultFallbackBlocked: 'fallback blocked',
+      popupTriggeredActionResultRan: 'ran'
     };
     return String(messages[key] || key).replace(/\$(\d+)/g, (match, index) => (
       Array.isArray(substitutions) && substitutions[Number(index) - 1] !== undefined
@@ -74,5 +85,43 @@ describe('popup block diagnostics panel helpers', () => {
 
   it('uses an explicit empty state when no contributors exist', () => {
     assert.equal(formatBlockContributorTrail({}, getMessage), 'No contributors recorded');
+  });
+
+  it('formats triggered action outcomes without raw page details', () => {
+    assert.equal(
+      formatTriggeredActionOutcome({
+        chainId: 'chain_1',
+        scenarioId: 'scenario_1',
+        stepType: 'clickOnce',
+        result: 'ran',
+        host: 'mail.google.com',
+        url: 'https://mail.google.com/mail/u/0/#inbox',
+        pageText: 'not shown'
+      }, getMessage),
+      'click once: ran'
+    );
+
+    assert.equal(
+      formatTriggeredActionOutcome({
+        fallbackType: 'blockPage',
+        result: 'fallbackBlocked'
+      }, getMessage),
+      'block page: fallback blocked'
+    );
+  });
+
+  it('formats recent triggered action outcomes latest first', () => {
+    const trail = formatTriggeredActionOutcomeTrail({
+      blockDiagnostics: {
+        triggeredActionOutcomes: [
+          { stepType: 'hideImages', result: 'ran' },
+          { stepType: 'clickOnce', result: 'ran' },
+          { stepType: 'blockPage', result: 'blocked' }
+        ]
+      }
+    }, getMessage);
+
+    assert.equal(trail, 'block page: blocked; click once: ran; hide images: ran');
+    assert.equal(formatTriggeredActionOutcomeTrail({}, getMessage), 'No action outcomes recorded');
   });
 });
