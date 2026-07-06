@@ -121,6 +121,51 @@ describe('triggered action editor model', () => {
     assert.deepEqual(structuralChain.trigger.structuralIds, ['has:video', 'has:audible']);
   });
 
+  it('compiles a bounded alternative scenario for the same trigger', () => {
+    const chain = createSimpleTriggeredActionChain({
+      id: 'gmail_two_state_cleanup',
+      targetRuleId: 'gmail_trash_button',
+      stepType: TRIGGERED_ACTION_STEP_TYPES.CLICK_ONCE,
+      absentTargetRuleId: 'gmail_compose_editor',
+      triggerLocation: 'outsideEditable',
+      blockAfterAction: true,
+      scenarioDrafts: [{
+        targetRuleId: 'gmail_compose_editor',
+        stepType: TRIGGERED_ACTION_STEP_TYPES.CLEAR_FIELD,
+        absentTargetRuleId: 'gmail_trash_button',
+        triggerLocation: 'editableField'
+      }]
+    });
+
+    assert.equal(chain.scenarios.length, 2);
+    assert.equal(chain.scenarios[0].id, 'target-present');
+    assert.equal(chain.scenarios[1].id, 'target-present-2');
+    assert.deepEqual(chain.scenarios[0].guards, [{
+      type: 'target',
+      id: 'gmail_trash_button',
+      invert: false
+    }, {
+      type: 'target',
+      id: 'gmail_compose_editor',
+      invert: true
+    }]);
+    assert.deepEqual(chain.scenarios[1].guards, [{
+      type: 'target',
+      id: 'gmail_compose_editor',
+      invert: false
+    }, {
+      type: 'target',
+      id: 'gmail_trash_button',
+      invert: true
+    }]);
+    assert.equal(chain.scenarios[0].triggerLocation, 'outsideEditable');
+    assert.equal(chain.scenarios[1].triggerLocation, 'editableField');
+    assert.deepEqual(chain.scenarios[1].steps.map(step => [step.type, step.targetRuleId]), [
+      [TRIGGERED_ACTION_STEP_TYPES.CLEAR_FIELD, 'gmail_compose_editor'],
+      [TRIGGERED_ACTION_STEP_TYPES.BLOCK_PAGE, '']
+    ]);
+  });
+
   it('rejects drafts without a concrete target or supported action', () => {
     assert.deepEqual(getSimpleTriggeredActionChainDraftErrors({
       stepType: TRIGGERED_ACTION_STEP_TYPES.HIDE_ELEMENT
@@ -185,6 +230,38 @@ describe('triggered action editor model', () => {
         stepType: TRIGGERED_ACTION_STEP_TYPES.HIDE_ELEMENT
       }]
     }), null);
+  });
+
+  it('rejects unbounded or duplicate alternative scenario drafts', () => {
+    assert.deepEqual(getSimpleTriggeredActionChainDraftErrors({
+      targetRuleId: 'target',
+      stepType: TRIGGERED_ACTION_STEP_TYPES.HIDE_ELEMENT,
+      scenarioDrafts: [{
+        targetRuleId: '',
+        stepType: TRIGGERED_ACTION_STEP_TYPES.CLICK_ONCE
+      }]
+    }), ['scenarioDrafts[0].targetRuleId']);
+
+    assert.deepEqual(getSimpleTriggeredActionChainDraftErrors({
+      targetRuleId: 'target',
+      stepType: TRIGGERED_ACTION_STEP_TYPES.HIDE_ELEMENT,
+      scenarioDrafts: [{
+        targetRuleId: 'second',
+        stepType: TRIGGERED_ACTION_STEP_TYPES.CLICK_ONCE
+      }, {
+        targetRuleId: 'third',
+        stepType: TRIGGERED_ACTION_STEP_TYPES.CLEAR_FIELD
+      }]
+    }), ['scenarioDrafts']);
+
+    assert.deepEqual(getSimpleTriggeredActionChainDraftErrors({
+      targetRuleId: 'target',
+      stepType: TRIGGERED_ACTION_STEP_TYPES.HIDE_ELEMENT,
+      scenarioDrafts: [{
+        targetRuleId: 'target',
+        stepType: TRIGGERED_ACTION_STEP_TYPES.CLICK_ONCE
+      }]
+    }), ['scenarioDrafts']);
   });
 
   it('allocates a unique chain id when the generated id already exists', () => {

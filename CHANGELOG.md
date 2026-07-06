@@ -33,6 +33,7 @@ Version 1.6.1:
 - changed blocked-page score diagnostics to display the user-facing 100-point scale while keeping the legacy threshold compatibility behavior unchanged
 - added a non-mutating triggered-action preview message for current-page scenario, target, selected-step, trigger-diagnostics, and would-block status
 - added a popup Inspect preview panel for active saved triggered actions on the current tab
+- extended the simple triggered-action compiler with a bounded alternative-scenario draft for two-state cases such as received content versus editable composition
 
 Version 1.6.0:
 
