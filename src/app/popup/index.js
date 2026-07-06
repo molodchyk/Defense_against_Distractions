@@ -75,6 +75,7 @@ function renderLocalizedPanels() {
   panels.pomodoroPanel.render(panels.pomodoroPanel.getPayload());
   panels.focusStatePanel.render(panels.focusStatePanel.getSnapshot());
   panels.blockDiagnosticsPanel.render(panels.blockDiagnosticsPanel.getDebugState());
+  panels.triggeredActionPreviewPanel.render(panels.triggeredActionPreviewPanel.getSnapshot());
   panels.pageSignalsPanel.render(panels.pageSignalsPanel.getSnapshot());
   panels.intentDiagnosticsPanel.render(panels.intentDiagnosticsPanel.getDebugState());
 }
@@ -118,6 +119,7 @@ async function initializePopup() {
   panels.usageStatsPanel.refresh();
   panels.intentDiagnosticsPanel.refresh();
   panels.blockDiagnosticsPanel.refresh();
+  panels.triggeredActionPreviewPanel.refresh();
   panels.pomodoroPanel.refresh();
   refreshLoop.start();
   popupShell.initializeThemeListener();

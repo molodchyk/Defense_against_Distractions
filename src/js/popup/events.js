@@ -9,6 +9,7 @@ export function bindPopupEvents({
   pomodoroPanel,
   focusStatePanel,
   blockDiagnosticsPanel,
+  triggeredActionPreviewPanel,
   pageSignalsPanel,
   selectedTextQuickAddPanel,
   intentDiagnosticsPanel,
@@ -43,6 +44,7 @@ export function bindPopupEvents({
   bindClick('copySelectedTextButton', () => pageSignalsPanel.copySelectedTextCandidate());
   bindClick('addSelectedTextRuleButton', () => selectedTextQuickAddPanel.saveSelectedTextRule());
   bindClick('refreshBlockDiagnosticsButton', () => blockDiagnosticsPanel.refresh());
+  bindClick('refreshTriggeredActionPreviewButton', () => triggeredActionPreviewPanel.refresh());
   bindClick('copyDiagnosticsButton', () => diagnosticsExporter.copyDiagnostics());
   bindClick('copyDiagnosticsFeedbackButton', async () => {
     if (await diagnosticsExporter.copyDiagnostics('copyDiagnosticsFeedbackButton')) {

@@ -59,7 +59,7 @@ Status meanings:
 | File URL, incognito, browser-controlled behavior, reviewer limitations, and package contents are documented. | `docs/reviewer-notes.md`. | Static evidence passed |
 | Screenshots stay consistent with current UI and store copy. | `store/screenshots/`, `store/promo/`, the consistency map in `docs/store-media-review.md`, and media hash checks. | Static evidence passed |
 | Release checks validate manifest paths, icons, screenshots, unit tests, package output, stale `dist/` artifacts, privacy alignment, and store listing footer. | `npm run package`, `npm run verify:package`, `npm run verify:release`, `docs/release-readiness.md`, and `docs/release-verification-record.md`. | Static evidence passed |
-| Load the unpacked extension in the target browser before publishing. | `docs/release-verification-record.md` records a user-reported manual QA pass on 2026-06-25. `npm run verify:browser-load` and `scripts/check-unpacked-extension-load.ps1` remain available for a separate isolated browser-load smoke check, but the command was not run on the active workstation. | Manual browser evidence passed |
+| Load the unpacked extension in the target browser before publishing. | `docs/release-verification-record.md` records a user-reported manual QA pass on 2026-07-06. `npm run verify:browser-load` and `scripts/check-unpacked-extension-load.ps1` remain available for a separate isolated browser-load smoke check, but the command was not run on the active workstation. | Manual browser evidence passed |
 
 ## Codex Protocol Evidence
 

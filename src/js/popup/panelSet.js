@@ -23,6 +23,9 @@ import {
   createSelectedTextQuickAddPanel
 } from './quick-add/selectedTextQuickAddPanel.js';
 import {
+  createTriggeredActionPreviewPanel
+} from './triggered-actions/previewPanel.js';
+import {
   createUsageStatsPanel
 } from './usage/usageStatsPanel.js';
 
@@ -140,6 +143,17 @@ export function createPopupPanelSet({
     sendRuntimeMessage
   });
 
+  const triggeredActionPreviewPanel = createTriggeredActionPreviewPanel({
+    getMessage,
+    getActiveTab,
+    getSyncStorage,
+    isExtensionPage,
+    sendTabMessage,
+    onActiveTabChange(activeTab) {
+      setProtectionActiveTab(activeTab);
+    }
+  });
+
   protectionSummaryPanel = createProtectionSummaryPanel({
     getMessage,
     getSyncStorage,
@@ -165,6 +179,7 @@ export function createPopupPanelSet({
     pageSignalsPanel,
     pomodoroPanel,
     selectedTextQuickAddPanel,
+    triggeredActionPreviewPanel,
     usageStatsPanel,
     protectionSummaryPanel,
     renderProtectionSummary,

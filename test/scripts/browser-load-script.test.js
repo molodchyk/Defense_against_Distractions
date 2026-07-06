@@ -75,7 +75,7 @@ describe('unpacked extension browser-load smoke script', () => {
     assert.match(releaseRecord, /`npm run verify:locales`[\s\S]+locales match[\s\S]+English message keys[\s\S]+store listing files match `_locales`/i);
     assert.match(releaseRecord, /`npm run verify:release`[\s\S]+Passed for `Defense_against_Distractions-v1\.6\.1`/i);
     assert.match(releaseRecord, /## Browser-Only Evidence[\s\S]+`npm run verify:browser-load`[\s\S]+Not run[\s\S]+isolated Chromium-based browser\/profile/i);
-    assert.match(releaseRecord, /Manual QA from `docs\/release-checklist\.md`[\s\S]+User-reported pass on 2026-06-25/i);
+    assert.match(releaseRecord, /Manual QA from `docs\/release-checklist\.md`[\s\S]+User-reported pass on 2026-07-06/i);
     assert.match(releaseRecord, /## Manual QA Evidence[\s\S]+Manual QA result:\s+user reported that manual QA looks working/i);
   });
 

@@ -1,5 +1,6 @@
 .page-signals-panel[open] .page-signal-grid,
-.block-diagnostics-panel[open] .block-diagnostics-grid {
+.block-diagnostics-panel[open] .block-diagnostics-grid,
+.triggered-action-preview-panel[open] .triggered-action-preview-list {
     margin-top: 10px;
 }
 
@@ -168,6 +169,13 @@
     color: var(--muted);
     font-size: 11px;
 }
+
+.triggered-action-preview-list { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.triggered-action-preview-list li { display: grid; min-width: 0; gap: 2px; border-top: 1px solid var(--border); padding-top: 6px; }
+.triggered-action-preview-list strong,
+.triggered-action-preview-list small { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.triggered-action-preview-list strong { color: var(--text); font-size: 12px; }
+.triggered-action-preview-list small { color: var(--muted); font-size: 11px; }
 
 .diagnostic-actions,
 .intent-actions {
